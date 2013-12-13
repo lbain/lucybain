@@ -1,0 +1,8 @@
+index page
+- index_links('pages') do |link|
+  %li
+    = link
+
+- current_page.children.each do |p|
+  =p.inspect
+  =link_to 'title', p.path

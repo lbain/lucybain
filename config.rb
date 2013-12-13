@@ -52,6 +52,19 @@ helpers do
     options[:class] << " active" if url == current_page.url
     link_to(link_text, url, options)
   end
+
+  def from_url(link_name)
+    link_name.sub('-', ' ').titleize
+  end
+
+  def index_links(directory, &block)
+    Dir.entries("./source/#{directory}/").each do |file|
+      next if !file.end_with?('.haml') || file.include?('index')
+      link_name = file.sub '.haml', ''
+      display_name = from_url(link_name)
+      block.call(link_to(display_name, "/#{directory}/#{link_name}"))
+    end
+  end
 end
 
 set :css_dir, 'stylesheets'
