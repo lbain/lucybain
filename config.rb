@@ -23,6 +23,10 @@
 # with_layout :admin do
 #   page "/admin/*"
 # end
+with_layout :page do
+  page "/pages/*"
+end
+
 
 # Proxy pages (http://middlemanapp.com/dynamic-pages/)
 # proxy "/this-page-has-no-template.html", "/template-file.html", :locals => {
@@ -37,6 +41,9 @@
 
 # Reload the browser automatically whenever files change
 activate :livereload
+
+# Tell Middleman to create a folder for each .html file
+activate :directory_indexes
 
 # Methods defined in the helpers block are available in templates
 helpers do
