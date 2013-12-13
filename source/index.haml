@@ -1,15 +1,13 @@
 .personal-info
   .photo
-    %img.profile-pic{src:"/attachments/images/profile_pic.jpg", alt:'Lucy Bain'}
+    = image_tag 'profile_pic.jpg', class: 'profile-pic', alt: 'Lucy Bain'
     %ul.nav
       %li
-        %a{href:'/posts'} Blog
+        =link_to 'Twitter', 'https://twitter.com/lucykbain'
       %li
-        %a{href:'/https://twitter.com/lucykbain'} Twitter
+        =link_to 'GitHub', 'https://github.com/lbain'
       %li
-        %a{href:'https://github.com/lbain'} GitHub
+        =link_to 'Stackoverflow', 'http://stackoverflow.com/users/863846/lucy-bain'
       %li
-        %a{href:'http://stackoverflow.com/users/863846/lucy-bain'} Stackoverflow
-      %li
-        %a{href:'https://www.facebook.com/LucyKBain'} Facebook
+        =link_to 'Facebook', 'https://www.facebook.com/LucyKBain'
 
