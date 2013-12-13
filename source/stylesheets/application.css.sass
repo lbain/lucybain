@@ -1,0 +1,38 @@
+@import normalize
+
+$small-mobile: 400px
+$medium-mobile: 500px
+$large-mobile: 900px
+$large-screen: 1200px
+
+$dark-white: #f7f6f5
+$light-gray: #888
+$dark-gray: #333
+$accent: #C93C67
+
+body
+  background: $dark-white
+  font-family: 'Lato', sans-serif
+  color: $dark-gray
+
+a
+  text-decoration: none
+  font-weight: bold
+  color: $light-gray
+  -webkit-font-smoothing: antialiased
+  text-decoration: none
+  &:hover
+    color: $accent
+
+
+#main
+  margin: 0 auto
+  max-width: 800px
+  @media (max-width: $large-mobile)
+    margin: 20px
+  @media (max-width: $small-mobile)
+    margin: 0px
+
+@import nav
+@import posts
+@import home
