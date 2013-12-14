@@ -45,6 +45,9 @@ activate :livereload
 # Tell Middleman to create a folder for each .html file
 activate :directory_indexes
 
+# Use middleman-syntax gem to color syntax
+activate :syntax, :line_numbers => true
+
 # Methods defined in the helpers block are available in templates
 helpers do
   def nav_link(link_text, url, options = {})

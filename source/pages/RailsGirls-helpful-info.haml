@@ -1,0 +1,64 @@
+---
+summary: "RG summary"
+---
+
+%h1.title
+  = page_title(current_page)
+.body
+  %div
+    Here are some sample paragraphs:
+  %p
+    Aliquam lectus ligula, fermentum sed dolor quis, porttitor condimentum purus. Duis rutrum neque non blandit ultricies. Proin quis dui sit amet metus tincidunt dictum in id nunc. Nunc sed iaculis quam. Nulla sit amet luctus nulla. Nunc vitae purus viverra, sodales mauris eget, porttitor lorem. Donec euismod elementum quam non pharetra. Praesent neque neque, ultricies at est vestibulum, consequat eleifend diam. Cras imperdiet tempus dolor eu rutrum. In lectus mauris, consectetur eu elit vel, elementum ultrices urna. Nunc sed odio vel arcu consectetur auctor at id velit. Aliquam non tincidunt dolor. Pellentesque adipiscing ipsum libero, vel feugiat quam ultrices eget. Fusce placerat odio ut nisi suscipit, eu laoreet eros rutrum. Donec leo tortor, scelerisque ut erat et, facilisis aliquet lacus.
+  %p
+    Nulla facilisi. Nunc sodales lacus ac neque interdum, non vehicula quam auctor. Maecenas blandit lectus ut imperdiet malesuada. Etiam euismod tristique augue, quis placerat tortor porta ac. Aliquam non dolor eget sem viverra porta. Vestibulum faucibus iaculis placerat. Nulla sed purus hendrerit, varius lacus sit amet, imperdiet nulla. In hac habitasse platea dictumst.
+  %div
+    And now for a list
+  %ul
+    %li
+      First
+    %li
+      Second
+    %li
+      Donec euismod elementum quam non pharetra. Praesent neque neque, ultricies at est vestibul
+    %li
+      %ol
+        %li
+          Wow, lists within lists!
+        %li
+          This one has numbers
+        %li
+          such a great list
+        %li
+          Porta ac. Aliquam non dolor eget sem viverra porta. Vestibulum faucibus iaculi
+  %div
+    And perhaps some links
+  %p
+    We'll put them inside a paragraph
+    = link_to 'RailsGirls', 'http://railsgirls.com/'
+    like this. So you can see how it would probably look. Nunc sed odio vel arcu consectetur auctor at id velit. Aliquam non tincidunt dolor.
+    = link_to 'Time converter website', 'http://www.worldtimebuddy.com/?pl=1&lid=2147714,2191562,4140963,5391959&h=2147714'
+    and then a few more words just in case.
+  %p
+    = link_to 'www.twitter.com', 'https://twitter.com/'
+    Aliquam non dolor eget sem viverra porta. Vestibulum faucibus iaculis placerat. Nulla sed purus hendrerit, varius lacus sit amet, imperdiet nulla. In hac habitasse platea dictumst.
+
+  %div
+    And of course you'll need some code
+
+  %div
+    something here
+    - code("ruby") do
+      :plain
+        lucy
+
+  %div
+    Maybe even a photo or two
+  .photos
+    = image_tag 'http://placekitten.com/200/300'
+    = image_tag 'http://placekitten.com/500/400'
+  %p
+    maybe with some nice text before
+  .photos
+    = image_tag 'http://placekitten.com/250/600'
+  %p
+    and more text after
