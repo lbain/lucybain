@@ -1,8 +1,5 @@
-index page
-- index_links('pages') do |link|
-  %li
-    = link
-
 - current_page.children.each do |p|
-  =p.inspect
-  =link_to 'title', p.path
+  %h2= link_to page_title(p), path_to_link(p.path)
+  - if p.data.summary.present?
+    %p
+      = p.data.summary

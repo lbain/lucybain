@@ -57,13 +57,20 @@ helpers do
     link_name.sub('-', ' ').titleize
   end
 
-  def index_links(directory, &block)
-    Dir.entries("./source/#{directory}/").each do |file|
-      next if !file.end_with?('.haml') || file.include?('index')
-      link_name = file.sub '.haml', ''
-      display_name = from_url(link_name)
-      block.call(link_to(display_name, "/#{directory}/#{link_name}"))
-    end
+  def path_to_file_name(path)
+    path.split('/').last
+  end
+
+  def page_title(page)
+    page.data.title || path_to_title(page.path)
+  end
+
+  def path_to_title(path)
+    path_to_file_name(path).sub('.html', '').sub('-', ' ').titleize
+  end
+
+  def path_to_link(path)
+    '/' << path.sub('.html', '/')
   end
 end
 
