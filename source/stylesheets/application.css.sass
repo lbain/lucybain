@@ -5,24 +5,27 @@ $medium-mobile: 500px
 $large-mobile: 900px
 $large-screen: 1200px
 
-$dark-white: #f7f6f5
+$white: #fff
 $light-gray: #888
 $dark-gray: #333
 $accent: #C93C67
+$bold: 700
 
 body
-  background: $dark-white
+  background: $white
   font-family: 'Lato', sans-serif
   color: $dark-gray
 
 a
   text-decoration: none
-  font-weight: bold
-  color: $light-gray
+  color: $accent
   -webkit-font-smoothing: antialiased
   text-decoration: none
   &:hover
-    color: $accent
+    text-decoration: underline
+
+b, strong, bold
+  font-weight: 700
 
 
 #main
@@ -37,3 +40,4 @@ a
 @import header
 @import posts
 @import home
+@import page
