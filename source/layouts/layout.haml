@@ -9,6 +9,6 @@
     = stylesheet_link_tag "code"
     = javascript_include_tag  "all"
   %body{class: page_classes}
-    = partial "layouts/shared/header"
+    = partial "layouts/shared/header" if false
     = yield
     =# partial "layouts/shared/footer"
