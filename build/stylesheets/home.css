@@ -1,0 +1,26 @@
+/* line 3, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/home.sass */
+.personal-info {
+  margin: 120px auto 0px auto; }
+  /* line 6, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/home.sass */
+  .personal-info .photo {
+    text-align: center;
+    margin: 0px auto; }
+  /* line 10, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/home.sass */
+  .personal-info .profile-pic {
+    width: 300px; }
+  /* line 13, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/home.sass */
+  .personal-info .nav {
+    margin-top: 50px; }
+
+@media (max-width: 600px) {
+  /* line 17, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/home.sass */
+  .personal-info {
+    margin: 60px auto 0px auto; }
+    /* line 20, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/home.sass */
+    .personal-info .nav li {
+      display: block;
+      margin: 15px 0px 0px 0px; } }
+@media (max-width: 400px) {
+  /* line 25, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/home.sass */
+  .github {
+    display: none; } }

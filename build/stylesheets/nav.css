@@ -1,0 +1,19 @@
+/* line 3, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/nav.sass */
+.nav {
+  text-align: center;
+  list-style: none;
+  padding: 0; }
+  /* line 8, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/nav.sass */
+  .nav li {
+    display: inline;
+    margin-right: 15px; }
+  /* line 12, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/nav.sass */
+  .nav a {
+    font-weight: 700; }
+  /* line 15, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/nav.sass */
+  .nav li:last-child {
+    margin-right: 0px; }
+  @media (max-width: 500px) {
+    /* line 19, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/nav.sass */
+    .nav li.home {
+      display: inline; } }
