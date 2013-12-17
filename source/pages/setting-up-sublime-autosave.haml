@@ -1,0 +1,23 @@
+---
+summary: "How to set up Sublime's autosave"
+---
+
+%h1
+  Setting up Sublime's autosave
+%p
+  People often forget to save files (I've been guilty of it myself), autosave will make sure your files are saved, even if you forget. This is especially important for code since any changes you make to your code will not be shown until your file has been saved (sometimes you might also need to restart your server). Setting up autosave will save you some time trying to understand why your code doesn't seem to be running.
+.disclaimer
+  This is only for Sublime. If you are using a different editor this will not work.
+%ol
+  %li
+    Open Sublime
+  %li
+    Open 'Settings - User'
+    %div
+      Mac - click Sublime Text 2 > Preferences > Settings - User
+    %div
+      Windows - click Preferences > Settings - User
+  %li
+    Add this line
+    %pre
+      { "save_on_focus_lost": true }

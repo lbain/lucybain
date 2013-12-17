@@ -1,4 +1,5 @@
 - current_page.children.each do |p|
+  - next if p.data.draft.present? and p.data.draft
   %h2= link_to page_title(p), path_to_link(p.path)
   - if p.data.summary.present?
     %p
