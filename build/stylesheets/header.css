@@ -1,4 +1,10 @@
-/* line 5, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/header.sass */
-.header .nav li .active {
-  padding: 0 3px 2px 3px;
-  border-bottom: 3px solid #c93c67; }
+/* line 4, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/header.sass */
+.header .nav li {
+  padding: 0 3px 2px 3px; }
+  /* line 6, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/header.sass */
+  .header .nav li a:hover {
+    text-decoration: none;
+    border-bottom: 3px solid #c93c67; }
+  /* line 9, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/header.sass */
+  .header .nav li .active {
+    border-bottom: 3px solid #c93c67; }
