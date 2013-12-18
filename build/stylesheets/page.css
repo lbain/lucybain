@@ -7,27 +7,30 @@
   line-height: 1.75em;
   font-family: "Crimson Text", sans-serif;
   -webkit-font-smoothing: antialiased; }
-  /* line 14, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/page.sass */
+  /* line 12, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/page.sass */
   .page p {
     margin: 10px 0px 20px; }
-  /* line 17, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/page.sass */
+  /* line 15, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/page.sass */
+  .page h1, .page h2, .page h3, .page h4 {
+    font-family: "Nobile", sans-serif;
+    font-weight: 400; }
+  /* line 19, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/page.sass */
   .page h1 {
     font-size: 2.5em;
     line-height: 1em;
-    font-weight: 400;
     margin: 20px 0px 40px; }
-  /* line 23, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/page.sass */
+  /* line 24, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/page.sass */
   .page h2 {
     font-size: 1.5em;
     margin: 40px 0px 0px; }
-  /* line 27, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/page.sass */
+  /* line 28, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/page.sass */
   .page h3 {
     font-size: 1em;
     margin: 40px 0px 0px; }
-  /* line 31, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/page.sass */
+  /* line 32, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/page.sass */
   .page li {
     line-height: 1.75em; }
-  /* line 34, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/page.sass */
+  /* line 35, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/page.sass */
   .page ul li {
     list-style-type: square;
     margin-left: 40px; }

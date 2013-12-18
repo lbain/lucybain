@@ -6,14 +6,12 @@
   /* line 8, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/nav.sass */
   .nav li {
     display: inline;
-    margin-right: 15px; }
-  /* line 12, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/nav.sass */
-  .nav a {
-    font-weight: 700; }
-  /* line 15, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/nav.sass */
+    margin-right: 15px;
+    font-size: 24px; }
+  /* line 13, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/nav.sass */
   .nav li:last-child {
     margin-right: 0px; }
   @media (max-width: 500px) {
-    /* line 19, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/nav.sass */
+    /* line 17, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/nav.sass */
     .nav li.home {
       display: inline; } }
