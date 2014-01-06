@@ -1,0 +1,7 @@
+/* line 1, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/blog.sass */
+#disqus_thread {
+  margin-top: 50px;
+  padding-top: 15px;
+  border-top: 2px solid;
+  border-color: #eaedee;
+  border-color: rgba(0, 39, 59, 0.08); }

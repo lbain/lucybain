@@ -25,6 +25,9 @@
 # end
 with_layout :page do
   page "/pages/*"
+end
+
+with_layout :blog do
   page "/blog/*"
 end
 

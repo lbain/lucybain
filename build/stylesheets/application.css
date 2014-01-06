@@ -447,8 +447,8 @@ b, strong, bold {
   /* line 25, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/home.sass */
   .github {
     display: none; } }
-/* line 3, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/page.sass */
-.page {
+/* line 3, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/content.sass */
+.content {
   margin: 0px auto;
   max-width: 700px;
   padding: 30px;
@@ -456,30 +456,38 @@ b, strong, bold {
   line-height: 1.75em;
   font-family: "Crimson Text", sans-serif;
   -webkit-font-smoothing: antialiased; }
-  /* line 12, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/page.sass */
-  .page p {
+  /* line 12, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/content.sass */
+  .content p {
     margin: 10px 0px 20px; }
-  /* line 15, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/page.sass */
-  .page h1, .page h2, .page h3, .page h4 {
+  /* line 15, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/content.sass */
+  .content h1, .content h2, .content h3, .content h4 {
     font-family: "Nobile", sans-serif;
     font-weight: 400; }
-  /* line 19, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/page.sass */
-  .page h1 {
+  /* line 19, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/content.sass */
+  .content h1 {
     font-size: 2.5em;
     line-height: 1em;
     margin: 20px 0px 40px; }
-  /* line 24, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/page.sass */
-  .page h2 {
+  /* line 24, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/content.sass */
+  .content h2 {
     font-size: 1.5em;
     margin: 40px 0px 0px; }
-  /* line 28, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/page.sass */
-  .page h3 {
+  /* line 28, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/content.sass */
+  .content h3 {
     font-size: 1em;
     margin: 40px 0px 0px; }
-  /* line 32, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/page.sass */
-  .page li {
+  /* line 32, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/content.sass */
+  .content li {
     line-height: 1.75em; }
-  /* line 35, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/page.sass */
-  .page ul li {
+  /* line 35, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/content.sass */
+  .content ul li {
     list-style-type: square;
     margin-left: 40px; }
+
+/* line 1, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/blog.sass */
+#disqus_thread {
+  margin-top: 50px;
+  padding-top: 15px;
+  border-top: 2px solid;
+  border-color: #eaedee;
+  border-color: rgba(0, 39, 59, 0.08); }
