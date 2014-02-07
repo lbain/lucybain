@@ -1,6 +1,8 @@
-- current_page.children.each do |p|
-  - next if p.data.draft.present? and p.data.draft
-  %h2= link_to page_title(p), path_to_link(p.path)
-  - if p.data.summary.present?
-    %p
-      = p.data.summary
+- ['code-resources-mailing-list', 'programming-community-in-sydney', 'git-info', 'setting-up-sublime-autosave'].each do |page_title|
+  - current_page.children.each do |p|
+    - next unless path_to_file_name(p.path) == page_title
+    - next if p.data.draft.present? and p.data.draft
+    %h2= link_to page_title(p), path_to_link(p.path)
+    - if p.data.summary.present?
+      %p
+        = p.data.summary

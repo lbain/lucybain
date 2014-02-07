@@ -66,7 +66,7 @@ helpers do
   end
 
   def path_to_file_name(path)
-    path.split('/').last
+    path.split('/').last.sub('.html', '')
   end
 
   def page_title(page)
@@ -74,7 +74,7 @@ helpers do
   end
 
   def path_to_title(path)
-    path_to_file_name(path).sub('.html', '').sub('-', ' ').titleize
+    path_to_file_name(path).sub('-', ' ').titleize
   end
 
   def path_to_link(path)
