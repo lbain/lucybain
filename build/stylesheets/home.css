@@ -12,18 +12,14 @@
   .personal-info .nav {
     margin-top: 50px; }
 
-@media (max-width: 600px) {
-  /* line 17, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/home.sass */
+@media (max-width: 900px), only screen and (-webkit-min-device-pixel-ratio: 2) and (max-width: 1800px), only screen and (min--moz-device-pixel-ratio: 2) and (max-width: 1800px), only screen and (-o-min-device-pixel-ratio: 2 / 1) and (max-width: 1800px), only screen and (min-device-pixel-ratio: 2) and (max-width: 1800px), only screen and (min-resolution: 192dpi) and (max-width: 1800px), only screen and (min-resolution: 2dppx) and (max-width: 1800px) {
+  /* line 18, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/home.sass */
   .personal-info {
     margin: 60px auto 0px auto; }
-    /* line 19, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/home.sass */
+    /* line 20, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/home.sass */
     .personal-info .profile-pic {
       width: 250px; }
-    /* line 22, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/home.sass */
+    /* line 23, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/home.sass */
     .personal-info .nav li {
       display: block;
       margin: 15px 0px 0px 0px; } }
-@media (max-width: 400px) {
-  /* line 27, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/home.sass */
-  .github {
-    display: none; } }
