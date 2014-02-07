@@ -24,7 +24,7 @@
 #   page "/admin/*"
 # end
 with_layout :page do
-  page "/pages/*"
+  page "/resources/*"
   page "/mailing-list/*"
 end
 
