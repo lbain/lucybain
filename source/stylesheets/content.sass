@@ -9,10 +9,10 @@
   font-family: $content-font
   -webkit-font-smoothing:  antialiased
 
-  @media (max-width: $large-mobile)
+  @include respond(medium)
     padding: 20px, 30px
     font-size: 22px
-  @media (max-width: $small-mobile)
+  @include respond(small)
     padding: 15px
     font-size: 18px
 
@@ -36,11 +36,10 @@
     font-size: 1em
     margin: 40px 0px 0px
 
-  @media (max-width: $large-mobile)
-    h1, h2, h3
+  h1, h2, h3
+    @include respond(medium)
       margin: 15px 0px 25px
-  @media (max-width: $small-mobile)
-    h1, h2, h3
+    @include respond(small)
       margin: 10px 0px 20px
 
   li

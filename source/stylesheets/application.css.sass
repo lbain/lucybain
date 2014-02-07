@@ -4,6 +4,7 @@
 @import variables
 
 
+
 body
   background: $white
   font-family: $title-font
@@ -24,9 +25,9 @@ b, strong, bold
 #main
   margin: 0 auto
   max-width: 800px
-  @media (max-width: $large-mobile)
+  @include respond(medium)
     margin: 20px
-  @media (max-width: $small-mobile)
+  @include respond(small)
     margin: 0px
 
 @import nav

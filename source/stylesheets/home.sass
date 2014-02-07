@@ -13,7 +13,8 @@
   .nav
     margin-top: 50px
 
-@media (max-width: 600px)
+
+@include respond(medium)
   .personal-info
     margin: 60px auto 0px auto
     .profile-pic
@@ -22,7 +23,3 @@
       li
         display: block
         margin: 15px 0px 0px 0px
-
-@media (max-width: $small-mobile)
-  .github
-    display: none

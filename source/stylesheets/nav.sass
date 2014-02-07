@@ -9,15 +9,14 @@
     display: inline
     margin-right: 15px
     font-size: 20px
-    @media (max-width: $large-mobile)
+    @include respond(medium)
       font-size: 18px
-    @media (max-width: $small-mobile)
+    @include respond(small)
       font-size: 16px
-
 
   li:last-child
     margin-right: 0px
 
-  @media (max-width: $medium-mobile)
+  @include respond(medium)
     li.home
       display: inline

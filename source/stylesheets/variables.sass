@@ -1,7 +1,6 @@
-$small-mobile: 400px
-$medium-mobile: 500px
-$large-mobile: 900px
-$large-screen: 1200px
+$small-size: 400px
+$medium-size: 900px
+$large-size: 1200px
 
 $white: #fff
 $light-gray: #888
@@ -14,3 +13,27 @@ $normal-weight: 400
 
 $title-font: 'Nobile', sans-serif
 $content-font: 'Crimson Text', sans-serif
+
+
+@function generate_media_query($pixels)
+  @return "(max-width: #{$pixels}), only screen and (-webkit-min-device-pixel-ratio: 2) and (max-width: #{$pixels * 2}), only screen and (min--moz-device-pixel-ratio: 2) and (max-width: #{$pixels * 2}), only screen and (-o-min-device-pixel-ratio: 2/1) and (max-width: #{$pixels * 2}), only screen and (min-device-pixel-ratio: 2) and (max-width: #{$pixels * 2}), only screen and (min-resolution: 192dpi) and (max-width: #{$pixels * 2}), only screen and (min-resolution: 2dppx) and (max-width: #{$pixels * 2})"
+
+
+
+$small-screen: generate_media_query($small-size)
+$medium-screen: generate_media_query($medium-size)
+$large-screen:  generate_media_query($large-size)
+
+// Mixin: the easiest way to make responsive tweaks
+// ------------------------------------------------
+
+@mixin respond($size)
+  @if $size == small
+    @media #{$small-screen}
+      @content
+  @else if $size == medium
+    @media #{$medium-screen}
+      @content
+  @else if $size == large
+    @media #{$large-screen}
+      @content
