@@ -1,0 +1,32 @@
+@import variables
+
+form
+  padding: 10px 30px
+
+label
+  font-family: $content-font
+  -webkit-font-smoothing:  antialiased
+  font-size: 26px
+  line-height: 1.75em
+
+input
+  &[type=text],
+  &[type=email],
+    padding: 5px
+    border: 2px solid $light-gray
+    -webkit-border-radius: 5px
+    border-radius: 5px
+    &:focus
+      border-color: $accent
+  &[type=submit]
+    padding: 5px 15px
+    background: $white
+    border: 2px solid $light-gray
+    cursor: pointer
+    -webkit-border-radius: 5px
+    border-radius: 5px
+    &:hover
+      background: $light-accent
+      border-color: $accent
+    &:active
+      background: $accent

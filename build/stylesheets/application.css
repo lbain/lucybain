@@ -491,3 +491,39 @@ b, strong, bold {
   border-top: 2px solid;
   border-color: #eaedee;
   border-color: rgba(0, 39, 59, 0.08); }
+
+/* line 3, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/form.sass */
+form {
+  padding: 10px 30px; }
+
+/* line 6, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/form.sass */
+label {
+  font-family: "Crimson Text", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  font-size: 26px;
+  line-height: 1.75em; }
+
+/* line 13, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/form.sass */
+input[type=text], input[type=email] {
+  padding: 5px;
+  border: 2px solid #888888;
+  -webkit-border-radius: 5px;
+  border-radius: 5px; }
+  /* line 19, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/form.sass */
+  input[type=text]:focus, input[type=email]:focus {
+    border-color: #c93c67; }
+/* line 21, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/form.sass */
+input[type=submit] {
+  padding: 5px 15px;
+  background: white;
+  border: 2px solid #888888;
+  cursor: pointer;
+  -webkit-border-radius: 5px;
+  border-radius: 5px; }
+  /* line 28, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/form.sass */
+  input[type=submit]:hover {
+    background: #e49db3;
+    border-color: #c93c67; }
+  /* line 31, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/form.sass */
+  input[type=submit]:active {
+    background: #c93c67; }
