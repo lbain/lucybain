@@ -16,11 +16,14 @@
   /* line 17, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/home.sass */
   .personal-info {
     margin: 60px auto 0px auto; }
-    /* line 20, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/home.sass */
+    /* line 19, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/home.sass */
+    .personal-info .profile-pic {
+      width: 250px; }
+    /* line 22, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/home.sass */
     .personal-info .nav li {
       display: block;
       margin: 15px 0px 0px 0px; } }
 @media (max-width: 400px) {
-  /* line 25, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/home.sass */
+  /* line 27, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/home.sass */
   .github {
     display: none; } }
