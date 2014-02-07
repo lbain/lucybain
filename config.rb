@@ -25,6 +25,7 @@
 # end
 with_layout :page do
   page "/pages/*"
+  page "/mailing-list/*"
 end
 
 with_layout :blog do
