@@ -1,10 +1,17 @@
 @import variables
 
 .header
-  .nav li
-    padding: 0 3px 2px 3px
-    a:hover
-      text-decoration: none
-      border-bottom: 2px solid $accent
-    .active
-      border-bottom: 1px solid $accent
+  .nav
+    padding: 20px
+    margin: 0px
+    border: 1px solid #ccc
+    li
+      font-size: 0.75em
+      margin-right: 0px
+      a
+        padding: 20px
+        &:hover
+          text-decoration: none
+          color: $accent
+      .active
+        border-bottom: 2px solid $accent
