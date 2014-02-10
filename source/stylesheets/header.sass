@@ -4,14 +4,42 @@
   .nav
     padding: 20px
     margin: 0px
-    border: 1px solid #ccc
+    border-bottom: 1px solid #ccc
     li
       font-size: 0.75em
-      margin-right: 0px
+      margin: 0px
       a
-        padding: 20px
+        padding: 24px 20px 21px
         &:hover
           text-decoration: none
-          color: $accent
+          background-color: $light-accent
+          border-bottom: 2px solid $light-accent
       .active
         border-bottom: 2px solid $accent
+        &:hover
+          border-bottom: 2px solid $accent
+
+  .slicknav_menu
+    display: none
+    font-size: 0.75em
+    text-align: center
+    font-weight: bold
+    padding: 20px 20px 20px 0px
+    width: 100%
+    background-color: $accent
+    a
+      color: #fff
+    li
+      padding: 20px
+      &:last-child
+        padding-bottom: 0px
+      a
+        &:hover
+          text-decoration: none
+
+  @include respond(small)
+    #menu
+      display: none
+
+    .slicknav_menu
+      display: block

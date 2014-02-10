@@ -1,17 +1,18 @@
 @import variables
 
 .personal-info
-  margin: 120px auto 0px auto
+  margin: 60px auto 0px auto
+  text-align: center
 
   .photo
-    text-align: center
-    margin: 0px auto
+    margin: 0px auto 20px
 
   .profile-pic
     width: 300px
 
-  .nav
-    margin-top: 50px
+  .connections li
+    display: inline
+    margin-right: 15px
 
 
 @include respond(medium)
@@ -19,7 +20,7 @@
     margin: 60px auto 0px auto
     .profile-pic
       width: 250px
-    .nav
+    .connections
       li
         display: block
         margin: 15px 0px 0px 0px

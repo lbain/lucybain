@@ -5,46 +5,41 @@
   max-width: 700px
   padding: 20px 40px
   font-size: 1em
-  line-height: 1.55em
+  line-height: 1em
   font-family: $content-font
   -webkit-font-smoothing:  antialiased
 
   @include respond(medium)
     padding: 20px 30px
-    font-size: 22px
   @include respond(small)
-    padding: 15px
+    padding: 20px
     font-size: 18px
 
   p
     margin-bottom: 20px
+    line-height: 1.5em
 
   h1, h2, h3, h4
     font-family: $title-font
     font-weight: $normal-weight
+    line-height: 1.25em
+    margin: 40px 0px 20px
 
   h1
     font-size: 2.5em
-    line-height: 1em
-    margin: 20px 0px 40px
+    @include respond(small)
+      font-size: 2em
 
   h2
     font-size: 1.5em
-    margin: 40px 0px 20px
 
   h3
     font-size: 1em
-    margin: 40px 0px 20px
+    margin: 20px 0px 0px
 
   h1, h2, h3
-    @include respond(medium)
-      margin: 15px 0px 25px
     @include respond(small)
-      margin: 10px 0px 20px
+      margin: 20px 0px 0px
 
   li
     line-height: 1.75em
-
-  ul li
-    list-style-type: square
-    margin-left: 40px

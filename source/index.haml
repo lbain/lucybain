@@ -6,14 +6,13 @@
 .personal-info
   .photo
     = image_tag 'profile_pic.jpg', class: 'profile-pic', alt: 'Lucy Bain'
-    %ul.nav
-      %li
-        =link_to 'Twitter', 'https://twitter.com/lucykbain'
-      %li
-        =link_to 'GitHub', 'https://github.com/lbain'
-      %li
-        =link_to 'Stackoverflow', 'http://stackoverflow.com/users/863846/lucy-bain'
-      %li
-        =link_to 'Facebook', 'https://www.facebook.com/LucyKBain'
-      %li
-        =link_to 'Job', '/resources/job'
+  %p Find me on:
+  %ul.connections
+    %li
+      =link_to 'Twitter', 'https://twitter.com/lucykbain'
+    %li
+      =link_to 'GitHub', 'https://github.com/lbain'
+    %li
+      =link_to 'Stackoverflow', 'http://stackoverflow.com/users/863846/lucy-bain'
+    %li
+      =link_to 'Facebook', 'https://www.facebook.com/LucyKBain'

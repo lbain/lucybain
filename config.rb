@@ -23,10 +23,6 @@
 # with_layout :admin do
 #   page "/admin/*"
 # end
-with_layout :page do
-  page "/resources/*"
-  page "/mailing-list/*"
-end
 
 with_layout :blog do
   page "/blog/*"
