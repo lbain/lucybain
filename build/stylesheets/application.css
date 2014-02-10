@@ -2,13 +2,17 @@
 p, h1, h2, h3, h4 {
   margin: 0px; }
 
+/* line 5, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/normalize.sass */
+ul li {
+  list-style-type: none; }
+
 /*! normalize.css v2.1.2 | MIT License | git.io/normalize */
 /* ==========================================================================
  * HTML5 display definitions
  * ========================================================================== */
 /*
  * Correct `block` display not defined in IE 8/9. */
-/* line 13, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/normalize.sass */
+/* line 17, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/normalize.sass */
 article,
 aside,
 details,
@@ -25,7 +29,7 @@ summary {
 
 /*
  * Correct `inline-block` display not defined in IE 8/9. */
-/* line 30, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/normalize.sass */
+/* line 34, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/normalize.sass */
 audio,
 canvas,
 video {
@@ -34,7 +38,7 @@ video {
 /*
  * Prevent modern browsers from displaying `audio` without controls.
  * Remove excess height in iOS 5 devices. */
-/* line 39, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/normalize.sass */
+/* line 43, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/normalize.sass */
 audio:not([controls]) {
   display: none;
   height: 0; }
@@ -42,7 +46,7 @@ audio:not([controls]) {
 /*
  * Address `[hidden]` styling not present in IE 8/9.
  * Hide the `template` element in IE, Safari, and Firefox < 22. */
-/* line 47, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/normalize.sass */
+/* line 51, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/normalize.sass */
 [hidden],
 template {
   display: none; }
@@ -54,7 +58,7 @@ template {
  * 1. Set default font family to sans-serif.
  * 2. Prevent iOS text size adjust after orientation change, without disabling
  *    user zoom. */
-/* line 60, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/normalize.sass */
+/* line 64, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/normalize.sass */
 html {
   font-family: sans-serif;
   /* 1 */
@@ -65,7 +69,7 @@ html {
 
 /*
  * Remove default margin. */
-/* line 71, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/normalize.sass */
+/* line 75, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/normalize.sass */
 body {
   margin: 0; }
 
@@ -74,19 +78,19 @@ body {
  * ========================================================================== */
 /*
  * Remove the gray background color from active links in IE 10. */
-/* line 81, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/normalize.sass */
+/* line 85, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/normalize.sass */
 a {
   background: transparent; }
 
 /*
  * Address `outline` inconsistency between Chrome and other browsers. */
-/* line 87, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/normalize.sass */
+/* line 91, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/normalize.sass */
 a:focus {
   outline: thin dotted; }
 
 /*
  * Improve readability when focused and also mouse hovered in all browsers. */
-/* line 93, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/normalize.sass */
+/* line 97, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/normalize.sass */
 a:active,
 a:hover {
   outline: 0; }
@@ -97,33 +101,33 @@ a:hover {
 /*
  * Address variable `h1` font-size and margin within `section` and `article`
  * contexts in Firefox 4+, Safari 5, and Chrome. */
-/* line 105, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/normalize.sass */
+/* line 109, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/normalize.sass */
 h1 {
   font-size: 2em;
   margin: 0.67em 0; }
 
 /*
  * Address styling not present in IE 8/9, Safari 5, and Chrome. */
-/* line 112, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/normalize.sass */
+/* line 116, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/normalize.sass */
 abbr[title] {
   border-bottom: 1px dotted; }
 
 /*
  * Address style set to `bolder` in Firefox 4+, Safari 5, and Chrome. */
-/* line 118, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/normalize.sass */
+/* line 122, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/normalize.sass */
 b,
 strong {
   font-weight: bold; }
 
 /*
  * Address styling not present in Safari 5 and Chrome. */
-/* line 125, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/normalize.sass */
+/* line 129, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/normalize.sass */
 dfn {
   font-style: italic; }
 
 /*
  * Address differences between Firefox and other browsers. */
-/* line 131, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/normalize.sass */
+/* line 135, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/normalize.sass */
 hr {
   -moz-box-sizing: content-box;
   box-sizing: content-box;
@@ -131,14 +135,14 @@ hr {
 
 /*
  * Address styling not present in IE 8/9. */
-/* line 139, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/normalize.sass */
+/* line 143, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/normalize.sass */
 mark {
   background: yellow;
   color: black; }
 
 /*
  * Correct font family set oddly in Safari 5 and Chrome. */
-/* line 146, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/normalize.sass */
+/* line 150, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/normalize.sass */
 code,
 kbd,
 pre,
@@ -148,25 +152,25 @@ samp {
 
 /*
  * Improve readability of pre-formatted text in all browsers. */
-/* line 156, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/normalize.sass */
+/* line 160, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/normalize.sass */
 pre {
   white-space: pre-wrap; }
 
 /*
  * Set consistent quote types. */
-/* line 162, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/normalize.sass */
+/* line 166, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/normalize.sass */
 q {
   quotes: "\201C" "\201D" "\2018" "\2019"; }
 
 /*
  * Address inconsistent and variable font size in all browsers. */
-/* line 168, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/normalize.sass */
+/* line 172, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/normalize.sass */
 small {
   font-size: 80%; }
 
 /*
  * Prevent `sub` and `sup` affecting `line-height` in all browsers. */
-/* line 174, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/normalize.sass */
+/* line 178, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/normalize.sass */
 sub,
 sup {
   font-size: 75%;
@@ -174,11 +178,11 @@ sup {
   position: relative;
   vertical-align: baseline; }
 
-/* line 181, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/normalize.sass */
+/* line 185, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/normalize.sass */
 sup {
   top: -0.5em; }
 
-/* line 184, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/normalize.sass */
+/* line 188, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/normalize.sass */
 sub {
   bottom: -0.25em; }
 
@@ -187,13 +191,13 @@ sub {
  * ========================================================================== */
 /*
  * Remove border when inside `a` element in IE 8/9. */
-/* line 194, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/normalize.sass */
+/* line 198, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/normalize.sass */
 img {
   border: 0; }
 
 /*
  * Correct overflow displayed oddly in IE 9. */
-/* line 200, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/normalize.sass */
+/* line 204, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/normalize.sass */
 svg:not(:root) {
   overflow: hidden; }
 
@@ -202,7 +206,7 @@ svg:not(:root) {
  * ========================================================================== */
 /*
  * Address margin not present in IE 8/9 and Safari 5. */
-/* line 210, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/normalize.sass */
+/* line 214, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/normalize.sass */
 figure {
   margin: 0; }
 
@@ -211,7 +215,7 @@ figure {
  * ========================================================================== */
 /*
  * Define consistent border, margin, and padding. */
-/* line 220, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/normalize.sass */
+/* line 224, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/normalize.sass */
 fieldset {
   border: 1px solid silver;
   margin: 0 2px;
@@ -220,7 +224,7 @@ fieldset {
 /*
  * 1. Correct `color` not being inherited in IE 8/9.
  * 2. Remove padding so people aren't caught out if they zero out fieldsets. */
-/* line 229, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/normalize.sass */
+/* line 233, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/normalize.sass */
 legend {
   border: 0;
   /* 1 */
@@ -231,7 +235,7 @@ legend {
  * 1. Correct font family not being inherited in all browsers.
  * 2. Correct font size not being inherited in all browsers.
  * 3. Address margins set differently in Firefox 4+, Safari 5, and Chrome. */
-/* line 240, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/normalize.sass */
+/* line 244, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/normalize.sass */
 button,
 input,
 select,
@@ -246,7 +250,7 @@ textarea {
 /*
  * Address Firefox 4+ setting `line-height` on `input` using `!important` in
  * the UA stylesheet. */
-/* line 255, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/normalize.sass */
+/* line 259, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/normalize.sass */
 button,
 input {
   line-height: normal; }
@@ -256,7 +260,7 @@ input {
  * All other form control elements do not inherit `text-transform` values.
  * Correct `button` style inheritance in Chrome, Safari 5+, and IE 8+.
  * Correct `select` style inheritance in Firefox 4+ and Opera. */
-/* line 265, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/normalize.sass */
+/* line 269, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/normalize.sass */
 button,
 select {
   text-transform: none; }
@@ -267,7 +271,7 @@ select {
  * 2. Correct inability to style clickable `input` types in iOS.
  * 3. Improve usability and consistency of cursor style between image-type
  *    `input` and others. */
-/* line 276, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/normalize.sass */
+/* line 280, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/normalize.sass */
 button,
 html input[type="button"],
 input[type="reset"],
@@ -279,7 +283,7 @@ input[type="submit"] {
 
 /*
  * Re-set default cursor for disabled elements. */
-/* line 288, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/normalize.sass */
+/* line 292, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/normalize.sass */
 button[disabled],
 html input[disabled] {
   cursor: default; }
@@ -287,7 +291,7 @@ html input[disabled] {
 /*
  * 1. Address box sizing set to `content-box` in IE 8/9.
  * 2. Remove excess padding in IE 8/9. */
-/* line 296, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/normalize.sass */
+/* line 300, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/normalize.sass */
 input[type="checkbox"],
 input[type="radio"] {
   box-sizing: border-box;
@@ -299,7 +303,7 @@ input[type="radio"] {
  * 1. Address `appearance` set to `searchfield` in Safari 5 and Chrome.
  * 2. Address `box-sizing` set to `border-box` in Safari 5 and Chrome
  *    (include `-moz` to future-proof). */
-/* line 308, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/normalize.sass */
+/* line 312, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/normalize.sass */
 input[type="search"] {
   -webkit-appearance: textfield;
   /* 1 */
@@ -311,14 +315,14 @@ input[type="search"] {
 /*
  * Remove inner padding and search cancel button in Safari 5 and Chrome
  * on OS X. */
-/* line 320, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/normalize.sass */
+/* line 324, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/normalize.sass */
 input[type="search"]::-webkit-search-cancel-button,
 input[type="search"]::-webkit-search-decoration {
   -webkit-appearance: none; }
 
 /*
  * Remove inner padding and border in Firefox 4+. */
-/* line 327, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/normalize.sass */
+/* line 331, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/normalize.sass */
 button::-moz-focus-inner,
 input::-moz-focus-inner {
   border: 0;
@@ -327,7 +331,7 @@ input::-moz-focus-inner {
 /*
  * 1. Remove default vertical scrollbar in IE 8/9.
  * 2. Improve readability and alignment in all browsers. */
-/* line 336, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/normalize.sass */
+/* line 340, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/normalize.sass */
 textarea {
   overflow: auto;
   /* 1 */
@@ -339,7 +343,7 @@ textarea {
  * ========================================================================== */
 /*
  * Remove most spacing between table cells. */
-/* line 349, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/normalize.sass */
+/* line 353, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/normalize.sass */
 table {
   border-collapse: collapse;
   border-spacing: 0; }
@@ -347,79 +351,184 @@ table {
 /* ==========================================================================
  * Lists
  * ========================================================================== */
-/* line 357, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/normalize.sass */
+/* line 361, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/normalize.sass */
 ul {
   padding: 0px; }
 
-/* line 8, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/application.css.sass */
+/* line 5, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/application.css.sass */
 body {
   background: white;
   font-family: "Nobile", sans-serif;
-  color: #333333; }
+  color: #333333;
+  font-size: 20px; }
 
-/* line 13, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/application.css.sass */
+/* line 11, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/application.css.sass */
 a {
   text-decoration: none;
   color: #c93c67;
   -webkit-font-smoothing: antialiased;
   text-decoration: none; }
-  /* line 18, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/application.css.sass */
+  /* line 16, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/application.css.sass */
   a:hover {
     text-decoration: underline; }
 
-/* line 21, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/application.css.sass */
+/* line 19, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/application.css.sass */
 b, strong, bold {
   font-weight: 700; }
 
-/* line 25, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/application.css.sass */
+/* line 23, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/application.css.sass */
 #main {
   margin: 0 auto;
   max-width: 800px; }
-  @media (max-width: 900px), only screen and (-webkit-min-device-pixel-ratio: 2) and (max-width: 1800px), only screen and (min--moz-device-pixel-ratio: 2) and (max-width: 1800px), only screen and (-o-min-device-pixel-ratio: 2 / 1) and (max-width: 1800px), only screen and (min-device-pixel-ratio: 2) and (max-width: 1800px), only screen and (min-resolution: 192dpi) and (max-width: 1800px), only screen and (min-resolution: 2dppx) and (max-width: 1800px) {
-    /* line 25, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/application.css.sass */
+  @media (max-width: 900px) {
+    /* line 23, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/application.css.sass */
     #main {
       margin: 20px; } }
-  @media (max-width: 400px), only screen and (-webkit-min-device-pixel-ratio: 2) and (max-width: 800px), only screen and (min--moz-device-pixel-ratio: 2) and (max-width: 800px), only screen and (-o-min-device-pixel-ratio: 2 / 1) and (max-width: 800px), only screen and (min-device-pixel-ratio: 2) and (max-width: 800px), only screen and (min-resolution: 192dpi) and (max-width: 800px), only screen and (min-resolution: 2dppx) and (max-width: 800px) {
-    /* line 25, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/application.css.sass */
+  @media (max-width: 410px) {
+    /* line 23, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/application.css.sass */
     #main {
       margin: 0px; } }
 
 /* line 3, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/nav.sass */
 .nav {
   text-align: center;
-  list-style: none;
   padding: 0; }
-  /* line 8, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/nav.sass */
+  /* line 7, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/nav.sass */
   .nav li {
     display: inline;
     margin-right: 15px;
     font-size: 20px; }
-    @media (max-width: 900px), only screen and (-webkit-min-device-pixel-ratio: 2) and (max-width: 1800px), only screen and (min--moz-device-pixel-ratio: 2) and (max-width: 1800px), only screen and (-o-min-device-pixel-ratio: 2 / 1) and (max-width: 1800px), only screen and (min-device-pixel-ratio: 2) and (max-width: 1800px), only screen and (min-resolution: 192dpi) and (max-width: 1800px), only screen and (min-resolution: 2dppx) and (max-width: 1800px) {
-      /* line 8, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/nav.sass */
+    @media (max-width: 900px) {
+      /* line 7, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/nav.sass */
       .nav li {
         font-size: 18px; } }
-    @media (max-width: 400px), only screen and (-webkit-min-device-pixel-ratio: 2) and (max-width: 800px), only screen and (min--moz-device-pixel-ratio: 2) and (max-width: 800px), only screen and (-o-min-device-pixel-ratio: 2 / 1) and (max-width: 800px), only screen and (min-device-pixel-ratio: 2) and (max-width: 800px), only screen and (min-resolution: 192dpi) and (max-width: 800px), only screen and (min-resolution: 2dppx) and (max-width: 800px) {
-      /* line 8, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/nav.sass */
+    @media (max-width: 410px) {
+      /* line 7, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/nav.sass */
       .nav li {
         font-size: 16px; } }
-  /* line 17, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/nav.sass */
+  /* line 16, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/nav.sass */
   .nav li:last-child {
     margin-right: 0px; }
-  @media (max-width: 900px), only screen and (-webkit-min-device-pixel-ratio: 2) and (max-width: 1800px), only screen and (min--moz-device-pixel-ratio: 2) and (max-width: 1800px), only screen and (-o-min-device-pixel-ratio: 2 / 1) and (max-width: 1800px), only screen and (min-device-pixel-ratio: 2) and (max-width: 1800px), only screen and (min-resolution: 192dpi) and (max-width: 1800px), only screen and (min-resolution: 2dppx) and (max-width: 1800px) {
-    /* line 21, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/nav.sass */
-    .nav li.home {
-      display: inline; } }
+
+/* line 1, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/slicknav.sass */
+.slicknav_btn {
+  position: relative;
+  display: block;
+  vertical-align: middle;
+  float: right;
+  padding: 0.438em 0.625em 0.438em 0.625em;
+  cursor: pointer; }
+
+/* line 10, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/slicknav.sass */
+.slicknav_menu .slicknav_menutxt {
+  display: block;
+  line-height: 1.188em;
+  float: left; }
+/* line 14, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/slicknav.sass */
+.slicknav_menu .slicknav_icon {
+  float: left;
+  margin: 0.188em 0 0 0.438em; }
+/* line 17, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/slicknav.sass */
+.slicknav_menu .slicknav_no-text {
+  margin: 0; }
+/* line 19, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/slicknav.sass */
+.slicknav_menu .slicknav_icon-bar {
+  display: block;
+  margin-right: 20px;
+  width: 20px;
+  height: 3px;
+  -webkit-box-shadow: 0 3px 0 rgba(255, 255, 255, 0.75);
+  box-shadow: 0 3px 0 rgba(255, 255, 255, 0.75); }
+
+/* line 27, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/slicknav.sass */
+.slicknav_btn .slicknav_icon-bar + .slicknav_icon-bar {
+  margin-top: 0.188em; }
+
+/* line 30, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/slicknav.sass */
+.slicknav_nav {
+  clear: both; }
+  /* line 32, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/slicknav.sass */
+  .slicknav_nav ul, .slicknav_nav li {
+    display: block; }
+  /* line 34, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/slicknav.sass */
+  .slicknav_nav .slicknav_arrow {
+    font-size: 0.8em;
+    margin: 0 0 0 0.4em; }
+  /* line 37, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/slicknav.sass */
+  .slicknav_nav .slicknav_item {
+    display: block;
+    cursor: pointer; }
+  /* line 40, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/slicknav.sass */
+  .slicknav_nav a {
+    display: block; }
+  /* line 42, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/slicknav.sass */
+  .slicknav_nav .slicknav_item a {
+    display: inline; }
+
+/* line 45, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/slicknav.sass */
+.slicknav_menu {
+  *zoom: 1; }
+  /* line 46, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/slicknav.sass */
+  .slicknav_menu:before {
+    content: " ";
+    display: table; }
+  /* line 49, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/slicknav.sass */
+  .slicknav_menu:after {
+    content: " ";
+    display: table;
+    clear: both; }
 
 /* line 4, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/header.sass */
-.header .nav li {
-  padding: 0 3px 2px 3px; }
-  /* line 6, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/header.sass */
-  .header .nav li a:hover {
-    text-decoration: none;
-    border-bottom: 2px solid #c93c67; }
-  /* line 9, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/header.sass */
-  .header .nav li .active {
-    border-bottom: 1px solid #c93c67; }
+.header .nav {
+  padding: 20px;
+  margin: 0px;
+  border-bottom: 1px solid #cccccc; }
+  /* line 8, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/header.sass */
+  .header .nav li {
+    font-size: 0.75em;
+    margin: 0px; }
+    /* line 11, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/header.sass */
+    .header .nav li a {
+      padding: 24px 20px 21px; }
+      /* line 13, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/header.sass */
+      .header .nav li a:hover {
+        text-decoration: none;
+        background-color: #f5dce4;
+        border-bottom: 2px solid #f5dce4; }
+    /* line 17, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/header.sass */
+    .header .nav li .active {
+      border-bottom: 2px solid #c93c67; }
+      /* line 19, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/header.sass */
+      .header .nav li .active:hover {
+        border-bottom: 2px solid #c93c67; }
+/* line 22, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/header.sass */
+.header .slicknav_menu {
+  display: none;
+  font-size: 0.75em;
+  text-align: center;
+  font-weight: bold;
+  padding: 20px 20px 20px 0px;
+  width: 100%;
+  background-color: #c93c67; }
+  /* line 30, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/header.sass */
+  .header .slicknav_menu a {
+    color: white; }
+  /* line 32, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/header.sass */
+  .header .slicknav_menu li {
+    padding: 20px; }
+    /* line 34, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/header.sass */
+    .header .slicknav_menu li:last-child {
+      padding-bottom: 0px; }
+    /* line 37, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/header.sass */
+    .header .slicknav_menu li a:hover {
+      text-decoration: none; }
+@media (max-width: 410px) {
+  /* line 41, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/header.sass */
+  .header #menu {
+    display: none; }
+  /* line 44, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/header.sass */
+  .header .slicknav_menu {
+    display: block; } }
 
 /* line 6, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/posts.sass */
 .post {
@@ -431,83 +540,79 @@ b, strong, bold {
 
 /* line 3, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/home.sass */
 .personal-info {
-  margin: 120px auto 0px auto; }
-  /* line 6, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/home.sass */
+  margin: 60px auto 0px auto;
+  text-align: center; }
+  /* line 7, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/home.sass */
   .personal-info .photo {
-    text-align: center;
-    margin: 0px auto; }
+    margin: 0px auto 20px; }
   /* line 10, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/home.sass */
   .personal-info .profile-pic {
     width: 300px; }
   /* line 13, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/home.sass */
-  .personal-info .nav {
-    margin-top: 50px; }
+  .personal-info .connections li {
+    display: inline;
+    margin-right: 15px; }
 
-@media (max-width: 900px), only screen and (-webkit-min-device-pixel-ratio: 2) and (max-width: 1800px), only screen and (min--moz-device-pixel-ratio: 2) and (max-width: 1800px), only screen and (-o-min-device-pixel-ratio: 2 / 1) and (max-width: 1800px), only screen and (min-device-pixel-ratio: 2) and (max-width: 1800px), only screen and (min-resolution: 192dpi) and (max-width: 1800px), only screen and (min-resolution: 2dppx) and (max-width: 1800px) {
-  /* line 18, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/home.sass */
+@media (max-width: 900px) {
+  /* line 19, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/home.sass */
   .personal-info {
     margin: 60px auto 0px auto; }
-    /* line 20, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/home.sass */
+    /* line 21, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/home.sass */
     .personal-info .profile-pic {
       width: 250px; }
-    /* line 23, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/home.sass */
-    .personal-info .nav li {
+    /* line 24, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/home.sass */
+    .personal-info .connections li {
       display: block;
       margin: 15px 0px 0px 0px; } }
 /* line 3, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/content.sass */
 .content {
   margin: 0px auto;
   max-width: 700px;
-  padding: 30px;
-  font-size: 26px;
-  line-height: 1.75em;
+  padding: 20px 40px;
+  font-size: 1em;
+  line-height: 1em;
   font-family: "Crimson Text", sans-serif;
   -webkit-font-smoothing: antialiased; }
-  @media (max-width: 900px), only screen and (-webkit-min-device-pixel-ratio: 2) and (max-width: 1800px), only screen and (min--moz-device-pixel-ratio: 2) and (max-width: 1800px), only screen and (-o-min-device-pixel-ratio: 2 / 1) and (max-width: 1800px), only screen and (min-device-pixel-ratio: 2) and (max-width: 1800px), only screen and (min-resolution: 192dpi) and (max-width: 1800px), only screen and (min-resolution: 2dppx) and (max-width: 1800px) {
+  @media (max-width: 900px) {
     /* line 3, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/content.sass */
     .content {
-      padding: 20px, 30px;
-      font-size: 22px; } }
-  @media (max-width: 400px), only screen and (-webkit-min-device-pixel-ratio: 2) and (max-width: 800px), only screen and (min--moz-device-pixel-ratio: 2) and (max-width: 800px), only screen and (-o-min-device-pixel-ratio: 2 / 1) and (max-width: 800px), only screen and (min-device-pixel-ratio: 2) and (max-width: 800px), only screen and (min-resolution: 192dpi) and (max-width: 800px), only screen and (min-resolution: 2dppx) and (max-width: 800px) {
+      padding: 20px 30px; } }
+  @media (max-width: 410px) {
     /* line 3, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/content.sass */
     .content {
-      padding: 15px;
+      padding: 20px;
       font-size: 18px; } }
-  /* line 19, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/content.sass */
+  /* line 18, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/content.sass */
   .content p {
-    margin: 10px 0px 20px; }
+    margin-bottom: 20px;
+    line-height: 1.5em; }
   /* line 22, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/content.sass */
   .content h1, .content h2, .content h3, .content h4 {
     font-family: "Nobile", sans-serif;
-    font-weight: 400; }
-  /* line 26, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/content.sass */
+    font-weight: 400;
+    line-height: 1.25em;
+    margin: 40px 0px 20px; }
+  /* line 28, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/content.sass */
   .content h1 {
-    font-size: 2.5em;
-    line-height: 1em;
-    margin: 20px 0px 40px; }
-  /* line 31, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/content.sass */
+    font-size: 2.5em; }
+    @media (max-width: 410px) {
+      /* line 28, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/content.sass */
+      .content h1 {
+        font-size: 2em; } }
+  /* line 33, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/content.sass */
   .content h2 {
-    font-size: 1.5em;
-    margin: 40px 0px 0px; }
-  /* line 35, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/content.sass */
+    font-size: 1.5em; }
+  /* line 36, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/content.sass */
   .content h3 {
     font-size: 1em;
-    margin: 40px 0px 0px; }
-  @media (max-width: 900px), only screen and (-webkit-min-device-pixel-ratio: 2) and (max-width: 1800px), only screen and (min--moz-device-pixel-ratio: 2) and (max-width: 1800px), only screen and (-o-min-device-pixel-ratio: 2 / 1) and (max-width: 1800px), only screen and (min-device-pixel-ratio: 2) and (max-width: 1800px), only screen and (min-resolution: 192dpi) and (max-width: 1800px), only screen and (min-resolution: 2dppx) and (max-width: 1800px) {
-    /* line 39, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/content.sass */
+    margin: 20px 0px 0px; }
+  @media (max-width: 410px) {
+    /* line 40, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/content.sass */
     .content h1, .content h2, .content h3 {
-      margin: 15px 0px 25px; } }
-  @media (max-width: 400px), only screen and (-webkit-min-device-pixel-ratio: 2) and (max-width: 800px), only screen and (min--moz-device-pixel-ratio: 2) and (max-width: 800px), only screen and (-o-min-device-pixel-ratio: 2 / 1) and (max-width: 800px), only screen and (min-device-pixel-ratio: 2) and (max-width: 800px), only screen and (min-resolution: 192dpi) and (max-width: 800px), only screen and (min-resolution: 2dppx) and (max-width: 800px) {
-    /* line 39, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/content.sass */
-    .content h1, .content h2, .content h3 {
-      margin: 10px 0px 20px; } }
-  /* line 45, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/content.sass */
+      margin: 20px 0px 0px; } }
+  /* line 44, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/content.sass */
   .content li {
     line-height: 1.75em; }
-  /* line 48, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/content.sass */
-  .content ul li {
-    list-style-type: square;
-    margin-left: 40px; }
 
 /* line 1, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/blog.sass */
 #disqus_thread {
@@ -544,7 +649,7 @@ form {
     border-radius: 5px; }
     /* line 27, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/form.sass */
     form input[type=submit]:hover {
-      background: #e49db3;
+      background: #f5dce4;
       border-color: #c93c67; }
     /* line 30, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/form.sass */
     form input[type=submit]:active {

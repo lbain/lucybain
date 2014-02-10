@@ -1,25 +1,26 @@
 /* line 3, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/home.sass */
 .personal-info {
-  margin: 120px auto 0px auto; }
-  /* line 6, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/home.sass */
+  margin: 60px auto 0px auto;
+  text-align: center; }
+  /* line 7, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/home.sass */
   .personal-info .photo {
-    text-align: center;
-    margin: 0px auto; }
+    margin: 0px auto 20px; }
   /* line 10, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/home.sass */
   .personal-info .profile-pic {
     width: 300px; }
   /* line 13, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/home.sass */
-  .personal-info .nav {
-    margin-top: 50px; }
+  .personal-info .connections li {
+    display: inline;
+    margin-right: 15px; }
 
-@media (max-width: 900px), only screen and (-webkit-min-device-pixel-ratio: 2) and (max-width: 1800px), only screen and (min--moz-device-pixel-ratio: 2) and (max-width: 1800px), only screen and (-o-min-device-pixel-ratio: 2 / 1) and (max-width: 1800px), only screen and (min-device-pixel-ratio: 2) and (max-width: 1800px), only screen and (min-resolution: 192dpi) and (max-width: 1800px), only screen and (min-resolution: 2dppx) and (max-width: 1800px) {
-  /* line 18, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/home.sass */
+@media (max-width: 900px) {
+  /* line 19, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/home.sass */
   .personal-info {
     margin: 60px auto 0px auto; }
-    /* line 20, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/home.sass */
+    /* line 21, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/home.sass */
     .personal-info .profile-pic {
       width: 250px; }
-    /* line 23, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/home.sass */
-    .personal-info .nav li {
+    /* line 24, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/home.sass */
+    .personal-info .connections li {
       display: block;
       margin: 15px 0px 0px 0px; } }

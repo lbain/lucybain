@@ -1,0 +1,67 @@
+/* line 1, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/slicknav.sass */
+.slicknav_btn {
+  position: relative;
+  display: block;
+  vertical-align: middle;
+  float: right;
+  padding: 0.438em 0.625em 0.438em 0.625em;
+  cursor: pointer; }
+
+/* line 10, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/slicknav.sass */
+.slicknav_menu .slicknav_menutxt {
+  display: block;
+  line-height: 1.188em;
+  float: left; }
+/* line 14, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/slicknav.sass */
+.slicknav_menu .slicknav_icon {
+  float: left;
+  margin: 0.188em 0 0 0.438em; }
+/* line 17, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/slicknav.sass */
+.slicknav_menu .slicknav_no-text {
+  margin: 0; }
+/* line 19, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/slicknav.sass */
+.slicknav_menu .slicknav_icon-bar {
+  display: block;
+  margin-right: 20px;
+  width: 20px;
+  height: 3px;
+  -webkit-box-shadow: 0 3px 0 rgba(255, 255, 255, 0.75);
+  box-shadow: 0 3px 0 rgba(255, 255, 255, 0.75); }
+
+/* line 27, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/slicknav.sass */
+.slicknav_btn .slicknav_icon-bar + .slicknav_icon-bar {
+  margin-top: 0.188em; }
+
+/* line 30, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/slicknav.sass */
+.slicknav_nav {
+  clear: both; }
+  /* line 32, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/slicknav.sass */
+  .slicknav_nav ul, .slicknav_nav li {
+    display: block; }
+  /* line 34, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/slicknav.sass */
+  .slicknav_nav .slicknav_arrow {
+    font-size: 0.8em;
+    margin: 0 0 0 0.4em; }
+  /* line 37, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/slicknav.sass */
+  .slicknav_nav .slicknav_item {
+    display: block;
+    cursor: pointer; }
+  /* line 40, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/slicknav.sass */
+  .slicknav_nav a {
+    display: block; }
+  /* line 42, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/slicknav.sass */
+  .slicknav_nav .slicknav_item a {
+    display: inline; }
+
+/* line 45, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/slicknav.sass */
+.slicknav_menu {
+  *zoom: 1; }
+  /* line 46, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/slicknav.sass */
+  .slicknav_menu:before {
+    content: " ";
+    display: table; }
+  /* line 49, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/slicknav.sass */
+  .slicknav_menu:after {
+    content: " ";
+    display: table;
+    clear: both; }

@@ -25,7 +25,7 @@ form {
     border-radius: 5px; }
     /* line 27, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/form.sass */
     form input[type=submit]:hover {
-      background: #e49db3;
+      background: #f5dce4;
       border-color: #c93c67; }
     /* line 30, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/form.sass */
     form input[type=submit]:active {
