@@ -1,4 +1,4 @@
-- ['code-resources-mailing-list', 'programming-community-in-sydney', 'git-info', 'setting-up-sublime-autosave'].each do |page_title|
+- ['udacity-python-study-group', 'programming-community-in-sydney', 'git-info', 'setting-up-sublime-autosave'].each do |page_title|
   - current_page.children.each do |p|
     - next unless path_to_file_name(p.path) == page_title
     - next if p.data.draft.present? and p.data.draft
