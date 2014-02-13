@@ -611,8 +611,12 @@ b, strong, bold {
     .content h1, .content h2, .content h3 {
       margin: 20px 0px 0px; } }
   /* line 44, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/content.sass */
+  .content ul {
+    padding-left: 40px; }
+  /* line 46, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/content.sass */
   .content li {
-    line-height: 1.75em; }
+    line-height: 1.75em;
+    list-style-type: disc; }
 
 /* line 1, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/blog.sass */
 #disqus_thread {
