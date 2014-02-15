@@ -1,0 +1,20 @@
+---
+title: Git Branch Names on Command Prompt
+---
+%p
+  I often forget which branch I'm on. Sure, I have <code>git branch</code> aliased (it's probably one of my most frequently used commands) but sometimes I <em>know</em> I'm on another branch. A few commits and merges later I find out I was wrong, and it's time for some branch cleaning.
+%p
+  Recently my coworker #{link_to 'Simon', 'https://plus.google.com/+SimonHildebrandt/'} gave me the following code:
+
+:code
+  #lang: ruby
+  parse_git_branch() {
+     git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
+  }
+  export PS1="\W\[\033[32m\]\$(parse_git_branch)\[\033[00m\] $ "
+%p
+  This will change your prompt to be <code> current-directory (branch-name) $</code> with your branch name in green. Mine looks like this:
+%div.center
+  = image_tag 'blog/git-branch-prompt.png', alt: 'lucybain (blog) $'
+%p
+  Now you can see what branch your on right where you'll be committing it. Nice, huh? Hopefully you'll never run a <code>reset --hard</code> on the wrong branch again!
