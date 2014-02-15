@@ -1,4 +1,5 @@
 - wrap_layout :layout do
+  %h1= current_page.data.title
   = yield
 
   - if not current_page.data.no_comments
