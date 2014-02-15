@@ -23,16 +23,83 @@
         <li>
           <a class="" href="/resources/">Resources</a>
         </li>
+        <li>
+          <a class=" active" href="/blog/">Blog</a>
+        </li>
       </ul>
     </div>
     <div class='content'>
-      <div class='content'>
-        <h2><a href="/blog/2014/tdd-day-1">TDD Day 1</a></h2>
-        <h2><a href="/blog/2014/tdd-day-2">TDD Day 2</a></h2>
-        <h2><a href="/blog/2014/tdd-day-3">TDD Day 3</a></h2>
-        <h2><a href="/blog/2014/tdd-day-4">TDD Day 4</a></h2>
-        <h2><a href="/blog/2014/tdd-day-5">TDD Day 5</a></h2>
-      </div>
+      <h1></h1>
+      <h2>
+        <a href="/blog/2014/git-branch-names-on-command-line/">Git Branch Names on Command Prompt</a>
+      </h2>
+      <p>Feb 13, 2014</p>
+      <p>
+        I often forget which branch I'm on. Sure, I have <code>git branch</code> aliased (it's probably one of my most frequently used commands) but sometimes I <em>know</em> I'm on another branch. A few commits and merges later I find out I was wrong, and it's time for some branch cleaning.
+      </p>
+      <p>
+        Recently my coworker <a href="https://plus.google.com/+SimonHildebrandt/">Simon</a> gave me the following code:
+      </p>
+      <pre class="highlight ruby"><span class="n">parse_git_branch</span><span class="p">()</span> <span class="p">{</span>
+         <span class="n">git</span> <span class="n">branch</span> <span class="mi">2</span><span class="o">&gt;</span> <span class="sr">/dev/nu</span><span class="n">ll</span> <span class="o">|</span> <span class="n">sed</span> <span class="o">-</span><span class="n">e</span> <span class="s1">'/^[^*]/d'</span> <span class="o">-</span><span class="n">e</span> <span class="s1">'s/* \(.*\)/ (\1)/'</span>
+      <span class="p">}</span>
+      <span class="n">export</span> <span class="no">PS1</span><span class="o">=</span><span class="s2">"</span><span class="se">\W\[\033</span><span class="s2">[32m</span><span class="se">\]\$</span><span class="s2">(parse_git_branch)</span><span class="se">\[\033</span><span class="s2">[00m</span><span class="se">\]</span><span class="s2"> $ "</span></pre>
+      <p>This code should...</p>
+      <h2>
+        <a href="/blog/2014/sublime-multi-cursor/">Sublime Multi-Cursor</a>
+      </h2>
+      <p>Feb  3, 2014</p>
+      <p>
+        I use Sublime. I know, I know, I'm not a <a href="http://xkcd.com/378/">"real"</a> dev. Whatever. It works for me. One of my favourite features is the multi-cursor. If you're a fellow Sublime user and aren't aware of this ability you should really check it out. Look at <a href="http://blog.generalassemb.ly/sublime-text-3-tips-tricks-shortcuts/">step 12</a> for a little gif of what it looks like.
+      </p>
+      <p>
+        This is an awesome tool for making bulk edits in a file. <code>cmd + mouse-click</code> is where I started, but then <a href="https://twitter.com/gerwinvanroyen">@gerwinvanroyen</a> told me about selecting a bunch of lines and then doing <code>cmd + shift + L</code> to select all the...</p>
+      <h2>
+        <a href="/blog/2014/validate-vs-validates/">validate vs. validateS</a>
+      </h2>
+      <p>Jan 15, 2014</p>
+      <p>
+        I stumbled across this validation gotcha a while back, but that was before I had this awesome blog ;) I think this is a pretty big one, hope this help someone!
+      </p>
+      <p>
+        <code>::ActiveModel::Validations</code> treats <code>validates</code> and <code>validate</code> differently. <code>validates</code> is used for normal validations <code>presence</code>, <code>length</code>, and the like. <code>validate</code> is used for custom validation methods <code>validate_name_starts_with_a</code>, or whatever crazy method you come up with. These methods are clearly useful and help keep data clean.
+      </p>
+      <p>
+        That's...</p>
+      <h2>
+        <a href="/blog/2014/tdd-day-5/">TDD Day 5</a>
+      </h2>
+      <p>Jan  9, 2014</p>
+      <h3>
+        What did I do today?
+      </h3>
+      <p>
+        I said at the beginning that I wasn't a huge fan of TDD. It just doesn't seem like a great idea to me. Today I took some time to explore that, and it turns out, I'm not the only one. Most people have mixed reviews, and that's exactly what I'm experiencing now.
+      </p>
+      <ul>
+        <li>
+          <a href="http://www.writemoretests.com/2011/09/test-driven-development-give-me-break.html">Test-Driven Development? Give me a break…</a> said that <b>requiring</b> TDD was a bad idea, but that the general principal is probably good. It's possible to have too much of a good thing.
+        </li>
+        <li>
+          <a href="http://programmers.stackexchange.com/a/98566">Description...</a>
+      </li>
+      </ul>
+      <h2>
+        <a href="/blog/2014/tdd-day-4/">TDD Day 4</a>
+      </h2>
+      <p>Jan  8, 2014</p>
+      <h3>
+        What did I do today?
+      </h3>
+      <p>
+        I'm continuing on at Coders Dojo, today I worked on <a href="http://content.codersdojo.org/code-kata-catalogue/roman-numerals/">Roman Numerals</a>. I've heard this problem talked about, but haven't actually worked on it myself. It was harder than I expected (and involved a lot of Googling for the correct way to convert numbers to roman numerals), but I did <a href="https://github.com/lbain/tdd-practice/tree/master/day-4">finish</a> it with all green specs.
+      </p>
+      <p>
+        I also watch the next <a href="https://www.youtube.com/watch?v=dyBybIZJpyA&amp;amp;list=PLVBFw0Pn9e9IduDzgOx7Yoh0ur7SZa7hu&amp;amp;index=3">video</a> from RubyOnRailsVideos about TDD. This one talked about writing pending specs before you get properly started to give you some...</p>
+      <p>
+        Page 1 of 2
+      </p>
+      <p><a href="/blog/page/2/">Next page</a></p>
     </div>
     
   </body>

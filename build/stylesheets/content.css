@@ -51,3 +51,6 @@
   .content li {
     line-height: 1.75em;
     list-style-type: disc; }
+  /* line 50, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/content.sass */
+  .content .center {
+    text-align: center; }

@@ -617,6 +617,9 @@ b, strong, bold {
   .content li {
     line-height: 1.75em;
     list-style-type: disc; }
+  /* line 50, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/content.sass */
+  .content .center {
+    text-align: center; }
 
 /* line 1, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/blog.sass */
 #disqus_thread {
@@ -661,3 +664,24 @@ form {
   /* line 33, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/form.sass */
   form .asterisk {
     color: #c93c67; }
+
+/* line 1, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/code.sass */
+pre, code {
+  font-size: 0.8em; }
+
+/* line 4, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/code.sass */
+pre {
+  padding: 8px 15px;
+  background: #f8f8f8;
+  border-radius: 5px;
+  border: 1px solid #e5e5e5;
+  overflow-x: auto;
+  white-space: pre; }
+
+/* line 12, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/code.sass */
+code {
+  background: #f8f8f8;
+  border-radius: 5px;
+  border: 1px solid #e5e5e5;
+  padding: 1px 5px;
+  white-space: nowrap; }

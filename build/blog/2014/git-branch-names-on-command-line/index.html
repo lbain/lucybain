@@ -6,12 +6,12 @@
     <meta content='IE=edge,chrome=1' http-equiv='X-UA-Compatible'>
     <link href='/images/favicon.ico' rel='icon' type='image/ico'>
     <link href='http://fonts.googleapis.com/css?family=Crimson+Text:400,700|Nobile:400,700' rel='stylesheet' type='text/css'>
-    <title>TDD Day 5</title>
+    <title>Git Branch Names on Command Prompt</title>
     <link href="/stylesheets/application.css" media="screen" rel="stylesheet" type="text/css" />
     <link href="/stylesheets/code.css" media="screen" rel="stylesheet" type="text/css" />
     <script src="/javascripts/all.js" type="text/javascript"></script>
   </head>
-  <body class='blog blog_2014 blog_2014_tdd-day-5 blog_2014_tdd-day-5_index'>
+  <body class='blog blog_2014 blog_2014_git-branch-names-on-command-line blog_2014_git-branch-names-on-command-line_index'>
     <div class='header'>
       <ul class='nav' id='menu'>
         <li>
@@ -29,35 +29,21 @@
       </ul>
     </div>
     <div class='content'>
-      <h1>TDD Day 5</h1>
-      <h3>
-        What did I do today?
-      </h3>
+      <h1>Git Branch Names on Command Prompt</h1>
       <p>
-        I said at the beginning that I wasn't a huge fan of TDD. It just doesn't seem like a great idea to me. Today I took some time to explore that, and it turns out, I'm not the only one. Most people have mixed reviews, and that's exactly what I'm experiencing now.
-      </p>
-      <ul>
-        <li>
-          <a href="http://www.writemoretests.com/2011/09/test-driven-development-give-me-break.html">Test-Driven Development? Give me a break…</a> said that <b>requiring</b> TDD was a bad idea, but that the general principal is probably good. It's possible to have too much of a good thing.
-        </li>
-        <li>
-          <a href="http://programmers.stackexchange.com/a/98566">Description of someone's negative TDD experience</a> - "Like everything that comes under the 'Agile' banner, TDD is something that sounds good in theory, but in practice it's not so clear how good it is (and also like most 'Agile' things, you are told that if you don't like it, you are doing it wrong)." So much this. I like the idea of being able to refactor at will, but it doesn't seem to work like that in real life.
-        </li>
-        <li>
-          <a href="http://programmers.stackexchange.com/a/178858">On designing with TDD</a> pointed out that just because code was written with TDD doesn't mean it's good code. Writing good code is hard, TDD is one of the (many) tools and ideas programmers have available to write better code since it (theoretically) allows us to refactor more easily.
-        </li>
-        <li>
-          <a href="http://programmers.stackexchange.com/questions/41409/why-does-tdd-work">Discussion on "engineering" side of development</a> - "The false safe feelings that an 'all green' outcomes ... may be interepreted as 'the system is fine', when it really means 'the system is as good as our testing strategy'." This has bitten me a few times. We don't shoot for 100% test coverage at work, but we still feel ok to push code when we've got a green build.
-        </li>
-      </ul>
-      <h3>
-        Reflections
-      </h3>
-      <p>
-        I'm still not convinced about TDD. I'm hoping I'll have a more informed opinion at the end of these TDD sessions, but right now I'm a bit perplexed. It does make me feel better to know that I'm not the only one questioning TDD as the "right" way to do things.
+        I often forget which branch I'm on. Sure, I have <code>git branch</code> aliased (it's probably one of my most frequently used commands) but sometimes I <em>know</em> I'm on another branch. A few commits and merges later I find out I was wrong, and it's time for some branch cleaning.
       </p>
       <p>
-        On a positive note, I submitted a pull request today and one of my coworkers complemented me on my tests! So I guess these exercises are working :)
+        Recently my coworker <a href="https://plus.google.com/+SimonHildebrandt/">Simon</a> gave me the following code:
+      </p>
+      <pre class="highlight ruby"><span class="n">parse_git_branch</span><span class="p">()</span> <span class="p">{</span>&#x000A;   <span class="n">git</span> <span class="n">branch</span> <span class="mi">2</span><span class="o">&gt;</span> <span class="sr">/dev/nu</span><span class="n">ll</span> <span class="o">|</span> <span class="n">sed</span> <span class="o">-</span><span class="n">e</span> <span class="s1">'/^[^*]/d'</span> <span class="o">-</span><span class="n">e</span> <span class="s1">'s/* \(.*\)/ (\1)/'</span>&#x000A;<span class="p">}</span>&#x000A;<span class="n">export</span> <span class="no">PS1</span><span class="o">=</span><span class="s2">"</span><span class="se">\W\[\033</span><span class="s2">[32m</span><span class="se">\]\$</span><span class="s2">(parse_git_branch)</span><span class="se">\[\033</span><span class="s2">[00m</span><span class="se">\]</span><span class="s2"> $ "</span></pre>
+      <p>This code should go in your <code>~/.bash_profile</code>. Once you've added it, you'll need to source with <code>$ source ~/.bash_profile</code> (or <code>$ . ~/.bash_profile</code> if you want to save a few key strokes!).</p>
+      <p>
+        Your prompt will be <code> current-directory (branch-name) $</code> with your branch name in green. Mine looks like this:
+        <div class='center'>
+          <img alt="lucybain (blog) $" src="/images/blog/git-branch-prompt.png" />
+        </div>
+        Now you can see what branch your on right where you'll be committing it. Nice, huh? Hopefully you'll never run a <code>reset --hard</code> on the wrong branch again!
       </p>
       <div id='disqus_thread'></div>
       <script>
