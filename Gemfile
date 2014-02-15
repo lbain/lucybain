@@ -3,7 +3,9 @@
 source 'http://rubygems.org'
 
 gem "middleman"
+gem "middleman-syntax", :git => 'git://github.com/middleman/middleman-syntax.git'
 gem "middleman-blog"
+gem "middleman-livereload", "~> 3.1.0"
 gem "nokogiri"
 
 # For feed.xml.builder

@@ -101,7 +101,7 @@ activate :livereload
 activate :directory_indexes
 
 # Use middleman-syntax gem to color syntax
-activate :syntax, :line_numbers => true
+activate :syntax
 
 # Methods defined in the helpers block are available in templates
 helpers do
