@@ -1,10 +1,16 @@
 .header
-  %ul.nav#menu
-    %li
-      =nav_link 'Connect with me', '/'
-    %li
-      =nav_link 'My job', '/resources/job/'
-    %li
-      =nav_link 'Resources', '/resources/'
-    %li
-      =nav_link 'Blog', '/blog/'
+  #menu
+    .nav-open
+      %ul
+        %li
+        %li
+        %li
+    %ul.nav
+      %li
+        =nav_link 'Connect with me', '/'
+      %li
+        =nav_link 'My job', '/resources/job/'
+      %li
+        =nav_link 'Resources', '/resources/'
+      %li
+        =nav_link 'Blog', '/blog/'
