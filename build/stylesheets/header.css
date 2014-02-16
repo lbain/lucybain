@@ -1,51 +1,77 @@
-/* line 4, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/header.sass */
-.header .nav {
+/* line 5, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/header.sass */
+.header #menu .nav-open {
+  display: none; }
+  /* line 7, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/header.sass */
+  .header #menu .nav-open ul {
+    border: none;
+    top: 0;
+    right: 0;
+    position: absolute;
+    margin-top: 22px;
+    margin-right: 20px; }
+  /* line 14, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/header.sass */
+  .header #menu .nav-open li {
+    height: 2px;
+    padding: 0px;
+    margin-bottom: 4px;
+    width: 20px;
+    background-color: white; }
+/* line 20, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/header.sass */
+.header #menu .nav {
   padding: 20px;
   margin: 0px;
   border-bottom: 1px solid #cccccc; }
-  /* line 8, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/header.sass */
-  .header .nav li {
+  /* line 24, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/header.sass */
+  .header #menu .nav li {
     font-size: 0.75em;
     margin: 0px; }
-    /* line 11, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/header.sass */
-    .header .nav li a {
+    /* line 27, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/header.sass */
+    .header #menu .nav li a {
       padding: 24px 20px 21px; }
-      /* line 13, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/header.sass */
-      .header .nav li a:hover {
+      /* line 29, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/header.sass */
+      .header #menu .nav li a:hover {
         text-decoration: none;
         background-color: #f5dce4;
         border-bottom: 2px solid #f5dce4; }
-    /* line 17, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/header.sass */
-    .header .nav li .active {
+    /* line 33, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/header.sass */
+    .header #menu .nav li .active {
       border-bottom: 2px solid #c93c67; }
-      /* line 19, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/header.sass */
-      .header .nav li .active:hover {
+      /* line 35, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/header.sass */
+      .header #menu .nav li .active:hover {
         border-bottom: 2px solid #c93c67; }
-/* line 22, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/header.sass */
-.header .slicknav_menu {
-  display: none;
-  font-size: 0.75em;
-  text-align: center;
-  font-weight: bold;
-  padding: 20px 20px 20px 0px;
-  width: 100%;
-  background-color: #c93c67; }
-  /* line 30, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/header.sass */
-  .header .slicknav_menu a {
-    color: white; }
-  /* line 32, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/header.sass */
-  .header .slicknav_menu li {
-    padding: 20px; }
-    /* line 34, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/header.sass */
-    .header .slicknav_menu li:last-child {
-      padding-bottom: 0px; }
-    /* line 37, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/header.sass */
-    .header .slicknav_menu li a:hover {
-      text-decoration: none; }
 @media (max-width: 410px) {
-  /* line 41, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/header.sass */
+  /* line 39, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/header.sass */
   .header #menu {
-    display: none; }
-  /* line 44, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/header.sass */
-  .header .slicknav_menu {
-    display: block; } }
+    text-align: center;
+    font-weight: bold;
+    padding: 30px;
+    width: 100%;
+    background-color: #c93c67; }
+    /* line 40, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/header.sass */
+    .header #menu .nav-open {
+      display: block; }
+    /* line 42, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/header.sass */
+    .header #menu .nav {
+      height: 0;
+      overflow: hidden;
+      padding: 0px;
+      transition: height 500ms;
+      border: none; }
+    /* line 53, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/header.sass */
+    .header #menu a {
+      color: white; }
+    /* line 55, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/header.sass */
+    .header #menu ul {
+      border: none; }
+    /* line 57, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/header.sass */
+    .header #menu li {
+      padding: 20px;
+      display: block; }
+      /* line 61, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/header.sass */
+      .header #menu li a:hover {
+        text-decoration: none;
+        background-color: inherit;
+        border: none; }
+  /* line 65, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/header.sass */
+  .header #menu .nav.open {
+    height: 210px; } }
