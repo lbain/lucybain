@@ -2,6 +2,7 @@
 
 .header
   #menu
+    box-sizing: border-box
     .nav-open
       display: none
       ul
@@ -45,22 +46,27 @@
         padding: 0px
         transition: height 500ms
         border: none
+        a
+          color: #fff
+        ul
+          border: none
+        li
+          padding: 20px
+          display: block
+          a
+            &:hover
+              text-decoration: none
+              background-color: $accent
+              border: none
       text-align: center
       font-weight: bold
       padding: 30px
       width: 100%
       background-color: $accent
-      a
-        color: #fff
-      ul
-        border: none
-      li
-        padding: 20px
-        display: block
-        a
-          &:hover
-            text-decoration: none
-            background-color: inherit
-            border: none
     #menu .nav.open
       height: 210px
+
+
+
+
+
