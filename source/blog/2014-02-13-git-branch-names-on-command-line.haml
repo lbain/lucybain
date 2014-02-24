@@ -7,7 +7,6 @@ title: Git Branch Names on Command Prompt
   Recently my coworker #{link_to 'Simon', 'https://plus.google.com/+SimonHildebrandt/'} gave me the following code:
 
 :code
-  #lang: ruby
   parse_git_branch() {
      git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
   }
