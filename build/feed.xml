@@ -45,16 +45,163 @@
         <id>http://blog.url.com/blog</id>
         <link href="http://blog.url.com/blog"/>
         <link href="http://blog.url.com/feed.xml" rel="self"/>
-        <updated>2014-02-13T00:00:00Z</updated>
+        <updated>2014-02-25T00:00:00Z</updated>
         <author>
           <name>Blog Author</name>
         </author>
+        <entry>
+          <title>Getting Started on Twitter</title>
+          <link rel="alternate" href="http://blog.url.com/blog/2014/getting-start-on-twitter/"/>
+          <id>http://blog.url.com/blog/2014/getting-start-on-twitter/</id>
+          <published>2014-02-25T00:00:00Z</published>
+          <updated>2014-02-26T10:51:45+11:00</updated>
+          <author>
+            <name>Article Author</name>
+          </author>
+          <content type="html">&lt;p&gt;
+        A friend of mine recently got set up with Twitter and asked for some pointers. Another friend complemented me on my feed. I was flattered, and wanted to make how I use Twitter public.
+      &lt;/p&gt;
+      &lt;p&gt;
+        There are &lt;em&gt;many&lt;/em&gt; sites out there to help you use Twitter more effectively, I do not believe what I have to say is better or more relevant, this is just written from one friend to another, I hope you find it helpful.
+      &lt;/p&gt;
+      &lt;h2&gt;
+        The basics
+      &lt;/h2&gt;
+      &lt;p&gt;
+        There are a few starting points you should know about Twitter. Once you've had an account for a while it's fairly straight forward, but if you're just starting out here are some tips:
+        &lt;ul&gt;
+          &lt;li&gt;
+            If you tweet at someone (e.g. "@lucykbain how's your day going?") only people who follow both you and the person you're tweeting at can see the tweet. If you'd like to tweet at someone but want everyon to see you need to start with another character, general a period (e.g. ".@lucykbain thanks for the link - I'm sharing it with everyone!")
+          &lt;/li&gt;
+          &lt;li&gt;
+            If you retweet someone diretly your handle (username) is visible, but not as prominate as the person you retweeted. You can get around this by quoting their tweet, but unless you're adding something it's kind of bad manners.
+          &lt;/li&gt;
+          &lt;li&gt;
+            Favouriting tweets lets the person know you saw the tweet, or that you appreciated it. It will be saved in your "favourited" section, but it doesn't go out to your followers. The person who wrote the original tweet would almost certainly appreciate a retweet over a favourite, but that's up to you.
+          &lt;/li&gt;
+          &lt;li&gt;
+            You can send a direct message (DM) to someone you follow who follows you back (two way follow). A DM is kind of like an email (private between the two of you), but has the same character limit. Also, I've found it can be hard to share links in a DM, sometimes it works, sometimes it doesn't.
+          &lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/p&gt;
+      &lt;h2&gt;Moving up in the world&lt;/h2&gt;
+      &lt;p&gt;
+        Ok, now you've gotten the hang of Twitter, you hopefully have a few followers (hey, your mom totally counts!), and you're following a few people yourself (the more the merrier!). What's next?
+      &lt;/p&gt;
+      &lt;p&gt;
+        For me it's now about optimising your tweets and your time. Sure some people tweet seemingly constantly - more power to them. Personally I tend to unfollow people who tweet too much, and I don't really want to spend my day sifting through tweets to find good ones to retweet, or putting out my every thought.
+      &lt;/p&gt;
+      &lt;p&gt;
+        So let's say you decide to limit yourself to two tweets a day. It's a good starting point - it's basically where I started. I wanted to tweet often enough that people would remember me, but not so much that I'd be &lt;em&gt;that girl&lt;/em&gt;. How do you know when to tweet?
+      &lt;/p&gt;
+      &lt;p&gt;
+        You go checkout &lt;a href="#"&gt;WEBSITE&lt;/a&gt; and find out when most of your followers are active. But don't stop there, scroll down a little more and find when most of your followers do retweets. Retweets are pretty much the goal. Whatever your saying, you want it to get to as many people as possible. If they end up following you, that's great, but even if they don't, they saw what you were saying, and that's the important bit. If you're only tweeting once or twice a day you want to make sure what you tweet has the maximum impact.
+      &lt;/p&gt;
+      &lt;p&gt;
+        If you're tweeting to increase your personal visibility (and most people are) then the time period with the maximum retweets should be used for your personal content. Don't use your one major retweet window per day to sell someone else (unless you're ok with that, which is fine), use it to make yourself more visible to more people. Plus your content is what makes following you worth something.
+      &lt;/p&gt;
+      &lt;p&gt;
+        That said, "your content" is really fluid. Do you want to be a
+      &lt;/p&gt;
+      </content>
+        </entry>
+        <entry>
+          <title>RubyConf Australia 2014</title>
+          <link rel="alternate" href="http://blog.url.com/blog/2014/date-format/"/>
+          <id>http://blog.url.com/blog/2014/date-format/</id>
+          <published>2014-02-24T00:00:00Z</published>
+          <updated>2014-02-24T14:22:41+11:00</updated>
+          <author>
+            <name>Article Author</name>
+          </author>
+          <content type="html">https://github.com/SplitIt/splitit-core/commit/e56e7d47a2d8ce3f707b76fc845e772feb09dba5#commitcomment-5464415
+      </content>
+        </entry>
+        <entry>
+          <title>RubyConf Australia 2014</title>
+          <link rel="alternate" href="http://blog.url.com/blog/2014/RubyConfAU/"/>
+          <id>http://blog.url.com/blog/2014/RubyConfAU/</id>
+          <published>2014-02-23T00:00:00Z</published>
+          <updated>2014-02-26T10:52:04+11:00</updated>
+          <author>
+            <name>Article Author</name>
+          </author>
+          <content type="html">&lt;p&gt;
+        I just finished RubyConf Australia, and what a wild ride! I've never been to a conference before, and I was a bit nervous what it would be like. Would people be welcoming? Would I know where to be? Would everyone be taking notes, or no one? Turns out I needn't have worried. The Ruby community was just as amazing as ever.
+      &lt;/p&gt;
+      &lt;p&gt;
+        I met a bunch of new people - many women programmers, and many people hoping to make programming more available through mentorship and code education. While I enjoyed meeting all my fellow rubists, these connections were especially fulfilling since they touch on issues near and dear to my heart. I met &lt;a href="http://twitter.com/amandamelb"&gt;Amanda&lt;/a&gt;, who's poised to be the leader for &lt;a href="http://twitter.com/RailsGirls_MELB"&gt;Rails Girls Melbourne&lt;/a&gt;, and a few members of her study group. I'm sure any additional communication between the various Rails Girls chapters in Australia will be helpful. I was even put in contact with the woman who runs Rails Girls in Wellington, NZ. A nice reminder that this is an international organisation, not just Australia.
+      &lt;/p&gt;
+      &lt;p&gt;
+        Much of the event was about facilitating these kinds of connections - people who are interested in the same kind of things finding each other and learning from everyone's experiences. But of course the main focus was the talks, which I loved attending! I haven't been at school in quite a while, all of my "continuing education" has been done on my own - books people have recommended, articles online, websites, coding exercises. While I have gained from these, it is never as concentrated an effort, and usually in isolation. Going to the conference let me learn with my friends and discuss the talks after. It was great to feel part of the community while learning - answering questions as able, asking my own to better understand what was discussed.
+      &lt;/p&gt;
+      &lt;p&gt;
+        Unfortunately I had to duck out on the morning of the second day. I'm in the process of moving apartments and had some paperwork to deal with. It certainly hurt the feel of the day, I was much lower energy - late nights, preping for &lt;a href="/blog/2014/Rails-Girls-Next/"&gt;Rails Girls Next&lt;/a&gt;, a lot of learning, and the stress of moving made me exhausted. But I still got something from the talks, and I enjoyed continuing on the conversations I started with people the day before. Apparently conferences encourage people to become fast friends!
+      &lt;/p&gt;
+      &lt;p&gt;
+        All in all, I'm really glad I received a scholarship ticket for my work with Rails Girls, otherwise I probably wouldn't have gone. And my work paid me to be there, which was very appreciated as well. The next Ruby Conf will be in Melbourne, and I'm hoping I can attend that one as well!
+      &lt;/p&gt;
+      </content>
+        </entry>
+        <entry>
+          <title>Rails Girls Next</title>
+          <link rel="alternate" href="http://blog.url.com/blog/2014/Rails-Girls-Next/"/>
+          <id>http://blog.url.com/blog/2014/Rails-Girls-Next/</id>
+          <published>2014-02-19T00:00:00Z</published>
+          <updated>2014-02-26T10:51:20+11:00</updated>
+          <author>
+            <name>Article Author</name>
+          </author>
+          <content type="html">&lt;p&gt;
+        Wahoo! Rails Girls Next happened without a (major) hitch today! I am so happy with how it went, and to have helped with these girls' continuing Ruby education.
+      &lt;/p&gt;
+      &lt;h2&gt;
+        The event
+      &lt;/h2&gt;
+      &lt;p&gt;
+        I've shared the slides used for keeping track of time, so you can see the schedule we actually used on the day. We had three exercises for the girls to work through - test driven development (TDD), focused work with Ruby, and learning how the web works with Sinatra.
+      &lt;/p&gt;
+      &lt;p&gt;
+        When the girls checked in they sat at one of six tables and tried to connect to the internet. Once it was time to start, each table was assigned one of three exercises (two tables per exercise). The goal was for each girl to do all of the exercises, and for all of the exercises to be running at any given time. Thus everyone would rotate through the exercises, and no single exercise would be overwhelmed with participants. We also strongly encouraged the girls to work in pairs, and to switch pairs after each exercise; the time they got up to switch exercises was a good time to switch pairs.
+      &lt;/p&gt;
+      &lt;p&gt;
+        When the girls started a new exercise they were given a brief overview of the exercise by the mentor at the table and then they got started. We didn't offer much guidance since we wanted the girls to work in their pairs and rely on each other, but mentors were readily available for struggling groups. After about an hour all the attendees who had been working on the same exercise (about nine) gathered with their mentors (two mentors per exercise). For the next 15 minutes they had a group discussion about the solutions they had come up with, as well as some good practices and tips from the mentors.
+      &lt;/p&gt;
+      &lt;p&gt;
+        After a short break (time to move to another exercise area and find a new pair partner) this process was repeated for each of the remaining exercises. Once the exercises were over the girls were asked to fill out a short survey about how they found the day. Finally, the last part of the day was a discussion with the whole group. This was framed as a retro (although it wasn't a full agile retrospective), and gave the girls, mentors, and myself a time and place to discuss how the day went and what could have been better. I found it extremely valuable to hear which exercises "worked" for the girls, and which ones needed tweaking, how the mentors felt about the discussions after each exercise, what things everyone would like to see changed before the next event, and others. Much of what was discussed was also in the feedback form, but I wanted to make sure the girls gave their feedback independently, before they could be influenced by listening to other participants.
+      &lt;/p&gt;
+      &lt;h2&gt;
+        Lessons learned
+      &lt;/h2&gt;
+      &lt;p&gt;
+        We had the normal problems with the girls connecting to conference (aka hotel) wifi. I'm not sure if there's any way to fix this - hotels never seem to believe how much internet programmers use. There was also some concern about power for the attendee's computers so the conference coordinators and myself went out to buy a few more power strips. In the end it seemed everyone who needed power could get it, or they were pairing on another computer that had enough power. In the future I'd like to check the power situation in advance.
+      &lt;/p&gt;
+      &lt;p&gt;
+        From an organisers point of view, the biggest problem was that I hadn't asked about food times. I'd assumed we'd be able to eat when we were ready, but since we were getting food from the hotel this was not the case. It caused some problems with the timing for the day, but worked out overall. This is something that's easily avoidable - I just needed to ask the conference organisers in advance.
+      &lt;/p&gt;
+      &lt;p&gt;
+        The exercises were (mostly) hosted on GitHub pages. This was convenient since GitHub took care of the hosting and coding everything was pretty straight forward. However, I'd never actually written a site in pure HTML, and man, it is annoying! In the future I'd write any sites I need using whatever method I'm used to (this blog is written with &lt;a href="#"&gt;Middleman&lt;/a&gt;, I recommend checking it out). Writing pure HTML is just time consuming, and there's no need - we've moved on from then! That said, I'm hoping to move the exercises back to Rails Girls so other groups can use them in the future.
+      &lt;/p&gt;
+      &lt;p&gt;
+        Although I had a clear idea in my head how the discussions after each exercise were supposed to go, I hadn't communicated that as well as was needed to the mentors. I wanted that time to be for the girls to realise other people were running into the same problems they were and they weren't "dumb." I also wanted to end up with a whole stack of happy post-it notes with a list of all the things the girls had learned - what a great thing to look back on! Unfortunately my ideas for this time really only solidified about two days before the event, and I never met up with the mentors to talk about it. I'd like to have a better write up for the mentors for future events.
+      &lt;/p&gt;
+      &lt;p&gt;
+        Overall the feedback was useful and positive, but one response talked about feeling depressed with how far behind they felt when compared to the other participants. Obviously I was very sad about this - Rails Girls is set up to help everyone succeed, and I hated to think something I had poured so much energy into had actually made someone feel worse about themselves. At least with this piece of honest feedback we can do something to make the exercises more approachable and/or make some &lt;em&gt;very&lt;/em&gt; beginner friendly exercises.
+      &lt;/p&gt;
+      &lt;p&gt;
+        The most actionable piece of feedback is the ordering of the exercises. All of the girls seemed to find the TDD exercise the most approachable and the Ruby one the most challenging. So in the future I'd like for everyone to work on the same exercise at the same time. I'm not sure how to really encourage the girls to switch pairs between exercises, hopefully if there's an official "switch" time they'll do it themselves. And speaking of pairing, the other easily actionable feedback was that the Sinatra exercise didn't need pairing as it provided a clear enough walk through to work on alone.
+      &lt;/p&gt;
+      &lt;p&gt;
+        At the end of the day, I'm really pleased with how the event went. I was blown away with how much the girls got done - massive props to them for sticking with the harder exercises and wanting to really understand it. And of course huge thanks to the mentors who gave up a day to help strangers learn to code. Hopefully the next Rails Girls Next event will run more smoothly and have more approachable exercises, but I think this was a pretty good starting point.
+      &lt;/p&gt;
+      </content>
+        </entry>
         <entry>
           <title>Git Branch Names on Command Prompt</title>
           <link rel="alternate" href="http://blog.url.com/blog/2014/git-branch-names-on-command-line/"/>
           <id>http://blog.url.com/blog/2014/git-branch-names-on-command-line/</id>
           <published>2014-02-13T00:00:00Z</published>
-          <updated>2014-02-16T20:43:10+11:00</updated>
+          <updated>2014-02-23T19:16:51+11:00</updated>
           <author>
             <name>Article Author</name>
           </author>
@@ -64,7 +211,7 @@
       &lt;p&gt;
         Recently my coworker &lt;a href="https://plus.google.com/+SimonHildebrandt/"&gt;Simon&lt;/a&gt; gave me the following code:
       &lt;/p&gt;
-      &lt;pre class="highlight ruby"&gt;&lt;span class="n"&gt;parse_git_branch&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&amp;#x000A;   &lt;span class="n"&gt;git&lt;/span&gt; &lt;span class="n"&gt;branch&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="sr"&gt;/dev/nu&lt;/span&gt;&lt;span class="n"&gt;ll&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="n"&gt;sed&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;e&lt;/span&gt; &lt;span class="s1"&gt;'/^[^*]/d'&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;e&lt;/span&gt; &lt;span class="s1"&gt;'s/* \(.*\)/ (\1)/'&lt;/span&gt;&amp;#x000A;&lt;span class="p"&gt;}&lt;/span&gt;&amp;#x000A;&lt;span class="n"&gt;export&lt;/span&gt; &lt;span class="no"&gt;PS1&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;"&lt;/span&gt;&lt;span class="se"&gt;\W\[\033&lt;/span&gt;&lt;span class="s2"&gt;[32m&lt;/span&gt;&lt;span class="se"&gt;\]\$&lt;/span&gt;&lt;span class="s2"&gt;(parse_git_branch)&lt;/span&gt;&lt;span class="se"&gt;\[\033&lt;/span&gt;&lt;span class="s2"&gt;[00m&lt;/span&gt;&lt;span class="se"&gt;\]&lt;/span&gt;&lt;span class="s2"&gt; $ "&lt;/span&gt;&lt;/pre&gt;
+      &lt;pre class="highlight plaintext"&gt;parse_git_branch() {&amp;#x000A;   git branch 2&amp;gt; /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'&amp;#x000A;}&amp;#x000A;export PS1="\W\[\033[32m\]\$(parse_git_branch)\[\033[00m\] $ "&lt;/pre&gt;
       &lt;p&gt;This code should go in your &lt;code&gt;~/.bash_profile&lt;/code&gt;. Once you've added it, you'll need to source with &lt;code&gt;$ source ~/.bash_profile&lt;/code&gt; (or &lt;code&gt;$ . ~/.bash_profile&lt;/code&gt; if you want to save a few key strokes!).&lt;/p&gt;
       &lt;p&gt;
         Your prompt will be &lt;code&gt; current-directory (branch-name) $&lt;/code&gt; with your branch name in green. Mine looks like this:
@@ -92,144 +239,6 @@
       &lt;/p&gt;
       &lt;p&gt;
         So go try it out - it's pretty powerful!
-      &lt;/p&gt;
-      </content>
-        </entry>
-        <entry>
-          <title>validate vs. validateS</title>
-          <link rel="alternate" href="http://blog.url.com/blog/2014/validate-vs-validates/"/>
-          <id>http://blog.url.com/blog/2014/validate-vs-validates/</id>
-          <published>2014-01-15T00:00:00Z</published>
-          <updated>2014-02-15T22:18:21+11:00</updated>
-          <author>
-            <name>Article Author</name>
-          </author>
-          <content type="html">&lt;p&gt;
-        I stumbled across this validation gotcha a while back, but that was before I had this awesome blog ;) I think this is a pretty big one, hope this help someone!
-      &lt;/p&gt;
-      &lt;p&gt;
-        &lt;code&gt;::ActiveModel::Validations&lt;/code&gt; treats &lt;code&gt;validates&lt;/code&gt; and &lt;code&gt;validate&lt;/code&gt; differently. &lt;code&gt;validates&lt;/code&gt; is used for normal validations &lt;code&gt;presence&lt;/code&gt;, &lt;code&gt;length&lt;/code&gt;, and the like. &lt;code&gt;validate&lt;/code&gt; is used for custom validation methods &lt;code&gt;validate_name_starts_with_a&lt;/code&gt;, or whatever crazy method you come up with. These methods are clearly useful and help keep data clean.
-      &lt;/p&gt;
-      &lt;p&gt;
-        That's all well and good, except for one tiny thing:
-        &lt;pre class="highlight ruby"&gt;&lt;span class="nb"&gt;require&lt;/span&gt; &lt;span class="s1"&gt;'active_record'&lt;/span&gt;&amp;#x000A;&amp;#x000A;&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;Foo&lt;/span&gt;&amp;#x000A;  &lt;span class="kp"&gt;include&lt;/span&gt; &lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="no"&gt;ActiveModel&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="no"&gt;Validations&lt;/span&gt;&amp;#x000A;&amp;#x000A;  &lt;span class="kp"&gt;attr_accessor&lt;/span&gt; &lt;span class="ss"&gt;:bar&lt;/span&gt;&amp;#x000A;  &lt;span class="n"&gt;validate&lt;/span&gt; &lt;span class="ss"&gt;:bar&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="ss"&gt;presence: &lt;/span&gt;&lt;span class="kp"&gt;true&lt;/span&gt;&amp;#x000A;  &lt;span class="c1"&gt;# Note the validate without an s!&lt;/span&gt;&amp;#x000A;&lt;span class="k"&gt;end&lt;/span&gt;&amp;#x000A;&amp;#x000A;&amp;#x000A;&lt;span class="nb"&gt;require&lt;/span&gt; &lt;span class="s1"&gt;'rspec'&lt;/span&gt;&amp;#x000A;&lt;span class="nb"&gt;require&lt;/span&gt; &lt;span class="s1"&gt;'rspec/autorun'&lt;/span&gt;&amp;#x000A;&amp;#x000A;&lt;span class="n"&gt;describe&lt;/span&gt; &lt;span class="s1"&gt;'Foo'&lt;/span&gt; &lt;span class="k"&gt;do&lt;/span&gt;&amp;#x000A;  &lt;span class="n"&gt;it&lt;/span&gt; &lt;span class="s1"&gt;'fails to actually validate'&lt;/span&gt; &lt;span class="k"&gt;do&lt;/span&gt;&amp;#x000A;    &lt;span class="n"&gt;foo&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="no"&gt;Foo&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;new&lt;/span&gt;&amp;#x000A;    &lt;span class="n"&gt;foo&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;valid?&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;should&lt;/span&gt; &lt;span class="n"&gt;be_false&lt;/span&gt;&amp;#x000A;  &lt;span class="k"&gt;end&lt;/span&gt;&amp;#x000A;&lt;span class="k"&gt;end&lt;/span&gt;&amp;#x000A;&lt;/pre&gt;
-        That test &lt;em&gt;fails&lt;/em&gt;.
-      &lt;/p&gt;
-      &lt;p&gt;
-        Go ahead, copy that into a new file and run it for yourself. I'll wait. Yep, it fails. There's no value set for &lt;code&gt;bar&lt;/code&gt; and yet &lt;code&gt;foo.valid?&lt;/code&gt; still returns &lt;code&gt;true&lt;/code&gt;. This is a problem.
-      &lt;/p&gt;
-      &lt;p&gt;
-        So what's going on here? I asked &lt;a href="http://stackoverflow.com/questions/18140898/whats-the-difference-between-validate-and-validates"&gt;StackOverflow&lt;/a&gt;, and it turns out there's a totally reasonable explanation. &lt;code&gt;validate&lt;/code&gt; is written to look for a custom validation method, this time one called &lt;code&gt;bar&lt;/code&gt;. It just so happens there is a &lt;code&gt;bar&lt;/code&gt; method, set from the &lt;code&gt;attr_accessor :bar&lt;/code&gt; line. That &lt;code&gt;bar&lt;/code&gt; method returns doesn't return &lt;code&gt;false&lt;/code&gt;, nor does it put an error messages on the main object's body. Therefore &lt;code&gt;validate&lt;/code&gt; interprets the call to &lt;code&gt;bar&lt;/code&gt; as a success and doesn't invalidate the object.
-      &lt;/p&gt;
-      &lt;p&gt;
-        This explanation also means there's no way for the code to "fail loudly" - to alert us that we haven't purposefully defined a custom method when we use &lt;code&gt;validate&lt;/code&gt;. So I'd suggest grepping through your codebase for &lt;code&gt;validate :&lt;/code&gt; and making very sure that's what you actually want.
-      &lt;/p&gt;
-      &lt;p&gt;
-        So remember folks, &lt;code&gt;validates&lt;/code&gt; is for Rails validators (and custom validator classes ending with &lt;code&gt;Validator&lt;/code&gt; if that's what you're into), and &lt;code&gt;validate&lt;/code&gt; is for your custom validator methods. Don't make a typo!
-      &lt;/p&gt;
-      </content>
-        </entry>
-        <entry>
-          <title>TDD Day 5</title>
-          <link rel="alternate" href="http://blog.url.com/blog/2014/tdd-day-5/"/>
-          <id>http://blog.url.com/blog/2014/tdd-day-5/</id>
-          <published>2014-01-09T00:00:00Z</published>
-          <updated>2014-02-15T22:18:21+11:00</updated>
-          <author>
-            <name>Article Author</name>
-          </author>
-          <content type="html">&lt;h3&gt;
-        What did I do today?
-      &lt;/h3&gt;
-      &lt;p&gt;
-        I said at the beginning that I wasn't a huge fan of TDD. It just doesn't seem like a great idea to me. Today I took some time to explore that, and it turns out, I'm not the only one. Most people have mixed reviews, and that's exactly what I'm experiencing now.
-      &lt;/p&gt;
-      &lt;ul&gt;
-        &lt;li&gt;
-          &lt;a href="http://www.writemoretests.com/2011/09/test-driven-development-give-me-break.html"&gt;Test-Driven Development? Give me a break…&lt;/a&gt; said that &lt;b&gt;requiring&lt;/b&gt; TDD was a bad idea, but that the general principal is probably good. It's possible to have too much of a good thing.
-        &lt;/li&gt;
-        &lt;li&gt;
-          &lt;a href="http://programmers.stackexchange.com/a/98566"&gt;Description of someone's negative TDD experience&lt;/a&gt; - "Like everything that comes under the 'Agile' banner, TDD is something that sounds good in theory, but in practice it's not so clear how good it is (and also like most 'Agile' things, you are told that if you don't like it, you are doing it wrong)." So much this. I like the idea of being able to refactor at will, but it doesn't seem to work like that in real life.
-        &lt;/li&gt;
-        &lt;li&gt;
-          &lt;a href="http://programmers.stackexchange.com/a/178858"&gt;On designing with TDD&lt;/a&gt; pointed out that just because code was written with TDD doesn't mean it's good code. Writing good code is hard, TDD is one of the (many) tools and ideas programmers have available to write better code since it (theoretically) allows us to refactor more easily.
-        &lt;/li&gt;
-        &lt;li&gt;
-          &lt;a href="http://programmers.stackexchange.com/questions/41409/why-does-tdd-work"&gt;Discussion on "engineering" side of development&lt;/a&gt; - "The false safe feelings that an 'all green' outcomes ... may be interepreted as 'the system is fine', when it really means 'the system is as good as our testing strategy'." This has bitten me a few times. We don't shoot for 100% test coverage at work, but we still feel ok to push code when we've got a green build.
-        &lt;/li&gt;
-      &lt;/ul&gt;
-      &lt;h3&gt;
-        Reflections
-      &lt;/h3&gt;
-      &lt;p&gt;
-        I'm still not convinced about TDD. I'm hoping I'll have a more informed opinion at the end of these TDD sessions, but right now I'm a bit perplexed. It does make me feel better to know that I'm not the only one questioning TDD as the "right" way to do things.
-      &lt;/p&gt;
-      &lt;p&gt;
-        On a positive note, I submitted a pull request today and one of my coworkers complemented me on my tests! So I guess these exercises are working :)
-      &lt;/p&gt;
-      </content>
-        </entry>
-        <entry>
-          <title>TDD Day 4</title>
-          <link rel="alternate" href="http://blog.url.com/blog/2014/tdd-day-4/"/>
-          <id>http://blog.url.com/blog/2014/tdd-day-4/</id>
-          <published>2014-01-08T00:00:00Z</published>
-          <updated>2014-02-15T22:18:21+11:00</updated>
-          <author>
-            <name>Article Author</name>
-          </author>
-          <content type="html">&lt;h3&gt;
-        What did I do today?
-      &lt;/h3&gt;
-      &lt;p&gt;
-        I'm continuing on at Coders Dojo, today I worked on &lt;a href="http://content.codersdojo.org/code-kata-catalogue/roman-numerals/"&gt;Roman Numerals&lt;/a&gt;. I've heard this problem talked about, but haven't actually worked on it myself. It was harder than I expected (and involved a lot of Googling for the correct way to convert numbers to roman numerals), but I did &lt;a href="https://github.com/lbain/tdd-practice/tree/master/day-4"&gt;finish&lt;/a&gt; it with all green specs.
-      &lt;/p&gt;
-      &lt;p&gt;
-        I also watch the next &lt;a href="https://www.youtube.com/watch?v=dyBybIZJpyA&amp;amp;amp;list=PLVBFw0Pn9e9IduDzgOx7Yoh0ur7SZa7hu&amp;amp;amp;index=3"&gt;video&lt;/a&gt; from RubyOnRailsVideos about TDD. This one talked about writing pending specs before you get properly started to give you some scaffolding to work with (among other things). I tried to work with that today. I started by going through and writing up an outline of how I thought the tests should go, in increasing difficulty, and with clear titles. Overall I think it helped me stay focused. I was certainly much better at Red-Green-Refactor, particularly the refactoring bit.
-      &lt;/p&gt;
-      &lt;h3&gt;
-        Reflections
-      &lt;/h3&gt;
-      &lt;p&gt;
-        I found that once I had a couple of hard coded examples of code that passed specs I found it much easier to move to a more abstract implementations. Normally I would just head to the abstraction since I know that's what I'll have to end up with. But focusing on the "least code possible" for a green test it was easier to work out what the final code should be. So there's something concrete and useful about using TDD...
-      &lt;/p&gt;
-      &lt;p&gt;
-        As with the prime number converter I looked around for a solution to this kata after I had finished it. Other people solved it more simply, although I felt like they were cheating. An interesting idea, if it's voluntary work done for your personal betterment, can you really cheat? They simply wrote more cases for the base dictionary (i.e. 4, 9, 90, etc.). As I said, I feel like this is cheating. It seems like your application should only know the minimum numerals available, and not need to look up any additional combinations. At that point, why not just hard code all of the solutions?
-      &lt;/p&gt;
-      &lt;p&gt;
-        Well, because that would be extremely tedious, and with the few additional numbers these other solutions used they were able to save a considerable amount of code. In the real world, theirs would be the preferred solution by far. It was far simpler, had fewer lines of code, and did not hard code anything that was likely to change in the future (those Roman numerals have been around for a while). So although I may feel self-righteous about my solution, I do believe theirs is preferred.
-      &lt;/p&gt;
-      &lt;p&gt;
-        I do think I'm starting to see more of a use for TDD, and testing in general. Refactoring the code was much easier with all the tests I had to make sure I didn't forget anything small.
-      &lt;/p&gt;
-      </content>
-        </entry>
-        <entry>
-          <title>TDD Day 3</title>
-          <link rel="alternate" href="http://blog.url.com/blog/2014/tdd-day-3/"/>
-          <id>http://blog.url.com/blog/2014/tdd-day-3/</id>
-          <published>2014-01-06T00:00:00Z</published>
-          <updated>2014-02-15T22:18:21+11:00</updated>
-          <author>
-            <name>Article Author</name>
-          </author>
-          <content type="html">&lt;p&gt;
-        I started the next &lt;a href="http://content.codersdojo.org/code-kata-catalogue/prime-factors/"&gt;kata&lt;/a&gt; at Coders Dojo. I think you're supposed to do katas over and over again, but I didn't think I'd gain that much from repeating the FizzBuzz kata from yesterday. Maybe when I've got a better hang of things I can go back to FizzBuzz and learn something from it. Anyways, today's exercise was new to me - finding all the prime factors for a given number. Of course I've done this in math class, but I haven't written a program for it before.
-      &lt;/p&gt;
-      &lt;p&gt;
-        I figured I shouldn't have a list of all the primes ever (also, not possible to do...), and that calculating the primes on the fly would be too slow. (Not that there's a time constraint, just that I know computers spend their lives computing the next prime number and it seemed a bit in efficient.) Fortunately Ruby has a Prime class, so I borrowed that one. I'm not sure this was in the spirit of the kata, but TDD and Agile are all about writing as little code as possible, and I thought using someone else's code would further that cause. Looking back I'm not so sure...
-      &lt;/p&gt;
-      &lt;p&gt;
-        I went through the exercise and got it all &lt;a href="https://github.com/lbain/tdd-practice/tree/master/day-3"&gt;sorted.&lt;/a&gt; I'll admit I'd forgotten 1 isn't a prime number, but a bit of Googling set me straight. In the end the Prime class wasn't as helpful as I'd thought since it didn't come in the "correct" form as described in Coders Dojo. So I had to write a converting function to deal with this.
-      &lt;/p&gt;
-      &lt;h3&gt;
-        Reflections
-      &lt;/h3&gt;
-      &lt;p&gt;
-        When I was done I found a &lt;a href="http://www.codersdojo.com/statistics/aa3d8500266d4b5bcf6fe18d0fce77dc1a7b7c0e"&gt;"solution"&lt;/a&gt; posted by the Dojo. It was... much better than mine. :( Well, I guess that's what learning is all about. I ended up putting similar tests together (a few primes and a few composite numbers all in one "it" block). I'm pretty sure you're not supposed to do this, but I really haven't found a good reason why not. But I only had a few test cases, the solution had many more. The solution also rolled it's own factorization rather than relying on Prime. I had assumed this would be too slow, but of course that was premature optimization. No one else is going to use this function, just me and my tests. Time is unimportant. Also, I have no idea how the Prime class works, it might compute the primes on the fly itself.
-      &lt;/p&gt;
-      &lt;p&gt;
-        All in all, I think I did better sticking with the TDD mindset, but I'd like to come back to this one in a little while (once I've forgotten it a bit), and write my own factorization without leaning on Prime.
       &lt;/p&gt;
       </content>
         </entry>

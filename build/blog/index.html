@@ -40,6 +40,45 @@
     <div class='content'>
       <h1></h1>
       <h2>
+        <a href="/blog/2014/getting-start-on-twitter/">Getting Started on Twitter</a>
+      </h2>
+      <p>Feb 25, 2014</p>
+      <p>
+        A friend of mine recently got set up with Twitter and asked for some pointers. Another friend complemented me on my feed. I was flattered, and wanted to make how I use Twitter public.
+      </p>
+      <p>
+        There are <em>many</em> sites out there to help you use Twitter more effectively, I do not believe what I have to say is better or more relevant, this is just written from one friend to another, I hope you find it helpful.
+      </p>
+      <h2>
+        The basics
+      </h2>
+      <p>
+        There are a few starting points you should know about Twitter. Once you've...</p>
+      <h2>
+        <a href="/blog/2014/RubyConfAU/">RubyConf Australia 2014</a>
+      </h2>
+      <p>Feb 23, 2014</p>
+      <p>
+        I just finished RubyConf Australia, and what a wild ride! I've never been to a conference before, and I was a bit nervous what it would be like. Would people be welcoming? Would I know where to be? Would everyone be taking notes, or no one? Turns out I needn't have worried. The Ruby community was just as amazing as ever.
+      </p>
+      <p>
+        I met a bunch of new people - many women programmers, and many people hoping to make programming more available through mentorship and code education. While I enjoyed meeting...</p>
+      <h2>
+        <a href="/blog/2014/Rails-Girls-Next/">Rails Girls Next</a>
+      </h2>
+      <p>Feb 19, 2014</p>
+      <p>
+        Wahoo! Rails Girls Next happened without a (major) hitch today! I am so happy with how it went, and to have helped with these girls' continuing Ruby education.
+      </p>
+      <h2>
+        The event
+      </h2>
+      <p>
+        I've shared the slides used for keeping track of time, so you can see the schedule we actually used on the day. We had three exercises for the girls to work through - test driven development (TDD), focused work with Ruby, and learning how the web works with Sinatra.
+      </p>
+      <p>
+        When the girls checked in they sat at one of six...</p>
+      <h2>
         <a href="/blog/2014/git-branch-names-on-command-line/">Git Branch Names on Command Prompt</a>
       </h2>
       <p>Feb 13, 2014</p>
@@ -49,64 +88,13 @@
       <p>
         Recently my coworker <a href="https://plus.google.com/+SimonHildebrandt/">Simon</a> gave me the following code:
       </p>
-      <pre class="highlight ruby"><span class="n">parse_git_branch</span><span class="p">()</span> <span class="p">{</span>
-         <span class="n">git</span> <span class="n">branch</span> <span class="mi">2</span><span class="o">&gt;</span> <span class="sr">/dev/nu</span><span class="n">ll</span> <span class="o">|</span> <span class="n">sed</span> <span class="o">-</span><span class="n">e</span> <span class="s1">'/^[^*]/d'</span> <span class="o">-</span><span class="n">e</span> <span class="s1">'s/* \(.*\)/ (\1)/'</span>
-      <span class="p">}</span>
-      <span class="n">export</span> <span class="no">PS1</span><span class="o">=</span><span class="s2">"</span><span class="se">\W\[\033</span><span class="s2">[32m</span><span class="se">\]\$</span><span class="s2">(parse_git_branch)</span><span class="se">\[\033</span><span class="s2">[00m</span><span class="se">\]</span><span class="s2"> $ "</span></pre>
+      <pre class="highlight plaintext">parse_git_branch() {
+         git branch 2&gt; /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
+      }
+      export PS1="\W\[\033[32m\]\$(parse_git_branch)\[\033[00m\] $ "</pre>
       <p>This code should...</p>
-      <h2>
-        <a href="/blog/2014/sublime-multi-cursor/">Sublime Multi-Cursor</a>
-      </h2>
-      <p>Feb  3, 2014</p>
       <p>
-        I use Sublime. I know, I know, I'm not a <a href="http://xkcd.com/378/">"real"</a> dev. Whatever. It works for me. One of my favourite features is the multi-cursor. If you're a fellow Sublime user and aren't aware of this ability you should really check it out. Look at <a href="http://blog.generalassemb.ly/sublime-text-3-tips-tricks-shortcuts/">step 12</a> for a little gif of what it looks like.
-      </p>
-      <p>
-        This is an awesome tool for making bulk edits in a file. <code>cmd + mouse-click</code> is where I started, but then <a href="https://twitter.com/gerwinvanroyen">@gerwinvanroyen</a> told me about selecting a bunch of lines and then doing <code>cmd + shift + L</code> to select all the...</p>
-      <h2>
-        <a href="/blog/2014/validate-vs-validates/">validate vs. validateS</a>
-      </h2>
-      <p>Jan 15, 2014</p>
-      <p>
-        I stumbled across this validation gotcha a while back, but that was before I had this awesome blog ;) I think this is a pretty big one, hope this help someone!
-      </p>
-      <p>
-        <code>::ActiveModel::Validations</code> treats <code>validates</code> and <code>validate</code> differently. <code>validates</code> is used for normal validations <code>presence</code>, <code>length</code>, and the like. <code>validate</code> is used for custom validation methods <code>validate_name_starts_with_a</code>, or whatever crazy method you come up with. These methods are clearly useful and help keep data clean.
-      </p>
-      <p>
-        That's...</p>
-      <h2>
-        <a href="/blog/2014/tdd-day-5/">TDD Day 5</a>
-      </h2>
-      <p>Jan  9, 2014</p>
-      <h3>
-        What did I do today?
-      </h3>
-      <p>
-        I said at the beginning that I wasn't a huge fan of TDD. It just doesn't seem like a great idea to me. Today I took some time to explore that, and it turns out, I'm not the only one. Most people have mixed reviews, and that's exactly what I'm experiencing now.
-      </p>
-      <ul>
-        <li>
-          <a href="http://www.writemoretests.com/2011/09/test-driven-development-give-me-break.html">Test-Driven Development? Give me a break…</a> said that <b>requiring</b> TDD was a bad idea, but that the general principal is probably good. It's possible to have too much of a good thing.
-        </li>
-        <li>
-          <a href="http://programmers.stackexchange.com/a/98566">Description...</a>
-      </li>
-      </ul>
-      <h2>
-        <a href="/blog/2014/tdd-day-4/">TDD Day 4</a>
-      </h2>
-      <p>Jan  8, 2014</p>
-      <h3>
-        What did I do today?
-      </h3>
-      <p>
-        I'm continuing on at Coders Dojo, today I worked on <a href="http://content.codersdojo.org/code-kata-catalogue/roman-numerals/">Roman Numerals</a>. I've heard this problem talked about, but haven't actually worked on it myself. It was harder than I expected (and involved a lot of Googling for the correct way to convert numbers to roman numerals), but I did <a href="https://github.com/lbain/tdd-practice/tree/master/day-4">finish</a> it with all green specs.
-      </p>
-      <p>
-        I also watch the next <a href="https://www.youtube.com/watch?v=dyBybIZJpyA&amp;amp;list=PLVBFw0Pn9e9IduDzgOx7Yoh0ur7SZa7hu&amp;amp;index=3">video</a> from RubyOnRailsVideos about TDD. This one talked about writing pending specs before you get properly started to give you some...</p>
-      <p>
-        Page 1 of 2
+        Page 1 of 3
       </p>
       <p><a href="/blog/page/2/">Next page</a></p>
     </div>
