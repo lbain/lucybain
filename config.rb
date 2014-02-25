@@ -107,8 +107,13 @@ activate :syntax
 helpers do
   def nav_link(link_text, url, options = {})
     options[:class] ||= ""
-    options[:class] << " active" if url == current_page.url
+    options[:class] << " active" if active_url?(current_page.url, url)
     link_to(link_text, url, options)
+  end
+
+  def active_url?(current_url, nav_url)
+    return current_url.start_with? nav_url unless nav_url == '/'
+    current_url == nav_url
   end
 
   def from_url(link_name)
