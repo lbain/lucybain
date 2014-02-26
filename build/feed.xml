@@ -148,7 +148,7 @@
           <link rel="alternate" href="http://blog.url.com/blog/2014/Rails-Girls-Next/"/>
           <id>http://blog.url.com/blog/2014/Rails-Girls-Next/</id>
           <published>2014-02-19T00:00:00Z</published>
-          <updated>2014-02-26T10:51:20+11:00</updated>
+          <updated>2014-02-26T12:33:08+11:00</updated>
           <author>
             <name>Article Author</name>
           </author>
@@ -159,7 +159,7 @@
         The event
       &lt;/h2&gt;
       &lt;p&gt;
-        I've shared the slides used for keeping track of time, so you can see the schedule we actually used on the day. We had three exercises for the girls to work through - test driven development (TDD), focused work with Ruby, and learning how the web works with Sinatra.
+        I've shared the &lt;a href="https://docs.google.com/presentation/d/19Jj8I4CVRe8k2sP8m17PMk0PXwbY0646MxWDS6VJ5yo/edit?usp=sharing"&gt;slides&lt;/a&gt; used for keeping track of time, so you can see the schedule we actually used on the day. We had &lt;a href="http://lbain.github.io/rails-girls-next/"&gt;three exercises&lt;/a&gt; for the girls to work through - test driven development (TDD), focused work with Ruby, and learning how the web works with Sinatra.
       &lt;/p&gt;
       &lt;p&gt;
         When the girls checked in they sat at one of six tables and tried to connect to the internet. Once it was time to start, each table was assigned one of three exercises (two tables per exercise). The goal was for each girl to do all of the exercises, and for all of the exercises to be running at any given time. Thus everyone would rotate through the exercises, and no single exercise would be overwhelmed with participants. We also strongly encouraged the girls to work in pairs, and to switch pairs after each exercise; the time they got up to switch exercises was a good time to switch pairs.
@@ -180,7 +180,7 @@
         From an organisers point of view, the biggest problem was that I hadn't asked about food times. I'd assumed we'd be able to eat when we were ready, but since we were getting food from the hotel this was not the case. It caused some problems with the timing for the day, but worked out overall. This is something that's easily avoidable - I just needed to ask the conference organisers in advance.
       &lt;/p&gt;
       &lt;p&gt;
-        The exercises were (mostly) hosted on GitHub pages. This was convenient since GitHub took care of the hosting and coding everything was pretty straight forward. However, I'd never actually written a site in pure HTML, and man, it is annoying! In the future I'd write any sites I need using whatever method I'm used to (this blog is written with &lt;a href="#"&gt;Middleman&lt;/a&gt;, I recommend checking it out). Writing pure HTML is just time consuming, and there's no need - we've moved on from then! That said, I'm hoping to move the exercises back to Rails Girls so other groups can use them in the future.
+        The exercises were (mostly) hosted on GitHub pages. This was convenient since GitHub took care of the hosting and coding everything was pretty straight forward. However, I'd never actually written a site in pure HTML, and man, it is annoying! In the future I'd write any sites I need using whatever method I'm used to (this blog is written with &lt;a href="middlemanapp.com"&gt;Middleman&lt;/a&gt;, I recommend checking it out). Writing pure HTML is just time consuming, and there's no need - we've moved on from then! That said, I'm hoping to move the exercises back to Rails Girls so other groups can use them in the future.
       &lt;/p&gt;
       &lt;p&gt;
         Although I had a clear idea in my head how the discussions after each exercise were supposed to go, I hadn't communicated that as well as was needed to the mentors. I wanted that time to be for the girls to realise other people were running into the same problems they were and they weren't "dumb." I also wanted to end up with a whole stack of happy post-it notes with a list of all the things the girls had learned - what a great thing to look back on! Unfortunately my ideas for this time really only solidified about two days before the event, and I never met up with the mentors to talk about it. I'd like to have a better write up for the mentors for future events.
