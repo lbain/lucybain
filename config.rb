@@ -38,7 +38,7 @@ set :js_dir, 'javascripts'
 
 set :images_dir, 'images'
 
-redirect "udacity2", to: "resources/udacity-python-study-group"
+redirect "udacity2/index.html", to: "resources/udacity-python-study-group/index.html"
 
 
 ###
