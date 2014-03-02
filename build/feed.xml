@@ -4,10 +4,48 @@
   <id>http://lucybain.com/blog</id>
   <link href="http://lucybain.com/blog"/>
   <link href="http://lucybain.com/feed.xml" rel="self"/>
-  <updated>2014-02-25T00:00:00Z</updated>
+  <updated>2014-02-27T00:00:00Z</updated>
   <author>
     <name>Lucy Bain</name>
   </author>
+  <entry>
+    <title>Sublime Auto Indent</title>
+    <link rel="alternate" href="http://lucybain.com/blog/2014/Sublime-Auto-Indent/"/>
+    <id>http://lucybain.com/blog/2014/Sublime-Auto-Indent/</id>
+    <published>2014-02-27T00:00:00Z</published>
+    <updated>2014-03-02T15:52:47+11:00</updated>
+    <author>
+      <name>Article Author</name>
+    </author>
+    <content type="html">&lt;p&gt;
+  I recently discoverd how to get Sublime to fix indentations for you! Since I spend a certain amount of time each day pushing characters left and right this was pretty exciting. Hope you find it useful!
+&lt;/p&gt;
+&lt;p&gt;
+  In Sublime, under &lt;code&gt;Preference&lt;/code&gt; select &lt;code&gt;Key Bindings - User&lt;/code&gt;. If you've got anything in there already, just add the &lt;code&gt;{ "keys"... }&lt;/code&gt; section below. Otherwise you can replace the &lt;code&gt;[]&lt;/code&gt; with:
+&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;[&amp;#x000A;  { "keys": ["super+i"],&amp;#x000A;    "command": "reindent"}&amp;#x000A;]&lt;/pre&gt;
+&lt;p&gt;
+  Now you can use &lt;code&gt;cmd + i&lt;/code&gt; (mac), or &lt;code&gt;ctrl + i&lt;/code&gt; (windows) to auto indent your code. It's not always perfect, but it's helped me with my rails code.
+&lt;/p&gt;
+&lt;h2&gt;
+  What's happening here?
+&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;code&gt;"keys"&lt;/code&gt; labels the next section as the keys that will trigger the action.
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;code&gt;["super+i"]&lt;/code&gt; means "use whatever this computer defaults to" (&lt;code&gt;cmd&lt;/code&gt; for macs, &lt;code&gt;ctrl&lt;/code&gt; for windows) and &lt;code&gt;i&lt;/code&gt; to trigger the action.
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;code&gt;"command"&lt;/code&gt; labels which command the given key binding should trigger.
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;code&gt;"reindent"&lt;/code&gt; is the command that will run on the given key press. A list of commands you could use can be found &lt;a href="http://www.sublimetext.com/docs/commands"&gt;in the docs&lt;/a&gt;.
+  &lt;/li&gt;
+&lt;/ul&gt;
+</content>
+  </entry>
   <entry>
     <title>Getting Started on Twitter</title>
     <link rel="alternate" href="http://lucybain.com/blog/2014/getting-start-on-twitter/"/>
@@ -195,40 +233,6 @@
 &lt;/p&gt;
 &lt;p&gt;
   So go try it out - it's pretty powerful!
-&lt;/p&gt;
-</content>
-  </entry>
-  <entry>
-    <title>validate vs. validateS</title>
-    <link rel="alternate" href="http://lucybain.com/blog/2014/validate-vs-validates/"/>
-    <id>http://lucybain.com/blog/2014/validate-vs-validates/</id>
-    <published>2014-01-15T00:00:00Z</published>
-    <updated>2014-02-15T22:18:21+11:00</updated>
-    <author>
-      <name>Article Author</name>
-    </author>
-    <content type="html">&lt;p&gt;
-  I stumbled across this validation gotcha a while back, but that was before I had this awesome blog ;) I think this is a pretty big one, hope this help someone!
-&lt;/p&gt;
-&lt;p&gt;
-  &lt;code&gt;::ActiveModel::Validations&lt;/code&gt; treats &lt;code&gt;validates&lt;/code&gt; and &lt;code&gt;validate&lt;/code&gt; differently. &lt;code&gt;validates&lt;/code&gt; is used for normal validations &lt;code&gt;presence&lt;/code&gt;, &lt;code&gt;length&lt;/code&gt;, and the like. &lt;code&gt;validate&lt;/code&gt; is used for custom validation methods &lt;code&gt;validate_name_starts_with_a&lt;/code&gt;, or whatever crazy method you come up with. These methods are clearly useful and help keep data clean.
-&lt;/p&gt;
-&lt;p&gt;
-  That's all well and good, except for one tiny thing:
-  &lt;pre class="highlight ruby"&gt;&lt;span class="nb"&gt;require&lt;/span&gt; &lt;span class="s1"&gt;'active_record'&lt;/span&gt;&amp;#x000A;&amp;#x000A;&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;Foo&lt;/span&gt;&amp;#x000A;  &lt;span class="kp"&gt;include&lt;/span&gt; &lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="no"&gt;ActiveModel&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="no"&gt;Validations&lt;/span&gt;&amp;#x000A;&amp;#x000A;  &lt;span class="kp"&gt;attr_accessor&lt;/span&gt; &lt;span class="ss"&gt;:bar&lt;/span&gt;&amp;#x000A;  &lt;span class="n"&gt;validate&lt;/span&gt; &lt;span class="ss"&gt;:bar&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="ss"&gt;presence: &lt;/span&gt;&lt;span class="kp"&gt;true&lt;/span&gt;&amp;#x000A;  &lt;span class="c1"&gt;# Note the validate without an s!&lt;/span&gt;&amp;#x000A;&lt;span class="k"&gt;end&lt;/span&gt;&amp;#x000A;&amp;#x000A;&amp;#x000A;&lt;span class="nb"&gt;require&lt;/span&gt; &lt;span class="s1"&gt;'rspec'&lt;/span&gt;&amp;#x000A;&lt;span class="nb"&gt;require&lt;/span&gt; &lt;span class="s1"&gt;'rspec/autorun'&lt;/span&gt;&amp;#x000A;&amp;#x000A;&lt;span class="n"&gt;describe&lt;/span&gt; &lt;span class="s1"&gt;'Foo'&lt;/span&gt; &lt;span class="k"&gt;do&lt;/span&gt;&amp;#x000A;  &lt;span class="n"&gt;it&lt;/span&gt; &lt;span class="s1"&gt;'fails to actually validate'&lt;/span&gt; &lt;span class="k"&gt;do&lt;/span&gt;&amp;#x000A;    &lt;span class="n"&gt;foo&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="no"&gt;Foo&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;new&lt;/span&gt;&amp;#x000A;    &lt;span class="n"&gt;foo&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;valid?&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;should&lt;/span&gt; &lt;span class="n"&gt;be_false&lt;/span&gt;&amp;#x000A;  &lt;span class="k"&gt;end&lt;/span&gt;&amp;#x000A;&lt;span class="k"&gt;end&lt;/span&gt;&amp;#x000A;&lt;/pre&gt;
-  That test &lt;em&gt;fails&lt;/em&gt;.
-&lt;/p&gt;
-&lt;p&gt;
-  Go ahead, copy that into a new file and run it for yourself. I'll wait. Yep, it fails. There's no value set for &lt;code&gt;bar&lt;/code&gt; and yet &lt;code&gt;foo.valid?&lt;/code&gt; still returns &lt;code&gt;true&lt;/code&gt;. This is a problem.
-&lt;/p&gt;
-&lt;p&gt;
-  So what's going on here? I asked &lt;a href="http://stackoverflow.com/questions/18140898/whats-the-difference-between-validate-and-validates"&gt;StackOverflow&lt;/a&gt;, and it turns out there's a totally reasonable explanation. &lt;code&gt;validate&lt;/code&gt; is written to look for a custom validation method, this time one called &lt;code&gt;bar&lt;/code&gt;. It just so happens there is a &lt;code&gt;bar&lt;/code&gt; method, set from the &lt;code&gt;attr_accessor :bar&lt;/code&gt; line. That &lt;code&gt;bar&lt;/code&gt; method returns doesn't return &lt;code&gt;false&lt;/code&gt;, nor does it put an error messages on the main object's body. Therefore &lt;code&gt;validate&lt;/code&gt; interprets the call to &lt;code&gt;bar&lt;/code&gt; as a success and doesn't invalidate the object.
-&lt;/p&gt;
-&lt;p&gt;
-  This explanation also means there's no way for the code to "fail loudly" - to alert us that we haven't purposefully defined a custom method when we use &lt;code&gt;validate&lt;/code&gt;. So I'd suggest grepping through your codebase for &lt;code&gt;validate :&lt;/code&gt; and making very sure that's what you actually want.
-&lt;/p&gt;
-&lt;p&gt;
-  So remember folks, &lt;code&gt;validates&lt;/code&gt; is for Rails validators (and custom validator classes ending with &lt;code&gt;Validator&lt;/code&gt; if that's what you're into), and &lt;code&gt;validate&lt;/code&gt; is for your custom validator methods. Don't make a typo!
 &lt;/p&gt;
 </content>
   </entry>
