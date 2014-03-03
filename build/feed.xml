@@ -13,12 +13,12 @@
     <link rel="alternate" href="http://lucybain.com/blog/2014/Sublime-Auto-Indent/"/>
     <id>http://lucybain.com/blog/2014/Sublime-Auto-Indent/</id>
     <published>2014-02-27T00:00:00Z</published>
-    <updated>2014-03-02T15:52:47+11:00</updated>
+    <updated>2014-03-04T09:49:10+11:00</updated>
     <author>
       <name>Article Author</name>
     </author>
     <content type="html">&lt;p&gt;
-  I recently discoverd how to get Sublime to fix indentations for you! Since I spend a certain amount of time each day pushing characters left and right this was pretty exciting. Hope you find it useful!
+  I recently discovered how to get Sublime to fix indentations for you! Since I spend a certain amount of time each day pushing characters left and right this was pretty exciting. Hope you find it useful!
 &lt;/p&gt;
 &lt;p&gt;
   In Sublime, under &lt;code&gt;Preference&lt;/code&gt; select &lt;code&gt;Key Bindings - User&lt;/code&gt;. If you've got anything in there already, just add the &lt;code&gt;{ "keys"... }&lt;/code&gt; section below. Otherwise you can replace the &lt;code&gt;[]&lt;/code&gt; with:
@@ -41,7 +41,7 @@
     &lt;code&gt;"command"&lt;/code&gt; labels which command the given key binding should trigger.
   &lt;/li&gt;
   &lt;li&gt;
-    &lt;code&gt;"reindent"&lt;/code&gt; is the command that will run on the given key press. A list of commands you could use can be found &lt;a href="http://www.sublimetext.com/docs/commands"&gt;in the docs&lt;/a&gt;.
+    &lt;code&gt;"reindent"&lt;/code&gt; is the command that will run on the given key press. You can find a list of commands to use &lt;a href="http://www.sublimetext.com/docs/commands"&gt;in the docs&lt;/a&gt;.
   &lt;/li&gt;
 &lt;/ul&gt;
 </content>
@@ -51,15 +51,15 @@
     <link rel="alternate" href="http://lucybain.com/blog/2014/getting-start-on-twitter/"/>
     <id>http://lucybain.com/blog/2014/getting-start-on-twitter/</id>
     <published>2014-02-25T00:00:00Z</published>
-    <updated>2014-03-02T15:34:07+11:00</updated>
+    <updated>2014-03-04T09:47:49+11:00</updated>
     <author>
       <name>Article Author</name>
     </author>
     <content type="html">&lt;p&gt;
-  A friend of mine recently got set up with Twitter and asked for some pointers. Another friend complemented me on my feed. I was flattered, and wanted to make how I use Twitter public.
+  A friend of mine recently got set up with Twitter and asked for some pointers. Another friend complemented me on my feed. I felt flattered, and wanted to make how I use Twitter public.
 &lt;/p&gt;
 &lt;p&gt;
-  There are &lt;em&gt;many&lt;/em&gt; sites out there to help you use Twitter more effectively, I do not believe what I have to say is better or more relevant, this is just written from one friend to another, I hope you find it helpful.
+  There are &lt;em&gt;many&lt;/em&gt; sites out there to help you use Twitter more effectively. I do not believe what I have to say is better or more relevant, this is just written from one friend to another, I hope you find it helpful.
 &lt;/p&gt;
 &lt;h2&gt;
   The basics
@@ -71,10 +71,10 @@
       If you tweet at someone (e.g. "@lucykbain how's your day going?") only people who follow both you and the person you're tweeting at can see the tweet. If you'd like to tweet at someone but want everyone to see you need to start with another character, general a period (e.g. ".@lucykbain thanks for the link - I'm sharing it with everyone!")
     &lt;/li&gt;
     &lt;li&gt;
-      If you retweet someone diretly your handle (username) is visible, but not as prominent as the person you retweeted. You can get around this by quoting their tweet, but unless you're adding something it's kind of bad manners.
+      If you retweet someone your handle (username) is visible, but not as prominent as the person you retweeted. You can get around this by quoting their tweet, but unless you're adding something it's kind of bad manners.
     &lt;/li&gt;
     &lt;li&gt;
-      Favouriting tweets lets the person know you saw the tweet, or that you appreciated it. It will be saved in your "favourited" section, but it doesn't go out to your followers. The person who wrote the original tweet would almost certainly appreciate a retweet over a favourite, but that's up to you.
+      Favouriting tweets lets the person know you saw the tweet, or that you appreciated it. It will be saved in your "favourited" section, but it doesn't go out to your followers. The person who wrote the original tweet would appreciate a retweet over a favourite, but that's up to you.
     &lt;/li&gt;
     &lt;li&gt;
       You can send a direct message (DM) to someone you follow who follows you back (two way follow). A DM is kind of like an email (private between the two of you), but has the same character limit. Also, I've found it can be hard to share links in a DM, sometimes it works, sometimes it doesn't.
@@ -86,19 +86,19 @@
   If you're happy with your twitter experience, that's great! Just keep doing what you're doing. I'm not telling you that you should change. But, if you'd like more followers, exposure, or focus, the rest of this post might help.
 &lt;/p&gt;
 &lt;p&gt;
-  Ok, now you've gotten the hang of Twitter, you hopefully have a few followers (hey, your mom totally counts!), and you're following a few people yourself (the more the merrier!). What's next?
+  Ok, now you've gotten the hang of Twitter, you have a few followers (hey, your mom totally counts!), and you're following a few people yourself (the more the merrier!). What's next?
 &lt;/p&gt;
 &lt;p&gt;
-  For me it's now about optimising your tweets and your time. Sure some people tweet seemingly constantly - more power to them. Personally I tend to unfollow people who tweet too much; I don't really want to spend my day sifting through tweets to find good ones to retweet, or reading through someone's blow by blow account of their breakfast. Other people tweet whenever, sometimes going weeks at a time without writing anything. I usually forget I'm following these people, but their tweets don't bother me.
+  For me it's now about optimising your tweets and your time. Sure some people seem to tweet constantly - more power to them. I tend to unfollow people who tweet too much. I don't  want to spend my day sifting through tweets to find good ones to retweet, or reading through someone's blow by blow account of their breakfast. Other people tweet whenever, sometimes going weeks at a time without writing anything. I usually forget I'm following these people, but their tweets don't bother me.
 &lt;/p&gt;
 &lt;p&gt;
-  So let's say you decide to set a goal for two "good" tweets a day. "Good" is however you define it - links to your own content, witty comments, helpful tips, links to things you found interesting/useful, whatever you think the internet needs more of. Two tweets a day is a good starting point - enough that you feel a bit of pressure to make good tweets, but few so you have to trash the bad ones. Now, how do you know when to tweet?
+  So let's say you decide to set a goal for two "good" tweets a day. "Good" is what you define it to be - links to your own content, witty comments, helpful tips, links to things you found interesting/useful, whatever you think the internet needs more of. Two tweets a day is a good starting point - enough that you feel a bit of pressure to make good tweets, but few so you have to trash the bad ones. Now, how do you know when to tweet?
 &lt;/p&gt;
 &lt;p&gt;
-  You go checkout &lt;a href="https://followerwonk.com/"&gt;followerwonk&lt;/a&gt; and find out when most of your followers are active. (There are other services that do the same kind of thing, I've only ever used followerwonk, so I don't know about the others, just that they exist.) But don't stop there, scroll down a little more and find when most of your followers retweet. Retweets are pretty much the goal. Whatever your saying, you want it to get to as many people as possible. If they end up following you, that's great, but even if they don't, they saw what you were saying, and that's the important bit. If you're only tweeting once or twice a day you want to make sure what you tweet has the maximum impact.
+  You go checkout &lt;a href="https://followerwonk.com/"&gt;followerwonk&lt;/a&gt; and find out when most of your followers are active. (There are other services that do the same kind of thing. I've only ever used followerwonk, so I don't know about the others, just that they exist.) But don't stop there, scroll down a little more and find when most of your followers retweet. Retweets are pretty much the goal. Whatever your saying, you want it to get to as many people as possible. If they end up following you, that's great, but even if they don't, they saw what you were saying, and that's the important bit. If you're only tweeting once or twice a day you want to make sure what you tweet has the greatest impact.
 &lt;/p&gt;
 &lt;p&gt;
-  Rank the times you tweet based on their potential. Generally that will be the number of retweets your followers make during a given time period. Whatever is in your "best" time make sure that's your best content. This isn't rocket science, it isn't particularly interesting or hard. It's just that you should think about it. Sure, you can tweet whenever, but if you know when the "best" time for you is, tweet then.
+  Rank the times you tweet based on their potential. Generally that will be the number of retweets your followers make during a given time. Whatever is in your "best" time make sure that's your best content. This isn't rocket science, it isn't particularly interesting or hard. It's just that you should think about it. Sure, you can tweet whenever, but if you know when the "best" time for you is, tweet then.
 &lt;/p&gt;
 &lt;p&gt;
   Finally, it's pretty annoying to remember when to tweet. You might think of something great to say, but at the "wrong" time. There are a few services out there. I use &lt;a href="http://bufferapp.com/r/63cdc6"&gt;Buffer&lt;/a&gt;, but there are similar services out there. They'll keep track of when to tweet for you so you don't need to. It also means you can put a whole bunch of great tweets together at the same time, but they'll get spaced out so you don't spam your followers.
