@@ -4,10 +4,36 @@
   <id>http://lucybain.com/blog</id>
   <link href="http://lucybain.com/blog"/>
   <link href="http://lucybain.com/feed.xml" rel="self"/>
-  <updated>2014-02-27T00:00:00Z</updated>
+  <updated>2014-03-07T00:00:00Z</updated>
   <author>
     <name>Lucy Bain</name>
   </author>
+  <entry>
+    <title>RubyConf - a look back</title>
+    <link rel="alternate" href="http://lucybain.com/blog/2014/RubyConf-a-look-back/"/>
+    <id>http://lucybain.com/blog/2014/RubyConf-a-look-back/</id>
+    <published>2014-03-07T00:00:00Z</published>
+    <updated>2014-03-13T09:49:52+11:00</updated>
+    <author>
+      <name>Article Author</name>
+    </author>
+    <content type="html">&lt;p&gt;
+  It's been almost 3 weeks since RubyConf. Feels like longer. I wrote a &lt;a href="/blog/2014/RubyConfAU/"&gt;quick review&lt;/a&gt; after the event, but that post didn't do RubyConf justice.
+&lt;/p&gt;
+&lt;p&gt;
+  Really, I'm not sure what made RubyConf so great. The talks? Meeting new people? Chatting with existing friends? Learning? Seeing so many people interested in the same thing? I don't know. Everything there was pretty amazing.
+&lt;/p&gt;
+&lt;p&gt;
+  But for me, the most amazing part was what happened when I left. When I went back to work. When the talks were over, and my friends dispersed. Once I'd caught up on sleep and headed back to the "real world" I found I had more confidence as a programmer. A lot more. Enough to go out and make my &lt;a href="/resources/udacity-python-study-group/"&gt;Python 101 study group&lt;/a&gt; happen. Enough to tell my team why I was unhappy with our process (something they took very seriously and changed quickly - I love &lt;a href="/resources/job/"&gt;my team&lt;/a&gt;). Enough to feel like I have useful opinions.
+&lt;/p&gt;
+&lt;p&gt;
+  Not that I thought of myself as dumb or useless, just that I assumed my experience level excluded me from ... something. As the least experienced member of our team I'm used to not knowing things, asking questions, and trying to keep up with everyone else. Somehow RubyConf reminded me of what I have learned in the past 2 years of Ruby. It reminded me of the great community I'm part of, and help form through &lt;a href="http://railsgirls.com/sydney"&gt;RailsGirls&lt;/a&gt;, &lt;a href="http://www.meetup.com/Ruby-On-Rails-Oceania-Sydney/"&gt;Installfest, and DevHub&lt;/a&gt;. People asked me my opinion about things (ok, sure those things were mostly about being a woman in tech, but still, it made me feel valued), and I actually understood most of the talks I watched (not all, but most, always room to grow!). And people knew me - after living in Sydney for almost a year now, RubyConf made me feel like I belonged.
+&lt;/p&gt;
+&lt;p&gt;
+  I know there were many &lt;a href="http://sampeters.net/blog/meetups-hubs-and-casual-get-togethers-and-the-developer-community/"&gt;different&lt;/a&gt; &lt;a href="http://ruby.org.au/articles"&gt;reactions&lt;/a&gt; to RubyConf. But I'd like to add mine to the mix. It was amazing - both before and after.
+&lt;/p&gt;
+</content>
+  </entry>
   <entry>
     <title>Sublime Auto Indent</title>
     <link rel="alternate" href="http://lucybain.com/blog/2014/Sublime-Auto-Indent/"/>
@@ -213,26 +239,6 @@
     &lt;img alt="lucybain (blog) $" src="/images/blog/git-branch-prompt.png" /&gt;
   &lt;/div&gt;
   Now you can see what branch your on right where you'll be committing it. Nice, huh? Hopefully you'll never run a &lt;code&gt;reset --hard&lt;/code&gt; on the wrong branch again!
-&lt;/p&gt;
-</content>
-  </entry>
-  <entry>
-    <title>Sublime Multi-Cursor</title>
-    <link rel="alternate" href="http://lucybain.com/blog/2014/sublime-multi-cursor/"/>
-    <id>http://lucybain.com/blog/2014/sublime-multi-cursor/</id>
-    <published>2014-02-03T00:00:00Z</published>
-    <updated>2014-02-15T22:18:21+11:00</updated>
-    <author>
-      <name>Article Author</name>
-    </author>
-    <content type="html">&lt;p&gt;
-  I use Sublime. I know, I know, I'm not a &lt;a href="http://xkcd.com/378/"&gt;"real"&lt;/a&gt; dev. Whatever. It works for me. One of my favourite features is the multi-cursor. If you're a fellow Sublime user and aren't aware of this ability you should really check it out. Look at &lt;a href="http://blog.generalassemb.ly/sublime-text-3-tips-tricks-shortcuts/"&gt;step 12&lt;/a&gt; for a little gif of what it looks like.
-&lt;/p&gt;
-&lt;p&gt;
-  This is an awesome tool for making bulk edits in a file. &lt;code&gt;cmd + mouse-click&lt;/code&gt; is where I started, but then &lt;a href="https://twitter.com/gerwinvanroyen"&gt;@gerwinvanroyen&lt;/a&gt; told me about selecting a bunch of lines and then doing &lt;code&gt;cmd + shift + L&lt;/code&gt; to select all the lines individually. Also running a &lt;code&gt;find all&lt;/code&gt; in Sublime and then using the multiple cursors from there has been really helpful.
-&lt;/p&gt;
-&lt;p&gt;
-  So go try it out - it's pretty powerful!
 &lt;/p&gt;
 </content>
   </entry>
