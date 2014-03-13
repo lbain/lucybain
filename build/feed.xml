@@ -4,10 +4,65 @@
   <id>http://lucybain.com/blog</id>
   <link href="http://lucybain.com/blog"/>
   <link href="http://lucybain.com/feed.xml" rel="self"/>
-  <updated>2014-03-07T00:00:00Z</updated>
+  <updated>2014-03-13T00:00:00Z</updated>
   <author>
     <name>Lucy Bain</name>
   </author>
+  <entry>
+    <title>Next up: Front end</title>
+    <link rel="alternate" href="http://lucybain.com/blog/2014/front-end/"/>
+    <id>http://lucybain.com/blog/2014/front-end/</id>
+    <published>2014-03-13T00:00:00Z</published>
+    <updated>2014-03-13T22:49:18+11:00</updated>
+    <author>
+      <name>Article Author</name>
+    </author>
+    <content type="html">&lt;p&gt;
+  In 12-14 months I'd like to get a new job, and for that next job I'd like to be a front end dev.
+&lt;/p&gt;
+&lt;p&gt;
+  Don't get me wrong - I love my &lt;a href="/resources/job/"&gt;team&lt;/a&gt;, I'm not counting down the days until I get a new job (365+ days is a lot to count anyways...). And I love working on back end - learning about Ruby and Rails. But I've been thinking about this for a while, and I think it's a good move for me.
+&lt;/p&gt;
+&lt;p&gt;
+  I've been doing Rails for a little over 2 years now, and almost all of my training and experience has been heavily back end oriented. Pretty much everything I learned at uni was for back end languages and processes. I took all the web courses that were offered, but they didn't focus heavily on JS or CSS - although they did expose me to those concepts. Certainly everything I've done since uni has been back end (just a bit of Python, and then Ruby on Rails). I've learned heaps from this - MVC architecture, better programming design principles, some pretty awesome tricks Ruby can do, and a bunch more.
+&lt;/p&gt;
+&lt;p&gt;
+  But I'd like to try my hand at some front end development. I think there's something satisfying to knowing people are seeing and interacting with what you're building - that happens more for front end. There's also a lot to learn about user interface design, and how to think like a user. It's also something that's definitely missing from my abilities. I always get a bit nervous when I need to do some front end tweaks, and any CSS change takes way longer than it really needs to. I'd like to move a bit closer to being "full stack" and not just boxing myself in to RoR back end.
+&lt;/p&gt;
+&lt;p&gt;
+  So. What to do? I'm going to finish the &lt;a href="https://www.udacity.com/course/cs101"&gt;Python 101&lt;/a&gt; &lt;a href="/resources/udacity-python-study-group/"&gt;study group&lt;/a&gt; I organized. Just keeping up with the lectures for this class is taking a fair bit of time in the evenings. But then after that I'm planning on focusing on JS, CSS, and HTML with the goal of getting a front end job after a year.
+&lt;/p&gt;
+&lt;p&gt;
+  I'm not really sure the best way to do that though. Some possible resources:
+&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;a href="http://www.codecademy.com/"&gt;codecademy.com&lt;/a&gt; JS, jQuery, and HTML tracks
+  &lt;/li&gt;
+  &lt;li&gt;
+    Getting a &lt;a href="https://github.com/sydjs/sydjs/wiki/Available-mentors"&gt;mentor&lt;/a&gt; from the SydJS community
+  &lt;/li&gt;
+  &lt;li&gt;
+    Udacity's &lt;a href="https://www.udacity.com/course/cs256"&gt;Mobile Web Development&lt;/a&gt; to focus on responsive CSS
+  &lt;/li&gt;
+  &lt;li&gt;
+    Udacity's &lt;a href="https://www.udacity.com/course/cs255"&gt;HTML5 Game Development&lt;/a&gt; focusing on... HTML5
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;a href="http://shop.oreilly.com/product/9780596517748.do"&gt;JavaScript: The Good Parts&lt;/a&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;a href="http://shop.oreilly.com/product/9780596805531.do"&gt;JavaScript: The Definitive Guide&lt;/a&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    And of course a series of exercises to practice and build a portfolio of sorts. Not sure exactly what this is going to entail...
+  &lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;
+  Do you have any suggestions? I'd love to work with a pretty clear plan, a curriculum if you will, and any ideas would be appreciated. Thank you!
+&lt;/p&gt;
+</content>
+  </entry>
   <entry>
     <title>RubyConf - a look back</title>
     <link rel="alternate" href="http://lucybain.com/blog/2014/RubyConf-a-look-back/"/>
@@ -213,32 +268,6 @@
 &lt;/p&gt;
 &lt;p&gt;
   At the end of the day, I'm really pleased with how the event went. I was blown away with how much the girls got done - massive props to them for sticking with the harder exercises and wanting to really understand it. And of course huge thanks to the mentors who gave up a day to help strangers learn to code. Hopefully the next Rails Girls Next event will run more smoothly and have more approachable exercises, but I think this was a pretty good starting point.
-&lt;/p&gt;
-</content>
-  </entry>
-  <entry>
-    <title>Git Branch Names on Command Prompt</title>
-    <link rel="alternate" href="http://lucybain.com/blog/2014/git-branch-names-on-command-line/"/>
-    <id>http://lucybain.com/blog/2014/git-branch-names-on-command-line/</id>
-    <published>2014-02-13T00:00:00Z</published>
-    <updated>2014-02-23T19:16:51+11:00</updated>
-    <author>
-      <name>Article Author</name>
-    </author>
-    <content type="html">&lt;p&gt;
-  I often forget which branch I'm on. Sure, I have &lt;code&gt;git branch&lt;/code&gt; aliased (it's probably one of my most frequently used commands) but sometimes I &lt;em&gt;know&lt;/em&gt; I'm on another branch. A few commits and merges later I find out I was wrong, and it's time for some branch cleaning.
-&lt;/p&gt;
-&lt;p&gt;
-  Recently my coworker &lt;a href="https://plus.google.com/+SimonHildebrandt/"&gt;Simon&lt;/a&gt; gave me the following code:
-&lt;/p&gt;
-&lt;pre class="highlight plaintext"&gt;parse_git_branch() {&amp;#x000A;   git branch 2&amp;gt; /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'&amp;#x000A;}&amp;#x000A;export PS1="\W\[\033[32m\]\$(parse_git_branch)\[\033[00m\] $ "&lt;/pre&gt;
-&lt;p&gt;This code should go in your &lt;code&gt;~/.bash_profile&lt;/code&gt;. Once you've added it, you'll need to source with &lt;code&gt;$ source ~/.bash_profile&lt;/code&gt; (or &lt;code&gt;$ . ~/.bash_profile&lt;/code&gt; if you want to save a few key strokes!).&lt;/p&gt;
-&lt;p&gt;
-  Your prompt will be &lt;code&gt; current-directory (branch-name) $&lt;/code&gt; with your branch name in green. Mine looks like this:
-  &lt;div class='center'&gt;
-    &lt;img alt="lucybain (blog) $" src="/images/blog/git-branch-prompt.png" /&gt;
-  &lt;/div&gt;
-  Now you can see what branch your on right where you'll be committing it. Nice, huh? Hopefully you'll never run a &lt;code&gt;reset --hard&lt;/code&gt; on the wrong branch again!
 &lt;/p&gt;
 </content>
   </entry>
