@@ -1,8 +1,8 @@
-/* line 1, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/code.sass */
+/* line 1, /Users/lucy/Documents/code/personal/lucybain/source/stylesheets/code.sass */
 pre, code {
   font-size: 0.8em; }
 
-/* line 4, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/code.sass */
+/* line 4, /Users/lucy/Documents/code/personal/lucybain/source/stylesheets/code.sass */
 pre {
   padding: 8px 15px;
   background: #f8f8f8;
@@ -11,7 +11,7 @@ pre {
   overflow-x: auto;
   white-space: pre; }
 
-/* line 12, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/code.sass */
+/* line 12, /Users/lucy/Documents/code/personal/lucybain/source/stylesheets/code.sass */
 code {
   background: #f8f8f8;
   border-radius: 5px;

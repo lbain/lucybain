@@ -1,21 +1,21 @@
-/* line 3, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/form.sass */
+/* line 3, /Users/lucy/Documents/code/personal/lucybain/source/stylesheets/form.sass */
 form {
   padding: 10px 30px; }
-  /* line 6, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/form.sass */
+  /* line 6, /Users/lucy/Documents/code/personal/lucybain/source/stylesheets/form.sass */
   form label {
     font-family: "Crimson Text", sans-serif;
     -webkit-font-smoothing: antialiased;
     line-height: 1.75em; }
-  /* line 12, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/form.sass */
+  /* line 12, /Users/lucy/Documents/code/personal/lucybain/source/stylesheets/form.sass */
   form input[type=text], form input[type=email] {
     padding: 5px;
     border: 2px solid #888888;
     -webkit-border-radius: 5px;
     border-radius: 5px; }
-    /* line 18, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/form.sass */
+    /* line 18, /Users/lucy/Documents/code/personal/lucybain/source/stylesheets/form.sass */
     form input[type=text]:focus, form input[type=email]:focus {
       border-color: #c93c67; }
-  /* line 20, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/form.sass */
+  /* line 20, /Users/lucy/Documents/code/personal/lucybain/source/stylesheets/form.sass */
   form input[type=submit] {
     padding: 5px 15px;
     background: white;
@@ -23,13 +23,13 @@ form {
     cursor: pointer;
     -webkit-border-radius: 5px;
     border-radius: 5px; }
-    /* line 27, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/form.sass */
+    /* line 27, /Users/lucy/Documents/code/personal/lucybain/source/stylesheets/form.sass */
     form input[type=submit]:hover {
       background: #f5dce4;
       border-color: #c93c67; }
-    /* line 30, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/form.sass */
+    /* line 30, /Users/lucy/Documents/code/personal/lucybain/source/stylesheets/form.sass */
     form input[type=submit]:active {
       background: #c93c67; }
-  /* line 33, /Users/Lucy/Documents/code/personal/lucybain/source/stylesheets/form.sass */
+  /* line 33, /Users/lucy/Documents/code/personal/lucybain/source/stylesheets/form.sass */
   form .asterisk {
     color: #c93c67; }
