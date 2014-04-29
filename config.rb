@@ -41,6 +41,8 @@ set :images_dir, 'images'
 redirect "udacity/index.html", to: "/resources/udacity-python-study-group/"
 redirect "python/index.html", to: "/resources/udacity-python-study-group/"
 
+redirect "odin/index.html", to: "/resources/js-jquery-study-group/"
+redirect "js/index.html", to: "/resources/js-jquery-study-group/"
 
 ###
 # Compass
