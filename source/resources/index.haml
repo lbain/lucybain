@@ -1,4 +1,6 @@
-- ['js-jquery-study-group', 'programming-community-in-sydney', 'git-info', 'setting-up-sublime-autosave'].each do |page_title|
+%h2=link_to 'JS and jQuery Study group', 'http://codesydney.com/'
+%p Link to my study group for the Odin Project's JS course
+- ['programming-community-in-sydney', 'git-info', 'setting-up-sublime-autosave'].each do |page_title|
   - current_page.children.each do |p|
     - next unless path_to_file_name(p.path) == page_title
     - next if p.data.draft.present? and p.data.draft
