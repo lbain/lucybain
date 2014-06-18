@@ -4,10 +4,50 @@
   <id>http://lucybain.com/blog</id>
   <link href="http://lucybain.com/blog"/>
   <link href="http://lucybain.com/feed.xml" rel="self"/>
-  <updated>2014-03-13T00:00:00Z</updated>
+  <updated>2014-06-18T00:00:00Z</updated>
   <author>
     <name>Lucy Bain</name>
   </author>
+  <entry>
+    <title>Sublime Text Macros</title>
+    <link rel="alternate" href="http://lucybain.com/blog/2014/sublime-macros/"/>
+    <id>http://lucybain.com/blog/2014/sublime-macros/</id>
+    <published>2014-06-18T00:00:00Z</published>
+    <updated>2014-06-18T13:23:40+10:00</updated>
+    <author>
+      <name>Article Author</name>
+    </author>
+    <content type="html">&lt;p&gt;
+  My coworker users vim, and has a snazzy macro to put a &lt;code&gt;binding.pry&lt;/code&gt; wherever he using a keyboad shortcut. I thought it was a neat trick (and he mentioned something about Sublime not being a real editor), so I decided to implement it for Sublime as well.
+&lt;/p&gt;
+&lt;p&gt;
+  I looked up &lt;a href="http://docs.sublimetext.info/en/latest/extensibility/macros.html"&gt;how to make macros&lt;/a&gt; and wrote one for adding &lt;code&gt;binding.pry&lt;/code&gt;. Basically you need to use &lt;code&gt;control + q&lt;/code&gt; to start and stop your macro recording. Then you save the macro by going to &lt;code&gt;Tools/Save Macro...&lt;/code&gt;. You should name it something memerable, like &lt;code&gt;add_binding&lt;/code&gt;.
+&lt;/p&gt;
+&lt;p&gt;
+  Ok, now we've got our macro, and you can invoke it by going to &lt;code&gt;Tools/Macros/User/add_macro&lt;/code&gt;. (Note: you might need to restart Sublime first.) But going to the menu each time is lame, we're better than that.
+&lt;/p&gt;
+&lt;p&gt;
+  Let's add a key binding!
+&lt;/p&gt;
+&lt;p&gt;
+  I've done &lt;a href="http://docs.sublimetext.info/en/latest/customization/key_bindings.html"&gt;key bindings&lt;/a&gt; in the &lt;a href="/blog/2014/Sublime-Auto-Indent/"&gt;past&lt;/a&gt;, but not &lt;a href="http://superuser.com/questions/609057/how-do-i-assign-a-keyboard-shortcut-to-recorded-macro-in-sublime-text"&gt;with macros&lt;/a&gt;. I chose to use &lt;code&gt;command + b&lt;/code&gt; for mine (you might have that map to build, just a heads up...). So my key binding looked like this:
+&lt;/p&gt;
+&lt;pre class="highlight json"&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;"keys"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;"super+b"&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;&lt;span class="w"&gt;&amp;#x000A;  &lt;/span&gt;&lt;span class="s2"&gt;"command"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;"run_macro_file"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt;&amp;#x000A;  &lt;/span&gt;&lt;span class="s2"&gt;"args"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="s2"&gt;"file"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;"Packages/User/add_binding.sublime-macro"&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;&lt;span class="w"&gt;&amp;#x000A;&lt;/span&gt;&lt;/pre&gt;
+&lt;p&gt;
+  Awesome, now &lt;code&gt;command + b&lt;/code&gt; will add a &lt;code&gt;binding.pry&lt;/code&gt; inline. Handy!
+&lt;/p&gt;
+&lt;p&gt;
+  But I wanted more, a &lt;code&gt;- binding.pry&lt;/code&gt; in haml, and a &lt;code&gt;debugger&lt;/code&gt; in javascript. I also wanted to use the same key binding. I didn't want to think about if I'm in haml or JS.
+&lt;/p&gt;
+&lt;p&gt;
+  Creating the macros was the same, but I needed the key bindings to know what kind of file I was in. I looked into how to make &lt;a href="http://www.guiguan.net/how-to-set-a-key-binding-in-sublime-text-based-on-the-file-type-the-command-is-running-on/."&gt;key bindings source aware&lt;/a&gt;. I also needed to know how &lt;a href="https://gist.github.com/iambibhas/4705378"&gt;Sublime names file types&lt;/a&gt;.
+&lt;/p&gt;
+&lt;p&gt;
+  Putting it all together, the final key bindings look like this:
+&lt;/p&gt;
+&lt;pre class="highlight json"&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;"keys"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;"super+b"&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;&lt;span class="w"&gt;&amp;#x000A;  &lt;/span&gt;&lt;span class="s2"&gt;"command"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;"run_macro_file"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt;&amp;#x000A;  &lt;/span&gt;&lt;span class="s2"&gt;"args"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="s2"&gt;"file"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;"Packages/User/add_binding.sublime-macro"&lt;/span&gt;&lt;span class="p"&gt;},&lt;/span&gt;&lt;span class="w"&gt;&amp;#x000A;  &lt;/span&gt;&lt;span class="s2"&gt;"context"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;[{&lt;/span&gt;&lt;span class="s2"&gt;"key"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;"selector"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;"operator"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;"equal"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;"operand"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;"source.ruby,source.ruby.rails"&lt;/span&gt;&lt;span class="p"&gt;}]&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;&lt;span class="err"&gt;,&lt;/span&gt;&lt;span class="w"&gt;&amp;#x000A;&amp;#x000A;&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;"keys"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;"super+b"&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;&lt;span class="w"&gt;&amp;#x000A;  &lt;/span&gt;&lt;span class="s2"&gt;"command"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;"run_macro_file"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt;&amp;#x000A;  &lt;/span&gt;&lt;span class="s2"&gt;"args"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="s2"&gt;"file"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;"Packages/User/add_haml_binding.sublime-macro"&lt;/span&gt;&lt;span class="p"&gt;},&lt;/span&gt;&lt;span class="w"&gt;&amp;#x000A;  &lt;/span&gt;&lt;span class="s2"&gt;"context"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;[{&lt;/span&gt;&lt;span class="s2"&gt;"key"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;"selector"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;"operator"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;"equal"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;"operand"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;"text.haml"&lt;/span&gt;&lt;span class="p"&gt;}]&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;&lt;span class="err"&gt;,&lt;/span&gt;&lt;span class="w"&gt;&amp;#x000A;&amp;#x000A;&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;"keys"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;"super+b"&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;&lt;span class="w"&gt;&amp;#x000A;  &lt;/span&gt;&lt;span class="s2"&gt;"command"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;"run_macro_file"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt;&amp;#x000A;  &lt;/span&gt;&lt;span class="s2"&gt;"args"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="s2"&gt;"file"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;"Packages/User/add_debugger.sublime-macro"&lt;/span&gt;&lt;span class="p"&gt;},&lt;/span&gt;&lt;span class="w"&gt;&amp;#x000A;  &lt;/span&gt;&lt;span class="s2"&gt;"context"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;[{&lt;/span&gt;&lt;span class="s2"&gt;"key"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;"selector"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;"operator"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;"equal"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;"operand"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;"source.js,source.coffee"&lt;/span&gt;&lt;span class="p"&gt;}]&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;&lt;span class="w"&gt;&amp;#x000A;&lt;/span&gt;&lt;/pre&gt;
+</content>
+  </entry>
   <entry>
     <title>Next up: Front end</title>
     <link rel="alternate" href="http://lucybain.com/blog/2014/front-end/"/>
@@ -212,59 +252,6 @@
 &lt;/p&gt;
 &lt;p&gt;
   All in all, I'm really glad I received a scholarship ticket for my work with Rails Girls, otherwise I probably wouldn't have gone. And my work paid me to be there, which was very appreciated as well. The next Ruby Conf will be in Melbourne, and I'm hoping I can attend that one as well!
-&lt;/p&gt;
-</content>
-  </entry>
-  <entry>
-    <title>Rails Girls Next</title>
-    <link rel="alternate" href="http://lucybain.com/blog/2014/Rails-Girls-Next/"/>
-    <id>http://lucybain.com/blog/2014/Rails-Girls-Next/</id>
-    <published>2014-02-19T00:00:00Z</published>
-    <updated>2014-03-27T10:32:57+11:00</updated>
-    <author>
-      <name>Article Author</name>
-    </author>
-    <content type="html">&lt;p&gt;
-  Wahoo! Rails Girls Next happened without a (major) hitch today! I am so happy with how it went, and to have helped with these girls' continuing Ruby education.
-&lt;/p&gt;
-&lt;h2&gt;
-  The event
-&lt;/h2&gt;
-&lt;p&gt;
-  I've shared the &lt;a href="https://docs.google.com/presentation/d/19Jj8I4CVRe8k2sP8m17PMk0PXwbY0646MxWDS6VJ5yo/edit?usp=sharing"&gt;slides&lt;/a&gt; used for keeping track of time, so you can see the schedule we actually used on the day. We had &lt;a href="http://lbain.github.io/rails-girls-next/"&gt;three exercises&lt;/a&gt; for the girls to work through - test driven development (TDD), focused work with Ruby, and learning how the web works with Sinatra.
-&lt;/p&gt;
-&lt;p&gt;
-  When the girls checked in they sat at one of six tables and tried to connect to the internet. Once it was time to start, each table was assigned one of three exercises (two tables per exercise). The goal was for each girl to do all of the exercises, and for all of the exercises to be running at any given time. Thus everyone would rotate through the exercises, and no single exercise would be overwhelmed with participants. We also strongly encouraged the girls to work in pairs, and to switch pairs after each exercise; the time they got up to switch exercises was a good time to switch pairs.
-&lt;/p&gt;
-&lt;p&gt;
-  When the girls started a new exercise they were given a brief overview of the exercise by the mentor at the table and then they got started. We didn't offer much guidance since we wanted the girls to work in their pairs and rely on each other, but mentors were readily available for struggling groups. After about an hour all the attendees who had been working on the same exercise (about nine) gathered with their mentors (two mentors per exercise). For the next 15 minutes they had a group discussion about the solutions they had come up with, as well as some good practices and tips from the mentors.
-&lt;/p&gt;
-&lt;p&gt;
-  After a short break (time to move to another exercise area and find a new pair partner) this process was repeated for each of the remaining exercises. Once the exercises were over the girls were asked to fill out a short survey about how they found the day. Finally, the last part of the day was a discussion with the whole group. This was framed as a retro (although it wasn't a full agile retrospective), and gave the girls, mentors, and myself a time and place to discuss how the day went and what could have been better. I found it extremely valuable to hear which exercises "worked" for the girls, and which ones needed tweaking, how the mentors felt about the discussions after each exercise, what things everyone would like to see changed before the next event, and others. Much of what was discussed was also in the feedback form, but I wanted to make sure the girls gave their feedback independently, before they could be influenced by listening to other participants.
-&lt;/p&gt;
-&lt;h2&gt;
-  Lessons learned
-&lt;/h2&gt;
-&lt;p&gt;
-  We had the normal problems with the girls connecting to conference (aka hotel) wifi. I'm not sure if there's any way to fix this - hotels never seem to believe how much internet programmers use. There was also some concern about power for the attendee's computers so the conference coordinators and myself went out to buy a few more power strips. In the end it seemed everyone who needed power could get it, or they were pairing on another computer that had enough power. In the future I'd like to check the power situation in advance.
-&lt;/p&gt;
-&lt;p&gt;
-  From an organisers point of view, the biggest problem was that I hadn't asked about food times. I'd assumed we'd be able to eat when we were ready, but since we were getting food from the hotel this was not the case. It caused some problems with the timing for the day, but worked out overall. This is something that's easily avoidable - I just needed to ask the conference organisers in advance.
-&lt;/p&gt;
-&lt;p&gt;
-  The exercises were (mostly) hosted on GitHub pages. This was convenient since GitHub took care of the hosting and coding everything was pretty straight forward. However, I'd never actually written a site in pure HTML, and man, it is annoying! In the future I'd write any sites I need using whatever method I'm used to (this blog is written with &lt;a href="middlemanapp.com"&gt;Middleman&lt;/a&gt;, I recommend checking it out). Writing pure HTML is just time consuming, and there's no need - we've moved on from then! That said, I'm hoping to move the exercises back to Rails Girls so other groups can use them in the future.
-&lt;/p&gt;
-&lt;p&gt;
-  Although I had a clear idea in my head how the discussions after each exercise were supposed to go, I hadn't communicated that as well as was needed to the mentors. I wanted that time to be for the girls to realise other people were running into the same problems they were and they weren't "dumb." I also wanted to end up with a whole stack of happy post-it notes with a list of all the things the girls had learned - what a great thing to look back on! Unfortunately my ideas for this time really only solidified about two days before the event, and I never met up with the mentors to talk about it. I'd like to have a better write up for the mentors for future events.
-&lt;/p&gt;
-&lt;p&gt;
-  Overall the feedback was useful and positive, but one response talked about feeling depressed with how far behind they felt when compared to the other participants. Obviously I was very sad about this - Rails Girls is set up to help everyone succeed, and I hated to think something I had poured so much energy into had actually made someone feel worse about themselves. At least with this piece of honest feedback we can do something to make the exercises more approachable and/or make some &lt;em&gt;very&lt;/em&gt; beginner friendly exercises.
-&lt;/p&gt;
-&lt;p&gt;
-  The most actionable piece of feedback is the ordering of the exercises. All of the girls seemed to find the TDD exercise the most approachable and the Ruby one the most challenging. So in the future I'd like for everyone to work on the same exercise at the same time. I'm not sure how to really encourage the girls to switch pairs between exercises, hopefully if there's an official "switch" time they'll do it themselves. And speaking of pairing, the other easily actionable feedback was that the Sinatra exercise didn't need pairing as it provided a clear enough walk through to work on alone.
-&lt;/p&gt;
-&lt;p&gt;
-  At the end of the day, I'm really pleased with how the event went. I was blown away with how much the girls got done - massive props to them for sticking with the harder exercises and wanting to really understand it. And of course huge thanks to the mentors who gave up a day to help strangers learn to code. Hopefully the next Rails Girls Next event will run more smoothly and have more approachable exercises, but I think this was a pretty good starting point.
 &lt;/p&gt;
 </content>
   </entry>

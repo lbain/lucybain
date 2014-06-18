@@ -41,6 +41,18 @@
       <h1></h1>
       <p><a href="/blog/">Previous page</a></p>
       <h2>
+        <a href="/blog/2014/validate-vs-validates/">validate vs. validateS</a>
+      </h2>
+      <p>Jan 15, 2014</p>
+      <p>
+        I stumbled across this validation gotcha a while back, but that was before I had this awesome blog ;) I think this is a pretty big one, hope this help someone!
+      </p>
+      <p>
+        <code>::ActiveModel::Validations</code> treats <code>validates</code> and <code>validate</code> differently. <code>validates</code> is used for normal validations <code>presence</code>, <code>length</code>, and the like. <code>validate</code> is used for custom validation methods <code>validate_name_starts_with_a</code>, or whatever crazy method you come up with. These methods are clearly useful and help keep data clean.
+      </p>
+      <p>
+        That's...</p>
+      <h2>
         <a href="/blog/2014/tdd-day-5/">TDD Day 5</a>
       </h2>
       <p>Jan  9, 2014</p>
