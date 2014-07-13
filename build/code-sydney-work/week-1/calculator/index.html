@@ -5,12 +5,39 @@
     <style type="text/css">
     body {
       font-size: 36px;
+      background-color: #ddd;
+      font-family: Arial;
     }
-    .row .number,
-    .row .action {
+    .calculator {
+      margin: 100px auto;
+      width: 260px;
+      padding: 10px;
+      border-radius: 10px;
+      background-color: #222;
+    }
+    input {
+      width: 240px;
+      margin: 5px 11px 10px 11px;
+      display: block;
+      font-size: 36px;
+    }
+    .btn {
       float: left;
       width: 25px;
-      padding-right: 15px;
+      padding: 5px 15px;
+      margin: 4px;
+      border: 1px solid gray;
+      border-radius: 5px;
+      text-align: center;
+    }
+    .number{
+      background-color: #eee;
+    }
+    .action{
+      background-color: #aaa;
+    }
+    .btn:hover{
+      background-color: #bbb;
     }
     .clearfix {
       clear: both;
@@ -19,33 +46,33 @@
   </head>
   <body>
     <div class="calculator">
-      <input id="display" value=""/>
+      <input id="display" value="0"/>
       <div class="row">
-        <div class="number"> 1 </div>
-        <div class="number"> 2 </div>
-        <div class="number"> 3 </div>
-        <div class="action"> + </div>
+        <div class="btn number"> 1 </div>
+        <div class="btn number"> 2 </div>
+        <div class="btn number"> 3 </div>
+        <div class="btn number"> 0 </div>
         <div class="clearfix"></div>
       </div>
       <div class="row">
-        <div class="number"> 4 </div>
-        <div class="number"> 5 </div>
-        <div class="number"> 6 </div>
-        <div class="action"> - </div>
+        <div class="btn number"> 4 </div>
+        <div class="btn number"> 5 </div>
+        <div class="btn number"> 6 </div>
+        <div class="btn action"> cl </div>
         <div class="clearfix"></div>
       </div>
       <div class="row">
-        <div class="number"> 7 </div>
-        <div class="number"> 8 </div>
-        <div class="number"> 9 </div>
-        <div class="action"> * </div>
+        <div class="btn number"> 7 </div>
+        <div class="btn number"> 8 </div>
+        <div class="btn number"> 9 </div>
+        <div class="btn action"> = </div>
         <div class="clearfix"></div>
       </div>
       <div class="row">
-        <div class="number"> 0 </div>
-        <div class="action"> cl </div>
-        <div class="action"> / </div>
-        <div class="action"> = </div>
+        <div class="btn action"> + </div>
+        <div class="btn action"> - </div>
+        <div class="btn action"> * </div>
+        <div class="btn action"> / </div>
         <div class="clearfix"></div>
       </div>
     </div>
