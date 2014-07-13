@@ -1,0 +1,53 @@
+<html>
+  <head>
+    <script src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script src="calculator.js"></script>
+    <style type="text/css">
+    body {
+      font-size: 36px;
+    }
+    .row .number,
+    .row .action {
+      float: left;
+      width: 25px;
+      padding-right: 15px;
+    }
+    .clearfix {
+      clear: both;
+    }
+    </style>
+  </head>
+  <body>
+    <div class="calculator">
+      <input id="display" value=""/>
+      <div class="row">
+        <div class="number"> 1 </div>
+        <div class="number"> 2 </div>
+        <div class="number"> 3 </div>
+        <div class="action"> + </div>
+        <div class="clearfix"></div>
+      </div>
+      <div class="row">
+        <div class="number"> 4 </div>
+        <div class="number"> 5 </div>
+        <div class="number"> 6 </div>
+        <div class="action"> - </div>
+        <div class="clearfix"></div>
+      </div>
+      <div class="row">
+        <div class="number"> 7 </div>
+        <div class="number"> 8 </div>
+        <div class="number"> 9 </div>
+        <div class="action"> * </div>
+        <div class="clearfix"></div>
+      </div>
+      <div class="row">
+        <div class="number"> 0 </div>
+        <div class="action"> cl </div>
+        <div class="action"> / </div>
+        <div class="action"> = </div>
+        <div class="clearfix"></div>
+      </div>
+    </div>
+  </body>
+</html>
