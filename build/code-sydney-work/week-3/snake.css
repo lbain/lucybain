@@ -1,0 +1,14 @@
+.square {
+  border: 1px solid black;
+  width: 25px;
+  height: 25px;
+  vertical-align: middle;
+}
+
+#board {
+  text-align: center;
+}
+
+.clearfix {
+  clear: both;
+}
