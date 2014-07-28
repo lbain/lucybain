@@ -46,7 +46,7 @@ function Snake(size) {
 
   this.lengthen = function(delta) {
     delta = [-1 * delta[0], -1 * delta[1]]
-    var newSection = [food[0] + delta[0], food[1] + delta[1]]
+    var newSection = [this.head()[0] + delta[0], this.head()[1] + delta[1]]
     locations.push(newSection);
   };
 
