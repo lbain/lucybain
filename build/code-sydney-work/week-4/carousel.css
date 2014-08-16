@@ -1,0 +1,72 @@
+.carousel {
+  margin: 0px auto;
+  width: 500px;
+}
+
+.display {
+  display: inline-block;
+  width: 300px;
+  background: #555;
+}
+
+.arrow {
+  display: inline-block;
+  margin-bottom: 20%;
+  position: relative;
+  width: 20px;
+}
+
+.slide {
+  margin: 0px auto;
+  width: 200px;
+  padding: 20px;
+  display: none;
+}
+
+img {
+  width: 200px;
+}
+
+.slide.active {
+  display: block;
+}
+
+.arrow>div:before, .arrow>div:after {
+  content: " ";
+  display: block;
+  width: 20px;
+  height: 2px;
+  background: red;
+  position: absolute;
+  top: -8px;
+}
+
+.right.arrow>div:before {
+  -webkit-transform: rotate(-30deg);
+  -moz-transform: rotate(-30deg);
+  -ms-transform: rotate(-30deg);
+  transform: rotate(-30deg);
+  top: -9px;
+}
+.right.arrow>div:after {
+  -webkit-transform: rotate(30deg);
+  -moz-transform: rotate(30deg);
+  -ms-transform: rotate(30deg);
+  transform: rotate(30deg);
+  top: 0px;
+}
+
+.left.arrow>div:before {
+  -webkit-transform: rotate(30deg);
+  -moz-transform: rotate(30deg);
+  -ms-transform: rotate(30deg);
+  transform: rotate(30deg);
+  top: -9px;
+}
+.left.arrow>div:after {
+  -webkit-transform: rotate(-30deg);
+  -moz-transform: rotate(-30deg);
+  -ms-transform: rotate(-30deg);
+  transform: rotate(-30deg);
+  top: 0px;
+}
