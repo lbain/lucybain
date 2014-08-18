@@ -2,6 +2,7 @@ Game = {
   cells: null,
   turn: 'X',
   size: null,
+  $board: $('.board'),
 
   init: function(size) {
     Game.size = size;
@@ -21,19 +22,21 @@ Game = {
     $('.cell').text('');
     for(var i = 0; i < Game.size; i++) {
       for(var j = 0; j < Game.size; j++) {
-        $('#cell-'+i+'-'+j).removeClass('x');
-        $('#cell-'+i+'-'+j).removeClass('o');
-        $('#cell-'+i+'-'+j).addClass(Game.cells[i][j]);
-        $('#cell-'+i+'-'+j).text(Game.cells[i][j]);
+        var $cell = $('#cell-'+i+'-'+j);
+        $cell.removeClass('x');
+        $cell.removeClass('o');
+        $cell.addClass(Game.cells[i][j]);
+        $cell.text(Game.cells[i][j]);
       }
     }
   },
 
   generateBoard: function(){
     for(var i = 0; i < Game.size; i++){
-      $('.board').append('<div class="row"></div>')
+      Game.$board.append('<div class="row"></div>');
+      var $row = Game.$board.find('.row:last-child');
       for(var j = 0; j < Game.size; j++){
-        $('.board .row:last-child').append("<div class='cell' id='cell-" + i + "-" + j + "' col='" + i + "' row='" + j + "'></div>")
+        $row.append("<div class='cell' id='cell-" + i + "-" + j + "' col='" + i + "' row='" + j + "'></div>");
       }
     }
   },
@@ -42,7 +45,7 @@ Game = {
     Game.displayBoard();
     if (Game.isWon() || Game.isDraw()){
       Game.displayOutcome();
-      $('.board').off('click')
+      Game.$board.off('click')
     }
     Game.turn = (Game.turn === 'X') ? 'O' : 'X';
   },
@@ -145,6 +148,9 @@ $(function() {
   // More efficent to listen to the whole board than each cell
   $('.board').on('click', function(event){
     if($(event.target).hasClass('cell')) {
+      if($(event.target).text()) {
+        return;
+      }
       col = parseInt($(event.target).attr('col'))
       row = parseInt($(event.target).attr('row'))
       Game.nextMove(col, row)
