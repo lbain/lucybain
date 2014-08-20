@@ -14,3 +14,8 @@
         =nav_link 'Resources', '/resources/'
       %li
         =nav_link 'Blog', '/blog/'
+
+:javascript
+  $('#menu .nav-open').on('click', function(){
+    $('#menu .nav').toggleClass('open');
+  })
