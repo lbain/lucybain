@@ -1,0 +1,1 @@
+function my_max(e){for(var r=e[0],n=0;n<e.length;n++)e[n]>r&&(r=e[n]);return r}function vowel_count(e){var r=["a","e","i","o","u","y"],n=0;e=e.toLowerCase();for(var o=0;o<e.length;o++)r.indexOf(e[o])>0&&n++;return n}function reverse(e){return e.split("").reverse().join("")}

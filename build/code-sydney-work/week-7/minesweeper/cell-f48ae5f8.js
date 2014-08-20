@@ -1,0 +1,1 @@
+function Cell(){this.bomb=!1,this.flagged=!1,this.count=0,this.found=!0}Cell.prototype.show=function(){return this.found?this.displayed():" "},Cell.prototype.displayed=function(){return this.bomb?"B":this.flagged?"F":this.count?this.count:" "};

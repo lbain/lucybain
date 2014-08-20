@@ -1,0 +1,1 @@
+var board=new Board(4,1),display=new Display(board);
