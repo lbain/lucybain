@@ -1,0 +1,1 @@
+function Bunker(i,t,s){this.alive=!0,this.x=i,this.y=t,this.radius=25,this.missile_count=s,$.extend(this,hitable)}

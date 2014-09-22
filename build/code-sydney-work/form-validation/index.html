@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Form Validation</title>
+    <link rel="stylesheet" type="text/css" href="css/style-f8dc2b95.css" />
+</head>
+<body>
+    <form>
+        <div class="form-input">
+            <label for="email">Email</label>
+            <input type="email" name="email" />
+            <span class="error-msg"></span>
+        </div>
+        <div class="form-input">
+            <label for="email-confirmation">Email Confirmation</label>
+            <input type="email" name="email-confirmation" />
+            <span class="error-msg"></span>
+        </div>
+        <div class="form-input">
+            <label for="country">Country</label>
+            <input name="country" data-validate-as="country" />
+            <span class="error-msg"></span>
+        </div>
+        <div class="form-input">
+            <label for="zip-code">Zip Code</label>
+            <input type=text data-validate-as="number">
+            <span class="error-msg"></span>
+        </div>
+        <div class="form-input">
+            <label for="password">Password</label>
+            <input type="password" name="password" />
+            <span class="error-msg"></span>
+        </div>
+        <div class="form-input">
+            <label for="password-confirmation">Passowrd Confirmation</label>
+            <input type="password" name="password-confirmation" />
+            <span class="error-msg"></span>
+        </div>
+        <input type="submit"/>
+    </form>
+
+    <script type="text/javascript" src="../jquery-1.11.1.min-d6c1f419.js"></script>
+    <script type="text/javascript" src="js/validator-1e70636a.js"></script>
+</body>
+</html>
