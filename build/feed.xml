@@ -4,10 +4,41 @@
   <id>http://lucybain.com/blog</id>
   <link href="http://lucybain.com/blog"/>
   <link href="http://lucybain.com/feed.xml" rel="self"/>
-  <updated>2014-06-18T00:00:00Z</updated>
+  <updated>2014-09-25T00:00:00Z</updated>
   <author>
     <name>Lucy Bain</name>
   </author>
+  <entry>
+    <title>JS event delegation</title>
+    <link rel="alternate" href="http://lucybain.com/blog/2014/event-delegation/"/>
+    <id>http://lucybain.com/blog/2014/event-delegation/</id>
+    <published>2014-09-25T00:00:00Z</published>
+    <updated>2014-09-25T21:55:49+10:00</updated>
+    <author>
+      <name>Article Author</name>
+    </author>
+    <content type="html">&lt;p&gt;
+  I'm continuing my JS learning and found a list of &lt;a href="https://github.com/darcyclarke/Front-end-Developer-Interview-Questions"&gt;front end interview questions&lt;/a&gt;. There's a section devoted to JS on there for me to work through. If they're important enough to know in an interview I should probably know about them too.
+&lt;/p&gt;
+&lt;h2&gt;Explain event delegation&lt;/h2&gt;
+&lt;p&gt;
+  Well I'm glad you asked. As it turns out we covered this topic in my &lt;a href="http://codesydney.com"&gt;JS study group&lt;/a&gt; when I wrote my &lt;a href="code-sydney-work/tic-tac-toe/"&gt;Tic Tac Toe game.&lt;/a&gt;
+&lt;/p&gt;
+&lt;p&gt;
+  Event delegation is when you bind an event listener to a parent (or ancestor) element rather than the element(s) you are particularly interested in. When the event is triggered you can check the event target to make sure it was actually the triggered on the element of interest. In general this would be inefficient as you're now listening to events on the parent, and have to filter out any that aren't on the particular element of interest. However, event delegation is particularly useful when you have many siblings (or decedents of the ancestor) that you're interested in.
+&lt;/p&gt;
+&lt;p&gt;
+  A simple example is as follows:
+&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;&amp;lt;ul&amp;gt;&amp;#x000A;  &amp;lt;li&amp;gt; First list element &amp;lt;/li&amp;gt;&amp;#x000A;  &amp;lt;li&amp;gt; Second list element &amp;lt;/li&amp;gt;&amp;#x000A;  &amp;lt;li&amp;gt; Third list element &amp;lt;/li&amp;gt;&amp;#x000A;&amp;lt;/ul&amp;gt;&amp;#x000A;&lt;/pre&gt;
+&lt;p&gt;
+  While it would be possible to bind to the individual &lt;code&gt;li&lt;/code&gt; elements it would require 3 listeners. Using event delegation it is possible to bind one event listener to the &lt;code&gt;ul&lt;/code&gt; element and just check if the event's target is an li element (very likely in this case...).
+&lt;/p&gt;
+&lt;p&gt;
+  For my Tic Tac Toe game I listened to all click events on the board, and then checked the particular cell they clicked on, rather than listening for events on all the cells at once.
+&lt;/p&gt;
+</content>
+  </entry>
   <entry>
     <title>Sublime Text Macros</title>
     <link rel="alternate" href="http://lucybain.com/blog/2014/sublime-macros/"/>
@@ -226,32 +257,6 @@
 &lt;/p&gt;
 &lt;p&gt;
   And that's it! As I said, not particularly scientific, and certainly nothing about massive SEO stuff or anything like that. This is just how I deal with sending out tweets, and keeping track of when I say what. Your time is valuable, and so is the time of your followers. Try not to waste it.
-&lt;/p&gt;
-</content>
-  </entry>
-  <entry>
-    <title>RubyConf Australia 2014</title>
-    <link rel="alternate" href="http://lucybain.com/blog/2014/RubyConfAU/"/>
-    <id>http://lucybain.com/blog/2014/RubyConfAU/</id>
-    <published>2014-02-23T00:00:00Z</published>
-    <updated>2014-03-27T10:32:57+11:00</updated>
-    <author>
-      <name>Article Author</name>
-    </author>
-    <content type="html">&lt;p&gt;
-  I just finished RubyConf Australia, and what a wild ride! I've never been to a conference before, and I was a bit nervous what it would be like. Would people be welcoming? Would I know where to be? Would everyone be taking notes, or no one? Turns out I needn't have worried. The Ruby community was just as amazing as ever.
-&lt;/p&gt;
-&lt;p&gt;
-  I met a bunch of new people - many women programmers, and many people hoping to make programming more available through mentorship and code education. While I enjoyed meeting all my fellow rubists, these connections were especially fulfilling since they touch on issues near and dear to my heart. I met &lt;a href="http://twitter.com/amandamelb"&gt;Amanda&lt;/a&gt;, who's poised to be the leader for &lt;a href="http://twitter.com/RailsGirls_MELB"&gt;Rails Girls Melbourne&lt;/a&gt;, and a few members of her study group. I'm sure any additional communication between the various Rails Girls chapters in Australia will be helpful. I was even put in contact with the woman who runs Rails Girls in Wellington, NZ. A nice reminder that this is an international organisation, not just Australia.
-&lt;/p&gt;
-&lt;p&gt;
-  Much of the event was about facilitating these kinds of connections - people who are interested in the same kind of things finding each other and learning from everyone's experiences. But of course the main focus was the talks, which I loved attending! I haven't been at school in quite a while, all of my "continuing education" has been done on my own - books people have recommended, articles online, websites, coding exercises. While I have gained from these, it is never as concentrated an effort, and usually in isolation. Going to the conference let me learn with my friends and discuss the talks after. It was great to feel part of the community while learning - answering questions as able, asking my own to better understand what was discussed.
-&lt;/p&gt;
-&lt;p&gt;
-  Unfortunately I had to duck out on the morning of the second day. I'm in the process of moving apartments and had some paperwork to deal with. It certainly hurt the feel of the day, I was much lower energy - late nights, preping for &lt;a href="/blog/2014/Rails-Girls-Next/"&gt;Rails Girls Next&lt;/a&gt;, a lot of learning, and the stress of moving made me exhausted. But I still got something from the talks, and I enjoyed continuing on the conversations I started with people the day before. Apparently conferences encourage people to become fast friends!
-&lt;/p&gt;
-&lt;p&gt;
-  All in all, I'm really glad I received a scholarship ticket for my work with Rails Girls, otherwise I probably wouldn't have gone. And my work paid me to be there, which was very appreciated as well. The next Ruby Conf will be in Melbourne, and I'm hoping I can attend that one as well!
 &lt;/p&gt;
 </content>
   </entry>
