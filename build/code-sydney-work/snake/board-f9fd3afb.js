@@ -1,0 +1,1 @@
+function Board(t,r){var n,i;this.init=function(t,r){n=$(t),i=new Array(r);for(var a=0;r>a;a++)i[a]=new Array(r);return this},this.display=function(){n.empty();for(var t=0;t<i.length;t++){for(var r="<tr>",a=0;a<i[t].length;a++)r+='<td class="square" id="'+a+"-"+t+'"></td>';r+="</tr>",n.append(r)}},this.clear=function(){n.empty()},this.init(t,r)}
