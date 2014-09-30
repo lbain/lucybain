@@ -44,6 +44,9 @@ redirect "python/index.html", to: "/resources/udacity-python-study-group/"
 redirect "odin/index.html", to: "/resources/js-jquery-study-group/"
 redirect "js/index.html", to: "/resources/js-jquery-study-group/"
 
+set :markdown, :tables => true, :autolink => true, :gh_blockcode => true, :fenced_code_blocks => true
+set :markdown_engine, :redcarpet
+
 ###
 # Compass
 ###

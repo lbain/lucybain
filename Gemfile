@@ -7,6 +7,7 @@ gem "middleman-syntax", :git => 'git://github.com/middleman/middleman-syntax.git
 gem "middleman-blog"
 gem "middleman-livereload", "~> 3.1.0"
 gem "nokogiri"
+gem "redcarpet"
 
 # For feed.xml.builder
 gem "builder", "~> 3.0"
