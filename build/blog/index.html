@@ -44,6 +44,23 @@
     <div class='content'>
       <h1></h1>
       <h2>
+        <a href="/blog/2014/explaination-of-this/">Explain how this works in JavaScript</a>
+      </h2>
+      <p>Sep 29, 2014</p>
+      <script type="text/javascript">
+        $('a').on('click', function(event) { debugger });
+      </script>
+      
+      <p>The next question in the list of <a href="https://github.com/darcyclarke/Front-end-Developer-Interview-Questions">front end interview questions</a>:</p>
+      
+      <h2>Explain how this works in JavaScript</h2>
+      
+      <p>Huh, well that's something I've been trying to figure out as I work with JS. <code>this</code> still doesn't make perfect sense to me. But here's my current understanding...</p>
+      
+      <p><strong><code>this</code> is the context the code is running in</strong></p>
+      
+      <p>However, the context seems to change a lot, and I find it rather confusing. So I signed upf for an <a href="http://derickbailey.com/email-courses/masteringthis/">email series</a> on how <code>this</code> can change...</p>
+      <h2>
         <a href="/blog/2014/event-delegation/">JS event delegation</a>
       </h2>
       <p>Sep 25, 2014</p>
@@ -96,10 +113,7 @@
       <p>
         In Sublime, under <code>Preference</code> select <code>Key Bindings - User</code>. If you've got anything in there already, just add the <code>{ "keys"... }</code> section below. Otherwise you can replace the <code>[]</code> with:
       </p>
-      <pre class="highlight plaintext">[
-        { "keys": ["super+i"],
-          "command": "reindent"}
-      ]</pre>
+      <pre class="highlight plaintext">[&#x000A;  { "keys": ["super+i"],&#x000A;    "command": "reindent"}&#x000A;]</pre>
       <p>
         Now you can use <code>cmd + i</code> (mac), or <code>ctrl + i</code> (windows...</p>
       <h2>
@@ -147,21 +161,6 @@
       <p>Feb 13, 2014</p>
       <p>
         I've wanted to run a programming study group for quite a while. Although I love what <a href="http://railsgirls.com/">Rails Girls</a> and <a href="http://www.meetup.com/Ruby-On-Rails-Oceania-Sydney/">InstallFest</a> do, I think attendees find it quite hard to continue learning. They have some support from the community through initiatives like DevHub to continue working on projects and learning about Ruby and Rails. But there isn't a clear path for them to go down - <a href="http://blog.mediumequalsmessage.com/6-best-learning-ruby-books">books?</a> which ones? <a href="http://stackoverflow.com/questions/5732119/ruby-video-tutorials">videos?</a> by whom? <a href="https://www.learnstreet.com/cg/simple/projects/ruby">personal project?</a> what kind? I'd find <a href="http://iwanttolearnruby.com/">all the options</a> overwhelming. Even once you get started...</p>
-      <h2>
-        <a href="/blog/2014/git-branch-names-on-command-line/">Git Branch Names on Command Prompt</a>
-      </h2>
-      <p>Feb 13, 2014</p>
-      <p>
-        I often forget which branch I'm on. Sure, I have <code>git branch</code> aliased (it's probably one of my most frequently used commands) but sometimes I <em>know</em> I'm on another branch. A few commits and merges later I find out I was wrong, and it's time for some branch cleaning.
-      </p>
-      <p>
-        Recently my coworker <a href="https://plus.google.com/+SimonHildebrandt/">Simon</a> gave me the following code:
-      </p>
-      <pre class="highlight plaintext">parse_git_branch() {
-         git branch 2&gt; /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
-      }
-      export PS1="\W\[\033[32m\]\$(parse_git_branch)\[\033[00m\] $ "</pre>
-      <p>This code should...</p>
       <p>
         Page 1 of 2
       </p>
