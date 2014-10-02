@@ -4,26 +4,298 @@
   <id>http://lucybain.com/blog</id>
   <link href="http://lucybain.com/blog"/>
   <link href="http://lucybain.com/feed.xml" rel="self"/>
-  <updated>2014-09-29T00:00:00Z</updated>
+  <updated>2014-10-01T00:00:00Z</updated>
   <author>
     <name>Lucy Bain</name>
   </author>
   <entry>
-    <title>Explain how this works in JavaScript</title>
-    <link rel="alternate" href="http://lucybain.com/blog/2014/explaination-of-this/"/>
-    <id>http://lucybain.com/blog/2014/explaination-of-this/</id>
-    <published>2014-09-29T00:00:00Z</published>
-    <updated>2014-09-30T21:12:49+10:00</updated>
+    <title>JS Immediately Invoked Function Expressions</title>
+    <link rel="alternate" href="http://lucybain.com/blog/2014/immediately-invoked-function-expression/"/>
+    <id>http://lucybain.com/blog/2014/immediately-invoked-function-expression/</id>
+    <published>2014-10-01T00:00:00Z</published>
+    <updated>2014-10-02T23:02:58+10:00</updated>
     <author>
       <name>Article Author</name>
     </author>
-    <content type="html">&lt;script type="text/javascript"&gt;
-  $('a').on('click', function(event) { debugger });
-&lt;/script&gt;
+    <content type="html">&lt;h2&gt;Explain why the following doesn&amp;#39;t work as an IIFE: &lt;code&gt;function foo(){ }();&lt;/code&gt;&lt;/h2&gt;
 
-&lt;p&gt;The next question in the list of &lt;a href="https://github.com/darcyclarke/Front-end-Developer-Interview-Questions"&gt;front end interview questions&lt;/a&gt;:&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;What does &amp;quot;IIFE&amp;quot; even stand for?&lt;/em&gt;&lt;/p&gt;
 
-&lt;h2&gt;Explain how this works in JavaScript&lt;/h2&gt;
+&lt;p&gt;IIFE stands for Immediately Invoked Function Expressions&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Great, so what are IIFEs?&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;An IIFE is an anonymous function that is created and then immediately invoked. It&amp;#39;s not called from anywhere else (hence why it&amp;#39;s anonymous), but runs just after being created.&lt;/p&gt;
+
+&lt;p&gt;Example:&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;(function () {
+  return 5;
+} ());
+// returns 5 right away
+&lt;/pre&gt;
+&lt;p&gt;They can be used to guard against &lt;strong&gt;unintended effects of hoisting:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;The following code snip-it is from &lt;a href="https://en.wikipedia.org/wiki/Immediately-invoked_function_expression#Evaluation_context"&gt;Wikipedia&lt;/a&gt;. I didn&amp;#39;t understand how it worked right away, but I wrote the explanation following the snip-it to clear up my confusion.&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;var v = 1;
+var getValue = (function(x) {
+  return function() { return x; };
+}(v));
+v = 2;
+
+getValue(); // returns 1
+&lt;/pre&gt;
+&lt;p&gt;&lt;em&gt;I can&amp;#39;t even read that, what do all the nested functions mean?&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;Let&amp;#39;s investigate the IIFE assigned to &lt;code&gt;getValue&lt;/code&gt; by rewriting it with a helper function:&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;var v = 1;
+
+function helperFunction(x) {
+  return function() {
+    return x;
+  };
+}
+var getValue = helperFunction(v); // returns an anonymous function
+
+v = 2;
+
+getValue(); // invokes that function
+&lt;/pre&gt;
+&lt;p&gt;&lt;em&gt;What happens when the &lt;code&gt;var getValue = helperFunction(v)&lt;/code&gt; line is called?&lt;/em&gt;&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;code&gt;helperFunction(v)&lt;/code&gt; gets called with the current value of &lt;code&gt;v&lt;/code&gt;, which is 1&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;helperFunction&lt;/code&gt; gets executed, with the param &lt;code&gt;x&lt;/code&gt; set to 1&lt;/li&gt;
+&lt;li&gt;The anonymous function returned by &lt;code&gt;helperFunction&lt;/code&gt; gets created, still with &lt;code&gt;x&lt;/code&gt; set to 1&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;getValue&lt;/code&gt; is set to the result of &lt;code&gt;helperFunction&lt;/code&gt;, which is&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;function() {
+  return 1;
+};
+&lt;/pre&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;So now things look like this:&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;var v = 1;
+var getValue = function() {
+                 return 1;
+               };
+v = 2;
+
+getValue();
+&lt;/pre&gt;
+&lt;p&gt;And from here it is hardly surprising that &lt;code&gt;getValue()&lt;/code&gt; returns 1.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;What would have happened without the IIFE?&lt;/em&gt;&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;var v = 1;
+var getValue = function() {
+                  return v;
+               };
+v = 2;
+
+getValue(); // returns 2
+&lt;/pre&gt;
+&lt;p&gt;Although the &lt;code&gt;return v&lt;/code&gt; is written when &lt;code&gt;v&lt;/code&gt; is 1, by the time &lt;code&gt;getValue&lt;/code&gt; is called &lt;code&gt;v&lt;/code&gt; has been set to 2. Thus &lt;code&gt;getValue()&lt;/code&gt; actually returns 2.&lt;/p&gt;
+
+&lt;p&gt;IIFEs can also be used to enforce &lt;strong&gt;private variables and methods:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Again, the example is taken by &lt;a href="https://en.wikipedia.org/wiki/Immediately-invoked_function_expression#Establishing_private_variables_and_accessors"&gt;Wikipedia&lt;/a&gt; (slightly simplified), and the explanation is my own.&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;var counter = (function(){
+  var i = 0;
+
+  return {
+    get: function(){
+      return i;
+    },
+    set: function( val ){
+      i = val;
+    }
+  };
+}());
+
+counter.get(); // returns 0
+counter.set( 3 ); // returns undefined
+counter.get(); // returns 3
+counter.i; // returns undefined
+&lt;/pre&gt;
+&lt;p&gt;&lt;em&gt;Again with the confusing nested functions! Can I have a rewrite?&lt;/em&gt;&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;function helperFunction(){
+  var i = 0;
+
+  return {
+    get: function(){
+      return i;
+    },
+    set: function( val ){
+      i = val;
+    }
+  };
+};
+
+var counter = helperFunction();
+
+counter.get(); // returns 0
+counter.set( 3 ); // returns undefined
+counter.get(); // returns 3
+counter.i; // returns undefined
+&lt;/pre&gt;
+&lt;p&gt;&lt;em&gt;Ok, that&amp;#39;s a bit clearer, but what is &lt;code&gt;counter&lt;/code&gt; actually set to?&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;counter&lt;/code&gt; is set to the return value of &lt;code&gt;helperFunction&lt;/code&gt;, that is just this bit:&lt;/p&gt;
+&lt;pre class="highlight json"&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="w"&gt;
+  &lt;/span&gt;&lt;span class="err"&gt;get&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="err"&gt;function()&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="w"&gt;
+    &lt;/span&gt;&lt;span class="err"&gt;return&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="err"&gt;i;&lt;/span&gt;&lt;span class="w"&gt;
+  &lt;/span&gt;&lt;span class="err"&gt;}&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt;
+  &lt;/span&gt;&lt;span class="err"&gt;set&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="err"&gt;function(&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="err"&gt;val&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="err"&gt;)&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="w"&gt;
+    &lt;/span&gt;&lt;span class="err"&gt;i&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="err"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="err"&gt;val;&lt;/span&gt;&lt;span class="w"&gt;
+  &lt;/span&gt;&lt;span class="err"&gt;}&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;&lt;span class="err"&gt;;&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/pre&gt;
+&lt;p&gt;You&amp;#39;ll notice &lt;code&gt;var i&lt;/code&gt; doesn&amp;#39;t appear anywhere in there. &lt;code&gt;i&lt;/code&gt; is defined elsewhere in the &lt;code&gt;helperFunction&lt;/code&gt; / IIFE. Since the return value of &lt;code&gt;helperFunction&lt;/code&gt; doesn&amp;#39;t give explicit access to &lt;code&gt;i&lt;/code&gt;, &lt;code&gt;counter&lt;/code&gt; doesn&amp;#39;t have access.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Fine, so if that&amp;#39;s all that &lt;code&gt;counter&lt;/code&gt; has access to, how does &lt;code&gt;counter.get()&lt;/code&gt; return a value?&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;Scopes! The scope from &lt;code&gt;helperFunction&lt;/code&gt; has access to &lt;code&gt;i&lt;/code&gt;. The object returned by &lt;code&gt;helperFunction&lt;/code&gt; (a.k.a &lt;code&gt;counter&lt;/code&gt;) has access to all the variables defined in &lt;code&gt;helperFunction&lt;/code&gt;. It works like this:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;Call to &lt;code&gt;counter.get()&lt;/code&gt; goes and looks at the &lt;code&gt;get&lt;/code&gt; function defined in &lt;code&gt;helperFunction&lt;/code&gt;...&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;get: function(){
+    return i;
+   }
+&lt;/pre&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;The &lt;code&gt;get&lt;/code&gt; function looks for it&amp;#39;s local scope, which is &lt;code&gt;helperFunction&lt;/code&gt; ...&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;function helperFunction(){
+var i = 0;
+
+return {
+  get: function(){
+    return i;
+  },
+  set: function( val ){
+    i = val;
+  }
+};
+};
+&lt;/pre&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;In &lt;code&gt;helperFunction&lt;/code&gt; is a definition for &lt;code&gt;i&lt;/code&gt;...&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;var i = 0;
+&lt;/pre&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;So &lt;code&gt;get&lt;/code&gt; can return 0!&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3&gt;And now back to your scheduled program&lt;/h3&gt;
+
+&lt;p&gt;With all that explanation behind us, let&amp;#39;s go back to the original question:&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Explain why the following doesn&amp;#39;t work as an IIFE: &lt;code&gt;function foo(){ }();&lt;/code&gt;&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Because &lt;code&gt;foo&lt;/code&gt; isn&amp;#39;t being called! Here&amp;#39;s a rewrite:&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;function foo(){
+}();
+&lt;/pre&gt;
+&lt;p&gt;This is a function &lt;strong&gt;definition&lt;/strong&gt;, it defines &lt;code&gt;foo&lt;/code&gt;. But it&amp;#39;s not a function &lt;strong&gt;expression&lt;/strong&gt; - that is, it&amp;#39;s not understood by the JS parser to actually call a function.&lt;/p&gt;
+
+&lt;p&gt;For the parser, things look like this:&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;function foo(){
+} // ok, done with that function definition
+  // (silly human left off the semicolon, how embarrassing!)
+
+(); // Are they trying to call something? What's the function's name?
+    // PARSE ERROR
+&lt;/pre&gt;
+&lt;p&gt;In order to prep the parser that we&amp;#39;re actually dealing with a function &lt;strong&gt;expression&lt;/strong&gt; we have to wrap things up in &lt;code&gt;()&lt;/code&gt; like so:&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;(
+  function foo(){
+  }()
+);
+&lt;/pre&gt;
+&lt;p&gt;Now the parser reads this as:&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;( // oh goody, we're going to call some function expressions!
+  function foo(){ // here's the function definition
+  }() // and here's where the function is actually called
+);
+&lt;/pre&gt;
+&lt;p&gt;And to finish it all off with a return statement and everything:&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;(function foo(){
+  return 'bar';
+}());
+&lt;/pre&gt;
+&lt;p&gt;For more information read Ben Alman&amp;#39;s post &lt;a href="http://benalman.com/news/2010/11/immediately-invoked-function-expression/"&gt;introducing IIFEs&lt;/a&gt;.&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <title>JS prototypal inheritance</title>
+    <link rel="alternate" href="http://lucybain.com/blog/2014/prototypal-inheritance/"/>
+    <id>http://lucybain.com/blog/2014/prototypal-inheritance/</id>
+    <published>2014-09-30T00:00:00Z</published>
+    <updated>2014-10-01T22:40:42+10:00</updated>
+    <author>
+      <name>Article Author</name>
+    </author>
+    <content type="html">&lt;h2&gt;Explain how prototypal inheritance works&lt;/h2&gt;
+
+&lt;p&gt;JS objects each have a &amp;quot;hook&amp;quot; to it&amp;#39;s parent object, or prototype. Obviously everything the child object defines it has access to, but it also can climb up the prototype tree to access it&amp;#39;s parent&amp;#39;s (or ancesstor&amp;#39;s) methods and properties.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;(the obligatory animal) Example:&lt;/strong&gt;&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;function Animal(){
+  this.alive = true;
+}
+
+function Mammal() {
+  this.warmBlooded = true;
+  this.hasTail = false;
+  this.move = function(){
+    if(this.hasTail){
+      return "Moving with tail";
+    } else {
+      return "Moving with tail";
+    }
+  };
+}
+Mammal.prototype = new Animal();
+
+function Cat(name) {
+  this.sound = 'Meow';
+  this.hasTail = true;
+  this.name = name;
+  this.greet = function() {
+    return "Hello, I'm " + this.name;
+  };
+}
+Cat.prototype = new Mammal();
+
+var mittens = new Cat('Mittens');
+
+mittens.sound; // returns 'Meow' (as defined on Cat)
+
+mittens.hasTail; // returns true (as defined on Cat)
+  // Although Mammal also defines hasTail, the Cat's
+  // definition takes precidence
+
+mittens.warmBlooded; // returns true (as defined on Mammal)
+
+mittens.alive; // returns true (as defined on Animal)
+
+mittens.greet() // returns "Hello, I'm Mittens"
+  // greet() accesses the "name" attribute defined on Cat
+
+mittens.move() // returns "Moving with tail"
+  // move() accesses the "hasTail" attribute which is defined
+  // on Cat and Mammal. Although Mammal defines the move function
+  // "this" refers to mittens, so move() uses mitten's "hasTail"
+  // attribute, which is set to true
+&lt;/pre&gt;
+&lt;p&gt;There&amp;#39;s a longer explaination from &lt;a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Inheritance_and_the_prototype_chain"&gt;Mozilla&lt;/a&gt;.&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <title>JS "this"</title>
+    <link rel="alternate" href="http://lucybain.com/blog/2014/explaination-of-this/"/>
+    <id>http://lucybain.com/blog/2014/explaination-of-this/</id>
+    <published>2014-09-29T00:00:00Z</published>
+    <updated>2014-10-01T22:41:06+10:00</updated>
+    <author>
+      <name>Article Author</name>
+    </author>
+    <content type="html">&lt;h2&gt;Explain how this works in JavaScript&lt;/h2&gt;
 
 &lt;p&gt;Huh, well that&amp;#39;s something I&amp;#39;ve been trying to figure out as I work with JS. &lt;code&gt;this&lt;/code&gt; still doesn&amp;#39;t make perfect sense to me. But here&amp;#39;s my current understanding...&lt;/p&gt;
 
@@ -81,7 +353,7 @@
     <link rel="alternate" href="http://lucybain.com/blog/2014/event-delegation/"/>
     <id>http://lucybain.com/blog/2014/event-delegation/</id>
     <published>2014-09-25T00:00:00Z</published>
-    <updated>2014-09-25T21:55:49+10:00</updated>
+    <updated>2014-10-01T22:26:04+10:00</updated>
     <author>
       <name>Article Author</name>
     </author>
@@ -197,70 +469,6 @@
 &lt;p&gt;
   Do you have any suggestions? I'd love to work with a pretty clear plan, a curriculum if you will, and any ideas would be appreciated. Thank you!
 &lt;/p&gt;
-</content>
-  </entry>
-  <entry>
-    <title>RubyConf - a look back</title>
-    <link rel="alternate" href="http://lucybain.com/blog/2014/RubyConf-a-look-back/"/>
-    <id>http://lucybain.com/blog/2014/RubyConf-a-look-back/</id>
-    <published>2014-03-07T00:00:00Z</published>
-    <updated>2014-03-27T10:32:57+11:00</updated>
-    <author>
-      <name>Article Author</name>
-    </author>
-    <content type="html">&lt;p&gt;
-  It's been almost 3 weeks since RubyConf. Feels like longer. I wrote a &lt;a href="/blog/2014/RubyConfAU/"&gt;quick review&lt;/a&gt; after the event, but that post didn't do RubyConf justice.
-&lt;/p&gt;
-&lt;p&gt;
-  Really, I'm not sure what made RubyConf so great. The talks? Meeting new people? Chatting with existing friends? Learning? Seeing so many people interested in the same thing? I don't know. Everything there was pretty amazing.
-&lt;/p&gt;
-&lt;p&gt;
-  But for me, the most amazing part was what happened when I left. When I went back to work. When the talks were over, and my friends dispersed. Once I'd caught up on sleep and headed back to the "real world" I found I had more confidence as a programmer. A lot more. Enough to go out and make my &lt;a href="/resources/udacity-python-study-group/"&gt;Python 101 study group&lt;/a&gt; happen. Enough to tell my team why I was unhappy with our process (something they took very seriously and changed quickly - I love &lt;a href="/resources/job/"&gt;my team&lt;/a&gt;). Enough to feel like I have useful opinions.
-&lt;/p&gt;
-&lt;p&gt;
-  Not that I thought of myself as dumb or useless, just that I assumed my experience level excluded me from ... something. As the least experienced member of our team I'm used to not knowing things, asking questions, and trying to keep up with everyone else. Somehow RubyConf reminded me of what I have learned in the past 2 years of Ruby. It reminded me of the great community I'm part of, and help form through &lt;a href="http://railsgirls.com/sydney"&gt;RailsGirls&lt;/a&gt;, &lt;a href="http://www.meetup.com/Ruby-On-Rails-Oceania-Sydney/"&gt;Installfest, and DevHub&lt;/a&gt;. People asked me my opinion about things (ok, sure those things were mostly about being a woman in tech, but still, it made me feel valued), and I actually understood most of the talks I watched (not all, but most, always room to grow!). And people knew me - after living in Sydney for almost a year now, RubyConf made me feel like I belonged.
-&lt;/p&gt;
-&lt;p&gt;
-  I know there were many &lt;a href="http://sampeters.net/blog/meetups-hubs-and-casual-get-togethers-and-the-developer-community/"&gt;different&lt;/a&gt; &lt;a href="http://ruby.org.au/articles"&gt;reactions&lt;/a&gt; to RubyConf. But I'd like to add mine to the mix. It was amazing - both before and after.
-&lt;/p&gt;
-</content>
-  </entry>
-  <entry>
-    <title>Sublime Auto Indent</title>
-    <link rel="alternate" href="http://lucybain.com/blog/2014/Sublime-Auto-Indent/"/>
-    <id>http://lucybain.com/blog/2014/Sublime-Auto-Indent/</id>
-    <published>2014-02-27T00:00:00Z</published>
-    <updated>2014-03-27T10:32:57+11:00</updated>
-    <author>
-      <name>Article Author</name>
-    </author>
-    <content type="html">&lt;p&gt;
-  I recently discovered how to get Sublime to fix indentations for you! Since I spend a certain amount of time each day pushing characters left and right this was pretty exciting. Hope you find it useful!
-&lt;/p&gt;
-&lt;p&gt;
-  In Sublime, under &lt;code&gt;Preference&lt;/code&gt; select &lt;code&gt;Key Bindings - User&lt;/code&gt;. If you've got anything in there already, just add the &lt;code&gt;{ "keys"... }&lt;/code&gt; section below. Otherwise you can replace the &lt;code&gt;[]&lt;/code&gt; with:
-&lt;/p&gt;
-&lt;pre class="highlight plaintext"&gt;[&amp;#x000A;  { "keys": ["super+i"],&amp;#x000A;    "command": "reindent"}&amp;#x000A;]&lt;/pre&gt;
-&lt;p&gt;
-  Now you can use &lt;code&gt;cmd + i&lt;/code&gt; (mac), or &lt;code&gt;ctrl + i&lt;/code&gt; (windows) to auto indent your code. It's not always perfect, but it's helped me with my rails code.
-&lt;/p&gt;
-&lt;h2&gt;
-  What's happening here?
-&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;code&gt;"keys"&lt;/code&gt; labels the next section as the keys that will trigger the action.
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;code&gt;["super+i"]&lt;/code&gt; means "use whatever this computer defaults to" (&lt;code&gt;cmd&lt;/code&gt; for macs, &lt;code&gt;ctrl&lt;/code&gt; for windows) and &lt;code&gt;i&lt;/code&gt; to trigger the action.
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;code&gt;"command"&lt;/code&gt; labels which command the given key binding should trigger.
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;code&gt;"reindent"&lt;/code&gt; is the command that will run on the given key press. You can find a list of commands to use &lt;a href="http://www.sublimetext.com/docs/commands"&gt;in the docs&lt;/a&gt;.
-  &lt;/li&gt;
-&lt;/ul&gt;
 </content>
   </entry>
 </feed>

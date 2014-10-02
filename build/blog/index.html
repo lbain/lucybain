@@ -7,7 +7,7 @@
     <link href='/images/favicon.ico' rel='icon' type='image/ico'>
     <link href='http://fonts.googleapis.com/css?family=Crimson+Text:400,700|Nobile:400,700' rel='stylesheet' type='text/css'>
     <title>Lucy Bain</title>
-    <link href="/stylesheets/application-f7cb8f99.css" media="screen" rel="stylesheet" type="text/css" />
+    <link href="/stylesheets/application-227798fd.css" media="screen" rel="stylesheet" type="text/css" />
     <script src='//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js'></script>
   </head>
   <body class='blog blog_index'>
@@ -44,22 +44,51 @@
     <div class='content'>
       <h1></h1>
       <h2>
-        <a href="/blog/2014/explaination-of-this/">Explain how this works in JavaScript</a>
+        <a href="/blog/2014/immediately-invoked-function-expression/">JS Immediately Invoked Function Expressions</a>
+      </h2>
+      <p>Oct  1, 2014</p>
+      <h2>Explain why the following doesn't work as an IIFE: <code>function foo(){ }();</code>
+      </h2>
+      
+      <p><em>What does "IIFE" even stand for?</em></p>
+      
+      <p>IIFE stands for Immediately Invoked Function Expressions</p>
+      
+      <p><em>Great, so what are IIFEs?</em></p>
+      
+      <p>An IIFE is an anonymous function that is created and then immediately invoked. It's not called from anywhere else (hence why it's anonymous), but runs just after being created.</p>
+      
+      <p>Example:</p>
+      <pre class="highlight plaintext">(function () {&#x000A;  return 5;&#x000A;} ());&#x000A;// returns 5 right away</pre>
+      <p>They can be used to guard against <strong>unintended effects of hoisting...</strong></p>
+      <h2>
+        <a href="/blog/2014/prototypal-inheritance/">JS prototypal inheritance</a>
+      </h2>
+      <p>Sep 30, 2014</p>
+      <h2>Explain how prototypal inheritance works</h2>
+      
+      <p>JS objects each have a "hook" to it's parent object, or prototype. Obviously everything the child object defines it has access to, but it also can climb up the prototype tree to access it's parent's (or ancesstor's) methods and properties.</p>
+      
+      <p><strong>(the obligatory animal) Example:</strong></p>
+      <pre class="highlight plaintext">function Animal(){&#x000A;  this.alive = true;&#x000A;}&#x000A;&#x000A;function Mammal() {&#x000A;  this.warmBlooded = true;&#x000A;  this.hasTail = false;&#x000A;  this.move = function(){&#x000A;    if(this.hasTail){&#x000A;      return "Moving...</pre>
+      <h2>
+        <a href="/blog/2014/explaination-of-this/">JS "this"</a>
       </h2>
       <p>Sep 29, 2014</p>
-      <script type="text/javascript">
-        $('a').on('click', function(event) { debugger });
-      </script>
-      
-      <p>The next question in the list of <a href="https://github.com/darcyclarke/Front-end-Developer-Interview-Questions">front end interview questions</a>:</p>
-      
       <h2>Explain how this works in JavaScript</h2>
       
       <p>Huh, well that's something I've been trying to figure out as I work with JS. <code>this</code> still doesn't make perfect sense to me. But here's my current understanding...</p>
       
       <p><strong><code>this</code> is the context the code is running in</strong></p>
       
-      <p>However, the context seems to change a lot, and I find it rather confusing. So I signed upf for an <a href="http://derickbailey.com/email-courses/masteringthis/">email series</a> on how <code>this</code> can change...</p>
+      <p>However, the context seems to change a lot, and I find it rather confusing. So I signed upf for an <a href="http://derickbailey.com/email-courses/masteringthis/">email series</a> on how <code>this</code> can change. Here's a sweeping overview of that series:</p>
+      
+      <ul>
+      <li>
+      <code>this</code> refers to the window</li>
+      </ul>
+      
+      <p>At it's simplest, <code>this</code> is the window itself without...</p>
       <h2>
         <a href="/blog/2014/event-delegation/">JS event delegation</a>
       </h2>
@@ -140,29 +169,8 @@
       </p>
       <p>
         I met a bunch of new people - many women programmers, and many people hoping to make programming more available through mentorship and code education. While I enjoyed meeting...</p>
-      <h2>
-        <a href="/blog/2014/Rails-Girls-Next/">Rails Girls Next</a>
-      </h2>
-      <p>Feb 19, 2014</p>
       <p>
-        Wahoo! Rails Girls Next happened without a (major) hitch today! I am so happy with how it went, and to have helped with these girls' continuing Ruby education.
-      </p>
-      <h2>
-        The event
-      </h2>
-      <p>
-        I've shared the <a href="https://docs.google.com/presentation/d/19Jj8I4CVRe8k2sP8m17PMk0PXwbY0646MxWDS6VJ5yo/edit?usp=sharing">slides</a> used for keeping track of time, so you can see the schedule we actually used on the day. We had <a href="http://lbain.github.io/rails-girls-next/">three exercises</a> for the girls to work through - test driven development (TDD), focused work with Ruby, and learning how the web works with Sinatra.
-      </p>
-      <p>
-        When the girls checked in they sat at one of six...</p>
-      <h2>
-        <a href="/blog/2014/udacity-study-group/">Starting a CS Study Group!</a>
-      </h2>
-      <p>Feb 13, 2014</p>
-      <p>
-        I've wanted to run a programming study group for quite a while. Although I love what <a href="http://railsgirls.com/">Rails Girls</a> and <a href="http://www.meetup.com/Ruby-On-Rails-Oceania-Sydney/">InstallFest</a> do, I think attendees find it quite hard to continue learning. They have some support from the community through initiatives like DevHub to continue working on projects and learning about Ruby and Rails. But there isn't a clear path for them to go down - <a href="http://blog.mediumequalsmessage.com/6-best-learning-ruby-books">books?</a> which ones? <a href="http://stackoverflow.com/questions/5732119/ruby-video-tutorials">videos?</a> by whom? <a href="https://www.learnstreet.com/cg/simple/projects/ruby">personal project?</a> what kind? I'd find <a href="http://iwanttolearnruby.com/">all the options</a> overwhelming. Even once you get started...</p>
-      <p>
-        Page 1 of 2
+        Page 1 of 3
       </p>
       <p><a href="/blog/page/2/">Next page</a></p>
     </div>

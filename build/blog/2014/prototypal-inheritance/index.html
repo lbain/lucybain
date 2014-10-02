@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='width=device-width, initial-scale=1' name='viewport'>
+    <meta charset='utf-8'>
+    <meta content='IE=edge,chrome=1' http-equiv='X-UA-Compatible'>
+    <link href='/images/favicon.ico' rel='icon' type='image/ico'>
+    <link href='http://fonts.googleapis.com/css?family=Crimson+Text:400,700|Nobile:400,700' rel='stylesheet' type='text/css'>
+    <title>JS prototypal inheritance</title>
+    <link href="/stylesheets/application-227798fd.css" media="screen" rel="stylesheet" type="text/css" />
+    <script src='//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js'></script>
+  </head>
+  <body class='blog blog_2014 blog_2014_prototypal-inheritance blog_2014_prototypal-inheritance_index'>
+    <div class='header'>
+      <div id='menu'>
+        <div class='nav-open'>
+          <ul>
+            <li></li>
+            <li></li>
+            <li></li>
+          </ul>
+        </div>
+        <ul class='nav'>
+          <li>
+            <a class="" href="/">Connect with me</a>
+          </li>
+          <li>
+            <a class="" href="/job/">My job</a>
+          </li>
+          <li>
+            <a class="" href="/resources/">Resources</a>
+          </li>
+          <li>
+            <a class=" active" href="/blog/">Blog</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <script>
+      $('#menu .nav-open').on('click', function(){
+        $('#menu .nav').toggleClass('open');
+      })
+    </script>
+    <div class='content'>
+      <h1>JS prototypal inheritance</h1>
+      <p>tags: <a href="/blog/tags/js/">js</a> and <a href="/blog/tags/interview-questions/">interview-questions</a></p>
+      <h2>Explain how prototypal inheritance works</h2>
+      
+      <p>JS objects each have a &quot;hook&quot; to it&#39;s parent object, or prototype. Obviously everything the child object defines it has access to, but it also can climb up the prototype tree to access it&#39;s parent&#39;s (or ancesstor&#39;s) methods and properties.</p>
+      
+      <p><strong>(the obligatory animal) Example:</strong></p>
+      <pre class="highlight plaintext">function Animal(){&#x000A;  this.alive = true;&#x000A;}&#x000A;&#x000A;function Mammal() {&#x000A;  this.warmBlooded = true;&#x000A;  this.hasTail = false;&#x000A;  this.move = function(){&#x000A;    if(this.hasTail){&#x000A;      return "Moving with tail";&#x000A;    } else {&#x000A;      return "Moving with tail";&#x000A;    }&#x000A;  };&#x000A;}&#x000A;Mammal.prototype = new Animal();&#x000A;&#x000A;function Cat(name) {&#x000A;  this.sound = 'Meow';&#x000A;  this.hasTail = true;&#x000A;  this.name = name;&#x000A;  this.greet = function() {&#x000A;    return "Hello, I'm " + this.name;&#x000A;  };&#x000A;}&#x000A;Cat.prototype = new Mammal();&#x000A;&#x000A;var mittens = new Cat('Mittens');&#x000A;&#x000A;mittens.sound; // returns 'Meow' (as defined on Cat)&#x000A;&#x000A;mittens.hasTail; // returns true (as defined on Cat)&#x000A;  // Although Mammal also defines hasTail, the Cat's&#x000A;  // definition takes precidence&#x000A;&#x000A;mittens.warmBlooded; // returns true (as defined on Mammal)&#x000A;&#x000A;mittens.alive; // returns true (as defined on Animal)&#x000A;&#x000A;mittens.greet() // returns "Hello, I'm Mittens"&#x000A;  // greet() accesses the "name" attribute defined on Cat&#x000A;&#x000A;mittens.move() // returns "Moving with tail"&#x000A;  // move() accesses the "hasTail" attribute which is defined&#x000A;  // on Cat and Mammal. Although Mammal defines the move function&#x000A;  // "this" refers to mittens, so move() uses mitten's "hasTail"&#x000A;  // attribute, which is set to true</pre>
+      <p>There&#39;s a longer explaination from <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Inheritance_and_the_prototype_chain">Mozilla</a>.</p>
+      <div id='disqus_thread'></div>
+      <script>
+        var disqus_shortname = 'lucybain';
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+      </script>
+      <noscript>
+        Please enable JavaScript to view the
+        <a href='http://disqus.com/?ref_noscript'>comments powered by Disqus.</a>
+      </noscript>
+      <a class='dsq-brlink' href='http://disqus.com'>
+        comments powered by
+        <span class='logo-disqus'>Disqus</span>
+      </a>
+      <script>
+        var disqus_shortname = 'lucybain';
+        (function () {
+            var s = document.createElement('script'); s.async = true;
+            s.type = 'text/javascript';
+            s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+            (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+        }());
+      </script>
+    </div>
+    
+  </body>
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    
+    ga('create', 'UA-45866381-1', 'lucybain.com');
+    ga('send', 'pageview');
+  </script>
+</html>
+
