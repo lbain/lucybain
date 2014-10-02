@@ -1,11 +1,7 @@
 ---
-title: "Explain how this works in JavaScript"
+title: 'JS "this"'
+tags: js, interview-questions
 ---
-<script type="text/javascript">
-  $('a').on('click', function(event) { debugger });
-</script>
-
-The next question in the list of [front end interview questions](https://github.com/darcyclarke/Front-end-Developer-Interview-Questions):
 
 ## Explain how this works in JavaScript
 

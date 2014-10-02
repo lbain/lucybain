@@ -1,5 +1,9 @@
 - wrap_layout :layout do
   %h1= current_page.data.title
+
+  - if current_page.methods.include?(:tags)
+    %p tags: #{ current_page.tags.map{ |tag| link_to "#{tag}", tag_path(tag) }.to_sentence }
+
   = find_and_preserve do
     = yield
 
@@ -35,10 +39,7 @@
           %li
             = link_to article.title, article
             %span= article.date.strftime('%b %e')
-      %h4 Tags
-      %ol
-        - blog.tags.each do |tag, articles|
-          %li= link_to "#{tag} (#{articles.size})", tag_path(tag)
+
       %h4 By Year
       %ol
         - blog.articles.group_by {|a| a.date.year }.each do |year, articles|
