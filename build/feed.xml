@@ -4,10 +4,104 @@
   <id>http://lucybain.com/blog</id>
   <link href="http://lucybain.com/blog"/>
   <link href="http://lucybain.com/feed.xml" rel="self"/>
-  <updated>2014-10-01T00:00:00Z</updated>
+  <updated>2014-10-06T00:00:00Z</updated>
   <author>
     <name>Lucy Bain</name>
   </author>
+  <entry>
+    <title>JS: null, undefined, and undeclared</title>
+    <link rel="alternate" href="http://lucybain.com/blog/2014/null-undefined-undeclared/"/>
+    <id>http://lucybain.com/blog/2014/null-undefined-undeclared/</id>
+    <published>2014-10-06T00:00:00Z</published>
+    <updated>2014-10-06T17:11:28+11:00</updated>
+    <author>
+      <name>Article Author</name>
+    </author>
+    <content type="html">&lt;h2&gt;What&amp;#39;s the difference between a variable that is: null, undefined, or undeclared?&lt;/h2&gt;
+
+&lt;p&gt;Here&amp;#39;s a &lt;a href="http://stackoverflow.com/a/834095/863846"&gt;TL;DR&lt;/a&gt; version I found quite useful when writing this.&lt;/p&gt;
+
+&lt;p&gt;I think they make more sense in the opposite order: undeclared, undefined, and null. That&amp;#39;s the order I&amp;#39;m going to tackle them anyways.&lt;/p&gt;
+
+&lt;p&gt;First up is &lt;strong&gt;&lt;code&gt;undeclared&lt;/code&gt;&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;A variable is undeclared when it does not use the &lt;code&gt;var&lt;/code&gt; keyword. It gets created on the global object (that is, the window), thus it operates in a different space as the declared variables.&lt;/p&gt;
+
+&lt;p&gt;Example:&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;undeclaredVariable = 1;
+var declaredVariable = 1;
+
+function changeVariables() {
+  undeclaredVariable = 2;
+  var declaredVariable = 2;
+  var undeclaredVariable = 3;
+}
+
+changeVariables();
+
+undeclaredVariable; // 2
+declaredVariable; //1
+&lt;/pre&gt;
+&lt;p&gt;For more discussion on undeclared variables, checkout &lt;a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/var"&gt;Mozilla&amp;#39;s documentation&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;br/&gt;&lt;/p&gt;
+
+&lt;p&gt;Now let&amp;#39;s move on to &lt;strong&gt;&lt;code&gt;undefined&lt;/code&gt;&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;Something is &lt;code&gt;undefined&lt;/code&gt; when it hasn&amp;#39;t been defined yet. If you call a variable or function without having actually created it yet the parser will give you an &lt;code&gt;not defined&lt;/code&gt; error.&lt;/p&gt;
+
+&lt;p&gt;Example:&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;var undefinedVariable; // ReferenceError: undefinedVariable is not defined
+typeof undefinedVariable; // "undefined"
+
+undefinedFunction(); // ReferenceError: undefinedFunction is not defined
+typeof undefinedFunction; // "undefined"
+&lt;/pre&gt;
+&lt;p&gt;Note that the &lt;code&gt;typeof&lt;/code&gt; returns &lt;code&gt;&amp;quot;undefined&amp;quot;&lt;/code&gt;, therefore &lt;code&gt;undefined&lt;/code&gt; is a primitive type.&lt;/p&gt;
+
+&lt;p&gt;The fix for an undefined variable or function is easy, simply define it:&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;var definedVariable = 'test';
+typeof definedVariable; // "string"
+
+function definedFunction(){
+  return "I'm defined!"
+}
+typeof definedFunction // "function"
+&lt;/pre&gt;
+&lt;p&gt;You can know if a variable is undefined with the following:&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;if (typeof(variable) !== "undefined") {
+  console.log('variable is not undefined');
+} else {
+  console.log('variable is undefined');
+}
+&lt;/pre&gt;
+&lt;p&gt;&lt;br/&gt;&lt;/p&gt;
+
+&lt;p&gt;Finally we&amp;#39;ll finish up with &lt;strong&gt;&lt;code&gt;null&lt;/code&gt;&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;null&lt;/code&gt; is a variable that is defined to have a null value.&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;var nullVariable = null; // null
+typeof nullVariable // "object"
+&lt;/pre&gt;
+&lt;p&gt;You probably don&amp;#39;t often purposefully define a variable to &lt;code&gt;null&lt;/code&gt;, but it may be the return value of a function. Often you&amp;#39;ll need to gaurd against &lt;code&gt;null&lt;/code&gt; values in your code.&lt;/p&gt;
+
+&lt;p&gt;You can know if a variable is null with the following:&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;if( variable || variable === false ) {
+  console.log('variable is not null');
+} else {
+  console.log('variable is null');
+}
+&lt;/pre&gt;
+&lt;p&gt;&lt;br/&gt;
+I think the order &amp;quot;undeclared, undefined, and null&amp;quot; makes sense since it&amp;#39;s increasing order of certainty.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;undeclared&lt;/code&gt; variables don&amp;#39;t even exist&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;undefined&lt;/code&gt; variables exist, but don&amp;#39;t have anything assigned to them&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;null&lt;/code&gt; variables exist and have null assigned to them&lt;/li&gt;
+&lt;/ul&gt;
+</content>
+  </entry>
   <entry>
     <title>JS Immediately Invoked Function Expressions</title>
     <link rel="alternate" href="http://lucybain.com/blog/2014/immediately-invoked-function-expression/"/>
@@ -417,58 +511,6 @@ mittens.move() // returns "Moving with tail"
   Putting it all together, the final key bindings look like this:
 &lt;/p&gt;
 &lt;pre class="highlight json"&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;"keys"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;"super+b"&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;&lt;span class="w"&gt;&amp;#x000A;  &lt;/span&gt;&lt;span class="s2"&gt;"command"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;"run_macro_file"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt;&amp;#x000A;  &lt;/span&gt;&lt;span class="s2"&gt;"args"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="s2"&gt;"file"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;"Packages/User/add_binding.sublime-macro"&lt;/span&gt;&lt;span class="p"&gt;},&lt;/span&gt;&lt;span class="w"&gt;&amp;#x000A;  &lt;/span&gt;&lt;span class="s2"&gt;"context"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;[{&lt;/span&gt;&lt;span class="s2"&gt;"key"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;"selector"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;"operator"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;"equal"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;"operand"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;"source.ruby,source.ruby.rails"&lt;/span&gt;&lt;span class="p"&gt;}]&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;&lt;span class="err"&gt;,&lt;/span&gt;&lt;span class="w"&gt;&amp;#x000A;&amp;#x000A;&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;"keys"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;"super+b"&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;&lt;span class="w"&gt;&amp;#x000A;  &lt;/span&gt;&lt;span class="s2"&gt;"command"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;"run_macro_file"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt;&amp;#x000A;  &lt;/span&gt;&lt;span class="s2"&gt;"args"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="s2"&gt;"file"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;"Packages/User/add_haml_binding.sublime-macro"&lt;/span&gt;&lt;span class="p"&gt;},&lt;/span&gt;&lt;span class="w"&gt;&amp;#x000A;  &lt;/span&gt;&lt;span class="s2"&gt;"context"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;[{&lt;/span&gt;&lt;span class="s2"&gt;"key"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;"selector"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;"operator"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;"equal"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;"operand"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;"text.haml"&lt;/span&gt;&lt;span class="p"&gt;}]&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;&lt;span class="err"&gt;,&lt;/span&gt;&lt;span class="w"&gt;&amp;#x000A;&amp;#x000A;&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;"keys"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;"super+b"&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;&lt;span class="w"&gt;&amp;#x000A;  &lt;/span&gt;&lt;span class="s2"&gt;"command"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;"run_macro_file"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt;&amp;#x000A;  &lt;/span&gt;&lt;span class="s2"&gt;"args"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="s2"&gt;"file"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;"Packages/User/add_debugger.sublime-macro"&lt;/span&gt;&lt;span class="p"&gt;},&lt;/span&gt;&lt;span class="w"&gt;&amp;#x000A;  &lt;/span&gt;&lt;span class="s2"&gt;"context"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;[{&lt;/span&gt;&lt;span class="s2"&gt;"key"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;"selector"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;"operator"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;"equal"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;"operand"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;"source.js,source.coffee"&lt;/span&gt;&lt;span class="p"&gt;}]&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;&lt;span class="w"&gt;&amp;#x000A;&lt;/span&gt;&lt;/pre&gt;
-</content>
-  </entry>
-  <entry>
-    <title>Next up: Front end</title>
-    <link rel="alternate" href="http://lucybain.com/blog/2014/front-end/"/>
-    <id>http://lucybain.com/blog/2014/front-end/</id>
-    <published>2014-03-13T00:00:00Z</published>
-    <updated>2014-03-27T10:32:57+11:00</updated>
-    <author>
-      <name>Article Author</name>
-    </author>
-    <content type="html">&lt;p&gt;
-  For the next 12-14 months I'd like to learn front end dev.
-&lt;/p&gt;
-&lt;p&gt;
-  I've been doing Rails for a little over 2 years now, and almost all of my training and experience has been heavily back end oriented. Pretty much everything I learned at uni was for back end languages and processes. I took all the web courses that were offered, but they didn't focus heavily on JS or CSS - although they did expose me to those concepts. Certainly everything I've done since uni has been back end (just a bit of Python, and then Ruby on Rails). I've learned heaps from this - MVC architecture, better programming design principles, some pretty awesome tricks Ruby can do, and a bunch more.
-&lt;/p&gt;
-&lt;p&gt;
-  But I'd like to try my hand at some front end development. I think there's something satisfying to knowing people are seeing and interacting with what you're building - that happens more for front end. There's also a lot to learn about user interface design, and how to think like a user. It's also something that's definitely missing from my abilities. I always get a bit nervous when I need to do some front end tweaks, and any CSS change takes way longer than it really needs to. I'd like to move a bit closer to being "full stack" and not just boxing myself in to RoR back end.
-&lt;/p&gt;
-&lt;p&gt;
-  So. What to do? I'm going to finish the &lt;a href="https://www.udacity.com/course/cs101"&gt;Python 101&lt;/a&gt; &lt;a href="/resources/udacity-python-study-group/"&gt;study group&lt;/a&gt; I organized. Just keeping up with the lectures for this class is taking a fair bit of time in the evenings. But then after that I'm planning on focusing on JS, CSS, and HTML with the goal of getting a front end job after a year.
-&lt;/p&gt;
-&lt;p&gt;
-  I'm not really sure the best way to do that though. Some possible resources:
-&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;a href="http://www.codecademy.com/"&gt;codecademy.com&lt;/a&gt; JS, jQuery, and HTML tracks
-  &lt;/li&gt;
-  &lt;li&gt;
-    Getting a &lt;a href="https://github.com/sydjs/sydjs/wiki/Available-mentors"&gt;mentor&lt;/a&gt; from the SydJS community
-  &lt;/li&gt;
-  &lt;li&gt;
-    Udacity's &lt;a href="https://www.udacity.com/course/cs256"&gt;Mobile Web Development&lt;/a&gt; to focus on responsive CSS
-  &lt;/li&gt;
-  &lt;li&gt;
-    Udacity's &lt;a href="https://www.udacity.com/course/cs255"&gt;HTML5 Game Development&lt;/a&gt; focusing on... HTML5
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;a href="http://shop.oreilly.com/product/9780596517748.do"&gt;JavaScript: The Good Parts&lt;/a&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;a href="http://shop.oreilly.com/product/9780596805531.do"&gt;JavaScript: The Definitive Guide&lt;/a&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    And of course a series of exercises to practice and build a portfolio of sorts. Not sure exactly what this is going to entail...
-  &lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;
-  Do you have any suggestions? I'd love to work with a pretty clear plan, a curriculum if you will, and any ideas would be appreciated. Thank you!
-&lt;/p&gt;
 </content>
   </entry>
 </feed>
