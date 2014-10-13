@@ -7,7 +7,7 @@
     <link href='/images/favicon.ico' rel='icon' type='image/ico'>
     <link href='http://fonts.googleapis.com/css?family=Crimson+Text:400,700|Nobile:400,700' rel='stylesheet' type='text/css'>
     <title>JS "this"</title>
-    <link href="/stylesheets/application-227798fd.css" media="screen" rel="stylesheet" type="text/css" />
+    <link href="/stylesheets/application-facefa7a.css" media="screen" rel="stylesheet" type="text/css" />
     <script src='//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js'></script>
   </head>
   <body class='blog blog_2014 blog_2014_explaination-of-this blog_2014_explaination-of-this_index'>
@@ -42,66 +42,68 @@
       })
     </script>
     <div class='content'>
-      <h1>JS "this"</h1>
-      <p>tags: <a href="/blog/tags/js/">js</a> and <a href="/blog/tags/interview-questions/">interview-questions</a></p>
-      <h2>Explain how this works in JavaScript</h2>
-      
-      <p>Huh, well that&#39;s something I&#39;ve been trying to figure out as I work with JS. <code>this</code> still doesn&#39;t make perfect sense to me. But here&#39;s my current understanding...</p>
-      
-      <p><strong><code>this</code> is the context the code is running in</strong></p>
-      
-      <p>However, the context seems to change a lot, and I find it rather confusing. So I signed upf for an <a href="http://derickbailey.com/email-courses/masteringthis/">email series</a> on how <code>this</code> can change. Here&#39;s a sweeping overview of that series:</p>
-      
-      <ul>
-      <li><code>this</code> refers to the window</li>
-      </ul>
-      
-      <p>At it&#39;s simplest, <code>this</code> is the window itself without anything fancy going on. You can call <code>this</code> in the console directly and get Window.</p>
-      
-      <ul>
-      <li><code>this</code> refers to the object it&#39;s being called from</li>
-      </ul>
-      <pre class="highlight javascript"><span class="kd">function</span> <span class="nx">currentYear</span><span class="p">()</span> <span class="p">{</span>&#x000A;  <span class="k">return</span> <span class="mi">2014</span><span class="p">;</span>&#x000A;<span class="p">}</span>&#x000A;<span class="kd">var</span> <span class="nx">person</span> <span class="o">=</span> <span class="p">{</span> <span class="na">birthYear</span><span class="p">:</span> <span class="mi">1977</span><span class="p">,</span>&#x000A;               <span class="na">getAge</span><span class="p">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>&#x000A;                 <span class="k">return</span> <span class="nx">currentYear</span><span class="p">()</span> <span class="o">-</span> <span class="k">this</span><span class="p">.</span><span class="nx">birthYear</span><span class="p">;</span>&#x000A;               <span class="p">}</span>&#x000A;             <span class="p">};</span>&#x000A;<span class="nx">person</span><span class="p">.</span><span class="nx">getAge</span><span class="p">();</span>&#x000A;<span class="c1">// returns 37&#x000A;</span></pre>
-      <p>You can see the call to <code>this.birthYear</code> in the <code>getAge</code> function references the <code>person</code>&#39;s <code>birthYear</code>. That is the <code>this</code> refers to it&#39;s parent object. As a Ruby developer <code>this</code> is similar to <code>self</code>.</p>
-      
-      <ul>
-      <li><code>this</code> refers to the element the event is bound to</li>
-      </ul>
-      <pre class="highlight javascript"><span class="nx">$</span><span class="p">(</span><span class="s1">'a'</span><span class="p">).</span><span class="nx">on</span><span class="p">(</span><span class="s1">'click'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>&#x000A;  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">target</span> <span class="o">===</span> <span class="k">this</span><span class="p">);</span> <span class="c1">// logs true&#x000A;</span><span class="p">});</span></pre>
-      <p>Here the <code>this</code> refers to the link the user clicked on, just like <code>event.target</code></p>
-      
-      <ul>
-      <li><code>this</code> refers to the context that was explicitly set</li>
-      </ul>
-      
-      <p>Apparently you can use <code>call</code> or <code>apply</code> and pass a context explicitly. In that case <code>this</code> refers to the passed context.</p>
-      <pre class="highlight javascript"><span class="kd">function</span> <span class="nx">greeter</span><span class="p">(){</span>&#x000A;  <span class="k">return</span> <span class="s1">'Hello '</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">+</span> <span class="s1">'!'</span><span class="p">;</span>&#x000A;<span class="p">}</span>&#x000A;&#x000A;<span class="kd">var</span> <span class="nx">passableContext</span> <span class="o">=</span> <span class="p">{</span> <span class="na">name</span><span class="p">:</span> <span class="s1">'world'</span> <span class="p">};</span>&#x000A;<span class="nx">greeter</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">passableContext</span><span class="p">)</span>&#x000A;<span class="c1">// returns 'Hello world!'&#x000A;</span></pre>
-      <div id='disqus_thread'></div>
-      <script>
-        var disqus_shortname = 'lucybain';
-        (function() {
-            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-        })();
-      </script>
-      <noscript>
-        Please enable JavaScript to view the
-        <a href='http://disqus.com/?ref_noscript'>comments powered by Disqus.</a>
-      </noscript>
-      <a class='dsq-brlink' href='http://disqus.com'>
-        comments powered by
-        <span class='logo-disqus'>Disqus</span>
-      </a>
-      <script>
-        var disqus_shortname = 'lucybain';
-        (function () {
-            var s = document.createElement('script'); s.async = true;
-            s.type = 'text/javascript';
-            s.src = '//' + disqus_shortname + '.disqus.com/count.js';
-            (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
-        }());
-      </script>
+      <div class=''>
+        <h1>JS "this"</h1>
+        <p>tags: <a href="/blog/tags/js/">js</a> and <a href="/blog/tags/interview-questions/">interview-questions</a></p>
+        <h2>Explain how this works in JavaScript</h2>
+        
+        <p>Huh, well that&#39;s something I&#39;ve been trying to figure out as I work with JS. <code>this</code> still doesn&#39;t make perfect sense to me. But here&#39;s my current understanding...</p>
+        
+        <p><strong><code>this</code> is the context the code is running in</strong></p>
+        
+        <p>However, the context seems to change a lot, and I find it rather confusing. So I signed upf for an <a href="http://derickbailey.com/email-courses/masteringthis/">email series</a> on how <code>this</code> can change. Here&#39;s a sweeping overview of that series:</p>
+        
+        <ul>
+        <li><code>this</code> refers to the window</li>
+        </ul>
+        
+        <p>At it&#39;s simplest, <code>this</code> is the window itself without anything fancy going on. You can call <code>this</code> in the console directly and get Window.</p>
+        
+        <ul>
+        <li><code>this</code> refers to the object it&#39;s being called from</li>
+        </ul>
+        <pre class="highlight javascript"><span class="kd">function</span> <span class="nx">currentYear</span><span class="p">()</span> <span class="p">{</span>&#x000A;  <span class="k">return</span> <span class="mi">2014</span><span class="p">;</span>&#x000A;<span class="p">}</span>&#x000A;<span class="kd">var</span> <span class="nx">person</span> <span class="o">=</span> <span class="p">{</span> <span class="na">birthYear</span><span class="p">:</span> <span class="mi">1977</span><span class="p">,</span>&#x000A;               <span class="na">getAge</span><span class="p">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>&#x000A;                 <span class="k">return</span> <span class="nx">currentYear</span><span class="p">()</span> <span class="o">-</span> <span class="k">this</span><span class="p">.</span><span class="nx">birthYear</span><span class="p">;</span>&#x000A;               <span class="p">}</span>&#x000A;             <span class="p">};</span>&#x000A;<span class="nx">person</span><span class="p">.</span><span class="nx">getAge</span><span class="p">();</span>&#x000A;<span class="c1">// returns 37&#x000A;</span></pre>
+        <p>You can see the call to <code>this.birthYear</code> in the <code>getAge</code> function references the <code>person</code>&#39;s <code>birthYear</code>. That is the <code>this</code> refers to it&#39;s parent object. As a Ruby developer <code>this</code> is similar to <code>self</code>.</p>
+        
+        <ul>
+        <li><code>this</code> refers to the element the event is bound to</li>
+        </ul>
+        <pre class="highlight javascript"><span class="nx">$</span><span class="p">(</span><span class="s1">'a'</span><span class="p">).</span><span class="nx">on</span><span class="p">(</span><span class="s1">'click'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>&#x000A;  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">target</span> <span class="o">===</span> <span class="k">this</span><span class="p">);</span> <span class="c1">// logs true&#x000A;</span><span class="p">});</span></pre>
+        <p>Here the <code>this</code> refers to the link the user clicked on, just like <code>event.target</code></p>
+        
+        <ul>
+        <li><code>this</code> refers to the context that was explicitly set</li>
+        </ul>
+        
+        <p>Apparently you can use <code>call</code> or <code>apply</code> and pass a context explicitly. In that case <code>this</code> refers to the passed context.</p>
+        <pre class="highlight javascript"><span class="kd">function</span> <span class="nx">greeter</span><span class="p">(){</span>&#x000A;  <span class="k">return</span> <span class="s1">'Hello '</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">+</span> <span class="s1">'!'</span><span class="p">;</span>&#x000A;<span class="p">}</span>&#x000A;&#x000A;<span class="kd">var</span> <span class="nx">passableContext</span> <span class="o">=</span> <span class="p">{</span> <span class="na">name</span><span class="p">:</span> <span class="s1">'world'</span> <span class="p">};</span>&#x000A;<span class="nx">greeter</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">passableContext</span><span class="p">)</span>&#x000A;<span class="c1">// returns 'Hello world!'&#x000A;</span></pre>
+        <div id='disqus_thread'></div>
+        <script>
+          var disqus_shortname = 'lucybain';
+          (function() {
+              var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+              dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+              (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+          })();
+        </script>
+        <noscript>
+          Please enable JavaScript to view the
+          <a href='http://disqus.com/?ref_noscript'>comments powered by Disqus.</a>
+        </noscript>
+        <a class='dsq-brlink' href='http://disqus.com'>
+          comments powered by
+          <span class='logo-disqus'>Disqus</span>
+        </a>
+        <script>
+          var disqus_shortname = 'lucybain';
+          (function () {
+              var s = document.createElement('script'); s.async = true;
+              s.type = 'text/javascript';
+              s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+              (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+          }());
+        </script>
+      </div>
     </div>
     
   </body>

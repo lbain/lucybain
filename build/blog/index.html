@@ -7,7 +7,7 @@
     <link href='/images/favicon.ico' rel='icon' type='image/ico'>
     <link href='http://fonts.googleapis.com/css?family=Crimson+Text:400,700|Nobile:400,700' rel='stylesheet' type='text/css'>
     <title>Lucy Bain</title>
-    <link href="/stylesheets/application-227798fd.css" media="screen" rel="stylesheet" type="text/css" />
+    <link href="/stylesheets/application-facefa7a.css" media="screen" rel="stylesheet" type="text/css" />
     <script src='//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js'></script>
   </head>
   <body class='blog blog_index'>
@@ -42,142 +42,101 @@
       })
     </script>
     <div class='content'>
-      <h1></h1>
-      <h2>
-        <a href="/blog/2014/null-undefined-undeclared/">JS: null, undefined, and undeclared</a>
-      </h2>
-      <p>Oct  6, 2014</p>
-      <h2>What's the difference between a variable that is: null, undefined, or undeclared?</h2>
-      
-      <p>Here's a <a href="http://stackoverflow.com/a/834095/863846">TL;DR</a> version I found quite useful when writing this.</p>
-      
-      <p>I think they make more sense in the opposite order: undeclared, undefined, and null. That's the order I'm going to tackle them anyways.</p>
-      
-      <p>First up is <strong><code>undeclared</code></strong>.</p>
-      
-      <p>A variable is undeclared when it does not use the <code>var</code> keyword. It gets created on the global object (that is, the window), thus it operates in a different space as the declared variables.</p>
-      ...
-      <h2>
-        <a href="/blog/2014/immediately-invoked-function-expression/">JS Immediately Invoked Function Expressions</a>
-      </h2>
-      <p>Oct  1, 2014</p>
-      <h2>Explain why the following doesn't work as an IIFE: <code>function foo(){ }();</code>
-      </h2>
-      
-      <p><em>What does "IIFE" even stand for?</em></p>
-      
-      <p>IIFE stands for Immediately Invoked Function Expressions</p>
-      
-      <p><em>Great, so what are IIFEs?</em></p>
-      
-      <p>An IIFE is an anonymous function that is created and then immediately invoked. It's not called from anywhere else (hence why it's anonymous), but runs just after being created.</p>
-      
-      <p>Example:</p>
-      <pre class="highlight plaintext">(function () {&#x000A;  return 5;&#x000A;} ());&#x000A;// returns 5 right away</pre>
-      <p>They can be used to guard against <strong>unintended effects of hoisting...</strong></p>
-      <h2>
-        <a href="/blog/2014/prototypal-inheritance/">JS prototypal inheritance</a>
-      </h2>
-      <p>Sep 30, 2014</p>
-      <h2>Explain how prototypal inheritance works</h2>
-      
-      <p>JS objects each have a "hook" to it's parent object, or prototype. Obviously everything the child object defines it has access to, but it also can climb up the prototype tree to access it's parent's (or ancesstor's) methods and properties.</p>
-      
-      <p><strong>(the obligatory animal) Example:</strong></p>
-      <pre class="highlight plaintext">function Animal(){&#x000A;  this.alive = true;&#x000A;}&#x000A;&#x000A;function Mammal() {&#x000A;  this.warmBlooded = true;&#x000A;  this.hasTail = false;&#x000A;  this.move = function(){&#x000A;    if(this.hasTail){&#x000A;      return "Moving...</pre>
-      <h2>
-        <a href="/blog/2014/explaination-of-this/">JS "this"</a>
-      </h2>
-      <p>Sep 29, 2014</p>
-      <h2>Explain how this works in JavaScript</h2>
-      
-      <p>Huh, well that's something I've been trying to figure out as I work with JS. <code>this</code> still doesn't make perfect sense to me. But here's my current understanding...</p>
-      
-      <p><strong><code>this</code> is the context the code is running in</strong></p>
-      
-      <p>However, the context seems to change a lot, and I find it rather confusing. So I signed upf for an <a href="http://derickbailey.com/email-courses/masteringthis/">email series</a> on how <code>this</code> can change. Here's a sweeping overview of that series:</p>
-      
-      <ul>
-      <li>
-      <code>this</code> refers to the window</li>
-      </ul>
-      
-      <p>At it's simplest, <code>this</code> is the window itself without...</p>
-      <h2>
-        <a href="/blog/2014/event-delegation/">JS event delegation</a>
-      </h2>
-      <p>Sep 25, 2014</p>
-      <p>
-        I'm continuing my JS learning and found a list of <a href="https://github.com/darcyclarke/Front-end-Developer-Interview-Questions">front end interview questions</a>. There's a section devoted to JS on there for me to work through. If they're important enough to know in an interview I should probably know about them too.
-      </p>
-      <h2>Explain event delegation</h2>
-      <p>
-        Well I'm glad you asked. As it turns out we covered this topic in my <a href="http://codesydney.com">JS study group</a> when I wrote my <a href="code-sydney-work/tic-tac-toe/">Tic Tac Toe game.</a>
-      </p>
-      <p>
-        Event delegation is when you bind an event listener to a parent (or ancestor) element rather than the element...</p>
-      <h2>
-        <a href="/blog/2014/sublime-macros/">Sublime Text Macros</a>
-      </h2>
-      <p>Jun 18, 2014</p>
-      <p>
-        My coworker users vim, and has a snazzy macro to put a <code>binding.pry</code> wherever he using a keyboad shortcut. I thought it was a neat trick (and he mentioned something about Sublime not being a real editor), so I decided to implement it for Sublime as well.
-      </p>
-      <p>
-        I looked up <a href="http://docs.sublimetext.info/en/latest/extensibility/macros.html">how to make macros</a> and wrote one for adding <code>binding.pry</code>. Basically you need to use <code>control + q</code> to start and stop your macro recording. Then you save the macro by going to <code>Tools/Save Macro...</code>. You should name it something memerable...</p>
-      <h2>
-        <a href="/blog/2014/front-end/">Next up: Front end</a>
-      </h2>
-      <p>Mar 13, 2014</p>
-      <p>
-        For the next 12-14 months I'd like to learn front end dev.
-      </p>
-      <p>
-        I've been doing Rails for a little over 2 years now, and almost all of my training and experience has been heavily back end oriented. Pretty much everything I learned at uni was for back end languages and processes. I took all the web courses that were offered, but they didn't focus heavily on JS or CSS - although they did expose me to those concepts. Certainly everything I've done since uni has been back end (just a bit of Python...</p>
-      <h2>
-        <a href="/blog/2014/RubyConf-a-look-back/">RubyConf - a look back</a>
-      </h2>
-      <p>Mar  7, 2014</p>
-      <p>
-        It's been almost 3 weeks since RubyConf. Feels like longer. I wrote a <a href="/blog/2014/RubyConfAU/">quick review</a> after the event, but that post didn't do RubyConf justice.
-      </p>
-      <p>
-        Really, I'm not sure what made RubyConf so great. The talks? Meeting new people? Chatting with existing friends? Learning? Seeing so many people interested in the same thing? I don't know. Everything there was pretty amazing.
-      </p>
-      <p>
-        But for me, the most amazing part was what happened when I left. When I went back to work. When the talks were over, and...</p>
-      <h2>
-        <a href="/blog/2014/Sublime-Auto-Indent/">Sublime Auto Indent</a>
-      </h2>
-      <p>Feb 27, 2014</p>
-      <p>
-        I recently discovered how to get Sublime to fix indentations for you! Since I spend a certain amount of time each day pushing characters left and right this was pretty exciting. Hope you find it useful!
-      </p>
-      <p>
-        In Sublime, under <code>Preference</code> select <code>Key Bindings - User</code>. If you've got anything in there already, just add the <code>{ "keys"... }</code> section below. Otherwise you can replace the <code>[]</code> with:
-      </p>
-      <pre class="highlight plaintext">[&#x000A;  { "keys": ["super+i"],&#x000A;    "command": "reindent"}&#x000A;]</pre>
-      <p>
-        Now you can use <code>cmd + i</code> (mac), or <code>ctrl + i</code> (windows...</p>
-      <h2>
-        <a href="/blog/2014/getting-start-on-twitter/">Getting Started on Twitter</a>
-      </h2>
-      <p>Feb 25, 2014</p>
-      <p>
-        A friend of mine recently got set up with Twitter and asked for some pointers. Another friend complemented me on my feed. I felt flattered, and wanted to make how I use Twitter public.
-      </p>
-      <p>
-        There are <em>many</em> sites out there to help you use Twitter more effectively. I do not believe what I have to say is better or more relevant, this is just written from one friend to another, I hope you find it helpful.
-      </p>
-      <h2>
-        The basics
-      </h2>
-      <p>
-        There are a few starting points you should know about Twitter. Once you've...</p>
-      <p>
-        Page 1 of 3
-      </p>
-      <p><a href="/blog/page/2/">Next page</a></p>
+      <div class=''>
+        <h1></h1>
+        <h2>
+          <a href="/blog/2014/timeline-of-computer-science/">A display of Scott Aaronson's Timeline of computer science</a>
+        </h2>
+        <p>Oct 13, 2014</p>
+        <p>
+          The timeline might take some time to load, please be patient. I did not pick any of these events, they come directly from <a href="http://www.scottaaronson.com/blog/?p=524">Scott Aaronson's Timeline of computer science</a>, please don't hate on the events chosen. The timeline is made by <a href="http://timeline.knightlab.com/">TimelineJS</a>,...</p>
+        <h2>
+          <a href="/blog/2014/null-undefined-undeclared/">JS: null, undefined, and undeclared</a>
+        </h2>
+        <p>Oct  6, 2014</p>
+        <h2>What's the difference between a variable that is: null, undefined, or undeclared?</h2>
+        
+        <p>Here's a <a href="http://stackoverflow.com/a/834095/863846">TL;DR</a> version I found quite useful when writing this.</p>
+        
+        <p>I think they make more sense in the opposite order: undeclared, undefined, and null. That's the order...</p>
+        <h2>
+          <a href="/blog/2014/immediately-invoked-function-expression/">JS Immediately Invoked Function Expressions</a>
+        </h2>
+        <p>Oct  1, 2014</p>
+        <h2>Explain why the following doesn't work as an IIFE: <code>function foo(){ }();</code>
+        </h2>
+        
+        <p><em>What does "IIFE" even stand for?</em></p>
+        
+        <p>IIFE stands for Immediately Invoked Function Expressions</p>
+        
+        <p><em>Great, so what are IIFEs?</em></p>
+        
+        <p>An IIFE is an anonymous function that is created and then...</p>
+        <h2>
+          <a href="/blog/2014/prototypal-inheritance/">JS prototypal inheritance</a>
+        </h2>
+        <p>Sep 30, 2014</p>
+        <h2>Explain how prototypal inheritance works</h2>
+        
+        <p>JS objects each have a "hook" to it's parent object, or prototype. Obviously everything the child object defines it has access to, but it also can climb up the prototype tree to access it's parent's (or ancesstor...</p>
+        <h2>
+          <a href="/blog/2014/explaination-of-this/">JS "this"</a>
+        </h2>
+        <p>Sep 29, 2014</p>
+        <h2>Explain how this works in JavaScript</h2>
+        
+        <p>Huh, well that's something I've been trying to figure out as I work with JS. <code>this</code> still doesn't make perfect sense to me. But here's my current understanding...</p>
+        
+        <p><strong><code>this</code> is the context the code is running in</strong></p>
+        
+        <p>However...</p>
+        <h2>
+          <a href="/blog/2014/event-delegation/">JS event delegation</a>
+        </h2>
+        <p>Sep 25, 2014</p>
+        <p>
+          I'm continuing my JS learning and found a list of <a href="https://github.com/darcyclarke/Front-end-Developer-Interview-Questions">front end interview questions</a>. There's a section devoted to JS on there for me to work through. If they're important enough to know in an interview I should probably know about them too.
+        </p>
+        <h2>Explain...</h2>
+        <h2>
+          <a href="/blog/2014/sublime-macros/">Sublime Text Macros</a>
+        </h2>
+        <p>Jun 18, 2014</p>
+        <p>
+          My coworker users vim, and has a snazzy macro to put a <code>binding.pry</code> wherever he using a keyboad shortcut. I thought it was a neat trick (and he mentioned something about Sublime not being a real editor), so I decided to implement it for Sublime as...</p>
+        <h2>
+          <a href="/blog/2014/front-end/">Next up: Front end</a>
+        </h2>
+        <p>Mar 13, 2014</p>
+        <p>
+          For the next 12-14 months I'd like to learn front end dev.
+        </p>
+        <p>
+          I've been doing Rails for a little over 2 years now, and almost all of my training and experience has been heavily back end oriented. Pretty much everything I learned at uni was for...</p>
+        <h2>
+          <a href="/blog/2014/RubyConf-a-look-back/">RubyConf - a look back</a>
+        </h2>
+        <p>Mar  7, 2014</p>
+        <p>
+          It's been almost 3 weeks since RubyConf. Feels like longer. I wrote a <a href="/blog/2014/RubyConfAU/">quick review</a> after the event, but that post didn't do RubyConf justice.
+        </p>
+        <p>
+          Really, I'm not sure what made RubyConf so great. The talks? Meeting new people? Chatting with existing...</p>
+        <h2>
+          <a href="/blog/2014/Sublime-Auto-Indent/">Sublime Auto Indent</a>
+        </h2>
+        <p>Feb 27, 2014</p>
+        <p>
+          I recently discovered how to get Sublime to fix indentations for you! Since I spend a certain amount of time each day pushing characters left and right this was pretty exciting. Hope you find it useful!
+        </p>
+        <p>
+          In Sublime, under <code>Preference</code> select <code>Key...</code></p>
+        <p>
+          Page 1 of 3
+        </p>
+        <p><a href="/blog/page/2/">Next page</a></p>
+      </div>
     </div>
     
   </body>

@@ -4,10 +4,27 @@
   <id>http://lucybain.com/blog</id>
   <link href="http://lucybain.com/blog"/>
   <link href="http://lucybain.com/feed.xml" rel="self"/>
-  <updated>2014-10-06T00:00:00Z</updated>
+  <updated>2014-10-13T00:00:00Z</updated>
   <author>
     <name>Lucy Bain</name>
   </author>
+  <entry>
+    <title>A display of Scott Aaronson's Timeline of computer science</title>
+    <link rel="alternate" href="http://lucybain.com/blog/2014/timeline-of-computer-science/"/>
+    <id>http://lucybain.com/blog/2014/timeline-of-computer-science/</id>
+    <published>2014-10-13T00:00:00Z</published>
+    <updated>2014-10-13T17:55:06+11:00</updated>
+    <author>
+      <name>Article Author</name>
+    </author>
+    <content type="html">&lt;p&gt;
+  The timeline might take some time to load, please be patient. I did not pick any of these events, they come directly from &lt;a href="http://www.scottaaronson.com/blog/?p=524"&gt;Scott Aaronson's Timeline of computer science&lt;/a&gt;, please don't hate on the events chosen. The timeline is made by &lt;a href="http://timeline.knightlab.com/"&gt;TimelineJS&lt;/a&gt;, please check it out!
+&lt;/p&gt;
+&lt;div class='timeline'&gt;
+  &lt;iframe src='http://cdn.knightlab.com/libs/timeline/latest/embed/index.html?source=0AlyQ63WYoWl7dFVGSV95TmRyeFFNcVdNbWkzb2RPMXc&amp;font=Bevan-PotanoSans&amp;maptype=toner&amp;lang=en&amp;height=650' width='100%' height='650' frameborder='0'&gt;&lt;/iframe&gt;
+&lt;/div&gt;
+</content>
+  </entry>
   <entry>
     <title>JS: null, undefined, and undeclared</title>
     <link rel="alternate" href="http://lucybain.com/blog/2014/null-undefined-undeclared/"/>
@@ -471,46 +488,6 @@ mittens.move() // returns "Moving with tail"
 &lt;p&gt;
   For my Tic Tac Toe game I listened to all click events on the board, and then checked the particular cell they clicked on, rather than listening for events on all the cells at once.
 &lt;/p&gt;
-</content>
-  </entry>
-  <entry>
-    <title>Sublime Text Macros</title>
-    <link rel="alternate" href="http://lucybain.com/blog/2014/sublime-macros/"/>
-    <id>http://lucybain.com/blog/2014/sublime-macros/</id>
-    <published>2014-06-18T00:00:00Z</published>
-    <updated>2014-06-18T13:23:40+10:00</updated>
-    <author>
-      <name>Article Author</name>
-    </author>
-    <content type="html">&lt;p&gt;
-  My coworker users vim, and has a snazzy macro to put a &lt;code&gt;binding.pry&lt;/code&gt; wherever he using a keyboad shortcut. I thought it was a neat trick (and he mentioned something about Sublime not being a real editor), so I decided to implement it for Sublime as well.
-&lt;/p&gt;
-&lt;p&gt;
-  I looked up &lt;a href="http://docs.sublimetext.info/en/latest/extensibility/macros.html"&gt;how to make macros&lt;/a&gt; and wrote one for adding &lt;code&gt;binding.pry&lt;/code&gt;. Basically you need to use &lt;code&gt;control + q&lt;/code&gt; to start and stop your macro recording. Then you save the macro by going to &lt;code&gt;Tools/Save Macro...&lt;/code&gt;. You should name it something memerable, like &lt;code&gt;add_binding&lt;/code&gt;.
-&lt;/p&gt;
-&lt;p&gt;
-  Ok, now we've got our macro, and you can invoke it by going to &lt;code&gt;Tools/Macros/User/add_macro&lt;/code&gt;. (Note: you might need to restart Sublime first.) But going to the menu each time is lame, we're better than that.
-&lt;/p&gt;
-&lt;p&gt;
-  Let's add a key binding!
-&lt;/p&gt;
-&lt;p&gt;
-  I've done &lt;a href="http://docs.sublimetext.info/en/latest/customization/key_bindings.html"&gt;key bindings&lt;/a&gt; in the &lt;a href="/blog/2014/Sublime-Auto-Indent/"&gt;past&lt;/a&gt;, but not &lt;a href="http://superuser.com/questions/609057/how-do-i-assign-a-keyboard-shortcut-to-recorded-macro-in-sublime-text"&gt;with macros&lt;/a&gt;. I chose to use &lt;code&gt;command + b&lt;/code&gt; for mine (you might have that map to build, just a heads up...). So my key binding looked like this:
-&lt;/p&gt;
-&lt;pre class="highlight json"&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;"keys"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;"super+b"&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;&lt;span class="w"&gt;&amp;#x000A;  &lt;/span&gt;&lt;span class="s2"&gt;"command"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;"run_macro_file"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt;&amp;#x000A;  &lt;/span&gt;&lt;span class="s2"&gt;"args"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="s2"&gt;"file"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;"Packages/User/add_binding.sublime-macro"&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;&lt;span class="w"&gt;&amp;#x000A;&lt;/span&gt;&lt;/pre&gt;
-&lt;p&gt;
-  Awesome, now &lt;code&gt;command + b&lt;/code&gt; will add a &lt;code&gt;binding.pry&lt;/code&gt; inline. Handy!
-&lt;/p&gt;
-&lt;p&gt;
-  But I wanted more, a &lt;code&gt;- binding.pry&lt;/code&gt; in haml, and a &lt;code&gt;debugger&lt;/code&gt; in javascript. I also wanted to use the same key binding. I didn't want to think about if I'm in haml or JS.
-&lt;/p&gt;
-&lt;p&gt;
-  Creating the macros was the same, but I needed the key bindings to know what kind of file I was in. I looked into how to make &lt;a href="http://www.guiguan.net/how-to-set-a-key-binding-in-sublime-text-based-on-the-file-type-the-command-is-running-on/."&gt;key bindings source aware&lt;/a&gt;. I also needed to know how &lt;a href="https://gist.github.com/iambibhas/4705378"&gt;Sublime names file types&lt;/a&gt;.
-&lt;/p&gt;
-&lt;p&gt;
-  Putting it all together, the final key bindings look like this:
-&lt;/p&gt;
-&lt;pre class="highlight json"&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;"keys"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;"super+b"&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;&lt;span class="w"&gt;&amp;#x000A;  &lt;/span&gt;&lt;span class="s2"&gt;"command"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;"run_macro_file"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt;&amp;#x000A;  &lt;/span&gt;&lt;span class="s2"&gt;"args"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="s2"&gt;"file"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;"Packages/User/add_binding.sublime-macro"&lt;/span&gt;&lt;span class="p"&gt;},&lt;/span&gt;&lt;span class="w"&gt;&amp;#x000A;  &lt;/span&gt;&lt;span class="s2"&gt;"context"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;[{&lt;/span&gt;&lt;span class="s2"&gt;"key"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;"selector"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;"operator"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;"equal"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;"operand"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;"source.ruby,source.ruby.rails"&lt;/span&gt;&lt;span class="p"&gt;}]&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;&lt;span class="err"&gt;,&lt;/span&gt;&lt;span class="w"&gt;&amp;#x000A;&amp;#x000A;&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;"keys"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;"super+b"&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;&lt;span class="w"&gt;&amp;#x000A;  &lt;/span&gt;&lt;span class="s2"&gt;"command"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;"run_macro_file"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt;&amp;#x000A;  &lt;/span&gt;&lt;span class="s2"&gt;"args"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="s2"&gt;"file"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;"Packages/User/add_haml_binding.sublime-macro"&lt;/span&gt;&lt;span class="p"&gt;},&lt;/span&gt;&lt;span class="w"&gt;&amp;#x000A;  &lt;/span&gt;&lt;span class="s2"&gt;"context"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;[{&lt;/span&gt;&lt;span class="s2"&gt;"key"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;"selector"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;"operator"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;"equal"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;"operand"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;"text.haml"&lt;/span&gt;&lt;span class="p"&gt;}]&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;&lt;span class="err"&gt;,&lt;/span&gt;&lt;span class="w"&gt;&amp;#x000A;&amp;#x000A;&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;"keys"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;"super+b"&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;&lt;span class="w"&gt;&amp;#x000A;  &lt;/span&gt;&lt;span class="s2"&gt;"command"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;"run_macro_file"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt;&amp;#x000A;  &lt;/span&gt;&lt;span class="s2"&gt;"args"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="s2"&gt;"file"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;"Packages/User/add_debugger.sublime-macro"&lt;/span&gt;&lt;span class="p"&gt;},&lt;/span&gt;&lt;span class="w"&gt;&amp;#x000A;  &lt;/span&gt;&lt;span class="s2"&gt;"context"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;[{&lt;/span&gt;&lt;span class="s2"&gt;"key"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;"selector"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;"operator"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;"equal"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;"operand"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;"source.js,source.coffee"&lt;/span&gt;&lt;span class="p"&gt;}]&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;&lt;span class="w"&gt;&amp;#x000A;&lt;/span&gt;&lt;/pre&gt;
 </content>
   </entry>
 </feed>
