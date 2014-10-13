@@ -1,46 +1,47 @@
 - wrap_layout :layout do
-  %h1= current_page.data.title
+  %div{class: current_page.data.page_class || ''}
+    %h1= current_page.data.title
 
-  - if current_page.methods.include?(:tags)
-    %p tags: #{ current_page.tags.map{ |tag| link_to "#{tag}", tag_path(tag) }.to_sentence }
+    - if current_page.methods.include?(:tags) && current_page.tags.count > 0
+      %p tags: #{ current_page.tags.map{ |tag| link_to "#{tag}", tag_path(tag) }.to_sentence }
 
-  = find_and_preserve do
-    = yield
+    = find_and_preserve do
+      = yield
 
-  - if not current_page.data.no_comments
-    #disqus_thread
-    :javascript
-      var disqus_shortname = 'lucybain';
-      (function() {
-          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-          dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-      })();
-    %noscript
-      Please enable JavaScript to view the
-      %a{href: "http://disqus.com/?ref_noscript"} comments powered by Disqus.
-    %a.dsq-brlink{href: "http://disqus.com"}
-      comments powered by
-      %span.logo-disqus Disqus
-    :javascript
-      var disqus_shortname = 'lucybain';
-      (function () {
-          var s = document.createElement('script'); s.async = true;
-          s.type = 'text/javascript';
-          s.src = '//' + disqus_shortname + '.disqus.com/count.js';
-          (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
-      }());
+    - unless current_page.data.no_comments
+      #disqus_thread
+      :javascript
+        var disqus_shortname = 'lucybain';
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+      %noscript
+        Please enable JavaScript to view the
+        %a{href: "http://disqus.com/?ref_noscript"} comments powered by Disqus.
+      %a.dsq-brlink{href: "http://disqus.com"}
+        comments powered by
+        %span.logo-disqus Disqus
+      :javascript
+        var disqus_shortname = 'lucybain';
+        (function () {
+            var s = document.createElement('script'); s.async = true;
+            s.type = 'text/javascript';
+            s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+            (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+        }());
 
-  - if false
-    %aside
-      %h4 Recent Articles
-      %ol
-        - blog.articles[0...10].each do |article|
-          %li
-            = link_to article.title, article
-            %span= article.date.strftime('%b %e')
+    - if false
+      %aside
+        %h4 Recent Articles
+        %ol
+          - blog.articles[0...10].each do |article|
+            %li
+              = link_to article.title, article
+              %span= article.date.strftime('%b %e')
 
-      %h4 By Year
-      %ol
-        - blog.articles.group_by {|a| a.date.year }.each do |year, articles|
-          %li= link_to "#{year} (#{articles.size})", blog_year_path(year)
+        %h4 By Year
+        %ol
+          - blog.articles.group_by {|a| a.date.year }.each do |year, articles|
+            %li= link_to "#{year} (#{articles.size})", blog_year_path(year)

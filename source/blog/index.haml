@@ -9,7 +9,7 @@ pageable: true
   %h2
     = link_to article.title, article
   %p= article.date.strftime('%b %e, %Y')
-  = article.summary(500)
+  = article.summary(250)
 - if paginate
   - if next_page
     %p
