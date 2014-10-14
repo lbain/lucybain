@@ -1,1 +1,1 @@
-var board=new Board(4,2),display=new Display(board);
+var board=new Board(8,3),display=new DisplayDom(board);
