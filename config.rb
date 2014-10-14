@@ -32,11 +32,6 @@ end
 
 page "/feed.xml", layout: false
 
-set :css_dir, 'stylesheets'
-
-set :js_dir, 'javascripts'
-
-set :images_dir, 'images'
 
 redirect "udacity/index.html", to: "/resources/udacity-python-study-group/"
 redirect "python/index.html", to: "/resources/udacity-python-study-group/"
@@ -143,7 +138,7 @@ configure :build do
   activate :minify_javascript
 
   # Enable cache buster
-  activate :asset_hash
+  # activate :asset_hash
 
   # Use relative URLs
   # activate :relative_assets
