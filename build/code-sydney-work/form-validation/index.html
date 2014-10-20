@@ -6,40 +6,41 @@
     <link rel="stylesheet" type="text/css" href="css/style.css" />
 </head>
 <body>
+    <h1> Sign up </h1>
     <form>
         <div class="form-input">
             <label for="email">Email</label>
+            <span class="error-msg">must be a valid email</span>
             <input type="email" name="email" />
-            <span class="error-msg"></span>
         </div>
         <div class="form-input">
-            <label for="email-confirmation">Email Confirmation</label>
+            <label for="email-confirmation">Email again</label>
+            <span class="error-msg">emails must match</span>
             <input type="email" name="email-confirmation" />
-            <span class="error-msg"></span>
         </div>
         <div class="form-input">
             <label for="country">Country</label>
+            <span class="error-msg">must be a country name</span>
             <input name="country" data-validate-as="country" />
-            <span class="error-msg"></span>
         </div>
         <div class="form-input">
             <label for="zip-code">Zip Code</label>
-            <input type=text data-validate-as="number">
-            <span class="error-msg"></span>
+            <span class="error-msg">must be a number</span>
+            <input type=text data-validate-as="number" name="zip-code">
         </div>
         <div class="form-input">
             <label for="password">Password</label>
+            <span class="error-msg">must be all lowercase letters</span>
             <input type="password" name="password" />
-            <span class="error-msg"></span>
         </div>
         <div class="form-input">
-            <label for="password-confirmation">Passowrd Confirmation</label>
+            <label for="password-confirmation">Passowrd again</label>
+            <span class="error-msg">passwords must match</span>
             <input type="password" name="password-confirmation" />
-            <span class="error-msg"></span>
         </div>
         <input type="submit"/>
     </form>
-
+    <link href='http://fonts.googleapis.com/css?family=Muli' rel='stylesheet' type='text/css'>
     <script type="text/javascript" src="../jquery-1.11.1.min.js"></script>
     <script type="text/javascript" src="js/validator.js"></script>
 </body>
