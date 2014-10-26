@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="400px" height="400px" viewBox="0 0 400 400" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: Sketch 3.1.1 (8761) - http://www.bohemiancoding.com/sketch -->
+    <title>Snake</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="Snake" sketch:type="MSArtboardGroup">
+            <g sketch:type="MSLayerGroup">
+                <rect id="Rectangle-1" fill="#333333" sketch:type="MSShapeGroup" x="0" y="0" width="400" height="400"></rect>
+                <ellipse id="Oval-4" fill="#8EB021" sketch:type="MSShapeGroup" transform="translate(307.000000, 75.000000) rotate(-45.000000) translate(-307.000000, -75.000000) " cx="307" cy="75" rx="2" ry="5"></ellipse>
+                <rect id="Food" fill="#FF6355" sketch:type="MSShapeGroup" x="300" y="80" width="20" height="20" rx="9"></rect>
+                <rect id="Rectangle-33" fill="#FFFFFF" sketch:type="MSShapeGroup" x="300" y="140" width="20" height="140"></rect>
+                <rect id="Rectangle-34" fill="#FFFFFF" sketch:type="MSShapeGroup" x="220" y="260" width="100" height="20"></rect>
+                <rect id="Rectangle-35" fill="#FFFFFF" sketch:type="MSShapeGroup" x="220" y="180" width="20" height="100"></rect>
+                <rect id="Rectangle-36" fill="#FFFFFF" sketch:type="MSShapeGroup" x="120" y="180" width="120" height="20"></rect>
+            </g>
+            <rect id="Rectangle-37" fill="#FFFFFF" sketch:type="MSShapeGroup" x="120" y="180" width="20" height="140"></rect>
+            <rect id="Rectangle-38" fill="#FFFFFF" sketch:type="MSShapeGroup" x="60" y="300" width="80" height="20"></rect>
+            <rect id="Rectangle-39" fill="#FFFFFF" sketch:type="MSShapeGroup" x="60" y="100" width="20" height="220"></rect>
+            <rect id="Rectangle-40" fill="#FFFFFF" sketch:type="MSShapeGroup" x="60" y="100" width="80" height="20"></rect>
+            <rect id="Rectangle-41" fill="#FFFFFF" sketch:type="MSShapeGroup" x="120" y="60" width="20" height="60"></rect>
+        </g>
+    </g>
+</svg>

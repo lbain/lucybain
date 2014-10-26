@@ -2,27 +2,32 @@
 <html>
 <head>
   <title>To-do App in Backbone.js</title>
+  <link href='http://fonts.googleapis.com/css?family=Roboto+Slab|Open+Sans' rel='stylesheet' type='text/css'>
 </head>
 <body>
-  <section id="main">
-    <h1>To Do</h1>
+  <main>
+    <h1>To Do List</h1>
     <section id="todoapp">
       <input id="new-todo" placeholder="What needs to be done?">
       <ul id="todo-list"></ul>
     </section>
-  </section>
+  </main>
 
   <footer>
-    <p>Find the tutorial and code in <a href="http://adrianmejia.com/blog/2012/09/11/backbone-dot-js-for-absolute-beginners-getting-started/">here</a></p>
+    <p>Code is based off this <a href="http://adrianmejia.com/blog/2012/09/11/backbone-dot-js-for-absolute-beginners-getting-started/">tutorial</a>. </p>
+    <p> <a href="http://thenounproject.com/term/trash/38558/">Trash</a> and <a href="http://thenounproject.com/term/edit/38555/">edit</a> icons are from the <a href="http://www.thenounproject.com">Noun Project</a>. </p>
   </footer>
 
   <!-- Templates -->
   <script type="text/template" id="item-template">
-    <div class="view">
-      <input class="toggle" type="checkbox" <%= completed ? 'checked' : '' %>>
-      <label><%- title %></label>
-      <input class="edit" value="<%- title %>">
-      <button class="destroy">X</button>
+    <div class="border-wrap">
+      <div class="item">
+        <input class="toggle" type="checkbox" <%= completed ? 'checked' : '' %>>
+        <label><%- title %></label>
+        <span class="edit-icon"></span>
+        <input class="edit" value="<%- title %>">
+        <span class="destroy-icon"></span>
+      </div>
     </div>
   </script>
   <link rel="stylesheet" type="text/css" href="style.css">
@@ -36,6 +41,5 @@
   <script type="text/javascript" src="js/todo-model.js"></script>
   <script type="text/javascript" src="js/todo-collection.js"></script>
   <script type="text/javascript" src="js/todo-view.js"></script>
-  <script type="text/javascript" src="js/todo-collection-view.js"></script>
   <script type="text/javascript" src="js/app-view.js"></script>
 </body>
