@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="400px" height="400px" viewBox="0 0 400 400" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: Sketch 3.1.1 (8761) - http://www.bohemiancoding.com/sketch -->
+    <title>Tic Tac Toe</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="Tic-Tac-Toe" sketch:type="MSArtboardGroup">
+            <g sketch:type="MSLayerGroup">
+                <rect id="Rectangle-1" fill="#D04437" sketch:type="MSShapeGroup" x="0" y="0" width="400" height="400"></rect>
+                <path d="M60.3255989,130.773622 L90.336317,100.59375 L60.3255989,70.2404309 L70.2720083,60.09375 L100.282726,90.4470691 L130.379189,60.09375 L140.325599,70.2404309 L110.314881,100.59375 L140.154109,130.773622 L130.2077,141.09375 L100.282726,110.740431 L70.4434982,141.09375 L60.3255989,130.773622 Z" id="×" fill="#FFFFFF" sketch:type="MSShapeGroup"></path>
+                <path d="M260.325599,330.773622 L290.336317,300.59375 L260.325599,270.240431 L270.272008,260.09375 L300.282726,290.447069 L330.379189,260.09375 L340.325599,270.240431 L310.314881,300.59375 L340.154109,330.773622 L330.2077,341.09375 L300.282726,310.740431 L270.443498,341.09375 L260.325599,330.773622 Z" id="×-2" fill="#FFFFFF" sketch:type="MSShapeGroup"></path>
+                <circle id="Oval-3" stroke="#FFFFFF" stroke-width="14" sketch:type="MSShapeGroup" cx="200" cy="200" r="40"></circle>
+                <circle id="Oval-4" stroke="#FFFFFF" stroke-width="14" sketch:type="MSShapeGroup" cx="300" cy="100" r="40"></circle>
+            </g>
+        </g>
+    </g>
+</svg>
