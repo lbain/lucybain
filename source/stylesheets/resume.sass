@@ -1,0 +1,88 @@
+@import variables
+
+$overview-color: $accent
+$experience-color: #264e59
+$community-color: #21b080
+$education-color: #500e4e
+$technical-color: #f78a4f
+
+.category
+  position: relative
+
+.category-title
+  max-width: 150px
+  text-align: center
+  padding: 10px 15px
+  border-radius: 5px
+  color: white
+  position: relative
+  left: -20px
+  top: -30px
+
+.item
+  border-left: 5px solid
+  padding-left: 50px
+  padding-bottom: 50px
+  position: relative
+  &:last-child
+    border: none
+    margin-left: 5px
+
+.target-border
+  position: absolute
+  left: -38px
+  top: -15px
+  width: 40px
+  height: 40px
+  border: 15px solid white
+  border-radius: 50%
+  z-index: 1
+
+.target-dot
+  width: 10px
+  height: 10px
+  border-radius: 50%
+  z-index: 10
+  margin: 5px auto
+  border: 10px solid white
+
+.item-company-title
+  display: inline-block
+  margin-top: 0px
+
+.item-date
+  position: absolute
+  right: 740px
+  top: 6px
+  text-align: right
+  min-width: 180px
+
+.item-personal-title
+  margin-left: 15px
+
+@mixin category_colors($color)
+  .category-title
+    background-color: $color
+  .item
+    border-color: $color
+  .target-border
+    background: $color
+  .target-dot
+    background: $color
+
+.overview
+  @include category_colors($overview-color)
+  .category-title
+    margin-top: 50px
+
+.experience
+  @include category_colors($experience-color)
+
+.community
+  @include category_colors($community-color)
+
+.education
+  @include category_colors($education-color)
+
+.technical
+  @include category_colors($technical-color)
