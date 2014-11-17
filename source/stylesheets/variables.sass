@@ -1,5 +1,6 @@
 $small-size: 410px
 $medium-size: 900px
+$medium-large-size: 1150px
 $large-size: 1200px
 
 $white: #fff
@@ -20,10 +21,9 @@ $content-font: 'Source Sans Pro', sans-serif
 @function generate_media_query($pixels)
   @return "(max-width: #{$pixels})"
 
-
-
 $small-screen: generate_media_query($small-size)
 $medium-screen: generate_media_query($medium-size)
+$medium-large-screen: generate_media_query($medium-large-size)
 $large-screen:  generate_media_query($large-size)
 
 // Mixin: the easiest way to make responsive tweaks
@@ -35,6 +35,9 @@ $large-screen:  generate_media_query($large-size)
       @content
   @else if $size == medium
     @media #{$medium-screen}
+      @content
+  @else if $size == medium-large
+    @media #{$medium-large-screen}
       @content
   @else if $size == large
     @media #{$large-screen}

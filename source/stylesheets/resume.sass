@@ -8,8 +8,7 @@ $technical-color: #f78a4f
 
 .category
   position: relative
-  margin-top: 30px
-
+  margin-top: 1.5em
 .category-title
   font-size: 0.9em
   max-width: 150px
@@ -21,17 +20,22 @@ $technical-color: #f78a4f
   left: -20px
   top: 0px
   font-weight: $bold
+  @include respond(small)
+    left: 0px
 
 .item
   border-left: 5px solid
   padding-left: 50px
-  padding-bottom: 50px
+  padding-bottom: 2em
   position: relative
   &:nth-child(2)
     margin-top: 30px
   &:last-child
     border: none
     margin-left: 5px
+  @include respond(small)
+    border: none
+    padding-left: 0px
 
 .target-border
   position: absolute
@@ -42,6 +46,8 @@ $technical-color: #f78a4f
   border: 15px solid white
   border-radius: 50%
   z-index: 1
+  @include respond(small)
+    display: none
 
 .target-dot
   width: 10px
@@ -54,6 +60,8 @@ $technical-color: #f78a4f
 .item-company-title
   display: inline-block
   margin-top: 0px
+  @include respond(medium-large)
+    margin-bottom: 5px
 
 .item-date
   position: absolute
@@ -63,10 +71,21 @@ $technical-color: #f78a4f
   min-width: 180px
   color: $light-gray
   font-size: 0.8em
+  @include respond(medium-large)
+    position: relative
+    right: auto
+    top: auto
+    display: block
+    text-align: left
+    margin-bottom: 5px
 
 .item-personal-title
   margin-left: 15px
   color: $light-gray
+  @include respond(medium-large)
+    margin-left: 0px
+    margin-bottom: 5px
+    display: block
 
 .item-personal-details
   margin-top: 0px
@@ -81,6 +100,8 @@ $technical-color: #f78a4f
     background: $color
   .target-dot
     background: $color
+  a
+    color: $color
 
 .overview
   @include category_colors($overview-color)
