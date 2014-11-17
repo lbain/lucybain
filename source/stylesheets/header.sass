@@ -1,70 +1,77 @@
 @import variables
 
-.header
-  #menu
-    box-sizing: border-box
-    .nav-open
-      display: none
-      ul
-        border: none
-        top: 0
-        right: 0
-        position: absolute
-        margin-top: 22px
-        margin-right: 20px
-      li
-        height: 2px
-        padding: 0px
-        margin-bottom: 4px
-        width: 20px
-        background-color: #fff
-    .nav
-      padding: 20px
-      margin: 0px
-      border-bottom: 1px solid #ccc
-      li
-        font-size: 0.75em
-        margin: 0px
-        a
-          padding: 24px 20px 21px
-          &:hover
-            text-decoration: none
-            background-color: $light-accent
-            border-bottom: 2px solid $light-accent
-        .active
-          border-bottom: 2px solid $accent
-          &:hover
-            border-bottom: 2px solid $accent
+#menu
+  background-color: $accent
+  box-sizing: border-box
+  .nav-open-btn
+    display: none
+    ul
+      border: none
+      top: 0
+      right: 0
+      position: absolute
+      margin-top: 22px
+      margin-right: 20px
+    li
+      list-style-type: none
+      height: 2px
+      padding: 0px
+      margin-bottom: 4px
+      width: 20px
+      background-color: #fff
+
+  .nav
+    text-align: right
+    padding: 20px
+    margin: 0px
+    border-bottom: none
+    @include respond(medium)
+      padding: 20px 10px
+    li
+      display: inline
+      @include respond(medium)
+        font-size: 18px
+      @include respond(small)
+        font-size: 16px
+      a
+        font-weight: $bold
+        color: $white
+        padding: 24px 20px 22px
+        @include respond(medium)
+          padding: 24px 10px 22px
+        &:hover
+          text-decoration: none
+          background-color: $dark-accent
+      .active
+        background-color: $dark-accent
 
   @include respond(small)
-    #menu
-      .nav-open
-        display: block
-      .nav
-        height: 0
-        overflow: hidden
-        padding: 0px
-        transition: height 500ms
-        border: none
-        a
-          color: #fff
-        ul
-          border: none
-        li
-          padding: 20px
-          display: block
-          a
-            &:hover
-              text-decoration: none
-              background-color: $accent
-              border: none
+    text-align: center
+    font-weight: bold
+    padding: 30px
+    width: 100%
+    background-color: $accent
+    .nav-open-btn
+      display: block
+    .nav
       text-align: center
-      font-weight: bold
-      padding: 30px
-      width: 100%
-      background-color: $accent
-    #menu .nav.open
-      height: 210px
+      height: 0
+      overflow: hidden
+      padding: 0px
+      transition: height 500ms
+      border: none
+      li
+        padding: 10px 20px
+        display: block
+        a
+          color: $white
+          padding: 10px 20px 10px
+          &:hover
+            text-decoration: none
+            background-color: $accent
+            border: none
+  .nav.open
+    height: 190px
 
 
 
