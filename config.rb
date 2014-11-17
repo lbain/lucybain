@@ -35,6 +35,7 @@ page "/feed.xml", layout: false
 
 redirect "udacity/index.html", to: "/resources/udacity-python-study-group/"
 redirect "python/index.html", to: "/resources/udacity-python-study-group/"
+redirect "cv/index.html", to: "/resume/"
 
 redirect "odin/index.html", to: "/resources/js-jquery-study-group/"
 redirect "js/index.html", to: "/resources/js-jquery-study-group/"

@@ -8,8 +8,10 @@ $technical-color: #f78a4f
 
 .category
   position: relative
+  margin-top: 30px
 
 .category-title
+  font-size: 0.9em
   max-width: 150px
   text-align: center
   padding: 10px 15px
@@ -17,13 +19,16 @@ $technical-color: #f78a4f
   color: white
   position: relative
   left: -20px
-  top: -30px
+  top: 0px
+  font-weight: $bold
 
 .item
   border-left: 5px solid
   padding-left: 50px
   padding-bottom: 50px
   position: relative
+  &:nth-child(2)
+    margin-top: 30px
   &:last-child
     border: none
     margin-left: 5px
@@ -52,13 +57,20 @@ $technical-color: #f78a4f
 
 .item-date
   position: absolute
-  right: 740px
+  right: 750px
   top: 6px
   text-align: right
   min-width: 180px
+  color: $light-gray
+  font-size: 0.8em
 
 .item-personal-title
   margin-left: 15px
+  color: $light-gray
+
+.item-personal-details
+  margin-top: 0px
+  padding-left: 1em
 
 @mixin category_colors($color)
   .category-title
@@ -72,8 +84,6 @@ $technical-color: #f78a4f
 
 .overview
   @include category_colors($overview-color)
-  .category-title
-    margin-top: 50px
 
 .experience
   @include category_colors($experience-color)
