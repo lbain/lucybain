@@ -10,7 +10,7 @@
     <link href="/stylesheets/application.css" media="all" rel="stylesheet" type="text/css" />
     <script src='//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js'></script>
   </head>
-  <body class='index'>
+  <body class='home-page'>
     <div id='menu'>
       <div class='nav-open-btn'>
         <ul>
@@ -21,16 +21,19 @@
       </div>
       <ul class='nav'>
         <li>
-          <a class=" active" href="/">Connect with me</a>
+          <a class="nav-link active" href="/">Me</a>
         </li>
         <li>
-          <a class="" href="/resume/">Resume</a>
+          <a class="nav-link" href="/resume/">Resume</a>
         </li>
         <li>
-          <a class="" href="/resources/">Resources</a>
+          <a class="nav-link" href="/contact-me/">Contact</a>
         </li>
         <li>
-          <a class="" href="/blog/">Blog</a>
+          <a class="nav-link" href="/resources/">Resources</a>
+        </li>
+        <li>
+          <a class="nav-link" href="/blog/">Blog</a>
         </li>
       </ul>
     </div>
@@ -44,19 +47,21 @@
         <div class='photo'>
           <img class="profile-pic" alt="Lucy Bain" src="/images/profile_pic.jpg" />
         </div>
-        <p>Find me on:</p>
+        <div class='blurb'>
+          Hello, I'm Lucy!<br/> I'm a developer looking for a new front-end role.
+        </div>
         <ul class='connections'>
           <li>
-            <a href="https://twitter.com/lucykbain">Twitter</a>
+            <a alt="Twitter" class="icon-twitter" target="_blank" href="https://twitter.com/lucykbain"></a>
           </li>
           <li>
-            <a href="https://github.com/lbain">GitHub</a>
+            <a alt="GitHub" class="icon-github" target="_blank" href="https://github.com/lbain"></a>
           </li>
           <li>
-            <a href="http://stackoverflow.com/users/863846/lucy-bain">Stackoverflow</a>
+            <a alt="Stackoverflow" class="icon-stack-overflow" target="_blank" href="http://stackoverflow.com/users/863846/lucy-bain"></a>
           </li>
           <li>
-            <a href="http://www.linkedin.com/profile/view?id=244724359&amp;amp;trk=spm_pic">LinkedIn</a>
+            <a alt="LinkedIn" class="icon-linkedin-square" target="_blank" href="http://www.linkedin.com/profile/view?id=244724359&amp;amp;trk=spm_pic"></a>
           </li>
         </ul>
       </div>
