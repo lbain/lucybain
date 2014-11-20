@@ -1,0 +1,34 @@
+%script(src="/js/validator.js")
+%h1 Hi there!
+%p Want to tell me something interesting? Are you looking for a JavaScript dev? Have a suggestion for me? I'd love to hear from you!
+
+.contact
+  :javascript
+      var submitted=false;
+  %iframe#hidden_iframe{name: "hidden_iframe", onload: "if(submitted) {window.location='/contact-me/thank-you/';}", style: "display:none;"}
+  %form#ss-form{:action => "https://docs.google.com/forms/d/1me5TdWzNMe9dPAIyXgq1iUmJlTkmV2C0vRPeDM0ggRo/formResponse", :method => "POST",  onsubmit: "submitted=true;", target: "hidden_iframe"}
+    %ol.ss-question-list{:role => "list", :style => "padding-left: 0"}
+      .ss-form-question.errorbox-good{:role => "listitem"}
+        .ss-item.ss-text{:dir => "ltr"}
+          .form-input
+            %label.ss-q-item-label{:for => "entry_1232059477"}
+              .ss-q-help.ss-secondary-text{:dir => "ltr"}
+            %input#entry_1232059477.ss-q-short{"aria-label" => "Email Address  ", :dir => "auto", :name => "entry.1232059477", :title => "", :type => "email", :value => "", placeholder: "Your email address"}/
+            #1705653329_errorMessage.error-message
+              Invalid email address
+      .ss-form-question.errorbox-good{:role => "listitem"}
+        .ss-item.ss-paragraph-text{:dir => "ltr"}
+          .ss-form-entry
+            %label.ss-q-item-label{:for => "entry_147636671"}
+              .ss-q-help.ss-secondary-text{:dir => "ltr"}
+            %textarea#entry_147636671.ss-q-long{"aria-label" => "Message  ", :cols => "0", :dir => "auto", :name => "entry.147636671", :rows => "8", placeholder: 'Message'}
+            #1796444132_errorMessage.error-message
+      %input{:name => "draftResponse", :type => "hidden", :value => "[,,\"-9055668908683681341\"]\r\n"}/
+      %input{:name => "pageHistory", :type => "hidden", :value => "0"}/
+      %input{:name => "fbzx", :type => "hidden", :value => "-9055668908683681341"}/
+      .ss-item.ss-navigate
+        %table#navigation-table
+          %tbody
+            %tr
+              %td#navigation-buttons.ss-form-entry.goog-inline-block{:dir => "ltr"}
+                %input#ss-submit.jfk-button.jfk-button-action{:name => "submit", :type => "submit", :value => "Send"}/

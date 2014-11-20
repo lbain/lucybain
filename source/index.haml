@@ -1,3 +1,6 @@
+---
+page_class: home-page
+---
 - if false
   .github
     =link_to 'https://github.com/you' do
@@ -6,13 +9,14 @@
 .personal-info
   .photo
     = image_tag 'profile_pic.jpg', class: 'profile-pic', alt: 'Lucy Bain'
-  %p Find me on:
+  .blurb
+    Hello, I'm Lucy!<br/> I'm a developer looking for a new front-end role.
   %ul.connections
     %li
-      =link_to 'Twitter', 'https://twitter.com/lucykbain'
+      =link_to '', 'https://twitter.com/lucykbain', alt: 'Twitter', class: 'icon-twitter', target: '_blank'
     %li
-      =link_to 'GitHub', 'https://github.com/lbain'
+      =link_to '', 'https://github.com/lbain', alt: 'GitHub', class: 'icon-github', target: '_blank'
     %li
-      =link_to 'Stackoverflow', 'http://stackoverflow.com/users/863846/lucy-bain'
+      =link_to '', 'http://stackoverflow.com/users/863846/lucy-bain', alt: 'Stackoverflow', class: 'icon-stack-overflow', target: '_blank'
     %li
-      =link_to 'LinkedIn', 'http://www.linkedin.com/profile/view?id=244724359&trk=spm_pic'
+      =link_to '', 'http://www.linkedin.com/profile/view?id=244724359&trk=spm_pic', alt: 'LinkedIn', class: 'icon-linkedin-square', target: '_blank'

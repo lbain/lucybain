@@ -1,22 +1,31 @@
 @import variables
 
 form
-  padding: 10px 30px
 
-  label
-    font-family: $content-font
-    -webkit-font-smoothing:  antialiased
-    line-height: 1.75em
+  textarea
+    margin-bottom: 15px
+    padding: 10px
+    border: 2px solid $light-gray
+    -webkit-border-radius: 5px
+    border-radius: 5px
+    width: 100%
+    @include respond(small)
+      width: 90%
+    &:focus
+      border-color: $accent
+      outline: 0
 
   input
     &[type=text],
     &[type=email],
-      padding: 5px
+      margin-bottom: 15px
+      padding: 10px
       border: 2px solid $light-gray
       -webkit-border-radius: 5px
       border-radius: 5px
       &:focus
         border-color: $accent
+        outline: 0
     &[type=submit]
       padding: 5px 15px
       background: $white
@@ -29,6 +38,18 @@ form
         border-color: $accent
       &:active
         background: $accent
+        outline: 0
+  .form-input
+    input
+      float: left
+    .error-message
+      float: left
+      padding: 12px 20px
+      display: none
+    &.error
+      .error-message
+        display: inline-block
+        color: $accent
 
   .asterisk
     color: $accent
