@@ -4,10 +4,164 @@
   <id>http://lucybain.com/blog</id>
   <link href="http://lucybain.com/blog"/>
   <link href="http://lucybain.com/feed.xml" rel="self"/>
-  <updated>2014-10-13T00:00:00Z</updated>
+  <updated>2014-11-02T00:00:00Z</updated>
   <author>
     <name>Lucy Bain</name>
   </author>
+  <entry>
+    <title>JS: anonymous functions</title>
+    <link rel="alternate" href="http://lucybain.com/blog/2014/anonymous-functions/"/>
+    <id>http://lucybain.com/blog/2014/anonymous-functions/</id>
+    <published>2014-11-02T00:00:00Z</published>
+    <updated>2014-11-25T20:43:58+11:00</updated>
+    <author>
+      <name>Article Author</name>
+    </author>
+    <content type="html">&lt;h2&gt;What&amp;#39;s a typical use case for anonymous functions?&lt;/h2&gt;
+
+&lt;p&gt;I&amp;#39;m going to go with my high school training and focus on the word &lt;strong&gt;typical&lt;/strong&gt;. So long as we&amp;#39;re just talking about typical use, here&amp;#39;s my answer:&lt;/p&gt;
+
+&lt;p&gt;Anonymous functions are typically used as callbacks.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;So what&amp;#39;s a callback?&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;I&amp;#39;m glad you asked!&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;function takesACallback(callback) {
+    // do some interesting things here
+    return "The callback says: " + callback();
+}
+
+takesACallback(function() {
+    return "I'm the callback!";
+}); // returns "The callback says: I'm the callback!"
+&lt;/pre&gt;
+&lt;p&gt;See the function that&amp;#39;s a parameter to the &lt;code&gt;takesACallback&lt;/code&gt; call? Notice that it doesn&amp;#39;t have a name? That&amp;#39;s an anonymous function.&lt;/p&gt;
+
+&lt;p&gt;Note that you can still have a reference to an anonymous function, just because it is unnamed it doesn&amp;#39;t mean it&amp;#39;s unreferenced.&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;var reference = function() {
+    return "I'm still an anonymous function";
+}
+
+reference(); // returns "I'm still an anonymous function"
+&lt;/pre&gt;
+&lt;p&gt;This is almost the same as&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;function reference() {
+    return "I'm not anonymous function";
+}
+
+reference(); // returns "I'm not anonymous function"
+&lt;/pre&gt;
+&lt;p&gt;A named fuction is called a function declaration.&lt;/p&gt;
+
+&lt;p&gt;According to &lt;a href="http://helephant.com/2008/08/23/javascript-anonymous-functions/"&gt;Helen&lt;/a&gt;:&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;Anonymous functions are created at runtime ... Function declarations are different. They are run before any of the other code is executed so the functions do not have to be declared before the code that calls them.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;So you can see there&amp;#39;s a difference to how the two &lt;code&gt;reference&lt;/code&gt; example functions are treated by JS, even if the code looks very similar.&lt;/p&gt;
+
+&lt;p&gt;You can find a list of pros and cons on &lt;a href="http://stackoverflow.com/questions/10273185/what-are-the-benefits-to-using-anonymous-functions-instead-of-named-functions-fo"&gt;stackoverflow&lt;/a&gt;.&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <title>JS: what is a closure?</title>
+    <link rel="alternate" href="http://lucybain.com/blog/2014/closures/"/>
+    <id>http://lucybain.com/blog/2014/closures/</id>
+    <published>2014-10-18T00:00:00Z</published>
+    <updated>2014-11-25T19:29:08+11:00</updated>
+    <author>
+      <name>Article Author</name>
+    </author>
+    <content type="html">&lt;h2&gt;What is a closure, and how/why would you use one?&lt;/h2&gt;
+
+&lt;p&gt;A closure is a way of keeping access to variables in a function after that function has returned.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Fantastic, now again, not as a dictionary.&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;Usually you lose access to variables when a function returns:&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;function notAClosure() {
+    var shortLivedVariable = "I'm only here for a little while";
+    return shortLivedVariable;
+}
+notAClosure(); // returns "I'm only here for a little while"
+&lt;/pre&gt;
+&lt;p&gt;Notice that nothing has access to &lt;code&gt;shortLivedVariable&lt;/code&gt; now that &lt;code&gt;notAClosure&lt;/code&gt; has run. Sure, you can call &lt;code&gt;notAClosure&lt;/code&gt; again (and again and again), but each call will create a whole new &lt;code&gt;shortLivedVariable&lt;/code&gt;. But hey, it&amp;#39;s hard to tell that each &lt;code&gt;shortLivedVariable&lt;/code&gt; is brand new, so let&amp;#39;s clear that up a bit.&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;function stillNotAClosure(anotherShortLivedVariable) {
+    return anotherShortLivedVariable;
+}
+stillNotAClosure("brand"); // returns "brand"
+stillNotAClosure("new"); // returns "new"
+stillNotAClosure("string"); // returns "string"
+&lt;/pre&gt;
+&lt;p&gt;Thus, you can see &lt;code&gt;stillNotAClosure&lt;/code&gt; doesn&amp;#39;t retain any reference to previous calls.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Ok, so that&amp;#39;s what a closure isn&amp;#39;t, but what &lt;strong&gt;is&lt;/strong&gt; a closure?&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;In a closure those variables stick around for a while longer since there is a reference to the variables after the function returns.&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;function aClosure() {
+    var longLivedVariable = "I'm here for a long time";
+    var innerFunction = function inner() {
+        return longLivedVariable;
+    }
+    return innerFunction;
+}
+var closure = aClosure(); // returns a reference to innerFunction
+closure(); // returns "I'm here for a long time"
+&lt;/pre&gt;
+&lt;p&gt;Notice that &lt;code&gt;aClosure&lt;/code&gt; doesn&amp;#39;t return &lt;code&gt;longLivedVariable&lt;/code&gt;, but rather &lt;code&gt;innerFunction&lt;/code&gt;. This means there&amp;#39;s a reference hanging around to &lt;code&gt;innerFunction&lt;/code&gt;, and because &lt;code&gt;innerFunction&lt;/code&gt; has a reference to &lt;code&gt;longLivedVariable&lt;/code&gt;, that variable continues to exist.&lt;/p&gt;
+
+&lt;p&gt;Finally, when we call &lt;code&gt;closure()&lt;/code&gt;, we&amp;#39;re really calling &lt;code&gt;innerFunction()&lt;/code&gt; (the returned value of &lt;code&gt;aClosure()&lt;/code&gt;), which in turn returns &lt;code&gt;longLivedVariable&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Prove it, call the closure multiple times.&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;You got it.&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;function stillAClosure(anotherLongLivedVariable) {
+    var innerFunction = function inner() {
+        return anotherLongLivedVariable;
+    }
+    return innerFunction;
+}
+var closure = stillAClosure("The same string");
+closure(); // returns "The same string"
+closure(); // returns "The same string"
+closure(); // returns "The same string"
+&lt;/pre&gt;
+&lt;p&gt;And here&amp;#39;s even more proof:&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;var closure1 = stillAClosure("String 1");
+closure1(); // returns "String 1"
+closure1(); // returns "String 1"
+
+var closure2 = stillAClosure("String 2");
+closure2(); // returns "String 2"
+closure2(); // returns "String 2"
+
+// And here's the kicker
+closure1(); // returns "String 1"
+&lt;/pre&gt;
+&lt;p&gt;Bam! Did you see that! &lt;code&gt;closure1&lt;/code&gt; kept a reference to &lt;code&gt;&amp;quot;String 1&amp;quot;&lt;/code&gt; even though &lt;code&gt;stillAClosure&lt;/code&gt; had been called with a whole other parameter (namely &lt;code&gt;&amp;quot;String 2&amp;quot;&lt;/code&gt;). That&amp;#39;s some pretty cool stuff!&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;OK, I&amp;#39;m convinced. But now &lt;strong&gt;why&lt;/strong&gt; would I ever want to use a closure?&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;Well, since closures keep access to the variables they can be used to save state. And things that save state look a whole lot like objects. (Before I get any haters, I know you can use closures for a bunch of other things, but this is a reasonable example.)&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;function cat(name) {
+    return {
+        sayName: function() {
+            return name;
+        }
+    }
+}
+
+var fluffy = cat('Mr. Fluffy');
+fluffy.name // returns undefined
+fluffy.sayName() // returns 'Mr. Fluffy'
+
+var whiskers = cat('Whiskers');
+whiskers.sayName() // returns 'Whiskers'
+&lt;/pre&gt;
+&lt;p&gt;So this way you can create a whole bunch of &lt;code&gt;cat&lt;/code&gt; objects that have a private &lt;code&gt;name&lt;/code&gt; variable, which you can access via the &lt;code&gt;sayName&lt;/code&gt; method.&lt;/p&gt;
+</content>
+  </entry>
   <entry>
     <title>A display of Scott Aaronson's Timeline of computer science</title>
     <link rel="alternate" href="http://lucybain.com/blog/2014/timeline-of-computer-science/"/>
@@ -395,99 +549,6 @@ mittens.move() // returns "Moving with tail"
   // attribute, which is set to true
 &lt;/pre&gt;
 &lt;p&gt;There&amp;#39;s a longer explaination from &lt;a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Inheritance_and_the_prototype_chain"&gt;Mozilla&lt;/a&gt;.&lt;/p&gt;
-</content>
-  </entry>
-  <entry>
-    <title>JS "this"</title>
-    <link rel="alternate" href="http://lucybain.com/blog/2014/explaination-of-this/"/>
-    <id>http://lucybain.com/blog/2014/explaination-of-this/</id>
-    <published>2014-09-29T00:00:00Z</published>
-    <updated>2014-10-01T22:41:06+10:00</updated>
-    <author>
-      <name>Article Author</name>
-    </author>
-    <content type="html">&lt;h2&gt;Explain how this works in JavaScript&lt;/h2&gt;
-
-&lt;p&gt;Huh, well that&amp;#39;s something I&amp;#39;ve been trying to figure out as I work with JS. &lt;code&gt;this&lt;/code&gt; still doesn&amp;#39;t make perfect sense to me. But here&amp;#39;s my current understanding...&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;&lt;code&gt;this&lt;/code&gt; is the context the code is running in&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;However, the context seems to change a lot, and I find it rather confusing. So I signed upf for an &lt;a href="http://derickbailey.com/email-courses/masteringthis/"&gt;email series&lt;/a&gt; on how &lt;code&gt;this&lt;/code&gt; can change. Here&amp;#39;s a sweeping overview of that series:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;this&lt;/code&gt; refers to the window&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;At it&amp;#39;s simplest, &lt;code&gt;this&lt;/code&gt; is the window itself without anything fancy going on. You can call &lt;code&gt;this&lt;/code&gt; in the console directly and get Window.&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;this&lt;/code&gt; refers to the object it&amp;#39;s being called from&lt;/li&gt;
-&lt;/ul&gt;
-&lt;pre class="highlight javascript"&gt;&lt;span class="kd"&gt;function&lt;/span&gt; &lt;span class="nx"&gt;currentYear&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-  &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="mi"&gt;2014&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-&lt;span class="p"&gt;}&lt;/span&gt;
-&lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;person&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="na"&gt;birthYear&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;1977&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-               &lt;span class="na"&gt;getAge&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-                 &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="nx"&gt;currentYear&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="k"&gt;this&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;birthYear&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-               &lt;span class="p"&gt;}&lt;/span&gt;
-             &lt;span class="p"&gt;};&lt;/span&gt;
-&lt;span class="nx"&gt;person&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;getAge&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
-&lt;span class="c1"&gt;// returns 37
-&lt;/span&gt;&lt;/pre&gt;
-&lt;p&gt;You can see the call to &lt;code&gt;this.birthYear&lt;/code&gt; in the &lt;code&gt;getAge&lt;/code&gt; function references the &lt;code&gt;person&lt;/code&gt;&amp;#39;s &lt;code&gt;birthYear&lt;/code&gt;. That is the &lt;code&gt;this&lt;/code&gt; refers to it&amp;#39;s parent object. As a Ruby developer &lt;code&gt;this&lt;/code&gt; is similar to &lt;code&gt;self&lt;/code&gt;.&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;this&lt;/code&gt; refers to the element the event is bound to&lt;/li&gt;
-&lt;/ul&gt;
-&lt;pre class="highlight javascript"&gt;&lt;span class="nx"&gt;$&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'a'&lt;/span&gt;&lt;span class="p"&gt;).&lt;/span&gt;&lt;span class="nx"&gt;on&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'click'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;event&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-  &lt;span class="nx"&gt;console&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;log&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;event&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;target&lt;/span&gt; &lt;span class="o"&gt;===&lt;/span&gt; &lt;span class="k"&gt;this&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt; &lt;span class="c1"&gt;// logs true
-&lt;/span&gt;&lt;span class="p"&gt;});&lt;/span&gt;
-&lt;/pre&gt;
-&lt;p&gt;Here the &lt;code&gt;this&lt;/code&gt; refers to the link the user clicked on, just like &lt;code&gt;event.target&lt;/code&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;this&lt;/code&gt; refers to the context that was explicitly set&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Apparently you can use &lt;code&gt;call&lt;/code&gt; or &lt;code&gt;apply&lt;/code&gt; and pass a context explicitly. In that case &lt;code&gt;this&lt;/code&gt; refers to the passed context.&lt;/p&gt;
-&lt;pre class="highlight javascript"&gt;&lt;span class="kd"&gt;function&lt;/span&gt; &lt;span class="nx"&gt;greeter&lt;/span&gt;&lt;span class="p"&gt;(){&lt;/span&gt;
-  &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="s1"&gt;'Hello '&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="k"&gt;this&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;name&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="s1"&gt;'!'&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-&lt;span class="p"&gt;}&lt;/span&gt;
-
-&lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;passableContext&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="na"&gt;name&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;'world'&lt;/span&gt; &lt;span class="p"&gt;};&lt;/span&gt;
-&lt;span class="nx"&gt;greeter&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;call&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;passableContext&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="c1"&gt;// returns 'Hello world!'
-&lt;/span&gt;&lt;/pre&gt;</content>
-  </entry>
-  <entry>
-    <title>JS event delegation</title>
-    <link rel="alternate" href="http://lucybain.com/blog/2014/event-delegation/"/>
-    <id>http://lucybain.com/blog/2014/event-delegation/</id>
-    <published>2014-09-25T00:00:00Z</published>
-    <updated>2014-10-01T22:26:04+10:00</updated>
-    <author>
-      <name>Article Author</name>
-    </author>
-    <content type="html">&lt;p&gt;
-  I'm continuing my JS learning and found a list of &lt;a href="https://github.com/darcyclarke/Front-end-Developer-Interview-Questions"&gt;front end interview questions&lt;/a&gt;. There's a section devoted to JS on there for me to work through. If they're important enough to know in an interview I should probably know about them too.
-&lt;/p&gt;
-&lt;h2&gt;Explain event delegation&lt;/h2&gt;
-&lt;p&gt;
-  Well I'm glad you asked. As it turns out we covered this topic in my &lt;a href="http://codesydney.com"&gt;JS study group&lt;/a&gt; when I wrote my &lt;a href="code-sydney-work/tic-tac-toe/"&gt;Tic Tac Toe game.&lt;/a&gt;
-&lt;/p&gt;
-&lt;p&gt;
-  Event delegation is when you bind an event listener to a parent (or ancestor) element rather than the element(s) you are particularly interested in. When the event is triggered you can check the event target to make sure it was actually the triggered on the element of interest. In general this would be inefficient as you're now listening to events on the parent, and have to filter out any that aren't on the particular element of interest. However, event delegation is particularly useful when you have many siblings (or decedents of the ancestor) that you're interested in.
-&lt;/p&gt;
-&lt;p&gt;
-  A simple example is as follows:
-&lt;/p&gt;
-&lt;pre class="highlight plaintext"&gt;&amp;lt;ul&amp;gt;&amp;#x000A;  &amp;lt;li&amp;gt; First list element &amp;lt;/li&amp;gt;&amp;#x000A;  &amp;lt;li&amp;gt; Second list element &amp;lt;/li&amp;gt;&amp;#x000A;  &amp;lt;li&amp;gt; Third list element &amp;lt;/li&amp;gt;&amp;#x000A;&amp;lt;/ul&amp;gt;&amp;#x000A;&lt;/pre&gt;
-&lt;p&gt;
-  While it would be possible to bind to the individual &lt;code&gt;li&lt;/code&gt; elements it would require 3 listeners. Using event delegation it is possible to bind one event listener to the &lt;code&gt;ul&lt;/code&gt; element and just check if the event's target is an li element (very likely in this case...).
-&lt;/p&gt;
-&lt;p&gt;
-  For my Tic Tac Toe game I listened to all click events on the board, and then checked the particular cell they clicked on, rather than listening for events on all the cells at once.
-&lt;/p&gt;
 </content>
   </entry>
 </feed>
