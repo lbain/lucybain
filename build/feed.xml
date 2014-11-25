@@ -13,7 +13,7 @@
     <link rel="alternate" href="http://lucybain.com/blog/2014/anonymous-functions/"/>
     <id>http://lucybain.com/blog/2014/anonymous-functions/</id>
     <published>2014-11-02T00:00:00Z</published>
-    <updated>2014-11-25T20:43:58+11:00</updated>
+    <updated>2014-11-25T21:30:14+11:00</updated>
     <author>
       <name>Article Author</name>
     </author>
@@ -51,7 +51,7 @@ reference(); // returns "I'm still an anonymous function"
 
 reference(); // returns "I'm not anonymous function"
 &lt;/pre&gt;
-&lt;p&gt;A named fuction is called a function declaration.&lt;/p&gt;
+&lt;p&gt;A named function is called a function declaration.&lt;/p&gt;
 
 &lt;p&gt;According to &lt;a href="http://helephant.com/2008/08/23/javascript-anonymous-functions/"&gt;Helen&lt;/a&gt;:&lt;/p&gt;
 

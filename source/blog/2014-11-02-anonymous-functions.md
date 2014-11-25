@@ -45,7 +45,7 @@ function reference() {
 reference(); // returns "I'm not anonymous function"
 ```
 
-A named fuction is called a function declaration.
+A named function is called a function declaration.
 
 According to [Helen](http://helephant.com/2008/08/23/javascript-anonymous-functions/):
 
