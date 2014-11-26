@@ -4,10 +4,33 @@
   <id>http://lucybain.com/blog</id>
   <link href="http://lucybain.com/blog"/>
   <link href="http://lucybain.com/feed.xml" rel="self"/>
-  <updated>2014-11-16T00:00:00Z</updated>
+  <updated>2014-11-26T00:00:00Z</updated>
   <author>
     <name>Lucy Bain</name>
   </author>
+  <entry>
+    <title>JS: ways to create objects</title>
+    <link rel="alternate" href="http://lucybain.com/blog/2014/ways-to-create-objects/"/>
+    <id>http://lucybain.com/blog/2014/ways-to-create-objects/</id>
+    <published>2014-11-26T00:00:00Z</published>
+    <updated>2014-11-26T22:11:30+11:00</updated>
+    <author>
+      <name>Article Author</name>
+    </author>
+    <content type="html">&lt;h2&gt;What are a few different ways to create new objects?&lt;/h2&gt;
+
+&lt;p&gt;Well it turns out this topic has been covered quite a lot (unlike my last post about host vs. native objects). I don&amp;#39;t really have anything to add to the conversation, so I&amp;#39;ll just give you the two links that I found the most helpful on this topic.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Resources&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="http://www.phpied.com/3-ways-to-define-a-javascript-class/"&gt;phpied&lt;/a&gt; - an attractive explanation. I found this easiest to read.&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://a-developer-life.blogspot.com.au/2011/11/7-ways-to-create-objects-in-javascript.html"&gt;A Developer Life&lt;/a&gt; - an exhaustive list of ways to create objects, complete with examples. This was more in depth.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;I hope you find those sites as useful as I did!&lt;/p&gt;
+</content>
+  </entry>
   <entry>
     <title>JS: host vs. native objects</title>
     <link rel="alternate" href="http://lucybain.com/blog/2014/host-vs-native/"/>
@@ -308,219 +331,6 @@ I think the order &amp;quot;undeclared, undefined, and null&amp;quot; makes sens
 &lt;li&gt;&lt;code&gt;undefined&lt;/code&gt; variables exist, but don&amp;#39;t have anything assigned to them&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;null&lt;/code&gt; variables exist and have null assigned to them&lt;/li&gt;
 &lt;/ul&gt;
-</content>
-  </entry>
-  <entry>
-    <title>JS Immediately Invoked Function Expressions</title>
-    <link rel="alternate" href="http://lucybain.com/blog/2014/immediately-invoked-function-expression/"/>
-    <id>http://lucybain.com/blog/2014/immediately-invoked-function-expression/</id>
-    <published>2014-10-01T00:00:00Z</published>
-    <updated>2014-10-02T23:02:58+10:00</updated>
-    <author>
-      <name>Article Author</name>
-    </author>
-    <content type="html">&lt;h2&gt;Explain why the following doesn&amp;#39;t work as an IIFE: &lt;code&gt;function foo(){ }();&lt;/code&gt;&lt;/h2&gt;
-
-&lt;p&gt;&lt;em&gt;What does &amp;quot;IIFE&amp;quot; even stand for?&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;IIFE stands for Immediately Invoked Function Expressions&lt;/p&gt;
-
-&lt;p&gt;&lt;em&gt;Great, so what are IIFEs?&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;An IIFE is an anonymous function that is created and then immediately invoked. It&amp;#39;s not called from anywhere else (hence why it&amp;#39;s anonymous), but runs just after being created.&lt;/p&gt;
-
-&lt;p&gt;Example:&lt;/p&gt;
-&lt;pre class="highlight plaintext"&gt;(function () {
-  return 5;
-} ());
-// returns 5 right away
-&lt;/pre&gt;
-&lt;p&gt;They can be used to guard against &lt;strong&gt;unintended effects of hoisting:&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;The following code snip-it is from &lt;a href="https://en.wikipedia.org/wiki/Immediately-invoked_function_expression#Evaluation_context"&gt;Wikipedia&lt;/a&gt;. I didn&amp;#39;t understand how it worked right away, but I wrote the explanation following the snip-it to clear up my confusion.&lt;/p&gt;
-&lt;pre class="highlight plaintext"&gt;var v = 1;
-var getValue = (function(x) {
-  return function() { return x; };
-}(v));
-v = 2;
-
-getValue(); // returns 1
-&lt;/pre&gt;
-&lt;p&gt;&lt;em&gt;I can&amp;#39;t even read that, what do all the nested functions mean?&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;Let&amp;#39;s investigate the IIFE assigned to &lt;code&gt;getValue&lt;/code&gt; by rewriting it with a helper function:&lt;/p&gt;
-&lt;pre class="highlight plaintext"&gt;var v = 1;
-
-function helperFunction(x) {
-  return function() {
-    return x;
-  };
-}
-var getValue = helperFunction(v); // returns an anonymous function
-
-v = 2;
-
-getValue(); // invokes that function
-&lt;/pre&gt;
-&lt;p&gt;&lt;em&gt;What happens when the &lt;code&gt;var getValue = helperFunction(v)&lt;/code&gt; line is called?&lt;/em&gt;&lt;/p&gt;
-
-&lt;ol&gt;
-&lt;li&gt;&lt;code&gt;helperFunction(v)&lt;/code&gt; gets called with the current value of &lt;code&gt;v&lt;/code&gt;, which is 1&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;helperFunction&lt;/code&gt; gets executed, with the param &lt;code&gt;x&lt;/code&gt; set to 1&lt;/li&gt;
-&lt;li&gt;The anonymous function returned by &lt;code&gt;helperFunction&lt;/code&gt; gets created, still with &lt;code&gt;x&lt;/code&gt; set to 1&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;code&gt;getValue&lt;/code&gt; is set to the result of &lt;code&gt;helperFunction&lt;/code&gt;, which is&lt;/p&gt;
-&lt;pre class="highlight plaintext"&gt;function() {
-  return 1;
-};
-&lt;/pre&gt;&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;So now things look like this:&lt;/p&gt;
-&lt;pre class="highlight plaintext"&gt;var v = 1;
-var getValue = function() {
-                 return 1;
-               };
-v = 2;
-
-getValue();
-&lt;/pre&gt;
-&lt;p&gt;And from here it is hardly surprising that &lt;code&gt;getValue()&lt;/code&gt; returns 1.&lt;/p&gt;
-
-&lt;p&gt;&lt;em&gt;What would have happened without the IIFE?&lt;/em&gt;&lt;/p&gt;
-&lt;pre class="highlight plaintext"&gt;var v = 1;
-var getValue = function() {
-                  return v;
-               };
-v = 2;
-
-getValue(); // returns 2
-&lt;/pre&gt;
-&lt;p&gt;Although the &lt;code&gt;return v&lt;/code&gt; is written when &lt;code&gt;v&lt;/code&gt; is 1, by the time &lt;code&gt;getValue&lt;/code&gt; is called &lt;code&gt;v&lt;/code&gt; has been set to 2. Thus &lt;code&gt;getValue()&lt;/code&gt; actually returns 2.&lt;/p&gt;
-
-&lt;p&gt;IIFEs can also be used to enforce &lt;strong&gt;private variables and methods:&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;Again, the example is taken by &lt;a href="https://en.wikipedia.org/wiki/Immediately-invoked_function_expression#Establishing_private_variables_and_accessors"&gt;Wikipedia&lt;/a&gt; (slightly simplified), and the explanation is my own.&lt;/p&gt;
-&lt;pre class="highlight plaintext"&gt;var counter = (function(){
-  var i = 0;
-
-  return {
-    get: function(){
-      return i;
-    },
-    set: function( val ){
-      i = val;
-    }
-  };
-}());
-
-counter.get(); // returns 0
-counter.set( 3 ); // returns undefined
-counter.get(); // returns 3
-counter.i; // returns undefined
-&lt;/pre&gt;
-&lt;p&gt;&lt;em&gt;Again with the confusing nested functions! Can I have a rewrite?&lt;/em&gt;&lt;/p&gt;
-&lt;pre class="highlight plaintext"&gt;function helperFunction(){
-  var i = 0;
-
-  return {
-    get: function(){
-      return i;
-    },
-    set: function( val ){
-      i = val;
-    }
-  };
-};
-
-var counter = helperFunction();
-
-counter.get(); // returns 0
-counter.set( 3 ); // returns undefined
-counter.get(); // returns 3
-counter.i; // returns undefined
-&lt;/pre&gt;
-&lt;p&gt;&lt;em&gt;Ok, that&amp;#39;s a bit clearer, but what is &lt;code&gt;counter&lt;/code&gt; actually set to?&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;code&gt;counter&lt;/code&gt; is set to the return value of &lt;code&gt;helperFunction&lt;/code&gt;, that is just this bit:&lt;/p&gt;
-&lt;pre class="highlight json"&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="w"&gt;
-  &lt;/span&gt;&lt;span class="err"&gt;get&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="err"&gt;function()&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="w"&gt;
-    &lt;/span&gt;&lt;span class="err"&gt;return&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="err"&gt;i;&lt;/span&gt;&lt;span class="w"&gt;
-  &lt;/span&gt;&lt;span class="err"&gt;}&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt;
-  &lt;/span&gt;&lt;span class="err"&gt;set&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="err"&gt;function(&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="err"&gt;val&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="err"&gt;)&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="w"&gt;
-    &lt;/span&gt;&lt;span class="err"&gt;i&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="err"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="err"&gt;val;&lt;/span&gt;&lt;span class="w"&gt;
-  &lt;/span&gt;&lt;span class="err"&gt;}&lt;/span&gt;&lt;span class="w"&gt;
-&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;&lt;span class="err"&gt;;&lt;/span&gt;&lt;span class="w"&gt;
-&lt;/span&gt;&lt;/pre&gt;
-&lt;p&gt;You&amp;#39;ll notice &lt;code&gt;var i&lt;/code&gt; doesn&amp;#39;t appear anywhere in there. &lt;code&gt;i&lt;/code&gt; is defined elsewhere in the &lt;code&gt;helperFunction&lt;/code&gt; / IIFE. Since the return value of &lt;code&gt;helperFunction&lt;/code&gt; doesn&amp;#39;t give explicit access to &lt;code&gt;i&lt;/code&gt;, &lt;code&gt;counter&lt;/code&gt; doesn&amp;#39;t have access.&lt;/p&gt;
-
-&lt;p&gt;&lt;em&gt;Fine, so if that&amp;#39;s all that &lt;code&gt;counter&lt;/code&gt; has access to, how does &lt;code&gt;counter.get()&lt;/code&gt; return a value?&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;Scopes! The scope from &lt;code&gt;helperFunction&lt;/code&gt; has access to &lt;code&gt;i&lt;/code&gt;. The object returned by &lt;code&gt;helperFunction&lt;/code&gt; (a.k.a &lt;code&gt;counter&lt;/code&gt;) has access to all the variables defined in &lt;code&gt;helperFunction&lt;/code&gt;. It works like this:&lt;/p&gt;
-
-&lt;ol&gt;
-&lt;li&gt;&lt;p&gt;Call to &lt;code&gt;counter.get()&lt;/code&gt; goes and looks at the &lt;code&gt;get&lt;/code&gt; function defined in &lt;code&gt;helperFunction&lt;/code&gt;...&lt;/p&gt;
-&lt;pre class="highlight plaintext"&gt;get: function(){
-    return i;
-   }
-&lt;/pre&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;The &lt;code&gt;get&lt;/code&gt; function looks for it&amp;#39;s local scope, which is &lt;code&gt;helperFunction&lt;/code&gt; ...&lt;/p&gt;
-&lt;pre class="highlight plaintext"&gt;function helperFunction(){
-var i = 0;
-
-return {
-  get: function(){
-    return i;
-  },
-  set: function( val ){
-    i = val;
-  }
-};
-};
-&lt;/pre&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;In &lt;code&gt;helperFunction&lt;/code&gt; is a definition for &lt;code&gt;i&lt;/code&gt;...&lt;/p&gt;
-&lt;pre class="highlight plaintext"&gt;var i = 0;
-&lt;/pre&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;So &lt;code&gt;get&lt;/code&gt; can return 0!&lt;/p&gt;&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h3&gt;And now back to your scheduled program&lt;/h3&gt;
-
-&lt;p&gt;With all that explanation behind us, let&amp;#39;s go back to the original question:&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Explain why the following doesn&amp;#39;t work as an IIFE: &lt;code&gt;function foo(){ }();&lt;/code&gt;&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;Because &lt;code&gt;foo&lt;/code&gt; isn&amp;#39;t being called! Here&amp;#39;s a rewrite:&lt;/p&gt;
-&lt;pre class="highlight plaintext"&gt;function foo(){
-}();
-&lt;/pre&gt;
-&lt;p&gt;This is a function &lt;strong&gt;definition&lt;/strong&gt;, it defines &lt;code&gt;foo&lt;/code&gt;. But it&amp;#39;s not a function &lt;strong&gt;expression&lt;/strong&gt; - that is, it&amp;#39;s not understood by the JS parser to actually call a function.&lt;/p&gt;
-
-&lt;p&gt;For the parser, things look like this:&lt;/p&gt;
-&lt;pre class="highlight plaintext"&gt;function foo(){
-} // ok, done with that function definition
-  // (silly human left off the semicolon, how embarrassing!)
-
-(); // Are they trying to call something? What's the function's name?
-    // PARSE ERROR
-&lt;/pre&gt;
-&lt;p&gt;In order to prep the parser that we&amp;#39;re actually dealing with a function &lt;strong&gt;expression&lt;/strong&gt; we have to wrap things up in &lt;code&gt;()&lt;/code&gt; like so:&lt;/p&gt;
-&lt;pre class="highlight plaintext"&gt;(
-  function foo(){
-  }()
-);
-&lt;/pre&gt;
-&lt;p&gt;Now the parser reads this as:&lt;/p&gt;
-&lt;pre class="highlight plaintext"&gt;( // oh goody, we're going to call some function expressions!
-  function foo(){ // here's the function definition
-  }() // and here's where the function is actually called
-);
-&lt;/pre&gt;
-&lt;p&gt;And to finish it all off with a return statement and everything:&lt;/p&gt;
-&lt;pre class="highlight plaintext"&gt;(function foo(){
-  return 'bar';
-}());
-&lt;/pre&gt;
-&lt;p&gt;For more information read Ben Alman&amp;#39;s post &lt;a href="http://benalman.com/news/2010/11/immediately-invoked-function-expression/"&gt;introducing IIFEs&lt;/a&gt;.&lt;/p&gt;
 </content>
   </entry>
 </feed>
