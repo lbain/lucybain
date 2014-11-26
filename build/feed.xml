@@ -4,10 +4,47 @@
   <id>http://lucybain.com/blog</id>
   <link href="http://lucybain.com/blog"/>
   <link href="http://lucybain.com/feed.xml" rel="self"/>
-  <updated>2014-11-02T00:00:00Z</updated>
+  <updated>2014-11-16T00:00:00Z</updated>
   <author>
     <name>Lucy Bain</name>
   </author>
+  <entry>
+    <title>JS: host vs. native objects</title>
+    <link rel="alternate" href="http://lucybain.com/blog/2014/host-vs-native/"/>
+    <id>http://lucybain.com/blog/2014/host-vs-native/</id>
+    <published>2014-11-16T00:00:00Z</published>
+    <updated>2014-11-26T21:17:52+11:00</updated>
+    <author>
+      <name>Article Author</name>
+    </author>
+    <content type="html">&lt;h2&gt;What&amp;#39;s the difference between host objects and native objects?&lt;/h2&gt;
+
+&lt;p&gt;I didn&amp;#39;t find as much lot of information about this topic as some of the other JS interview questions. So here&amp;#39;s my current understanding, but please comment if I&amp;#39;ve misunderstood or there&amp;#39;s a better way to explain it.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;What is a native object?&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Native objects are inherent to JS - they are available to you so long as you&amp;#39;re using JS. You can be in the browser or in Node, but if you&amp;#39;re writing JS, you&amp;#39;ve got access to the native objects. Here&amp;#39;s a &lt;a href="http://es5.github.io/#x8"&gt;list&lt;/a&gt; of them if you want to know what&amp;#39;s available to you.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;What is a host object?&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Everything the environment gives you. For the browser, this includes objects like &lt;code&gt;window&lt;/code&gt;. Host objects can differ by environment (or host), so that Node wouldn&amp;#39;t have access to &lt;code&gt;window&lt;/code&gt; (which makes sense since there&amp;#39;s no DOM for Node), but could have it&amp;#39;s own host objects like &lt;code&gt;NodeLists&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;What is a user object?&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;This is where I got the most confused. The question asks for the difference between &lt;strong&gt;host&lt;/strong&gt; and &lt;strong&gt;native&lt;/strong&gt; objects, which was covered on a few sites. However, a couple of sites make a third category: &lt;strong&gt;user&lt;/strong&gt; objects. There seems to be some debate about user objects being their own category. I&amp;#39;m not sure which side is right so I&amp;#39;m adding a little blurb about them here, but please ignore if it&amp;#39;s not relevant.&lt;/p&gt;
+
+&lt;p&gt;User objects are anything the user defines. When you create a new object that is not directly a native object, you&amp;#39;ve made a user object. So if you create a new string (&lt;code&gt;&amp;quot;Hello world&amp;quot;&lt;/code&gt;) you created a native object, but if you create an instance of an object you&amp;#39;ve defined (&lt;code&gt;&amp;quot;new Cat()&amp;quot;&lt;/code&gt;) then it&amp;#39;s a user object.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;References&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="http://stackoverflow.com/questions/7614317/what-is-the-difference-between-native-objects-and-host-objects"&gt;stackoverflow questionn&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://programmerinnervoice.wordpress.com/2013/07/22/host-objects-vs-native-objects/"&gt;Programmer Inner Voice&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://www.sitepoint.com/oriented-programming-1-4/"&gt;Sitepoint&lt;/a&gt; which also mentioned user object as a separate category, although it was posted way back in 2001&lt;/li&gt;
+&lt;li&gt;and &lt;a href="http://perfectionkills.com/extending-native-builtins/"&gt;Perfection Kills&lt;/a&gt;, although this one was less on topic&lt;/li&gt;
+&lt;/ul&gt;
+</content>
+  </entry>
   <entry>
     <title>JS: anonymous functions</title>
     <link rel="alternate" href="http://lucybain.com/blog/2014/anonymous-functions/"/>
@@ -484,71 +521,6 @@ return {
 }());
 &lt;/pre&gt;
 &lt;p&gt;For more information read Ben Alman&amp;#39;s post &lt;a href="http://benalman.com/news/2010/11/immediately-invoked-function-expression/"&gt;introducing IIFEs&lt;/a&gt;.&lt;/p&gt;
-</content>
-  </entry>
-  <entry>
-    <title>JS prototypal inheritance</title>
-    <link rel="alternate" href="http://lucybain.com/blog/2014/prototypal-inheritance/"/>
-    <id>http://lucybain.com/blog/2014/prototypal-inheritance/</id>
-    <published>2014-09-30T00:00:00Z</published>
-    <updated>2014-10-01T22:40:42+10:00</updated>
-    <author>
-      <name>Article Author</name>
-    </author>
-    <content type="html">&lt;h2&gt;Explain how prototypal inheritance works&lt;/h2&gt;
-
-&lt;p&gt;JS objects each have a &amp;quot;hook&amp;quot; to it&amp;#39;s parent object, or prototype. Obviously everything the child object defines it has access to, but it also can climb up the prototype tree to access it&amp;#39;s parent&amp;#39;s (or ancesstor&amp;#39;s) methods and properties.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;(the obligatory animal) Example:&lt;/strong&gt;&lt;/p&gt;
-&lt;pre class="highlight plaintext"&gt;function Animal(){
-  this.alive = true;
-}
-
-function Mammal() {
-  this.warmBlooded = true;
-  this.hasTail = false;
-  this.move = function(){
-    if(this.hasTail){
-      return "Moving with tail";
-    } else {
-      return "Moving with tail";
-    }
-  };
-}
-Mammal.prototype = new Animal();
-
-function Cat(name) {
-  this.sound = 'Meow';
-  this.hasTail = true;
-  this.name = name;
-  this.greet = function() {
-    return "Hello, I'm " + this.name;
-  };
-}
-Cat.prototype = new Mammal();
-
-var mittens = new Cat('Mittens');
-
-mittens.sound; // returns 'Meow' (as defined on Cat)
-
-mittens.hasTail; // returns true (as defined on Cat)
-  // Although Mammal also defines hasTail, the Cat's
-  // definition takes precidence
-
-mittens.warmBlooded; // returns true (as defined on Mammal)
-
-mittens.alive; // returns true (as defined on Animal)
-
-mittens.greet() // returns "Hello, I'm Mittens"
-  // greet() accesses the "name" attribute defined on Cat
-
-mittens.move() // returns "Moving with tail"
-  // move() accesses the "hasTail" attribute which is defined
-  // on Cat and Mammal. Although Mammal defines the move function
-  // "this" refers to mittens, so move() uses mitten's "hasTail"
-  // attribute, which is set to true
-&lt;/pre&gt;
-&lt;p&gt;There&amp;#39;s a longer explaination from &lt;a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Inheritance_and_the_prototype_chain"&gt;Mozilla&lt;/a&gt;.&lt;/p&gt;
 </content>
   </entry>
 </feed>
