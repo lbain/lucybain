@@ -13,13 +13,13 @@
     <link rel="alternate" href="http://lucybain.com/blog/2014/host-vs-native/"/>
     <id>http://lucybain.com/blog/2014/host-vs-native/</id>
     <published>2014-11-16T00:00:00Z</published>
-    <updated>2014-11-26T21:17:52+11:00</updated>
+    <updated>2014-11-26T21:19:31+11:00</updated>
     <author>
       <name>Article Author</name>
     </author>
     <content type="html">&lt;h2&gt;What&amp;#39;s the difference between host objects and native objects?&lt;/h2&gt;
 
-&lt;p&gt;I didn&amp;#39;t find as much lot of information about this topic as some of the other JS interview questions. So here&amp;#39;s my current understanding, but please comment if I&amp;#39;ve misunderstood or there&amp;#39;s a better way to explain it.&lt;/p&gt;
+&lt;p&gt;I didn&amp;#39;t find as much lot of information about this topic as some of the other &lt;a href="https://github.com/darcyclarke/Front-end-Developer-Interview-Questions#js"&gt;JS interview questions&lt;/a&gt;. So here&amp;#39;s my current understanding, but please comment if I&amp;#39;ve misunderstood or there&amp;#39;s a better way to explain it.&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;What is a native object?&lt;/strong&gt;&lt;/p&gt;
 
