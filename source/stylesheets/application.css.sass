@@ -55,6 +55,14 @@ ul
 li
   line-height: 1.75em
 
+.page-break
+  display: none
+
+@media print
+  .page-break
+    display: block
+    page-break-before: always
+
 #main
   margin: 0 auto
   max-width: 800px

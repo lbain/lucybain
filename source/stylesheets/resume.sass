@@ -9,6 +9,7 @@ $technical-color: #f78a4f
 .category
   position: relative
   margin-top: 1.5em
+
 .category-title
   font-size: 0.9em
   max-width: 150px
@@ -116,3 +117,28 @@ $technical-color: #f78a4f
 
 .technical
   @include category_colors($technical-color)
+
+@media print
+  .resume
+    #menu
+      display: none
+    .content
+      font-size: 12px
+    .item
+      margin-top: 10px
+      padding-bottom: 1px
+      padding-left: 30px
+    .category
+      margin-top: 20px
+    .category-title
+      max-width: 80px
+      left: -5px
+    .target-border
+      left: -22px
+      top: -9px
+      width: 10px
+      height: 10px
+    .target-dot
+      display: none
+    li, p
+      margin-bottom: 0.2em
