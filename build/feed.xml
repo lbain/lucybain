@@ -4,10 +4,101 @@
   <id>http://lucybain.com/blog</id>
   <link href="http://lucybain.com/blog"/>
   <link href="http://lucybain.com/feed.xml" rel="self"/>
-  <updated>2014-11-26T00:00:00Z</updated>
+  <updated>2014-11-30T00:00:00Z</updated>
   <author>
     <name>Lucy Bain</name>
   </author>
+  <entry>
+    <title>JS: &lt;code&gt;.call&lt;/code&gt; vs. &lt;code&gt;.apply&lt;/code&gt;</title>
+    <link rel="alternate" href="http://lucybain.com/blog/2014/call-vs-apply/"/>
+    <id>http://lucybain.com/blog/2014/call-vs-apply/</id>
+    <published>2014-11-30T00:00:00Z</published>
+    <updated>2014-11-30T15:55:37+11:00</updated>
+    <author>
+      <name>Article Author</name>
+    </author>
+    <content type="html">&lt;h2&gt;What&amp;#39;s the difference between &lt;code&gt;.call&lt;/code&gt; and &lt;code&gt;.apply&lt;/code&gt;?&lt;/h2&gt;
+
+&lt;p&gt;Let&amp;#39;s start with the similarities.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;What are &lt;code&gt;.call&lt;/code&gt; and &lt;code&gt;.apply&lt;/code&gt;?&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Both methods allow you to invoke a function and pass parameters through.&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;function printer(message) {
+    console.log(message)
+}
+
+printer.call("hello") // logs "hello"
+printer.apply("world!") // logs "world!"
+&lt;/pre&gt;
+&lt;p&gt;&lt;em&gt;Wow. Awesome. A more verbose way to invoke functions. Fantastic. Why not just use &lt;code&gt;printer(&amp;quot;hello&amp;quot;)&lt;/code&gt;?&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;Well actually, &lt;code&gt;.call&lt;/code&gt; and &lt;code&gt;.apply&lt;/code&gt; can do more than simply invoke a method, they can also pass through &lt;strong&gt;context&lt;/strong&gt;. Here&amp;#39;s an example:&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;function Person(name){
+    this.name = name;
+    this.introduceSelf = function() {
+        console.log("Hello, my name is " + this.name);
+    }
+}
+
+var alice = new Person('Alice');
+alice.introduceSelf();
+// logs "Hello, my name is Alice", as expected
+
+alice.introduceSelf.call({name: "Bob"});
+// logs "Hello, my name is Bob"
+
+alice.introduceSelf.apply({name: "Casey"});
+// logs "Hello, my name is Casey"
+&lt;/pre&gt;
+&lt;p&gt;So &lt;code&gt;.call&lt;/code&gt; and &lt;code&gt;.apply&lt;/code&gt; allow you to manipulate the &lt;code&gt;this&lt;/code&gt; keyword for the invoked function.&lt;/p&gt;
+
+&lt;p&gt;On to the main question...&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;What&amp;#39;s the difference between &lt;code&gt;.call&lt;/code&gt; and &lt;code&gt;.apply&lt;/code&gt;?&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;It&amp;#39;s all about the way you pass parameters. That&amp;#39;s it. Let&amp;#39;s make our previous example more complex:&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;function Person(name){
+    this.name = name;
+    this.introduceSelf = function(greeting) {
+        console.log(greeting + ", my name is " + this.name);
+    }
+}
+
+var alice = new Person('Alice');
+alice.introduceSelf('Hello');
+// logs "Hello, my name is Alice", as expected
+
+alice.introduceSelf.call({name: "Bob"}, 'Bonjour');
+// logs "Bonjour, my name is Bob"
+
+alice.introduceSelf.apply({name: "Casey"}, ['Hola']);
+// logs "Hola, my name is Casey"
+&lt;/pre&gt;
+&lt;p&gt;For &lt;code&gt;.call&lt;/code&gt; you pass the parameters comma separated (like normal). For &lt;code&gt;.apply&lt;/code&gt; you pass the parameters in an array.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Why would you even bother having these two ways? Why not standardise?&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;That&amp;#39;s a fair question. But the two methods have different use cases. If you know exactly how many arguments you&amp;#39;re passing, you should use &lt;code&gt;.call&lt;/code&gt;. If you don&amp;#39;t know, or if your arguments are already in an array, you should use &lt;code&gt;.apply&lt;/code&gt;. (Rephrased from a helpful &lt;a href="http://stackoverflow.com/a/1987244/863846"&gt;stackoverflow answer&lt;/a&gt;.)&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Ok, how am I going to remember this?&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;Turns out the folks on stackoverflow have some thoughts on that one too. Here&amp;#39;s how I&amp;#39;ll be remembering it:&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;a&lt;/strong&gt;pply uses &lt;strong&gt;a&lt;/strong&gt;n &lt;strong&gt;a&lt;/strong&gt;rray&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;c&lt;/strong&gt;all &lt;strong&gt;c&lt;/strong&gt;ounts with &lt;strong&gt;c&lt;/strong&gt;ommas&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;strong&gt;Resources&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="http://stackoverflow.com/questions/1986896/what-is-the-difference-between-call-and-apply"&gt;stackoverflow question&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://odetocode.com/blogs/scott/archive/2007/07/04/function-apply-and-function-call-in-javascript.aspx"&gt;Scott Allen&amp;#39;s post&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</content>
+  </entry>
   <entry>
     <title>JS: ways to create objects</title>
     <link rel="alternate" href="http://lucybain.com/blog/2014/ways-to-create-objects/"/>
@@ -237,100 +328,6 @@ whiskers.sayName() // returns 'Whiskers'
 &lt;div class='timeline'&gt;
   &lt;iframe src='http://cdn.knightlab.com/libs/timeline/latest/embed/index.html?source=0AlyQ63WYoWl7dFVGSV95TmRyeFFNcVdNbWkzb2RPMXc&amp;font=Bevan-PotanoSans&amp;maptype=toner&amp;lang=en&amp;height=650' width='100%' height='650' frameborder='0'&gt;&lt;/iframe&gt;
 &lt;/div&gt;
-</content>
-  </entry>
-  <entry>
-    <title>JS: null, undefined, and undeclared</title>
-    <link rel="alternate" href="http://lucybain.com/blog/2014/null-undefined-undeclared/"/>
-    <id>http://lucybain.com/blog/2014/null-undefined-undeclared/</id>
-    <published>2014-10-06T00:00:00Z</published>
-    <updated>2014-10-06T17:11:28+11:00</updated>
-    <author>
-      <name>Article Author</name>
-    </author>
-    <content type="html">&lt;h2&gt;What&amp;#39;s the difference between a variable that is: null, undefined, or undeclared?&lt;/h2&gt;
-
-&lt;p&gt;Here&amp;#39;s a &lt;a href="http://stackoverflow.com/a/834095/863846"&gt;TL;DR&lt;/a&gt; version I found quite useful when writing this.&lt;/p&gt;
-
-&lt;p&gt;I think they make more sense in the opposite order: undeclared, undefined, and null. That&amp;#39;s the order I&amp;#39;m going to tackle them anyways.&lt;/p&gt;
-
-&lt;p&gt;First up is &lt;strong&gt;&lt;code&gt;undeclared&lt;/code&gt;&lt;/strong&gt;.&lt;/p&gt;
-
-&lt;p&gt;A variable is undeclared when it does not use the &lt;code&gt;var&lt;/code&gt; keyword. It gets created on the global object (that is, the window), thus it operates in a different space as the declared variables.&lt;/p&gt;
-
-&lt;p&gt;Example:&lt;/p&gt;
-&lt;pre class="highlight plaintext"&gt;undeclaredVariable = 1;
-var declaredVariable = 1;
-
-function changeVariables() {
-  undeclaredVariable = 2;
-  var declaredVariable = 2;
-  var undeclaredVariable = 3;
-}
-
-changeVariables();
-
-undeclaredVariable; // 2
-declaredVariable; //1
-&lt;/pre&gt;
-&lt;p&gt;For more discussion on undeclared variables, checkout &lt;a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/var"&gt;Mozilla&amp;#39;s documentation&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;&lt;br/&gt;&lt;/p&gt;
-
-&lt;p&gt;Now let&amp;#39;s move on to &lt;strong&gt;&lt;code&gt;undefined&lt;/code&gt;&lt;/strong&gt;.&lt;/p&gt;
-
-&lt;p&gt;Something is &lt;code&gt;undefined&lt;/code&gt; when it hasn&amp;#39;t been defined yet. If you call a variable or function without having actually created it yet the parser will give you an &lt;code&gt;not defined&lt;/code&gt; error.&lt;/p&gt;
-
-&lt;p&gt;Example:&lt;/p&gt;
-&lt;pre class="highlight plaintext"&gt;var undefinedVariable; // ReferenceError: undefinedVariable is not defined
-typeof undefinedVariable; // "undefined"
-
-undefinedFunction(); // ReferenceError: undefinedFunction is not defined
-typeof undefinedFunction; // "undefined"
-&lt;/pre&gt;
-&lt;p&gt;Note that the &lt;code&gt;typeof&lt;/code&gt; returns &lt;code&gt;&amp;quot;undefined&amp;quot;&lt;/code&gt;, therefore &lt;code&gt;undefined&lt;/code&gt; is a primitive type.&lt;/p&gt;
-
-&lt;p&gt;The fix for an undefined variable or function is easy, simply define it:&lt;/p&gt;
-&lt;pre class="highlight plaintext"&gt;var definedVariable = 'test';
-typeof definedVariable; // "string"
-
-function definedFunction(){
-  return "I'm defined!"
-}
-typeof definedFunction // "function"
-&lt;/pre&gt;
-&lt;p&gt;You can know if a variable is undefined with the following:&lt;/p&gt;
-&lt;pre class="highlight plaintext"&gt;if (typeof(variable) !== "undefined") {
-  console.log('variable is not undefined');
-} else {
-  console.log('variable is undefined');
-}
-&lt;/pre&gt;
-&lt;p&gt;&lt;br/&gt;&lt;/p&gt;
-
-&lt;p&gt;Finally we&amp;#39;ll finish up with &lt;strong&gt;&lt;code&gt;null&lt;/code&gt;&lt;/strong&gt;.&lt;/p&gt;
-
-&lt;p&gt;&lt;code&gt;null&lt;/code&gt; is a variable that is defined to have a null value.&lt;/p&gt;
-&lt;pre class="highlight plaintext"&gt;var nullVariable = null; // null
-typeof nullVariable // "object"
-&lt;/pre&gt;
-&lt;p&gt;You probably don&amp;#39;t often purposefully define a variable to &lt;code&gt;null&lt;/code&gt;, but it may be the return value of a function. Often you&amp;#39;ll need to gaurd against &lt;code&gt;null&lt;/code&gt; values in your code.&lt;/p&gt;
-
-&lt;p&gt;You can know if a variable is null with the following:&lt;/p&gt;
-&lt;pre class="highlight plaintext"&gt;if( variable || variable === false ) {
-  console.log('variable is not null');
-} else {
-  console.log('variable is null');
-}
-&lt;/pre&gt;
-&lt;p&gt;&lt;br/&gt;
-I think the order &amp;quot;undeclared, undefined, and null&amp;quot; makes sense since it&amp;#39;s increasing order of certainty.&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;undeclared&lt;/code&gt; variables don&amp;#39;t even exist&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;undefined&lt;/code&gt; variables exist, but don&amp;#39;t have anything assigned to them&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;null&lt;/code&gt; variables exist and have null assigned to them&lt;/li&gt;
-&lt;/ul&gt;
 </content>
   </entry>
 </feed>
