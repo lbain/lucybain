@@ -4,10 +4,79 @@
   <id>http://lucybain.com/blog</id>
   <link href="http://lucybain.com/blog"/>
   <link href="http://lucybain.com/feed.xml" rel="self"/>
-  <updated>2014-11-30T00:00:00Z</updated>
+  <updated>2014-12-04T00:00:00Z</updated>
   <author>
     <name>Lucy Bain</name>
   </author>
+  <entry>
+    <title>JS: feature detection vs. inference vs. UA string</title>
+    <link rel="alternate" href="http://lucybain.com/blog/2014/feature-detection-vs-inference/"/>
+    <id>http://lucybain.com/blog/2014/feature-detection-vs-inference/</id>
+    <published>2014-12-04T00:00:00Z</published>
+    <updated>2014-12-08T22:16:33+11:00</updated>
+    <author>
+      <name>Article Author</name>
+    </author>
+    <content type="html">&lt;h2&gt;What&amp;#39;s the difference between feature detection, feature inference, and using the UA string?&lt;/h2&gt;
+
+&lt;p&gt;Let&amp;#39;s start smaller...&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;What is feature detection?&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;When you check if a certain feature exists, that&amp;#39;s feature detection.&lt;/p&gt;
+
+&lt;p&gt;We need to write code that checks if features exist in JS since different browsers have different implementations, something like this:&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;var text;
+if(typeof(Text) === "function"){
+    text = new Text('Oh, how quick that fox was!');
+} else {
+    text = 'Oh, how quick that fox was!';
+}
+&lt;/pre&gt;
+&lt;p&gt;That means you can be confident you&amp;#39;ve covered all of your bases with different browser implementations.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;What is feature inference?&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;When you make an assumption that because one feature is present (or not) another one will also be present (or not). (And you know what people say about when you assume something...)&lt;/p&gt;
+
+&lt;p&gt;The general thought process goes like this:&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Chrome implements the &lt;code&gt;Text&lt;/code&gt; function. I also know Chrome doesn&amp;#39;t have &lt;code&gt;applyElement&lt;/code&gt; like IE does. So I&amp;#39;ll write code like...&lt;/em&gt;&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;if(typeof applyElement != 'undefined') {
+    // now I know I'm not in IE, I'll just assume Text is available
+    text = new Text('Oh, how quick that fox was!');
+}
+&lt;/pre&gt;
+&lt;p&gt;But oops! Someone looked at that code in Firefox which doesn&amp;#39;t implement &lt;code&gt;applyElement&lt;/code&gt; or &lt;code&gt;Text&lt;/code&gt;! They got an error :(&lt;/p&gt;
+
+&lt;p&gt;So that&amp;#39;s the problem. Since you&amp;#39;re not checking for the feature you&amp;#39;re using you&amp;#39;re more likely to have inconsistencies. Also, if in the future one of the browsers changes what they implement all your assumptions will be inacurate.&lt;/p&gt;
+
+&lt;p&gt;So yeah, it&amp;#39;s bad.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;What is the UA string?&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&amp;quot;UA&amp;quot; stands for user agent, which means the browser (and a whole lot of other stuff). Mine looks like this:&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.71
+&lt;/pre&gt;
+&lt;p&gt;(You can find your user string at &lt;a href="http://whatsmyuseragent.com/"&gt;whatsmyuseragent.com&lt;/a&gt;.)&lt;/p&gt;
+
+&lt;p&gt;But you can see in there (at the end) it says what browser I&amp;#39;m on. So it would be possible to check for a specific version of Chrome by &amp;quot;sniffing&amp;quot; the user agent string. This is generally considered bad practice (but seems to be slightly better practice than feature inference).&lt;/p&gt;
+
+&lt;p&gt;Just like with feature inference, if you use the UA string you&amp;#39;re making an assumption about how the string will be written, what changes are likely to happen in this particular version, and that your code will be able to handle any future changes.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;TL;DR&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Use feature detection if you&amp;#39;re working with a feature that isn&amp;#39;t available across all browsers. When the browsers upgrade your code will be able to take advantage of the upgrade and your code will still work.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Resources&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="http://www.nczonline.net/blog/2009/12/29/feature-detection-is-not-browser-detection/"&gt;Feature detection is not browser detection&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://stackoverflow.com/a/20105161/863846"&gt;Stack overflow answer&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Mozilla&amp;#39;s article on &lt;a href="https://developer.mozilla.org/en-US/docs/Browser_detection_using_the_user_agent"&gt;working with the user agent&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</content>
+  </entry>
   <entry>
     <title>JS: &lt;code&gt;.call&lt;/code&gt; vs. &lt;code&gt;.apply&lt;/code&gt;</title>
     <link rel="alternate" href="http://lucybain.com/blog/2014/call-vs-apply/"/>
@@ -311,23 +380,6 @@ var whiskers = cat('Whiskers');
 whiskers.sayName() // returns 'Whiskers'
 &lt;/pre&gt;
 &lt;p&gt;So this way you can create a whole bunch of &lt;code&gt;cat&lt;/code&gt; objects that have a private &lt;code&gt;name&lt;/code&gt; variable, which you can access via the &lt;code&gt;sayName&lt;/code&gt; method.&lt;/p&gt;
-</content>
-  </entry>
-  <entry>
-    <title>A display of Scott Aaronson's Timeline of computer science</title>
-    <link rel="alternate" href="http://lucybain.com/blog/2014/timeline-of-computer-science/"/>
-    <id>http://lucybain.com/blog/2014/timeline-of-computer-science/</id>
-    <published>2014-10-13T00:00:00Z</published>
-    <updated>2014-10-13T17:55:06+11:00</updated>
-    <author>
-      <name>Article Author</name>
-    </author>
-    <content type="html">&lt;p&gt;
-  The timeline might take some time to load, please be patient. I did not pick any of these events, they come directly from &lt;a href="http://www.scottaaronson.com/blog/?p=524"&gt;Scott Aaronson's Timeline of computer science&lt;/a&gt;, please don't hate on the events chosen. The timeline is made by &lt;a href="http://timeline.knightlab.com/"&gt;TimelineJS&lt;/a&gt;, please check it out!
-&lt;/p&gt;
-&lt;div class='timeline'&gt;
-  &lt;iframe src='http://cdn.knightlab.com/libs/timeline/latest/embed/index.html?source=0AlyQ63WYoWl7dFVGSV95TmRyeFFNcVdNbWkzb2RPMXc&amp;font=Bevan-PotanoSans&amp;maptype=toner&amp;lang=en&amp;height=650' width='100%' height='650' frameborder='0'&gt;&lt;/iframe&gt;
-&lt;/div&gt;
 </content>
   </entry>
 </feed>
