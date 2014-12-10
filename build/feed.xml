@@ -4,10 +4,88 @@
   <id>http://lucybain.com/blog</id>
   <link href="http://lucybain.com/blog"/>
   <link href="http://lucybain.com/feed.xml" rel="self"/>
-  <updated>2014-12-04T00:00:00Z</updated>
+  <updated>2014-12-10T00:00:00Z</updated>
   <author>
     <name>Lucy Bain</name>
   </author>
+  <entry>
+    <title>JS: Async Google Adwords conversion</title>
+    <link rel="alternate" href="http://lucybain.com/blog/2014/google-adwords-async/"/>
+    <id>http://lucybain.com/blog/2014/google-adwords-async/</id>
+    <published>2014-12-10T00:00:00Z</published>
+    <updated>2014-12-10T12:14:53+11:00</updated>
+    <author>
+      <name>Article Author</name>
+    </author>
+    <content type="html">&lt;h2&gt;How can I trigger a Google Adwords conversion when the page is loaded asynchronously?&lt;/h2&gt;
+
+&lt;p&gt;I&amp;#39;ve been working with Google Adwords at work this week (yay learning!). My first task was to add a &amp;quot;tracking pixel&amp;quot; to a thank you page after a user has given us their contact details.&lt;/p&gt;
+
+&lt;p&gt;(Side note: It turns out we don&amp;#39;t really use pixels any more, we use JS to actually make the call, and only fall back to a pixel when the user doesn&amp;#39;t have JS enabled.)&lt;/p&gt;
+
+&lt;p&gt;Our thank you page is loaded asynchronously, so the Google Adwords script was getting injected into the dom in that async call. As it turns out, you can&amp;#39;t just inject scripts into the dom and expect them to run. If you do inject the script (as I did) you&amp;#39;ll get this warning in Chrome:&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;Failed to execute 'write' on 'Document': It isn't possible to write into a document from an asynchronously-loaded external script unless it is explicitly opened.
+&lt;/pre&gt;
+&lt;p&gt;(Personally I think this should be an error, not just a warning. To me, this is saying &amp;quot;Hey, your code that you think is running isn&amp;#39;t actually running&amp;quot; - that sounds like an error. But I digress...)&lt;/p&gt;
+
+&lt;p&gt;After some Googling around I know of two ways to fix this.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Fix one (bad)&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Mess with &lt;code&gt;document.write&lt;/code&gt;. Basically Chrome has a check that an async loaded script doesn&amp;#39;t make any calls to &lt;code&gt;document.write&lt;/code&gt;. But it doesn&amp;#39;t check for &lt;code&gt;$(&amp;#39;body&amp;#39;).append()&lt;/code&gt; (yet). So if you set &lt;code&gt;document.write&lt;/code&gt; to actually use &lt;code&gt;$(&amp;#39;body&amp;#39;).append()&lt;/code&gt; the error goes away. Here&amp;#39;s an example (taken from &lt;a href="http://www.jakobbeyer.de/asynchronous-google-adwords-conversion-tracking"&gt;Jakob Beyer&lt;/a&gt;):&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;var oldDocumentWrite = document.write
+
+// change document.write temporary
+document.write = function(node){
+    $("body").append(node)
+}
+
+// get script
+$.getScript( "http://www.googleadservices.com/pagead/conversion.js", function() {
+    // replace the temp document.write with the original version
+    setTimeout(function() {
+        document.write = oldDocumentWrite
+    }, 100)
+});
+&lt;/pre&gt;
+&lt;p&gt;This threw up some red flags for me - why are we hijacking &lt;code&gt;document.write&lt;/code&gt;? If we have to do this weird dance to get around the problem, maybe it&amp;#39;s as unsafe as Chrome would have us believe - should we do something safer?&lt;/p&gt;
+
+&lt;p&gt;Time to do some more Googling...&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Fix two (good)&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;The correct way to deal with this problem is to use Google Adwords async script. I know it seems really simple and obvious, but I did find a lot of people suggesting the first way, so I&amp;#39;m hoping this post is news to some of you.&lt;/p&gt;
+
+&lt;p&gt;Here&amp;#39;s how to use Google&amp;#39;s async code:&lt;/p&gt;
+
+&lt;p&gt;On your main page (not anything that&amp;#39;s loaded asynchronously) link to the async conversion file.&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;&amp;lt;script type="text/javascript" src="//www.googleadservices.com/pagead/conversion_async.js" charset="utf-8"&amp;gt;&amp;lt;/script&amp;gt;
+&lt;/pre&gt;
+&lt;p&gt;This way the &lt;code&gt;google_trackConversion&lt;/code&gt; method is written on document load, and not async which caused the original warning we saw.&lt;/p&gt;
+
+&lt;p&gt;Then wherever your async call returns you can trigger a call to track the conversion:&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;&amp;lt;script type="text/javascript"&amp;gt;
+/* &amp;lt;![CDATA[ */
+window.google_trackConversion({
+  google_conversion_id: 123456789,
+  google_conversion_label: "your label here",
+  google_custom_params: {
+    parameter1: 'abc123',
+    parameter2: 29.99
+  }
+});
+//]]&amp;gt;
+&amp;lt;/script&amp;gt;
+&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;References&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://developers.google.com/adwords-remarketing-tag/asynchronous/"&gt;Docs&lt;/a&gt; for the good fix&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://stackoverflow.com/a/25240908/863846"&gt;Stack overflow answer&lt;/a&gt; for the good fix&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://www.jakobbeyer.de/asynchronous-google-adwords-conversion-tracking"&gt;Bad fix&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</content>
+  </entry>
   <entry>
     <title>JS: feature detection vs. inference vs. UA string</title>
     <link rel="alternate" href="http://lucybain.com/blog/2014/feature-detection-vs-inference/"/>
@@ -282,104 +360,6 @@ reference(); // returns "I'm not anonymous function"
 &lt;p&gt;So you can see there&amp;#39;s a difference to how the two &lt;code&gt;reference&lt;/code&gt; example functions are treated by JS, even if the code looks very similar.&lt;/p&gt;
 
 &lt;p&gt;You can find a list of pros and cons on &lt;a href="http://stackoverflow.com/questions/10273185/what-are-the-benefits-to-using-anonymous-functions-instead-of-named-functions-fo"&gt;stackoverflow&lt;/a&gt;.&lt;/p&gt;
-</content>
-  </entry>
-  <entry>
-    <title>JS: what is a closure?</title>
-    <link rel="alternate" href="http://lucybain.com/blog/2014/closures/"/>
-    <id>http://lucybain.com/blog/2014/closures/</id>
-    <published>2014-10-18T00:00:00Z</published>
-    <updated>2014-11-25T19:29:08+11:00</updated>
-    <author>
-      <name>Article Author</name>
-    </author>
-    <content type="html">&lt;h2&gt;What is a closure, and how/why would you use one?&lt;/h2&gt;
-
-&lt;p&gt;A closure is a way of keeping access to variables in a function after that function has returned.&lt;/p&gt;
-
-&lt;p&gt;&lt;em&gt;Fantastic, now again, not as a dictionary.&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;Usually you lose access to variables when a function returns:&lt;/p&gt;
-&lt;pre class="highlight plaintext"&gt;function notAClosure() {
-    var shortLivedVariable = "I'm only here for a little while";
-    return shortLivedVariable;
-}
-notAClosure(); // returns "I'm only here for a little while"
-&lt;/pre&gt;
-&lt;p&gt;Notice that nothing has access to &lt;code&gt;shortLivedVariable&lt;/code&gt; now that &lt;code&gt;notAClosure&lt;/code&gt; has run. Sure, you can call &lt;code&gt;notAClosure&lt;/code&gt; again (and again and again), but each call will create a whole new &lt;code&gt;shortLivedVariable&lt;/code&gt;. But hey, it&amp;#39;s hard to tell that each &lt;code&gt;shortLivedVariable&lt;/code&gt; is brand new, so let&amp;#39;s clear that up a bit.&lt;/p&gt;
-&lt;pre class="highlight plaintext"&gt;function stillNotAClosure(anotherShortLivedVariable) {
-    return anotherShortLivedVariable;
-}
-stillNotAClosure("brand"); // returns "brand"
-stillNotAClosure("new"); // returns "new"
-stillNotAClosure("string"); // returns "string"
-&lt;/pre&gt;
-&lt;p&gt;Thus, you can see &lt;code&gt;stillNotAClosure&lt;/code&gt; doesn&amp;#39;t retain any reference to previous calls.&lt;/p&gt;
-
-&lt;p&gt;&lt;em&gt;Ok, so that&amp;#39;s what a closure isn&amp;#39;t, but what &lt;strong&gt;is&lt;/strong&gt; a closure?&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;In a closure those variables stick around for a while longer since there is a reference to the variables after the function returns.&lt;/p&gt;
-&lt;pre class="highlight plaintext"&gt;function aClosure() {
-    var longLivedVariable = "I'm here for a long time";
-    var innerFunction = function inner() {
-        return longLivedVariable;
-    }
-    return innerFunction;
-}
-var closure = aClosure(); // returns a reference to innerFunction
-closure(); // returns "I'm here for a long time"
-&lt;/pre&gt;
-&lt;p&gt;Notice that &lt;code&gt;aClosure&lt;/code&gt; doesn&amp;#39;t return &lt;code&gt;longLivedVariable&lt;/code&gt;, but rather &lt;code&gt;innerFunction&lt;/code&gt;. This means there&amp;#39;s a reference hanging around to &lt;code&gt;innerFunction&lt;/code&gt;, and because &lt;code&gt;innerFunction&lt;/code&gt; has a reference to &lt;code&gt;longLivedVariable&lt;/code&gt;, that variable continues to exist.&lt;/p&gt;
-
-&lt;p&gt;Finally, when we call &lt;code&gt;closure()&lt;/code&gt;, we&amp;#39;re really calling &lt;code&gt;innerFunction()&lt;/code&gt; (the returned value of &lt;code&gt;aClosure()&lt;/code&gt;), which in turn returns &lt;code&gt;longLivedVariable&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;&lt;em&gt;Prove it, call the closure multiple times.&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;You got it.&lt;/p&gt;
-&lt;pre class="highlight plaintext"&gt;function stillAClosure(anotherLongLivedVariable) {
-    var innerFunction = function inner() {
-        return anotherLongLivedVariable;
-    }
-    return innerFunction;
-}
-var closure = stillAClosure("The same string");
-closure(); // returns "The same string"
-closure(); // returns "The same string"
-closure(); // returns "The same string"
-&lt;/pre&gt;
-&lt;p&gt;And here&amp;#39;s even more proof:&lt;/p&gt;
-&lt;pre class="highlight plaintext"&gt;var closure1 = stillAClosure("String 1");
-closure1(); // returns "String 1"
-closure1(); // returns "String 1"
-
-var closure2 = stillAClosure("String 2");
-closure2(); // returns "String 2"
-closure2(); // returns "String 2"
-
-// And here's the kicker
-closure1(); // returns "String 1"
-&lt;/pre&gt;
-&lt;p&gt;Bam! Did you see that! &lt;code&gt;closure1&lt;/code&gt; kept a reference to &lt;code&gt;&amp;quot;String 1&amp;quot;&lt;/code&gt; even though &lt;code&gt;stillAClosure&lt;/code&gt; had been called with a whole other parameter (namely &lt;code&gt;&amp;quot;String 2&amp;quot;&lt;/code&gt;). That&amp;#39;s some pretty cool stuff!&lt;/p&gt;
-
-&lt;p&gt;&lt;em&gt;OK, I&amp;#39;m convinced. But now &lt;strong&gt;why&lt;/strong&gt; would I ever want to use a closure?&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;Well, since closures keep access to the variables they can be used to save state. And things that save state look a whole lot like objects. (Before I get any haters, I know you can use closures for a bunch of other things, but this is a reasonable example.)&lt;/p&gt;
-&lt;pre class="highlight plaintext"&gt;function cat(name) {
-    return {
-        sayName: function() {
-            return name;
-        }
-    }
-}
-
-var fluffy = cat('Mr. Fluffy');
-fluffy.name // returns undefined
-fluffy.sayName() // returns 'Mr. Fluffy'
-
-var whiskers = cat('Whiskers');
-whiskers.sayName() // returns 'Whiskers'
-&lt;/pre&gt;
-&lt;p&gt;So this way you can create a whole bunch of &lt;code&gt;cat&lt;/code&gt; objects that have a private &lt;code&gt;name&lt;/code&gt; variable, which you can access via the &lt;code&gt;sayName&lt;/code&gt; method.&lt;/p&gt;
 </content>
   </entry>
 </feed>
