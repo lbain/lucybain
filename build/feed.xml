@@ -4,10 +4,157 @@
   <id>http://lucybain.com/blog</id>
   <link href="http://lucybain.com/blog"/>
   <link href="http://lucybain.com/feed.xml" rel="self"/>
-  <updated>2014-12-10T00:00:00Z</updated>
+  <updated>2014-12-13T00:00:00Z</updated>
   <author>
     <name>Lucy Bain</name>
   </author>
+  <entry>
+    <title>JS: Explain "hoisting"</title>
+    <link rel="alternate" href="http://lucybain.com/blog/2014/hoisting/"/>
+    <id>http://lucybain.com/blog/2014/hoisting/</id>
+    <published>2014-12-13T00:00:00Z</published>
+    <updated>2014-12-13T20:32:34+11:00</updated>
+    <author>
+      <name>Article Author</name>
+    </author>
+    <content type="html">&lt;p&gt;I&amp;#39;m continuing my series of &lt;a href="https://github.com/h5bp/Front-end-Developer-Interview-Questions#js"&gt;JS interview questions&lt;/a&gt;. These posts are proving very good practice for the interviews I&amp;#39;m doing!&lt;/p&gt;
+
+&lt;h2&gt;Explain &amp;quot;hoisting&amp;quot;&lt;/h2&gt;
+
+&lt;p&gt;Hoisting is when a JS declaration is lifted (&amp;quot;hoisted&amp;quot;) to the top of it&amp;#39;s scope by the JS interpreter. What this really means is that a variable or function isn&amp;#39;t necessarily declared where you think it is. Understandably, this can cause problems. Variables and functions are hoisted differently, as we&amp;#39;ll see below.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Hoisting variables&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;We&amp;#39;ll start with an example:&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;// Code saved in file:
+
+function containsHoisting() {
+    console.log(hoistedVariable);
+    var hoistedVariable = "I was hoisted!";
+}
+
+containsHoisting(); // logs undefined
+&lt;/pre&gt;
+&lt;p&gt;&lt;em&gt;Wait, how did &lt;code&gt;hoistedVariable&lt;/code&gt; get to be undefined? Surely it should be undeclared since we haven&amp;#39;t hit &lt;code&gt;var hoistedVariable&lt;/code&gt; yet.&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;It&amp;#39;s because of hoisting! You see, although I wrote the code in the example above, the JS interpreter changes it to this:&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;// What the interpreter changed it to:
+
+function containsHoisting() {
+    var hoistedVariable; // &amp;lt;-- this line here!
+    console.log(hoistedVariable);
+    hoistedVariable = "I was hoisted!";
+}
+&lt;/pre&gt;
+&lt;p&gt;That new line is &lt;code&gt;hoistedVariable&lt;/code&gt; getting hoisted up to the top of it&amp;#39;s scope. So it&amp;#39;s now declared, but not defined.&lt;/p&gt;
+
+&lt;p&gt;Here&amp;#39;s a more complex example (inspired by &lt;a href="http://www.adequatelygood.com/JavaScript-Scoping-and-Hoisting.html"&gt;Adequately Good&lt;/a&gt;)&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;var hoistedVariable = 1;
+
+function scopingFunction() {
+    if (!hoistedVariable) {
+        var hoistedVariable = 10;
+    }
+    return hoistedVariable;
+}
+
+scopingFunction(); // returns 10
+&lt;/pre&gt;
+&lt;p&gt;&lt;em&gt;What?! How can it return 10?&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Tangent about scopes&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;I was surprised about this myself until I understood JS scoping better, here&amp;#39;s how it breaks down:&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;In Javascript scopes are defined at &lt;strong&gt;function level&lt;/strong&gt;. Many other languages define scope at a block level (as in an &lt;code&gt;if&lt;/code&gt; block or &lt;code&gt;for&lt;/code&gt; loop). This is an important difference to remember.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Thus...&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Back to the main event&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;The code above gets rewritten in the JS interpreter to look like this:&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;var hoistedVariable = 1;
+
+function scopingFunction() {
+    var hoistedVariable; // &amp;lt;-- this line here!
+    if (!hoistedVariable) {
+        hoistedVariable = 10;
+    }
+    return hoistedVariable;
+}
+
+scopingFunction(); // returns 10
+&lt;/pre&gt;
+&lt;p&gt;Note that the &lt;em&gt;global&lt;/em&gt; &lt;code&gt;hoistedVariable&lt;/code&gt; gets completely overwritten by the &lt;em&gt;local&lt;/em&gt; &lt;code&gt;hoistedVariable&lt;/code&gt; as declared in &lt;code&gt;scopingFunction&lt;/code&gt;. So at the point of the &lt;code&gt;if&lt;/code&gt; conditional &lt;code&gt;hoistedVariable&lt;/code&gt; is &lt;code&gt;undefined&lt;/code&gt; and not 1.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Function hoisting&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Hoisting functions works differently than variables. Since a function is declared and defined at the same time the function definition is hoisted along with the function name.&lt;/p&gt;
+
+&lt;p&gt;Since examples make things clearer:&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;function containingFunction() {
+    var hoistedVariable = 2 + 2;
+    function hoistedFunction() {
+        return hoistedVariable;
+    }
+    return hoistedFunction();
+}
+containingFunction() // returns 4
+&lt;/pre&gt;
+&lt;p&gt;Hopefully that example wasn&amp;#39;t surprising. But just to better understand what&amp;#39;s going on, here&amp;#39;s how the JS interpreter rewrote things:&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;function containingFunction() {
+    // this is the hoisted section
+    var hoistedVariable;
+    function hoistedFunction() {
+        return hoistedVariable;
+    }
+
+    // here's the rest of the code
+    hoistedVariable = 2 + 2;
+    return hoistedFunction();
+}
+containingFunction() // returns 4
+&lt;/pre&gt;
+&lt;p&gt;Notice that the entire &lt;code&gt;hoistedFunction&lt;/code&gt; gets moved up, while only the declaration for the &lt;code&gt;hoistedVariable&lt;/code&gt; is hoisted.&lt;/p&gt;
+
+&lt;p&gt;Let&amp;#39;s try with a more complicated example:&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;function containingFunction() {
+    var hoisted = "I'm the variable";
+    function hoisted() {
+        return "I'm the function";
+    }
+    return hoisted(); // results in a TypeError
+}
+containingFunction()
+&lt;/pre&gt;
+&lt;p&gt;&lt;em&gt;But wait, the &lt;code&gt;hoisted&lt;/code&gt; function is defined right there, what gives?&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;Because functions are hoisted after variables, naming conflicts can happen. Again, let&amp;#39;s look at what the JS interpreter wrote for this code&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;function containingFunction() {
+    // hoisted section
+    var hoisted;
+    function hoisted() {
+        return "I'm the function";
+    }
+
+    // rest of the code
+    hoisted = "I'm the variable";
+    return hoisted();
+}
+containingFunction() // results in a TypeError
+&lt;/pre&gt;
+&lt;p&gt;As you can see, the function definition for &lt;code&gt;hoisted&lt;/code&gt; is overwritten by the variable definition (&lt;code&gt;&amp;quot;I&amp;#39;m the variable&amp;quot;&lt;/code&gt;) which appears lower down in the interpreter&amp;#39;s version of the code. Yet another reason why good names are important!&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Resources&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="http://javascriptissexy.com/javascript-variable-scope-and-hoisting-explained/"&gt;JS is sexy&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://www.adequatelygood.com/JavaScript-Scoping-and-Hoisting.html"&gt;Adequately Good&lt;/a&gt; (which I think is a hilarious name for a coding blog!)&lt;/li&gt;
+&lt;/ul&gt;
+</content>
+  </entry>
   <entry>
     <title>JS: Async Google Adwords conversion</title>
     <link rel="alternate" href="http://lucybain.com/blog/2014/google-adwords-async/"/>
@@ -304,62 +451,6 @@ alice.introduceSelf.apply({name: "Casey"}, ['Hola']);
 &lt;li&gt;&lt;a href="http://www.sitepoint.com/oriented-programming-1-4/"&gt;Sitepoint&lt;/a&gt; which also mentioned user object as a separate category, although it was posted way back in 2001&lt;/li&gt;
 &lt;li&gt;and &lt;a href="http://perfectionkills.com/extending-native-builtins/"&gt;Perfection Kills&lt;/a&gt;, although this one was less on topic&lt;/li&gt;
 &lt;/ul&gt;
-</content>
-  </entry>
-  <entry>
-    <title>JS: anonymous functions</title>
-    <link rel="alternate" href="http://lucybain.com/blog/2014/anonymous-functions/"/>
-    <id>http://lucybain.com/blog/2014/anonymous-functions/</id>
-    <published>2014-11-02T00:00:00Z</published>
-    <updated>2014-11-25T21:30:14+11:00</updated>
-    <author>
-      <name>Article Author</name>
-    </author>
-    <content type="html">&lt;h2&gt;What&amp;#39;s a typical use case for anonymous functions?&lt;/h2&gt;
-
-&lt;p&gt;I&amp;#39;m going to go with my high school training and focus on the word &lt;strong&gt;typical&lt;/strong&gt;. So long as we&amp;#39;re just talking about typical use, here&amp;#39;s my answer:&lt;/p&gt;
-
-&lt;p&gt;Anonymous functions are typically used as callbacks.&lt;/p&gt;
-
-&lt;p&gt;&lt;em&gt;So what&amp;#39;s a callback?&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;I&amp;#39;m glad you asked!&lt;/p&gt;
-&lt;pre class="highlight plaintext"&gt;function takesACallback(callback) {
-    // do some interesting things here
-    return "The callback says: " + callback();
-}
-
-takesACallback(function() {
-    return "I'm the callback!";
-}); // returns "The callback says: I'm the callback!"
-&lt;/pre&gt;
-&lt;p&gt;See the function that&amp;#39;s a parameter to the &lt;code&gt;takesACallback&lt;/code&gt; call? Notice that it doesn&amp;#39;t have a name? That&amp;#39;s an anonymous function.&lt;/p&gt;
-
-&lt;p&gt;Note that you can still have a reference to an anonymous function, just because it is unnamed it doesn&amp;#39;t mean it&amp;#39;s unreferenced.&lt;/p&gt;
-&lt;pre class="highlight plaintext"&gt;var reference = function() {
-    return "I'm still an anonymous function";
-}
-
-reference(); // returns "I'm still an anonymous function"
-&lt;/pre&gt;
-&lt;p&gt;This is almost the same as&lt;/p&gt;
-&lt;pre class="highlight plaintext"&gt;function reference() {
-    return "I'm not anonymous function";
-}
-
-reference(); // returns "I'm not anonymous function"
-&lt;/pre&gt;
-&lt;p&gt;A named function is called a function declaration.&lt;/p&gt;
-
-&lt;p&gt;According to &lt;a href="http://helephant.com/2008/08/23/javascript-anonymous-functions/"&gt;Helen&lt;/a&gt;:&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;Anonymous functions are created at runtime ... Function declarations are different. They are run before any of the other code is executed so the functions do not have to be declared before the code that calls them.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;So you can see there&amp;#39;s a difference to how the two &lt;code&gt;reference&lt;/code&gt; example functions are treated by JS, even if the code looks very similar.&lt;/p&gt;
-
-&lt;p&gt;You can find a list of pros and cons on &lt;a href="http://stackoverflow.com/questions/10273185/what-are-the-benefits-to-using-anonymous-functions-instead-of-named-functions-fo"&gt;stackoverflow&lt;/a&gt;.&lt;/p&gt;
 </content>
   </entry>
 </feed>
