@@ -23,7 +23,7 @@ activate :blog do |blog|
   # blog.default_extension = ".markdown"
 
   blog.tag_template = "blog/tag.html"
-  blog.calendar_template = "blog/calendar.html"
+  # blog.calendar_template = "blog/calendar.html"
 
   # Enable pagination
   blog.paginate = true
