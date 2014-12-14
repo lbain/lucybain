@@ -421,7 +421,7 @@ alice.introduceSelf.apply({name: "Casey"}, ['Hola']);
     <link rel="alternate" href="http://lucybain.com/blog/2014/event-bubbling/"/>
     <id>http://lucybain.com/blog/2014/event-bubbling/</id>
     <published>2014-11-20T00:00:00Z</published>
-    <updated>2014-12-14T14:13:24+11:00</updated>
+    <updated>2014-12-14T14:19:07+11:00</updated>
     <author>
       <name>Article Author</name>
     </author>
