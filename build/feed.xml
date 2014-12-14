@@ -417,39 +417,77 @@ alice.introduceSelf.apply({name: "Casey"}, ['Hola']);
 </content>
   </entry>
   <entry>
-    <title>JS: host vs. native objects</title>
-    <link rel="alternate" href="http://lucybain.com/blog/2014/host-vs-native/"/>
-    <id>http://lucybain.com/blog/2014/host-vs-native/</id>
-    <published>2014-11-16T00:00:00Z</published>
-    <updated>2014-11-26T21:19:31+11:00</updated>
+    <title>JS: Describe event bubbling</title>
+    <link rel="alternate" href="http://lucybain.com/blog/2014/event-bubbling/"/>
+    <id>http://lucybain.com/blog/2014/event-bubbling/</id>
+    <published>2014-11-20T00:00:00Z</published>
+    <updated>2014-12-14T14:13:24+11:00</updated>
     <author>
       <name>Article Author</name>
     </author>
-    <content type="html">&lt;h2&gt;What&amp;#39;s the difference between host objects and native objects?&lt;/h2&gt;
+    <content type="html">&lt;h2&gt;Describe event bubbling&lt;/h2&gt;
 
-&lt;p&gt;I didn&amp;#39;t find as much lot of information about this topic as some of the other &lt;a href="https://github.com/darcyclarke/Front-end-Developer-Interview-Questions#js"&gt;JS interview questions&lt;/a&gt;. So here&amp;#39;s my current understanding, but please comment if I&amp;#39;ve misunderstood or there&amp;#39;s a better way to explain it.&lt;/p&gt;
+&lt;p&gt;Event bubbling occurs when a user interacts with a nested element and the event propagates up (&amp;quot;bubbles&amp;quot;) through all of the ancestor elements.&lt;/p&gt;
 
-&lt;p&gt;&lt;strong&gt;What is a native object?&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;HTML&lt;/strong&gt;&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;&amp;lt;div class="ancestor"&amp;gt;
+  &amp;lt;div class="parent"&amp;gt;
+    &amp;lt;button&amp;gt; Click me! &amp;lt;/button&amp;gt;
+  &amp;lt;/div&amp;gt;
+&amp;lt;/div&amp;gt;
+&lt;/pre&gt;
+&lt;p&gt;When a user clicks the button the event first fires on the button itself, then bubbles up to the parent div, and then up to the ancestor div. The event would continue to bubble up through all the ancestors, until it finally reaches the &lt;code&gt;document&lt;/code&gt;.&lt;/p&gt;
 
-&lt;p&gt;Native objects are inherent to JS - they are available to you so long as you&amp;#39;re using JS. You can be in the browser or in Node, but if you&amp;#39;re writing JS, you&amp;#39;ve got access to the native objects. Here&amp;#39;s a &lt;a href="http://es5.github.io/#x8"&gt;list&lt;/a&gt; of them if you want to know what&amp;#39;s available to you.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Javascript&lt;/strong&gt;&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;$( "button" ).click(function(event) {
+  console.log( "button was clicked!" );
+});
 
-&lt;p&gt;&lt;strong&gt;What is a host object?&lt;/strong&gt;&lt;/p&gt;
+$( ".parent" ).click(function(event) {
+  console.log( "child element was clicked!" );
+});
 
-&lt;p&gt;Everything the environment gives you. For the browser, this includes objects like &lt;code&gt;window&lt;/code&gt;. Host objects can differ by environment (or host), so that Node wouldn&amp;#39;t have access to &lt;code&gt;window&lt;/code&gt; (which makes sense since there&amp;#39;s no DOM for Node), but could have it&amp;#39;s own host objects like &lt;code&gt;NodeLists&lt;/code&gt;.&lt;/p&gt;
+$( ".ancestor" ).click(function(event) {
+  console.log( "descendant element was clicked!" );
+});
+&lt;/pre&gt;
+&lt;p&gt;When the user clicks the button the events starts at the button element, so &lt;code&gt;button was clicked!&lt;/code&gt; is logged to the console. Then &lt;code&gt;child element was clicked!&lt;/code&gt; and finally &lt;code&gt;descendant element was clicked!&lt;/code&gt; are logged as well.&lt;/p&gt;
 
-&lt;p&gt;&lt;strong&gt;What is a user object?&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Stopping event bubbling&lt;/strong&gt;&lt;/p&gt;
 
-&lt;p&gt;This is where I got the most confused. The question asks for the difference between &lt;strong&gt;host&lt;/strong&gt; and &lt;strong&gt;native&lt;/strong&gt; objects, which was covered on a few sites. However, a couple of sites make a third category: &lt;strong&gt;user&lt;/strong&gt; objects. There seems to be some debate about user objects being their own category. I&amp;#39;m not sure which side is right so I&amp;#39;m adding a little blurb about them here, but please ignore if it&amp;#39;s not relevant.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;What if you don&amp;#39;t want the event to bubble up?&lt;/em&gt;&lt;/p&gt;
 
-&lt;p&gt;User objects are anything the user defines. When you create a new object that is not directly a native object, you&amp;#39;ve made a user object. So if you create a new string (&lt;code&gt;&amp;quot;Hello world&amp;quot;&lt;/code&gt;) you created a native object, but if you create an instance of an object you&amp;#39;ve defined (&lt;code&gt;&amp;quot;new Cat()&amp;quot;&lt;/code&gt;) then it&amp;#39;s a user object.&lt;/p&gt;
+&lt;p&gt;A fair question. Often you only want the event to trigger on the element itself, without bothering all it&amp;#39;s ancestors. Consider the following JS (with the same HTML as above):&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;$( "button" ).click(function(event) {
+  console.log( "button was clicked!" );
+});
+
+$( ".parent, .ancestor" ).click(function(event) {
+  console.log( "don't click me!" );
+});
+&lt;/pre&gt;
+&lt;p&gt;As it stands, the &lt;code&gt;don&amp;#39;t click me!&lt;/code&gt; will get logged when the user clicks on the button, even though they haven&amp;#39;t actually clicked on the parent or ancestor element.&lt;/p&gt;
+
+&lt;p&gt;You have to explicitly stop event propagation (bubbling) if you don&amp;#39;t want it.&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;$( "button" ).click(function(event) {
+  event.stopPropagation(); // &amp;lt;-- this line here!
+  console.log( "button was clicked!" );
+});
+
+$( ".parent, .ancestor" ).click(function(event) {
+  console.log( "don't click me!" );
+});
+&lt;/pre&gt;
+&lt;p&gt;Now the event propagation stops on the first element of the bubbling sequence. You can also stop the bubbling later on if you&amp;#39;d like, it doesn&amp;#39;t have to be on the first element.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Related&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;The reverse of events that bubble up are events that trickle down. Originally some browsers thought events should trickle down from the ancestors to the element that was interacted with. Now all browsers implenet bubble up events, and some support trickle down.&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;References&lt;/strong&gt;&lt;/p&gt;
 
 &lt;ul&gt;
-&lt;li&gt;&lt;a href="http://stackoverflow.com/questions/7614317/what-is-the-difference-between-native-objects-and-host-objects"&gt;stackoverflow questionn&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="http://programmerinnervoice.wordpress.com/2013/07/22/host-objects-vs-native-objects/"&gt;Programmer Inner Voice&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="http://www.sitepoint.com/oriented-programming-1-4/"&gt;Sitepoint&lt;/a&gt; which also mentioned user object as a separate category, although it was posted way back in 2001&lt;/li&gt;
-&lt;li&gt;and &lt;a href="http://perfectionkills.com/extending-native-builtins/"&gt;Perfection Kills&lt;/a&gt;, although this one was less on topic&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://www.quirksmode.org/js/events_order.html"&gt;Quirks Mode&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 </content>
   </entry>
