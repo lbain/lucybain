@@ -417,77 +417,51 @@ alice.introduceSelf.apply({name: "Casey"}, ['Hola']);
 </content>
   </entry>
   <entry>
-    <title>JS: Describe event bubbling</title>
-    <link rel="alternate" href="http://lucybain.com/blog/2014/event-bubbling/"/>
-    <id>http://lucybain.com/blog/2014/event-bubbling/</id>
-    <published>2014-11-20T00:00:00Z</published>
-    <updated>2014-12-14T14:19:07+11:00</updated>
+    <title>JS: don't extend JS objects</title>
+    <link rel="alternate" href="http://lucybain.com/blog/2014/js-extending-built-in-objects/"/>
+    <id>http://lucybain.com/blog/2014/js-extending-built-in-objects/</id>
+    <published>2014-11-25T00:00:00Z</published>
+    <updated>2014-12-15T20:26:16+11:00</updated>
     <author>
       <name>Article Author</name>
     </author>
-    <content type="html">&lt;h2&gt;Describe event bubbling&lt;/h2&gt;
+    <content type="html">&lt;h2&gt;Why is extending built in JavaScript objects not a good idea?&lt;/h2&gt;
 
-&lt;p&gt;Event bubbling occurs when a user interacts with a nested element and the event propagates up (&amp;quot;bubbles&amp;quot;) through all of the ancestor elements.&lt;/p&gt;
+&lt;p&gt;Turns out there&amp;#39;s lots written on this topic (lucky for me!), be sure to check out the references section at the end.&lt;/p&gt;
 
-&lt;p&gt;&lt;strong&gt;HTML&lt;/strong&gt;&lt;/p&gt;
-&lt;pre class="highlight plaintext"&gt;&amp;lt;div class="ancestor"&amp;gt;
-  &amp;lt;div class="parent"&amp;gt;
-    &amp;lt;button&amp;gt; Click me! &amp;lt;/button&amp;gt;
-  &amp;lt;/div&amp;gt;
-&amp;lt;/div&amp;gt;
+&lt;p&gt;&lt;strong&gt;What is &amp;quot;extending an object&amp;quot;?&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;When you add functionality to an object using the &lt;code&gt;prototype&lt;/code&gt;. An example looks like this:&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;Array.prototype.first = function(){
+    return this[0];
+}
+
+var temp = [1, 2, 3];
+temp.first(); // returns 1
 &lt;/pre&gt;
-&lt;p&gt;When a user clicks the button the event first fires on the button itself, then bubbles up to the parent div, and then up to the ancestor div. The event would continue to bubble up through all the ancestors, until it finally reaches the &lt;code&gt;document&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;At first glance, this seems like such an awesome feature. Want the third element from an array? Extend Array! Want strings to have a &lt;code&gt;titleize&lt;/code&gt; method? Extend String! Want &lt;code&gt;alphabetisedProperties&lt;/code&gt; available for objects? Extend Object!&lt;/p&gt;
 
-&lt;p&gt;&lt;strong&gt;Javascript&lt;/strong&gt;&lt;/p&gt;
-&lt;pre class="highlight plaintext"&gt;$( "button" ).click(function(event) {
-  console.log( "button was clicked!" );
-});
+&lt;p&gt;&lt;strong&gt;Why is this a bad thing?&lt;/strong&gt;&lt;/p&gt;
 
-$( ".parent" ).click(function(event) {
-  console.log( "child element was clicked!" );
-});
+&lt;p&gt;It depends on who you ask. This is one of those &amp;quot;JS standards&amp;quot; - unlike most of the questions that have a clear answer, this one has a bit more opinion.&lt;/p&gt;
 
-$( ".ancestor" ).click(function(event) {
-  console.log( "descendant element was clicked!" );
-});
-&lt;/pre&gt;
-&lt;p&gt;When the user clicks the button the events starts at the button element, so &lt;code&gt;button was clicked!&lt;/code&gt; is logged to the console. Then &lt;code&gt;child element was clicked!&lt;/code&gt; and finally &lt;code&gt;descendant element was clicked!&lt;/code&gt; are logged as well.&lt;/p&gt;
+&lt;p&gt;The main argument against doing this is: if, in future, a browser decides to implement it&amp;#39;s own version of your method, your method might get overridden (silently) and the browser&amp;#39;s implementation (which is probably different from yours) would take over. So not extending in the first place is future proofing your code.&lt;/p&gt;
 
-&lt;p&gt;&lt;strong&gt;Stopping event bubbling&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;On the flip side, if you decide to overwrite the browsers definition, any future developer working on your code won&amp;#39;t know about the change. They&amp;#39;ll have a harder time getting up to speed.&lt;/p&gt;
 
-&lt;p&gt;&lt;em&gt;What if you don&amp;#39;t want the event to bubble up?&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;Generally it&amp;#39;s safer to move your particular changes into a library (as with &lt;a href="http://documentcloud.github.io/underscore/"&gt;underscore.js&lt;/a&gt;). That way your particular methods are clearly marked and there&amp;#39;s no chance of conflict.&lt;/p&gt;
 
-&lt;p&gt;A fair question. Often you only want the event to trigger on the element itself, without bothering all it&amp;#39;s ancestors. Consider the following JS (with the same HTML as above):&lt;/p&gt;
-&lt;pre class="highlight plaintext"&gt;$( "button" ).click(function(event) {
-  console.log( "button was clicked!" );
-});
+&lt;p&gt;&lt;strong&gt;But...&lt;/strong&gt;&lt;/p&gt;
 
-$( ".parent, .ancestor" ).click(function(event) {
-  console.log( "don't click me!" );
-});
-&lt;/pre&gt;
-&lt;p&gt;As it stands, the &lt;code&gt;don&amp;#39;t click me!&lt;/code&gt; will get logged when the user clicks on the button, even though they haven&amp;#39;t actually clicked on the parent or ancestor element.&lt;/p&gt;
-
-&lt;p&gt;You have to explicitly stop event propagation (bubbling) if you don&amp;#39;t want it.&lt;/p&gt;
-&lt;pre class="highlight plaintext"&gt;$( "button" ).click(function(event) {
-  event.stopPropagation(); // &amp;lt;-- this line here!
-  console.log( "button was clicked!" );
-});
-
-$( ".parent, .ancestor" ).click(function(event) {
-  console.log( "don't click me!" );
-});
-&lt;/pre&gt;
-&lt;p&gt;Now the event propagation stops on the first element of the bubbling sequence. You can also stop the bubbling later on if you&amp;#39;d like, it doesn&amp;#39;t have to be on the first element.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Related&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;The reverse of events that bubble up are events that trickle down. Originally some browsers thought events should trickle down from the ancestors to the element that was interacted with. Now all browsers implenet bubble up events, and some support trickle down.&lt;/p&gt;
+&lt;p&gt;It might be a good idea to add an extension for functionality that became available in later versions, but isn&amp;#39;t guaranteed to be available in your particular browser. You can read more about this kind of polyfill on &lt;a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter#Polyfill"&gt;Mozilla&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;References&lt;/strong&gt;&lt;/p&gt;
 
 &lt;ul&gt;
-&lt;li&gt;&lt;a href="http://www.quirksmode.org/js/events_order.html"&gt;Quirks Mode&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://perfectionkills.com/extending-native-builtins/"&gt;Perfection Kills&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter#Polyfill"&gt;Mozilla&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Google is &lt;a href="http://google-styleguide.googlecode.com/svn/trunk/javascriptguide.xml?showone=Modifying_prototypes_of_builtin_objects#Modifying_prototypes_of_builtin_objects"&gt;against&lt;/a&gt; it&lt;/li&gt;
+&lt;li&gt;More on what &lt;a href="http://www.kirupa.com/html5/extending_built_in_objects_javascript.htm"&gt;extending objects&lt;/a&gt; is&lt;/li&gt;
 &lt;/ul&gt;
 </content>
   </entry>
