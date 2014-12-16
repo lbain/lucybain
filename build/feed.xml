@@ -4,10 +4,38 @@
   <id>http://lucybain.com/blog</id>
   <link href="http://lucybain.com/blog"/>
   <link href="http://lucybain.com/feed.xml" rel="self"/>
-  <updated>2014-12-13T00:00:00Z</updated>
+  <updated>2014-12-16T00:00:00Z</updated>
   <author>
     <name>Lucy Bain</name>
   </author>
+  <entry>
+    <title>JS: document load vs document ready</title>
+    <link rel="alternate" href="http://lucybain.com/blog/2014/js-document-load-vs-ready/"/>
+    <id>http://lucybain.com/blog/2014/js-document-load-vs-ready/</id>
+    <published>2014-12-16T00:00:00Z</published>
+    <updated>2014-12-16T20:24:59+11:00</updated>
+    <author>
+      <name>Article Author</name>
+    </author>
+    <content type="html">&lt;h2&gt;Difference between document load event and document ready event?&lt;/h2&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;code&gt;$(document).ready()&lt;/code&gt;&lt;/strong&gt; fires when the HTML has finished loading. You can&amp;#39;t interact with the DOM before the HTML has finished loading, so we keep all our JS interactions wrapped up in the ready handler.&lt;/p&gt;
+
+&lt;p&gt;Note: The ready event is just for jQuery, so that&amp;#39;s a downside if you weren&amp;#39;t planning on including all of jQuery on your site.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;code&gt;window.onload&lt;/code&gt;&lt;/strong&gt; fires when all of the content (images, scripts, CSS, the whole lot) has finished loading. This can be really slow, so we try not to keep too much here. But it can be useful if you need to work with images of unknown size.&lt;/p&gt;
+
+&lt;p&gt;And that&amp;#39;s it! This has been the most straight forward answer yet :)&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;References&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="http://stackoverflow.com/questions/3698200/window-onload-vs-document-ready"&gt;Stackoverflow&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Another &lt;a href="http://stackoverflow.com/questions/7971615/difference-between-pageload-onload-document-ready"&gt;stackoverflow&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;There were a bunch more, but they all said the same thing.&lt;/li&gt;
+&lt;/ul&gt;
+</content>
+  </entry>
   <entry>
     <title>JS: Explain "hoisting"</title>
     <link rel="alternate" href="http://lucybain.com/blog/2014/hoisting/"/>
@@ -414,55 +442,6 @@ alice.introduceSelf.apply({name: "Casey"}, ['Hola']);
 &lt;/ul&gt;
 
 &lt;p&gt;I hope you find those sites as useful as I did!&lt;/p&gt;
-</content>
-  </entry>
-  <entry>
-    <title>JS: don't extend JS objects</title>
-    <link rel="alternate" href="http://lucybain.com/blog/2014/js-extending-built-in-objects/"/>
-    <id>http://lucybain.com/blog/2014/js-extending-built-in-objects/</id>
-    <published>2014-11-25T00:00:00Z</published>
-    <updated>2014-12-15T20:26:16+11:00</updated>
-    <author>
-      <name>Article Author</name>
-    </author>
-    <content type="html">&lt;h2&gt;Why is extending built in JavaScript objects not a good idea?&lt;/h2&gt;
-
-&lt;p&gt;Turns out there&amp;#39;s lots written on this topic (lucky for me!), be sure to check out the references section at the end.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;What is &amp;quot;extending an object&amp;quot;?&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;When you add functionality to an object using the &lt;code&gt;prototype&lt;/code&gt;. An example looks like this:&lt;/p&gt;
-&lt;pre class="highlight plaintext"&gt;Array.prototype.first = function(){
-    return this[0];
-}
-
-var temp = [1, 2, 3];
-temp.first(); // returns 1
-&lt;/pre&gt;
-&lt;p&gt;At first glance, this seems like such an awesome feature. Want the third element from an array? Extend Array! Want strings to have a &lt;code&gt;titleize&lt;/code&gt; method? Extend String! Want &lt;code&gt;alphabetisedProperties&lt;/code&gt; available for objects? Extend Object!&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Why is this a bad thing?&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;It depends on who you ask. This is one of those &amp;quot;JS standards&amp;quot; - unlike most of the questions that have a clear answer, this one has a bit more opinion.&lt;/p&gt;
-
-&lt;p&gt;The main argument against doing this is: if, in future, a browser decides to implement it&amp;#39;s own version of your method, your method might get overridden (silently) and the browser&amp;#39;s implementation (which is probably different from yours) would take over. So not extending in the first place is future proofing your code.&lt;/p&gt;
-
-&lt;p&gt;On the flip side, if you decide to overwrite the browsers definition, any future developer working on your code won&amp;#39;t know about the change. They&amp;#39;ll have a harder time getting up to speed.&lt;/p&gt;
-
-&lt;p&gt;Generally it&amp;#39;s safer to move your particular changes into a library (as with &lt;a href="http://documentcloud.github.io/underscore/"&gt;underscore.js&lt;/a&gt;). That way your particular methods are clearly marked and there&amp;#39;s no chance of conflict.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;But...&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;It might be a good idea to add an extension for functionality that became available in later versions, but isn&amp;#39;t guaranteed to be available in your particular browser. You can read more about this kind of polyfill on &lt;a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter#Polyfill"&gt;Mozilla&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;References&lt;/strong&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href="http://perfectionkills.com/extending-native-builtins/"&gt;Perfection Kills&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter#Polyfill"&gt;Mozilla&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Google is &lt;a href="http://google-styleguide.googlecode.com/svn/trunk/javascriptguide.xml?showone=Modifying_prototypes_of_builtin_objects#Modifying_prototypes_of_builtin_objects"&gt;against&lt;/a&gt; it&lt;/li&gt;
-&lt;li&gt;More on what &lt;a href="http://www.kirupa.com/html5/extending_built_in_objects_javascript.htm"&gt;extending objects&lt;/a&gt; is&lt;/li&gt;
-&lt;/ul&gt;
 </content>
   </entry>
 </feed>
