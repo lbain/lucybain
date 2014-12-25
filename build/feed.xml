@@ -4,10 +4,44 @@
   <id>http://lucybain.com/blog</id>
   <link href="http://lucybain.com/blog"/>
   <link href="http://lucybain.com/feed.xml" rel="self"/>
-  <updated>2014-12-16T00:00:00Z</updated>
+  <updated>2014-12-20T00:00:00Z</updated>
   <author>
     <name>Lucy Bain</name>
   </author>
+  <entry>
+    <title>JS: same-origin policy</title>
+    <link rel="alternate" href="http://lucybain.com/blog/2014/same-origin-policy/"/>
+    <id>http://lucybain.com/blog/2014/same-origin-policy/</id>
+    <published>2014-12-20T00:00:00Z</published>
+    <updated>2014-12-26T10:36:45+11:00</updated>
+    <author>
+      <name>Article Author</name>
+    </author>
+    <content type="html">&lt;h2&gt;Explain the same-origin policy with regards to JavaScript.&lt;/h2&gt;
+
+&lt;p&gt;The same-origin policy helps prevent malicious attacks by stopping code from another site executing on your site. An attacks like this is known as a &lt;a href="http://en.wikipedia.org/wiki/Cross-site_scripting"&gt;Cross Site Scripting&lt;/a&gt; attack.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;How does JS decide if it&amp;#39;s a &amp;quot;same&amp;quot; site?&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;The &amp;quot;origin&amp;quot; is the same if three things are the same: the protocol (http vs. https), the domain (subdomain.yoursite.com vs. yoursite.com vs. google.com), and the port (:80 vs. :4567). If all three of these line up, then JS views the sites as the same, and code is executed. If any of them are different then the code is marked as potentially malicious and is not run.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Hmmm, if I own &amp;quot;subdomain.yoursite.com&amp;quot; and &amp;quot;yoursite.com&amp;quot; I might want to share resources. This same-origin policy could be really annoying!&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;It&amp;#39;s possible to work around the subdomain problem. You can change the domain of a page, so it can access it&amp;#39;s parent&amp;#39;s resources:&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;// in the code on subdomain.yoursite.com
+document.domain = "yoursite.com";
+&lt;/pre&gt;
+&lt;p&gt;There are a couple other pieces to remember about changing the domain (mostly about the port). You can read about them &lt;a href="https://developer.mozilla.org/en-US/docs/Web/Security/Same-origin_policy#Changing_origin"&gt;here&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Resources&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://developer.mozilla.org/en-US/docs/Web/Security/Same-origin_policy"&gt;Mozilla&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://stackoverflow.com/questions/11474336/same-origin-policy-in-layman-terms"&gt;Stackoverflow&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://en.wikipedia.org/wiki/Same-origin_policy"&gt;Wikipedia&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</content>
+  </entry>
   <entry>
     <title>JS: document load vs document ready</title>
     <link rel="alternate" href="http://lucybain.com/blog/2014/js-document-load-vs-ready/"/>
@@ -419,29 +453,6 @@ alice.introduceSelf.apply({name: "Casey"}, ['Hola']);
 &lt;li&gt;&lt;a href="http://stackoverflow.com/questions/1986896/what-is-the-difference-between-call-and-apply"&gt;stackoverflow question&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="http://odetocode.com/blogs/scott/archive/2007/07/04/function-apply-and-function-call-in-javascript.aspx"&gt;Scott Allen&amp;#39;s post&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
-</content>
-  </entry>
-  <entry>
-    <title>JS: ways to create objects</title>
-    <link rel="alternate" href="http://lucybain.com/blog/2014/ways-to-create-objects/"/>
-    <id>http://lucybain.com/blog/2014/ways-to-create-objects/</id>
-    <published>2014-11-26T00:00:00Z</published>
-    <updated>2014-11-26T22:11:30+11:00</updated>
-    <author>
-      <name>Article Author</name>
-    </author>
-    <content type="html">&lt;h2&gt;What are a few different ways to create new objects?&lt;/h2&gt;
-
-&lt;p&gt;Well it turns out this topic has been covered quite a lot (unlike my last post about host vs. native objects). I don&amp;#39;t really have anything to add to the conversation, so I&amp;#39;ll just give you the two links that I found the most helpful on this topic.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Resources&lt;/strong&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href="http://www.phpied.com/3-ways-to-define-a-javascript-class/"&gt;phpied&lt;/a&gt; - an attractive explanation. I found this easiest to read.&lt;/li&gt;
-&lt;li&gt;&lt;a href="http://a-developer-life.blogspot.com.au/2011/11/7-ways-to-create-objects-in-javascript.html"&gt;A Developer Life&lt;/a&gt; - an exhaustive list of ways to create objects, complete with examples. This was more in depth.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;I hope you find those sites as useful as I did!&lt;/p&gt;
 </content>
   </entry>
 </feed>
