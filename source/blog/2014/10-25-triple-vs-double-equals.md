@@ -51,5 +51,5 @@ Use `===`. Always.
 
 * Massive amounts of documentation on [stackoverflow](http://stackoverflow.com/questions/7615214/in-javascript-why-is-0-equal-to-false-but-not-false-by-itself) (I love the community!)
 * Very clear examples on [stackoverflow](http://stackoverflow.com/a/523650/863846)
-* [Interactive display](http://f.cl.ly/items/3b0q1n0o1m142P1P340P/javascript_equality.html) of truthiness by [@tjmcewan](https://twitter.com/tjmcewan) (if that link is dead, you can check out the [code](https://gist.github.com/tjmcewan/c293a4f9e0025f00a528))
+* [Interactive display](http://f.cl.ly/items/3b0q1n0o1m142P1P340P/javascript_equality.html) of truthiness by [@tjmcewan](https://twitter.com/tjmcewan) (if that link is dead, you can check out the [code](https://github.com/dorey/JavaScript-Equality-Table))
 * My [question](http://stackoverflow.com/questions/27523765/how-does-js-type-coercion-work)
