@@ -4,10 +4,58 @@
   <id>http://lucybain.com/blog</id>
   <link href="http://lucybain.com/blog"/>
   <link href="http://lucybain.com/feed.xml" rel="self"/>
-  <updated>2014-12-20T00:00:00Z</updated>
+  <updated>2014-12-26T00:00:00Z</updated>
   <author>
     <name>Lucy Bain</name>
   </author>
+  <entry>
+    <title>JS: ternary expressions</title>
+    <link rel="alternate" href="http://lucybain.com/blog/2014/js-ternary/"/>
+    <id>http://lucybain.com/blog/2014/js-ternary/</id>
+    <published>2014-12-26T00:00:00Z</published>
+    <updated>2014-12-26T18:36:12+11:00</updated>
+    <author>
+      <name>Article Author</name>
+    </author>
+    <content type="html">&lt;h2&gt;Why is it called a Ternary expression, what does the word &amp;quot;Ternary&amp;quot; indicate?&lt;/h2&gt;
+
+&lt;p&gt;Let&amp;#39;s answer the second question first: what does the word &amp;quot;ternary&amp;quot; indicate? According to &lt;a href="http://en.wikipedia.org/wiki/Ternary_operation"&gt;Wikipedia&lt;/a&gt; the word &amp;quot;ternary&amp;quot; comes from the n-ary word setup. Other examples of n-ary words are u&lt;strong&gt;nary&lt;/strong&gt; and bi&lt;strong&gt;nary&lt;/strong&gt;. All of these (including ternary) are operands. The prefix section of their name lists how many inputs the operand accepts.&lt;/p&gt;
+
+&lt;p&gt;A &lt;strong&gt;unary&lt;/strong&gt; operand accepts one parameter, e.g. &lt;code&gt;-1&lt;/code&gt;, where &lt;code&gt;-&lt;/code&gt; is the operand, and 1 is the parameter.&lt;/p&gt;
+
+&lt;p&gt;A &lt;strong&gt;binary&lt;/strong&gt; operand accepts two parameters, e.g. &lt;code&gt;2 + 3&lt;/code&gt;, where &lt;code&gt;+&lt;/code&gt; is the operand, and &lt;code&gt;2&lt;/code&gt; and &lt;code&gt;3&lt;/code&gt; are the parameters.&lt;/p&gt;
+
+&lt;p&gt;So a &lt;strong&gt;ternary&lt;/strong&gt; operand accepts three parameters.&lt;/p&gt;
+
+&lt;p&gt;In programming the ternary operand we use is a rewrite of an if statement. Before we write an actual ternary, we&amp;#39;ll just take a quick look at an if statement:&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;if(conditional) { // one
+    truethy_block // two
+} else {
+    falsey_block // three
+}
+&lt;/pre&gt;
+&lt;p&gt;You can see there are three sections to an if statement. Let&amp;#39;s write them as a property ternary expression:&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;conditional ? truethy_block : falsey_block
+&lt;/pre&gt;
+&lt;p&gt;All the same code is there, but it&amp;#39;s arranged slightly differently. The ternary&amp;#39;s operand looks like &lt;code&gt;?:&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;In JS ternarys are often used for assignment:&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;is_sunny = true;
+var weather = is_sunny ? 'Sunny' : 'Cloudy';
+console.log(weather); // logs 'Sunny'
+&lt;/pre&gt;
+&lt;p&gt;They can also be used for very short conditional statements. But be wary of using them for long or complex logic as they are harder to read than traditional statements.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Resources&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="http://en.wikipedia.org/wiki/%3F:"&gt;&lt;code&gt;?:&lt;/code&gt;&lt;/a&gt; on Wikipedia&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://en.wikipedia.org/wiki/Unary_operation"&gt;unary operands&lt;/a&gt; on Wikipedia&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://en.wikipedia.org/wiki/Binary_operation"&gt;binary operands&lt;/a&gt; on Wikipedia&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://stackoverflow.com/questions/6259982/js-how-to-use-the-ternary-operator"&gt;Stackoverflow&lt;/a&gt; about using the JS ternary operand specifically&lt;/li&gt;
+&lt;/ul&gt;
+</content>
+  </entry>
   <entry>
     <title>JS: same-origin policy</title>
     <link rel="alternate" href="http://lucybain.com/blog/2014/same-origin-policy/"/>
@@ -361,97 +409,6 @@ if(typeof(Text) === "function"){
 &lt;li&gt;&lt;a href="http://www.nczonline.net/blog/2009/12/29/feature-detection-is-not-browser-detection/"&gt;Feature detection is not browser detection&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="http://stackoverflow.com/a/20105161/863846"&gt;Stack overflow answer&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;Mozilla&amp;#39;s article on &lt;a href="https://developer.mozilla.org/en-US/docs/Browser_detection_using_the_user_agent"&gt;working with the user agent&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-</content>
-  </entry>
-  <entry>
-    <title>JS: &lt;code&gt;.call&lt;/code&gt; vs. &lt;code&gt;.apply&lt;/code&gt;</title>
-    <link rel="alternate" href="http://lucybain.com/blog/2014/call-vs-apply/"/>
-    <id>http://lucybain.com/blog/2014/call-vs-apply/</id>
-    <published>2014-11-30T00:00:00Z</published>
-    <updated>2014-11-30T15:55:37+11:00</updated>
-    <author>
-      <name>Article Author</name>
-    </author>
-    <content type="html">&lt;h2&gt;What&amp;#39;s the difference between &lt;code&gt;.call&lt;/code&gt; and &lt;code&gt;.apply&lt;/code&gt;?&lt;/h2&gt;
-
-&lt;p&gt;Let&amp;#39;s start with the similarities.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;What are &lt;code&gt;.call&lt;/code&gt; and &lt;code&gt;.apply&lt;/code&gt;?&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;Both methods allow you to invoke a function and pass parameters through.&lt;/p&gt;
-&lt;pre class="highlight plaintext"&gt;function printer(message) {
-    console.log(message)
-}
-
-printer.call("hello") // logs "hello"
-printer.apply("world!") // logs "world!"
-&lt;/pre&gt;
-&lt;p&gt;&lt;em&gt;Wow. Awesome. A more verbose way to invoke functions. Fantastic. Why not just use &lt;code&gt;printer(&amp;quot;hello&amp;quot;)&lt;/code&gt;?&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;Well actually, &lt;code&gt;.call&lt;/code&gt; and &lt;code&gt;.apply&lt;/code&gt; can do more than simply invoke a method, they can also pass through &lt;strong&gt;context&lt;/strong&gt;. Here&amp;#39;s an example:&lt;/p&gt;
-&lt;pre class="highlight plaintext"&gt;function Person(name){
-    this.name = name;
-    this.introduceSelf = function() {
-        console.log("Hello, my name is " + this.name);
-    }
-}
-
-var alice = new Person('Alice');
-alice.introduceSelf();
-// logs "Hello, my name is Alice", as expected
-
-alice.introduceSelf.call({name: "Bob"});
-// logs "Hello, my name is Bob"
-
-alice.introduceSelf.apply({name: "Casey"});
-// logs "Hello, my name is Casey"
-&lt;/pre&gt;
-&lt;p&gt;So &lt;code&gt;.call&lt;/code&gt; and &lt;code&gt;.apply&lt;/code&gt; allow you to manipulate the &lt;code&gt;this&lt;/code&gt; keyword for the invoked function.&lt;/p&gt;
-
-&lt;p&gt;On to the main question...&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;What&amp;#39;s the difference between &lt;code&gt;.call&lt;/code&gt; and &lt;code&gt;.apply&lt;/code&gt;?&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;It&amp;#39;s all about the way you pass parameters. That&amp;#39;s it. Let&amp;#39;s make our previous example more complex:&lt;/p&gt;
-&lt;pre class="highlight plaintext"&gt;function Person(name){
-    this.name = name;
-    this.introduceSelf = function(greeting) {
-        console.log(greeting + ", my name is " + this.name);
-    }
-}
-
-var alice = new Person('Alice');
-alice.introduceSelf('Hello');
-// logs "Hello, my name is Alice", as expected
-
-alice.introduceSelf.call({name: "Bob"}, 'Bonjour');
-// logs "Bonjour, my name is Bob"
-
-alice.introduceSelf.apply({name: "Casey"}, ['Hola']);
-// logs "Hola, my name is Casey"
-&lt;/pre&gt;
-&lt;p&gt;For &lt;code&gt;.call&lt;/code&gt; you pass the parameters comma separated (like normal). For &lt;code&gt;.apply&lt;/code&gt; you pass the parameters in an array.&lt;/p&gt;
-
-&lt;p&gt;&lt;em&gt;Why would you even bother having these two ways? Why not standardise?&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;That&amp;#39;s a fair question. But the two methods have different use cases. If you know exactly how many arguments you&amp;#39;re passing, you should use &lt;code&gt;.call&lt;/code&gt;. If you don&amp;#39;t know, or if your arguments are already in an array, you should use &lt;code&gt;.apply&lt;/code&gt;. (Rephrased from a helpful &lt;a href="http://stackoverflow.com/a/1987244/863846"&gt;stackoverflow answer&lt;/a&gt;.)&lt;/p&gt;
-
-&lt;p&gt;&lt;em&gt;Ok, how am I going to remember this?&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;Turns out the folks on stackoverflow have some thoughts on that one too. Here&amp;#39;s how I&amp;#39;ll be remembering it:&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;a&lt;/strong&gt;pply uses &lt;strong&gt;a&lt;/strong&gt;n &lt;strong&gt;a&lt;/strong&gt;rray&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;c&lt;/strong&gt;all &lt;strong&gt;c&lt;/strong&gt;ounts with &lt;strong&gt;c&lt;/strong&gt;ommas&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;&lt;strong&gt;Resources&lt;/strong&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href="http://stackoverflow.com/questions/1986896/what-is-the-difference-between-call-and-apply"&gt;stackoverflow question&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="http://odetocode.com/blogs/scott/archive/2007/07/04/function-apply-and-function-call-in-javascript.aspx"&gt;Scott Allen&amp;#39;s post&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 </content>
   </entry>
