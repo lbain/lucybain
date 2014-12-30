@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='width=device-width, initial-scale=1' name='viewport'>
+    <meta charset='utf-8'>
+    <meta content='IE=edge,chrome=1' http-equiv='X-UA-Compatible'>
+    <link href='/images/favicon.ico' rel='icon' type='image/ico'>
+    <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700' rel='stylesheet' type='text/css'>
+    <title>JS: don't touch the global scope</title>
+    <link href="/stylesheets/application.css" media="all" rel="stylesheet" type="text/css" />
+    <script src='//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js'></script>
+  </head>
+  <body>
+    <div id='menu'>
+      <div class='nav-open-btn'>
+        <ul>
+          <li></li>
+          <li></li>
+          <li></li>
+        </ul>
+      </div>
+      <ul class='nav'>
+        <li>
+          <a class="nav-link" href="/">Me</a>
+        </li>
+        <li>
+          <a class="nav-link" href="/resume/">Resume</a>
+        </li>
+        <li>
+          <a class="nav-link" href="/contact-me/">Contact</a>
+        </li>
+        <li>
+          <a class="nav-link" href="/resources/">Resources</a>
+        </li>
+        <li>
+          <a class="nav-link active" href="/blog/">Blog</a>
+        </li>
+      </ul>
+    </div>
+    <script>
+      $('#menu .nav-open-btn').on('click', function(){
+        $('#menu .nav').toggleClass('open');
+      })
+    </script>
+    <div class='content'>
+      <div class=''>
+        <h1>JS: don't touch the global scope</h1>
+        <p>tags: <a href="/blog/tags/js/">js</a> and <a href="/blog/tags/interview-questions/">interview-questions</a></p>
+        <p>One of the last installments from my series on <a href="https://github.com/h5bp/Front-end-Developer-Interview-Questions#js">javascript interview questions</a>.</p>
+        
+        <h2>Why is it, in general, a good idea to leave the global scope of a website as-is and never touch it?</h2>
+        
+        <p>Form most languages, global variables are <a href="http://en.wikipedia.org/wiki/Global_variable#Use">considered</a> a &quot;bad thing&quot;. JS is no different, but it probably has more severe consequences than most languages.</p>
+        
+        <p>Some points on why <strong>global variables are generally bad</strong> (taken from <a href="http://c2.com/cgi/wiki?GlobalVariablesAreBad">Cunningham &amp; Cunningham</a> with modifications for easier reading):</p>
+        
+        <ul>
+        <li>It&#39;s harder to read the code and reason about it when variables seem to appear out of thin air (but really from the global scope).</li>
+        <li>Anyone can update a global variable from any point in the program at any time (and from any thread if there&#39;s more than one going).</li>
+        <li>General <a href="http://en.wikipedia.org/wiki/Code_smell">code smell</a> - if you&#39;re too lazy to put the variable only where it needs to be then what other corners are you cutting?</li>
+        <li>It&#39;s probable that you&#39;ll encounter global variable name clashes. Since there&#39;s only one namespace you&#39;re more likely to double up on a variable name.</li>
+        </ul>
+        
+        <p><strong>Global variables are particularly bad for JS.</strong></p>
+        
+        <p>Not only are all of those points above true (and a few others I didn&#39;t include), but for JS specifically global variables can be particularly problematic. This is because JS defaults all variables to the global scope unless they are explicitly defined elsewhere. Here&#39;s an example:</p>
+        <pre class="highlight plaintext">function badlyScoped() {&#x000A;    globalVariable = "I'm a global variable";&#x000A;}&#x000A;&#x000A;badlyScoped();&#x000A;console.log(globalVariable); // logs "I'm a global variable"</pre>
+        <p>Well isn&#39;t that terrifying! We thought we were creating a local variable, since it was defined within a function, but nope! We forgot the <code>var</code> keyword, which would make the variable local. Here&#39;s a corrected version:</p>
+        <pre class="highlight plaintext">function wellScoped() {&#x000A;    var localVariable = "I'm a local variable";&#x000A;}&#x000A;&#x000A;wellScoped();&#x000A;console.log(localVariable); // throws: "localVariable is not defined"</pre>
+        <p>This is a quirk (<a href="http://www.amazon.com/JavaScript-Good-Parts-Douglas-Crockford/dp/0596517742">some say</a> a mistake) of JS. It makes global variables particularly dangerous since you might not even know you were creating one. So watch your back and don&#39;t forget to use <code>var</code>!</p>
+        
+        <p><strong>Resources:</strong></p>
+        
+        <ul>
+        <li>a more in depth discussion about <a href="http://c2.com/cgi/wiki?GlobalVariablesAreBad">why globals are bad</a></li>
+        <li>some ways to <a href="http://stackoverflow.com/questions/1841916/how-to-avoid-global-variables-in-javascript">avoid global variables</a></li>
+        <li><a href="http://stackoverflow.com/questions/2613310/ive-heard-global-variables-are-bad-what-alternative-solution-should-i-use">stackoverflow</a> question about why globals are bad</li>
+        </ul>
+        <div id='disqus_thread'></div>
+        <script>
+          var disqus_shortname = 'lucybain';
+          (function() {
+              var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+              dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+              (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+          })();
+        </script>
+        <noscript>
+          Please enable JavaScript to view the
+          <a href='http://disqus.com/?ref_noscript'>comments powered by Disqus.</a>
+        </noscript>
+        <a class='dsq-brlink' href='http://disqus.com'>
+          comments powered by
+          <span class='logo-disqus'>Disqus</span>
+        </a>
+        <script>
+          var disqus_shortname = 'lucybain';
+          (function () {
+              var s = document.createElement('script'); s.async = true;
+              s.type = 'text/javascript';
+              s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+              (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+          }());
+        </script>
+      </div>
+    </div>
+    
+  </body>
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    
+    ga('create', 'UA-45866381-1', 'lucybain.com');
+    ga('send', 'pageview');
+  </script>
+</html>
+
