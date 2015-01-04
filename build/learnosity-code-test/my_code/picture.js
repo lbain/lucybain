@@ -1,0 +1,1 @@
+function Picture(i){return this.full_details=i,this.id=i.id,this.thumbnail=i.thumbnail,this.updatedTime=i.updated_time.split("T")[0],this}Picture.prototype.buildHtml=function(){return $(["<li class='js-picture photo-container' data-id='"+this.id+"'>","    <img src='"+this.thumbnail+"'/>","    <p>Uploaded: "+this.updatedTime+"</p>","</li>"].join("\n"))};
