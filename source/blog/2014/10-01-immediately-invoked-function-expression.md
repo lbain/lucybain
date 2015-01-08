@@ -112,7 +112,7 @@ var counter = (function(){
 }());
 
 counter.get(); // returns 0
-counter.set( 3 ); // returns undefined
+counter.set( 3 );
 counter.get(); // returns 3
 counter.i; // returns undefined
 ```
@@ -136,7 +136,7 @@ function helperFunction(){
 var counter = helperFunction();
 
 counter.get(); // returns 0
-counter.set( 3 ); // returns undefined
+counter.set( 3 );
 counter.get(); // returns 3
 counter.i; // returns undefined
 ```
