@@ -1,6 +1,6 @@
 ---
 title: 'Retro from my coding test'
-tags: js, interview
+tags: js, interview-questions
 ---
 
 I've been looking for a new job over the past month. As part of my interview process I had to do an at home coding exercise. The directions were simple, but disconcertingly vague:
