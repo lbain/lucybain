@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='width=device-width, initial-scale=1' name='viewport'>
+    <meta charset='utf-8'>
+    <meta content='IE=edge,chrome=1' http-equiv='X-UA-Compatible'>
+    <link href='/images/favicon.ico' rel='icon' type='image/ico'>
+    <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700' rel='stylesheet' type='text/css'>
+    <title>JS: When would you use document.write()?</title>
+    <link href="/stylesheets/application.css" media="all" rel="stylesheet" type="text/css" />
+    <script src='//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js'></script>
+  </head>
+  <body>
+    <div id='menu'>
+      <div class='nav-open-btn'>
+        <ul>
+          <li></li>
+          <li></li>
+          <li></li>
+        </ul>
+      </div>
+      <ul class='nav'>
+        <li>
+          <a class="nav-link" href="/">Me</a>
+        </li>
+        <li>
+          <a class="nav-link" href="/resume/">Resume</a>
+        </li>
+        <li>
+          <a class="nav-link" href="/contact-me/">Contact</a>
+        </li>
+        <li>
+          <a class="nav-link" href="/resources/">Resources</a>
+        </li>
+        <li>
+          <a class="nav-link active" href="/blog/">Blog</a>
+        </li>
+      </ul>
+    </div>
+    <script>
+      $('#menu .nav-open-btn').on('click', function(){
+        $('#menu .nav').toggleClass('open');
+      })
+    </script>
+    <div class='content'>
+      <div class=''>
+        <h1>JS: When would you use document.write()?</h1>
+        <p>tags: <a href="/blog/tags/js/">js</a> and <a href="/blog/tags/interview-questions/">interview-questions</a></p>
+        <h2>When would you use <code>document.write()</code>?</h2>
+        
+        <p>First, what is <code>document.write()</code>?</p>
+        
+        <p>As you might have guessed, <code>document.write()</code> writes to the document (a.k.a web page). It takes the content you want to write as a parameter. An invocation could look like this:</p>
+        <pre class="highlight plaintext">document.write("&lt;h1&gt;JS is awesome!&lt;/h1&gt;");</pre>
+        <p><strong>Problems with <code>document.write()</code></strong></p>
+        
+        <p>Try running the code above in the console of a web page (not this one!), go ahead, I&#39;ll wait.</p>
+        
+        <p>You&#39;ll notice that it replaced the entire content of the <code>document</code> with the header <code>&quot;JS is awesome!&quot;</code>. Obviously that&#39;s a problem right there - <code>document.write()</code> shouldn&#39;t be used after the page has loaded to change the content as it will overwrite the entire page (probably not what you wanted to happen...).</p>
+        
+        <p><code>document.write()</code> doesn&#39;t work for XHTML pages. I&#39;ve only been concerned with HTML so far, so I&#39;m not too fussed about this one. But it might be more relevant in your case.</p>
+        
+        <p>Some people think <code>document.write()</code> is a good solution for loading more files (JS or CSS) into the dom after the initial load. Turns out this is not the case, as this is slower than creating a new element (script or a css link) and inserting it into the page.</p>
+        
+        <p><strong>Possible situations to use <code>document.write()</code></strong></p>
+        
+        <p>It seems that the only &quot;approved&quot; time to use <code>document.write()</code> is for third party code to be included (such as ads or Google Analytics). Since <code>document.write()</code> is always available (mostly) it is a good choice for third party vendors to use it to add their scripts. They don&#39;t know what environment you&#39;re using, if jQuery is or isn&#39;t available, or what your <code>onload</code> events are. And with <code>document.write()</code> they don&#39;t have to.</p>
+        
+        <p>So don&#39;t use it yourself, unless your working for the third party.</p>
+        
+        <p><strong>Resources:</strong></p>
+        
+        <ul>
+        <li><a href="http://stackoverflow.com/questions/802854/why-is-document-write-considered-a-bad-practice">Stackoverflow</a></li>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/API/document.write">MDN</a></li>
+        <li><a href="http://www.stevesouders.com/blog/2012/04/10/dont-docwrite-scripts/">steve Souders</a></li>
+        <li><a href="http://www.quirksmode.org/blog/archives/2005/06/three_javascrip_1.html">Quirksmode</a></li>
+        </ul>
+        <div id='disqus_thread'></div>
+        <script>
+          var disqus_shortname = 'lucybain';
+          (function() {
+              var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+              dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+              (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+          })();
+        </script>
+        <noscript>
+          Please enable JavaScript to view the
+          <a href='http://disqus.com/?ref_noscript'>comments powered by Disqus.</a>
+        </noscript>
+        <a class='dsq-brlink' href='http://disqus.com'>
+          comments powered by
+          <span class='logo-disqus'>Disqus</span>
+        </a>
+        <script>
+          var disqus_shortname = 'lucybain';
+          (function () {
+              var s = document.createElement('script'); s.async = true;
+              s.type = 'text/javascript';
+              s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+              (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+          }());
+        </script>
+      </div>
+    </div>
+    
+  </body>
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    
+    ga('create', 'UA-45866381-1', 'lucybain.com');
+    ga('send', 'pageview');
+  </script>
+</html>
+

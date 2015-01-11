@@ -4,10 +4,52 @@
   <id>http://lucybain.com/blog</id>
   <link href="http://lucybain.com/blog"/>
   <link href="http://lucybain.com/feed.xml" rel="self"/>
-  <updated>2015-01-02T00:00:00Z</updated>
+  <updated>2015-01-06T00:00:00Z</updated>
   <author>
     <name>Lucy Bain</name>
   </author>
+  <entry>
+    <title>JS: When would you use document.write()?</title>
+    <link rel="alternate" href="http://lucybain.com/blog/2015/js-document-write/"/>
+    <id>http://lucybain.com/blog/2015/js-document-write/</id>
+    <published>2015-01-06T00:00:00Z</published>
+    <updated>2015-01-11T20:08:40+11:00</updated>
+    <author>
+      <name>Article Author</name>
+    </author>
+    <content type="html">&lt;h2&gt;When would you use &lt;code&gt;document.write()&lt;/code&gt;?&lt;/h2&gt;
+
+&lt;p&gt;First, what is &lt;code&gt;document.write()&lt;/code&gt;?&lt;/p&gt;
+
+&lt;p&gt;As you might have guessed, &lt;code&gt;document.write()&lt;/code&gt; writes to the document (a.k.a web page). It takes the content you want to write as a parameter. An invocation could look like this:&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;document.write("&amp;lt;h1&amp;gt;JS is awesome!&amp;lt;/h1&amp;gt;");
+&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;Problems with &lt;code&gt;document.write()&lt;/code&gt;&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Try running the code above in the console of a web page (not this one!), go ahead, I&amp;#39;ll wait.&lt;/p&gt;
+
+&lt;p&gt;You&amp;#39;ll notice that it replaced the entire content of the &lt;code&gt;document&lt;/code&gt; with the header &lt;code&gt;&amp;quot;JS is awesome!&amp;quot;&lt;/code&gt;. Obviously that&amp;#39;s a problem right there - &lt;code&gt;document.write()&lt;/code&gt; shouldn&amp;#39;t be used after the page has loaded to change the content as it will overwrite the entire page (probably not what you wanted to happen...).&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;document.write()&lt;/code&gt; doesn&amp;#39;t work for XHTML pages. I&amp;#39;ve only been concerned with HTML so far, so I&amp;#39;m not too fussed about this one. But it might be more relevant in your case.&lt;/p&gt;
+
+&lt;p&gt;Some people think &lt;code&gt;document.write()&lt;/code&gt; is a good solution for loading more files (JS or CSS) into the dom after the initial load. Turns out this is not the case, as this is slower than creating a new element (script or a css link) and inserting it into the page.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Possible situations to use &lt;code&gt;document.write()&lt;/code&gt;&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;It seems that the only &amp;quot;approved&amp;quot; time to use &lt;code&gt;document.write()&lt;/code&gt; is for third party code to be included (such as ads or Google Analytics). Since &lt;code&gt;document.write()&lt;/code&gt; is always available (mostly) it is a good choice for third party vendors to use it to add their scripts. They don&amp;#39;t know what environment you&amp;#39;re using, if jQuery is or isn&amp;#39;t available, or what your &lt;code&gt;onload&lt;/code&gt; events are. And with &lt;code&gt;document.write()&lt;/code&gt; they don&amp;#39;t have to.&lt;/p&gt;
+
+&lt;p&gt;So don&amp;#39;t use it yourself, unless your working for the third party.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Resources:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="http://stackoverflow.com/questions/802854/why-is-document-write-considered-a-bad-practice"&gt;Stackoverflow&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://developer.mozilla.org/en-US/docs/Web/API/document.write"&gt;MDN&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://www.stevesouders.com/blog/2012/04/10/dont-docwrite-scripts/"&gt;steve Souders&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://www.quirksmode.org/blog/archives/2005/06/three_javascrip_1.html"&gt;Quirksmode&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</content>
+  </entry>
   <entry>
     <title>Retro from my coding test</title>
     <link rel="alternate" href="http://lucybain.com/blog/2015/code-test-retro/"/>
@@ -74,7 +116,7 @@ Your app should retrieve a data set from a persistence layer or data service of 
     <link rel="alternate" href="http://lucybain.com/blog/2014/js-dont-touch-global-scope/"/>
     <id>http://lucybain.com/blog/2014/js-dont-touch-global-scope/</id>
     <published>2014-12-30T00:00:00Z</published>
-    <updated>2014-12-30T21:23:20+11:00</updated>
+    <updated>2015-01-11T18:57:24+11:00</updated>
     <author>
       <name>Article Author</name>
     </author>
@@ -229,153 +271,6 @@ document.domain = "yoursite.com";
 &lt;li&gt;&lt;a href="http://stackoverflow.com/questions/3698200/window-onload-vs-document-ready"&gt;Stackoverflow&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;Another &lt;a href="http://stackoverflow.com/questions/7971615/difference-between-pageload-onload-document-ready"&gt;stackoverflow&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;There were a bunch more, but they all said the same thing.&lt;/li&gt;
-&lt;/ul&gt;
-</content>
-  </entry>
-  <entry>
-    <title>JS: Explain "hoisting"</title>
-    <link rel="alternate" href="http://lucybain.com/blog/2014/hoisting/"/>
-    <id>http://lucybain.com/blog/2014/hoisting/</id>
-    <published>2014-12-13T00:00:00Z</published>
-    <updated>2014-12-13T20:32:34+11:00</updated>
-    <author>
-      <name>Article Author</name>
-    </author>
-    <content type="html">&lt;p&gt;I&amp;#39;m continuing my series of &lt;a href="https://github.com/h5bp/Front-end-Developer-Interview-Questions#js"&gt;JS interview questions&lt;/a&gt;. These posts are proving very good practice for the interviews I&amp;#39;m doing!&lt;/p&gt;
-
-&lt;h2&gt;Explain &amp;quot;hoisting&amp;quot;&lt;/h2&gt;
-
-&lt;p&gt;Hoisting is when a JS declaration is lifted (&amp;quot;hoisted&amp;quot;) to the top of it&amp;#39;s scope by the JS interpreter. What this really means is that a variable or function isn&amp;#39;t necessarily declared where you think it is. Understandably, this can cause problems. Variables and functions are hoisted differently, as we&amp;#39;ll see below.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Hoisting variables&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;We&amp;#39;ll start with an example:&lt;/p&gt;
-&lt;pre class="highlight plaintext"&gt;// Code saved in file:
-
-function containsHoisting() {
-    console.log(hoistedVariable);
-    var hoistedVariable = "I was hoisted!";
-}
-
-containsHoisting(); // logs undefined
-&lt;/pre&gt;
-&lt;p&gt;&lt;em&gt;Wait, how did &lt;code&gt;hoistedVariable&lt;/code&gt; get to be undefined? Surely it should be undeclared since we haven&amp;#39;t hit &lt;code&gt;var hoistedVariable&lt;/code&gt; yet.&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;It&amp;#39;s because of hoisting! You see, although I wrote the code in the example above, the JS interpreter changes it to this:&lt;/p&gt;
-&lt;pre class="highlight plaintext"&gt;// What the interpreter changed it to:
-
-function containsHoisting() {
-    var hoistedVariable; // &amp;lt;-- this line here!
-    console.log(hoistedVariable);
-    hoistedVariable = "I was hoisted!";
-}
-&lt;/pre&gt;
-&lt;p&gt;That new line is &lt;code&gt;hoistedVariable&lt;/code&gt; getting hoisted up to the top of it&amp;#39;s scope. So it&amp;#39;s now declared, but not defined.&lt;/p&gt;
-
-&lt;p&gt;Here&amp;#39;s a more complex example (inspired by &lt;a href="http://www.adequatelygood.com/JavaScript-Scoping-and-Hoisting.html"&gt;Adequately Good&lt;/a&gt;)&lt;/p&gt;
-&lt;pre class="highlight plaintext"&gt;var hoistedVariable = 1;
-
-function scopingFunction() {
-    if (!hoistedVariable) {
-        var hoistedVariable = 10;
-    }
-    return hoistedVariable;
-}
-
-scopingFunction(); // returns 10
-&lt;/pre&gt;
-&lt;p&gt;&lt;em&gt;What?! How can it return 10?&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Tangent about scopes&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;I was surprised about this myself until I understood JS scoping better, here&amp;#39;s how it breaks down:&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;In Javascript scopes are defined at &lt;strong&gt;function level&lt;/strong&gt;. Many other languages define scope at a block level (as in an &lt;code&gt;if&lt;/code&gt; block or &lt;code&gt;for&lt;/code&gt; loop). This is an important difference to remember.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;Thus...&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Back to the main event&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;The code above gets rewritten in the JS interpreter to look like this:&lt;/p&gt;
-&lt;pre class="highlight plaintext"&gt;var hoistedVariable = 1;
-
-function scopingFunction() {
-    var hoistedVariable; // &amp;lt;-- this line here!
-    if (!hoistedVariable) {
-        hoistedVariable = 10;
-    }
-    return hoistedVariable;
-}
-
-scopingFunction(); // returns 10
-&lt;/pre&gt;
-&lt;p&gt;Note that the &lt;em&gt;global&lt;/em&gt; &lt;code&gt;hoistedVariable&lt;/code&gt; gets completely overwritten by the &lt;em&gt;local&lt;/em&gt; &lt;code&gt;hoistedVariable&lt;/code&gt; as declared in &lt;code&gt;scopingFunction&lt;/code&gt;. So at the point of the &lt;code&gt;if&lt;/code&gt; conditional &lt;code&gt;hoistedVariable&lt;/code&gt; is &lt;code&gt;undefined&lt;/code&gt; and not 1.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Function hoisting&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;Hoisting functions works differently than variables. Since a function is declared and defined at the same time the function definition is hoisted along with the function name.&lt;/p&gt;
-
-&lt;p&gt;Since examples make things clearer:&lt;/p&gt;
-&lt;pre class="highlight plaintext"&gt;function containingFunction() {
-    var hoistedVariable = 2 + 2;
-    function hoistedFunction() {
-        return hoistedVariable;
-    }
-    return hoistedFunction();
-}
-containingFunction() // returns 4
-&lt;/pre&gt;
-&lt;p&gt;Hopefully that example wasn&amp;#39;t surprising. But just to better understand what&amp;#39;s going on, here&amp;#39;s how the JS interpreter rewrote things:&lt;/p&gt;
-&lt;pre class="highlight plaintext"&gt;function containingFunction() {
-    // this is the hoisted section
-    var hoistedVariable;
-    function hoistedFunction() {
-        return hoistedVariable;
-    }
-
-    // here's the rest of the code
-    hoistedVariable = 2 + 2;
-    return hoistedFunction();
-}
-containingFunction() // returns 4
-&lt;/pre&gt;
-&lt;p&gt;Notice that the entire &lt;code&gt;hoistedFunction&lt;/code&gt; gets moved up, while only the declaration for the &lt;code&gt;hoistedVariable&lt;/code&gt; is hoisted.&lt;/p&gt;
-
-&lt;p&gt;Let&amp;#39;s try with a more complicated example:&lt;/p&gt;
-&lt;pre class="highlight plaintext"&gt;function containingFunction() {
-    var hoisted = "I'm the variable";
-    function hoisted() {
-        return "I'm the function";
-    }
-    return hoisted(); // results in a TypeError
-}
-containingFunction()
-&lt;/pre&gt;
-&lt;p&gt;&lt;em&gt;But wait, the &lt;code&gt;hoisted&lt;/code&gt; function is defined right there, what gives?&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;Because functions are hoisted after variables, naming conflicts can happen. Again, let&amp;#39;s look at what the JS interpreter wrote for this code&lt;/p&gt;
-&lt;pre class="highlight plaintext"&gt;function containingFunction() {
-    // hoisted section
-    var hoisted;
-    function hoisted() {
-        return "I'm the function";
-    }
-
-    // rest of the code
-    hoisted = "I'm the variable";
-    return hoisted();
-}
-containingFunction() // results in a TypeError
-&lt;/pre&gt;
-&lt;p&gt;As you can see, the function definition for &lt;code&gt;hoisted&lt;/code&gt; is overwritten by the variable definition (&lt;code&gt;&amp;quot;I&amp;#39;m the variable&amp;quot;&lt;/code&gt;) which appears lower down in the interpreter&amp;#39;s version of the code. Yet another reason why good names are important!&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Resources&lt;/strong&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href="http://javascriptissexy.com/javascript-variable-scope-and-hoisting-explained/"&gt;JS is sexy&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="http://www.adequatelygood.com/JavaScript-Scoping-and-Hoisting.html"&gt;Adequately Good&lt;/a&gt; (which I think is a hilarious name for a coding blog!)&lt;/li&gt;
 &lt;/ul&gt;
 </content>
   </entry>
