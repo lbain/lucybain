@@ -4,10 +4,71 @@
   <id>http://lucybain.com/blog</id>
   <link href="http://lucybain.com/blog"/>
   <link href="http://lucybain.com/feed.xml" rel="self"/>
-  <updated>2014-12-30T00:00:00Z</updated>
+  <updated>2015-01-02T00:00:00Z</updated>
   <author>
     <name>Lucy Bain</name>
   </author>
+  <entry>
+    <title>Retro from my coding test</title>
+    <link rel="alternate" href="http://lucybain.com/blog/2015/code-test-retro/"/>
+    <id>http://lucybain.com/blog/2015/code-test-retro/</id>
+    <published>2015-01-02T00:00:00Z</published>
+    <updated>2015-01-11T18:22:04+11:00</updated>
+    <author>
+      <name>Article Author</name>
+    </author>
+    <content type="html">&lt;p&gt;I&amp;#39;ve been looking for a new job over the past month. As part of my interview process I had to do an at home coding exercise. The directions were simple, but disconcertingly vague:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;The application should run successfully in modern browsers.
+Your app should retrieve a data set from a persistence layer or data service of your choice.&lt;/li&gt;
+&lt;li&gt;The data set should contain a minimum of 4 columns and 5 rows.&lt;/li&gt;
+&lt;li&gt;Create a README file with instructions, a brief description of your app with reasons for your approach and technology as well as any future enhancements you would make given more time&lt;/li&gt;
+&lt;li&gt;Bundle your app in a zip file and email to [the company]&lt;/li&gt;
+&lt;li&gt;Allow up to 3 hours for this task. Please be honest with your allocation of time.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Ok, so three hours is way too long for a simple AJAX call and display of four columns and five rows. So I figured they wanted something a little more interesting than a table of data. I also didn&amp;#39;t want to waste any of my precious three hours working on a back-end - I applied for a front-end role and that&amp;#39;s what I wanted to work on. I decided to work with data from Facebook.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Tip:&lt;/strong&gt; It turns out there&amp;#39;s a TON of very interesting &lt;a href="https://www.reddit.com/r/datasets"&gt;data avaialble&lt;/a&gt;. If you have to do anything like this in the future look into these rather than using FB!&lt;/p&gt;
+
+&lt;p&gt;I wanted to work with something real that users might care about. I also wanted to get more experience with working with Facebook since it&amp;#39;s often used on sites. These were great reasons to choose Facebook, but, as it turns out, probably not a good decision for a coding test. Working with FB requires OAuth and a bunch of setup.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Tip:&lt;/strong&gt; Don&amp;#39;t try to work with anything particularly complex for your coding test. It&amp;#39;s better that you do a simple thing well than that you don&amp;#39;t finish a complex thing.&lt;/p&gt;
+
+&lt;p&gt;Thankfully I used a library called &lt;a href="http://adodson.com/hello.js/"&gt;hello.js&lt;/a&gt; that took care of most of the setup. However I had never worked with hello.js before and getting up to speed with it took time - which I was rapidly running out of. I ended up wasting an hour trying to debug &lt;a href="http://stackoverflow.com/questions/27729186/how-can-i-get-share-data-with-hello-js"&gt;something&lt;/a&gt; which I never really got an answer to - I ended up going a different direction and resetting the clock for that hour.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Tip:&lt;/strong&gt; Don&amp;#39;t work with new technologies / libraries / languages for your coding test. Focus on what you&amp;#39;re already good at and do that thing well.&lt;/p&gt;
+
+&lt;p&gt;I got all my interaction working as expected and then got moving on the styling. I grabbed a generated colour pallet from &lt;a href="http://coolors.co/"&gt;coolors.co&lt;/a&gt; and set up some base styles. It wasn&amp;#39;t anything fancy, it was kinda mobile friendly, but only in the roughest sense, and things looked sorta ok. But it worked, and it no longer looked like simple HTML. This was a success, I&amp;#39;m pleased with the amount of time I spent on styling.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Tip:&lt;/strong&gt; Styling matters. It&amp;#39;s the first thing your users (read graders) will see. Don&amp;#39;t just gloss over it because it&amp;#39;s not your main love. That said, your users will know that you only had a set amount of time to work on something. This does not need to be pixel perfect. Make it nice, but don&amp;#39;t waste your time.&lt;/p&gt;
+
+&lt;p&gt;Finally it was time to run some full tests. I grabbed my partner and asked him to try logging in with my app so I could get his user details (photos). No dice. Errors. Panic.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Tip:&lt;/strong&gt; When you&amp;#39;re developing your code test, try to test it in the same environment the user will have as early as possible. Identify possible rough patches and take note. Even if you can&amp;#39;t fix them you can at least know you&amp;#39;ll need to include something about them in the readme.&lt;/p&gt;
+
+&lt;p&gt;As I found out in my increasingly stressed out state - FB requires you to officially publish your app before you&amp;#39;re allowed to get the public to use it (fair enough, but I had hours before my test was due). I also learned that the process would take around seven days, but that it&amp;#39;s possible my app could be rejected and take longer. I was full on freaking out.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Tip:&lt;/strong&gt; Much like in school, you should start your coding test as soon as you get your assignment.&lt;/p&gt;
+
+&lt;p&gt;I finally worked out that if I made my partner a developer for the app he would have access to it, and thus be able to see all the hard work I&amp;#39;d done. I calmed down a bit and made sure everything was working as it should from then it. (It was; that was the bit I was able to easily test using my own account.)&lt;/p&gt;
+
+&lt;p&gt;That was the end of my three hours.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Tip:&lt;/strong&gt; Make sure you write down the start and end times of any work sections you do. I thought I&amp;#39;d remember, and I&amp;#39;m pretty sure I was fairly accurate, but I&amp;#39;m sure I wasn&amp;#39;t perfect. Guesstimating exactly how many minutes you&amp;#39;ve spent on a coding test is stress you don&amp;#39;t need.&lt;/p&gt;
+
+&lt;p&gt;I moved on to the readme. I was actually pretty pleased how this turned out. In their directions they included what they expected from a readme (&amp;quot;a brief description of your app with reasons for your approach and technology as well as any future enhancements you would make given more time&amp;quot;), which was my guide. I also included a section about how to use my app, since they had to request permission to be a developer in order to get it working.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Tip:&lt;/strong&gt; Try to make it as easy as possible for your reviewers to grade your code. Keep the install process as short, and your explanation of the install process as clear, as possible.&lt;/p&gt;
+
+&lt;p&gt;I spent the most time on the &amp;quot;future enhancements&amp;quot; which included a lot about refactoring. I wasn&amp;#39;t able to do everything I wanted to have beautiful code given the time constraints. I wanted them to know that I knew things weren&amp;#39;t perfect. This was a good tactic - the couple of things they asked me about in my next interview were a the things I hadn&amp;#39;t mentioned in my readme.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Tip:&lt;/strong&gt; The more questions you can answer in your readme (in the comfort of your own home), the fewer you have to answer in the interview (with someone staring at you).&lt;/p&gt;
+
+&lt;p&gt;And that was it! It was pretty stressful, so I hope the next time I need to do a coding test I&amp;#39;ll have learned a little and can stay a bit more calm!&lt;/p&gt;
+</content>
+  </entry>
   <entry>
     <title>JS: don't touch the global scope</title>
     <link rel="alternate" href="http://lucybain.com/blog/2014/js-dont-touch-global-scope/"/>
@@ -315,84 +376,6 @@ containingFunction() // results in a TypeError
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="http://javascriptissexy.com/javascript-variable-scope-and-hoisting-explained/"&gt;JS is sexy&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="http://www.adequatelygood.com/JavaScript-Scoping-and-Hoisting.html"&gt;Adequately Good&lt;/a&gt; (which I think is a hilarious name for a coding blog!)&lt;/li&gt;
-&lt;/ul&gt;
-</content>
-  </entry>
-  <entry>
-    <title>JS: Async Google Adwords conversion</title>
-    <link rel="alternate" href="http://lucybain.com/blog/2014/google-adwords-async/"/>
-    <id>http://lucybain.com/blog/2014/google-adwords-async/</id>
-    <published>2014-12-10T00:00:00Z</published>
-    <updated>2014-12-10T12:14:53+11:00</updated>
-    <author>
-      <name>Article Author</name>
-    </author>
-    <content type="html">&lt;h2&gt;How can I trigger a Google Adwords conversion when the page is loaded asynchronously?&lt;/h2&gt;
-
-&lt;p&gt;I&amp;#39;ve been working with Google Adwords at work this week (yay learning!). My first task was to add a &amp;quot;tracking pixel&amp;quot; to a thank you page after a user has given us their contact details.&lt;/p&gt;
-
-&lt;p&gt;(Side note: It turns out we don&amp;#39;t really use pixels any more, we use JS to actually make the call, and only fall back to a pixel when the user doesn&amp;#39;t have JS enabled.)&lt;/p&gt;
-
-&lt;p&gt;Our thank you page is loaded asynchronously, so the Google Adwords script was getting injected into the dom in that async call. As it turns out, you can&amp;#39;t just inject scripts into the dom and expect them to run. If you do inject the script (as I did) you&amp;#39;ll get this warning in Chrome:&lt;/p&gt;
-&lt;pre class="highlight plaintext"&gt;Failed to execute 'write' on 'Document': It isn't possible to write into a document from an asynchronously-loaded external script unless it is explicitly opened.
-&lt;/pre&gt;
-&lt;p&gt;(Personally I think this should be an error, not just a warning. To me, this is saying &amp;quot;Hey, your code that you think is running isn&amp;#39;t actually running&amp;quot; - that sounds like an error. But I digress...)&lt;/p&gt;
-
-&lt;p&gt;After some Googling around I know of two ways to fix this.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Fix one (bad)&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;Mess with &lt;code&gt;document.write&lt;/code&gt;. Basically Chrome has a check that an async loaded script doesn&amp;#39;t make any calls to &lt;code&gt;document.write&lt;/code&gt;. But it doesn&amp;#39;t check for &lt;code&gt;$(&amp;#39;body&amp;#39;).append()&lt;/code&gt; (yet). So if you set &lt;code&gt;document.write&lt;/code&gt; to actually use &lt;code&gt;$(&amp;#39;body&amp;#39;).append()&lt;/code&gt; the error goes away. Here&amp;#39;s an example (taken from &lt;a href="http://www.jakobbeyer.de/asynchronous-google-adwords-conversion-tracking"&gt;Jakob Beyer&lt;/a&gt;):&lt;/p&gt;
-&lt;pre class="highlight plaintext"&gt;var oldDocumentWrite = document.write
-
-// change document.write temporary
-document.write = function(node){
-    $("body").append(node)
-}
-
-// get script
-$.getScript( "http://www.googleadservices.com/pagead/conversion.js", function() {
-    // replace the temp document.write with the original version
-    setTimeout(function() {
-        document.write = oldDocumentWrite
-    }, 100)
-});
-&lt;/pre&gt;
-&lt;p&gt;This threw up some red flags for me - why are we hijacking &lt;code&gt;document.write&lt;/code&gt;? If we have to do this weird dance to get around the problem, maybe it&amp;#39;s as unsafe as Chrome would have us believe - should we do something safer?&lt;/p&gt;
-
-&lt;p&gt;Time to do some more Googling...&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Fix two (good)&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;The correct way to deal with this problem is to use Google Adwords async script. I know it seems really simple and obvious, but I did find a lot of people suggesting the first way, so I&amp;#39;m hoping this post is news to some of you.&lt;/p&gt;
-
-&lt;p&gt;Here&amp;#39;s how to use Google&amp;#39;s async code:&lt;/p&gt;
-
-&lt;p&gt;On your main page (not anything that&amp;#39;s loaded asynchronously) link to the async conversion file.&lt;/p&gt;
-&lt;pre class="highlight plaintext"&gt;&amp;lt;script type="text/javascript" src="//www.googleadservices.com/pagead/conversion_async.js" charset="utf-8"&amp;gt;&amp;lt;/script&amp;gt;
-&lt;/pre&gt;
-&lt;p&gt;This way the &lt;code&gt;google_trackConversion&lt;/code&gt; method is written on document load, and not async which caused the original warning we saw.&lt;/p&gt;
-
-&lt;p&gt;Then wherever your async call returns you can trigger a call to track the conversion:&lt;/p&gt;
-&lt;pre class="highlight plaintext"&gt;&amp;lt;script type="text/javascript"&amp;gt;
-/* &amp;lt;![CDATA[ */
-window.google_trackConversion({
-  google_conversion_id: 123456789,
-  google_conversion_label: "your label here",
-  google_custom_params: {
-    parameter1: 'abc123',
-    parameter2: 29.99
-  }
-});
-//]]&amp;gt;
-&amp;lt;/script&amp;gt;
-&lt;/pre&gt;
-&lt;p&gt;&lt;strong&gt;References&lt;/strong&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href="https://developers.google.com/adwords-remarketing-tag/asynchronous/"&gt;Docs&lt;/a&gt; for the good fix&lt;/li&gt;
-&lt;li&gt;&lt;a href="http://stackoverflow.com/a/25240908/863846"&gt;Stack overflow answer&lt;/a&gt; for the good fix&lt;/li&gt;
-&lt;li&gt;&lt;a href="http://www.jakobbeyer.de/asynchronous-google-adwords-conversion-tracking"&gt;Bad fix&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 </content>
   </entry>
