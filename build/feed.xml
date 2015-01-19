@@ -4,10 +4,42 @@
   <id>http://lucybain.com/blog</id>
   <link href="http://lucybain.com/blog"/>
   <link href="http://lucybain.com/feed.xml" rel="self"/>
-  <updated>2015-01-06T00:00:00Z</updated>
+  <updated>2015-01-10T00:00:00Z</updated>
   <author>
     <name>Lucy Bain</name>
   </author>
+  <entry>
+    <title>JS: How does ajax work?</title>
+    <link rel="alternate" href="http://lucybain.com/blog/2015/js-how-does-ajax-work/"/>
+    <id>http://lucybain.com/blog/2015/js-how-does-ajax-work/</id>
+    <published>2015-01-10T00:00:00Z</published>
+    <updated>2015-01-19T19:23:38+11:00</updated>
+    <author>
+      <name>Article Author</name>
+    </author>
+    <content type="html">&lt;h2&gt;How does AJAX work?&lt;/h2&gt;
+
+&lt;p&gt;Let&amp;#39;s start smaller: &lt;strong&gt;What does AJAX stand for?&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;A&lt;/strong&gt;synchronous &lt;strong&gt;J&lt;/strong&gt;avaScript &lt;strong&gt;a&lt;/strong&gt;nd &lt;strong&gt;X&lt;/strong&gt;ML (I think using the &amp;quot;a&amp;quot; in &amp;quot;and&amp;quot; is a little bit of a cheat, but there you go.)&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;So how does it work?&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;After loading, the client uses &lt;strong&gt;J&lt;/strong&gt;avaScript to fire off a request to the server and listens to the response &lt;strong&gt;a&lt;/strong&gt;synchronously. The response that comes back can be &lt;strong&gt;X&lt;/strong&gt;ML, but is often other formats, most often JSON (officially this is known as AJAJ, but everyone still calls it AJAX).&lt;/p&gt;
+
+&lt;p&gt;The bit that makes AJAX so powerful is that it can update the page &lt;em&gt;after&lt;/em&gt; it has finished loading. Before AJAX any new content required an entire page refresh, even if it was only a small change. This meant that users had to redownload a page for very little updated content (especially annoying in the 90s since home internet wasn&amp;#39;t as fast then). Using AJAX meant that the front end could change without a full page refresh, thus giving a much faster response time.&lt;/p&gt;
+
+&lt;p&gt;Origially AJAX mostly returned HTML/XML snipits and the DOM would get updated with this new code when the AJAX returned. Now, however, it&amp;#39;s more common for AJAX to get data and update the DOM as needed rather than doing a swap.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Resources&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="http://en.wikipedia.org/wiki/Ajax_%28programming%29"&gt;Wikipedia&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://stackoverflow.com/questions/1510011/how-does-ajax-work"&gt;Stackoverflow&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://developer.mozilla.org/en-US/Learn/What_is_AJAX_and_how_does_it_work"&gt;Mozilla&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</content>
+  </entry>
   <entry>
     <title>JS: When would you use document.write()?</title>
     <link rel="alternate" href="http://lucybain.com/blog/2015/js-document-write/"/>
@@ -243,34 +275,6 @@ document.domain = "yoursite.com";
 &lt;li&gt;&lt;a href="https://developer.mozilla.org/en-US/docs/Web/Security/Same-origin_policy"&gt;Mozilla&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="http://stackoverflow.com/questions/11474336/same-origin-policy-in-layman-terms"&gt;Stackoverflow&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="http://en.wikipedia.org/wiki/Same-origin_policy"&gt;Wikipedia&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-</content>
-  </entry>
-  <entry>
-    <title>JS: document load vs document ready</title>
-    <link rel="alternate" href="http://lucybain.com/blog/2014/js-document-load-vs-ready/"/>
-    <id>http://lucybain.com/blog/2014/js-document-load-vs-ready/</id>
-    <published>2014-12-16T00:00:00Z</published>
-    <updated>2014-12-16T20:24:59+11:00</updated>
-    <author>
-      <name>Article Author</name>
-    </author>
-    <content type="html">&lt;h2&gt;Difference between document load event and document ready event?&lt;/h2&gt;
-
-&lt;p&gt;&lt;strong&gt;&lt;code&gt;$(document).ready()&lt;/code&gt;&lt;/strong&gt; fires when the HTML has finished loading. You can&amp;#39;t interact with the DOM before the HTML has finished loading, so we keep all our JS interactions wrapped up in the ready handler.&lt;/p&gt;
-
-&lt;p&gt;Note: The ready event is just for jQuery, so that&amp;#39;s a downside if you weren&amp;#39;t planning on including all of jQuery on your site.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;&lt;code&gt;window.onload&lt;/code&gt;&lt;/strong&gt; fires when all of the content (images, scripts, CSS, the whole lot) has finished loading. This can be really slow, so we try not to keep too much here. But it can be useful if you need to work with images of unknown size.&lt;/p&gt;
-
-&lt;p&gt;And that&amp;#39;s it! This has been the most straight forward answer yet :)&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;References&lt;/strong&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href="http://stackoverflow.com/questions/3698200/window-onload-vs-document-ready"&gt;Stackoverflow&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Another &lt;a href="http://stackoverflow.com/questions/7971615/difference-between-pageload-onload-document-ready"&gt;stackoverflow&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;There were a bunch more, but they all said the same thing.&lt;/li&gt;
 &lt;/ul&gt;
 </content>
   </entry>

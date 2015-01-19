@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='width=device-width, initial-scale=1' name='viewport'>
+    <meta charset='utf-8'>
+    <meta content='IE=edge,chrome=1' http-equiv='X-UA-Compatible'>
+    <link href='/images/favicon.ico' rel='icon' type='image/ico'>
+    <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700|Source+Code+Pro' rel='stylesheet' type='text/css'>
+    <title>JS: How does ajax work?</title>
+    <link href="/stylesheets/application.css" media="all" rel="stylesheet" type="text/css" />
+    <script src='//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js'></script>
+  </head>
+  <body>
+    <div id='menu'>
+      <div class='nav-open-btn'>
+        <ul>
+          <li></li>
+          <li></li>
+          <li></li>
+        </ul>
+      </div>
+      <ul class='nav'>
+        <li>
+          <a class="nav-link" href="/">Me</a>
+        </li>
+        <li>
+          <a class="nav-link" href="/resume/">Resume</a>
+        </li>
+        <li>
+          <a class="nav-link" href="/contact-me/">Contact</a>
+        </li>
+        <li>
+          <a class="nav-link" href="/resources/">Resources</a>
+        </li>
+        <li>
+          <a class="nav-link active" href="/blog/">Blog</a>
+        </li>
+      </ul>
+    </div>
+    <script>
+      $('#menu .nav-open-btn').on('click', function(){
+        $('#menu .nav').toggleClass('open');
+      })
+    </script>
+    <div class='content'>
+      <div class=''>
+        <h1>JS: How does ajax work?</h1>
+        <p>tags: <a href="/blog/tags/js/">js</a> and <a href="/blog/tags/interview-questions/">interview-questions</a></p>
+        <h2>How does AJAX work?</h2>
+        
+        <p>Let&#39;s start smaller: <strong>What does AJAX stand for?</strong></p>
+        
+        <p><strong>A</strong>synchronous <strong>J</strong>avaScript <strong>a</strong>nd <strong>X</strong>ML (I think using the &quot;a&quot; in &quot;and&quot; is a little bit of a cheat, but there you go.)</p>
+        
+        <p><em>So how does it work?</em></p>
+        
+        <p>After loading, the client uses <strong>J</strong>avaScript to fire off a request to the server and listens to the response <strong>a</strong>synchronously. The response that comes back can be <strong>X</strong>ML, but is often other formats, most often JSON (officially this is known as AJAJ, but everyone still calls it AJAX).</p>
+        
+        <p>The bit that makes AJAX so powerful is that it can update the page <em>after</em> it has finished loading. Before AJAX any new content required an entire page refresh, even if it was only a small change. This meant that users had to redownload a page for very little updated content (especially annoying in the 90s since home internet wasn&#39;t as fast then). Using AJAX meant that the front end could change without a full page refresh, thus giving a much faster response time.</p>
+        
+        <p>Origially AJAX mostly returned HTML/XML snipits and the DOM would get updated with this new code when the AJAX returned. Now, however, it&#39;s more common for AJAX to get data and update the DOM as needed rather than doing a swap.</p>
+        
+        <p><strong>Resources</strong></p>
+        
+        <ul>
+        <li><a href="http://en.wikipedia.org/wiki/Ajax_%28programming%29">Wikipedia</a></li>
+        <li><a href="http://stackoverflow.com/questions/1510011/how-does-ajax-work">Stackoverflow</a></li>
+        <li><a href="https://developer.mozilla.org/en-US/Learn/What_is_AJAX_and_how_does_it_work">Mozilla</a></li>
+        </ul>
+        <div id='disqus_thread'></div>
+        <script>
+          var disqus_shortname = 'lucybain';
+          (function() {
+              var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+              dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+              (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+          })();
+        </script>
+        <noscript>
+          Please enable JavaScript to view the
+          <a href='http://disqus.com/?ref_noscript'>comments powered by Disqus.</a>
+        </noscript>
+        <a class='dsq-brlink' href='http://disqus.com'>
+          comments powered by
+          <span class='logo-disqus'>Disqus</span>
+        </a>
+        <script>
+          var disqus_shortname = 'lucybain';
+          (function () {
+              var s = document.createElement('script'); s.async = true;
+              s.type = 'text/javascript';
+              s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+              (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+          }());
+        </script>
+      </div>
+    </div>
+    
+  </body>
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    
+    ga('create', 'UA-45866381-1', 'lucybain.com');
+    ga('send', 'pageview');
+  </script>
+</html>
+
