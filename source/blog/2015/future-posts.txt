@@ -1,0 +1,16 @@
+JS interview topics left
+
+* How do you organize your code? (module pattern, classical inheritance?)
+* Difference between: function Person(){}, var person = Person(), and var person = new Person()?
+* Explain how JSONP works (and how it's not really AJAX).
+* Have you ever used JavaScript templating?
+  If so, what libraries have you used? (Mustache.js, Handlebars etc.)
+* split vs. splice
+* arguments keyword
+* What is Javascript namespacing? How and where is it used?
+* What datatypes are supported in Javascript?
+* the + opperator: What does “1”+2+4 evaluate to? What about 5 + 4 + “3”?
+
+* How do you go about testing your JavaScript?
+* When do you optimize your code?
+* AMD vs. CommonJS?
