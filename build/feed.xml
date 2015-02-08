@@ -4,10 +4,26 @@
   <id>http://lucybain.com/blog</id>
   <link href="http://lucybain.com/blog"/>
   <link href="http://lucybain.com/feed.xml" rel="self"/>
-  <updated>2015-01-22T00:00:00Z</updated>
+  <updated>2015-01-28T00:00:00Z</updated>
   <author>
     <name>Lucy Bain</name>
   </author>
+  <entry>
+    <title>Algorithms study group</title>
+    <link rel="alternate" href="http://lucybain.com/blog/2015/algorithms-study-group/"/>
+    <id>http://lucybain.com/blog/2015/algorithms-study-group/</id>
+    <published>2015-01-28T00:00:00Z</published>
+    <updated>2015-02-08T19:18:44+11:00</updated>
+    <author>
+      <name>Article Author</name>
+    </author>
+    <content type="html">&lt;p&gt;Last year I ran two study groups, one for &lt;a href="http://codesydney.com/2014-js"&gt;JS&lt;/a&gt; and one for &lt;a href="/python"&gt;intro to programming&lt;/a&gt;. I also gave a talk about &lt;a href="https://docs.google.com/presentation/d/18lYj02Tc0dBbAAngrYBGPRSbADnswkjnyAdoeD--WQ4/edit?usp=sharing"&gt;starting a study group&lt;/a&gt; at Girl Geek Dinner. I was thrilled when my friend &lt;a href="http://daphnechong.com/"&gt;Daphne&lt;/a&gt; decided to organise a &lt;a href="http://codesydney.com/2015-algorithms/"&gt;group&lt;/a&gt; on her own to study algorithms.&lt;/p&gt;
+
+&lt;p&gt;The course we&amp;#39;re going through is Princeton&amp;#39;s intro to algorithms, and it is &lt;em&gt;hard!&lt;/em&gt; It started a few days ago, and just getting through the lectures took quite some time. But it&amp;#39;s really interesting. I&amp;#39;m keeping my &lt;a href="http://1drv.ms/1tdZuA6"&gt;notes online&lt;/a&gt; so I can share them with anyone interested. This blog post doesn&amp;#39;t have a lot of content, but I promise the link to my notes does. The course has been keeping me pretty busy, so I figured I should get at least one blog post up about it!&lt;/p&gt;
+
+&lt;p&gt;Many thanks to Daphne, and here&amp;#39;s to more learning in 2015!&lt;/p&gt;
+</content>
+  </entry>
   <entry>
     <title>I have a new job!</title>
     <link rel="alternate" href="http://lucybain.com/blog/2015/new-job/"/>
@@ -231,54 +247,6 @@ console.log(localVariable); // throws: "localVariable is not defined"
 &lt;li&gt;a more in depth discussion about &lt;a href="http://c2.com/cgi/wiki?GlobalVariablesAreBad"&gt;why globals are bad&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;some ways to &lt;a href="http://stackoverflow.com/questions/1841916/how-to-avoid-global-variables-in-javascript"&gt;avoid global variables&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="http://stackoverflow.com/questions/2613310/ive-heard-global-variables-are-bad-what-alternative-solution-should-i-use"&gt;stackoverflow&lt;/a&gt; question about why globals are bad&lt;/li&gt;
-&lt;/ul&gt;
-</content>
-  </entry>
-  <entry>
-    <title>JS: ternary expressions</title>
-    <link rel="alternate" href="http://lucybain.com/blog/2014/js-ternary/"/>
-    <id>http://lucybain.com/blog/2014/js-ternary/</id>
-    <published>2014-12-26T00:00:00Z</published>
-    <updated>2014-12-26T18:36:12+11:00</updated>
-    <author>
-      <name>Article Author</name>
-    </author>
-    <content type="html">&lt;h2&gt;Why is it called a Ternary expression, what does the word &amp;quot;Ternary&amp;quot; indicate?&lt;/h2&gt;
-
-&lt;p&gt;Let&amp;#39;s answer the second question first: what does the word &amp;quot;ternary&amp;quot; indicate? According to &lt;a href="http://en.wikipedia.org/wiki/Ternary_operation"&gt;Wikipedia&lt;/a&gt; the word &amp;quot;ternary&amp;quot; comes from the n-ary word setup. Other examples of n-ary words are u&lt;strong&gt;nary&lt;/strong&gt; and bi&lt;strong&gt;nary&lt;/strong&gt;. All of these (including ternary) are operands. The prefix section of their name lists how many inputs the operand accepts.&lt;/p&gt;
-
-&lt;p&gt;A &lt;strong&gt;unary&lt;/strong&gt; operand accepts one parameter, e.g. &lt;code&gt;-1&lt;/code&gt;, where &lt;code&gt;-&lt;/code&gt; is the operand, and 1 is the parameter.&lt;/p&gt;
-
-&lt;p&gt;A &lt;strong&gt;binary&lt;/strong&gt; operand accepts two parameters, e.g. &lt;code&gt;2 + 3&lt;/code&gt;, where &lt;code&gt;+&lt;/code&gt; is the operand, and &lt;code&gt;2&lt;/code&gt; and &lt;code&gt;3&lt;/code&gt; are the parameters.&lt;/p&gt;
-
-&lt;p&gt;So a &lt;strong&gt;ternary&lt;/strong&gt; operand accepts three parameters.&lt;/p&gt;
-
-&lt;p&gt;In programming the ternary operand we use is a rewrite of an if statement. Before we write an actual ternary, we&amp;#39;ll just take a quick look at an if statement:&lt;/p&gt;
-&lt;pre class="highlight plaintext"&gt;if(conditional) { // one
-    truethy_block // two
-} else {
-    falsey_block // three
-}
-&lt;/pre&gt;
-&lt;p&gt;You can see there are three sections to an if statement. Let&amp;#39;s write them as a property ternary expression:&lt;/p&gt;
-&lt;pre class="highlight plaintext"&gt;conditional ? truethy_block : falsey_block
-&lt;/pre&gt;
-&lt;p&gt;All the same code is there, but it&amp;#39;s arranged slightly differently. The ternary&amp;#39;s operand looks like &lt;code&gt;?:&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;In JS ternarys are often used for assignment:&lt;/p&gt;
-&lt;pre class="highlight plaintext"&gt;is_sunny = true;
-var weather = is_sunny ? 'Sunny' : 'Cloudy';
-console.log(weather); // logs 'Sunny'
-&lt;/pre&gt;
-&lt;p&gt;They can also be used for very short conditional statements. But be wary of using them for long or complex logic as they are harder to read than traditional statements.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Resources&lt;/strong&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href="http://en.wikipedia.org/wiki/%3F:"&gt;&lt;code&gt;?:&lt;/code&gt;&lt;/a&gt; on Wikipedia&lt;/li&gt;
-&lt;li&gt;&lt;a href="http://en.wikipedia.org/wiki/Unary_operation"&gt;unary operands&lt;/a&gt; on Wikipedia&lt;/li&gt;
-&lt;li&gt;&lt;a href="http://en.wikipedia.org/wiki/Binary_operation"&gt;binary operands&lt;/a&gt; on Wikipedia&lt;/li&gt;
-&lt;li&gt;&lt;a href="http://stackoverflow.com/questions/6259982/js-how-to-use-the-ternary-operator"&gt;Stackoverflow&lt;/a&gt; about using the JS ternary operand specifically&lt;/li&gt;
 &lt;/ul&gt;
 </content>
   </entry>
