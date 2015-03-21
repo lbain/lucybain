@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='width=device-width, initial-scale=1' name='viewport'>
+    <meta charset='utf-8'>
+    <meta content='IE=edge,chrome=1' http-equiv='X-UA-Compatible'>
+    <link href='/images/favicon.ico' rel='icon' type='image/ico'>
+    <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700|Source+Code+Pro' rel='stylesheet' type='text/css'>
+    <title>Rails Girls - March 2015</title>
+    <link href="/stylesheets/application.css" media="all" rel="stylesheet" type="text/css" />
+    <script src='//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js'></script>
+  </head>
+  <body>
+    <div id='menu'>
+      <div class='nav-open-btn'>
+        <ul>
+          <li></li>
+          <li></li>
+          <li></li>
+        </ul>
+      </div>
+      <ul class='nav'>
+        <li>
+          <a class="nav-link" href="/">Me</a>
+        </li>
+        <li>
+          <a class="nav-link" href="/resume/">Resume</a>
+        </li>
+        <li>
+          <a class="nav-link" href="/contact-me/">Contact</a>
+        </li>
+        <li>
+          <a class="nav-link" href="/resources/">Resources</a>
+        </li>
+        <li>
+          <a class="nav-link active" href="/blog/">Blog</a>
+        </li>
+      </ul>
+    </div>
+    <script>
+      $('#menu .nav-open-btn').on('click', function(){
+        $('#menu .nav').toggleClass('open');
+      })
+    </script>
+    <div class='content'>
+      <div class=''>
+        <h1>Rails Girls - March 2015</h1>
+        <p>tags: <a href="/blog/tags/community/">community</a> and <a href="/blog/tags/rails/">rails</a></p>
+        <p>Phew! Rails Girls Sydney, March 2015 was on Friday and Saturday, I wanted to update you</p>
+        
+        <p>Usually the Sydney Rails community runs a Rails Girls event every four-ish months. I&#39;ve always enjoyed mentoring at them, but I&#39;ve never organised one before . It&#39;s a great way to give back to the community and encourage new programmers. It&#39;s also aimed at women, which is something I&#39;m also passionate about.</p>
+        
+        <p>The woman who organised the events in the past has moved to NYC (good for her, but sad for us). What with her leaving, and us not knowing what to do we took longer to run this event than usual. It ended up being about eight months between workshops.</p>
+        
+        <p>I had a surprise bonus two weeks off between jobs while waiting for my visa to get transfered properly. It turns out we absolutely needed at least one of those weeks off to prepare for the workshop full time. I hadn&#39;t realised how much work was involved in one of these. I&#39;m very grateful to the previous organiser, who did such a wonderful job.</p>
+        
+        <p>In the end we had about 45 attendees come and learn Rails with us. Not all of them were there for both days, some had to leave early, or weren&#39;t able to come for Friday night. I had hopped for a few more attendees (50-55 was my goal), but everyone who was there was learning enthusiastically.</p>
+        
+        <p><img alt="Rails Girls Friday Hug" src="/images/blog/rails-girls.jpg" /></p>
+        
+        <p>I&#39;m going to meet with another organiser to talk about what we did well, and what could have been better. There were a lot of things I didn&#39;t know since it was the first time I organised it. Hopefully we can get most of those written down for next time!</p>
+        <div id='disqus_thread'></div>
+        <script>
+          var disqus_shortname = 'lucybain';
+          (function() {
+              var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+              dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+              (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+          })();
+        </script>
+        <noscript>
+          Please enable JavaScript to view the
+          <a href='http://disqus.com/?ref_noscript'>comments powered by Disqus.</a>
+        </noscript>
+        <a class='dsq-brlink' href='http://disqus.com'>
+          comments powered by
+          <span class='logo-disqus'>Disqus</span>
+        </a>
+        <script>
+          var disqus_shortname = 'lucybain';
+          (function () {
+              var s = document.createElement('script'); s.async = true;
+              s.type = 'text/javascript';
+              s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+              (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+          }());
+        </script>
+      </div>
+    </div>
+    
+  </body>
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    
+    ga('create', 'UA-45866381-1', 'lucybain.com');
+    ga('send', 'pageview');
+  </script>
+</html>
+

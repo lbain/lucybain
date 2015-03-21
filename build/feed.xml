@@ -4,10 +4,34 @@
   <id>http://lucybain.com/blog</id>
   <link href="http://lucybain.com/blog"/>
   <link href="http://lucybain.com/feed.xml" rel="self"/>
-  <updated>2015-01-28T00:00:00Z</updated>
+  <updated>2015-03-08T00:00:00Z</updated>
   <author>
     <name>Lucy Bain</name>
   </author>
+  <entry>
+    <title>Rails Girls - March 2015</title>
+    <link rel="alternate" href="http://lucybain.com/blog/2015/rails-girls/"/>
+    <id>http://lucybain.com/blog/2015/rails-girls/</id>
+    <published>2015-03-08T00:00:00Z</published>
+    <updated>2015-03-22T09:38:41+11:00</updated>
+    <author>
+      <name>Article Author</name>
+    </author>
+    <content type="html">&lt;p&gt;Phew! Rails Girls Sydney, March 2015 was on Friday and Saturday, I wanted to update you&lt;/p&gt;
+
+&lt;p&gt;Usually the Sydney Rails community runs a Rails Girls event every four-ish months. I&amp;#39;ve always enjoyed mentoring at them, but I&amp;#39;ve never organised one before . It&amp;#39;s a great way to give back to the community and encourage new programmers. It&amp;#39;s also aimed at women, which is something I&amp;#39;m also passionate about.&lt;/p&gt;
+
+&lt;p&gt;The woman who organised the events in the past has moved to NYC (good for her, but sad for us). What with her leaving, and us not knowing what to do we took longer to run this event than usual. It ended up being about eight months between workshops.&lt;/p&gt;
+
+&lt;p&gt;I had a surprise bonus two weeks off between jobs while waiting for my visa to get transfered properly. It turns out we absolutely needed at least one of those weeks off to prepare for the workshop full time. I hadn&amp;#39;t realised how much work was involved in one of these. I&amp;#39;m very grateful to the previous organiser, who did such a wonderful job.&lt;/p&gt;
+
+&lt;p&gt;In the end we had about 45 attendees come and learn Rails with us. Not all of them were there for both days, some had to leave early, or weren&amp;#39;t able to come for Friday night. I had hopped for a few more attendees (50-55 was my goal), but everyone who was there was learning enthusiastically.&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt="Rails Girls Friday Hug" src="/images/blog/rails-girls.jpg" /&gt;&lt;/p&gt;
+
+&lt;p&gt;I&amp;#39;m going to meet with another organiser to talk about what we did well, and what could have been better. There were a lot of things I didn&amp;#39;t know since it was the first time I organised it. Hopefully we can get most of those written down for next time!&lt;/p&gt;
+</content>
+  </entry>
   <entry>
     <title>Algorithms study group</title>
     <link rel="alternate" href="http://lucybain.com/blog/2015/algorithms-study-group/"/>
@@ -195,59 +219,6 @@ Your app should retrieve a data set from a persistence layer or data service of 
 &lt;p&gt;&lt;strong&gt;Tip:&lt;/strong&gt; The more questions you can answer in your readme (in the comfort of your own home), the fewer you have to answer in the interview (with someone staring at you).&lt;/p&gt;
 
 &lt;p&gt;And that was it! It was pretty stressful, so I hope the next time I need to do a coding test I&amp;#39;ll have learned a little and can stay a bit more calm!&lt;/p&gt;
-</content>
-  </entry>
-  <entry>
-    <title>JS: don't touch the global scope</title>
-    <link rel="alternate" href="http://lucybain.com/blog/2014/js-dont-touch-global-scope/"/>
-    <id>http://lucybain.com/blog/2014/js-dont-touch-global-scope/</id>
-    <published>2014-12-30T00:00:00Z</published>
-    <updated>2015-03-19T21:09:40+11:00</updated>
-    <author>
-      <name>Article Author</name>
-    </author>
-    <content type="html">&lt;p&gt;One of the last installments from my series on &lt;a href="https://github.com/h5bp/Front-end-Developer-Interview-Questions#js"&gt;javascript interview questions&lt;/a&gt;.&lt;/p&gt;
-
-&lt;h2&gt;Why is it, in general, a good idea to leave the global scope of a website as-is and never touch it?&lt;/h2&gt;
-
-&lt;p&gt;Form most languages, global variables are &lt;a href="http://en.wikipedia.org/wiki/Global_variable#Use"&gt;considered&lt;/a&gt; a &amp;quot;bad thing&amp;quot;. JS is no different, but it probably has more severe consequences than most languages.&lt;/p&gt;
-
-&lt;p&gt;Some points on why &lt;strong&gt;global variables are generally bad&lt;/strong&gt; (taken from &lt;a href="http://c2.com/cgi/wiki?GlobalVariablesAreBad"&gt;Cunningham &amp;amp; Cunningham&lt;/a&gt; with modifications for easier reading):&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;It&amp;#39;s harder to read the code and reason about it when variables seem to appear out of thin air (but really from the global scope).&lt;/li&gt;
-&lt;li&gt;Anyone can update a global variable from any point in the program at any time (and from any thread if there&amp;#39;s more than one going).&lt;/li&gt;
-&lt;li&gt;General &lt;a href="http://en.wikipedia.org/wiki/Code_smell"&gt;code smell&lt;/a&gt; - if you&amp;#39;re too lazy to put the variable only where it needs to be then what other corners are you cutting?&lt;/li&gt;
-&lt;li&gt;It&amp;#39;s probable that you&amp;#39;ll encounter global variable name clashes. Since there&amp;#39;s only one namespace you&amp;#39;re more likely to double up on a variable name.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;strong&gt;Global variables are particularly bad for JS.&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;Not only are all of those points above true (and a few others I didn&amp;#39;t include), but for JS specifically global variables can be particularly problematic. This is because JS defaults all variables to the global scope unless they are explicitly defined elsewhere. Here&amp;#39;s an example:&lt;/p&gt;
-&lt;pre class="highlight plaintext"&gt;function badlyScoped() {
-    globalVariable = "I'm a global variable";
-}
-
-badlyScoped();
-console.log(globalVariable); // logs "I'm a global variable"
-&lt;/pre&gt;
-&lt;p&gt;Well isn&amp;#39;t that terrifying! We thought we were creating a local variable, since it was defined within a function, but nope! We forgot the &lt;code&gt;var&lt;/code&gt; keyword, which would make the variable local. Here&amp;#39;s a corrected version:&lt;/p&gt;
-&lt;pre class="highlight plaintext"&gt;function wellScoped() {
-    var localVariable = "I'm a local variable";
-}
-
-wellScoped();
-console.log(localVariable); // throws: "localVariable is not defined"
-&lt;/pre&gt;
-&lt;p&gt;This is a quirk (&lt;a href="http://www.amazon.com/JavaScript-Good-Parts-Douglas-Crockford/dp/0596517742"&gt;some say&lt;/a&gt; a mistake) of JS. It makes global variables particularly dangerous since you might not even know you were creating one. So watch your back and don&amp;#39;t forget to use &lt;code&gt;var&lt;/code&gt;!&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Resources:&lt;/strong&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;a more in depth discussion about &lt;a href="http://c2.com/cgi/wiki?GlobalVariablesAreBad"&gt;why globals are bad&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;some ways to &lt;a href="http://stackoverflow.com/questions/1841916/how-to-avoid-global-variables-in-javascript"&gt;avoid global variables&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="http://stackoverflow.com/questions/2613310/ive-heard-global-variables-are-bad-what-alternative-solution-should-i-use"&gt;stackoverflow&lt;/a&gt; question about why globals are bad&lt;/li&gt;
-&lt;/ul&gt;
 </content>
   </entry>
 </feed>
