@@ -57,7 +57,7 @@
         <p>A variable is undeclared when it does not use the <code>var</code> keyword. It gets created on the global object (that is, the window), thus it operates in a different space as the declared variables.</p>
         
         <p>Example:</p>
-        <pre class="highlight plaintext">undeclaredVariable = 1;&#x000A;var declaredVariable = 1;&#x000A;&#x000A;function changeVariables() {&#x000A;  undeclaredVariable = 2;&#x000A;  var declaredVariable = 2;&#x000A;  var undeclaredVariable = 3;&#x000A;}&#x000A;&#x000A;changeVariables();&#x000A;&#x000A;undeclaredVariable; // 2&#x000A;declaredVariable; //1</pre>
+        <pre class="highlight plaintext">var declaredVariable = 1;&#x000A;&#x000A;function scoppedVariables() {&#x000A;  undeclaredVariable = 1;&#x000A;  var declaredVariable = 2;&#x000A;}&#x000A;&#x000A;scoppedVariables();&#x000A;&#x000A;undeclaredVariable; // 1&#x000A;declaredVariable; // 1</pre>
         <p>For more discussion on undeclared variables, checkout <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/var">Mozilla&#39;s documentation</a>.</p>
         
         <p><br/></p>
@@ -83,7 +83,7 @@
         <p>You probably don&#39;t often purposefully define a variable to <code>null</code>, but it may be the return value of a function. Often you&#39;ll need to gaurd against <code>null</code> values in your code.</p>
         
         <p>You can know if a variable is null with the following:</p>
-        <pre class="highlight plaintext">if( variable || variable === false ) {&#x000A;  console.log('variable is not null');&#x000A;} else {&#x000A;  console.log('variable is null');&#x000A;}</pre>
+        <pre class="highlight plaintext">if( variable === null ) {&#x000A;  console.log('variable is null');&#x000A;} else {&#x000A;  console.log('variable is not null');&#x000A;}</pre>
         <p><br/>
         I think the order &quot;undeclared, undefined, and null&quot; makes sense since it&#39;s increasing order of certainty.</p>
         

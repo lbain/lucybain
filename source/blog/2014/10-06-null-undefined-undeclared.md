@@ -16,19 +16,17 @@ A variable is undeclared when it does not use the `var` keyword. It gets created
 Example:
 
 ```
-undeclaredVariable = 1;
 var declaredVariable = 1;
 
-function changeVariables() {
-  undeclaredVariable = 2;
+function scoppedVariables() {
+  undeclaredVariable = 1;
   var declaredVariable = 2;
-  var undeclaredVariable = 3;
 }
 
-changeVariables();
+scoppedVariables();
 
-undeclaredVariable; // 2
-declaredVariable; //1
+undeclaredVariable; // 1
+declaredVariable; // 1
 ```
 
 
@@ -87,10 +85,10 @@ You probably don't often purposefully define a variable to `null`, but it may be
 You can know if a variable is null with the following:
 
 ```
-if( variable || variable === false ) {
-  console.log('variable is not null');
-} else {
+if( variable === null ) {
   console.log('variable is null');
+} else {
+  console.log('variable is not null');
 }
 ```
 
