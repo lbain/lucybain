@@ -10,6 +10,8 @@ JS interview topics left
 * What is Javascript namespacing? How and where is it used?
 * What datatypes are supported in Javascript?
 * the + opperator: What does “1”+2+4 evaluate to? What about 5 + 4 + “3”?
+* XSS
+* JSON
 
 * How do you go about testing your JavaScript?
 * When do you optimize your code?

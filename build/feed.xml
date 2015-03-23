@@ -33,6 +33,82 @@
 </content>
   </entry>
   <entry>
+    <title>JS: How does JSONP work?</title>
+    <link rel="alternate" href="http://lucybain.com/blog/2015/how-does-jsonp-work/"/>
+    <id>http://lucybain.com/blog/2015/how-does-jsonp-work/</id>
+    <published>2015-03-01T00:00:00Z</published>
+    <updated>2015-03-23T21:51:39+11:00</updated>
+    <author>
+      <name>Article Author</name>
+    </author>
+    <content type="html">&lt;h2&gt;How does JSONP work?&lt;/h2&gt;
+
+&lt;p&gt;Let&amp;#39;s start smaller: &lt;em&gt;What does JSONP stand for?&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;J&lt;/strong&gt;ava&lt;strong&gt;S&lt;/strong&gt;cript &lt;strong&gt;O&lt;/strong&gt;bject &lt;strong&gt;N&lt;/strong&gt;otation with &lt;strong&gt;P&lt;/strong&gt;adding&lt;/p&gt;
+
+&lt;p&gt;Hopefully you already know about the JSON part, if not check out this &lt;a href="http://stackoverflow.com/a/383699/863846"&gt;Stackoverflow&lt;/a&gt; answer. Go ahead, I&amp;#39;ll wait :)&lt;/p&gt;
+
+&lt;p&gt;We&amp;#39;ll talk about the padding part in a minute.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;What problem does it solve?&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;Browsers try to be security conscious. They don&amp;#39;t let your JS talk to just any old server (see &lt;a href="https://www.google.com.au/webhp?sourceid=chrome-instant&amp;amp;amp;ion=1&amp;amp;amp;espv=2&amp;amp;amp;ie=UTF-8#q=cross%20site%20scripting"&gt;Cross Site Scripting&lt;/a&gt;). When you make AJAX requests, you can only query your server, not anyone else&amp;#39;s. This is a problem if you want to get data from another server (perhaps see a stream of Tweets). The browsers will not let you make an AJAX call to another server, so you&amp;#39;re stuck.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Ok, tell me a bit about JSONP&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;Well, browsers have a caveat. You aren&amp;#39;t allowed to call other servers from your JS, but you &lt;em&gt;are&lt;/em&gt; allowed to include a script from another server. You probably already do this with jQuery. Most people include a script tag to get jQuery hosted from Google rather than hosting it themselves. Something like this:&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;&amp;lt;script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"&amp;gt;&amp;lt;/script&amp;gt;
+&lt;/pre&gt;
+&lt;p&gt;Notice that the domain is &lt;code&gt;ajax.googleapis.com&lt;/code&gt; not &lt;code&gt;your-awesome-site.com&lt;/code&gt;. Browsers allow this kind of code sharing, but direct calls to an API from JS.&lt;/p&gt;
+
+&lt;p&gt;So way back in &lt;a href="http://en.wikipedia.org/wiki/JSONP#History"&gt;2005&lt;/a&gt; someone had the clever idea to take advantage of this caveat. Instead of calling an API directly (which browsers don&amp;#39;t allow) you can call it via a script tag (which is totally legit).&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;So how does it work?&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;Create a function in the global space to handle the JSON returned from the API. It doesn&amp;#39;t have to do much, just enough so you can see what you&amp;#39;re getting:&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;function myCallbackFunction(data) {
+  console.log(data);
+}
+&lt;/pre&gt;
+&lt;p&gt;Next, add a script tag to your page which calls the API and passes it an additional parameter. Something like this:&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;&amp;lt;script src="http://cool-stuff.com/api.json?callback=myCallbackFunction"&amp;gt;&amp;lt;/script&amp;gt;
+&lt;/pre&gt;
+&lt;p&gt;Notice the additional parameter? It&amp;#39;s typically called &lt;code&gt;callback&lt;/code&gt;, but not always, check the docs for your particular API. Also note the &lt;code&gt;callback&lt;/code&gt; parameter&amp;#39;s value. It&amp;#39;s the same as the function we defined earlier. &lt;em&gt;This is crucial!&lt;/em&gt; If those names don&amp;#39;t match up you won&amp;#39;t get your data.&lt;/p&gt;
+
+&lt;p&gt;An API that&amp;#39;s set up to handle JSONP knows to look for that special parameter. If it&amp;#39;s there, the response isn&amp;#39;t just JSON, but the JSON wrapped (&lt;strong&gt;P&lt;/strong&gt;added) with the name of the callback. So for us, the API would return:&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;myCallbackFunction({'awesome': 'data'});
+&lt;/pre&gt;
+&lt;p&gt;Since the API returns to a script tag the JS is immediately executed. So &lt;code&gt;myCallbackFunction&lt;/code&gt; gets called. We defined this function earlier, so we&amp;#39;ll have &lt;code&gt;{&amp;#39;awesome&amp;#39;: &amp;#39;data&amp;#39;}&lt;/code&gt; logged to the console!&lt;/p&gt;
+
+&lt;p&gt;Phew! Way to get around some security issues!&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;A few things to note:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Generally you &lt;strong&gt;don&amp;#39;t write the script tag yourself.&lt;/strong&gt; You can get jQuery to do that for you :) To make the same call as we did previously you can just use:&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;$.ajax({
+  url: 'http://cool-stuff.com/api.json',
+  dataType: 'jsonp',
+  success: function(data) {
+    console.log(data);
+  }
+});
+&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;Safety First!&lt;/strong&gt; There&amp;#39;s a reason browsers don&amp;#39;t like you talking to other servers - you never know what those servers will send back! Use good data validation, even if the data is &amp;quot;safe.&amp;quot;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;You can only use JSONP for &lt;code&gt;get&lt;/code&gt; requests.&lt;/strong&gt; You can use normal AJAX to do &lt;code&gt;post&lt;/code&gt; and &lt;code&gt;delete&lt;/code&gt; and all data manipulations, but you cannot do this with JSONP. The practical reason for this is that HTML tags only ever get information, they can&amp;#39;t do anything else (think image tags, links for style sheets, and script tags). The handy reason is that if you owned the API you almost certainly would not want randoms from the internet updating your data.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Resources&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="http://schock.net/articles/2013/02/05/how-jsonp-really-works-examples/"&gt;Jason Schock&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://johnnywey.wordpress.com/2012/05/20/jsonp-how-does-it-work/"&gt;Jhonny Wey&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://en.wikipedia.org/wiki/JSONP"&gt;Wikipedia&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://stackoverflow.com/questions/2067472/what-is-jsonp-all-about"&gt;Stackoverflow&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</content>
+  </entry>
+  <entry>
     <title>Algorithms study group</title>
     <link rel="alternate" href="http://lucybain.com/blog/2015/algorithms-study-group/"/>
     <id>http://lucybain.com/blog/2015/algorithms-study-group/</id>
@@ -158,67 +234,6 @@
 &lt;li&gt;&lt;a href="http://www.stevesouders.com/blog/2012/04/10/dont-docwrite-scripts/"&gt;steve Souders&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="http://www.quirksmode.org/blog/archives/2005/06/three_javascrip_1.html"&gt;Quirksmode&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
-</content>
-  </entry>
-  <entry>
-    <title>Retro from my coding test</title>
-    <link rel="alternate" href="http://lucybain.com/blog/2015/code-test-retro/"/>
-    <id>http://lucybain.com/blog/2015/code-test-retro/</id>
-    <published>2015-01-02T00:00:00Z</published>
-    <updated>2015-03-19T21:09:40+11:00</updated>
-    <author>
-      <name>Article Author</name>
-    </author>
-    <content type="html">&lt;p&gt;I&amp;#39;ve been looking for a new job over the past month. As part of my interview process I had to do an at home coding exercise. The directions were simple, but disconcertingly vague:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;The application should run successfully in modern browsers.
-Your app should retrieve a data set from a persistence layer or data service of your choice.&lt;/li&gt;
-&lt;li&gt;The data set should contain a minimum of 4 columns and 5 rows.&lt;/li&gt;
-&lt;li&gt;Create a README file with instructions, a brief description of your app with reasons for your approach and technology as well as any future enhancements you would make given more time&lt;/li&gt;
-&lt;li&gt;Bundle your app in a zip file and email to [the company]&lt;/li&gt;
-&lt;li&gt;Allow up to 3 hours for this task. Please be honest with your allocation of time.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Ok, so three hours is way too long for a simple AJAX call and display of four columns and five rows. So I figured they wanted something a little more interesting than a table of data. I also didn&amp;#39;t want to waste any of my precious three hours working on a back-end - I applied for a front-end role and that&amp;#39;s what I wanted to work on. I decided to work with data from Facebook.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Tip:&lt;/strong&gt; It turns out there&amp;#39;s a TON of very interesting &lt;a href="https://www.reddit.com/r/datasets"&gt;data avaialble&lt;/a&gt;. If you have to do anything like this in the future look into these rather than using FB!&lt;/p&gt;
-
-&lt;p&gt;I wanted to work with something real that users might care about. I also wanted to get more experience with working with Facebook since it&amp;#39;s often used on sites. These were great reasons to choose Facebook, but, as it turns out, probably not a good decision for a coding test. Working with FB requires OAuth and a bunch of setup.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Tip:&lt;/strong&gt; Don&amp;#39;t try to work with anything particularly complex for your coding test. It&amp;#39;s better that you do a simple thing well than that you don&amp;#39;t finish a complex thing.&lt;/p&gt;
-
-&lt;p&gt;Thankfully I used a library called &lt;a href="http://adodson.com/hello.js/"&gt;hello.js&lt;/a&gt; that took care of most of the setup. However I had never worked with hello.js before and getting up to speed with it took time - which I was rapidly running out of. I ended up wasting an hour trying to debug &lt;a href="http://stackoverflow.com/questions/27729186/how-can-i-get-share-data-with-hello-js"&gt;something&lt;/a&gt; which I never really got an answer to - I ended up going a different direction and resetting the clock for that hour.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Tip:&lt;/strong&gt; Don&amp;#39;t work with new technologies / libraries / languages for your coding test. Focus on what you&amp;#39;re already good at and do that thing well.&lt;/p&gt;
-
-&lt;p&gt;I got all my interaction working as expected and then got moving on the styling. I grabbed a generated colour pallet from &lt;a href="http://coolors.co/"&gt;coolors.co&lt;/a&gt; and set up some base styles. It wasn&amp;#39;t anything fancy, it was kinda mobile friendly, but only in the roughest sense, and things looked sorta ok. But it worked, and it no longer looked like simple HTML. This was a success, I&amp;#39;m pleased with the amount of time I spent on styling.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Tip:&lt;/strong&gt; Styling matters. It&amp;#39;s the first thing your users (read graders) will see. Don&amp;#39;t just gloss over it because it&amp;#39;s not your main love. That said, your users will know that you only had a set amount of time to work on something. This does not need to be pixel perfect. Make it nice, but don&amp;#39;t waste your time.&lt;/p&gt;
-
-&lt;p&gt;Finally it was time to run some full tests. I grabbed my partner and asked him to try logging in with my app so I could get his user details (photos). No dice. Errors. Panic.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Tip:&lt;/strong&gt; When you&amp;#39;re developing your code test, try to test it in the same environment the user will have as early as possible. Identify possible rough patches and take note. Even if you can&amp;#39;t fix them you can at least know you&amp;#39;ll need to include something about them in the readme.&lt;/p&gt;
-
-&lt;p&gt;As I found out in my increasingly stressed out state - FB requires you to officially publish your app before you&amp;#39;re allowed to get the public to use it (fair enough, but I had hours before my test was due). I also learned that the process would take around seven days, but that it&amp;#39;s possible my app could be rejected and take longer. I was full on freaking out.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Tip:&lt;/strong&gt; Much like in school, you should start your coding test as soon as you get your assignment.&lt;/p&gt;
-
-&lt;p&gt;I finally worked out that if I made my partner a developer for the app he would have access to it, and thus be able to see all the hard work I&amp;#39;d done. I calmed down a bit and made sure everything was working as it should from then it. (It was; that was the bit I was able to easily test using my own account.)&lt;/p&gt;
-
-&lt;p&gt;That was the end of my three hours.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Tip:&lt;/strong&gt; Make sure you write down the start and end times of any work sections you do. I thought I&amp;#39;d remember, and I&amp;#39;m pretty sure I was fairly accurate, but I&amp;#39;m sure I wasn&amp;#39;t perfect. Guesstimating exactly how many minutes you&amp;#39;ve spent on a coding test is stress you don&amp;#39;t need.&lt;/p&gt;
-
-&lt;p&gt;I moved on to the readme. I was actually pretty pleased how this turned out. In their directions they included what they expected from a readme (&amp;quot;a brief description of your app with reasons for your approach and technology as well as any future enhancements you would make given more time&amp;quot;), which was my guide. I also included a section about how to use my app, since they had to request permission to be a developer in order to get it working.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Tip:&lt;/strong&gt; Try to make it as easy as possible for your reviewers to grade your code. Keep the install process as short, and your explanation of the install process as clear, as possible.&lt;/p&gt;
-
-&lt;p&gt;I spent the most time on the &amp;quot;future enhancements&amp;quot; which included a lot about refactoring. I wasn&amp;#39;t able to do everything I wanted to have beautiful code given the time constraints. I wanted them to know that I knew things weren&amp;#39;t perfect. This was a good tactic - the couple of things they asked me about in my next interview were a the things I hadn&amp;#39;t mentioned in my readme.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Tip:&lt;/strong&gt; The more questions you can answer in your readme (in the comfort of your own home), the fewer you have to answer in the interview (with someone staring at you).&lt;/p&gt;
-
-&lt;p&gt;And that was it! It was pretty stressful, so I hope the next time I need to do a coding test I&amp;#39;ll have learned a little and can stay a bit more calm!&lt;/p&gt;
 </content>
   </entry>
 </feed>
