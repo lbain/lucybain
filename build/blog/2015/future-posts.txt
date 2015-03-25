@@ -2,7 +2,6 @@ JS interview topics left
 
 * How do you organize your code? (module pattern, classical inheritance?)
 * Difference between: function Person(){}, var person = Person(), and var person = new Person()?
-* Explain how JSONP works (and how it's not really AJAX).
 * Have you ever used JavaScript templating?
   If so, what libraries have you used? (Mustache.js, Handlebars etc.)
 * split vs. splice

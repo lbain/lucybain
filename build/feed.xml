@@ -4,10 +4,118 @@
   <id>http://lucybain.com/blog</id>
   <link href="http://lucybain.com/blog"/>
   <link href="http://lucybain.com/feed.xml" rel="self"/>
-  <updated>2015-03-08T00:00:00Z</updated>
+  <updated>2015-03-12T00:00:00Z</updated>
   <author>
     <name>Lucy Bain</name>
   </author>
+  <entry>
+    <title>JS: Split vs. Splice</title>
+    <link rel="alternate" href="http://lucybain.com/blog/2015/js-split-vs-splice/"/>
+    <id>http://lucybain.com/blog/2015/js-split-vs-splice/</id>
+    <published>2015-03-12T00:00:00Z</published>
+    <updated>2015-03-25T22:57:07+11:00</updated>
+    <author>
+      <name>Article Author</name>
+    </author>
+    <content type="html">&lt;h2&gt;What&amp;#39;s the difference between &lt;code&gt;split&lt;/code&gt; and &lt;code&gt;splice&lt;/code&gt;?&lt;/h2&gt;
+
+&lt;p&gt;&lt;em&gt;Well, what does &lt;code&gt;split&lt;/code&gt; do?&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;Much like the name implies &lt;code&gt;split&lt;/code&gt; breaks something into pieces. The &lt;code&gt;split&lt;/code&gt; method is used for strings in JS. It has a few optional parameters, so let&amp;#39;s see what the simplest call does:&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;var myString = 'My test string';
+console.log(myString.split()); // ['My test string']
+console.log(myString); // 'My test string'
+&lt;/pre&gt;
+&lt;p&gt;Hmmm, that&amp;#39;s not super useful - &lt;code&gt;split&lt;/code&gt; called without a parameter simply creates an array with one element, the string. But note that calling &lt;code&gt;split&lt;/code&gt; on &lt;code&gt;myString&lt;/code&gt; doesn&amp;#39;t change &lt;code&gt;myString&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Ok, let&amp;#39;s try something a little more interesting. I want to break &lt;code&gt;myString&lt;/code&gt; up into whole words. We can split &lt;code&gt;myString&lt;/code&gt; on spaces like this:&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;var myString = 'My test string';
+console.log(myString.split(' ')); // ['My', 'test', 'string']
+console.log(myString); // 'My test string'
+&lt;/pre&gt;
+&lt;p&gt;Much more useful! When you call &lt;code&gt;split&lt;/code&gt; with a parameter the string is &lt;em&gt;split&lt;/em&gt; on every occurrence of that parameter. Note that the parameter itself is removed from the array (there are no spaces in &lt;code&gt;[&amp;#39;My&amp;#39;, &amp;#39;test&amp;#39;, &amp;#39;string&amp;#39;]&lt;/code&gt;). Now we can know how many words are in a sentence, or find people&amp;#39;s first and last names (sometimes, names can get tricky...). Again, note that &lt;code&gt;myString&lt;/code&gt; wasn&amp;#39;t changed.&lt;/p&gt;
+
+&lt;p&gt;But what if &lt;code&gt;myString&lt;/code&gt; was really long? Maybe you don&amp;#39;t want an array with hundreds of items in it. Or perhaps you only want to find the first nonoccurence of something. Let&amp;#39;s look for the first two word in &lt;code&gt;myString&lt;/code&gt;:&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;var myString = 'My test string';
+console.log(myString.split(' ', 2)); // ['My', 'test']
+console.log(myString); // 'My test string'
+&lt;/pre&gt;
+&lt;p&gt;Again, we split on spaces because we were looking for full words. The second parameter we sent to &lt;code&gt;split&lt;/code&gt; was the number of elements to go in the array. We wanted the first two words, so we sent through 2.&lt;/p&gt;
+
+&lt;p&gt;Overall &lt;code&gt;split&lt;/code&gt; can be used to:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;wrap a string up in an array &lt;code&gt;string.split()&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;break up a string whenever a particular string is found &lt;code&gt;string.split(breakString)&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;return only a certain number of elements from all the break points &lt;code&gt;string.split(breakString, 3)&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Sweet, we&amp;#39;re halfway there!&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;So, what does &lt;code&gt;splice&lt;/code&gt; do?&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;The name isn&amp;#39;t great, but it&amp;#39;s related to &lt;strong&gt;splicing&lt;/strong&gt; things together. Like you can take the end of one rope and splice it together with another. It&amp;#39;s a &lt;a href="https://www.google.com.au/search?q=splice+rope"&gt;real thing&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Anyways... in JS &lt;code&gt;splice&lt;/code&gt; is an array method. Let&amp;#39;s look at a few sample calls:&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;var myArray = ['this', 'is', 'an', 'array'];
+myArray.splice(0, 2); // ['this', 'is']
+console.log(myArray); // ['an', 'array']
+&lt;/pre&gt;
+&lt;p&gt;Ok, a really important thing to note is that &lt;code&gt;myArray&lt;/code&gt; was changed during the call to &lt;code&gt;splice&lt;/code&gt;. So if you ever want to use the original array you&amp;#39;ll need to keep a backup somewhere. Another thing to note is that &lt;code&gt;splice&lt;/code&gt; returns a value (in fact, it returns the elements that are missing from the array).&lt;/p&gt;
+
+&lt;p&gt;Also, &lt;code&gt;splice&lt;/code&gt; requires at least two parameters. The first parameter is an index in the array. I think of it as where the cursor is. The second parameter is how many elements to delete. So what we&amp;#39;re really saying is &amp;quot;from position &lt;strong&gt;0&lt;/strong&gt; please remove &lt;strong&gt;2&lt;/strong&gt; elements and return them to me.&amp;quot;&lt;/p&gt;
+
+&lt;p&gt;Let&amp;#39;s look at a similar example:&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;var countingArray = [5, 6, 7, 8];
+countingArray.splice(1, 1); // [6]
+console.log(countingArray); // [5, 7, 8]
+&lt;/pre&gt;
+&lt;p&gt;What we said was &amp;quot;from position &lt;strong&gt;1&lt;/strong&gt; please remove &lt;strong&gt;1&lt;/strong&gt; element and return it to me.&amp;quot;&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;Note: JS doesn&amp;#39;t have a &lt;code&gt;.delete(index)&lt;/code&gt; for arrays. The best you can do is &lt;code&gt;delete array[index]&lt;/code&gt;, but that actually just replaces the value at &lt;code&gt;array[index]&lt;/code&gt; with &lt;code&gt;undefined&lt;/code&gt;. Using &lt;code&gt;splice&lt;/code&gt; in the above example is how you can actually delete elements from an array.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Alright, on to the optional parameter(s)!&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;var myArray = ['this', 'is', 'an', 'array'];
+myArray.splice(3, 0, 'awesome'); // []
+console.log(myArray); // ['this', 'is', 'an', 'awesome', 'array']
+&lt;/pre&gt;
+&lt;p&gt;Hopefully you&amp;#39;ve got a good idea of what happened here. The first parameter is still an index. The second parameter is still how many elements to remove. And finally the third element is what to add &lt;strong&gt;after&lt;/strong&gt; the index given in the first parameter. Again, what we&amp;#39;re really saying is &amp;quot;from position &lt;strong&gt;3&lt;/strong&gt; please remove &lt;strong&gt;0&lt;/strong&gt; elements, then &lt;strong&gt;after&lt;/strong&gt; position &lt;strong&gt;3&lt;/strong&gt; please add &lt;strong&gt;&amp;#39;awesome&amp;#39;&lt;/strong&gt;.&amp;quot;&lt;/p&gt;
+
+&lt;p&gt;Another example:&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;var myArray = ['this', 'is', 'an', 'array'];
+myArray.splice(3, 0, 'amazingly', 'awesome'); // []
+console.log(myArray); // ['this', 'is', 'an', 'amazingly', 'awesome', 'array']
+&lt;/pre&gt;
+&lt;p&gt;What we said was &amp;quot;from position &lt;strong&gt;3&lt;/strong&gt; please remove &lt;strong&gt;0&lt;/strong&gt; elements, then &lt;strong&gt;after&lt;/strong&gt; position &lt;strong&gt;3&lt;/strong&gt; please add &lt;strong&gt;&amp;#39;amazing&amp;#39;&lt;/strong&gt; and &lt;strong&gt;&amp;#39;awesome&amp;#39;&lt;/strong&gt;.&amp;quot; The third parameter can keep on going. If you wanted to add 100 elements to &lt;code&gt;myArray&lt;/code&gt; you could do it with &lt;code&gt;splice&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Finally, you can also switch words in place:&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;var myArray = ['this', 'is', 'an', 'array'];
+myArray.splice(2, 1, 'the'); // ['an']
+console.log(myArray); // ['this', 'is', 'the', 'array']
+&lt;/pre&gt;
+&lt;p&gt;What we said was &amp;quot;from position &lt;strong&gt;2&lt;/strong&gt; please remove &lt;strong&gt;1&lt;/strong&gt; element and return it to me, then &lt;strong&gt;after&lt;/strong&gt; position &lt;strong&gt;2&lt;/strong&gt; please add &lt;strong&gt;&amp;#39;the&amp;#39;&lt;/strong&gt;.&amp;quot;&lt;/p&gt;
+
+&lt;p&gt;Overall &lt;code&gt;splice&lt;/code&gt; can be used to:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;remove elements by index&lt;/li&gt;
+&lt;li&gt;add elements after an index&lt;/li&gt;
+&lt;li&gt;add and remove in one step&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Phew! Thanks for sticking with me - this was a long one!&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Resources&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/split"&gt;Mozilla (split)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/splice"&gt;Mozilla (splice)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://ariya.ofilabs.com/2014/02/javascript-array-slice-vs-splice.html"&gt;split vs. splice&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</content>
+  </entry>
   <entry>
     <title>Rails Girls - March 2015</title>
     <link rel="alternate" href="http://lucybain.com/blog/2015/rails-girls/"/>
@@ -191,48 +299,6 @@
 &lt;li&gt;&lt;a href="http://en.wikipedia.org/wiki/Ajax_%28programming%29"&gt;Wikipedia&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="http://stackoverflow.com/questions/1510011/how-does-ajax-work"&gt;Stackoverflow&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://developer.mozilla.org/en-US/Learn/What_is_AJAX_and_how_does_it_work"&gt;Mozilla&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-</content>
-  </entry>
-  <entry>
-    <title>JS: When would you use document.write()?</title>
-    <link rel="alternate" href="http://lucybain.com/blog/2015/js-document-write/"/>
-    <id>http://lucybain.com/blog/2015/js-document-write/</id>
-    <published>2015-01-06T00:00:00Z</published>
-    <updated>2015-03-19T21:09:40+11:00</updated>
-    <author>
-      <name>Article Author</name>
-    </author>
-    <content type="html">&lt;h2&gt;When would you use &lt;code&gt;document.write()&lt;/code&gt;?&lt;/h2&gt;
-
-&lt;p&gt;First, what is &lt;code&gt;document.write()&lt;/code&gt;?&lt;/p&gt;
-
-&lt;p&gt;As you might have guessed, &lt;code&gt;document.write()&lt;/code&gt; writes to the document (a.k.a web page). It takes the content you want to write as a parameter. An invocation could look like this:&lt;/p&gt;
-&lt;pre class="highlight plaintext"&gt;document.write("&amp;lt;h1&amp;gt;JS is awesome!&amp;lt;/h1&amp;gt;");
-&lt;/pre&gt;
-&lt;p&gt;&lt;strong&gt;Problems with &lt;code&gt;document.write()&lt;/code&gt;&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;Try running the code above in the console of a web page (not this one!), go ahead, I&amp;#39;ll wait.&lt;/p&gt;
-
-&lt;p&gt;You&amp;#39;ll notice that it replaced the entire content of the &lt;code&gt;document&lt;/code&gt; with the header &lt;code&gt;&amp;quot;JS is awesome!&amp;quot;&lt;/code&gt;. Obviously that&amp;#39;s a problem right there - &lt;code&gt;document.write()&lt;/code&gt; shouldn&amp;#39;t be used after the page has loaded to change the content as it will overwrite the entire page (probably not what you wanted to happen...).&lt;/p&gt;
-
-&lt;p&gt;&lt;code&gt;document.write()&lt;/code&gt; doesn&amp;#39;t work for XHTML pages. I&amp;#39;ve only been concerned with HTML so far, so I&amp;#39;m not too fussed about this one. But it might be more relevant in your case.&lt;/p&gt;
-
-&lt;p&gt;Some people think &lt;code&gt;document.write()&lt;/code&gt; is a good solution for loading more files (JS or CSS) into the dom after the initial load. Turns out this is not the case, as this is slower than creating a new element (script or a css link) and inserting it into the page.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Possible situations to use &lt;code&gt;document.write()&lt;/code&gt;&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;It seems that the only &amp;quot;approved&amp;quot; time to use &lt;code&gt;document.write()&lt;/code&gt; is for third party code to be included (such as ads or Google Analytics). Since &lt;code&gt;document.write()&lt;/code&gt; is always available (mostly) it is a good choice for third party vendors to use it to add their scripts. They don&amp;#39;t know what environment you&amp;#39;re using, if jQuery is or isn&amp;#39;t available, or what your &lt;code&gt;onload&lt;/code&gt; events are. And with &lt;code&gt;document.write()&lt;/code&gt; they don&amp;#39;t have to.&lt;/p&gt;
-
-&lt;p&gt;So don&amp;#39;t use it yourself, unless your working for the third party.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Resources:&lt;/strong&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href="http://stackoverflow.com/questions/802854/why-is-document-write-considered-a-bad-practice"&gt;Stackoverflow&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://developer.mozilla.org/en-US/docs/Web/API/document.write"&gt;MDN&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="http://www.stevesouders.com/blog/2012/04/10/dont-docwrite-scripts/"&gt;steve Souders&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="http://www.quirksmode.org/blog/archives/2005/06/three_javascrip_1.html"&gt;Quirksmode&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 </content>
   </entry>
