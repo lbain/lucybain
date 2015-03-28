@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='width=device-width, initial-scale=1' name='viewport'>
+    <meta charset='utf-8'>
+    <meta content='IE=edge,chrome=1' http-equiv='X-UA-Compatible'>
+    <link href='/images/favicon.ico' rel='icon' type='image/ico'>
+    <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700|Source+Code+Pro' rel='stylesheet' type='text/css'>
+    <title>JS: What datatypes are supported in Javascript?</title>
+    <link href="/stylesheets/application.css" media="all" rel="stylesheet" type="text/css" />
+    <script src='//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js'></script>
+  </head>
+  <body>
+    <div id='menu'>
+      <div class='nav-open-btn'>
+        <ul>
+          <li></li>
+          <li></li>
+          <li></li>
+        </ul>
+      </div>
+      <ul class='nav'>
+        <li>
+          <a class="nav-link" href="/">Me</a>
+        </li>
+        <li>
+          <a class="nav-link" href="/resume/">Resume</a>
+        </li>
+        <li>
+          <a class="nav-link" href="/contact-me/">Contact</a>
+        </li>
+        <li>
+          <a class="nav-link" href="/resources/">Resources</a>
+        </li>
+        <li>
+          <a class="nav-link active" href="/blog/">Blog</a>
+        </li>
+      </ul>
+    </div>
+    <script>
+      $('#menu .nav-open-btn').on('click', function(){
+        $('#menu .nav').toggleClass('open');
+      })
+    </script>
+    <div class='content'>
+      <div class=''>
+        <h1>JS: What datatypes are supported in Javascript?</h1>
+        <p>tags: <a href="/blog/tags/js/">js</a> and <a href="/blog/tags/interview-questions/">interview-questions</a></p>
+        <h2>What data types are supported in Javascript?</h2>
+        
+        <p>According to the latest <a href="http://en.wikipedia.org/wiki/ECMAScript">ECMAScript</a> release, these are the data types:</p>
+        
+        <ul>
+        <li>Boolean</li>
+        <li>Null</li>
+        <li>Undefined</li>
+        <li>Number</li>
+        <li>String</li>
+        <li>Symbol</li>
+        <li>Object</li>
+        </ul>
+        
+        <p>Ok, let&#39;s run over those one by one:</p>
+        
+        <p><strong>Boolean</strong></p>
+        
+        <p>Pretty standard across all languages, booleans are <code>true</code> and <code>false</code>. They&#39;re often used for conditional statements.</p>
+        <pre class="highlight plaintext">var raining = false;&#x000A;if(raining) {&#x000A;  bringUmbrella();&#x000A;}</pre>
+        <p><strong>Null and Undefined</strong></p>
+        
+        <p>I&#39;ve <a href="/blog/2014/null-undefined-undeclared/">written</a> about these before, so give that a read :)</p>
+        
+        <p><strong>Number</strong></p>
+        
+        <p>Things start to get more interesting here. The number data type covers integers and floats. That is, the <code>number</code> type can handle normal numbers (1, 2, 3, 4), but also negative numbers and decimal places. This is different from many languages that have multiple data types to support different numbers.</p>
+        <pre class="highlight plaintext">var num = 1;&#x000A;typeof num; // number&#x000A;&#x000A;var num = -2;&#x000A;typeof num; // number&#x000A;&#x000A;var num = 0.3;&#x000A;typeof num; // number</pre>
+        <p><strong>String</strong></p>
+        
+        <p>As in most languages, JS strings are groupings of characters.</p>
+        <pre class="highlight plaintext">"hello world";&#x000A;"I like cats";&#x000A;'Testing "quotes';</pre>
+        <p>I don&#39;t think they&#39;re particularly interesting, but they are remarkably powerful. The main way we communicate with our users is the written word and <code>string</code> makes this possible.</p>
+        
+        <p><strong>Symbol</strong></p>
+        
+        <p>This is new in ECMAScript 6; check the <a href="https://kangax.github.io/compat-table/es6/#Symbol">browser support</a> before you use it.</p>
+        
+        <p>Symbols allow for private(ish) properties on objects. Before ECMAScript 6 all properties for an object could be accessed through <code>for in</code>, like this:</p>
+        <pre class="highlight plaintext">var dog = { bark: true }&#x000A;&#x000A;for (var property in dog) {&#x000A;  if (dog.hasOwnProperty(property)) {&#x000A;    console.log(property); // logs "bark"&#x000A;  }&#x000A;}</pre>
+        <p>Since symbols are not enumerable they cannot be accessed in this way. However, the symbolised properties are not truly private since they can be accessed directly.</p>
+        <pre class="highlight plaintext">var breed = Symbol("breed");&#x000A;var dog = { bark: true };&#x000A;dog[breed] = "Corgi";&#x000A;&#x000A;for (var property in dog) {&#x000A;  if (dog.hasOwnProperty(property)) {&#x000A;    console.log(property); // logs "bark", but not "breed"&#x000A;  }&#x000A;}&#x000A;console.log(dog[breed]); // logs "Corgi"</pre>
+        <p><strong>Object</strong></p>
+        
+        <p>Everything in JS that we didn&#39;t discuss above is an Object. So objects are the most complex data type; I&#39;ll dedicate a future post to them since it&#39;s a lot to cover here. But you&#39;ve probably worked with objects in the past. They typically look like this:</p>
+        <pre class="highlight plaintext">var cat = { sound: "meow" };&#x000A;&#x000A;var fluffy = new Cat();&#x000A;&#x000A;var whiskers = new function() {&#x000A;    this.sound = "meow";&#x000A;}</pre>
+        <p>But notice that we haven&#39;t mentioned <code>Array</code>, <code>Date</code>, or even <code>function</code> that&#39;s because, <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#.22Normal.22_objects.2C_and_functions">officially</a>, they&#39;re all of type <code>object</code>. Pretty crazy, huh? Again, I&#39;ll write about this more in future.</p>
+        
+        <p><strong>Resources</strong></p>
+        
+        <ul>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures">Mozilla</a></li>
+        <li><a href="https://leanpub.com/understandinges6/read/#leanpub-auto-symbols">Symbols</a></li>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Working_with_Objects">Objects</a></li>
+        </ul>
+        <div id='disqus_thread'></div>
+        <script>
+          var disqus_shortname = 'lucybain';
+          (function() {
+              var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+              dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+              (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+          })();
+        </script>
+        <noscript>
+          Please enable JavaScript to view the
+          <a href='http://disqus.com/?ref_noscript'>comments powered by Disqus.</a>
+        </noscript>
+        <a class='dsq-brlink' href='http://disqus.com'>
+          comments powered by
+          <span class='logo-disqus'>Disqus</span>
+        </a>
+        <script>
+          var disqus_shortname = 'lucybain';
+          (function () {
+              var s = document.createElement('script'); s.async = true;
+              s.type = 'text/javascript';
+              s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+              (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+          }());
+        </script>
+      </div>
+    </div>
+    
+  </body>
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    
+    ga('create', 'UA-45866381-1', 'lucybain.com');
+    ga('send', 'pageview');
+  </script>
+</html>
+
