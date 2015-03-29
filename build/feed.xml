@@ -4,10 +4,68 @@
   <id>http://lucybain.com/blog</id>
   <link href="http://lucybain.com/blog"/>
   <link href="http://lucybain.com/feed.xml" rel="self"/>
-  <updated>2015-03-22T00:00:00Z</updated>
+  <updated>2015-03-26T00:00:00Z</updated>
   <author>
     <name>Lucy Bain</name>
   </author>
+  <entry>
+    <title>In programming, what is an object?</title>
+    <link rel="alternate" href="http://lucybain.com/blog/2015/in-programming-what-is-an-object/"/>
+    <id>http://lucybain.com/blog/2015/in-programming-what-is-an-object/</id>
+    <published>2015-03-26T00:00:00Z</published>
+    <updated>2015-03-29T20:07:08+11:00</updated>
+    <author>
+      <name>Article Author</name>
+    </author>
+    <content type="html">&lt;p&gt;I&amp;#39;m building up to the post I promised in my last blog: JS objects. We&amp;#39;ll start a bit smaller (as usual), with the concepts of object as a whole&lt;/p&gt;
+
+&lt;h2&gt;Objects&lt;/h2&gt;
+
+&lt;p&gt;Many languages have the concept of an &amp;quot;object.&amp;quot; It&amp;#39;s a way of organising code based around objects (things) with similar characteristics. As in, most dogs have four legs, most cars can drive forward, most houses have doors. Templates (often called Classes) are used to create objects. These templates come with empty fields (like a form), and sometimes with default values as well (such as four legs). So it could look something like this:&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Human&lt;/strong&gt;&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;Name: ________
+Gender: ________
+Arms: _2_
+Legs: _2_
+&lt;/pre&gt;
+&lt;p&gt;As you can see some fields (name and gender) are left blank, and some (arms and legs) have a default value associated. Again, this is a template, these values are assigned for each object (often called &amp;quot;instance of the class&amp;quot;). Mine would look like this:&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;Name: _Lucy_
+Gender: _Female_
+Arms: _2_
+Legs: _2_
+&lt;/pre&gt;
+&lt;p&gt;But objects hold more than just fields of information; they can also hold actions! Let&amp;#39;s build on our Human class.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Human&lt;/strong&gt;&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;Name: ________
+Gender: ________
+Arms: _2_
+Legs: _2_
+Laugh: say "hahaha!"
+Run: move your legs quickly
+&lt;/pre&gt;
+&lt;p&gt;So you can see the Human template now has two actions associated with it (laugh and run). Here&amp;#39;s the great part about objects: those actions are shared! I only have to write the method &lt;em&gt;once&lt;/em&gt; and all humans can now laugh and run. Pretty slick, huh?&lt;/p&gt;
+
+&lt;p&gt;So a &lt;strong&gt;class&lt;/strong&gt; is a template of fields (variables) and actions (methods). Each &lt;strong&gt;object&lt;/strong&gt; fills out the template with it&amp;#39;s particular information. This is how you can write code like &lt;code&gt;me.name&lt;/code&gt; - the &lt;code&gt;me&lt;/code&gt; object has a &lt;code&gt;name&lt;/code&gt; field that keeps track of &lt;code&gt;me&lt;/code&gt;&amp;#39;s name. It&amp;#39;s also how you can write:&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;fido.bark();
+buddy.bark();
+buster.bark();
+princess.bark();
+&lt;/pre&gt;
+&lt;p&gt;but only need to implement the &lt;code&gt;bark&lt;/code&gt; action on the &lt;code&gt;Dog&lt;/code&gt; template.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Object Oriented Programming&lt;/strong&gt; is a way of organising your code into these objects for ease of use, readability, and understanding. It&amp;#39;s not the only &lt;a href="http://upload.wikimedia.org/wikipedia/commons/f/f7/Programming_paradigms.svg"&gt;programming paradigm&lt;/a&gt;, but it&amp;#39;s been popular over the years.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Resources&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="http://www.reddit.com/r/explainlikeimfive/comments/lii0o/eli5_what_do_it_programmer_developer_people_mean/"&gt;Reddit&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;More &lt;a href="http://www.reddit.com/r/explainlikeimfive/comments/j4dmq/eli5_what_is_objectoriented_programming/"&gt;Reddit&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Still more &lt;a href="http://www.reddit.com/r/explainlikeimfive/comments/syjy3/can_someone_explain_object_oriented_programming/"&gt;Reddit&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</content>
+  </entry>
   <entry>
     <title>JS: What datatypes are supported in Javascript?</title>
     <link rel="alternate" href="http://lucybain.com/blog/2015/js-data-types/"/>
@@ -404,22 +462,6 @@ console.log(myArray); // ['this', 'is', 'the', 'array']
 &lt;li&gt;&lt;a href="http://en.wikipedia.org/wiki/JSONP"&gt;Wikipedia&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="http://stackoverflow.com/questions/2067472/what-is-jsonp-all-about"&gt;Stackoverflow&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
-</content>
-  </entry>
-  <entry>
-    <title>Algorithms study group</title>
-    <link rel="alternate" href="http://lucybain.com/blog/2015/algorithms-study-group/"/>
-    <id>http://lucybain.com/blog/2015/algorithms-study-group/</id>
-    <published>2015-01-28T00:00:00Z</published>
-    <updated>2015-03-19T21:09:40+11:00</updated>
-    <author>
-      <name>Article Author</name>
-    </author>
-    <content type="html">&lt;p&gt;Last year I ran two study groups, one for &lt;a href="http://codesydney.com/2014-js"&gt;JS&lt;/a&gt; and one for &lt;a href="/python"&gt;intro to programming&lt;/a&gt;. I also gave a talk about &lt;a href="https://docs.google.com/presentation/d/18lYj02Tc0dBbAAngrYBGPRSbADnswkjnyAdoeD--WQ4/edit?usp=sharing"&gt;starting a study group&lt;/a&gt; at Girl Geek Dinner. I was thrilled when my friend &lt;a href="http://daphnechong.com/"&gt;Daphne&lt;/a&gt; decided to organise a &lt;a href="http://codesydney.com/2015-algorithms/"&gt;group&lt;/a&gt; on her own to study algorithms.&lt;/p&gt;
-
-&lt;p&gt;The course we&amp;#39;re going through is Princeton&amp;#39;s intro to algorithms, and it is &lt;em&gt;hard!&lt;/em&gt; It started a few days ago, and just getting through the lectures took quite some time. But it&amp;#39;s really interesting. I&amp;#39;m keeping my &lt;a href="http://1drv.ms/1tdZuA6"&gt;notes online&lt;/a&gt; so I can share them with anyone interested. This blog post doesn&amp;#39;t have a lot of content, but I promise the link to my notes does. The course has been keeping me pretty busy, so I figured I should get at least one blog post up about it!&lt;/p&gt;
-
-&lt;p&gt;Many thanks to Daphne, and here&amp;#39;s to more learning in 2015!&lt;/p&gt;
 </content>
   </entry>
 </feed>
