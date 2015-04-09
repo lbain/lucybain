@@ -4,10 +4,62 @@
   <id>http://lucybain.com/blog</id>
   <link href="http://lucybain.com/blog"/>
   <link href="http://lucybain.com/feed.xml" rel="self"/>
-  <updated>2015-03-26T00:00:00Z</updated>
+  <updated>2015-04-09T00:00:00Z</updated>
   <author>
     <name>Lucy Bain</name>
   </author>
+  <entry>
+    <title>Rails Girls event manager</title>
+    <link rel="alternate" href="http://lucybain.com/blog/2015/rails-girls-event-manager/"/>
+    <id>http://lucybain.com/blog/2015/rails-girls-event-manager/</id>
+    <published>2015-04-09T00:00:00Z</published>
+    <updated>2015-04-09T23:07:35+10:00</updated>
+    <author>
+      <name>Article Author</name>
+    </author>
+    <content type="html">&lt;p&gt;Hi there!&lt;/p&gt;
+
+&lt;p&gt;I&amp;#39;m looking for something that Rails Girls could use to manage our events, particularly user sign ups. In the past we&amp;#39;ve cobbled together something from various sites. Those sites are good on their own, but the whole system is pretty flimsy and I&amp;#39;m afraid someone might fall through the cracks. So I&amp;#39;m asking you for suggestions, but we&amp;#39;ve got some fairly specific requests... Here&amp;#39;s what we&amp;#39;re looking for:&lt;/p&gt;
+
+&lt;p&gt;Required:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;When people &amp;quot;sign up&amp;quot; it&amp;#39;s really an application to attend - they are not issued a ticket&lt;/li&gt;
+&lt;li&gt;We can send custom emails to people when they are accepted, as well as before the event&lt;/li&gt;
+&lt;li&gt;Free, or maybe willing to be free for a non-profit (we&amp;#39;re happy to list them as sponsors)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Perfered:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Sign up form allows for custom fields&lt;/li&gt;
+&lt;li&gt;There is a &amp;quot;notes&amp;quot; (or similar) section for each applicant/attendee, or we can easily create one&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Optional:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Track attendance at the event&lt;/li&gt;
+&lt;li&gt;Support for multiple (or at least two) tracks (Rails Girls and Rails Girls Next, ideally mentors as well)&lt;/li&gt;
+&lt;li&gt;Keep history on people between events&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Bonus:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Anything else that&amp;#39;s used for event management - tracking caterers, receipts, sponsors, to do lists, etc.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;I know that&amp;#39;s a fairly long list. I&amp;#39;ve looked around at a few, but haven&amp;#39;t found anything that meets our needs yet, so I&amp;#39;m reaching out to ask if you know of any such product.&lt;/p&gt;
+
+&lt;p&gt;Yes, I know we &lt;em&gt;could&lt;/em&gt; build it ourselves. I&amp;#39;m sure that&amp;#39;ll have a fair bit of upkeep and I&amp;#39;m keen to keep our involvement to a minimum. (But hey, if you want to build it, you know you&amp;#39;ll have at least one (non-paying) customer!)&lt;/p&gt;
+
+&lt;p&gt;Please let us know if you have any suggestions.&lt;/p&gt;
+
+&lt;p&gt;Thanks!
+Lucy and the Rails Girls Sydney team&lt;/p&gt;
+</content>
+  </entry>
   <entry>
     <title>In programming, what is an object?</title>
     <link rel="alternate" href="http://lucybain.com/blog/2015/in-programming-what-is-an-object/"/>
@@ -386,82 +438,6 @@ console.log(myArray); // ['this', 'is', 'the', 'array']
 &lt;p&gt;&lt;img alt="Rails Girls Friday Hug" src="/images/blog/rails-girls.jpg" /&gt;&lt;/p&gt;
 
 &lt;p&gt;I&amp;#39;m going to meet with another organiser to talk about what we did well, and what could have been better. There were a lot of things I didn&amp;#39;t know since it was the first time I organised it. Hopefully we can get most of those written down for next time!&lt;/p&gt;
-</content>
-  </entry>
-  <entry>
-    <title>JS: How does JSONP work?</title>
-    <link rel="alternate" href="http://lucybain.com/blog/2015/how-does-jsonp-work/"/>
-    <id>http://lucybain.com/blog/2015/how-does-jsonp-work/</id>
-    <published>2015-03-01T00:00:00Z</published>
-    <updated>2015-03-23T21:51:39+11:00</updated>
-    <author>
-      <name>Article Author</name>
-    </author>
-    <content type="html">&lt;h2&gt;How does JSONP work?&lt;/h2&gt;
-
-&lt;p&gt;Let&amp;#39;s start smaller: &lt;em&gt;What does JSONP stand for?&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;J&lt;/strong&gt;ava&lt;strong&gt;S&lt;/strong&gt;cript &lt;strong&gt;O&lt;/strong&gt;bject &lt;strong&gt;N&lt;/strong&gt;otation with &lt;strong&gt;P&lt;/strong&gt;adding&lt;/p&gt;
-
-&lt;p&gt;Hopefully you already know about the JSON part, if not check out this &lt;a href="http://stackoverflow.com/a/383699/863846"&gt;Stackoverflow&lt;/a&gt; answer. Go ahead, I&amp;#39;ll wait :)&lt;/p&gt;
-
-&lt;p&gt;We&amp;#39;ll talk about the padding part in a minute.&lt;/p&gt;
-
-&lt;p&gt;&lt;em&gt;What problem does it solve?&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;Browsers try to be security conscious. They don&amp;#39;t let your JS talk to just any old server (see &lt;a href="https://www.google.com.au/webhp?sourceid=chrome-instant&amp;amp;amp;ion=1&amp;amp;amp;espv=2&amp;amp;amp;ie=UTF-8#q=cross%20site%20scripting"&gt;Cross Site Scripting&lt;/a&gt;). When you make AJAX requests, you can only query your server, not anyone else&amp;#39;s. This is a problem if you want to get data from another server (perhaps see a stream of Tweets). The browsers will not let you make an AJAX call to another server, so you&amp;#39;re stuck.&lt;/p&gt;
-
-&lt;p&gt;&lt;em&gt;Ok, tell me a bit about JSONP&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;Well, browsers have a caveat. You aren&amp;#39;t allowed to call other servers from your JS, but you &lt;em&gt;are&lt;/em&gt; allowed to include a script from another server. You probably already do this with jQuery. Most people include a script tag to get jQuery hosted from Google rather than hosting it themselves. Something like this:&lt;/p&gt;
-&lt;pre class="highlight plaintext"&gt;&amp;lt;script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"&amp;gt;&amp;lt;/script&amp;gt;
-&lt;/pre&gt;
-&lt;p&gt;Notice that the domain is &lt;code&gt;ajax.googleapis.com&lt;/code&gt; not &lt;code&gt;your-awesome-site.com&lt;/code&gt;. Browsers allow this kind of code sharing, but direct calls to an API from JS.&lt;/p&gt;
-
-&lt;p&gt;So way back in &lt;a href="http://en.wikipedia.org/wiki/JSONP#History"&gt;2005&lt;/a&gt; someone had the clever idea to take advantage of this caveat. Instead of calling an API directly (which browsers don&amp;#39;t allow) you can call it via a script tag (which is totally legit).&lt;/p&gt;
-
-&lt;p&gt;&lt;em&gt;So how does it work?&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;Create a function in the global space to handle the JSON returned from the API. It doesn&amp;#39;t have to do much, just enough so you can see what you&amp;#39;re getting:&lt;/p&gt;
-&lt;pre class="highlight plaintext"&gt;function myCallbackFunction(data) {
-  console.log(data);
-}
-&lt;/pre&gt;
-&lt;p&gt;Next, add a script tag to your page which calls the API and passes it an additional parameter. Something like this:&lt;/p&gt;
-&lt;pre class="highlight plaintext"&gt;&amp;lt;script src="http://cool-stuff.com/api.json?callback=myCallbackFunction"&amp;gt;&amp;lt;/script&amp;gt;
-&lt;/pre&gt;
-&lt;p&gt;Notice the additional parameter? It&amp;#39;s typically called &lt;code&gt;callback&lt;/code&gt;, but not always, check the docs for your particular API. Also note the &lt;code&gt;callback&lt;/code&gt; parameter&amp;#39;s value. It&amp;#39;s the same as the function we defined earlier. &lt;em&gt;This is crucial!&lt;/em&gt; If those names don&amp;#39;t match up you won&amp;#39;t get your data.&lt;/p&gt;
-
-&lt;p&gt;An API that&amp;#39;s set up to handle JSONP knows to look for that special parameter. If it&amp;#39;s there, the response isn&amp;#39;t just JSON, but the JSON wrapped (&lt;strong&gt;P&lt;/strong&gt;added) with the name of the callback. So for us, the API would return:&lt;/p&gt;
-&lt;pre class="highlight plaintext"&gt;myCallbackFunction({'awesome': 'data'});
-&lt;/pre&gt;
-&lt;p&gt;Since the API returns to a script tag the JS is immediately executed. So &lt;code&gt;myCallbackFunction&lt;/code&gt; gets called. We defined this function earlier, so we&amp;#39;ll have &lt;code&gt;{&amp;#39;awesome&amp;#39;: &amp;#39;data&amp;#39;}&lt;/code&gt; logged to the console!&lt;/p&gt;
-
-&lt;p&gt;Phew! Way to get around some security issues!&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;A few things to note:&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;Generally you &lt;strong&gt;don&amp;#39;t write the script tag yourself.&lt;/strong&gt; You can get jQuery to do that for you :) To make the same call as we did previously you can just use:&lt;/p&gt;
-&lt;pre class="highlight plaintext"&gt;$.ajax({
-  url: 'http://cool-stuff.com/api.json',
-  dataType: 'jsonp',
-  success: function(data) {
-    console.log(data);
-  }
-});
-&lt;/pre&gt;
-&lt;p&gt;&lt;strong&gt;Safety First!&lt;/strong&gt; There&amp;#39;s a reason browsers don&amp;#39;t like you talking to other servers - you never know what those servers will send back! Use good data validation, even if the data is &amp;quot;safe.&amp;quot;&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;You can only use JSONP for &lt;code&gt;get&lt;/code&gt; requests.&lt;/strong&gt; You can use normal AJAX to do &lt;code&gt;post&lt;/code&gt; and &lt;code&gt;delete&lt;/code&gt; and all data manipulations, but you cannot do this with JSONP. The practical reason for this is that HTML tags only ever get information, they can&amp;#39;t do anything else (think image tags, links for style sheets, and script tags). The handy reason is that if you owned the API you almost certainly would not want randoms from the internet updating your data.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Resources&lt;/strong&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href="http://schock.net/articles/2013/02/05/how-jsonp-really-works-examples/"&gt;Jason Schock&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://johnnywey.wordpress.com/2012/05/20/jsonp-how-does-it-work/"&gt;Jhonny Wey&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="http://en.wikipedia.org/wiki/JSONP"&gt;Wikipedia&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="http://stackoverflow.com/questions/2067472/what-is-jsonp-all-about"&gt;Stackoverflow&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
 </content>
   </entry>
 </feed>
