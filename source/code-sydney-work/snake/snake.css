@@ -1,0 +1,71 @@
+html, body {
+  height: 100%;
+  margin: 0px;
+  font-family: 'Open Sans', sans-serif;
+}
+
+main {
+  min-height: 100%;
+  overflow:auto;
+  padding-bottom: 0px;
+  text-align: center;
+  width: 540px;
+  margin: 0px auto;
+}
+
+footer {
+  position: relative;
+  margin: -40px 0px 0px 0px;
+  padding: 10px;
+  height: 20px;
+  clear:both;
+  background-color: #eee;
+  border-top: 1px solid #aaa;
+  text-align: center;
+  color: #333;
+}
+
+footer a {
+  color: #000;
+}
+
+.level-info div {
+  display: inline-block;
+}
+.level-info div:first-of-type {
+  float:left;
+}
+.level-info div:last-of-type {
+  float:right;
+}
+
+.square {
+  min-width: 15px;
+  height: 15px;
+  vertical-align: middle;
+}
+
+.snake, .food {
+  background-color: white;
+}
+
+.food {
+  background: white;
+  position: relative;
+  border-radius: 10px;
+}
+
+#board {
+  text-align: center;
+  table-layout: fixed;
+  background-color: black;
+}
+
+h1 {
+  margin-bottom: 30px;
+  font-family: 'Amatic SC', cursive;
+}
+
+.clearfix {
+  clear: both;
+}

@@ -1,0 +1,41 @@
+- projects = [ { title: 'Calculator',
+  directions: 'http://www.theodinproject.com/javascript-and-jquery/on-screen-calculator',
+  dir: 'calculator' },
+  { title: 'Tabs',
+    directions: 'http://www.theodinproject.com/javascript-and-jquery/manipulating-the-dom-with-jquery',
+    dir: 'tabs' },
+  { title: 'Snake',
+    directions: 'http://www.theodinproject.com/javascript-and-jquery/jquery-and-the-dom',
+    dir: 'snake' },
+  { title: 'Tic Tac Toe',
+    directions: 'http://www.theodinproject.com/web-development-101#section-the-front-end',
+    dir: 'tic-tac-toe' },
+  { title: 'Minesweeper',
+    directions: 'http://www.theodinproject.com/javascript-and-jquery/minesweeper',
+    dir: 'minesweeper' },
+  { title: 'Missile Command',
+    directions: 'http://www.theodinproject.com/javascript-and-jquery/building-games-with-canvas',
+    dir: 'missile-command' },
+  { title: 'Form Validation',
+    directions: 'http://www.theodinproject.com/javascript-and-jquery/validating-a-form-with-jquery',
+    dir: 'form-validation' },
+  { title: 'Google Maps',
+    directions: 'http://www.theodinproject.com/javascript-and-jquery/putting-google-maps-onto-your-site',
+    dir: 'google-maps' },
+  { title: 'Backbone Todo List',
+    directions: 'http://adrianmejia.com/blog/2012/09/11/backbone-dot-js-for-absolute-beginners-getting-started/',
+    dir: 'backbone' } ]
+
+%p I'm writing some JS for my #{link_to 'Code Sydney', 'http://codesydney.com/'} study group. You can see my answers to the homework problems here.
+
+#all-projects
+  - projects.each do |project|
+    .project
+      .title= project[:title]
+      .image-wrap
+        .project-image{id: "#{project[:dir]}-demo"}
+          .overlay
+        .links
+          =link_to 'Demo', '/code-sydney-work/' + project[:dir] + '/', class: 'link'
+          = link_to 'Code', 'https://github.com/lbain/code-sydney-work/tree/master/' + project[:dir], class: 'link'
+          = link_to 'Directions', project[:directions], class: 'link'

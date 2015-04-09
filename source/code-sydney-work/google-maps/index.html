@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Maps</title>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+  </head>
+  <body>
+    <form>
+      <table>
+        <tr>
+          <td class="label">
+            Latitude
+          </td>
+          <td>
+            <input name="lat" />
+          </td>
+        </tr>
+        <tr>
+          <td class="label">
+            Longitude
+          </td>
+          <td>
+            <input name="lng" />
+          </td>
+        </tr>
+        <tr>
+          <td class="label">
+            Message
+          </td>
+          <td>
+            <textarea  name="message"></textarea>
+          </td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>
+            <input type="submit"/>
+          </td>
+        </tr>
+      </table>
+    </form>
+    <div id="map-canvas"></div>
+  </body>
+
+  <link href='http://fonts.googleapis.com/css?family=Arvo|Raleway:200' rel='stylesheet' type='text/css'>
+  <script type="text/javascript" src="../jquery-1.11.1.min.js"></script>
+  <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDtoYw3bZed4viJwj5vomwv2gflNuLi8gw"></script>
+  <script src="maps.js"></script>
+</html>
