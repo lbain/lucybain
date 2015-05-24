@@ -228,7 +228,7 @@ var whiskers = new function() {
     <link rel="alternate" href="http://lucybain.com/blog/2015/js-namespacing/"/>
     <id>http://lucybain.com/blog/2015/js-namespacing/</id>
     <published>2015-03-17T00:00:00Z</published>
-    <updated>2015-03-27T22:45:14+11:00</updated>
+    <updated>2015-05-24T18:18:27+10:00</updated>
     <author>
       <name>Article Author</name>
     </author>
@@ -289,7 +289,7 @@ function warningAlert(text) {
 
 &lt;p&gt;If I&amp;#39;d had a namespace for my &lt;code&gt;warningAlert&lt;/code&gt; method I probably would have known where to look for the function definition. Something like:&lt;/p&gt;
 &lt;pre class="highlight plaintext"&gt;var alerts = {}
-alert.warning = function(text) {
+alerts.warning = function(text) {
   alert('Warning: ' + text);
 };
 &lt;/pre&gt;

@@ -67,7 +67,7 @@
         <p>Now calls to <code>warningAlert</code> will use the second definition since it overwrote (collided with) the first definition.</p>
         
         <p>If I&#39;d had a namespace for my <code>warningAlert</code> method I probably would have known where to look for the function definition. Something like:</p>
-        <pre class="highlight plaintext">var alerts = {}&#x000A;alert.warning = function(text) {&#x000A;  alert('Warning: ' + text);&#x000A;};</pre>
+        <pre class="highlight plaintext">var alerts = {}&#x000A;alerts.warning = function(text) {&#x000A;  alert('Warning: ' + text);&#x000A;};</pre>
         <p>Namespaces aren&#39;t only for you (because I&#39;m sure <em>you&#39;d</em> never make a mistake like this... just for demonstration purposes, right?). They&#39;re also important when you start including code by a third party.</p>
         
         <p>Since everything gets dumped into the global namespace there&#39;s no way to know what you wrote and what was written by someone else. It&#39;s generally a good idea to have a namespace for everything you wrote so you don&#39;t get naming conflicts with anyone else. Actually, jQuery does just that. All the jQuery functions are namespaced to <code>$</code>.</p>

@@ -74,7 +74,7 @@ If I'd had a namespace for my `warningAlert` method I probably would have known 
 
 ```
 var alerts = {}
-alert.warning = function(text) {
+alerts.warning = function(text) {
   alert('Warning: ' + text);
 };
 ```
