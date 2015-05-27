@@ -15,6 +15,7 @@ activate :blog do |blog|
   blog.sources = "{year}/{month}-{day}-{title}.html"
   # blog.taglink = "tags/{tag}.html"
   # blog.layout = "blog/layout"
+  blog.layout = "layouts/blog"
   # blog.summary_separator = /(READMORE)/
   # blog.summary_length = 250
   # blog.year_link = "{year}.html"
@@ -66,9 +67,9 @@ set :markdown_engine, :redcarpet
 # page "/path/to/file.html", :layout => :otherlayout
 #
 # A path which all have the same layout
-with_layout :blog do
-  page "/blog/*"
-end
+# with_layout :blog do
+#   page "/blog/*"
+# end
 
 
 # Proxy pages (http://middlemanapp.com/dynamic-pages/)
