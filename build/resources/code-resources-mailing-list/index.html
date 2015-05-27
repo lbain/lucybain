@@ -11,7 +11,7 @@
     <script src='//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js'></script>
   </head>
   <body>
-    <div id='menu'>
+    <nav>
       <div class='nav-open-btn'>
         <ul>
           <li></li>
@@ -19,7 +19,7 @@
           <li></li>
         </ul>
       </div>
-      <ul class='nav'>
+      <ul class='nav-display'>
         <li>
           <a class="nav-link" href="/">Me</a>
         </li>
@@ -36,10 +36,10 @@
           <a class="nav-link" href="/blog/">Blog</a>
         </li>
       </ul>
-    </div>
+    </nav>
     <script>
-      $('#menu .nav-open-btn').on('click', function(){
-        $('#menu .nav').toggleClass('open');
+      $('nav .nav-open-btn').on('click', function(){
+        $('nav .nav-display').toggleClass('open');
       })
     </script>
     <div class='content'>
@@ -271,7 +271,6 @@
       <!--End mc_embed_signup-->
       <p>I promise I won't spam you! I won't send messages more than once a week (unless I find something that's coming up that week), and I'll do my best to keep all the information relevant to learning code, and the events local to Sydney. And of course you can unsubscribe at any time. But hopefully you find it useful, and maybe contribute something too!</p>
     </div>
-    
   </body>
   <script>
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){

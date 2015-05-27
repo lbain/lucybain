@@ -11,7 +11,7 @@
     <script src='//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js'></script>
   </head>
   <body>
-    <div id='menu'>
+    <nav>
       <div class='nav-open-btn'>
         <ul>
           <li></li>
@@ -19,7 +19,7 @@
           <li></li>
         </ul>
       </div>
-      <ul class='nav'>
+      <ul class='nav-display'>
         <li>
           <a class="nav-link" href="/">Me</a>
         </li>
@@ -36,14 +36,14 @@
           <a class="nav-link active" href="/blog/">Blog</a>
         </li>
       </ul>
-    </div>
+    </nav>
     <script>
-      $('#menu .nav-open-btn').on('click', function(){
-        $('#menu .nav').toggleClass('open');
+      $('nav .nav-open-btn').on('click', function(){
+        $('nav .nav-display').toggleClass('open');
       })
     </script>
     <div class='content'>
-      <div class=''>
+      <div class=' blog-listing'>
         <h1>JS: use strict</h1>
         <p>tags: <a href="/blog/tags/js/">js</a> and <a href="/blog/tags/interview-questions/">interview-questions</a></p>
         <h2>What is <code>&quot;use strict&quot;;</code>? what are the advantages and disadvantages to using it?</h2>
@@ -80,6 +80,7 @@
         <li><a href="http://stackoverflow.com/questions/1335851/what-does-use-strict-do-in-javascript-and-what-is-the-reasoning-behind-it">Stackoverflow</a></li>
         <li>The comments on this <a href="http://www.2ality.com/2011/10/strict-mode-hatred.html">article</a> give some insights to the disadvantages</li>
         </ul>
+        <hr>
         <div id='disqus_thread'></div>
         <script>
           var disqus_shortname = 'lucybain';
@@ -108,7 +109,6 @@
         </script>
       </div>
     </div>
-    
   </body>
   <script>
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){

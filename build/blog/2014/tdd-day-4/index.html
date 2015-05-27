@@ -11,7 +11,7 @@
     <script src='//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js'></script>
   </head>
   <body>
-    <div id='menu'>
+    <nav>
       <div class='nav-open-btn'>
         <ul>
           <li></li>
@@ -19,7 +19,7 @@
           <li></li>
         </ul>
       </div>
-      <ul class='nav'>
+      <ul class='nav-display'>
         <li>
           <a class="nav-link" href="/">Me</a>
         </li>
@@ -36,14 +36,14 @@
           <a class="nav-link active" href="/blog/">Blog</a>
         </li>
       </ul>
-    </div>
+    </nav>
     <script>
-      $('#menu .nav-open-btn').on('click', function(){
-        $('#menu .nav').toggleClass('open');
+      $('nav .nav-open-btn').on('click', function(){
+        $('nav .nav-display').toggleClass('open');
       })
     </script>
     <div class='content'>
-      <div class=''>
+      <div class=' blog-listing'>
         <h1>TDD Day 4</h1>
         <h3>
           What did I do today?
@@ -69,6 +69,7 @@
         <p>
           I do think I'm starting to see more of a use for TDD, and testing in general. Refactoring the code was much easier with all the tests I had to make sure I didn't forget anything small.
         </p>
+        <hr>
         <div id='disqus_thread'></div>
         <script>
           var disqus_shortname = 'lucybain';
@@ -97,7 +98,6 @@
         </script>
       </div>
     </div>
-    
   </body>
   <script>
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){

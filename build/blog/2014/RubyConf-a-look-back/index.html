@@ -11,7 +11,7 @@
     <script src='//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js'></script>
   </head>
   <body>
-    <div id='menu'>
+    <nav>
       <div class='nav-open-btn'>
         <ul>
           <li></li>
@@ -19,7 +19,7 @@
           <li></li>
         </ul>
       </div>
-      <ul class='nav'>
+      <ul class='nav-display'>
         <li>
           <a class="nav-link" href="/">Me</a>
         </li>
@@ -36,14 +36,14 @@
           <a class="nav-link active" href="/blog/">Blog</a>
         </li>
       </ul>
-    </div>
+    </nav>
     <script>
-      $('#menu .nav-open-btn').on('click', function(){
-        $('#menu .nav').toggleClass('open');
+      $('nav .nav-open-btn').on('click', function(){
+        $('nav .nav-display').toggleClass('open');
       })
     </script>
     <div class='content'>
-      <div class=''>
+      <div class=' blog-listing'>
         <h1>RubyConf - a look back</h1>
         <p>
           It's been almost 3 weeks since RubyConf. Feels like longer. I wrote a <a href="/blog/2014/RubyConfAU/">quick review</a> after the event, but that post didn't do RubyConf justice.
@@ -60,6 +60,7 @@
         <p>
           I know there were many <a href="http://sampeters.net/blog/meetups-hubs-and-casual-get-togethers-and-the-developer-community/">different</a> <a href="http://ruby.org.au/articles">reactions</a> to RubyConf. But I'd like to add mine to the mix. It was amazing - both before and after.
         </p>
+        <hr>
         <div id='disqus_thread'></div>
         <script>
           var disqus_shortname = 'lucybain';
@@ -88,7 +89,6 @@
         </script>
       </div>
     </div>
-    
   </body>
   <script>
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){

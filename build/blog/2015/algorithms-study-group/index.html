@@ -11,7 +11,7 @@
     <script src='//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js'></script>
   </head>
   <body>
-    <div id='menu'>
+    <nav>
       <div class='nav-open-btn'>
         <ul>
           <li></li>
@@ -19,7 +19,7 @@
           <li></li>
         </ul>
       </div>
-      <ul class='nav'>
+      <ul class='nav-display'>
         <li>
           <a class="nav-link" href="/">Me</a>
         </li>
@@ -36,14 +36,14 @@
           <a class="nav-link active" href="/blog/">Blog</a>
         </li>
       </ul>
-    </div>
+    </nav>
     <script>
-      $('#menu .nav-open-btn').on('click', function(){
-        $('#menu .nav').toggleClass('open');
+      $('nav .nav-open-btn').on('click', function(){
+        $('nav .nav-display').toggleClass('open');
       })
     </script>
     <div class='content'>
-      <div class=''>
+      <div class=' blog-listing'>
         <h1>Algorithms study group</h1>
         <p>tags: <a href="/blog/tags/algorithms/">algorithms</a> and <a href="/blog/tags/study-group/">study group</a></p>
         <p>Last year I ran two study groups, one for <a href="http://codesydney.com/2014-js">JS</a> and one for <a href="/python">intro to programming</a>. I also gave a talk about <a href="https://docs.google.com/presentation/d/18lYj02Tc0dBbAAngrYBGPRSbADnswkjnyAdoeD--WQ4/edit?usp=sharing">starting a study group</a> at Girl Geek Dinner. I was thrilled when my friend <a href="http://daphnechong.com/">Daphne</a> decided to organise a <a href="http://codesydney.com/2015-algorithms/">group</a> on her own to study algorithms.</p>
@@ -51,6 +51,7 @@
         <p>The course we&#39;re going through is Princeton&#39;s intro to algorithms, and it is <em>hard!</em> It started a few days ago, and just getting through the lectures took quite some time. But it&#39;s really interesting. I&#39;m keeping my <a href="http://1drv.ms/1tdZuA6">notes online</a> so I can share them with anyone interested. This blog post doesn&#39;t have a lot of content, but I promise the link to my notes does. The course has been keeping me pretty busy, so I figured I should get at least one blog post up about it!</p>
         
         <p>Many thanks to Daphne, and here&#39;s to more learning in 2015!</p>
+        <hr>
         <div id='disqus_thread'></div>
         <script>
           var disqus_shortname = 'lucybain';
@@ -79,7 +80,6 @@
         </script>
       </div>
     </div>
-    
   </body>
   <script>
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){

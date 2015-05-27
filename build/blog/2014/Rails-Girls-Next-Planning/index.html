@@ -11,7 +11,7 @@
     <script src='//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js'></script>
   </head>
   <body>
-    <div id='menu'>
+    <nav>
       <div class='nav-open-btn'>
         <ul>
           <li></li>
@@ -19,7 +19,7 @@
           <li></li>
         </ul>
       </div>
-      <ul class='nav'>
+      <ul class='nav-display'>
         <li>
           <a class="nav-link" href="/">Me</a>
         </li>
@@ -36,14 +36,14 @@
           <a class="nav-link active" href="/blog/">Blog</a>
         </li>
       </ul>
-    </div>
+    </nav>
     <script>
-      $('#menu .nav-open-btn').on('click', function(){
-        $('#menu .nav').toggleClass('open');
+      $('nav .nav-open-btn').on('click', function(){
+        $('nav .nav-display').toggleClass('open');
       })
     </script>
     <div class='content'>
-      <div class=''>
+      <div class=' blog-listing'>
         <h1>Rails Girls Next Planning</h1>
         <p>
           Back in December Elle suggested running a continuation event for Rails Girls, something for the girls who had completed <a href="http://www.railsgirls.com">Rails Girls</a> and were looking for something else to push their Ruby/Rails education a bit further. I thought this was a great idea and wanted to be part of it. Elle suggested I organise it and make it happen (with a bunch of support from her and RubyConf), and I was really keen for the challenge and having a bigger role in the Ruby community. I'd talked with Elle and others about my frustrations with Rails Girls (and other, similar events) - it's a short-term, inspirational event, but with no support for the attendees after the fact. This continuation from Rails Girls helped to answer that concern.
@@ -60,6 +60,7 @@
         <p>
           Looking forward to it already!
         </p>
+        <hr>
         <div id='disqus_thread'></div>
         <script>
           var disqus_shortname = 'lucybain';
@@ -88,7 +89,6 @@
         </script>
       </div>
     </div>
-    
   </body>
   <script>
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){

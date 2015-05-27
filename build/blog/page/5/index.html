@@ -11,7 +11,7 @@
     <script src='//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js'></script>
   </head>
   <body>
-    <div id='menu'>
+    <nav>
       <div class='nav-open-btn'>
         <ul>
           <li></li>
@@ -19,7 +19,7 @@
           <li></li>
         </ul>
       </div>
-      <ul class='nav'>
+      <ul class='nav-display'>
         <li>
           <a class="nav-link" href="/">Me</a>
         </li>
@@ -36,132 +36,128 @@
           <a class="nav-link active" href="/blog/">Blog</a>
         </li>
       </ul>
-    </div>
+    </nav>
     <script>
-      $('#menu .nav-open-btn').on('click', function(){
-        $('#menu .nav').toggleClass('open');
+      $('nav .nav-open-btn').on('click', function(){
+        $('nav .nav-display').toggleClass('open');
       })
     </script>
     <div class='content'>
-      <div class=''>
-        <h1></h1>
-        <div class='blog-listing'>
-          <p><a href="/blog/page/4/">Previous page</a></p>
-          <div>
-            <h2>
-              <a href="/blog/2014/getting-start-on-twitter/">Getting Started on Twitter</a>
-            </h2>
-            <p>Feb 25, 2014</p>
-            <p>
-              A friend of mine recently got set up with Twitter and asked for some pointers. Another friend complemented me on my feed. I felt flattered, and wanted to make how I use Twitter public.
-            </p>
-            <p>
-              There are <em>many</em> sites out there to help you use Twitter more...</p>
-          </div>
-          <hr>
-          <div>
-            <h2>
-              <a href="/blog/2014/RubyConfAU/">RubyConf Australia 2014</a>
-            </h2>
-            <p>Feb 23, 2014</p>
-            <p>
-              I just finished RubyConf Australia, and what a wild ride! I've never been to a conference before, and I was a bit nervous what it would be like. Would people be welcoming? Would I know where to be? Would everyone be taking notes, or no one? Turns...</p>
-          </div>
-          <hr>
-          <div>
-            <h2>
-              <a href="/blog/2014/Rails-Girls-Next/">Rails Girls Next</a>
-            </h2>
-            <p>Feb 19, 2014</p>
-            <p>
-              Wahoo! Rails Girls Next happened without a (major) hitch today! I am so happy with how it went, and to have helped with these girls' continuing Ruby education.
-            </p>
-            <h2>
-              The event
-            </h2>
-            <p>
-              I've shared the <a href="https://docs.google.com/presentation/d/19Jj8I4CVRe8k2sP8m17PMk0PXwbY0646MxWDS6VJ5yo/edit?usp=sharing">slides</a> used for keeping track of time, so you can see...</p>
-          </div>
-          <hr>
-          <div>
-            <h2>
-              <a href="/blog/2014/udacity-study-group/">Starting a CS Study Group!</a>
-            </h2>
-            <p>Feb 13, 2014</p>
-            <p>
-              I've wanted to run a programming study group for quite a while. Although I love what <a href="http://railsgirls.com/">Rails Girls</a> and <a href="http://www.meetup.com/Ruby-On-Rails-Oceania-Sydney/">InstallFest</a> do, I think attendees find it quite hard to continue learning. They have some support from the community through initiatives like DevHub...</p>
-          </div>
-          <hr>
-          <div>
-            <h2>
-              <a href="/blog/2014/git-branch-names-on-command-line/">Git Branch Names on Command Prompt</a>
-            </h2>
-            <p>Feb 13, 2014</p>
-            <p>I often forget which branch I'm on. Sure, I have <code>git branch</code> aliased (it's probably one of my most frequently used commands) but sometimes I'm convinced I'm on another branch. A few commits and merges later I find out I was wrong, and it's time for...</p>
-          </div>
-          <hr>
-          <div>
-            <h2>
-              <a href="/blog/2014/sublime-multi-cursor/">Sublime Multi-Cursor</a>
-            </h2>
-            <p>Feb  3, 2014</p>
-            <p>
-              I use Sublime. I know, I know, I'm not a <a href="http://xkcd.com/378/">"real"</a> dev. Whatever. It works for me. One of my favourite features is the multi-cursor. If you're a fellow Sublime user and aren't aware of this ability you should really check it out. Look at <a href="http://blog.generalassemb.ly/sublime-text-3-tips-tricks-shortcuts/">step 12</a> for...</p>
-          </div>
-          <hr>
-          <div>
-            <h2>
-              <a href="/blog/2014/validate-vs-validates/">validate vs. validateS</a>
-            </h2>
-            <p>Jan 15, 2014</p>
-            <p>
-              I stumbled across this validation gotcha a while back, but that was before I had this awesome blog ;) I think this is a pretty big one, hope this help someone!
-            </p>
-            <p>
-              <code>::ActiveModel::Validations</code> treats <code>validates</code> and <code>validate</code> differently. <code>validates</code> is...</p>
-          </div>
-          <hr>
-          <div>
-            <h2>
-              <a href="/blog/2014/tdd-day-5/">TDD Day 5</a>
-            </h2>
-            <p>Jan  9, 2014</p>
-            <h3>
-              What did I do today?
-            </h3>
-            <p>
-              I said at the beginning that I wasn't a huge fan of TDD. It just doesn't seem like a great idea to me. Today I took some time to explore that, and it turns out, I'm not the only one. Most people have mixed reviews, and that...</p>
-          </div>
-          <hr>
-          <div>
-            <h2>
-              <a href="/blog/2014/tdd-day-4/">TDD Day 4</a>
-            </h2>
-            <p>Jan  8, 2014</p>
-            <h3>
-              What did I do today?
-            </h3>
-            <p>
-              I'm continuing on at Coders Dojo, today I worked on <a href="http://content.codersdojo.org/code-kata-catalogue/roman-numerals/">Roman Numerals</a>. I've heard this problem talked about, but haven't actually worked on it myself. It was harder than I expected (and involved a lot of Googling for the correct...</p>
-          </div>
-          <hr>
-          <div>
-            <h2>
-              <a href="/blog/2014/tdd-day-3/">TDD Day 3</a>
-            </h2>
-            <p>Jan  6, 2014</p>
-            <p>
-              I started the next <a href="http://content.codersdojo.org/code-kata-catalogue/prime-factors/">kata</a> at Coders Dojo. I think you're supposed to do katas over and over again, but I didn't think I'd gain that much from repeating the FizzBuzz kata from yesterday. Maybe when I've got a better hang of things I can go back to...</p>
-          </div>
-          <hr>
+      <div class='blog-listing'>
+        <p><a href="/blog/page/4/">Previous page</a></p>
+        <div>
+          <h2>
+            <a href="/blog/2014/getting-start-on-twitter/">Getting Started on Twitter</a>
+          </h2>
+          <p>Feb 25, 2014</p>
           <p>
-            Page 5 of 6
+            A friend of mine recently got set up with Twitter and asked for some pointers. Another friend complemented me on my feed. I felt flattered, and wanted to make how I use Twitter public.
           </p>
-          <p><a href="/blog/page/6/">Next page</a></p>
+          <p>
+            There are <em>many</em> sites out there to help you use Twitter more...</p>
         </div>
+        <hr>
+        <div>
+          <h2>
+            <a href="/blog/2014/RubyConfAU/">RubyConf Australia 2014</a>
+          </h2>
+          <p>Feb 23, 2014</p>
+          <p>
+            I just finished RubyConf Australia, and what a wild ride! I've never been to a conference before, and I was a bit nervous what it would be like. Would people be welcoming? Would I know where to be? Would everyone be taking notes, or no one? Turns...</p>
+        </div>
+        <hr>
+        <div>
+          <h2>
+            <a href="/blog/2014/Rails-Girls-Next/">Rails Girls Next</a>
+          </h2>
+          <p>Feb 19, 2014</p>
+          <p>
+            Wahoo! Rails Girls Next happened without a (major) hitch today! I am so happy with how it went, and to have helped with these girls' continuing Ruby education.
+          </p>
+          <h2>
+            The event
+          </h2>
+          <p>
+            I've shared the <a href="https://docs.google.com/presentation/d/19Jj8I4CVRe8k2sP8m17PMk0PXwbY0646MxWDS6VJ5yo/edit?usp=sharing">slides</a> used for keeping track of time, so you can see...</p>
+        </div>
+        <hr>
+        <div>
+          <h2>
+            <a href="/blog/2014/udacity-study-group/">Starting a CS Study Group!</a>
+          </h2>
+          <p>Feb 13, 2014</p>
+          <p>
+            I've wanted to run a programming study group for quite a while. Although I love what <a href="http://railsgirls.com/">Rails Girls</a> and <a href="http://www.meetup.com/Ruby-On-Rails-Oceania-Sydney/">InstallFest</a> do, I think attendees find it quite hard to continue learning. They have some support from the community through initiatives like DevHub...</p>
+        </div>
+        <hr>
+        <div>
+          <h2>
+            <a href="/blog/2014/git-branch-names-on-command-line/">Git Branch Names on Command Prompt</a>
+          </h2>
+          <p>Feb 13, 2014</p>
+          <p>I often forget which branch I'm on. Sure, I have <code>git branch</code> aliased (it's probably one of my most frequently used commands) but sometimes I'm convinced I'm on another branch. A few commits and merges later I find out I was wrong, and it's time for...</p>
+        </div>
+        <hr>
+        <div>
+          <h2>
+            <a href="/blog/2014/sublime-multi-cursor/">Sublime Multi-Cursor</a>
+          </h2>
+          <p>Feb  3, 2014</p>
+          <p>
+            I use Sublime. I know, I know, I'm not a <a href="http://xkcd.com/378/">"real"</a> dev. Whatever. It works for me. One of my favourite features is the multi-cursor. If you're a fellow Sublime user and aren't aware of this ability you should really check it out. Look at <a href="http://blog.generalassemb.ly/sublime-text-3-tips-tricks-shortcuts/">step 12</a> for...</p>
+        </div>
+        <hr>
+        <div>
+          <h2>
+            <a href="/blog/2014/validate-vs-validates/">validate vs. validateS</a>
+          </h2>
+          <p>Jan 15, 2014</p>
+          <p>
+            I stumbled across this validation gotcha a while back, but that was before I had this awesome blog ;) I think this is a pretty big one, hope this help someone!
+          </p>
+          <p>
+            <code>::ActiveModel::Validations</code> treats <code>validates</code> and <code>validate</code> differently. <code>validates</code> is...</p>
+        </div>
+        <hr>
+        <div>
+          <h2>
+            <a href="/blog/2014/tdd-day-5/">TDD Day 5</a>
+          </h2>
+          <p>Jan  9, 2014</p>
+          <h3>
+            What did I do today?
+          </h3>
+          <p>
+            I said at the beginning that I wasn't a huge fan of TDD. It just doesn't seem like a great idea to me. Today I took some time to explore that, and it turns out, I'm not the only one. Most people have mixed reviews, and that...</p>
+        </div>
+        <hr>
+        <div>
+          <h2>
+            <a href="/blog/2014/tdd-day-4/">TDD Day 4</a>
+          </h2>
+          <p>Jan  8, 2014</p>
+          <h3>
+            What did I do today?
+          </h3>
+          <p>
+            I'm continuing on at Coders Dojo, today I worked on <a href="http://content.codersdojo.org/code-kata-catalogue/roman-numerals/">Roman Numerals</a>. I've heard this problem talked about, but haven't actually worked on it myself. It was harder than I expected (and involved a lot of Googling for the correct...</p>
+        </div>
+        <hr>
+        <div>
+          <h2>
+            <a href="/blog/2014/tdd-day-3/">TDD Day 3</a>
+          </h2>
+          <p>Jan  6, 2014</p>
+          <p>
+            I started the next <a href="http://content.codersdojo.org/code-kata-catalogue/prime-factors/">kata</a> at Coders Dojo. I think you're supposed to do katas over and over again, but I didn't think I'd gain that much from repeating the FizzBuzz kata from yesterday. Maybe when I've got a better hang of things I can go back to...</p>
+        </div>
+        <hr>
+        <p>
+          Page 5 of 6
+        </p>
+        <p><a href="/blog/page/6/">Next page</a></p>
       </div>
     </div>
-    
   </body>
   <script>
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -173,4 +169,3 @@
     ga('send', 'pageview');
   </script>
 </html>
-

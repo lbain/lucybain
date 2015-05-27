@@ -11,7 +11,7 @@
     <script src='//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js'></script>
   </head>
   <body>
-    <div id='menu'>
+    <nav>
       <div class='nav-open-btn'>
         <ul>
           <li></li>
@@ -19,7 +19,7 @@
           <li></li>
         </ul>
       </div>
-      <ul class='nav'>
+      <ul class='nav-display'>
         <li>
           <a class="nav-link" href="/">Me</a>
         </li>
@@ -36,14 +36,14 @@
           <a class="nav-link active" href="/blog/">Blog</a>
         </li>
       </ul>
-    </div>
+    </nav>
     <script>
-      $('#menu .nav-open-btn').on('click', function(){
-        $('#menu .nav').toggleClass('open');
+      $('nav .nav-open-btn').on('click', function(){
+        $('nav .nav-display').toggleClass('open');
       })
     </script>
     <div class='content'>
-      <div class=''>
+      <div class=' blog-listing'>
         <h1>Git Branch Names on Command Prompt</h1>
         <p>I often forget which branch I&#39;m on. Sure, I have <code>git branch</code> aliased (it&#39;s probably one of my most frequently used commands) but sometimes I&#39;m convinced I&#39;m on another branch. A few commits and merges later I find out I was wrong, and it&#39;s time for some branch cleaning.</p>
         
@@ -56,6 +56,7 @@
         <p><img alt="lucybain (blog) $" src="/images/blog/git-branch-prompt.png" /></p>
         
         <p>Now you can see what branch your on right where you&#39;ll be committing it. Nice, huh? Hopefully you&#39;ll never run a <code>reset --hard</code> on the wrong branch again!</p>
+        <hr>
         <div id='disqus_thread'></div>
         <script>
           var disqus_shortname = 'lucybain';
@@ -84,7 +85,6 @@
         </script>
       </div>
     </div>
-    
   </body>
   <script>
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){

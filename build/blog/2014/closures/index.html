@@ -11,7 +11,7 @@
     <script src='//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js'></script>
   </head>
   <body>
-    <div id='menu'>
+    <nav>
       <div class='nav-open-btn'>
         <ul>
           <li></li>
@@ -19,7 +19,7 @@
           <li></li>
         </ul>
       </div>
-      <ul class='nav'>
+      <ul class='nav-display'>
         <li>
           <a class="nav-link" href="/">Me</a>
         </li>
@@ -36,14 +36,14 @@
           <a class="nav-link active" href="/blog/">Blog</a>
         </li>
       </ul>
-    </div>
+    </nav>
     <script>
-      $('#menu .nav-open-btn').on('click', function(){
-        $('#menu .nav').toggleClass('open');
+      $('nav .nav-open-btn').on('click', function(){
+        $('nav .nav-display').toggleClass('open');
       })
     </script>
     <div class='content'>
-      <div class=''>
+      <div class=' blog-listing'>
         <h1>JS: what is a closure?</h1>
         <p>tags: <a href="/blog/tags/js/">js</a> and <a href="/blog/tags/interview-questions/">interview-questions</a></p>
         <h2>What is a closure, and how/why would you use one?</h2>
@@ -79,6 +79,7 @@
         <p>Well, since closures keep access to the variables they can be used to save state. And things that save state look a whole lot like objects. (Before I get any haters, I know you can use closures for a bunch of other things, but this is a reasonable example.)</p>
         <pre class="highlight plaintext">function cat(name) {&#x000A;    return {&#x000A;        sayName: function() {&#x000A;            return name;&#x000A;        }&#x000A;    }&#x000A;}&#x000A;&#x000A;var fluffy = cat('Mr. Fluffy');&#x000A;fluffy.name // returns undefined&#x000A;fluffy.sayName() // returns 'Mr. Fluffy'&#x000A;&#x000A;var whiskers = cat('Whiskers');&#x000A;whiskers.sayName() // returns 'Whiskers'</pre>
         <p>So this way you can create a whole bunch of <code>cat</code> objects that have a private <code>name</code> variable, which you can access via the <code>sayName</code> method.</p>
+        <hr>
         <div id='disqus_thread'></div>
         <script>
           var disqus_shortname = 'lucybain';
@@ -107,7 +108,6 @@
         </script>
       </div>
     </div>
-    
   </body>
   <script>
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){

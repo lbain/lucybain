@@ -11,7 +11,7 @@
     <script src='//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js'></script>
   </head>
   <body>
-    <div id='menu'>
+    <nav>
       <div class='nav-open-btn'>
         <ul>
           <li></li>
@@ -19,7 +19,7 @@
           <li></li>
         </ul>
       </div>
-      <ul class='nav'>
+      <ul class='nav-display'>
         <li>
           <a class="nav-link" href="/">Me</a>
         </li>
@@ -36,14 +36,14 @@
           <a class="nav-link active" href="/blog/">Blog</a>
         </li>
       </ul>
-    </div>
+    </nav>
     <script>
-      $('#menu .nav-open-btn').on('click', function(){
-        $('#menu .nav').toggleClass('open');
+      $('nav .nav-open-btn').on('click', function(){
+        $('nav .nav-display').toggleClass('open');
       })
     </script>
     <div class='content'>
-      <div class=''>
+      <div class=' blog-listing'>
         <h1>Rails Girls Next</h1>
         <p>
           Wahoo! Rails Girls Next happened without a (major) hitch today! I am so happy with how it went, and to have helped with these girls' continuing Ruby education.
@@ -87,6 +87,7 @@
         <p>
           At the end of the day, I'm really pleased with how the event went. I was blown away with how much the girls got done - massive props to them for sticking with the harder exercises and wanting to really understand it. And of course huge thanks to the mentors who gave up a day to help strangers learn to code. Hopefully the next Rails Girls Next event will run more smoothly and have more approachable exercises, but I think this was a pretty good starting point.
         </p>
+        <hr>
         <div id='disqus_thread'></div>
         <script>
           var disqus_shortname = 'lucybain';
@@ -115,7 +116,6 @@
         </script>
       </div>
     </div>
-    
   </body>
   <script>
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){

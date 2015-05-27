@@ -11,7 +11,7 @@
     <script src='//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js'></script>
   </head>
   <body>
-    <div id='menu'>
+    <nav>
       <div class='nav-open-btn'>
         <ul>
           <li></li>
@@ -19,7 +19,7 @@
           <li></li>
         </ul>
       </div>
-      <ul class='nav'>
+      <ul class='nav-display'>
         <li>
           <a class="nav-link" href="/">Me</a>
         </li>
@@ -36,54 +36,50 @@
           <a class="nav-link active" href="/blog/">Blog</a>
         </li>
       </ul>
-    </div>
+    </nav>
     <script>
-      $('#menu .nav-open-btn').on('click', function(){
-        $('#menu .nav').toggleClass('open');
+      $('nav .nav-open-btn').on('click', function(){
+        $('nav .nav-display').toggleClass('open');
       })
     </script>
     <div class='content'>
-      <div class=''>
-        <h1></h1>
-        <div class='blog-listing'>
-          <p><a href="/blog/page/5/">Previous page</a></p>
-          <div>
-            <h2>
-              <a href="/blog/2014/Rails-Girls-Next-Planning/">Rails Girls Next Planning</a>
-            </h2>
-            <p>Jan  6, 2014</p>
-            <p>
-              Back in December Elle suggested running a continuation event for Rails Girls, something for the girls who had completed <a href="http://www.railsgirls.com">Rails Girls</a> and were looking for something else to push their Ruby/Rails education a bit further. I thought this was a great...</p>
-          </div>
-          <hr>
-          <div>
-            <h2>
-              <a href="/blog/2014/tdd-day-2/">TDD Day 2</a>
-            </h2>
-            <p>Jan  5, 2014</p>
-            <h3>
-              What did I do today?
-            </h3>
-            <p>
-              Second day of working with TDD and I actually got to write some <a href="https://github.com/lbain/tdd-practice/tree/master/day-2">code!</a> I tried to work with <a href="http://content.codersdojo.org/">Coders Dojo,</a> but their web interface only seems to allow Unit Test (we use RSpec at work, so that's what I'd like to start with)...</p>
-          </div>
-          <hr>
-          <div>
-            <h2>
-              <a href="/blog/2014/tdd-day-1/">TDD Day 1</a>
-            </h2>
-            <p>Jan  4, 2014</p>
-            <h3>
-              Background
-            </h3>
-            <p>
-              I've been feeling for a while now that I'd like to be a better programmer. Right now I can make stuff happen, but I usually don't think it's particularly well designed. Since it's a new year, full of possibilities, I thought I'd spend...</p>
-          </div>
-          <hr>
+      <div class='blog-listing'>
+        <p><a href="/blog/page/5/">Previous page</a></p>
+        <div>
+          <h2>
+            <a href="/blog/2014/Rails-Girls-Next-Planning/">Rails Girls Next Planning</a>
+          </h2>
+          <p>Jan  6, 2014</p>
+          <p>
+            Back in December Elle suggested running a continuation event for Rails Girls, something for the girls who had completed <a href="http://www.railsgirls.com">Rails Girls</a> and were looking for something else to push their Ruby/Rails education a bit further. I thought this was a great...</p>
         </div>
+        <hr>
+        <div>
+          <h2>
+            <a href="/blog/2014/tdd-day-2/">TDD Day 2</a>
+          </h2>
+          <p>Jan  5, 2014</p>
+          <h3>
+            What did I do today?
+          </h3>
+          <p>
+            Second day of working with TDD and I actually got to write some <a href="https://github.com/lbain/tdd-practice/tree/master/day-2">code!</a> I tried to work with <a href="http://content.codersdojo.org/">Coders Dojo,</a> but their web interface only seems to allow Unit Test (we use RSpec at work, so that's what I'd like to start with)...</p>
+        </div>
+        <hr>
+        <div>
+          <h2>
+            <a href="/blog/2014/tdd-day-1/">TDD Day 1</a>
+          </h2>
+          <p>Jan  4, 2014</p>
+          <h3>
+            Background
+          </h3>
+          <p>
+            I've been feeling for a while now that I'd like to be a better programmer. Right now I can make stuff happen, but I usually don't think it's particularly well designed. Since it's a new year, full of possibilities, I thought I'd spend...</p>
+        </div>
+        <hr>
       </div>
     </div>
-    
   </body>
   <script>
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -95,4 +91,3 @@
     ga('send', 'pageview');
   </script>
 </html>
-

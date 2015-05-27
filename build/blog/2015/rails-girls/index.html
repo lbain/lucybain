@@ -11,7 +11,7 @@
     <script src='//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js'></script>
   </head>
   <body>
-    <div id='menu'>
+    <nav>
       <div class='nav-open-btn'>
         <ul>
           <li></li>
@@ -19,7 +19,7 @@
           <li></li>
         </ul>
       </div>
-      <ul class='nav'>
+      <ul class='nav-display'>
         <li>
           <a class="nav-link" href="/">Me</a>
         </li>
@@ -36,14 +36,14 @@
           <a class="nav-link active" href="/blog/">Blog</a>
         </li>
       </ul>
-    </div>
+    </nav>
     <script>
-      $('#menu .nav-open-btn').on('click', function(){
-        $('#menu .nav').toggleClass('open');
+      $('nav .nav-open-btn').on('click', function(){
+        $('nav .nav-display').toggleClass('open');
       })
     </script>
     <div class='content'>
-      <div class=''>
+      <div class=' blog-listing'>
         <h1>Rails Girls - March 2015</h1>
         <p>tags: <a href="/blog/tags/community/">community</a> and <a href="/blog/tags/rails/">rails</a></p>
         <p>Phew! Rails Girls Sydney, March 2015 was on Friday and Saturday, I wanted to update you</p>
@@ -59,6 +59,7 @@
         <p><img alt="Rails Girls Friday Hug" src="/images/blog/rails-girls.jpg" /></p>
         
         <p>I&#39;m going to meet with another organiser to talk about what we did well, and what could have been better. There were a lot of things I didn&#39;t know since it was the first time I organised it. Hopefully we can get most of those written down for next time!</p>
+        <hr>
         <div id='disqus_thread'></div>
         <script>
           var disqus_shortname = 'lucybain';
@@ -87,7 +88,6 @@
         </script>
       </div>
     </div>
-    
   </body>
   <script>
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){

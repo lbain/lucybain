@@ -11,7 +11,7 @@
     <script src='//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js'></script>
   </head>
   <body>
-    <div id='menu'>
+    <nav>
       <div class='nav-open-btn'>
         <ul>
           <li></li>
@@ -19,7 +19,7 @@
           <li></li>
         </ul>
       </div>
-      <ul class='nav'>
+      <ul class='nav-display'>
         <li>
           <a class="nav-link" href="/">Me</a>
         </li>
@@ -36,158 +36,154 @@
           <a class="nav-link active" href="/blog/">Blog</a>
         </li>
       </ul>
-    </div>
+    </nav>
     <script>
-      $('#menu .nav-open-btn').on('click', function(){
-        $('#menu .nav').toggleClass('open');
+      $('nav .nav-open-btn').on('click', function(){
+        $('nav .nav-display').toggleClass('open');
       })
     </script>
     <div class='content'>
-      <div class=''>
-        <h1></h1>
-        <div class='blog-listing'>
-          <div>
-            <h2>
-              <a href="/blog/2015/rails-girls-event-manager/">Rails Girls event manager</a>
-            </h2>
-            <p>Apr  9, 2015</p>
-            <p>Hi there!</p>
-            
-            <p>I'm looking for something that Rails Girls could use to manage our events, particularly user sign ups. In the past we've cobbled together something from various sites. Those sites are good on their own, but the whole system is pretty flimsy...</p>
-          </div>
-          <hr>
-          <div>
-            <h2>
-              <a href="/blog/2015/in-programming-what-is-an-object/">In programming, what is an object?</a>
-            </h2>
-            <p>Mar 26, 2015</p>
-            <p>I'm building up to the post I promised in my last blog: JS objects. We'll start a bit smaller (as usual), with the concepts of object as a whole</p>
-            
-            <h2>Objects</h2>
-            
-            <p>Many languages have the concept of an "object." It's a way of organising code based around objects...</p>
-          </div>
-          <hr>
-          <div>
-            <h2>
-              <a href="/blog/2015/js-data-types/">JS: What datatypes are supported in Javascript?</a>
-            </h2>
-            <p>Mar 22, 2015</p>
-            <h2>What data types are supported in Javascript?</h2>
-            
-            <p>According to the latest <a href="http://en.wikipedia.org/wiki/ECMAScript">ECMAScript</a> release, these are the data types:</p>
-            
-            <ul>
-            <li>Boolean</li>
-            <li>Null</li>
-            <li>Undefined</li>
-            <li>Number</li>
-            <li>String</li>
-            <li>Symbol</li>
-            <li>Object</li>
-            </ul>
-            
-            <p>Ok, let's run over those one by one:</p>
-            
-            <p><strong>Boolean</strong></p>
-            
-            <p>Pretty standard across all languages...</p>
-          </div>
-          <hr>
-          <div>
-            <h2>
-              <a href="/blog/2015/js-namespacing/">JS: What is Javascript namespacing? How and where is it used?</a>
-            </h2>
-            <p>Mar 17, 2015</p>
-            <h2>What is Javascript namespacing? How and where is it used?</h2>
-            
-            <p><em>Well, what is namespacing?</em></p>
-            
-            <p>Namespacing is a way of organising your code. It organises concepts and ideas into a group and gives the group a <strong>name.</strong></p>
-            
-            <p>So rather than having everything dumped in...</p>
-          </div>
-          <hr>
-          <div>
-            <h2>
-              <a href="/blog/2015/js-split-vs-splice/">JS: Split vs. Splice</a>
-            </h2>
-            <p>Mar 12, 2015</p>
-            <h2>What's the difference between <code>split</code> and <code>splice</code>?</h2>
-            
-            <p><em>Well, what does <code>split</code> do?</em></p>
-            
-            <p>Much like the name implies <code>split</code> breaks something into pieces. The <code>split</code> method is used for strings in JS. It has a few optional parameters, so let's see what the simplest...</p>
-          </div>
-          <hr>
-          <div>
-            <h2>
-              <a href="/blog/2015/rails-girls/">Rails Girls - March 2015</a>
-            </h2>
-            <p>Mar  8, 2015</p>
-            <p>Phew! Rails Girls Sydney, March 2015 was on Friday and Saturday, I wanted to update you</p>
-            
-            <p>Usually the Sydney Rails community runs a Rails Girls event every four-ish months. I've always enjoyed mentoring at them, but I've never organised one before ...</p>
-          </div>
-          <hr>
-          <div>
-            <h2>
-              <a href="/blog/2015/how-does-jsonp-work/">JS: How does JSONP work?</a>
-            </h2>
-            <p>Mar  1, 2015</p>
-            <h2>How does JSONP work?</h2>
-            
-            <p>Let's start smaller: <em>What does JSONP stand for?</em></p>
-            
-            <p><strong>J</strong>ava<strong>S</strong>cript <strong>O</strong>bject <strong>N</strong>otation with <strong>P</strong>adding</p>
-            
-            <p>Hopefully you already know about the JSON part, if not check out this <a href="http://stackoverflow.com/a/383699/863846">Stackoverflow</a> answer. Go ahead, I'll wait :)</p>
-            
-            <p>We'll talk about the...</p>
-          </div>
-          <hr>
-          <div>
-            <h2>
-              <a href="/blog/2015/algorithms-study-group/">Algorithms study group</a>
-            </h2>
-            <p>Jan 28, 2015</p>
-            <p>Last year I ran two study groups, one for <a href="http://codesydney.com/2014-js">JS</a> and one for <a href="/python">intro to programming</a>. I also gave a talk about <a href="https://docs.google.com/presentation/d/18lYj02Tc0dBbAAngrYBGPRSbADnswkjnyAdoeD--WQ4/edit?usp=sharing">starting a study group</a> at Girl Geek Dinner. I was thrilled when my friend <a href="http://daphnechong.com/">Daphne</a> decided to organise a <a href="http://codesydney.com/2015-algorithms/">group</a> on her own to study algorithms.</p>
-            
-            <p>The...</p>
-          </div>
-          <hr>
-          <div>
-            <h2>
-              <a href="/blog/2015/new-job/">I have a new job!</a>
-            </h2>
-            <p>Jan 22, 2015</p>
-            <p>Well apparently all this studying has paid off! I’ve been interviewing with a few companies since before Christmas, and I’m pleased to announce that today I accepted an offer from Atlassian. I’ll be working as a junior front end developer on Stash...</p>
-          </div>
-          <hr>
-          <div>
-            <h2>
-              <a href="/blog/2015/js-how-does-ajax-work/">JS: How does ajax work?</a>
-            </h2>
-            <p>Jan 10, 2015</p>
-            <h2>How does AJAX work?</h2>
-            
-            <p>Let's start smaller: <strong>What does AJAX stand for?</strong></p>
-            
-            <p><strong>A</strong>synchronous <strong>J</strong>avaScript <strong>a</strong>nd <strong>X</strong>ML (I think using the "a" in "and" is a little bit of a cheat, but there you go.)</p>
-            
-            <p><em>So how does it work?</em></p>
-            
-            <p>After loading, the client uses <strong>J</strong>avaScript to...</p>
-          </div>
-          <hr>
-          <p>
-            Page 1 of 6
-          </p>
-          <p><a href="/blog/page/2/">Next page</a></p>
+      <div class='blog-listing'>
+        <div>
+          <h2>
+            <a href="/blog/2015/rails-girls-event-manager/">Rails Girls event manager</a>
+          </h2>
+          <p>Apr  9, 2015</p>
+          <p>Hi there!</p>
+          
+          <p>I'm looking for something that Rails Girls could use to manage our events, particularly user sign ups. In the past we've cobbled together something from various sites. Those sites are good on their own, but the whole system is pretty flimsy...</p>
         </div>
+        <hr>
+        <div>
+          <h2>
+            <a href="/blog/2015/in-programming-what-is-an-object/">In programming, what is an object?</a>
+          </h2>
+          <p>Mar 26, 2015</p>
+          <p>I'm building up to the post I promised in my last blog: JS objects. We'll start a bit smaller (as usual), with the concepts of object as a whole</p>
+          
+          <h2>Objects</h2>
+          
+          <p>Many languages have the concept of an "object." It's a way of organising code based around objects...</p>
+        </div>
+        <hr>
+        <div>
+          <h2>
+            <a href="/blog/2015/js-data-types/">JS: What datatypes are supported in Javascript?</a>
+          </h2>
+          <p>Mar 22, 2015</p>
+          <h2>What data types are supported in Javascript?</h2>
+          
+          <p>According to the latest <a href="http://en.wikipedia.org/wiki/ECMAScript">ECMAScript</a> release, these are the data types:</p>
+          
+          <ul>
+          <li>Boolean</li>
+          <li>Null</li>
+          <li>Undefined</li>
+          <li>Number</li>
+          <li>String</li>
+          <li>Symbol</li>
+          <li>Object</li>
+          </ul>
+          
+          <p>Ok, let's run over those one by one:</p>
+          
+          <p><strong>Boolean</strong></p>
+          
+          <p>Pretty standard across all languages...</p>
+        </div>
+        <hr>
+        <div>
+          <h2>
+            <a href="/blog/2015/js-namespacing/">JS: What is Javascript namespacing? How and where is it used?</a>
+          </h2>
+          <p>Mar 17, 2015</p>
+          <h2>What is Javascript namespacing? How and where is it used?</h2>
+          
+          <p><em>Well, what is namespacing?</em></p>
+          
+          <p>Namespacing is a way of organising your code. It organises concepts and ideas into a group and gives the group a <strong>name.</strong></p>
+          
+          <p>So rather than having everything dumped in...</p>
+        </div>
+        <hr>
+        <div>
+          <h2>
+            <a href="/blog/2015/js-split-vs-splice/">JS: Split vs. Splice</a>
+          </h2>
+          <p>Mar 12, 2015</p>
+          <h2>What's the difference between <code>split</code> and <code>splice</code>?</h2>
+          
+          <p><em>Well, what does <code>split</code> do?</em></p>
+          
+          <p>Much like the name implies <code>split</code> breaks something into pieces. The <code>split</code> method is used for strings in JS. It has a few optional parameters, so let's see what the simplest...</p>
+        </div>
+        <hr>
+        <div>
+          <h2>
+            <a href="/blog/2015/rails-girls/">Rails Girls - March 2015</a>
+          </h2>
+          <p>Mar  8, 2015</p>
+          <p>Phew! Rails Girls Sydney, March 2015 was on Friday and Saturday, I wanted to update you</p>
+          
+          <p>Usually the Sydney Rails community runs a Rails Girls event every four-ish months. I've always enjoyed mentoring at them, but I've never organised one before ...</p>
+        </div>
+        <hr>
+        <div>
+          <h2>
+            <a href="/blog/2015/how-does-jsonp-work/">JS: How does JSONP work?</a>
+          </h2>
+          <p>Mar  1, 2015</p>
+          <h2>How does JSONP work?</h2>
+          
+          <p>Let's start smaller: <em>What does JSONP stand for?</em></p>
+          
+          <p><strong>J</strong>ava<strong>S</strong>cript <strong>O</strong>bject <strong>N</strong>otation with <strong>P</strong>adding</p>
+          
+          <p>Hopefully you already know about the JSON part, if not check out this <a href="http://stackoverflow.com/a/383699/863846">Stackoverflow</a> answer. Go ahead, I'll wait :)</p>
+          
+          <p>We'll talk about the...</p>
+        </div>
+        <hr>
+        <div>
+          <h2>
+            <a href="/blog/2015/algorithms-study-group/">Algorithms study group</a>
+          </h2>
+          <p>Jan 28, 2015</p>
+          <p>Last year I ran two study groups, one for <a href="http://codesydney.com/2014-js">JS</a> and one for <a href="/python">intro to programming</a>. I also gave a talk about <a href="https://docs.google.com/presentation/d/18lYj02Tc0dBbAAngrYBGPRSbADnswkjnyAdoeD--WQ4/edit?usp=sharing">starting a study group</a> at Girl Geek Dinner. I was thrilled when my friend <a href="http://daphnechong.com/">Daphne</a> decided to organise a <a href="http://codesydney.com/2015-algorithms/">group</a> on her own to study algorithms.</p>
+          
+          <p>The...</p>
+        </div>
+        <hr>
+        <div>
+          <h2>
+            <a href="/blog/2015/new-job/">I have a new job!</a>
+          </h2>
+          <p>Jan 22, 2015</p>
+          <p>Well apparently all this studying has paid off! I’ve been interviewing with a few companies since before Christmas, and I’m pleased to announce that today I accepted an offer from Atlassian. I’ll be working as a junior front end developer on Stash...</p>
+        </div>
+        <hr>
+        <div>
+          <h2>
+            <a href="/blog/2015/js-how-does-ajax-work/">JS: How does ajax work?</a>
+          </h2>
+          <p>Jan 10, 2015</p>
+          <h2>How does AJAX work?</h2>
+          
+          <p>Let's start smaller: <strong>What does AJAX stand for?</strong></p>
+          
+          <p><strong>A</strong>synchronous <strong>J</strong>avaScript <strong>a</strong>nd <strong>X</strong>ML (I think using the "a" in "and" is a little bit of a cheat, but there you go.)</p>
+          
+          <p><em>So how does it work?</em></p>
+          
+          <p>After loading, the client uses <strong>J</strong>avaScript to...</p>
+        </div>
+        <hr>
+        <p>
+          Page 1 of 6
+        </p>
+        <p><a href="/blog/page/2/">Next page</a></p>
       </div>
     </div>
-    
   </body>
   <script>
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -199,4 +195,3 @@
     ga('send', 'pageview');
   </script>
 </html>
-

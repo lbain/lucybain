@@ -11,7 +11,7 @@
     <script src='//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js'></script>
   </head>
   <body>
-    <div id='menu'>
+    <nav>
       <div class='nav-open-btn'>
         <ul>
           <li></li>
@@ -19,7 +19,7 @@
           <li></li>
         </ul>
       </div>
-      <ul class='nav'>
+      <ul class='nav-display'>
         <li>
           <a class="nav-link" href="/">Me</a>
         </li>
@@ -36,14 +36,14 @@
           <a class="nav-link active" href="/blog/">Blog</a>
         </li>
       </ul>
-    </div>
+    </nav>
     <script>
-      $('#menu .nav-open-btn').on('click', function(){
-        $('#menu .nav').toggleClass('open');
+      $('nav .nav-open-btn').on('click', function(){
+        $('nav .nav-display').toggleClass('open');
       })
     </script>
     <div class='content'>
-      <div class=''>
+      <div class=' blog-listing'>
         <h1>Sublime Text Macros</h1>
         <p>
           My coworker users vim, and has a snazzy macro to put a <code>binding.pry</code> wherever he using a keyboad shortcut. I thought it was a neat trick (and he mentioned something about Sublime not being a real editor), so I decided to implement it for Sublime as well.
@@ -74,6 +74,7 @@
           Putting it all together, the final key bindings look like this:
         </p>
         <pre class="highlight json"><span class="p">{</span><span class="w"> </span><span class="s2">"keys"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"super+b"</span><span class="p">],</span><span class="w">&#x000A;  </span><span class="s2">"command"</span><span class="p">:</span><span class="w"> </span><span class="s2">"run_macro_file"</span><span class="p">,</span><span class="w">&#x000A;  </span><span class="s2">"args"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"file"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Packages/User/add_binding.sublime-macro"</span><span class="p">},</span><span class="w">&#x000A;  </span><span class="s2">"context"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="s2">"key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"selector"</span><span class="p">,</span><span class="w"> </span><span class="s2">"operator"</span><span class="p">:</span><span class="w"> </span><span class="s2">"equal"</span><span class="p">,</span><span class="w"> </span><span class="s2">"operand"</span><span class="p">:</span><span class="w"> </span><span class="s2">"source.ruby,source.ruby.rails"</span><span class="p">}]</span><span class="w"> </span><span class="p">}</span><span class="err">,</span><span class="w">&#x000A;&#x000A;</span><span class="p">{</span><span class="w"> </span><span class="s2">"keys"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"super+b"</span><span class="p">],</span><span class="w">&#x000A;  </span><span class="s2">"command"</span><span class="p">:</span><span class="w"> </span><span class="s2">"run_macro_file"</span><span class="p">,</span><span class="w">&#x000A;  </span><span class="s2">"args"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"file"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Packages/User/add_haml_binding.sublime-macro"</span><span class="p">},</span><span class="w">&#x000A;  </span><span class="s2">"context"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="s2">"key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"selector"</span><span class="p">,</span><span class="w"> </span><span class="s2">"operator"</span><span class="p">:</span><span class="w"> </span><span class="s2">"equal"</span><span class="p">,</span><span class="w"> </span><span class="s2">"operand"</span><span class="p">:</span><span class="w"> </span><span class="s2">"text.haml"</span><span class="p">}]</span><span class="w"> </span><span class="p">}</span><span class="err">,</span><span class="w">&#x000A;&#x000A;</span><span class="p">{</span><span class="w"> </span><span class="s2">"keys"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"super+b"</span><span class="p">],</span><span class="w">&#x000A;  </span><span class="s2">"command"</span><span class="p">:</span><span class="w"> </span><span class="s2">"run_macro_file"</span><span class="p">,</span><span class="w">&#x000A;  </span><span class="s2">"args"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"file"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Packages/User/add_debugger.sublime-macro"</span><span class="p">},</span><span class="w">&#x000A;  </span><span class="s2">"context"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="s2">"key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"selector"</span><span class="p">,</span><span class="w"> </span><span class="s2">"operator"</span><span class="p">:</span><span class="w"> </span><span class="s2">"equal"</span><span class="p">,</span><span class="w"> </span><span class="s2">"operand"</span><span class="p">:</span><span class="w"> </span><span class="s2">"source.js,source.coffee"</span><span class="p">}]</span><span class="w"> </span><span class="p">}</span><span class="w">&#x000A;</span></pre>
+        <hr>
         <div id='disqus_thread'></div>
         <script>
           var disqus_shortname = 'lucybain';
@@ -102,7 +103,6 @@
         </script>
       </div>
     </div>
-    
   </body>
   <script>
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
