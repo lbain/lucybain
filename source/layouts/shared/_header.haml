@@ -1,10 +1,10 @@
-#menu
+%nav
   .nav-open-btn
     %ul
       %li
       %li
       %li
-  %ul.nav
+  %ul.nav-display
     %li
       =nav_link 'Me', '/', class: 'nav-link'
     %li
@@ -17,6 +17,6 @@
       =nav_link 'Blog', '/blog/', class: 'nav-link'
 
 :javascript
-  $('#menu .nav-open-btn').on('click', function(){
-    $('#menu .nav').toggleClass('open');
+  $('nav .nav-open-btn').on('click', function(){
+    $('nav .nav-display').toggleClass('open');
   })
