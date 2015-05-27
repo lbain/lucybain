@@ -36,6 +36,6 @@
         .project-image{id: "#{project[:dir]}-demo"}
           .overlay
         .links
-          =link_to 'Demo', '/code-sydney-work/' + project[:dir] + '/', class: 'link'
-          = link_to 'Code', 'https://github.com/lbain/code-sydney-work/tree/master/' + project[:dir], class: 'link'
-          = link_to 'Directions', project[:directions], class: 'link'
+          = link_to 'Demo', '/code-sydney-work/' + project[:dir] + '/'
+          = link_to 'Code', 'https://github.com/lbain/code-sydney-work/tree/master/' + project[:dir]
+          = link_to 'Directions', project[:directions]
