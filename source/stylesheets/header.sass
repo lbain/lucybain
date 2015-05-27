@@ -1,83 +1,49 @@
-@import variables
-
 #menu
   background-color: $accent
-  box-sizing: border-box
-  .nav-open-btn
-    display: none
-    ul
-      border: none
-      top: 0
-      right: 0
-      position: absolute
-      margin-top: 22px
-      margin-right: 20px
-    li
-      list-style-type: none
-      height: 2px
-      padding: 0px
-      margin-bottom: 4px
-      width: 20px
-      background-color: #fff
 
   .nav
-    text-align: right
-    padding: 20px
-    margin: 0px
     border-bottom: none
-    @include respond(medium)
-      padding: 20px 10px
+    margin: 0
+    padding: 20px
+    text-align: right
+
+    &.open
+      height: 250px
+
     li
-      font-size: 0.9em
       display: inline
-      @include respond(medium)
-        font-size: 18px
-      @include respond(small)
-        font-size: 16px
+      font-size: 0.9em
+
       a
-        font-weight: $bold
-        color: $white
-        padding: 10px 10px 10px
         border-radius: 5px
+        color: $white
+        font-weight: $bold
         margin-right: 15px
-        @include respond(medium)
-          padding: 10px 10px 10px
-          margin-right: 5px
+        padding: 10px
+
         &:hover
-          text-decoration: none
           background-color: $dark-accent
-      .active
-        background-color: $dark-accent
+          text-decoration: none
 
-  @include respond(small)
-    text-align: center
-    font-weight: bold
-    padding: 30px
-    width: 100%
-    background-color: $accent
-    .nav-open-btn
-      display: block
-    .nav
-      text-align: center
-      height: 0
-      overflow: hidden
-      padding: 0px
-      transition: height 500ms
+        &.active
+          background-color: $dark-accent
+
+  .nav-open-btn // Menu hamburger
+    cursor: pointer
+    display: none
+
+    ul
       border: none
-      li
-        padding: 10px 20px
-        display: block
-        a
-          color: $white
-          padding: 10px 20px 10px
-          &:hover
-            text-decoration: none
-            background-color: $dark-accent
-            border: none
-  .nav.open
-    height: 250px
+      margin-right: 20px
+      margin-top: 22px
+      position: absolute
+      right: 0
+      top: 0
 
-
-
-
-
+    li
+      background-color: #fff
+      height: 2px
+      list-style-type: none
+      margin-bottom: 4px
+      padding: 0
+      width: 20px

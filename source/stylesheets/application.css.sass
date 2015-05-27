@@ -1,78 +1,52 @@
 @import normalize
 
-@import variables
+$small-size: 415px
+$medium-size: 900px
+$medium-large-size: 1150px
+$large-size: 1200px
 
-body
-  background: $white
-  font-family: $title-font
-  color: $dark-gray
-  font-size: 20px
+$white: #fff
+$light-gray: #888
+$dark-gray: #333
+$accent: #C93C67
+$light-accent: lighten($accent, 40)
+$very-light-accent: #f9ebef
+$dark-accent: darken($accent, 5)
+$very-dark-accent: #960934
 
-a
-  text-decoration: none
-  color: $accent
-  -webkit-font-smoothing: antialiased
-  text-decoration: none
-  &:hover
-    text-decoration: underline
+$bold: 700
+$normal-weight: 400
 
-b, strong, bold
-  font-weight: $bold
+$title-font: 'Source Sans Pro', sans-serif
+$content-font: 'Source Sans Pro', sans-serif
 
-p
-  margin-bottom: 0.8em
-  line-height: 1.6em
 
-h1, h2, h3, h4
-  font-family: $title-font
-  font-weight: $normal-weight
-  line-height: 1.25em
-  margin: 40px 0px 20px
+@function generate_media_query($pixels)
+  @return "(max-width: #{$pixels})"
 
-h1
-  font-size: 2.5em
-  @include respond(small)
-    font-size: 2em
+$small-screen: generate_media_query($small-size)
+$medium-screen: generate_media_query($medium-size)
+$medium-large-screen: generate_media_query($medium-large-size)
+$large-screen:  generate_media_query($large-size)
 
-h2
-  font-size: 1.5em
+// Mixin: the easiest way to make responsive tweaks
+// ------------------------------------------------
 
-h3
-  font-size: 1em
-  margin: 20px 0px 0px
+@mixin respond($size)
+  @if $size == small
+    @media #{$small-screen}
+      @content
+  @else if $size == medium
+    @media #{$medium-screen}
+      @content
+  @else if $size == medium-large
+    @media #{$medium-large-screen}
+      @content
+  @else if $size == large
+    @media #{$large-screen}
+      @content
 
-h1, h2, h3
-  @include respond(small)
-    margin: 20px 0px 0px
-
-ul
-  padding-left: 40px
-  li
-    list-style-type: disc
-    line-height: 1.5em
-    margin-bottom: 0.5em
-
-li
-  line-height: 1.75em
-
-.page-break
-  display: none
-
-@media print
-  .page-break
-    display: block
-    page-break-before: always
-  a
-    text-decoration: underline
-
-#main
-  margin: 0 auto
-  max-width: 800px
-  @include respond(medium)
-    margin: 20px
-  @include respond(small)
-    margin: 0px
-
+@import base
 @import header
 @import posts
 @import home
@@ -83,3 +57,4 @@ li
 @import code
 @import js-demos
 @import icon-fonts
+@import responsive

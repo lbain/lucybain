@@ -1,0 +1,32 @@
+@include respond(medium)
+  body
+    font-size: 18px
+
+  #menu .nav
+    padding: 20px 10px
+
+    li a
+      padding: 10px 10px 10px
+      margin-right: 5px
+
+@include respond(small)
+  #menu
+    padding: 30px
+    width: 100%
+
+    .nav-open-btn
+      display: block
+
+    ul.nav
+      height: 0
+      padding: 0
+      overflow: hidden
+      text-align: center
+      transition: height 500ms
+
+      li
+        display: block
+        padding: 10px 20px
+
+        a
+          padding: 10px 20px 10px

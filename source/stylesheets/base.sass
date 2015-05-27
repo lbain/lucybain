@@ -1,0 +1,70 @@
+body
+  background: $white
+  font-family: $title-font
+  color: $dark-gray
+  font-size: 20px
+
+a
+  text-decoration: none
+  color: $accent
+  -webkit-font-smoothing: antialiased
+  text-decoration: none
+  &:hover
+    text-decoration: underline
+
+b, strong, bold
+  font-weight: $bold
+
+p
+  margin-bottom: 0.8em
+  line-height: 1.6em
+
+h1, h2, h3, h4
+  font-family: $title-font
+  font-weight: $normal-weight
+  line-height: 1.25em
+  margin: 40px 0px 20px
+
+h1
+  font-size: 2.5em
+  @include respond(small)
+    font-size: 2em
+
+h2
+  font-size: 1.5em
+
+h3
+  font-size: 1em
+  margin: 20px 0px 0px
+
+h1, h2, h3
+  @include respond(small)
+    margin: 20px 0px 0px
+
+ul
+  padding-left: 40px
+  li
+    list-style-type: disc
+    line-height: 1.5em
+    margin-bottom: 0.5em
+
+li
+  line-height: 1.75em
+
+.page-break
+  display: none
+
+@media print
+  .page-break
+    display: block
+    page-break-before: always
+  a
+    text-decoration: underline
+
+#main
+  margin: 0 auto
+  max-width: 800px
+  @include respond(medium)
+    margin: 20px
+  @include respond(small)
+    margin: 0px
