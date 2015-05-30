@@ -65,11 +65,11 @@ Lucy and the Rails Girls Sydney team&lt;/p&gt;
     <link rel="alternate" href="http://lucybain.com/blog/2015/in-programming-what-is-an-object/"/>
     <id>http://lucybain.com/blog/2015/in-programming-what-is-an-object/</id>
     <published>2015-03-26T00:00:00Z</published>
-    <updated>2015-03-29T20:07:08+11:00</updated>
+    <updated>2015-05-30T17:00:36+10:00</updated>
     <author>
       <name>Article Author</name>
     </author>
-    <content type="html">&lt;p&gt;I&amp;#39;m building up to the post I promised in my last blog: JS objects. We&amp;#39;ll start a bit smaller (as usual), with the concepts of object as a whole&lt;/p&gt;
+    <content type="html">&lt;p&gt;As promissed in my last blog post: intro to objects.&lt;/p&gt;
 
 &lt;h2&gt;Objects&lt;/h2&gt;
 
@@ -123,7 +123,7 @@ princess.bark();
     <link rel="alternate" href="http://lucybain.com/blog/2015/js-data-types/"/>
     <id>http://lucybain.com/blog/2015/js-data-types/</id>
     <published>2015-03-22T00:00:00Z</published>
-    <updated>2015-03-28T17:36:38+11:00</updated>
+    <updated>2015-05-30T17:00:01+10:00</updated>
     <author>
       <name>Article Author</name>
     </author>
@@ -212,7 +212,7 @@ var whiskers = new function() {
     this.sound = "meow";
 }
 &lt;/pre&gt;
-&lt;p&gt;But notice that we haven&amp;#39;t mentioned &lt;code&gt;Array&lt;/code&gt;, &lt;code&gt;Date&lt;/code&gt;, or even &lt;code&gt;function&lt;/code&gt; that&amp;#39;s because, &lt;a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#.22Normal.22_objects.2C_and_functions"&gt;officially&lt;/a&gt;, they&amp;#39;re all of type &lt;code&gt;object&lt;/code&gt;. Pretty crazy, huh? Again, I&amp;#39;ll write about this more in future.&lt;/p&gt;
+&lt;p&gt;But notice that we haven&amp;#39;t mentioned &lt;code&gt;Array&lt;/code&gt;, &lt;code&gt;Date&lt;/code&gt;, or even &lt;code&gt;function&lt;/code&gt; that&amp;#39;s because, &lt;a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#.22Normal.22_objects.2C_and_functions"&gt;officially&lt;/a&gt;, they&amp;#39;re all of type &lt;code&gt;object&lt;/code&gt;. Pretty crazy, huh?&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;Resources&lt;/strong&gt;&lt;/p&gt;
 

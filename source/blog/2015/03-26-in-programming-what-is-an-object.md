@@ -3,7 +3,7 @@ title: "In programming, what is an object?"
 tags: programming-basics
 ---
 
-I'm building up to the post I promised in my last blog: JS objects. We'll start a bit smaller (as usual), with the concepts of object as a whole
+As promissed in my last blog post: intro to objects.
 
 ## Objects
 

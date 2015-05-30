@@ -102,7 +102,7 @@ var whiskers = new function() {
     this.sound = "meow";
 }
 ```
-But notice that we haven't mentioned `Array`, `Date`, or even `function` that's because, [officially](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#.22Normal.22_objects.2C_and_functions), they're all of type `object`. Pretty crazy, huh? Again, I'll write about this more in future.
+But notice that we haven't mentioned `Array`, `Date`, or even `function` that's because, [officially](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#.22Normal.22_objects.2C_and_functions), they're all of type `object`. Pretty crazy, huh?
 
 **Resources**
 
