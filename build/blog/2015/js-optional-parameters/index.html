@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='width=device-width, initial-scale=1' name='viewport'>
+    <meta charset='utf-8'>
+    <meta content='IE=edge,chrome=1' http-equiv='X-UA-Compatible'>
+    <link href='/images/favicon.ico' rel='icon' type='image/ico'>
+    <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700|Source+Code+Pro' rel='stylesheet' type='text/css'>
+    <title>JS: How can you accept optional parameters?</title>
+    <link href="/stylesheets/application.css" media="all" rel="stylesheet" type="text/css" />
+    <script src='//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js'></script>
+  </head>
+  <body>
+    <nav>
+      <div class='nav-open-btn'>
+        <ul>
+          <li></li>
+          <li></li>
+          <li></li>
+        </ul>
+      </div>
+      <ul class='nav-display'>
+        <li>
+          <a class="nav-link" href="/">Me</a>
+        </li>
+        <li>
+          <a class="nav-link" href="/resume/">Resume</a>
+        </li>
+        <li>
+          <a class="nav-link" href="/contact-me/">Contact</a>
+        </li>
+        <li>
+          <a class="nav-link" href="/resources/">Resources</a>
+        </li>
+        <li>
+          <a class="nav-link active" href="/blog/">Blog</a>
+        </li>
+      </ul>
+    </nav>
+    <script>
+      $('nav .nav-open-btn').on('click', function(){
+        $('nav .nav-display').toggleClass('open');
+      })
+    </script>
+    <div class='content'>
+      <div class=' blog-listing'>
+        <h1>JS: How can you accept optional parameters?</h1>
+        <p>tags: <a href="/blog/tags/js/">js</a> and <a href="/blog/tags/interview-questions/">interview-questions</a></p>
+        <p>There&#39;s more than one way to skin a cat, and there&#39;s more than one way to accept optional parameters. (Editors note: I do not condone skinning cats!)</p>
+        
+        <h2>Object</h2>
+        
+        <p>Coming from a Ruby background, I find this option the most intuitive. You can create an object of your optional parameters, it&#39;d look something like this:</p>
+        <pre class="highlight plaintext">var params = {&#x000A;    size: 'small',&#x000A;    color: 'red'&#x000A;};&#x000A;&#x000A;function carSentence(optionalParams) {&#x000A;    var size = optionalParams.size;&#x000A;    var color = optionalParams.color;&#x000A;    var speed = optionalParams.speed;&#x000A;    console.log("My favourite car is a " + size +&#x000A;                " sized " + color + " one that goes " + speed);&#x000A;}&#x000A;carSentence(params);&#x000A;// logs "My favourite car is a small sized red one that goes "</pre>
+        <p>As you can see I didn&#39;t supply the <code>speed</code> parameter in my <code>params</code> object, but the <code>carSentence</code> function still worked. So <code>speed</code> was an optional parameter.</p>
+        
+        <p><strong>But <code>optionalParams</code> was still required</strong></p>
+        
+        <p>Yep, you caught me! This isn&#39;t really what people usually mean by &quot;optional&quot; parameters. But I did want to throw it out there as a possibility. I think it&#39;s an underrated option.</p>
+        
+        <p><strong>What if I wanted a default speed?</strong></p>
+        
+        <p><code>optionalParams</code> didn&#39;t define a value for <code>speed</code>, but the sentence expected <code>speed</code> to be defined. In this case you can give a default value for the variable (such as <code>&quot;fast&quot;</code>). It&#39;s tempting to do this:</p>
+        <pre class="highlight plaintext">var speed = optionalParams.speed || "fast";</pre>
+        <p>but this won&#39;t work when <code>optionalParams.speed</code> is <code>false</code>. The better way to handle it is:</p>
+        <pre class="highlight plaintext">var speed;&#x000A;if (typeof optionalParams.speed !== 'undefined') {&#x000A;    speed = optionalParams.speed;&#x000A;} else {&#x000A;    speed = "fast";&#x000A;}</pre>
+        <p>however that&#39;s quite wordy. You can cut it down with a <a href="/blog/2014/js-ternary/">ternary</a>, or make a <code>givenOrDefault</code> method (hopefully with a better name!).</p>
+        <pre class="highlight plaintext">function givenOrDefault(given, default) {&#x000A;    if (typeof given !== 'undefined') {&#x000A;        return given;&#x000A;    } else {&#x000A;        return default;&#x000A;    }&#x000A;}</pre>
+        <p>Thus our example becomes:</p>
+        <pre class="highlight plaintext">var params = {&#x000A;    size: 'small',&#x000A;    color: 'red'&#x000A;};&#x000A;&#x000A;function carSentence(optionalParams) {&#x000A;    var size = givenOrDefault(optionalParams.size, "medium");&#x000A;    var color = givenOrDefault(optionalParams.color, "blue");&#x000A;    var speed = givenOrDefault(optionalParams.speed, "fast");&#x000A;    console.log("My favourite car is a " + size +&#x000A;                " sized " + color + " one that goes " + speed);&#x000A;}&#x000A;carSentence(params);&#x000A;// logs "My favourite car is a small sized red one that goes fast"</pre>
+        <h2>Missing parameters</h2>
+        
+        <p>Another method of dealing with optional parameters is to simply allow them to be missing.</p>
+        <pre class="highlight plaintext">function carSentence(size, color, speed) {&#x000A;    size = givenOrDefault(size, "medium");&#x000A;    color = givenOrDefault(color, "blue");&#x000A;    speed = givenOrDefault(speed, "fast");&#x000A;    console.log("My favourite car is a " + size +&#x000A;                " sized " + color + " one that goes " + speed);&#x000A;}&#x000A;carSentence("medium", "blue");&#x000A;// logs "My favourite car is a medium sized blue one that goes fast"</pre>
+        <p>This way of dealing with optional parameters works well if people won&#39;t bother trying to extend it past the limit. However, not all functions meet this requirement, consider the following:</p>
+        <pre class="highlight plaintext">function add(a, b, c) {&#x000A;    a = a || 0;&#x000A;    b = b || 0;&#x000A;    c = c || 0;&#x000A;    return a + b + c;&#x000A;}&#x000A;&#x000A;add(1, 2); // returns 3&#x000A;add(1, 2, 3); // returns 6&#x000A;add(1, undefined, 3); // returns 4</pre>
+        <p>It kinda works. It&#39;ll fall over if you try <code>add(1, 2, 3, 4)</code> which returns 6 rather than 10.</p>
+        
+        <h2>arguments</h2>
+        
+        <p>Finally we come to the <code>arguments</code> keyword. it looks like this:</p>
+        <pre class="highlight plaintext">function carSentence() {&#x000A;    size = givenOrDefault(arguments[0], "medium");&#x000A;    color = givenOrDefault(arguments[1], "blue");&#x000A;    speed = givenOrDefault(arguments[2], "fast");&#x000A;    console.log("My favourite car is a " + size +&#x000A;                " sized " + color + " one that goes " + speed);&#x000A;}&#x000A;carSentence("medium", "blue");&#x000A;// logs "My favourite car is a medium sized blue one that goes fast"</pre>
+        <p>or like this:</p>
+        <pre class="highlight plaintext">function add() {&#x000A;    var sum = 0;&#x000A;    var index = 0;&#x000A;&#x000A;    while(index &lt; arguments.length) {&#x000A;        if(typeof arguments[index] !== 'undefined') {&#x000A;            sum = sum + arguments[index];&#x000A;        }&#x000A;        index++;&#x000A;    }&#x000A;    return sum;&#x000A;}&#x000A;&#x000A;add(1, 2); // returns 3&#x000A;add(1, 2, 3); // returns 6&#x000A;add(1, undefined, 3); // returns 4&#x000A;add(1, 2, 3, 4); // returns 10</pre>
+        <p><strong>What is this black magic?!</strong></p>
+        
+        <p>Well it turns out <code>arguments</code> is a secret variable available in all functions that gives a list of the parameters passed to that function. It&#39;s a little bonus JS throws in free of charge.</p>
+        
+        <p><strong>So it&#39;s an array of all the params</strong></p>
+        
+        <p>Almost. It&#39;s not quite an array. It&#39;s like a kiddy array - hasn&#39;t got all the functionality just yet. If you want to use it for access only (as in the example above), then you&#39;re all good. But if you want to do interesting manipulations, <code>pop</code> things off, or reorder items, then you need to convert <code>arguments</code> to a full array:</p>
+        <pre class="highlight plaintext">var temp = Array.slice(arguments);</pre>
+        <p>I assume the reason for this is to make <code>arguments</code> read only, although I haven&#39;t researched that.</p>
+        
+        <p>And there you have it - three ways to handle optional parameters in JavaScript.</p>
+        
+        <h2>Resources</h2>
+        
+        <ul>
+        <li><a href="http://stackoverflow.com/questions/148901/is-there-a-better-way-to-do-optional-function-parameters-in-javascript">Stackoverflow</a></li>
+        <li><a href="http://www.markhansen.co.nz/javascript-optional-parameters/">Mark Hansen</a></li>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/arguments">Arguments</a> official</li>
+        <li><a href="https://javascriptweblog.wordpress.com/2011/01/18/javascripts-arguments-object-and-beyond/">Arguments</a> this one is more entertaining</li>
+        </ul>
+        <hr>
+        <div id='disqus_thread'></div>
+        <script>
+          var disqus_shortname = 'lucybain';
+          (function() {
+              var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+              dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+              (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+          })();
+        </script>
+        <noscript>
+          Please enable JavaScript to view the
+          <a href='http://disqus.com/?ref_noscript'>comments powered by Disqus.</a>
+        </noscript>
+        <a class='dsq-brlink' href='http://disqus.com'>
+          comments powered by
+          <span class='logo-disqus'>Disqus</span>
+        </a>
+        <script>
+          var disqus_shortname = 'lucybain';
+          (function () {
+              var s = document.createElement('script'); s.async = true;
+              s.type = 'text/javascript';
+              s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+              (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+          }());
+        </script>
+      </div>
+    </div>
+  </body>
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    
+    ga('create', 'UA-45866381-1', 'lucybain.com');
+    ga('send', 'pageview');
+  </script>
+</html>
+

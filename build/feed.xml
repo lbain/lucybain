@@ -61,6 +61,161 @@ Lucy and the Rails Girls Sydney team&lt;/p&gt;
 </content>
   </entry>
   <entry>
+    <title>JS: How can you accept optional parameters?</title>
+    <link rel="alternate" href="http://lucybain.com/blog/2015/js-optional-parameters/"/>
+    <id>http://lucybain.com/blog/2015/js-optional-parameters/</id>
+    <published>2015-04-03T00:00:00Z</published>
+    <updated>2015-05-30T20:01:07+10:00</updated>
+    <author>
+      <name>Article Author</name>
+    </author>
+    <content type="html">&lt;p&gt;There&amp;#39;s more than one way to skin a cat, and there&amp;#39;s more than one way to accept optional parameters. (Editors note: I do not condone skinning cats!)&lt;/p&gt;
+
+&lt;h2&gt;Object&lt;/h2&gt;
+
+&lt;p&gt;Coming from a Ruby background, I find this option the most intuitive. You can create an object of your optional parameters, it&amp;#39;d look something like this:&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;var params = {
+    size: 'small',
+    color: 'red'
+};
+
+function carSentence(optionalParams) {
+    var size = optionalParams.size;
+    var color = optionalParams.color;
+    var speed = optionalParams.speed;
+    console.log("My favourite car is a " + size +
+                " sized " + color + " one that goes " + speed);
+}
+carSentence(params);
+// logs "My favourite car is a small sized red one that goes "
+&lt;/pre&gt;
+&lt;p&gt;As you can see I didn&amp;#39;t supply the &lt;code&gt;speed&lt;/code&gt; parameter in my &lt;code&gt;params&lt;/code&gt; object, but the &lt;code&gt;carSentence&lt;/code&gt; function still worked. So &lt;code&gt;speed&lt;/code&gt; was an optional parameter.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;But &lt;code&gt;optionalParams&lt;/code&gt; was still required&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Yep, you caught me! This isn&amp;#39;t really what people usually mean by &amp;quot;optional&amp;quot; parameters. But I did want to throw it out there as a possibility. I think it&amp;#39;s an underrated option.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;What if I wanted a default speed?&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;optionalParams&lt;/code&gt; didn&amp;#39;t define a value for &lt;code&gt;speed&lt;/code&gt;, but the sentence expected &lt;code&gt;speed&lt;/code&gt; to be defined. In this case you can give a default value for the variable (such as &lt;code&gt;&amp;quot;fast&amp;quot;&lt;/code&gt;). It&amp;#39;s tempting to do this:&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;var speed = optionalParams.speed || "fast";
+&lt;/pre&gt;
+&lt;p&gt;but this won&amp;#39;t work when &lt;code&gt;optionalParams.speed&lt;/code&gt; is &lt;code&gt;false&lt;/code&gt;. The better way to handle it is:&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;var speed;
+if (typeof optionalParams.speed !== 'undefined') {
+    speed = optionalParams.speed;
+} else {
+    speed = "fast";
+}
+&lt;/pre&gt;
+&lt;p&gt;however that&amp;#39;s quite wordy. You can cut it down with a &lt;a href="/blog/2014/js-ternary/"&gt;ternary&lt;/a&gt;, or make a &lt;code&gt;givenOrDefault&lt;/code&gt; method (hopefully with a better name!).&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;function givenOrDefault(given, default) {
+    if (typeof given !== 'undefined') {
+        return given;
+    } else {
+        return default;
+    }
+}
+&lt;/pre&gt;
+&lt;p&gt;Thus our example becomes:&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;var params = {
+    size: 'small',
+    color: 'red'
+};
+
+function carSentence(optionalParams) {
+    var size = givenOrDefault(optionalParams.size, "medium");
+    var color = givenOrDefault(optionalParams.color, "blue");
+    var speed = givenOrDefault(optionalParams.speed, "fast");
+    console.log("My favourite car is a " + size +
+                " sized " + color + " one that goes " + speed);
+}
+carSentence(params);
+// logs "My favourite car is a small sized red one that goes fast"
+&lt;/pre&gt;
+&lt;h2&gt;Missing parameters&lt;/h2&gt;
+
+&lt;p&gt;Another method of dealing with optional parameters is to simply allow them to be missing.&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;function carSentence(size, color, speed) {
+    size = givenOrDefault(size, "medium");
+    color = givenOrDefault(color, "blue");
+    speed = givenOrDefault(speed, "fast");
+    console.log("My favourite car is a " + size +
+                " sized " + color + " one that goes " + speed);
+}
+carSentence("medium", "blue");
+// logs "My favourite car is a medium sized blue one that goes fast"
+&lt;/pre&gt;
+&lt;p&gt;This way of dealing with optional parameters works well if people won&amp;#39;t bother trying to extend it past the limit. However, not all functions meet this requirement, consider the following:&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;function add(a, b, c) {
+    a = a || 0;
+    b = b || 0;
+    c = c || 0;
+    return a + b + c;
+}
+
+add(1, 2); // returns 3
+add(1, 2, 3); // returns 6
+add(1, undefined, 3); // returns 4
+&lt;/pre&gt;
+&lt;p&gt;It kinda works. It&amp;#39;ll fall over if you try &lt;code&gt;add(1, 2, 3, 4)&lt;/code&gt; which returns 6 rather than 10.&lt;/p&gt;
+
+&lt;h2&gt;arguments&lt;/h2&gt;
+
+&lt;p&gt;Finally we come to the &lt;code&gt;arguments&lt;/code&gt; keyword. it looks like this:&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;function carSentence() {
+    size = givenOrDefault(arguments[0], "medium");
+    color = givenOrDefault(arguments[1], "blue");
+    speed = givenOrDefault(arguments[2], "fast");
+    console.log("My favourite car is a " + size +
+                " sized " + color + " one that goes " + speed);
+}
+carSentence("medium", "blue");
+// logs "My favourite car is a medium sized blue one that goes fast"
+&lt;/pre&gt;
+&lt;p&gt;or like this:&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;function add() {
+    var sum = 0;
+    var index = 0;
+
+    while(index &amp;lt; arguments.length) {
+        if(typeof arguments[index] !== 'undefined') {
+            sum = sum + arguments[index];
+        }
+        index++;
+    }
+    return sum;
+}
+
+add(1, 2); // returns 3
+add(1, 2, 3); // returns 6
+add(1, undefined, 3); // returns 4
+add(1, 2, 3, 4); // returns 10
+&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;What is this black magic?!&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Well it turns out &lt;code&gt;arguments&lt;/code&gt; is a secret variable available in all functions that gives a list of the parameters passed to that function. It&amp;#39;s a little bonus JS throws in free of charge.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;So it&amp;#39;s an array of all the params&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Almost. It&amp;#39;s not quite an array. It&amp;#39;s like a kiddy array - hasn&amp;#39;t got all the functionality just yet. If you want to use it for access only (as in the example above), then you&amp;#39;re all good. But if you want to do interesting manipulations, &lt;code&gt;pop&lt;/code&gt; things off, or reorder items, then you need to convert &lt;code&gt;arguments&lt;/code&gt; to a full array:&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;var temp = Array.slice(arguments);
+&lt;/pre&gt;
+&lt;p&gt;I assume the reason for this is to make &lt;code&gt;arguments&lt;/code&gt; read only, although I haven&amp;#39;t researched that.&lt;/p&gt;
+
+&lt;p&gt;And there you have it - three ways to handle optional parameters in JavaScript.&lt;/p&gt;
+
+&lt;h2&gt;Resources&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="http://stackoverflow.com/questions/148901/is-there-a-better-way-to-do-optional-function-parameters-in-javascript"&gt;Stackoverflow&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://www.markhansen.co.nz/javascript-optional-parameters/"&gt;Mark Hansen&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/arguments"&gt;Arguments&lt;/a&gt; official&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://javascriptweblog.wordpress.com/2011/01/18/javascripts-arguments-object-and-beyond/"&gt;Arguments&lt;/a&gt; this one is more entertaining&lt;/li&gt;
+&lt;/ul&gt;
+</content>
+  </entry>
+  <entry>
     <title>In programming, what is an object?</title>
     <link rel="alternate" href="http://lucybain.com/blog/2015/in-programming-what-is-an-object/"/>
     <id>http://lucybain.com/blog/2015/in-programming-what-is-an-object/</id>
@@ -414,30 +569,6 @@ console.log(myArray); // ['this', 'is', 'the', 'array']
 &lt;li&gt;&lt;a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/splice"&gt;Mozilla (splice)&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="http://ariya.ofilabs.com/2014/02/javascript-array-slice-vs-splice.html"&gt;split vs. splice&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
-</content>
-  </entry>
-  <entry>
-    <title>Rails Girls - March 2015</title>
-    <link rel="alternate" href="http://lucybain.com/blog/2015/rails-girls/"/>
-    <id>http://lucybain.com/blog/2015/rails-girls/</id>
-    <published>2015-03-08T00:00:00Z</published>
-    <updated>2015-03-22T09:38:41+11:00</updated>
-    <author>
-      <name>Article Author</name>
-    </author>
-    <content type="html">&lt;p&gt;Phew! Rails Girls Sydney, March 2015 was on Friday and Saturday, I wanted to update you&lt;/p&gt;
-
-&lt;p&gt;Usually the Sydney Rails community runs a Rails Girls event every four-ish months. I&amp;#39;ve always enjoyed mentoring at them, but I&amp;#39;ve never organised one before . It&amp;#39;s a great way to give back to the community and encourage new programmers. It&amp;#39;s also aimed at women, which is something I&amp;#39;m also passionate about.&lt;/p&gt;
-
-&lt;p&gt;The woman who organised the events in the past has moved to NYC (good for her, but sad for us). What with her leaving, and us not knowing what to do we took longer to run this event than usual. It ended up being about eight months between workshops.&lt;/p&gt;
-
-&lt;p&gt;I had a surprise bonus two weeks off between jobs while waiting for my visa to get transfered properly. It turns out we absolutely needed at least one of those weeks off to prepare for the workshop full time. I hadn&amp;#39;t realised how much work was involved in one of these. I&amp;#39;m very grateful to the previous organiser, who did such a wonderful job.&lt;/p&gt;
-
-&lt;p&gt;In the end we had about 45 attendees come and learn Rails with us. Not all of them were there for both days, some had to leave early, or weren&amp;#39;t able to come for Friday night. I had hopped for a few more attendees (50-55 was my goal), but everyone who was there was learning enthusiastically.&lt;/p&gt;
-
-&lt;p&gt;&lt;img alt="Rails Girls Friday Hug" src="/images/blog/rails-girls.jpg" /&gt;&lt;/p&gt;
-
-&lt;p&gt;I&amp;#39;m going to meet with another organiser to talk about what we did well, and what could have been better. There were a lot of things I didn&amp;#39;t know since it was the first time I organised it. Hopefully we can get most of those written down for next time!&lt;/p&gt;
 </content>
   </entry>
 </feed>
