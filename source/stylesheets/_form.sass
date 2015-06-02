@@ -1,53 +1,46 @@
 form
 
   textarea
+    width: 100%
+
+  input[type=text],
+  input[type=email],
+  input[type=submit],
+  textarea
+    border: 2px solid $light-gray
+    border-radius: 5px
+    -webkit-border-radius: 5px
     margin-bottom: 15px
     padding: 10px
-    border: 2px solid $light-gray
-    -webkit-border-radius: 5px
-    border-radius: 5px
-    width: 100%
-    @include respond(small)
-      width: 90%
+
     &:focus
       border-color: $accent
       outline: 0
 
-  input
-    &[type=text],
-    &[type=email],
-      margin-bottom: 15px
-      padding: 10px
-      border: 2px solid $light-gray
-      -webkit-border-radius: 5px
-      border-radius: 5px
-      &:focus
-        border-color: $accent
-        outline: 0
-    &[type=submit]
-      padding: 5px 15px
-      background: $white
-      border: 2px solid $light-gray
-      cursor: pointer
-      -webkit-border-radius: 5px
-      border-radius: 5px
-      &:hover
-        background: $light-accent
-        border-color: $accent
-      &:active
-        background: $accent
-        outline: 0
+  input[type=submit]
+    background: $white
+    cursor: pointer
+    padding: 5px 15px
+
+    &:hover
+      background: $light-accent
+      border-color: $accent
+
+    &:active
+      background: $accent
+      outline: 0
+
   .form-input
+
     input
       float: left
+
     .error-message
+      display: none
       float: left
       padding: 12px 20px
-      display: none
+
     &.error
       .error-message
-        display: inline-block
         color: $accent
-
-  .asterisk
-    color: $accent
+        display: inline-block
