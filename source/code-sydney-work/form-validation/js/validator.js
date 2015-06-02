@@ -9,7 +9,7 @@ var Validator = {
     return this[validateMethod+'Regex'].test(given);
   },
   validateConfirmations: function($el) {
-    var name = $el.attr('name')
+    var name = $el.attr('name');
     if(name.indexOf('confirmation') == -1) {
       return true;
     }

@@ -3,8 +3,6 @@ title: "JS: What datatypes are supported in Javascript?"
 tags: js, interview-questions
 ---
 
-## What data types are supported in Javascript?
-
 According to the latest [ECMAScript](http://en.wikipedia.org/wiki/ECMAScript) release, these are the data types:
 
 * Boolean
