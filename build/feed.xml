@@ -4,16 +4,166 @@
   <id>http://lucybain.com/blog</id>
   <link href="http://lucybain.com/blog"/>
   <link href="http://lucybain.com/feed.xml" rel="self"/>
-  <updated>2015-04-09T00:00:00Z</updated>
+  <updated>2015-04-23T00:00:00Z</updated>
   <author>
     <name>Lucy Bain</name>
   </author>
+  <entry>
+    <title>JS: AMD and CommonJS</title>
+    <link rel="alternate" href="http://lucybain.com/blog/2015/js-amd-commonjs/"/>
+    <id>http://lucybain.com/blog/2015/js-amd-commonjs/</id>
+    <published>2015-04-23T00:00:00Z</published>
+    <updated>2015-09-18T17:28:34+10:00</updated>
+    <author>
+      <name>Article Author</name>
+    </author>
+    <content type="html">&lt;h2&gt;What&amp;#39;s the difference between AMD and CommonJS?&lt;/h2&gt;
+
+&lt;p&gt;&lt;strong&gt;Disclaimer:&lt;/strong&gt; I&amp;#39;m only going to talk about how this impacts the browser. I will not talk about Node.js, although I know it&amp;#39;s relevant to this discussion. I don&amp;#39;t know enough about Node.js to cover it properly. Ok, let&amp;#39;s get to it!&lt;/p&gt;
+
+&lt;p&gt;To start off, let&amp;#39;s talk about their similarities.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;What problem are they trying to solve?&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;Typcially JS relies on having &lt;code&gt;&amp;lt;script&amp;gt;&lt;/code&gt; tags in the right order in the HTML. This can often lead to confusion and ordering mistakes. Beyond that, some people prefer to have all their JS compiled into one massive file. This is convenient since they have complete control on ordering and don&amp;#39;t need to rely on &lt;code&gt;&amp;lt;script&amp;gt;&lt;/code&gt; tags. However it means all JS gets loaded on each page, which isn&amp;#39;t very performant.&lt;/p&gt;
+
+&lt;p&gt;Both AMD and CommonJS are a way of linking JS bits of code, called modules, together. They are a way of defining which modules rely on which other modules so a computer can decide the best way to link everything together, rather than relying on error-prone coders.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;How do they solve that?&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;Both AMD and CommonJS provide standards for other libraries to implement. There are quite a few libraries that have done just that (&lt;a href="http://requirejs.org/"&gt;RequireJS&lt;/a&gt; and &lt;a href="https://github.com/jrburke/almond"&gt;Almond&lt;/a&gt; are two that implement AMD). But you &amp;quot;use&amp;quot; AMD or CommonJS code any more than you can &amp;quot;use&amp;quot; object oriented code.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Ok, so that&amp;#39;s how they&amp;#39;re similar. How are they different?&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;Let&amp;#39;s look at each one individually. We&amp;#39;ll start with AMD:&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;What does &amp;quot;AMD&amp;quot; stand for?&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;AMD stands for &lt;strong&gt;A&lt;/strong&gt;synchronous &lt;strong&gt;M&lt;/strong&gt;odule &lt;strong&gt;D&lt;/strong&gt;efinition.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;And what makes it special?&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;The &amp;quot;module&amp;quot; part should be clear enough since both CommonJS and AMD focus on linking modules together. And the &amp;quot;definition&amp;quot; part is about how it&amp;#39;s a standard, rather than a library. However a key difference for AMD is the &amp;quot;asynchronous&amp;quot; bit. AMD loads each distinct module asynchronously for web performance. Instead of having one &lt;em&gt;giant&lt;/em&gt; file with everything in it which causes a slow load time, you can load only the files you need, only when you need them, all asynchronously. Slick, huh?&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;So then what&amp;#39;s special about CommonJS?&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;CommonJS loads modules synchronously. My understanding is that this is better for server-side (Node.js) development. Again, CommonJS is a standard but it focuses more on JS out of the browser than AMD.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;That&amp;#39;s it? Async vs. Sync?&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;Sort of. Of course the syntax for both is different too. Let&amp;#39;s look at how to use each.&lt;/p&gt;
+
+&lt;h2&gt;Syntax&lt;/h2&gt;
+
+&lt;p&gt;&lt;strong&gt;CommonJS&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;We&amp;#39;ll start with CommonJS since it&amp;#39;s a bit easier to read.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Part 1: math module&lt;/em&gt;&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;// math.js
+var module = {
+  add: function(x, y) {
+    return x + y;
+  },
+  subtract: function(x, y) {
+    return x - y;
+  },
+  multiply: function(x, y) {
+    return x * y;
+  },
+  divide: function(x, y) {
+    return x / y;
+  }
+};
+export.math = module; // export is a commonJS specific method
+                      // export returns what's publicly available
+                      // the "math" gives the name of the module
+&lt;/pre&gt;
+&lt;p&gt;This code doesn&amp;#39;t output anything, but when we require the &lt;code&gt;math&lt;/code&gt; module we&amp;#39;ll have access to everything in the returned &lt;code&gt;module&lt;/code&gt; object (namely &lt;code&gt;add&lt;/code&gt;, &lt;code&gt;subtract&lt;/code&gt;, &lt;code&gt;multiply&lt;/code&gt;, and &lt;code&gt;divide&lt;/code&gt;).&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Part 2: stats module&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;Alright, now we&amp;#39;ve created a module, we can require it in another module.&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;// stats.js
+var math = require('math');
+
+var module = {
+  average: function(x, y) {
+    var sum = math.add(x, y);
+    return math.divide(sum, 2);
+  }
+};
+export.stats = module; // export is a commonJS specific method
+                       // export returns what's publicly available
+                       // the "stats" gives the name of the module
+&lt;/pre&gt;
+&lt;p&gt;&lt;em&gt;Part 3: get output&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;Now we&amp;#39;ve got two modules, we can use them to get output.&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;var math = require('math');
+var stats = require('stats');
+console.log(math.add(1, 2)) // logs "3"
+console.log(stats.average(0, 4)) // logs "2"
+&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;AMD&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;We&amp;#39;ll go through exactly the same example, but this time implement it with AMD.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Part 1: math module&lt;/em&gt;&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;define( // AMD specific method used to define a module
+  'math', // name of the module (this is optional)
+  // Note: no dependencies (they're optional)
+  function() {
+    var module = {
+      add: function(x, y) {
+        return x + y;
+      },
+      subtract: function(x, y) {
+        return x - y;
+      },
+      multiply: function(x, y) {
+        return x * y;
+      },
+      divide: function(x, y) {
+        return x / y;
+      }
+    };
+    return module; // returns what's publicly available
+});
+&lt;/pre&gt;
+&lt;p&gt;As with CommonJS, this code doesn&amp;#39;t output anything.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Part 2: stats module&lt;/em&gt;&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;define( // AMD specific method used to define a module
+  'stats', // name of the module (this is optional)
+  ['math'], // dependency, same name as module above
+            // it's an array since there can be more than one
+  function() {
+    var module = {
+      average: function(x, y) {
+        var sum = math.add(x, y);
+        return math.divide(sum, 2);
+      }
+    };
+    return module; // returns what's publicly available
+});
+&lt;/pre&gt;
+&lt;p&gt;&lt;em&gt;Part 3: get output&lt;/em&gt;&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;require( // AMD specific method to run code
+  // Note: no name, require doesn't support names
+  ['math', 'stats'], // dependencies
+  function(math, stats) {
+    console.log(math.add(1, 2)) // logs "3"
+    console.log(stats.average(0, 4)) // logs "2"
+});
+&lt;/pre&gt;</content>
+  </entry>
   <entry>
     <title>Rails Girls event manager</title>
     <link rel="alternate" href="http://lucybain.com/blog/2015/rails-girls-event-manager/"/>
     <id>http://lucybain.com/blog/2015/rails-girls-event-manager/</id>
     <published>2015-04-09T00:00:00Z</published>
-    <updated>2015-04-09T23:07:35+10:00</updated>
+    <updated>2015-09-04T11:18:23+10:00</updated>
     <author>
       <name>Article Author</name>
     </author>
@@ -65,7 +215,7 @@ Lucy and the Rails Girls Sydney team&lt;/p&gt;
     <link rel="alternate" href="http://lucybain.com/blog/2015/js-optional-parameters/"/>
     <id>http://lucybain.com/blog/2015/js-optional-parameters/</id>
     <published>2015-04-03T00:00:00Z</published>
-    <updated>2015-05-30T20:01:07+10:00</updated>
+    <updated>2015-09-04T11:18:23+10:00</updated>
     <author>
       <name>Article Author</name>
     </author>
@@ -220,7 +370,7 @@ add(1, 2, 3, 4); // returns 10
     <link rel="alternate" href="http://lucybain.com/blog/2015/in-programming-what-is-an-object/"/>
     <id>http://lucybain.com/blog/2015/in-programming-what-is-an-object/</id>
     <published>2015-03-26T00:00:00Z</published>
-    <updated>2015-05-30T17:00:36+10:00</updated>
+    <updated>2015-09-04T11:18:23+10:00</updated>
     <author>
       <name>Article Author</name>
     </author>
@@ -278,7 +428,7 @@ princess.bark();
     <link rel="alternate" href="http://lucybain.com/blog/2015/js-data-types/"/>
     <id>http://lucybain.com/blog/2015/js-data-types/</id>
     <published>2015-03-22T00:00:00Z</published>
-    <updated>2015-05-30T17:00:01+10:00</updated>
+    <updated>2015-09-04T11:18:23+10:00</updated>
     <author>
       <name>Article Author</name>
     </author>
@@ -383,7 +533,7 @@ var whiskers = new function() {
     <link rel="alternate" href="http://lucybain.com/blog/2015/js-namespacing/"/>
     <id>http://lucybain.com/blog/2015/js-namespacing/</id>
     <published>2015-03-17T00:00:00Z</published>
-    <updated>2015-05-24T18:18:27+10:00</updated>
+    <updated>2015-09-04T11:18:23+10:00</updated>
     <author>
       <name>Article Author</name>
     </author>
@@ -460,114 +610,6 @@ alerts.warning = function(text) {
 &lt;li&gt;&lt;a href="http://www.kenneth-truyers.net/2013/04/27/javascript-namespaces-and-modules/"&gt;Kenneth Truyers&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="http://stackoverflow.com/a/5947280/863846"&gt;Stackoverflow&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://javascriptweblog.wordpress.com/2010/12/07/namespacing-in-javascript/"&gt;Angus Croll&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-</content>
-  </entry>
-  <entry>
-    <title>JS: Split vs. Splice</title>
-    <link rel="alternate" href="http://lucybain.com/blog/2015/js-split-vs-splice/"/>
-    <id>http://lucybain.com/blog/2015/js-split-vs-splice/</id>
-    <published>2015-03-12T00:00:00Z</published>
-    <updated>2015-03-25T22:57:07+11:00</updated>
-    <author>
-      <name>Article Author</name>
-    </author>
-    <content type="html">&lt;h2&gt;What&amp;#39;s the difference between &lt;code&gt;split&lt;/code&gt; and &lt;code&gt;splice&lt;/code&gt;?&lt;/h2&gt;
-
-&lt;p&gt;&lt;em&gt;Well, what does &lt;code&gt;split&lt;/code&gt; do?&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;Much like the name implies &lt;code&gt;split&lt;/code&gt; breaks something into pieces. The &lt;code&gt;split&lt;/code&gt; method is used for strings in JS. It has a few optional parameters, so let&amp;#39;s see what the simplest call does:&lt;/p&gt;
-&lt;pre class="highlight plaintext"&gt;var myString = 'My test string';
-console.log(myString.split()); // ['My test string']
-console.log(myString); // 'My test string'
-&lt;/pre&gt;
-&lt;p&gt;Hmmm, that&amp;#39;s not super useful - &lt;code&gt;split&lt;/code&gt; called without a parameter simply creates an array with one element, the string. But note that calling &lt;code&gt;split&lt;/code&gt; on &lt;code&gt;myString&lt;/code&gt; doesn&amp;#39;t change &lt;code&gt;myString&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;Ok, let&amp;#39;s try something a little more interesting. I want to break &lt;code&gt;myString&lt;/code&gt; up into whole words. We can split &lt;code&gt;myString&lt;/code&gt; on spaces like this:&lt;/p&gt;
-&lt;pre class="highlight plaintext"&gt;var myString = 'My test string';
-console.log(myString.split(' ')); // ['My', 'test', 'string']
-console.log(myString); // 'My test string'
-&lt;/pre&gt;
-&lt;p&gt;Much more useful! When you call &lt;code&gt;split&lt;/code&gt; with a parameter the string is &lt;em&gt;split&lt;/em&gt; on every occurrence of that parameter. Note that the parameter itself is removed from the array (there are no spaces in &lt;code&gt;[&amp;#39;My&amp;#39;, &amp;#39;test&amp;#39;, &amp;#39;string&amp;#39;]&lt;/code&gt;). Now we can know how many words are in a sentence, or find people&amp;#39;s first and last names (sometimes, names can get tricky...). Again, note that &lt;code&gt;myString&lt;/code&gt; wasn&amp;#39;t changed.&lt;/p&gt;
-
-&lt;p&gt;But what if &lt;code&gt;myString&lt;/code&gt; was really long? Maybe you don&amp;#39;t want an array with hundreds of items in it. Or perhaps you only want to find the first nonoccurence of something. Let&amp;#39;s look for the first two word in &lt;code&gt;myString&lt;/code&gt;:&lt;/p&gt;
-&lt;pre class="highlight plaintext"&gt;var myString = 'My test string';
-console.log(myString.split(' ', 2)); // ['My', 'test']
-console.log(myString); // 'My test string'
-&lt;/pre&gt;
-&lt;p&gt;Again, we split on spaces because we were looking for full words. The second parameter we sent to &lt;code&gt;split&lt;/code&gt; was the number of elements to go in the array. We wanted the first two words, so we sent through 2.&lt;/p&gt;
-
-&lt;p&gt;Overall &lt;code&gt;split&lt;/code&gt; can be used to:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;wrap a string up in an array &lt;code&gt;string.split()&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;break up a string whenever a particular string is found &lt;code&gt;string.split(breakString)&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;return only a certain number of elements from all the break points &lt;code&gt;string.split(breakString, 3)&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Sweet, we&amp;#39;re halfway there!&lt;/p&gt;
-
-&lt;p&gt;&lt;em&gt;So, what does &lt;code&gt;splice&lt;/code&gt; do?&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;The name isn&amp;#39;t great, but it&amp;#39;s related to &lt;strong&gt;splicing&lt;/strong&gt; things together. Like you can take the end of one rope and splice it together with another. It&amp;#39;s a &lt;a href="https://www.google.com.au/search?q=splice+rope"&gt;real thing&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;Anyways... in JS &lt;code&gt;splice&lt;/code&gt; is an array method. Let&amp;#39;s look at a few sample calls:&lt;/p&gt;
-&lt;pre class="highlight plaintext"&gt;var myArray = ['this', 'is', 'an', 'array'];
-myArray.splice(0, 2); // ['this', 'is']
-console.log(myArray); // ['an', 'array']
-&lt;/pre&gt;
-&lt;p&gt;Ok, a really important thing to note is that &lt;code&gt;myArray&lt;/code&gt; was changed during the call to &lt;code&gt;splice&lt;/code&gt;. So if you ever want to use the original array you&amp;#39;ll need to keep a backup somewhere. Another thing to note is that &lt;code&gt;splice&lt;/code&gt; returns a value (in fact, it returns the elements that are missing from the array).&lt;/p&gt;
-
-&lt;p&gt;Also, &lt;code&gt;splice&lt;/code&gt; requires at least two parameters. The first parameter is an index in the array. I think of it as where the cursor is. The second parameter is how many elements to delete. So what we&amp;#39;re really saying is &amp;quot;from position &lt;strong&gt;0&lt;/strong&gt; please remove &lt;strong&gt;2&lt;/strong&gt; elements and return them to me.&amp;quot;&lt;/p&gt;
-
-&lt;p&gt;Let&amp;#39;s look at a similar example:&lt;/p&gt;
-&lt;pre class="highlight plaintext"&gt;var countingArray = [5, 6, 7, 8];
-countingArray.splice(1, 1); // [6]
-console.log(countingArray); // [5, 7, 8]
-&lt;/pre&gt;
-&lt;p&gt;What we said was &amp;quot;from position &lt;strong&gt;1&lt;/strong&gt; please remove &lt;strong&gt;1&lt;/strong&gt; element and return it to me.&amp;quot;&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;Note: JS doesn&amp;#39;t have a &lt;code&gt;.delete(index)&lt;/code&gt; for arrays. The best you can do is &lt;code&gt;delete array[index]&lt;/code&gt;, but that actually just replaces the value at &lt;code&gt;array[index]&lt;/code&gt; with &lt;code&gt;undefined&lt;/code&gt;. Using &lt;code&gt;splice&lt;/code&gt; in the above example is how you can actually delete elements from an array.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;Alright, on to the optional parameter(s)!&lt;/p&gt;
-&lt;pre class="highlight plaintext"&gt;var myArray = ['this', 'is', 'an', 'array'];
-myArray.splice(3, 0, 'awesome'); // []
-console.log(myArray); // ['this', 'is', 'an', 'awesome', 'array']
-&lt;/pre&gt;
-&lt;p&gt;Hopefully you&amp;#39;ve got a good idea of what happened here. The first parameter is still an index. The second parameter is still how many elements to remove. And finally the third element is what to add &lt;strong&gt;after&lt;/strong&gt; the index given in the first parameter. Again, what we&amp;#39;re really saying is &amp;quot;from position &lt;strong&gt;3&lt;/strong&gt; please remove &lt;strong&gt;0&lt;/strong&gt; elements, then &lt;strong&gt;after&lt;/strong&gt; position &lt;strong&gt;3&lt;/strong&gt; please add &lt;strong&gt;&amp;#39;awesome&amp;#39;&lt;/strong&gt;.&amp;quot;&lt;/p&gt;
-
-&lt;p&gt;Another example:&lt;/p&gt;
-&lt;pre class="highlight plaintext"&gt;var myArray = ['this', 'is', 'an', 'array'];
-myArray.splice(3, 0, 'amazingly', 'awesome'); // []
-console.log(myArray); // ['this', 'is', 'an', 'amazingly', 'awesome', 'array']
-&lt;/pre&gt;
-&lt;p&gt;What we said was &amp;quot;from position &lt;strong&gt;3&lt;/strong&gt; please remove &lt;strong&gt;0&lt;/strong&gt; elements, then &lt;strong&gt;after&lt;/strong&gt; position &lt;strong&gt;3&lt;/strong&gt; please add &lt;strong&gt;&amp;#39;amazing&amp;#39;&lt;/strong&gt; and &lt;strong&gt;&amp;#39;awesome&amp;#39;&lt;/strong&gt;.&amp;quot; The third parameter can keep on going. If you wanted to add 100 elements to &lt;code&gt;myArray&lt;/code&gt; you could do it with &lt;code&gt;splice&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;Finally, you can also switch words in place:&lt;/p&gt;
-&lt;pre class="highlight plaintext"&gt;var myArray = ['this', 'is', 'an', 'array'];
-myArray.splice(2, 1, 'the'); // ['an']
-console.log(myArray); // ['this', 'is', 'the', 'array']
-&lt;/pre&gt;
-&lt;p&gt;What we said was &amp;quot;from position &lt;strong&gt;2&lt;/strong&gt; please remove &lt;strong&gt;1&lt;/strong&gt; element and return it to me, then &lt;strong&gt;after&lt;/strong&gt; position &lt;strong&gt;2&lt;/strong&gt; please add &lt;strong&gt;&amp;#39;the&amp;#39;&lt;/strong&gt;.&amp;quot;&lt;/p&gt;
-
-&lt;p&gt;Overall &lt;code&gt;splice&lt;/code&gt; can be used to:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;remove elements by index&lt;/li&gt;
-&lt;li&gt;add elements after an index&lt;/li&gt;
-&lt;li&gt;add and remove in one step&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Phew! Thanks for sticking with me - this was a long one!&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Resources&lt;/strong&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/split"&gt;Mozilla (split)&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/splice"&gt;Mozilla (splice)&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="http://ariya.ofilabs.com/2014/02/javascript-array-slice-vs-splice.html"&gt;split vs. splice&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 </content>
   </entry>
