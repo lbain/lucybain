@@ -103,7 +103,7 @@
         <ol>
         <li><p>Call to <code>counter.get()</code> goes and looks at the <code>get</code> function defined in <code>helperFunction</code>...</p>
         <pre class="highlight plaintext">get: function(){&#x000A;    return i;&#x000A;   }</pre></li>
-        <li><p>The <code>get</code> function looks for it&#39;s local scope, which is <code>helperFunction</code> ...</p>
+        <li><p>The <code>get</code> function looks for its local scope, which is <code>helperFunction</code> ...</p>
         <pre class="highlight plaintext">function helperFunction(){&#x000A;var i = 0;&#x000A;&#x000A;return {&#x000A;  get: function(){&#x000A;    return i;&#x000A;  },&#x000A;  set: function( val ){&#x000A;    i = val;&#x000A;  }&#x000A;};&#x000A;};</pre></li>
         <li><p>In <code>helperFunction</code> is a definition for <code>i</code>...</p>
         <pre class="highlight plaintext">var i = 0;</pre></li>
