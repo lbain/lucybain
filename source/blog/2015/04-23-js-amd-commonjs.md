@@ -159,3 +159,12 @@ require( // AMD specific method to run code
     console.log(stats.average(0, 4)) // logs "2"
 });
 ```
+
+**Resources**
+
+* [Relation between CommonJS, AMD and RequireJS?](http://stackoverflow.com/questions/16521471/relation-between-commonjs-amd-and-requirejs)
+* RequireJS on [AMD](http://requirejs.org/docs/whyamd.html)
+* [About CommonJS](http://0fps.net/2013/01/22/commonjs-why-and-how/) and using it on the browser
+* [About AMD](http://addyosmani.com/writing-modular-js/)
+* A bit about [CommonJS vs. AMD](http://blog.millermedeiros.com/amd-is-better-for-the-web-than-commonjs-modules/)
+* A little history about the [development of both](http://www.cubrid.org/blog/dev-platform/toward-javascript-standards-commonjs-and-amd/)

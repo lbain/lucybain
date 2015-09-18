@@ -13,7 +13,7 @@
     <link rel="alternate" href="http://lucybain.com/blog/2015/js-amd-commonjs/"/>
     <id>http://lucybain.com/blog/2015/js-amd-commonjs/</id>
     <published>2015-04-23T00:00:00Z</published>
-    <updated>2015-09-18T17:28:34+10:00</updated>
+    <updated>2015-09-18T17:33:41+10:00</updated>
     <author>
       <name>Article Author</name>
     </author>
@@ -156,7 +156,18 @@ console.log(stats.average(0, 4)) // logs "2"
     console.log(math.add(1, 2)) // logs "3"
     console.log(stats.average(0, 4)) // logs "2"
 });
-&lt;/pre&gt;</content>
+&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;Resources&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="http://stackoverflow.com/questions/16521471/relation-between-commonjs-amd-and-requirejs"&gt;Relation between CommonJS, AMD and RequireJS?&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;RequireJS on &lt;a href="http://requirejs.org/docs/whyamd.html"&gt;AMD&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://0fps.net/2013/01/22/commonjs-why-and-how/"&gt;About CommonJS&lt;/a&gt; and using it on the browser&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://addyosmani.com/writing-modular-js/"&gt;About AMD&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;A bit about &lt;a href="http://blog.millermedeiros.com/amd-is-better-for-the-web-than-commonjs-modules/"&gt;CommonJS vs. AMD&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;A little history about the &lt;a href="http://www.cubrid.org/blog/dev-platform/toward-javascript-standards-commonjs-and-amd/"&gt;development of both&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</content>
   </entry>
   <entry>
     <title>Rails Girls event manager</title>

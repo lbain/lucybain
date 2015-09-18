@@ -113,6 +113,16 @@
         <pre class="highlight plaintext">define( // AMD specific method used to define a module&#x000A;  'stats', // name of the module (this is optional)&#x000A;  ['math'], // dependency, same name as module above&#x000A;            // it's an array since there can be more than one&#x000A;  function() {&#x000A;    var module = {&#x000A;      average: function(x, y) {&#x000A;        var sum = math.add(x, y);&#x000A;        return math.divide(sum, 2);&#x000A;      }&#x000A;    };&#x000A;    return module; // returns what's publicly available&#x000A;});</pre>
         <p><em>Part 3: get output</em></p>
         <pre class="highlight plaintext">require( // AMD specific method to run code&#x000A;  // Note: no name, require doesn't support names&#x000A;  ['math', 'stats'], // dependencies&#x000A;  function(math, stats) {&#x000A;    console.log(math.add(1, 2)) // logs "3"&#x000A;    console.log(stats.average(0, 4)) // logs "2"&#x000A;});</pre>
+        <p><strong>Resources</strong></p>
+        
+        <ul>
+        <li><a href="http://stackoverflow.com/questions/16521471/relation-between-commonjs-amd-and-requirejs">Relation between CommonJS, AMD and RequireJS?</a></li>
+        <li>RequireJS on <a href="http://requirejs.org/docs/whyamd.html">AMD</a></li>
+        <li><a href="http://0fps.net/2013/01/22/commonjs-why-and-how/">About CommonJS</a> and using it on the browser</li>
+        <li><a href="http://addyosmani.com/writing-modular-js/">About AMD</a></li>
+        <li>A bit about <a href="http://blog.millermedeiros.com/amd-is-better-for-the-web-than-commonjs-modules/">CommonJS vs. AMD</a></li>
+        <li>A little history about the <a href="http://www.cubrid.org/blog/dev-platform/toward-javascript-standards-commonjs-and-amd/">development of both</a></li>
+        </ul>
         <hr>
         <div id='disqus_thread'></div>
         <script>
