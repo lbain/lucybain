@@ -61,6 +61,8 @@
         <pre class="highlight plaintext">var declaredVariable = 1;&#x000A;&#x000A;function scoppedVariables() {&#x000A;  undeclaredVariable = 1;&#x000A;  var declaredVariable = 2;&#x000A;}&#x000A;&#x000A;scoppedVariables();&#x000A;&#x000A;undeclaredVariable; // 1&#x000A;declaredVariable; // 1</pre>
         <p>For more discussion on undeclared variables, checkout <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/var">Mozilla&#39;s documentation</a>.</p>
         
+        <p>Note: this will not work in <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Strict_mode">strict mode</a>. It will throw an error when it gets to the <code>undeclaredVariable</code> - see this <a href="https://jsfiddle.net/glenselle/9czx6dLg/2/">example</a>. Thanks to Glen Selle for his comment with this update.</p>
+        
         <p><br/></p>
         
         <p>Now let&#39;s move on to <strong><code>undefined</code></strong>.</p>
@@ -68,7 +70,7 @@
         <p>Something is <code>undefined</code> when it hasn&#39;t been defined yet. If you call a variable or function without having actually created it yet the parser will give you an <code>not defined</code> error.</p>
         
         <p>Example:</p>
-        <pre class="highlight plaintext">var undefinedVariable; // ReferenceError: undefinedVariable is not defined&#x000A;typeof undefinedVariable; // "undefined"&#x000A;&#x000A;undefinedFunction(); // ReferenceError: undefinedFunction is not defined&#x000A;typeof undefinedFunction; // "undefined"</pre>
+        <pre class="highlight plaintext">var undefinedVariable; // undefined&#x000A;typeof undefinedVariable; // "undefined"&#x000A;&#x000A;undefinedFunction(); // undefined&#x000A;typeof undefinedFunction; // "undefined"</pre>
         <p>Note that the <code>typeof</code> returns <code>&quot;undefined&quot;</code>, therefore <code>undefined</code> is a primitive type.</p>
         
         <p>The fix for an undefined variable or function is easy, simply define it:</p>
