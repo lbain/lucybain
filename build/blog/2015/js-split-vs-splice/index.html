@@ -53,13 +53,13 @@
         
         <p>Much like the name implies <code>split</code> breaks something into pieces. The <code>split</code> method is used for strings in JS. It has a few optional parameters, so let’s see what the simplest call does:</p>
         <pre class="highlight plaintext">var myString = 'My test string';&#x000A;console.log(myString.split()); // ['My test string']&#x000A;console.log(myString); // 'My test string'</pre>
-        <p>Hmmm, that’s not super useful - <code>split</code> called without a parameter simply creates an array with one element, the string. But note that calling <code>split</code> on <code>myString</code> doesn&#39;t change <code>myString</code>.</p>
+        <p>Hmmm, that’s not super useful - <code>split</code> called without a parameter simply creates an array with one element, the string. But note that calling <code>split</code> on <code>myString</code> doesn’t change <code>myString</code>.</p>
         
         <p>Ok, let’s try something a little more interesting. I want to break <code>myString</code> up into whole words. We can split <code>myString</code> on spaces like this:</p>
         <pre class="highlight plaintext">var myString = 'My test string';&#x000A;console.log(myString.split(' ')); // ['My', 'test', ’string']&#x000A;console.log(myString); // 'My test string'</pre>
-        <p>Much more useful! When you call <code>split</code> with a parameter the string is <em>split</em> on every occurrence of that parameter. Note that the parameter itself is removed from the array (there are no spaces in <code>[&#39;My&#39;, &#39;test&#39;, ’string&#39;]</code>). Now we can know how many words are in a sentence, or find people’s first and last names (sometimes, names can get tricky...). Again, note that <code>myString</code> wasn&#39;t changed.</p>
+        <p>Much more useful! When you call <code>split</code> with a parameter the string is <em>split</em> on every occurrence of that parameter. Note that the parameter itself is removed from the array (there are no spaces in <code>[&#39;My&#39;, &#39;test&#39;, ’string&#39;]</code>). Now we can know how many words are in a sentence, or find people’s first and last names (sometimes, names can get tricky...). Again, note that <code>myString</code> wasn’t changed.</p>
         
-        <p>But what if <code>myString</code> was really long? Maybe you don&#39;t want an array with hundreds of items in it. Or perhaps you only want to find the first nonoccurence of something. Let’s look for the first two word in <code>myString</code>:</p>
+        <p>But what if <code>myString</code> was really long? Maybe you don’t want an array with hundreds of items in it. Or perhaps you only want to find the first nonoccurence of something. Let’s look for the first two word in <code>myString</code>:</p>
         <pre class="highlight plaintext">var myString = 'My test string';&#x000A;console.log(myString.split(' ', 2)); // ['My', 'test']&#x000A;console.log(myString); // 'My test string'</pre>
         <p>Again, we split on spaces because we were looking for full words. The second parameter we sent to <code>split</code> was the number of elements to go in the array. We wanted the first two words, so we sent through 2.</p>
         
@@ -75,7 +75,7 @@
         
         <p><em>So, what does <code>splice</code> do?</em></p>
         
-        <p>The name isn&#39;t great, but it’s related to <strong>splicing</strong> things together. Like you can take the end of one rope and splice it together with another. It’s a <a href="https://www.google.com.au/search?q=splice+rope">real thing</a>.</p>
+        <p>The name isn’t great, but it’s related to <strong>splicing</strong> things together. Like you can take the end of one rope and splice it together with another. It’s a <a href="https://www.google.com.au/search?q=splice+rope">real thing</a>.</p>
         
         <p>Anyways... in JS <code>splice</code> is an array method. Let’s look at a few sample calls:</p>
         <pre class="highlight plaintext">var myArray = ['this', 'is', 'an', 'array'];&#x000A;myArray.splice(0, 2); // ['this', 'is']&#x000A;console.log(myArray); // ['an', 'array']</pre>
@@ -88,7 +88,7 @@
         <p>What we said was “from position <strong>1</strong> please remove <strong>1</strong> element and return it to me.”</p>
         
         <blockquote>
-        <p>Note: JS doesn&#39;t have a <code>.delete(index)</code> for arrays. The best you can do is <code>delete array[index]</code>, but that actually just replaces the value at <code>array[index]</code> with <code>undefined</code>. Using <code>splice</code> in the above example is how you can actually delete elements from an array.</p>
+        <p>Note: JS doesn’t have a <code>.delete(index)</code> for arrays. The best you can do is <code>delete array[index]</code>, but that actually just replaces the value at <code>array[index]</code> with <code>undefined</code>. Using <code>splice</code> in the above example is how you can actually delete elements from an array.</p>
         </blockquote>
         
         <p>Alright, on to the optional parameter(s)!</p>

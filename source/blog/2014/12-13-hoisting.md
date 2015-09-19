@@ -7,7 +7,7 @@ I'm continuing my series of [JS interview questions](https://github.com/h5bp/Fro
 
 ## Explain “hoisting”
 
-Hoisting is when a JS declaration is lifted (“hoisted”) to the top of it’s scope by the JS interpreter. What this really means is that a variable or function isn't necessarily declared where you think it is. Understandably, this can cause problems. Variables and functions are hoisted differently, as we'll see below.
+Hoisting is when a JS declaration is lifted (“hoisted”) to the top of it’s scope by the JS interpreter. What this really means is that a variable or function isn’t necessarily declared where you think it is. Understandably, this can cause problems. Variables and functions are hoisted differently, as we'll see below.
 
 **Hoisting variables**
 
@@ -24,7 +24,7 @@ function containsHoisting() {
 containsHoisting(); // logs undefined
 ```
 
-*Wait, how did `hoistedVariable` get to be undefined? Surely it should be undeclared since we haven't hit `var hoistedVariable` yet.*
+*Wait, how did `hoistedVariable` get to be undefined? Surely it should be undeclared since we haven’t hit `var hoistedVariable` yet.*
 
 It’s because of hoisting! You see, although I wrote the code in the example above, the JS interpreter changes it to this:
 
@@ -102,7 +102,7 @@ function containingFunction() {
 containingFunction() // returns 4
 ```
 
-Hopefully that example wasn't surprising. But just to better understand what’s going on, here’s how the JS interpreter rewrote things:
+Hopefully that example wasn’t surprising. But just to better understand what’s going on, here’s how the JS interpreter rewrote things:
 
 ```
 function containingFunction() {

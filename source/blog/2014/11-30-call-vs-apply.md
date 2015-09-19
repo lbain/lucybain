@@ -74,7 +74,7 @@ For `.call` you pass the parameters comma separated (like normal). For `.apply` 
 
 *Why would you even bother having these two ways? Why not standardise?*
 
-That’s a fair question. But the two methods have different use cases. If you know exactly how many arguments you're passing, you should use `.call`. If you don't know, or if your arguments are already in an array, you should use `.apply`. (Rephrased from a helpful [stackoverflow answer](http://stackoverflow.com/a/1987244/863846).)
+That’s a fair question. But the two methods have different use cases. If you know exactly how many arguments you're passing, you should use `.call`. If you don’t know, or if your arguments are already in an array, you should use `.apply`. (Rephrased from a helpful [stackoverflow answer](http://stackoverflow.com/a/1987244/863846).)
 
 *Ok, how am I going to remember this?*
 

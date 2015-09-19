@@ -67,7 +67,7 @@
         
         <p>Now let’s move on to <strong><code>undefined</code></strong>.</p>
         
-        <p>Something is <code>undefined</code> when it hasn&#39;t been defined yet. If you call a variable or function without having actually created it yet the parser will give you an <code>not defined</code> error.</p>
+        <p>Something is <code>undefined</code> when it hasn’t been defined yet. If you call a variable or function without having actually created it yet the parser will give you an <code>not defined</code> error.</p>
         
         <p>Example:</p>
         <pre class="highlight plaintext">var undefinedVariable; // undefined&#x000A;typeof undefinedVariable; // "undefined"&#x000A;&#x000A;undefinedFunction(); // undefined&#x000A;typeof undefinedFunction; // "undefined"</pre>
@@ -83,7 +83,7 @@
         
         <p><code>null</code> is a variable that is defined to have a null value.</p>
         <pre class="highlight plaintext">var nullVariable = null; // null&#x000A;typeof nullVariable // "object"</pre>
-        <p>You probably don&#39;t often purposefully define a variable to <code>null</code>, but it may be the return value of a function. Often you&#39;ll need to gaurd against <code>null</code> values in your code.</p>
+        <p>You probably don’t often purposefully define a variable to <code>null</code>, but it may be the return value of a function. Often you&#39;ll need to gaurd against <code>null</code> values in your code.</p>
         
         <p>You can know if a variable is null with the following:</p>
         <pre class="highlight plaintext">if( variable === null ) {&#x000A;  console.log('variable is null');&#x000A;} else {&#x000A;  console.log('variable is not null');&#x000A;}</pre>
@@ -91,8 +91,8 @@
         I think the order “undeclared, undefined, and null” makes sense since it’s increasing order of certainty.</p>
         
         <ul>
-        <li><code>undeclared</code> variables don&#39;t even exist</li>
-        <li><code>undefined</code> variables exist, but don&#39;t have anything assigned to them</li>
+        <li><code>undeclared</code> variables don’t even exist</li>
+        <li><code>undefined</code> variables exist, but don’t have anything assigned to them</li>
         <li><code>null</code> variables exist and have null assigned to them</li>
         </ul>
         <hr>

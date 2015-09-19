@@ -29,9 +29,9 @@ stillNotAClosure("brand"); // returns "brand"
 stillNotAClosure("new"); // returns "new"
 stillNotAClosure("string"); // returns "string"
 ```
-Thus, you can see `stillNotAClosure` doesn't retain any reference to previous calls.
+Thus, you can see `stillNotAClosure` doesn’t retain any reference to previous calls.
 
-*Ok, so that’s what a closure isn't, but what __is__ a closure?*
+*Ok, so that’s what a closure isn’t, but what __is__ a closure?*
 
 In a closure those variables stick around for a while longer since there is a reference to the variables after the function returns.
 
@@ -47,7 +47,7 @@ var closure = aClosure(); // returns a reference to innerFunction
 closure(); // returns "I'm here for a long time"
 ```
 
-Notice that `aClosure` doesn't return `longLivedVariable`, but rather `innerFunction`. This means there’s a reference hanging around to `innerFunction`, and because `innerFunction` has a reference to `longLivedVariable`, that variable continues to exist.
+Notice that `aClosure` doesn’t return `longLivedVariable`, but rather `innerFunction`. This means there’s a reference hanging around to `innerFunction`, and because `innerFunction` has a reference to `longLivedVariable`, that variable continues to exist.
 
 Finally, when we call `closure()`, we're really calling `innerFunction()` (the returned value of `aClosure()`), which in turn returns `longLivedVariable`.
 

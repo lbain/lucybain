@@ -3,7 +3,7 @@ title: 'JS Immediately Invoked Function Expressions'
 tags: js, interview-questions
 ---
 
-## Explain why the following doesn't work as an IIFE: `function foo(){ }();`
+## Explain why the following doesn’t work as an IIFE: `function foo(){ }();`
 
 *What does “IIFE” even stand for?*
 
@@ -24,7 +24,7 @@ Example:
 
 They can be used to guard against **unintended effects of hoisting:**
 
-The following code snip-it is from [Wikipedia](https://en.wikipedia.org/wiki/Immediately-invoked_function_expression#Evaluation_context). I didn't understand how it worked right away, but I wrote the explanation following the snip-it to clear up my confusion.
+The following code snip-it is from [Wikipedia](https://en.wikipedia.org/wiki/Immediately-invoked_function_expression#Evaluation_context). I didn’t understand how it worked right away, but I wrote the explanation following the snip-it to clear up my confusion.
 
 ```
 var v = 1;
@@ -35,7 +35,7 @@ v = 2;
 
 getValue(); // returns 1
 ```
-*I can't even read that, what do all the nested functions mean?*
+*I can’t even read that, what do all the nested functions mean?*
 
 Let’s investigate the IIFE assigned to `getValue` by rewriting it with a helper function:
 
@@ -155,7 +155,7 @@ counter.i; // returns undefined
 };
 ```
 
-You'll notice `var i` doesn't appear anywhere in there. `i` is defined elsewhere in the `helperFunction` / IIFE. Since the return value of `helperFunction` doesn't give explicit access to `i`, `counter` doesn't have access.
+You'll notice `var i` doesn’t appear anywhere in there. `i` is defined elsewhere in the `helperFunction` / IIFE. Since the return value of `helperFunction` doesn’t give explicit access to `i`, `counter` doesn’t have access.
 
 *Fine, so if that’s all that `counter` has access to, how does `counter.get()` return a value?*
 
@@ -197,9 +197,9 @@ Scopes! The scope from `helperFunction` has access to `i`. The object returned b
 
 With all that explanation behind us, let’s go back to the original question:
 
-**Explain why the following doesn't work as an IIFE: `function foo(){ }();`**
+**Explain why the following doesn’t work as an IIFE: `function foo(){ }();`**
 
-Because `foo` isn't being called! Here’s a rewrite:
+Because `foo` isn’t being called! Here’s a rewrite:
 
 ```
 function foo(){

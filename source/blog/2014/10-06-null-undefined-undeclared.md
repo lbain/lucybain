@@ -38,7 +38,7 @@ Note: this will not work in [strict mode](https://developer.mozilla.org/en-US/do
 
 Now let’s move on to **`undefined`**.
 
-Something is `undefined` when it hasn't been defined yet. If you call a variable or function without having actually created it yet the parser will give you an `not defined` error.
+Something is `undefined` when it hasn’t been defined yet. If you call a variable or function without having actually created it yet the parser will give you an `not defined` error.
 
 Example:
 
@@ -82,7 +82,7 @@ Finally we'll finish up with **`null`**.
 var nullVariable = null; // null
 typeof nullVariable // "object"
 ```
-You probably don't often purposefully define a variable to `null`, but it may be the return value of a function. Often you'll need to gaurd against `null` values in your code.
+You probably don’t often purposefully define a variable to `null`, but it may be the return value of a function. Often you'll need to gaurd against `null` values in your code.
 
 You can know if a variable is null with the following:
 
@@ -97,6 +97,6 @@ if( variable === null ) {
 <br/>
 I think the order “undeclared, undefined, and null” makes sense since it’s increasing order of certainty.
 
-* `undeclared` variables don't even exist
-* `undefined` variables exist, but don't have anything assigned to them
+* `undeclared` variables don’t even exist
+* `undefined` variables exist, but don’t have anything assigned to them
 * `null` variables exist and have null assigned to them

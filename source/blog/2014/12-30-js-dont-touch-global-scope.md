@@ -1,5 +1,5 @@
 ---
-title: "JS: don't touch the global scope"
+title: "JS: don’t touch the global scope"
 tags: js, interview-questions
 ---
 
@@ -18,7 +18,7 @@ Some points on why **global variables are generally bad** (taken from [Cunningha
 
 **Global variables are particularly bad for JS.**
 
-Not only are all of those points above true (and a few others I didn't include), but for JS specifically global variables can be particularly problematic. This is because JS defaults all variables to the global scope unless they are explicitly defined elsewhere. Here’s an example:
+Not only are all of those points above true (and a few others I didn’t include), but for JS specifically global variables can be particularly problematic. This is because JS defaults all variables to the global scope unless they are explicitly defined elsewhere. Here’s an example:
 
 ```
 function badlyScoped() {
@@ -29,7 +29,7 @@ badlyScoped();
 console.log(globalVariable); // logs "I'm a global variable"
 ```
 
-Well isn't that terrifying! We thought we were creating a local variable, since it was defined within a function, but nope! We forgot the `var` keyword, which would make the variable local. Here’s a corrected version:
+Well isn’t that terrifying! We thought we were creating a local variable, since it was defined within a function, but nope! We forgot the `var` keyword, which would make the variable local. Here’s a corrected version:
 
 ```
 function wellScoped() {
@@ -40,7 +40,7 @@ wellScoped();
 console.log(localVariable); // throws: "localVariable is not defined"
 ```
 
-This is a quirk ([some say](http://www.amazon.com/JavaScript-Good-Parts-Douglas-Crockford/dp/0596517742) a mistake) of JS. It makes global variables particularly dangerous since you might not even know you were creating one. So watch your back and don't forget to use `var`!
+This is a quirk ([some say](http://www.amazon.com/JavaScript-Good-Parts-Douglas-Crockford/dp/0596517742) a mistake) of JS. It makes global variables particularly dangerous since you might not even know you were creating one. So watch your back and don’t forget to use `var`!
 
 **Resources:**
 

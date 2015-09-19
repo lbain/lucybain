@@ -26,21 +26,21 @@ carSentence(params);
 // logs "My favourite car is a small sized red one that goes "
 ```
 
-As you can see I didn't supply the `speed` parameter in my `params` object, but the `carSentence` function still worked. So `speed` was an optional parameter.
+As you can see I didn’t supply the `speed` parameter in my `params` object, but the `carSentence` function still worked. So `speed` was an optional parameter.
 
 **But `optionalParams` was still required**
 
-Yep, you caught me! This isn't really what people usually mean by “optional” parameters. But I did want to throw it out there as a possibility. I think it’s an underrated option.
+Yep, you caught me! This isn’t really what people usually mean by “optional” parameters. But I did want to throw it out there as a possibility. I think it’s an underrated option.
 
 **What if I wanted a default speed?**
 
-`optionalParams` didn't define a value for `speed`, but the sentence expected `speed` to be defined. In this case you can give a default value for the variable (such as `"fast"`). It’s tempting to do this:
+`optionalParams` didn’t define a value for `speed`, but the sentence expected `speed` to be defined. In this case you can give a default value for the variable (such as `"fast"`). It’s tempting to do this:
 
 ```
 var speed = optionalParams.speed || "fast";
 ```
 
-but this won't work when `optionalParams.speed` is `false`. The better way to handle it is:
+but this won’t work when `optionalParams.speed` is `false`. The better way to handle it is:
 
 ```
 var speed;
@@ -99,7 +99,7 @@ carSentence("medium", "blue");
 // logs "My favourite car is a medium sized blue one that goes fast"
 ```
 
-This way of dealing with optional parameters works well if people won't bother trying to extend it past the limit. However, not all functions meet this requirement, consider the following:
+This way of dealing with optional parameters works well if people won’t bother trying to extend it past the limit. However, not all functions meet this requirement, consider the following:
 
 ```
 function add(a, b, c) {
@@ -160,13 +160,13 @@ Well it turns out `arguments` is a secret variable available in all functions th
 
 **So it’s an array of all the params**
 
-Almost. It’s not quite an array. It’s like a kiddy array - hasn't got all the functionality just yet. If you want to use it for access only (as in the example above), then you're all good. But if you want to do interesting manipulations, `pop` things off, or reorder items, then you need to convert `arguments` to a full array:
+Almost. It’s not quite an array. It’s like a kiddy array - hasn’t got all the functionality just yet. If you want to use it for access only (as in the example above), then you're all good. But if you want to do interesting manipulations, `pop` things off, or reorder items, then you need to convert `arguments` to a full array:
 
 ```
 var temp = Array.slice(arguments);
 ```
 
-I assume the reason for this is to make `arguments` read only, although I haven't researched that.
+I assume the reason for this is to make `arguments` read only, although I haven’t researched that.
 
 And there you have it - three ways to handle optional parameters in JavaScript.
 

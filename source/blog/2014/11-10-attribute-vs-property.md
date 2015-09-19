@@ -22,7 +22,7 @@ $('#linkID').prop('id'); // returns "linkID"
 $('#linkID').prop('className'); // returns "link classes"
 ```
 
-As you can see, all of the properties we set in the HTML are available through `prop`. Other properties are available too, such as `style`, even though we didn't explicitly set them.
+As you can see, all of the properties we set in the HTML are available through `prop`. Other properties are available too, such as `style`, even though we didn’t explicitly set them.
 
 Properties can also be updated through the `prop` method:
 

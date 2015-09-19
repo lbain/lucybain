@@ -5,7 +5,7 @@ tags: js, interview-questions
 
 ## What are a few different ways to create new objects?
 
-Well it turns out this topic has been covered quite a lot (unlike my last post about host vs. native objects). I don't really have anything to add to the conversation, so I'll just give you the two links that I found the most helpful on this topic.
+Well it turns out this topic has been covered quite a lot (unlike my last post about host vs. native objects). I don’t really have anything to add to the conversation, so I'll just give you the two links that I found the most helpful on this topic.
 
 __Resources__
 

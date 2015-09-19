@@ -5,13 +5,13 @@ tags: js, interview-questions
 
 ## What’s the difference between AMD and CommonJS?
 
-**Disclaimer:** I'm only going to talk about how this impacts the browser. I will not talk about Node.js, although I know it’s relevant to this discussion. I don't know enough about Node.js to cover it properly. Ok, let’s get to it!
+**Disclaimer:** I'm only going to talk about how this impacts the browser. I will not talk about Node.js, although I know it’s relevant to this discussion. I don’t know enough about Node.js to cover it properly. Ok, let’s get to it!
 
 To start off, let’s talk about their similarities.
 
 *What problem are they trying to solve?*
 
-Typcially JS relies on having `<script>` tags in the right order in the HTML. This can often lead to confusion and ordering mistakes. Beyond that, some people prefer to have all their JS compiled into one massive file. This is convenient since they have complete control on ordering and don't need to rely on `<script>` tags. However it means all JS gets loaded on each page, which isn't very performant.
+Typcially JS relies on having `<script>` tags in the right order in the HTML. This can often lead to confusion and ordering mistakes. Beyond that, some people prefer to have all their JS compiled into one massive file. This is convenient since they have complete control on ordering and don’t need to rely on `<script>` tags. However it means all JS gets loaded on each page, which isn’t very performant.
 
 Both AMD and CommonJS are a way of linking JS bits of code, called modules, together. They are a way of defining which modules rely on which other modules so a computer can decide the best way to link everything together, rather than relying on error-prone coders.
 
@@ -67,7 +67,7 @@ export.math = module; // export is a commonJS specific method
                       // export returns what’s publicly available
                       // the "math" gives the name of the module
 ```
-This code doesn't output anything, but when we require the `math` module we'll have access to everything in the returned `module` object (namely `add`, `subtract`, `multiply`, and `divide`).
+This code doesn’t output anything, but when we require the `math` module we'll have access to everything in the returned `module` object (namely `add`, `subtract`, `multiply`, and `divide`).
 
 *Part 2: stats module*
 
@@ -127,7 +127,7 @@ define( // AMD specific method used to define a module
     return module; // returns what’s publicly available
 });
 ```
-As with CommonJS, this code doesn't output anything.
+As with CommonJS, this code doesn’t output anything.
 
 *Part 2: stats module*
 

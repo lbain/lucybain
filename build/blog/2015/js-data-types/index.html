@@ -77,7 +77,7 @@
         
         <p>As in most languages, JS strings are groupings of characters.</p>
         <pre class="highlight plaintext">"hello world";&#x000A;"I like cats";&#x000A;'Testing "quotes';</pre>
-        <p>I don&#39;t think they&#39;re particularly interesting, but they are remarkably powerful. The main way we communicate with our users is the written word and <code>string</code> makes this possible.</p>
+        <p>I don’t think they&#39;re particularly interesting, but they are remarkably powerful. The main way we communicate with our users is the written word and <code>string</code> makes this possible.</p>
         
         <h3>Symbol</h3>
         
@@ -89,9 +89,9 @@
         <pre class="highlight plaintext">var breed = Symbol("breed");&#x000A;var dog = { bark: true };&#x000A;dog[breed] = "Corgi";&#x000A;&#x000A;for (var property in dog) {&#x000A;  if (dog.hasOwnProperty(property)) {&#x000A;    console.log(property); // logs "bark", but not "breed"&#x000A;  }&#x000A;}&#x000A;console.log(dog[breed]); // logs "Corgi"</pre>
         <h3>Object</h3>
         
-        <p>Everything in JS that we didn&#39;t discuss above is an Object. So objects are the most complex data type; I&#39;ll dedicate a future post to them since it’s a lot to cover here. But you&#39;ve probably worked with objects in the past. They typically look like this:</p>
+        <p>Everything in JS that we didn’t discuss above is an Object. So objects are the most complex data type; I&#39;ll dedicate a future post to them since it’s a lot to cover here. But you&#39;ve probably worked with objects in the past. They typically look like this:</p>
         <pre class="highlight plaintext">var cat = { sound: "meow" };&#x000A;&#x000A;var fluffy = new Cat();&#x000A;&#x000A;var whiskers = new function() {&#x000A;    this.sound = "meow";&#x000A;}</pre>
-        <p>But notice that we haven&#39;t mentioned <code>Array</code>, <code>Date</code>, or even <code>function</code> that’s because, <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#.22Normal.22_objects.2C_and_functions">officially</a>, they&#39;re all of type <code>object</code>. Pretty crazy, huh?</p>
+        <p>But notice that we haven’t mentioned <code>Array</code>, <code>Date</code>, or even <code>function</code> that’s because, <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#.22Normal.22_objects.2C_and_functions">officially</a>, they&#39;re all of type <code>object</code>. Pretty crazy, huh?</p>
         
         <h2>Resources</h2>
         

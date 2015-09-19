@@ -5,7 +5,7 @@ tags: js, interview-questions
 
 ## What’s the difference between host objects and native objects?
 
-I didn't find as much lot of information about this topic as some of the other [JS interview questions](https://github.com/darcyclarke/Front-end-Developer-Interview-Questions#js). So here’s my current understanding, but please comment if I've misunderstood or there’s a better way to explain it.
+I didn’t find as much lot of information about this topic as some of the other [JS interview questions](https://github.com/darcyclarke/Front-end-Developer-Interview-Questions#js). So here’s my current understanding, but please comment if I've misunderstood or there’s a better way to explain it.
 
 __What is a native object?__
 
@@ -13,7 +13,7 @@ Native objects are inherent to JS - they are available to you so long as you're 
 
 __What is a host object?__
 
-Everything the environment gives you. For the browser, this includes objects like `window`. Host objects can differ by environment (or host), so that Node wouldn't have access to `window` (which makes sense since there’s no DOM for Node), but could have its own host objects like `NodeLists`.
+Everything the environment gives you. For the browser, this includes objects like `window`. Host objects can differ by environment (or host), so that Node wouldn’t have access to `window` (which makes sense since there’s no DOM for Node), but could have its own host objects like `NodeLists`.
 
 __What is a user object?__
 

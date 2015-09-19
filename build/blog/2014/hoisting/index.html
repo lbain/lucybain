@@ -51,13 +51,13 @@
         
         <h2>Explain “hoisting”</h2>
         
-        <p>Hoisting is when a JS declaration is lifted (“hoisted”) to the top of it’s scope by the JS interpreter. What this really means is that a variable or function isn&#39;t necessarily declared where you think it is. Understandably, this can cause problems. Variables and functions are hoisted differently, as we&#39;ll see below.</p>
+        <p>Hoisting is when a JS declaration is lifted (“hoisted”) to the top of it’s scope by the JS interpreter. What this really means is that a variable or function isn’t necessarily declared where you think it is. Understandably, this can cause problems. Variables and functions are hoisted differently, as we&#39;ll see below.</p>
         
         <p><strong>Hoisting variables</strong></p>
         
         <p>We&#39;ll start with an example:</p>
         <pre class="highlight plaintext">// Code saved in file:&#x000A;&#x000A;function containsHoisting() {&#x000A;    console.log(hoistedVariable);&#x000A;    var hoistedVariable = "I was hoisted!";&#x000A;}&#x000A;&#x000A;containsHoisting(); // logs undefined</pre>
-        <p><em>Wait, how did <code>hoistedVariable</code> get to be undefined? Surely it should be undeclared since we haven&#39;t hit <code>var hoistedVariable</code> yet.</em></p>
+        <p><em>Wait, how did <code>hoistedVariable</code> get to be undefined? Surely it should be undeclared since we haven’t hit <code>var hoistedVariable</code> yet.</em></p>
         
         <p>It’s because of hoisting! You see, although I wrote the code in the example above, the JS interpreter changes it to this:</p>
         <pre class="highlight plaintext">// What the interpreter changed it to:&#x000A;&#x000A;function containsHoisting() {&#x000A;    var hoistedVariable; // &lt;-- this line here!&#x000A;    console.log(hoistedVariable);&#x000A;    hoistedVariable = "I was hoisted!";&#x000A;}</pre>
@@ -89,7 +89,7 @@
         
         <p>Since examples make things clearer:</p>
         <pre class="highlight plaintext">function containingFunction() {&#x000A;    var hoistedVariable = 2 + 2;&#x000A;    function hoistedFunction() {&#x000A;        return hoistedVariable;&#x000A;    }&#x000A;    return hoistedFunction();&#x000A;}&#x000A;containingFunction() // returns 4</pre>
-        <p>Hopefully that example wasn&#39;t surprising. But just to better understand what’s going on, here’s how the JS interpreter rewrote things:</p>
+        <p>Hopefully that example wasn’t surprising. But just to better understand what’s going on, here’s how the JS interpreter rewrote things:</p>
         <pre class="highlight plaintext">function containingFunction() {&#x000A;    // this is the hoisted section&#x000A;    var hoistedVariable;&#x000A;    function hoistedFunction() {&#x000A;        return hoistedVariable;&#x000A;    }&#x000A;&#x000A;    // here's the rest of the code&#x000A;    hoistedVariable = 2 + 2;&#x000A;    return hoistedFunction();&#x000A;}&#x000A;containingFunction() // returns 4</pre>
         <p>Notice that the entire <code>hoistedFunction</code> gets moved up, while only the declaration for the <code>hoistedVariable</code> is hoisted.</p>
         

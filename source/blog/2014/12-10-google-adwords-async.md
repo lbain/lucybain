@@ -7,21 +7,21 @@ tags: js, google-adwords
 
 I've been working with Google Adwords at work this week (yay learning!). My first task was to add a “tracking pixel” to a thank you page after a user has given us their contact details.
 
-(Side note: It turns out we don't really use pixels any more, we use JS to actually make the call, and only fall back to a pixel when the user doesn't have JS enabled.)
+(Side note: It turns out we don’t really use pixels any more, we use JS to actually make the call, and only fall back to a pixel when the user doesn’t have JS enabled.)
 
-Our thank you page is loaded asynchronously, so the Google Adwords script was getting injected into the dom in that async call. As it turns out, you can't just inject scripts into the dom and expect them to run. If you do inject the script (as I did) you'll get this warning in Chrome:
+Our thank you page is loaded asynchronously, so the Google Adwords script was getting injected into the dom in that async call. As it turns out, you can’t just inject scripts into the dom and expect them to run. If you do inject the script (as I did) you'll get this warning in Chrome:
 
 ```
 Failed to execute 'write' on 'Document': It isn't possible to write into a document from an asynchronously-loaded external script unless it is explicitly opened.
 ```
 
-(Personally I think this should be an error, not just a warning. To me, this is saying “Hey, your code that you think is running isn't actually running” - that sounds like an error. But I digress...)
+(Personally I think this should be an error, not just a warning. To me, this is saying “Hey, your code that you think is running isn’t actually running” - that sounds like an error. But I digress...)
 
 After some Googling around I know of two ways to fix this.
 
 **Fix one (bad)**
 
-Mess with `document.write`. Basically Chrome has a check that an async loaded script doesn't make any calls to `document.write`. But it doesn't check for `$('body').append()` (yet). So if you set `document.write` to actually use `$('body').append()` the error goes away. Here’s an example (taken from [Jakob Beyer](http://www.jakobbeyer.de/asynchronous-google-adwords-conversion-tracking)):
+Mess with `document.write`. Basically Chrome has a check that an async loaded script doesn’t make any calls to `document.write`. But it doesn’t check for `$('body').append()` (yet). So if you set `document.write` to actually use `$('body').append()` the error goes away. Here’s an example (taken from [Jakob Beyer](http://www.jakobbeyer.de/asynchronous-google-adwords-conversion-tracking)):
 
 ```
 var oldDocumentWrite = document.write

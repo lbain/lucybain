@@ -23,9 +23,9 @@ takesACallback(function() {
     return "I'm the callback!";
 }); // returns "The callback says: I'm the callback!"
 ```
-See the function that’s a parameter to the `takesACallback` call? Notice that it doesn't have a name? That’s an anonymous function.
+See the function that’s a parameter to the `takesACallback` call? Notice that it doesn’t have a name? That’s an anonymous function.
 
-Note that you can still have a reference to an anonymous function, just because it is unnamed it doesn't mean it’s unreferenced.
+Note that you can still have a reference to an anonymous function, just because it is unnamed it doesn’t mean it’s unreferenced.
 
 ```
 var reference = function() {

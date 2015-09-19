@@ -79,9 +79,9 @@ alerts.warning = function(text) {
 };
 ```
 
-Namespaces aren't only for you (because I'm sure *you'd* never make a mistake like this... just for demonstration purposes, right?). They're also important when you start including code by a third party.
+Namespaces aren’t only for you (because I'm sure *you'd* never make a mistake like this... just for demonstration purposes, right?). They're also important when you start including code by a third party.
 
-Since everything gets dumped into the global namespace there’s no way to know what you wrote and what was written by someone else. It’s generally a good idea to have a namespace for everything you wrote so you don't get naming conflicts with anyone else. Actually, jQuery does just that. All the jQuery functions are namespaced to `$`.
+Since everything gets dumped into the global namespace there’s no way to know what you wrote and what was written by someone else. It’s generally a good idea to have a namespace for everything you wrote so you don’t get naming conflicts with anyone else. Actually, jQuery does just that. All the jQuery functions are namespaced to `$`.
 
 As for *how is it used?* I'll leave the implementation details up to [Kenneth Truyers](http://www.kenneth-truyers.net/2013/04/27/javascript-namespaces-and-modules/) since he did an excellent job listing out all your options.
 

@@ -39,7 +39,7 @@ When the user clicks the button the events starts at the button element, so `but
 
 **Stopping event bubbling**
 
-*What if you don't want the event to bubble up?*
+*What if you don’t want the event to bubble up?*
 
 A fair question. Often you only want the event to trigger on the element itself, without bothering all its ancestors. Consider the following JS (with the same HTML as above):
 
@@ -53,9 +53,9 @@ $( ".parent, .ancestor" ).click(function(event) {
 });
 ```
 
-As it stands, the `don't click me!` will get logged when the user clicks on the button, even though they haven't actually clicked on the parent or ancestor element.
+As it stands, the `don't click me!` will get logged when the user clicks on the button, even though they haven’t actually clicked on the parent or ancestor element.
 
-You have to explicitly stop event propagation (bubbling) if you don't want it.
+You have to explicitly stop event propagation (bubbling) if you don’t want it.
 
 ```
 $( "button" ).click(function(event) {
@@ -68,7 +68,7 @@ $( ".parent, .ancestor" ).click(function(event) {
 });
 ```
 
-Now the event propagation stops on the first element of the bubbling sequence. You can also stop the bubbling later on if you'd like, it doesn't have to be on the first element.
+Now the event propagation stops on the first element of the bubbling sequence. You can also stop the bubbling later on if you'd like, it doesn’t have to be on the first element.
 
 **Related**
 

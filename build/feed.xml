@@ -13,7 +13,7 @@
     <link rel="alternate" href="http://lucybain.com/blog/2015/css-box-model/"/>
     <id>http://lucybain.com/blog/2015/css-box-model/</id>
     <published>2015-05-02T00:00:00Z</published>
-    <updated>2015-09-19T17:59:03+10:00</updated>
+    <updated>2015-09-19T18:03:27+10:00</updated>
     <author>
       <name>Article Author</name>
     </author>
@@ -29,7 +29,7 @@
 
 &lt;p&gt;Hopefully that’s straight forward enough. However, browsers differ on what should and should not get included in the “content” area. Up for debate is the content itself (words), the padding, the borders, and the margin. As far as I know, everyone agrees that the words should count towards the width, and that the margin should not. But when it comes to the padding and border things are uncertain.&lt;/p&gt;
 
-&lt;p&gt;Some browsers (such as Firefox) think the width should only include the the content itself, not the padding, boarder, nor margin. Other browsers (such as IE) think the width should include the content, padding, and boarder, but not the margin. (So far I haven&amp;#39;t found anyone who thinks the padding should be in and the boarder out - they seem to always go as a pair.)&lt;/p&gt;
+&lt;p&gt;Some browsers (such as Firefox) think the width should only include the the content itself, not the padding, boarder, nor margin. Other browsers (such as IE) think the width should include the content, padding, and boarder, but not the margin. (So far I haven’t found anyone who thinks the padding should be in and the boarder out - they seem to always go as a pair.)&lt;/p&gt;
 
 &lt;p&gt;So for these two ways of looking at things, there are two ways to define the box. Let’s look at them one by one.&lt;/p&gt;
 
@@ -71,7 +71,7 @@
 
 &lt;p&gt;&lt;em&gt;How much bigger?&lt;/em&gt;&lt;/p&gt;
 
-&lt;p&gt;Well, since the border (10px) and padding (20px) don&amp;#39;t count towards the total width, the entire div is 10px (border left) + 20px (padding left) + 20px (padding right) + 10px (border right) larger. Or 60px larger all up, giving it an “actual” width of 210px. Here it is again with a ruler set to 210px (just in case you don&amp;#39;t believe me):&lt;/p&gt;
+&lt;p&gt;Well, since the border (10px) and padding (20px) don’t count towards the total width, the entire div is 10px (border left) + 20px (padding left) + 20px (padding right) + 10px (border right) larger. Or 60px larger all up, giving it an “actual” width of 210px. Here it is again with a ruler set to 210px (just in case you don’t believe me):&lt;/p&gt;
 
 &lt;div class="border-box width" style="width: 210px;"&gt;
 &lt;/div&gt;
@@ -101,7 +101,7 @@
 
 &lt;p&gt;Well, exactly as above, using &lt;code&gt;box-sizing: border-box&lt;/code&gt; or &lt;code&gt;box-sizing: content-box&lt;/code&gt; depending on your need.&lt;/p&gt;
 
-&lt;p&gt;While it’s possible to set &lt;code&gt;box-sizing&lt;/code&gt; per element (as I did in my examples) this is usually very confusing. If each element could be one way or another you wouldn&amp;#39;t know what widths to set on things until you checked which box model they used. Therefore it’s recommended to set &lt;code&gt;box-sizing&lt;/code&gt; on all your elements with &lt;code&gt;* { box-sizing: YOUR_DECISION_HERE; }&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;While it’s possible to set &lt;code&gt;box-sizing&lt;/code&gt; per element (as I did in my examples) this is usually very confusing. If each element could be one way or another you wouldn’t know what widths to set on things until you checked which box model they used. Therefore it’s recommended to set &lt;code&gt;box-sizing&lt;/code&gt; on all your elements with &lt;code&gt;* { box-sizing: YOUR_DECISION_HERE; }&lt;/code&gt;.&lt;/p&gt;
 
 &lt;h2&gt;Which one should I use?&lt;/h2&gt;
 
@@ -122,19 +122,19 @@
     <link rel="alternate" href="http://lucybain.com/blog/2015/js-amd-commonjs/"/>
     <id>http://lucybain.com/blog/2015/js-amd-commonjs/</id>
     <published>2015-04-23T00:00:00Z</published>
-    <updated>2015-09-19T17:58:52+10:00</updated>
+    <updated>2015-09-19T18:03:37+10:00</updated>
     <author>
       <name>Article Author</name>
     </author>
     <content type="html">&lt;h2&gt;What’s the difference between AMD and CommonJS?&lt;/h2&gt;
 
-&lt;p&gt;&lt;strong&gt;Disclaimer:&lt;/strong&gt; I&amp;#39;m only going to talk about how this impacts the browser. I will not talk about Node.js, although I know it’s relevant to this discussion. I don&amp;#39;t know enough about Node.js to cover it properly. Ok, let’s get to it!&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Disclaimer:&lt;/strong&gt; I&amp;#39;m only going to talk about how this impacts the browser. I will not talk about Node.js, although I know it’s relevant to this discussion. I don’t know enough about Node.js to cover it properly. Ok, let’s get to it!&lt;/p&gt;
 
 &lt;p&gt;To start off, let’s talk about their similarities.&lt;/p&gt;
 
 &lt;p&gt;&lt;em&gt;What problem are they trying to solve?&lt;/em&gt;&lt;/p&gt;
 
-&lt;p&gt;Typcially JS relies on having &lt;code&gt;&amp;lt;script&amp;gt;&lt;/code&gt; tags in the right order in the HTML. This can often lead to confusion and ordering mistakes. Beyond that, some people prefer to have all their JS compiled into one massive file. This is convenient since they have complete control on ordering and don&amp;#39;t need to rely on &lt;code&gt;&amp;lt;script&amp;gt;&lt;/code&gt; tags. However it means all JS gets loaded on each page, which isn&amp;#39;t very performant.&lt;/p&gt;
+&lt;p&gt;Typcially JS relies on having &lt;code&gt;&amp;lt;script&amp;gt;&lt;/code&gt; tags in the right order in the HTML. This can often lead to confusion and ordering mistakes. Beyond that, some people prefer to have all their JS compiled into one massive file. This is convenient since they have complete control on ordering and don’t need to rely on &lt;code&gt;&amp;lt;script&amp;gt;&lt;/code&gt; tags. However it means all JS gets loaded on each page, which isn’t very performant.&lt;/p&gt;
 
 &lt;p&gt;Both AMD and CommonJS are a way of linking JS bits of code, called modules, together. They are a way of defining which modules rely on which other modules so a computer can decide the best way to link everything together, rather than relying on error-prone coders.&lt;/p&gt;
 
@@ -188,7 +188,7 @@ export.math = module; // export is a commonJS specific method
                       // export returns what’s publicly available
                       // the "math" gives the name of the module
 &lt;/pre&gt;
-&lt;p&gt;This code doesn&amp;#39;t output anything, but when we require the &lt;code&gt;math&lt;/code&gt; module we&amp;#39;ll have access to everything in the returned &lt;code&gt;module&lt;/code&gt; object (namely &lt;code&gt;add&lt;/code&gt;, &lt;code&gt;subtract&lt;/code&gt;, &lt;code&gt;multiply&lt;/code&gt;, and &lt;code&gt;divide&lt;/code&gt;).&lt;/p&gt;
+&lt;p&gt;This code doesn’t output anything, but when we require the &lt;code&gt;math&lt;/code&gt; module we&amp;#39;ll have access to everything in the returned &lt;code&gt;module&lt;/code&gt; object (namely &lt;code&gt;add&lt;/code&gt;, &lt;code&gt;subtract&lt;/code&gt;, &lt;code&gt;multiply&lt;/code&gt;, and &lt;code&gt;divide&lt;/code&gt;).&lt;/p&gt;
 
 &lt;p&gt;&lt;em&gt;Part 2: stats module&lt;/em&gt;&lt;/p&gt;
 
@@ -240,7 +240,7 @@ console.log(stats.average(0, 4)) // logs "2"
     return module; // returns what’s publicly available
 });
 &lt;/pre&gt;
-&lt;p&gt;As with CommonJS, this code doesn&amp;#39;t output anything.&lt;/p&gt;
+&lt;p&gt;As with CommonJS, this code doesn’t output anything.&lt;/p&gt;
 
 &lt;p&gt;&lt;em&gt;Part 2: stats module&lt;/em&gt;&lt;/p&gt;
 &lt;pre class="highlight plaintext"&gt;define( // AMD specific method used to define a module
@@ -283,7 +283,7 @@ console.log(stats.average(0, 4)) // logs "2"
     <link rel="alternate" href="http://lucybain.com/blog/2015/rails-girls-event-manager/"/>
     <id>http://lucybain.com/blog/2015/rails-girls-event-manager/</id>
     <published>2015-04-09T00:00:00Z</published>
-    <updated>2015-09-19T17:58:17+10:00</updated>
+    <updated>2015-09-19T18:03:40+10:00</updated>
     <author>
       <name>Article Author</name>
     </author>
@@ -320,7 +320,7 @@ console.log(stats.average(0, 4)) // logs "2"
 &lt;li&gt;Anything else that’s used for event management - tracking caterers, receipts, sponsors, to do lists, etc.&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;I know that’s a fairly long list. I&amp;#39;ve looked around at a few, but haven&amp;#39;t found anything that meets our needs yet, so I&amp;#39;m reaching out to ask if you know of any such product.&lt;/p&gt;
+&lt;p&gt;I know that’s a fairly long list. I&amp;#39;ve looked around at a few, but haven’t found anything that meets our needs yet, so I&amp;#39;m reaching out to ask if you know of any such product.&lt;/p&gt;
 
 &lt;p&gt;Yes, I know we &lt;em&gt;could&lt;/em&gt; build it ourselves. I&amp;#39;m sure that&amp;#39;ll have a fair bit of upkeep and I&amp;#39;m keen to keep our involvement to a minimum. (But hey, if you want to build it, you know you&amp;#39;ll have at least one (non-paying) customer!)&lt;/p&gt;
 
@@ -335,7 +335,7 @@ Lucy and the Rails Girls Sydney team&lt;/p&gt;
     <link rel="alternate" href="http://lucybain.com/blog/2015/js-optional-parameters/"/>
     <id>http://lucybain.com/blog/2015/js-optional-parameters/</id>
     <published>2015-04-03T00:00:00Z</published>
-    <updated>2015-09-19T17:57:59+10:00</updated>
+    <updated>2015-09-19T18:03:47+10:00</updated>
     <author>
       <name>Article Author</name>
     </author>
@@ -359,18 +359,18 @@ function carSentence(optionalParams) {
 carSentence(params);
 // logs "My favourite car is a small sized red one that goes "
 &lt;/pre&gt;
-&lt;p&gt;As you can see I didn&amp;#39;t supply the &lt;code&gt;speed&lt;/code&gt; parameter in my &lt;code&gt;params&lt;/code&gt; object, but the &lt;code&gt;carSentence&lt;/code&gt; function still worked. So &lt;code&gt;speed&lt;/code&gt; was an optional parameter.&lt;/p&gt;
+&lt;p&gt;As you can see I didn’t supply the &lt;code&gt;speed&lt;/code&gt; parameter in my &lt;code&gt;params&lt;/code&gt; object, but the &lt;code&gt;carSentence&lt;/code&gt; function still worked. So &lt;code&gt;speed&lt;/code&gt; was an optional parameter.&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;But &lt;code&gt;optionalParams&lt;/code&gt; was still required&lt;/strong&gt;&lt;/p&gt;
 
-&lt;p&gt;Yep, you caught me! This isn&amp;#39;t really what people usually mean by “optional” parameters. But I did want to throw it out there as a possibility. I think it’s an underrated option.&lt;/p&gt;
+&lt;p&gt;Yep, you caught me! This isn’t really what people usually mean by “optional” parameters. But I did want to throw it out there as a possibility. I think it’s an underrated option.&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;What if I wanted a default speed?&lt;/strong&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;code&gt;optionalParams&lt;/code&gt; didn&amp;#39;t define a value for &lt;code&gt;speed&lt;/code&gt;, but the sentence expected &lt;code&gt;speed&lt;/code&gt; to be defined. In this case you can give a default value for the variable (such as &lt;code&gt;&amp;quot;fast&amp;quot;&lt;/code&gt;). It’s tempting to do this:&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;optionalParams&lt;/code&gt; didn’t define a value for &lt;code&gt;speed&lt;/code&gt;, but the sentence expected &lt;code&gt;speed&lt;/code&gt; to be defined. In this case you can give a default value for the variable (such as &lt;code&gt;&amp;quot;fast&amp;quot;&lt;/code&gt;). It’s tempting to do this:&lt;/p&gt;
 &lt;pre class="highlight plaintext"&gt;var speed = optionalParams.speed || "fast";
 &lt;/pre&gt;
-&lt;p&gt;but this won&amp;#39;t work when &lt;code&gt;optionalParams.speed&lt;/code&gt; is &lt;code&gt;false&lt;/code&gt;. The better way to handle it is:&lt;/p&gt;
+&lt;p&gt;but this won’t work when &lt;code&gt;optionalParams.speed&lt;/code&gt; is &lt;code&gt;false&lt;/code&gt;. The better way to handle it is:&lt;/p&gt;
 &lt;pre class="highlight plaintext"&gt;var speed;
 if (typeof optionalParams.speed !== 'undefined') {
     speed = optionalParams.speed;
@@ -416,7 +416,7 @@ carSentence(params);
 carSentence("medium", "blue");
 // logs "My favourite car is a medium sized blue one that goes fast"
 &lt;/pre&gt;
-&lt;p&gt;This way of dealing with optional parameters works well if people won&amp;#39;t bother trying to extend it past the limit. However, not all functions meet this requirement, consider the following:&lt;/p&gt;
+&lt;p&gt;This way of dealing with optional parameters works well if people won’t bother trying to extend it past the limit. However, not all functions meet this requirement, consider the following:&lt;/p&gt;
 &lt;pre class="highlight plaintext"&gt;function add(a, b, c) {
     a = a || 0;
     b = b || 0;
@@ -468,10 +468,10 @@ add(1, 2, 3, 4); // returns 10
 
 &lt;p&gt;&lt;strong&gt;So it’s an array of all the params&lt;/strong&gt;&lt;/p&gt;
 
-&lt;p&gt;Almost. It’s not quite an array. It’s like a kiddy array - hasn&amp;#39;t got all the functionality just yet. If you want to use it for access only (as in the example above), then you&amp;#39;re all good. But if you want to do interesting manipulations, &lt;code&gt;pop&lt;/code&gt; things off, or reorder items, then you need to convert &lt;code&gt;arguments&lt;/code&gt; to a full array:&lt;/p&gt;
+&lt;p&gt;Almost. It’s not quite an array. It’s like a kiddy array - hasn’t got all the functionality just yet. If you want to use it for access only (as in the example above), then you&amp;#39;re all good. But if you want to do interesting manipulations, &lt;code&gt;pop&lt;/code&gt; things off, or reorder items, then you need to convert &lt;code&gt;arguments&lt;/code&gt; to a full array:&lt;/p&gt;
 &lt;pre class="highlight plaintext"&gt;var temp = Array.slice(arguments);
 &lt;/pre&gt;
-&lt;p&gt;I assume the reason for this is to make &lt;code&gt;arguments&lt;/code&gt; read only, although I haven&amp;#39;t researched that.&lt;/p&gt;
+&lt;p&gt;I assume the reason for this is to make &lt;code&gt;arguments&lt;/code&gt; read only, although I haven’t researched that.&lt;/p&gt;
 
 &lt;p&gt;And there you have it - three ways to handle optional parameters in JavaScript.&lt;/p&gt;
 
@@ -548,7 +548,7 @@ princess.bark();
     <link rel="alternate" href="http://lucybain.com/blog/2015/js-data-types/"/>
     <id>http://lucybain.com/blog/2015/js-data-types/</id>
     <published>2015-03-22T00:00:00Z</published>
-    <updated>2015-09-19T17:31:15+10:00</updated>
+    <updated>2015-09-19T18:03:51+10:00</updated>
     <author>
       <name>Article Author</name>
     </author>
@@ -597,7 +597,7 @@ typeof num; // number
 "I like cats";
 'Testing "quotes';
 &lt;/pre&gt;
-&lt;p&gt;I don&amp;#39;t think they&amp;#39;re particularly interesting, but they are remarkably powerful. The main way we communicate with our users is the written word and &lt;code&gt;string&lt;/code&gt; makes this possible.&lt;/p&gt;
+&lt;p&gt;I don’t think they&amp;#39;re particularly interesting, but they are remarkably powerful. The main way we communicate with our users is the written word and &lt;code&gt;string&lt;/code&gt; makes this possible.&lt;/p&gt;
 
 &lt;h3&gt;Symbol&lt;/h3&gt;
 
@@ -626,7 +626,7 @@ console.log(dog[breed]); // logs "Corgi"
 &lt;/pre&gt;
 &lt;h3&gt;Object&lt;/h3&gt;
 
-&lt;p&gt;Everything in JS that we didn&amp;#39;t discuss above is an Object. So objects are the most complex data type; I&amp;#39;ll dedicate a future post to them since it’s a lot to cover here. But you&amp;#39;ve probably worked with objects in the past. They typically look like this:&lt;/p&gt;
+&lt;p&gt;Everything in JS that we didn’t discuss above is an Object. So objects are the most complex data type; I&amp;#39;ll dedicate a future post to them since it’s a lot to cover here. But you&amp;#39;ve probably worked with objects in the past. They typically look like this:&lt;/p&gt;
 &lt;pre class="highlight plaintext"&gt;var cat = { sound: "meow" };
 
 var fluffy = new Cat();
@@ -635,7 +635,7 @@ var whiskers = new function() {
     this.sound = "meow";
 }
 &lt;/pre&gt;
-&lt;p&gt;But notice that we haven&amp;#39;t mentioned &lt;code&gt;Array&lt;/code&gt;, &lt;code&gt;Date&lt;/code&gt;, or even &lt;code&gt;function&lt;/code&gt; that’s because, &lt;a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#.22Normal.22_objects.2C_and_functions"&gt;officially&lt;/a&gt;, they&amp;#39;re all of type &lt;code&gt;object&lt;/code&gt;. Pretty crazy, huh?&lt;/p&gt;
+&lt;p&gt;But notice that we haven’t mentioned &lt;code&gt;Array&lt;/code&gt;, &lt;code&gt;Date&lt;/code&gt;, or even &lt;code&gt;function&lt;/code&gt; that’s because, &lt;a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#.22Normal.22_objects.2C_and_functions"&gt;officially&lt;/a&gt;, they&amp;#39;re all of type &lt;code&gt;object&lt;/code&gt;. Pretty crazy, huh?&lt;/p&gt;
 
 &lt;h2&gt;Resources&lt;/h2&gt;
 

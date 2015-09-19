@@ -53,17 +53,17 @@
         
         <p>Coming from a Ruby background, I find this option the most intuitive. You can create an object of your optional parameters, it&#39;d look something like this:</p>
         <pre class="highlight plaintext">var params = {&#x000A;    size: ’small',&#x000A;    color: 'red'&#x000A;};&#x000A;&#x000A;function carSentence(optionalParams) {&#x000A;    var size = optionalParams.size;&#x000A;    var color = optionalParams.color;&#x000A;    var speed = optionalParams.speed;&#x000A;    console.log("My favourite car is a " + size +&#x000A;                " sized " + color + " one that goes " + speed);&#x000A;}&#x000A;carSentence(params);&#x000A;// logs "My favourite car is a small sized red one that goes "</pre>
-        <p>As you can see I didn&#39;t supply the <code>speed</code> parameter in my <code>params</code> object, but the <code>carSentence</code> function still worked. So <code>speed</code> was an optional parameter.</p>
+        <p>As you can see I didn’t supply the <code>speed</code> parameter in my <code>params</code> object, but the <code>carSentence</code> function still worked. So <code>speed</code> was an optional parameter.</p>
         
         <p><strong>But <code>optionalParams</code> was still required</strong></p>
         
-        <p>Yep, you caught me! This isn&#39;t really what people usually mean by “optional” parameters. But I did want to throw it out there as a possibility. I think it’s an underrated option.</p>
+        <p>Yep, you caught me! This isn’t really what people usually mean by “optional” parameters. But I did want to throw it out there as a possibility. I think it’s an underrated option.</p>
         
         <p><strong>What if I wanted a default speed?</strong></p>
         
-        <p><code>optionalParams</code> didn&#39;t define a value for <code>speed</code>, but the sentence expected <code>speed</code> to be defined. In this case you can give a default value for the variable (such as <code>&quot;fast&quot;</code>). It’s tempting to do this:</p>
+        <p><code>optionalParams</code> didn’t define a value for <code>speed</code>, but the sentence expected <code>speed</code> to be defined. In this case you can give a default value for the variable (such as <code>&quot;fast&quot;</code>). It’s tempting to do this:</p>
         <pre class="highlight plaintext">var speed = optionalParams.speed || "fast";</pre>
-        <p>but this won&#39;t work when <code>optionalParams.speed</code> is <code>false</code>. The better way to handle it is:</p>
+        <p>but this won’t work when <code>optionalParams.speed</code> is <code>false</code>. The better way to handle it is:</p>
         <pre class="highlight plaintext">var speed;&#x000A;if (typeof optionalParams.speed !== 'undefined') {&#x000A;    speed = optionalParams.speed;&#x000A;} else {&#x000A;    speed = "fast";&#x000A;}</pre>
         <p>however that’s quite wordy. You can cut it down with a <a href="/blog/2014/js-ternary/">ternary</a>, or make a <code>givenOrDefault</code> method (hopefully with a better name!).</p>
         <pre class="highlight plaintext">function givenOrDefault(given, default) {&#x000A;    if (typeof given !== 'undefined') {&#x000A;        return given;&#x000A;    } else {&#x000A;        return default;&#x000A;    }&#x000A;}</pre>
@@ -73,7 +73,7 @@
         
         <p>Another method of dealing with optional parameters is to simply allow them to be missing.</p>
         <pre class="highlight plaintext">function carSentence(size, color, speed) {&#x000A;    size = givenOrDefault(size, "medium");&#x000A;    color = givenOrDefault(color, "blue");&#x000A;    speed = givenOrDefault(speed, "fast");&#x000A;    console.log("My favourite car is a " + size +&#x000A;                " sized " + color + " one that goes " + speed);&#x000A;}&#x000A;carSentence("medium", "blue");&#x000A;// logs "My favourite car is a medium sized blue one that goes fast"</pre>
-        <p>This way of dealing with optional parameters works well if people won&#39;t bother trying to extend it past the limit. However, not all functions meet this requirement, consider the following:</p>
+        <p>This way of dealing with optional parameters works well if people won’t bother trying to extend it past the limit. However, not all functions meet this requirement, consider the following:</p>
         <pre class="highlight plaintext">function add(a, b, c) {&#x000A;    a = a || 0;&#x000A;    b = b || 0;&#x000A;    c = c || 0;&#x000A;    return a + b + c;&#x000A;}&#x000A;&#x000A;add(1, 2); // returns 3&#x000A;add(1, 2, 3); // returns 6&#x000A;add(1, undefined, 3); // returns 4</pre>
         <p>It kinda works. It&#39;ll fall over if you try <code>add(1, 2, 3, 4)</code> which returns 6 rather than 10.</p>
         
@@ -89,9 +89,9 @@
         
         <p><strong>So it’s an array of all the params</strong></p>
         
-        <p>Almost. It’s not quite an array. It’s like a kiddy array - hasn&#39;t got all the functionality just yet. If you want to use it for access only (as in the example above), then you&#39;re all good. But if you want to do interesting manipulations, <code>pop</code> things off, or reorder items, then you need to convert <code>arguments</code> to a full array:</p>
+        <p>Almost. It’s not quite an array. It’s like a kiddy array - hasn’t got all the functionality just yet. If you want to use it for access only (as in the example above), then you&#39;re all good. But if you want to do interesting manipulations, <code>pop</code> things off, or reorder items, then you need to convert <code>arguments</code> to a full array:</p>
         <pre class="highlight plaintext">var temp = Array.slice(arguments);</pre>
-        <p>I assume the reason for this is to make <code>arguments</code> read only, although I haven&#39;t researched that.</p>
+        <p>I assume the reason for this is to make <code>arguments</code> read only, although I haven’t researched that.</p>
         
         <p>And there you have it - three ways to handle optional parameters in JavaScript.</p>
         

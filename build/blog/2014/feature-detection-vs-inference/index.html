@@ -65,9 +65,9 @@
         
         <p>The general thought process goes like this:</p>
         
-        <p><em>Chrome implements the <code>Text</code> function. I also know Chrome doesn&#39;t have <code>applyElement</code> like IE does. So I&#39;ll write code like...</em></p>
+        <p><em>Chrome implements the <code>Text</code> function. I also know Chrome doesn’t have <code>applyElement</code> like IE does. So I&#39;ll write code like...</em></p>
         <pre class="highlight plaintext">if(typeof applyElement != 'undefined') {&#x000A;    // now I know I'm not in IE, I'll just assume Text is available&#x000A;    text = new Text('Oh, how quick that fox was!');&#x000A;}</pre>
-        <p>But oops! Someone looked at that code in Firefox which doesn&#39;t implement <code>applyElement</code> or <code>Text</code>! They got an error :(</p>
+        <p>But oops! Someone looked at that code in Firefox which doesn’t implement <code>applyElement</code> or <code>Text</code>! They got an error :(</p>
         
         <p>So that’s the problem. Since you&#39;re not checking for the feature you&#39;re using you&#39;re more likely to have inconsistencies. Also, if in the future one of the browsers changes what they implement all your assumptions will be inacurate.</p>
         
@@ -85,7 +85,7 @@
         
         <p><strong>TL;DR</strong></p>
         
-        <p>Use feature detection if you&#39;re working with a feature that isn&#39;t available across all browsers. When the browsers upgrade your code will be able to take advantage of the upgrade and your code will still work.</p>
+        <p>Use feature detection if you&#39;re working with a feature that isn’t available across all browsers. When the browsers upgrade your code will be able to take advantage of the upgrade and your code will still work.</p>
         
         <p><strong>Resources</strong></p>
         

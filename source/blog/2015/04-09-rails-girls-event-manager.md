@@ -28,7 +28,7 @@ Bonus:
 
 * Anything else that’s used for event management - tracking caterers, receipts, sponsors, to do lists, etc.
 
-I know that’s a fairly long list. I've looked around at a few, but haven't found anything that meets our needs yet, so I'm reaching out to ask if you know of any such product.
+I know that’s a fairly long list. I've looked around at a few, but haven’t found anything that meets our needs yet, so I'm reaching out to ask if you know of any such product.
 
 Yes, I know we *could* build it ourselves. I'm sure that'll have a fair bit of upkeep and I'm keen to keep our involvement to a minimum. (But hey, if you want to build it, you know you'll have at least one (non-paying) customer!)
 

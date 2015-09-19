@@ -57,7 +57,7 @@
         
         <p>Let’s take a look:</p>
         <pre class="highlight plaintext">&lt;a href='page2.html' class='link classes' name='linkName' id='linkID'&gt;Hi&lt;/a&gt;&#x000A;&#x000A;$('#linkID').prop('href'); // returns "http://example.com/page2.html"&#x000A;$('#linkID').prop('name'); // returns "linkName"&#x000A;$('#linkID').prop('id'); // returns "linkID"&#x000A;$('#linkID').prop('className'); // returns "link classes"</pre>
-        <p>As you can see, all of the properties we set in the HTML are available through <code>prop</code>. Other properties are available too, such as <code>style</code>, even though we didn&#39;t explicitly set them.</p>
+        <p>As you can see, all of the properties we set in the HTML are available through <code>prop</code>. Other properties are available too, such as <code>style</code>, even though we didn’t explicitly set them.</p>
         
         <p>Properties can also be updated through the <code>prop</code> method:</p>
         <pre class="highlight plaintext">&lt;a href='page2.html'&gt;Hi&lt;/a&gt;&#x000A;&#x000A;$('#linkID').prop('href', 'page1.html');&#x000A;$('#linkID').prop('href'); // returns "http://example.com/page1.html"</pre>

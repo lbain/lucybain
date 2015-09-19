@@ -59,7 +59,7 @@
         
         <p>Hopefully that’s straight forward enough. However, browsers differ on what should and should not get included in the “content” area. Up for debate is the content itself (words), the padding, the borders, and the margin. As far as I know, everyone agrees that the words should count towards the width, and that the margin should not. But when it comes to the padding and border things are uncertain.</p>
         
-        <p>Some browsers (such as Firefox) think the width should only include the the content itself, not the padding, boarder, nor margin. Other browsers (such as IE) think the width should include the content, padding, and boarder, but not the margin. (So far I haven&#39;t found anyone who thinks the padding should be in and the boarder out - they seem to always go as a pair.)</p>
+        <p>Some browsers (such as Firefox) think the width should only include the the content itself, not the padding, boarder, nor margin. Other browsers (such as IE) think the width should include the content, padding, and boarder, but not the margin. (So far I haven’t found anyone who thinks the padding should be in and the boarder out - they seem to always go as a pair.)</p>
         
         <p>So for these two ways of looking at things, there are two ways to define the box. Let’s look at them one by one.</p>
         
@@ -101,7 +101,7 @@
         
         <p><em>How much bigger?</em></p>
         
-        <p>Well, since the border (10px) and padding (20px) don&#39;t count towards the total width, the entire div is 10px (border left) + 20px (padding left) + 20px (padding right) + 10px (border right) larger. Or 60px larger all up, giving it an “actual” width of 210px. Here it is again with a ruler set to 210px (just in case you don&#39;t believe me):</p>
+        <p>Well, since the border (10px) and padding (20px) don’t count towards the total width, the entire div is 10px (border left) + 20px (padding left) + 20px (padding right) + 10px (border right) larger. Or 60px larger all up, giving it an “actual” width of 210px. Here it is again with a ruler set to 210px (just in case you don’t believe me):</p>
         
         <div class="border-box width" style="width: 210px;">
         </div>
@@ -131,7 +131,7 @@
         
         <p>Well, exactly as above, using <code>box-sizing: border-box</code> or <code>box-sizing: content-box</code> depending on your need.</p>
         
-        <p>While it’s possible to set <code>box-sizing</code> per element (as I did in my examples) this is usually very confusing. If each element could be one way or another you wouldn&#39;t know what widths to set on things until you checked which box model they used. Therefore it’s recommended to set <code>box-sizing</code> on all your elements with <code>* { box-sizing: YOUR_DECISION_HERE; }</code>.</p>
+        <p>While it’s possible to set <code>box-sizing</code> per element (as I did in my examples) this is usually very confusing. If each element could be one way or another you wouldn’t know what widths to set on things until you checked which box model they used. Therefore it’s recommended to set <code>box-sizing</code> on all your elements with <code>* { box-sizing: YOUR_DECISION_HERE; }</code>.</p>
         
         <h2>Which one should I use?</h2>
         

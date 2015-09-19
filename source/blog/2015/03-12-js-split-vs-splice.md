@@ -15,7 +15,7 @@ console.log(myString.split()); // ['My test string']
 console.log(myString); // 'My test string'
 ```
 
-Hmmm, that’s not super useful - `split` called without a parameter simply creates an array with one element, the string. But note that calling `split` on `myString` doesn't change `myString`.
+Hmmm, that’s not super useful - `split` called without a parameter simply creates an array with one element, the string. But note that calling `split` on `myString` doesn’t change `myString`.
 
 Ok, let’s try something a little more interesting. I want to break `myString` up into whole words. We can split `myString` on spaces like this:
 
@@ -25,9 +25,9 @@ console.log(myString.split(' ')); // ['My', 'test', ’string']
 console.log(myString); // 'My test string'
 ```
 
-Much more useful! When you call `split` with a parameter the string is *split* on every occurrence of that parameter. Note that the parameter itself is removed from the array (there are no spaces in `['My', 'test', ’string']`). Now we can know how many words are in a sentence, or find people’s first and last names (sometimes, names can get tricky...). Again, note that `myString` wasn't changed.
+Much more useful! When you call `split` with a parameter the string is *split* on every occurrence of that parameter. Note that the parameter itself is removed from the array (there are no spaces in `['My', 'test', ’string']`). Now we can know how many words are in a sentence, or find people’s first and last names (sometimes, names can get tricky...). Again, note that `myString` wasn’t changed.
 
-But what if `myString` was really long? Maybe you don't want an array with hundreds of items in it. Or perhaps you only want to find the first nonoccurence of something. Let’s look for the first two word in `myString`:
+But what if `myString` was really long? Maybe you don’t want an array with hundreds of items in it. Or perhaps you only want to find the first nonoccurence of something. Let’s look for the first two word in `myString`:
 
 ```
 var myString = 'My test string';
@@ -47,7 +47,7 @@ Sweet, we're halfway there!
 
 *So, what does `splice` do?*
 
-The name isn't great, but it’s related to **splicing** things together. Like you can take the end of one rope and splice it together with another. It’s a [real thing](https://www.google.com.au/search?q=splice+rope).
+The name isn’t great, but it’s related to **splicing** things together. Like you can take the end of one rope and splice it together with another. It’s a [real thing](https://www.google.com.au/search?q=splice+rope).
 
 Anyways... in JS `splice` is an array method. Let’s look at a few sample calls:
 
@@ -71,7 +71,7 @@ console.log(countingArray); // [5, 7, 8]
 
 What we said was “from position **1** please remove **1** element and return it to me.”
 
-> Note: JS doesn't have a `.delete(index)` for arrays. The best you can do is `delete array[index]`, but that actually just replaces the value at `array[index]` with `undefined`. Using `splice` in the above example is how you can actually delete elements from an array.
+> Note: JS doesn’t have a `.delete(index)` for arrays. The best you can do is `delete array[index]`, but that actually just replaces the value at `array[index]` with `undefined`. Using `splice` in the above example is how you can actually delete elements from an array.
 
 Alright, on to the optional parameter(s)!
 

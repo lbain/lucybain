@@ -6,7 +6,7 @@
     <meta content='IE=edge,chrome=1' http-equiv='X-UA-Compatible'>
     <link href='/images/favicon.ico' rel='icon' type='image/ico'>
     <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700|Source+Code+Pro' rel='stylesheet' type='text/css'>
-    <title>JS: don't extend JS objects</title>
+    <title>JS: don’t extend JS objects</title>
     <link href="/stylesheets/application.css" media="all" rel="stylesheet" type="text/css" />
     <script src='//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js'></script>
   </head>
@@ -44,7 +44,7 @@
     </script>
     <div class='content'>
       <div class=' blog-listing'>
-        <h1>JS: don't extend JS objects</h1>
+        <h1>JS: don’t extend JS objects</h1>
         <p>Published on: November 25, 2014</p>
         <p>Tags: <a href="/blog/tags/js/">js</a> and <a href="/blog/tags/interview-questions/">interview-questions</a></p>
         <h2>Why is extending built in JavaScript objects not a good idea?</h2>
@@ -63,13 +63,13 @@
         
         <p>The main argument against doing this is: if, in future, a browser decides to implement its own version of your method, your method might get overridden (silently) and the browser’s implementation (which is probably different from yours) would take over. So not extending in the first place is future proofing your code.</p>
         
-        <p>On the flip side, if you decide to overwrite the browsers definition, any future developer working on your code won&#39;t know about the change. They&#39;ll have a harder time getting up to speed.</p>
+        <p>On the flip side, if you decide to overwrite the browsers definition, any future developer working on your code won’t know about the change. They&#39;ll have a harder time getting up to speed.</p>
         
         <p>Generally it’s safer to move your particular changes into a library (as with <a href="http://documentcloud.github.io/underscore/">underscore.js</a>). That way your particular methods are clearly marked and there’s no chance of conflict.</p>
         
         <p><strong>But...</strong></p>
         
-        <p>It might be a good idea to add an extension for functionality that became available in later versions, but isn&#39;t guaranteed to be available in your particular browser. You can read more about this kind of polyfill on <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter#Polyfill">Mozilla</a>.</p>
+        <p>It might be a good idea to add an extension for functionality that became available in later versions, but isn’t guaranteed to be available in your particular browser. You can read more about this kind of polyfill on <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter#Polyfill">Mozilla</a>.</p>
         
         <p><strong>References</strong></p>
         

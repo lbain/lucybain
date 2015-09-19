@@ -47,7 +47,7 @@
         <h1>JS Immediately Invoked Function Expressions</h1>
         <p>Published on: October  1, 2014</p>
         <p>Tags: <a href="/blog/tags/js/">js</a> and <a href="/blog/tags/interview-questions/">interview-questions</a></p>
-        <h2>Explain why the following doesn&#39;t work as an IIFE: <code>function foo(){ }();</code></h2>
+        <h2>Explain why the following doesn’t work as an IIFE: <code>function foo(){ }();</code></h2>
         
         <p><em>What does “IIFE” even stand for?</em></p>
         
@@ -61,9 +61,9 @@
         <pre class="highlight plaintext">(function () {&#x000A;  return 5;&#x000A;} ());&#x000A;// returns 5 right away</pre>
         <p>They can be used to guard against <strong>unintended effects of hoisting:</strong></p>
         
-        <p>The following code snip-it is from <a href="https://en.wikipedia.org/wiki/Immediately-invoked_function_expression#Evaluation_context">Wikipedia</a>. I didn&#39;t understand how it worked right away, but I wrote the explanation following the snip-it to clear up my confusion.</p>
+        <p>The following code snip-it is from <a href="https://en.wikipedia.org/wiki/Immediately-invoked_function_expression#Evaluation_context">Wikipedia</a>. I didn’t understand how it worked right away, but I wrote the explanation following the snip-it to clear up my confusion.</p>
         <pre class="highlight plaintext">var v = 1;&#x000A;var getValue = (function(x) {&#x000A;  return function() { return x; };&#x000A;}(v));&#x000A;v = 2;&#x000A;&#x000A;getValue(); // returns 1</pre>
-        <p><em>I can&#39;t even read that, what do all the nested functions mean?</em></p>
+        <p><em>I can’t even read that, what do all the nested functions mean?</em></p>
         
         <p>Let’s investigate the IIFE assigned to <code>getValue</code> by rewriting it with a helper function:</p>
         <pre class="highlight plaintext">var v = 1;&#x000A;&#x000A;function helperFunction(x) {&#x000A;  return function() {&#x000A;    return x;&#x000A;  };&#x000A;}&#x000A;var getValue = helperFunction(v); // returns an anonymous function&#x000A;&#x000A;v = 2;&#x000A;&#x000A;getValue(); // invokes that function</pre>
@@ -95,7 +95,7 @@
         
         <p><code>counter</code> is set to the return value of <code>helperFunction</code>, that is just this bit:</p>
         <pre class="highlight json"><span class="p">{</span><span class="w">&#x000A;  </span><span class="err">get</span><span class="p">:</span><span class="w"> </span><span class="err">function()</span><span class="p">{</span><span class="w">&#x000A;    </span><span class="err">return</span><span class="w"> </span><span class="err">i;</span><span class="w">&#x000A;  </span><span class="err">}</span><span class="p">,</span><span class="w">&#x000A;  </span><span class="err">set</span><span class="p">:</span><span class="w"> </span><span class="err">function(</span><span class="w"> </span><span class="err">val</span><span class="w"> </span><span class="err">)</span><span class="p">{</span><span class="w">&#x000A;    </span><span class="err">i</span><span class="w"> </span><span class="err">=</span><span class="w"> </span><span class="err">val;</span><span class="w">&#x000A;  </span><span class="err">}</span><span class="w">&#x000A;</span><span class="p">}</span><span class="err">;</span><span class="w">&#x000A;</span></pre>
-        <p>You&#39;ll notice <code>var i</code> doesn&#39;t appear anywhere in there. <code>i</code> is defined elsewhere in the <code>helperFunction</code> / IIFE. Since the return value of <code>helperFunction</code> doesn&#39;t give explicit access to <code>i</code>, <code>counter</code> doesn&#39;t have access.</p>
+        <p>You&#39;ll notice <code>var i</code> doesn’t appear anywhere in there. <code>i</code> is defined elsewhere in the <code>helperFunction</code> / IIFE. Since the return value of <code>helperFunction</code> doesn’t give explicit access to <code>i</code>, <code>counter</code> doesn’t have access.</p>
         
         <p><em>Fine, so if that’s all that <code>counter</code> has access to, how does <code>counter.get()</code> return a value?</em></p>
         
@@ -115,9 +115,9 @@
         
         <p>With all that explanation behind us, let’s go back to the original question:</p>
         
-        <p><strong>Explain why the following doesn&#39;t work as an IIFE: <code>function foo(){ }();</code></strong></p>
+        <p><strong>Explain why the following doesn’t work as an IIFE: <code>function foo(){ }();</code></strong></p>
         
-        <p>Because <code>foo</code> isn&#39;t being called! Here’s a rewrite:</p>
+        <p>Because <code>foo</code> isn’t being called! Here’s a rewrite:</p>
         <pre class="highlight plaintext">function foo(){&#x000A;}();</pre>
         <p>This is a function <strong>definition</strong>, it defines <code>foo</code>. But it’s not a function <strong>expression</strong> - that is, it’s not understood by the JS parser to actually call a function.</p>
         

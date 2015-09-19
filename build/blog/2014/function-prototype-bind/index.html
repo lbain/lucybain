@@ -49,7 +49,7 @@
         <p>Tags: <a href="/blog/tags/js/">js</a> and <a href="/blog/tags/interview-questions/">interview-questions</a></p>
         <h2>Explain Function.prototype.bind</h2>
         
-        <p>I hadn&#39;t heard of <code>bind</code> before, so I&#39;ve just been reading up on this one. Woah. It’s pretty cool! Why hasn&#39;t anyone mentioned it before?!</p>
+        <p>I hadn’t heard of <code>bind</code> before, so I&#39;ve just been reading up on this one. Woah. It’s pretty cool! Why hasn’t anyone mentioned it before?!</p>
         
         <p><strong>Official answer</strong></p>
         
@@ -63,7 +63,7 @@
         <pre class="highlight plaintext">function Person(name){&#x000A;  this.name = name;&#x000A;  this.distractedGreeting = function() {&#x000A;    var self = this; // &lt;-- this line!&#x000A;    setTimeout(function(){&#x000A;      console.log("Hello, my name is " + self.name); // &lt;-- and here!&#x000A;    }, 500);&#x000A;  }&#x000A;}&#x000A;&#x000A;var alice = new Person('Alice');&#x000A;alice.distractedGreeting();&#x000A;// after 500ms logs "Hello, my name is Alice"</pre>
         <p>See that line <code>var self = this;</code>? That’s called “caching <code>this</code>”. (<em>Cache</em> as in save it away, not as in for optimisation purposes.)</p>
         
-        <p>That’s pretty handy, since it gives you access to the <code>Person</code> context within the <code>setTimeout</code> function. The “inside” <code>this</code> refers to the <code>setTimeout</code> context, which doesn&#39;t have a <code>name</code> method.</p>
+        <p>That’s pretty handy, since it gives you access to the <code>Person</code> context within the <code>setTimeout</code> function. The “inside” <code>this</code> refers to the <code>setTimeout</code> context, which doesn’t have a <code>name</code> method.</p>
         
         <p>But, it turns out, there is a better way! You can use <code>bind</code>. The example above is updated to:</p>
         <pre class="highlight plaintext">function Person(name){&#x000A;  this.name = name;&#x000A;  this.distractedGreeting = function() {&#x000A;    setTimeout(function(){&#x000A;      console.log("Hello, my name is " + this.name);&#x000A;    }.bind(this), 500); // &lt;-- this line!&#x000A;  }&#x000A;}&#x000A;&#x000A;var alice = new Person('Alice');&#x000A;alice.distractedGreeting();&#x000A;// after 500ms logs "Hello, my name is Alice"</pre>
@@ -75,7 +75,7 @@
         
         <p>How about an example to clear this up?</p>
         <pre class="highlight plaintext">function Person(name){&#x000A;  this.name = name;&#x000A;  this.distractedGreeting = function() {&#x000A;    setTimeout(function(){&#x000A;      console.log("Hello, my name is " + this.name);&#x000A;      console.log(this.location.origin); // error!&#x000A;    }.bind(this), 500);&#x000A;  }&#x000A;}</pre>
-        <p>Ok, so using <code>setTimeout</code> doesn&#39;t lead to the most exciting example, but go with me here. We get an error on the <code>this.location.origin</code> because the newly bound <code>this</code> refers to the <code>Person</code> object, not the context of <code>setTimeout</code>. To get the outcome we&#39;re looking for, we have to cache <code>this</code>:</p>
+        <p>Ok, so using <code>setTimeout</code> doesn’t lead to the most exciting example, but go with me here. We get an error on the <code>this.location.origin</code> because the newly bound <code>this</code> refers to the <code>Person</code> object, not the context of <code>setTimeout</code>. To get the outcome we&#39;re looking for, we have to cache <code>this</code>:</p>
         <pre class="highlight plaintext">function Person(name){&#x000A;  this.name = name;&#x000A;  this.distractedGreeting = function() {&#x000A;    var self = this; // caching&#x000A;    setTimeout(function(){&#x000A;      console.log("Hello, my name is " + self.name);&#x000A;      console.log(this.location.origin);&#x000A;    }, 500); // no binding&#x000A;  }&#x000A;}</pre>
         <p>Now when we call <code>distractedGreeting</code> we have access to both the <code>Person</code> context (<code>self</code>) and the <code>setTimeout</code> context (<code>this</code>).</p>
         

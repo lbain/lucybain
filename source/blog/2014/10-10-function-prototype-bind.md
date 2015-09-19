@@ -5,7 +5,7 @@ tags: js, interview-questions
 
 ## Explain Function.prototype.bind
 
-I hadn't heard of `bind` before, so I've just been reading up on this one. Woah. It’s pretty cool! Why hasn't anyone mentioned it before?!
+I hadn’t heard of `bind` before, so I've just been reading up on this one. Woah. It’s pretty cool! Why hasn’t anyone mentioned it before?!
 
 __Official answer__
 
@@ -35,7 +35,7 @@ alice.distractedGreeting();
 
 See that line `var self = this;`? That’s called “caching `this`”. (*Cache* as in save it away, not as in for optimisation purposes.)
 
-That’s pretty handy, since it gives you access to the `Person` context within the `setTimeout` function. The “inside” `this` refers to the `setTimeout` context, which doesn't have a `name` method.
+That’s pretty handy, since it gives you access to the `Person` context within the `setTimeout` function. The “inside” `this` refers to the `setTimeout` context, which doesn’t have a `name` method.
 
 But, it turns out, there is a better way! You can use `bind`. The example above is updated to:
 
@@ -74,7 +74,7 @@ function Person(name){
 }
 ```
 
-Ok, so using `setTimeout` doesn't lead to the most exciting example, but go with me here. We get an error on the `this.location.origin` because the newly bound `this` refers to the `Person` object, not the context of `setTimeout`. To get the outcome we're looking for, we have to cache `this`:
+Ok, so using `setTimeout` doesn’t lead to the most exciting example, but go with me here. We get an error on the `this.location.origin` because the newly bound `this` refers to the `Person` object, not the context of `setTimeout`. To get the outcome we're looking for, we have to cache `this`:
 
 
 ```

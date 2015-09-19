@@ -57,13 +57,13 @@
         <pre class="highlight plaintext">function notAClosure() {&#x000A;    var shortLivedVariable = "I'm only here for a little while";&#x000A;    return shortLivedVariable;&#x000A;}&#x000A;notAClosure(); // returns "I'm only here for a little while"</pre>
         <p>Notice that nothing has access to <code>shortLivedVariable</code> now that <code>notAClosure</code> has run. Sure, you can call <code>notAClosure</code> again (and again and again), but each call will create a whole new <code>shortLivedVariable</code>. But hey, it’s hard to tell that each <code>shortLivedVariable</code> is brand new, so let’s clear that up a bit.</p>
         <pre class="highlight plaintext">function stillNotAClosure(anotherShortLivedVariable) {&#x000A;    return anotherShortLivedVariable;&#x000A;}&#x000A;stillNotAClosure("brand"); // returns "brand"&#x000A;stillNotAClosure("new"); // returns "new"&#x000A;stillNotAClosure("string"); // returns "string"</pre>
-        <p>Thus, you can see <code>stillNotAClosure</code> doesn&#39;t retain any reference to previous calls.</p>
+        <p>Thus, you can see <code>stillNotAClosure</code> doesn’t retain any reference to previous calls.</p>
         
-        <p><em>Ok, so that’s what a closure isn&#39;t, but what <strong>is</strong> a closure?</em></p>
+        <p><em>Ok, so that’s what a closure isn’t, but what <strong>is</strong> a closure?</em></p>
         
         <p>In a closure those variables stick around for a while longer since there is a reference to the variables after the function returns.</p>
         <pre class="highlight plaintext">function aClosure() {&#x000A;    var longLivedVariable = "I'm here for a long time";&#x000A;    var innerFunction = function inner() {&#x000A;        return longLivedVariable;&#x000A;    }&#x000A;    return innerFunction;&#x000A;}&#x000A;var closure = aClosure(); // returns a reference to innerFunction&#x000A;closure(); // returns "I'm here for a long time"</pre>
-        <p>Notice that <code>aClosure</code> doesn&#39;t return <code>longLivedVariable</code>, but rather <code>innerFunction</code>. This means there’s a reference hanging around to <code>innerFunction</code>, and because <code>innerFunction</code> has a reference to <code>longLivedVariable</code>, that variable continues to exist.</p>
+        <p>Notice that <code>aClosure</code> doesn’t return <code>longLivedVariable</code>, but rather <code>innerFunction</code>. This means there’s a reference hanging around to <code>innerFunction</code>, and because <code>innerFunction</code> has a reference to <code>longLivedVariable</code>, that variable continues to exist.</p>
         
         <p>Finally, when we call <code>closure()</code>, we&#39;re really calling <code>innerFunction()</code> (the returned value of <code>aClosure()</code>), which in turn returns <code>longLivedVariable</code>.</p>
         

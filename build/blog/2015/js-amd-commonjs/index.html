@@ -49,13 +49,13 @@
         <p>Tags: <a href="/blog/tags/js/">js</a> and <a href="/blog/tags/interview-questions/">interview-questions</a></p>
         <h2>What’s the difference between AMD and CommonJS?</h2>
         
-        <p><strong>Disclaimer:</strong> I&#39;m only going to talk about how this impacts the browser. I will not talk about Node.js, although I know it’s relevant to this discussion. I don&#39;t know enough about Node.js to cover it properly. Ok, let’s get to it!</p>
+        <p><strong>Disclaimer:</strong> I&#39;m only going to talk about how this impacts the browser. I will not talk about Node.js, although I know it’s relevant to this discussion. I don’t know enough about Node.js to cover it properly. Ok, let’s get to it!</p>
         
         <p>To start off, let’s talk about their similarities.</p>
         
         <p><em>What problem are they trying to solve?</em></p>
         
-        <p>Typcially JS relies on having <code>&lt;script&gt;</code> tags in the right order in the HTML. This can often lead to confusion and ordering mistakes. Beyond that, some people prefer to have all their JS compiled into one massive file. This is convenient since they have complete control on ordering and don&#39;t need to rely on <code>&lt;script&gt;</code> tags. However it means all JS gets loaded on each page, which isn&#39;t very performant.</p>
+        <p>Typcially JS relies on having <code>&lt;script&gt;</code> tags in the right order in the HTML. This can often lead to confusion and ordering mistakes. Beyond that, some people prefer to have all their JS compiled into one massive file. This is convenient since they have complete control on ordering and don’t need to rely on <code>&lt;script&gt;</code> tags. However it means all JS gets loaded on each page, which isn’t very performant.</p>
         
         <p>Both AMD and CommonJS are a way of linking JS bits of code, called modules, together. They are a way of defining which modules rely on which other modules so a computer can decide the best way to link everything together, rather than relying on error-prone coders.</p>
         
@@ -91,7 +91,7 @@
         
         <p><em>Part 1: math module</em></p>
         <pre class="highlight plaintext">// math.js&#x000A;var module = {&#x000A;  add: function(x, y) {&#x000A;    return x + y;&#x000A;  },&#x000A;  subtract: function(x, y) {&#x000A;    return x - y;&#x000A;  },&#x000A;  multiply: function(x, y) {&#x000A;    return x * y;&#x000A;  },&#x000A;  divide: function(x, y) {&#x000A;    return x / y;&#x000A;  }&#x000A;};&#x000A;export.math = module; // export is a commonJS specific method&#x000A;                      // export returns what’s publicly available&#x000A;                      // the "math" gives the name of the module</pre>
-        <p>This code doesn&#39;t output anything, but when we require the <code>math</code> module we&#39;ll have access to everything in the returned <code>module</code> object (namely <code>add</code>, <code>subtract</code>, <code>multiply</code>, and <code>divide</code>).</p>
+        <p>This code doesn’t output anything, but when we require the <code>math</code> module we&#39;ll have access to everything in the returned <code>module</code> object (namely <code>add</code>, <code>subtract</code>, <code>multiply</code>, and <code>divide</code>).</p>
         
         <p><em>Part 2: stats module</em></p>
         
@@ -107,7 +107,7 @@
         
         <p><em>Part 1: math module</em></p>
         <pre class="highlight plaintext">define( // AMD specific method used to define a module&#x000A;  'math', // name of the module (this is optional)&#x000A;  // Note: no dependencies (they're optional)&#x000A;  function() {&#x000A;    var module = {&#x000A;      add: function(x, y) {&#x000A;        return x + y;&#x000A;      },&#x000A;      subtract: function(x, y) {&#x000A;        return x - y;&#x000A;      },&#x000A;      multiply: function(x, y) {&#x000A;        return x * y;&#x000A;      },&#x000A;      divide: function(x, y) {&#x000A;        return x / y;&#x000A;      }&#x000A;    };&#x000A;    return module; // returns what’s publicly available&#x000A;});</pre>
-        <p>As with CommonJS, this code doesn&#39;t output anything.</p>
+        <p>As with CommonJS, this code doesn’t output anything.</p>
         
         <p><em>Part 2: stats module</em></p>
         <pre class="highlight plaintext">define( // AMD specific method used to define a module&#x000A;  ’stats', // name of the module (this is optional)&#x000A;  ['math'], // dependency, same name as module above&#x000A;            // it’s an array since there can be more than one&#x000A;  function() {&#x000A;    var module = {&#x000A;      average: function(x, y) {&#x000A;        var sum = math.add(x, y);&#x000A;        return math.divide(sum, 2);&#x000A;      }&#x000A;    };&#x000A;    return module; // returns what’s publicly available&#x000A;});</pre>

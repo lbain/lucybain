@@ -9,7 +9,7 @@ tags: js, interview-questions
 %p
   Well I'm glad you asked. As it turns out we covered this topic in my #{link_to 'JS study group', 'http://codesydney.com/2014-js/'} when I wrote my #{link_to 'Tic Tac Toe game.', '/code-sydney-work/tic-tac-toe/'}
 %p
-  Event delegation is when you bind an event listener to a parent (or ancestor) element rather than the element(s) you are particularly interested in. When the event is triggered you can check the event target to make sure it was actually the triggered on the element of interest. In general this would be inefficient as you're now listening to events on the parent, and have to filter out any that aren't on the particular element of interest. However, event delegation is particularly useful when you have many siblings (or decedents of the ancestor) that you're interested in.
+  Event delegation is when you bind an event listener to a parent (or ancestor) element rather than the element(s) you are particularly interested in. When the event is triggered you can check the event target to make sure it was actually the triggered on the element of interest. In general this would be inefficient as you're now listening to events on the parent, and have to filter out any that aren’t on the particular element of interest. However, event delegation is particularly useful when you have many siblings (or decedents of the ancestor) that you're interested in.
 %p
   A simple example is as follows:
 

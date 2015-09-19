@@ -30,7 +30,7 @@ When you make an assumption that because one feature is present (or not) another
 
 The general thought process goes like this:
 
-*Chrome implements the `Text` function. I also know Chrome doesn't have `applyElement` like IE does. So I'll write code like...*
+*Chrome implements the `Text` function. I also know Chrome doesn’t have `applyElement` like IE does. So I'll write code like...*
 
 ```
 if(typeof applyElement != 'undefined') {
@@ -39,7 +39,7 @@ if(typeof applyElement != 'undefined') {
 }
 ```
 
-But oops! Someone looked at that code in Firefox which doesn't implement `applyElement` or `Text`! They got an error :(
+But oops! Someone looked at that code in Firefox which doesn’t implement `applyElement` or `Text`! They got an error :(
 
 So that’s the problem. Since you're not checking for the feature you're using you're more likely to have inconsistencies. Also, if in the future one of the browsers changes what they implement all your assumptions will be inacurate.
 
@@ -61,7 +61,7 @@ Just like with feature inference, if you use the UA string you're making an assu
 
 **TL;DR**
 
-Use feature detection if you're working with a feature that isn't available across all browsers. When the browsers upgrade your code will be able to take advantage of the upgrade and your code will still work.
+Use feature detection if you're working with a feature that isn’t available across all browsers. When the browsers upgrade your code will be able to take advantage of the upgrade and your code will still work.
 
 **Resources**
 

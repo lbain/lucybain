@@ -5,7 +5,7 @@ tags: js, interview-questions
 
 ## Explain how this works in JavaScript
 
-Huh, well that’s something I've been trying to figure out as I work with JS. `this` still doesn't make perfect sense to me. But here’s my current understanding...
+Huh, well that’s something I've been trying to figure out as I work with JS. `this` still doesn’t make perfect sense to me. But here’s my current understanding...
 
 **`this` is the context the code is running in**
 
