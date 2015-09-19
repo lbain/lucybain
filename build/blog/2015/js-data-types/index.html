@@ -46,8 +46,6 @@
       <div class=' blog-listing'>
         <h1>JS: What datatypes are supported in Javascript?</h1>
         <p>tags: <a href="/blog/tags/js/">js</a> and <a href="/blog/tags/interview-questions/">interview-questions</a></p>
-        <h2>What data types are supported in Javascript?</h2>
-        
         <p>According to the latest <a href="http://en.wikipedia.org/wiki/ECMAScript">ECMAScript</a> release, these are the data types:</p>
         
         <ul>
@@ -62,25 +60,25 @@
         
         <p>Ok, let&#39;s run over those one by one:</p>
         
-        <p><strong>Boolean</strong></p>
+        <h3>Boolean</h3>
         
         <p>Pretty standard across all languages, booleans are <code>true</code> and <code>false</code>. They&#39;re often used for conditional statements.</p>
         <pre class="highlight plaintext">var raining = false;&#x000A;if(raining) {&#x000A;  bringUmbrella();&#x000A;}</pre>
-        <p><strong>Null and Undefined</strong></p>
+        <h3>Null and Undefined</h3>
         
         <p>I&#39;ve <a href="/blog/2014/null-undefined-undeclared/">written</a> about these before, so give that a read :)</p>
         
-        <p><strong>Number</strong></p>
+        <h3>Number</h3>
         
         <p>Things start to get more interesting here. The number data type covers integers and floats. That is, the <code>number</code> type can handle normal numbers (1, 2, 3, 4), but also negative numbers and decimal places. This is different from many languages that have multiple data types to support different numbers.</p>
         <pre class="highlight plaintext">var num = 1;&#x000A;typeof num; // number&#x000A;&#x000A;var num = -2;&#x000A;typeof num; // number&#x000A;&#x000A;var num = 0.3;&#x000A;typeof num; // number</pre>
-        <p><strong>String</strong></p>
+        <h3>String</h3>
         
         <p>As in most languages, JS strings are groupings of characters.</p>
         <pre class="highlight plaintext">"hello world";&#x000A;"I like cats";&#x000A;'Testing "quotes';</pre>
         <p>I don&#39;t think they&#39;re particularly interesting, but they are remarkably powerful. The main way we communicate with our users is the written word and <code>string</code> makes this possible.</p>
         
-        <p><strong>Symbol</strong></p>
+        <h3>Symbol</h3>
         
         <p>This is new in ECMAScript 6; check the <a href="https://kangax.github.io/compat-table/es6/#Symbol">browser support</a> before you use it.</p>
         
@@ -88,13 +86,13 @@
         <pre class="highlight plaintext">var dog = { bark: true }&#x000A;&#x000A;for (var property in dog) {&#x000A;  if (dog.hasOwnProperty(property)) {&#x000A;    console.log(property); // logs "bark"&#x000A;  }&#x000A;}</pre>
         <p>Since symbols are not enumerable they cannot be accessed in this way. However, the symbolised properties are not truly private since they can be accessed directly.</p>
         <pre class="highlight plaintext">var breed = Symbol("breed");&#x000A;var dog = { bark: true };&#x000A;dog[breed] = "Corgi";&#x000A;&#x000A;for (var property in dog) {&#x000A;  if (dog.hasOwnProperty(property)) {&#x000A;    console.log(property); // logs "bark", but not "breed"&#x000A;  }&#x000A;}&#x000A;console.log(dog[breed]); // logs "Corgi"</pre>
-        <p><strong>Object</strong></p>
+        <h3>Object</h3>
         
         <p>Everything in JS that we didn&#39;t discuss above is an Object. So objects are the most complex data type; I&#39;ll dedicate a future post to them since it&#39;s a lot to cover here. But you&#39;ve probably worked with objects in the past. They typically look like this:</p>
         <pre class="highlight plaintext">var cat = { sound: "meow" };&#x000A;&#x000A;var fluffy = new Cat();&#x000A;&#x000A;var whiskers = new function() {&#x000A;    this.sound = "meow";&#x000A;}</pre>
         <p>But notice that we haven&#39;t mentioned <code>Array</code>, <code>Date</code>, or even <code>function</code> that&#39;s because, <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#.22Normal.22_objects.2C_and_functions">officially</a>, they&#39;re all of type <code>object</code>. Pretty crazy, huh?</p>
         
-        <p><strong>Resources</strong></p>
+        <h2>Resources</h2>
         
         <ul>
         <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures">Mozilla</a></li>

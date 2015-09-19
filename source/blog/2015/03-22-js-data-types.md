@@ -15,7 +15,7 @@ According to the latest [ECMAScript](http://en.wikipedia.org/wiki/ECMAScript) re
 
 Ok, let's run over those one by one:
 
-**Boolean**
+### Boolean
 
 Pretty standard across all languages, booleans are `true` and `false`. They're often used for conditional statements.
 
@@ -26,11 +26,11 @@ if(raining) {
 }
 ```
 
-**Null and Undefined**
+### Null and Undefined
 
 I've [written](/blog/2014/null-undefined-undeclared/) about these before, so give that a read :)
 
-**Number**
+### Number
 
 Things start to get more interesting here. The number data type covers integers and floats. That is, the `number` type can handle normal numbers (1, 2, 3, 4), but also negative numbers and decimal places. This is different from many languages that have multiple data types to support different numbers.
 
@@ -45,7 +45,7 @@ var num = 0.3;
 typeof num; // number
 ```
 
-**String**
+### String
 
 As in most languages, JS strings are groupings of characters.
 
@@ -56,7 +56,7 @@ As in most languages, JS strings are groupings of characters.
 ```
 I don't think they're particularly interesting, but they are remarkably powerful. The main way we communicate with our users is the written word and `string` makes this possible.
 
-**Symbol**
+### Symbol
 
 This is new in ECMAScript 6; check the [browser support](https://kangax.github.io/compat-table/es6/#Symbol) before you use it.
 
@@ -87,7 +87,7 @@ for (var property in dog) {
 console.log(dog[breed]); // logs "Corgi"
 ```
 
-**Object**
+### Object
 
 Everything in JS that we didn't discuss above is an Object. So objects are the most complex data type; I'll dedicate a future post to them since it's a lot to cover here. But you've probably worked with objects in the past. They typically look like this:
 
@@ -102,7 +102,7 @@ var whiskers = new function() {
 ```
 But notice that we haven't mentioned `Array`, `Date`, or even `function` that's because, [officially](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#.22Normal.22_objects.2C_and_functions), they're all of type `object`. Pretty crazy, huh?
 
-**Resources**
+## Resources
 
 * [Mozilla](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures)
 * [Symbols](https://leanpub.com/understandinges6/read/#leanpub-auto-symbols)

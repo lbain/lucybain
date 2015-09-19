@@ -278,13 +278,11 @@ princess.bark();
     <link rel="alternate" href="http://lucybain.com/blog/2015/js-data-types/"/>
     <id>http://lucybain.com/blog/2015/js-data-types/</id>
     <published>2015-03-22T00:00:00Z</published>
-    <updated>2015-05-30T17:00:01+10:00</updated>
+    <updated>2015-09-19T15:28:37+10:00</updated>
     <author>
       <name>Article Author</name>
     </author>
-    <content type="html">&lt;h2&gt;What data types are supported in Javascript?&lt;/h2&gt;
-
-&lt;p&gt;According to the latest &lt;a href="http://en.wikipedia.org/wiki/ECMAScript"&gt;ECMAScript&lt;/a&gt; release, these are the data types:&lt;/p&gt;
+    <content type="html">&lt;p&gt;According to the latest &lt;a href="http://en.wikipedia.org/wiki/ECMAScript"&gt;ECMAScript&lt;/a&gt; release, these are the data types:&lt;/p&gt;
 
 &lt;ul&gt;
 &lt;li&gt;Boolean&lt;/li&gt;
@@ -298,7 +296,7 @@ princess.bark();
 
 &lt;p&gt;Ok, let&amp;#39;s run over those one by one:&lt;/p&gt;
 
-&lt;p&gt;&lt;strong&gt;Boolean&lt;/strong&gt;&lt;/p&gt;
+&lt;h3&gt;Boolean&lt;/h3&gt;
 
 &lt;p&gt;Pretty standard across all languages, booleans are &lt;code&gt;true&lt;/code&gt; and &lt;code&gt;false&lt;/code&gt;. They&amp;#39;re often used for conditional statements.&lt;/p&gt;
 &lt;pre class="highlight plaintext"&gt;var raining = false;
@@ -306,11 +304,11 @@ if(raining) {
   bringUmbrella();
 }
 &lt;/pre&gt;
-&lt;p&gt;&lt;strong&gt;Null and Undefined&lt;/strong&gt;&lt;/p&gt;
+&lt;h3&gt;Null and Undefined&lt;/h3&gt;
 
 &lt;p&gt;I&amp;#39;ve &lt;a href="/blog/2014/null-undefined-undeclared/"&gt;written&lt;/a&gt; about these before, so give that a read :)&lt;/p&gt;
 
-&lt;p&gt;&lt;strong&gt;Number&lt;/strong&gt;&lt;/p&gt;
+&lt;h3&gt;Number&lt;/h3&gt;
 
 &lt;p&gt;Things start to get more interesting here. The number data type covers integers and floats. That is, the &lt;code&gt;number&lt;/code&gt; type can handle normal numbers (1, 2, 3, 4), but also negative numbers and decimal places. This is different from many languages that have multiple data types to support different numbers.&lt;/p&gt;
 &lt;pre class="highlight plaintext"&gt;var num = 1;
@@ -322,7 +320,7 @@ typeof num; // number
 var num = 0.3;
 typeof num; // number
 &lt;/pre&gt;
-&lt;p&gt;&lt;strong&gt;String&lt;/strong&gt;&lt;/p&gt;
+&lt;h3&gt;String&lt;/h3&gt;
 
 &lt;p&gt;As in most languages, JS strings are groupings of characters.&lt;/p&gt;
 &lt;pre class="highlight plaintext"&gt;"hello world";
@@ -331,7 +329,7 @@ typeof num; // number
 &lt;/pre&gt;
 &lt;p&gt;I don&amp;#39;t think they&amp;#39;re particularly interesting, but they are remarkably powerful. The main way we communicate with our users is the written word and &lt;code&gt;string&lt;/code&gt; makes this possible.&lt;/p&gt;
 
-&lt;p&gt;&lt;strong&gt;Symbol&lt;/strong&gt;&lt;/p&gt;
+&lt;h3&gt;Symbol&lt;/h3&gt;
 
 &lt;p&gt;This is new in ECMAScript 6; check the &lt;a href="https://kangax.github.io/compat-table/es6/#Symbol"&gt;browser support&lt;/a&gt; before you use it.&lt;/p&gt;
 
@@ -356,7 +354,7 @@ for (var property in dog) {
 }
 console.log(dog[breed]); // logs "Corgi"
 &lt;/pre&gt;
-&lt;p&gt;&lt;strong&gt;Object&lt;/strong&gt;&lt;/p&gt;
+&lt;h3&gt;Object&lt;/h3&gt;
 
 &lt;p&gt;Everything in JS that we didn&amp;#39;t discuss above is an Object. So objects are the most complex data type; I&amp;#39;ll dedicate a future post to them since it&amp;#39;s a lot to cover here. But you&amp;#39;ve probably worked with objects in the past. They typically look like this:&lt;/p&gt;
 &lt;pre class="highlight plaintext"&gt;var cat = { sound: "meow" };
@@ -369,7 +367,7 @@ var whiskers = new function() {
 &lt;/pre&gt;
 &lt;p&gt;But notice that we haven&amp;#39;t mentioned &lt;code&gt;Array&lt;/code&gt;, &lt;code&gt;Date&lt;/code&gt;, or even &lt;code&gt;function&lt;/code&gt; that&amp;#39;s because, &lt;a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#.22Normal.22_objects.2C_and_functions"&gt;officially&lt;/a&gt;, they&amp;#39;re all of type &lt;code&gt;object&lt;/code&gt;. Pretty crazy, huh?&lt;/p&gt;
 
-&lt;p&gt;&lt;strong&gt;Resources&lt;/strong&gt;&lt;/p&gt;
+&lt;h2&gt;Resources&lt;/h2&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures"&gt;Mozilla&lt;/a&gt;&lt;/li&gt;
