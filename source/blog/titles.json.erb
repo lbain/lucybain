@@ -1,0 +1,11 @@
+{
+<% page_articles.each do |article| %>
+  "<%= article.title %>" : "<%= article.url %>",
+<% end %>
+
+<%= blog.tags %>
+
+<% blog.tags.each do |tag, articles| %>
+  "<%= tag %>" : "<%= tag %>",
+<% end %>
+}
