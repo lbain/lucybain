@@ -49,13 +49,13 @@
         <p>Tags: <a href="/blog/tags/js/">js</a> and <a href="/blog/tags/interview-questions/">interview-questions</a></p>
         <h2>What’s a typical use case for anonymous functions?</h2>
         
-        <p>I&#39;m going to go with my high school training and focus on the word <strong>typical</strong>. So long as we&#39;re just talking about typical use, here’s my answer:</p>
+        <p>I’m going to go with my high school training and focus on the word <strong>typical</strong>. So long as we&#39;re just talking about typical use, here’s my answer:</p>
         
         <p>Anonymous functions are typically used as callbacks.</p>
         
         <p><em>So what’s a callback?</em></p>
         
-        <p>I&#39;m glad you asked!</p>
+        <p>I’m glad you asked!</p>
         <pre class="highlight plaintext">function takesACallback(callback) {&#x000A;    // do some interesting things here&#x000A;    return "The callback says: " + callback();&#x000A;}&#x000A;&#x000A;takesACallback(function() {&#x000A;    return "I'm the callback!";&#x000A;}); // returns "The callback says: I'm the callback!"</pre>
         <p>See the function that’s a parameter to the <code>takesACallback</code> call? Notice that it doesn’t have a name? That’s an anonymous function.</p>
         

@@ -5,13 +5,13 @@ tags: js, interview-questions
 
 ## What’s a typical use case for anonymous functions?
 
-I'm going to go with my high school training and focus on the word __typical__. So long as we're just talking about typical use, here’s my answer:
+I’m going to go with my high school training and focus on the word __typical__. So long as we're just talking about typical use, here’s my answer:
 
 Anonymous functions are typically used as callbacks.
 
 *So what’s a callback?*
 
-I'm glad you asked!
+I’m glad you asked!
 
 ```
 function takesACallback(callback) {

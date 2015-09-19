@@ -46,7 +46,7 @@ Time to do some more Googling...
 
 **Fix two (good)**
 
-The correct way to deal with this problem is to use Google Adwords async script. I know it seems really simple and obvious, but I did find a lot of people suggesting the first way, so I'm hoping this post is news to some of you.
+The correct way to deal with this problem is to use Google Adwords async script. I know it seems really simple and obvious, but I did find a lot of people suggesting the first way, so I’m hoping this post is news to some of you.
 
 Here’s how to use Google’s async code:
 

@@ -59,7 +59,7 @@
         
         <p>You&#39;ll notice that it replaced the entire content of the <code>document</code> with the header <code>&quot;JS is awesome!&quot;</code>. Obviously that’s a problem right there - <code>document.write()</code> shouldn’t be used after the page has loaded to change the content as it will overwrite the entire page (probably not what you wanted to happen...).</p>
         
-        <p><code>document.write()</code> doesn’t work for XHTML pages. I&#39;ve only been concerned with HTML so far, so I&#39;m not too fussed about this one. But it might be more relevant in your case.</p>
+        <p><code>document.write()</code> doesn’t work for XHTML pages. I&#39;ve only been concerned with HTML so far, so I’m not too fussed about this one. But it might be more relevant in your case.</p>
         
         <p>Some people think <code>document.write()</code> is a good solution for loading more files (JS or CSS) into the dom after the initial load. Turns out this is not the case, as this is slower than creating a new element (script or a css link) and inserting it into the page.</p>
         

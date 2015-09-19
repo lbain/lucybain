@@ -5,7 +5,7 @@ tags: js, interview-questions
 
 ## What’s the difference between AMD and CommonJS?
 
-**Disclaimer:** I'm only going to talk about how this impacts the browser. I will not talk about Node.js, although I know it’s relevant to this discussion. I don’t know enough about Node.js to cover it properly. Ok, let’s get to it!
+**Disclaimer:** I’m only going to talk about how this impacts the browser. I will not talk about Node.js, although I know it’s relevant to this discussion. I don’t know enough about Node.js to cover it properly. Ok, let’s get to it!
 
 To start off, let’s talk about their similarities.
 

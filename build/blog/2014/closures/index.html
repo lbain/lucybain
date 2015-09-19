@@ -75,7 +75,7 @@
         <pre class="highlight plaintext">var closure1 = stillAClosure("String 1");&#x000A;closure1(); // returns "String 1"&#x000A;closure1(); // returns "String 1"&#x000A;&#x000A;var closure2 = stillAClosure("String 2");&#x000A;closure2(); // returns "String 2"&#x000A;closure2(); // returns "String 2"&#x000A;&#x000A;// And here's the kicker&#x000A;closure1(); // returns "String 1"</pre>
         <p>Bam! Did you see that! <code>closure1</code> kept a reference to <code>&quot;String 1&quot;</code> even though <code>stillAClosure</code> had been called with a whole other parameter (namely <code>&quot;String 2&quot;</code>). That’s some pretty cool stuff!</p>
         
-        <p><em>OK, I&#39;m convinced. But now <strong>why</strong> would I ever want to use a closure?</em></p>
+        <p><em>OK, I’m convinced. But now <strong>why</strong> would I ever want to use a closure?</em></p>
         
         <p>Well, since closures keep access to the variables they can be used to save state. And things that save state look a whole lot like objects. (Before I get any haters, I know you can use closures for a bunch of other things, but this is a reasonable example.)</p>
         <pre class="highlight plaintext">function cat(name) {&#x000A;    return {&#x000A;        sayName: function() {&#x000A;            return name;&#x000A;        }&#x000A;    }&#x000A;}&#x000A;&#x000A;var fluffy = cat('Mr. Fluffy');&#x000A;fluffy.name // returns undefined&#x000A;fluffy.sayName() // returns 'Mr. Fluffy'&#x000A;&#x000A;var whiskers = cat('Whiskers');&#x000A;whiskers.sayName() // returns 'Whiskers'</pre>

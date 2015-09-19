@@ -54,7 +54,7 @@ Partly this is for ease of programming - it’s simpler to keep track of many th
 
 *What are naming collisions?*
 
-Let’s say I'm working on a big project and I get a little lost in the code sometimes. At some point I defined a `warningAlert` function. Then, a few weeks later, I forget that I had a `warningAlert` function defined already, and I define a new one lower down.
+Let’s say I’m working on a big project and I get a little lost in the code sometimes. At some point I defined a `warningAlert` function. Then, a few weeks later, I forget that I had a `warningAlert` function defined already, and I define a new one lower down.
 
 ```
 function warningAlert(text) {
@@ -79,7 +79,7 @@ alerts.warning = function(text) {
 };
 ```
 
-Namespaces aren’t only for you (because I'm sure *you'd* never make a mistake like this... just for demonstration purposes, right?). They're also important when you start including code by a third party.
+Namespaces aren’t only for you (because I’m sure *you'd* never make a mistake like this... just for demonstration purposes, right?). They're also important when you start including code by a third party.
 
 Since everything gets dumped into the global namespace there’s no way to know what you wrote and what was written by someone else. It’s generally a good idea to have a namespace for everything you wrote so you don’t get naming conflicts with anyone else. Actually, jQuery does just that. All the jQuery functions are namespaced to `$`.
 

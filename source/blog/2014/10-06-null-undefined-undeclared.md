@@ -7,7 +7,7 @@ tags: js, interview-questions
 
 Here’s a [TL;DR](http://stackoverflow.com/a/834095/863846) version I found quite useful when writing this.
 
-I think they make more sense in the opposite order: undeclared, undefined, and null. That’s the order I'm going to tackle them anyways.
+I think they make more sense in the opposite order: undeclared, undefined, and null. That’s the order I’m going to tackle them anyways.
 
 First up is **`undeclared`**.
 

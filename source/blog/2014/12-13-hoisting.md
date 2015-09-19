@@ -3,7 +3,7 @@ title: 'JS: Explain “hoisting”'
 tags: js, interview-questions
 ---
 
-I'm continuing my series of [JS interview questions](https://github.com/h5bp/Front-end-Developer-Interview-Questions#js). These posts are proving very good practice for the interviews I'm doing!
+I’m continuing my series of [JS interview questions](https://github.com/h5bp/Front-end-Developer-Interview-Questions#js). These posts are proving very good practice for the interviews I’m doing!
 
 ## Explain “hoisting”
 

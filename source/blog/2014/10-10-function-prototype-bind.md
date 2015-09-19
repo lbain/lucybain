@@ -96,4 +96,4 @@ __Resources__
 
 * [Smashing Magazine](http://www.smashingmagazine.com/2014/01/23/understanding-javascript-function-prototype-bind/) (I found this one more readable)
 * [Mozilla](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/bind)
-* [JS is sexy](http://javascriptissexy.com/javascript-apply-call-and-bind-methods-are-essential-for-javascript-professionals/?WPACFallback=1&WPACRandom=1417428763444) - super long and AMAZING post. It really goes into the details. I'm planning on reading it a second (and probably third) time.
+* [JS is sexy](http://javascriptissexy.com/javascript-apply-call-and-bind-methods-are-essential-for-javascript-professionals/?WPACFallback=1&WPACRandom=1417428763444) - super long and AMAZING post. It really goes into the details. I’m planning on reading it a second (and probably third) time.

@@ -17,7 +17,7 @@ Everything the environment gives you. For the browser, this includes objects lik
 
 __What is a user object?__
 
-This is where I got the most confused. The question asks for the difference between __host__ and __native__ objects, which was covered on a few sites. However, a couple of sites make a third category: __user__ objects. There seems to be some debate about user objects being their own category. I'm not sure which side is right so I'm adding a little blurb about them here, but please ignore if it’s not relevant.
+This is where I got the most confused. The question asks for the difference between __host__ and __native__ objects, which was covered on a few sites. However, a couple of sites make a third category: __user__ objects. There seems to be some debate about user objects being their own category. I’m not sure which side is right so I’m adding a little blurb about them here, but please ignore if it’s not relevant.
 
 User objects are anything the user defines. When you create a new object that is not directly a native object, you've made a user object. So if you create a new string (`"Hello world"`) you created a native object, but if you create an instance of an object you've defined (`"new Cat()"`) then it’s a user object.
 

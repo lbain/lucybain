@@ -24,7 +24,7 @@ Thankfully I used a library called [hello.js](http://adodson.com/hello.js/) that
 
 **Tip:** Don’t work with new technologies / libraries / languages for your coding test. Focus on what you're already good at and do that thing well.
 
-I got all my interaction working as expected and then got moving on the styling. I grabbed a generated colour pallet from [coolors.co](http://coolors.co/) and set up some base styles. It wasn’t anything fancy, it was kinda mobile friendly, but only in the roughest sense, and things looked sorta ok. But it worked, and it no longer looked like simple HTML. This was a success, I'm pleased with the amount of time I spent on styling.
+I got all my interaction working as expected and then got moving on the styling. I grabbed a generated colour pallet from [coolors.co](http://coolors.co/) and set up some base styles. It wasn’t anything fancy, it was kinda mobile friendly, but only in the roughest sense, and things looked sorta ok. But it worked, and it no longer looked like simple HTML. This was a success, I’m pleased with the amount of time I spent on styling.
 
 **Tip:** Styling matters. It’s the first thing your users (read graders) will see. Don’t just gloss over it because it’s not your main love. That said, your users will know that you only had a set amount of time to work on something. This does not need to be pixel perfect. Make it nice, but don’t waste your time.
 
@@ -40,7 +40,7 @@ I finally worked out that if I made my partner a developer for the app he would 
 
 That was the end of my three hours.
 
-**Tip:** Make sure you write down the start and end times of any work sections you do. I thought I'd remember, and I'm pretty sure I was fairly accurate, but I'm sure I wasn’t perfect. Guesstimating exactly how many minutes you've spent on a coding test is stress you don’t need.
+**Tip:** Make sure you write down the start and end times of any work sections you do. I thought I'd remember, and I’m pretty sure I was fairly accurate, but I’m sure I wasn’t perfect. Guesstimating exactly how many minutes you've spent on a coding test is stress you don’t need.
 
 I moved on to the readme. I was actually pretty pleased how this turned out. In their directions they included what they expected from a readme (“a brief description of your app with reasons for your approach and technology as well as any future enhancements you would make given more time”), which was my guide. I also included a section about how to use my app, since they had to request permission to be a developer in order to get it working.
 

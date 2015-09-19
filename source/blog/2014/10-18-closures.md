@@ -85,7 +85,7 @@ closure1(); // returns "String 1"
 
 Bam! Did you see that! `closure1` kept a reference to `"String 1"` even though `stillAClosure` had been called with a whole other parameter (namely `"String 2"`). That’s some pretty cool stuff!
 
-*OK, I'm convinced. But now __why__ would I ever want to use a closure?*
+*OK, I’m convinced. But now __why__ would I ever want to use a closure?*
 
 Well, since closures keep access to the variables they can be used to save state. And things that save state look a whole lot like objects. (Before I get any haters, I know you can use closures for a bunch of other things, but this is a reasonable example.)
 

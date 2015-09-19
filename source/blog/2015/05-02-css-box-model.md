@@ -3,7 +3,7 @@ title: 'CSS: the box model'
 tags: css, interview-questions
 ---
 
-The blog topic (like most of my interview question posts) comes from the [Front-end Job Interview Questions](https://github.com/h5bp/Front-end-Developer-Interview-Questions#css-questions). Today I'm moving away from JS to talk about CSS’s box model.
+The blog topic (like most of my interview question posts) comes from the [Front-end Job Interview Questions](https://github.com/h5bp/Front-end-Developer-Interview-Questions#css-questions). Today I’m moving away from JS to talk about CSS’s box model.
 
 ## Explain your understanding of the box model.
 

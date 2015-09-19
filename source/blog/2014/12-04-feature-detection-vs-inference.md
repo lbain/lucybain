@@ -55,7 +55,7 @@ Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_5) AppleWebKit/537.36 (KHTML, like G
 
 (You can find your user string at [whatsmyuseragent.com](http://whatsmyuseragent.com/).)
 
-But you can see in there (at the end) it says what browser I'm on. So it would be possible to check for a specific version of Chrome by “sniffing” the user agent string. This is generally considered bad practice (but seems to be slightly better practice than feature inference).
+But you can see in there (at the end) it says what browser I’m on. So it would be possible to check for a specific version of Chrome by “sniffing” the user agent string. This is generally considered bad practice (but seems to be slightly better practice than feature inference).
 
 Just like with feature inference, if you use the UA string you're making an assumption about how the string will be written, what changes are likely to happen in this particular version, and that your code will be able to handle any future changes.
 
