@@ -47,11 +47,11 @@
         <h1>JS: AMD and CommonJS</h1>
         <p>Published on: April 23, 2015</p>
         <p>Tags: <a href="/blog/tags/js/">js</a> and <a href="/blog/tags/interview-questions/">interview-questions</a></p>
-        <h2>What&#39;s the difference between AMD and CommonJS?</h2>
+        <h2>What’s the difference between AMD and CommonJS?</h2>
         
-        <p><strong>Disclaimer:</strong> I&#39;m only going to talk about how this impacts the browser. I will not talk about Node.js, although I know it&#39;s relevant to this discussion. I don&#39;t know enough about Node.js to cover it properly. Ok, let&#39;s get to it!</p>
+        <p><strong>Disclaimer:</strong> I&#39;m only going to talk about how this impacts the browser. I will not talk about Node.js, although I know it’s relevant to this discussion. I don&#39;t know enough about Node.js to cover it properly. Ok, let’s get to it!</p>
         
-        <p>To start off, let&#39;s talk about their similarities.</p>
+        <p>To start off, let’s talk about their similarities.</p>
         
         <p><em>What problem are they trying to solve?</em></p>
         
@@ -63,9 +63,9 @@
         
         <p>Both AMD and CommonJS provide standards for other libraries to implement. There are quite a few libraries that have done just that (<a href="http://requirejs.org/">RequireJS</a> and <a href="https://github.com/jrburke/almond">Almond</a> are two that implement AMD). But you &quot;use&quot; AMD or CommonJS code any more than you can &quot;use&quot; object oriented code.</p>
         
-        <p><em>Ok, so that&#39;s how they&#39;re similar. How are they different?</em></p>
+        <p><em>Ok, so that’s how they&#39;re similar. How are they different?</em></p>
         
-        <p>Let&#39;s look at each one individually. We&#39;ll start with AMD:</p>
+        <p>Let’s look at each one individually. We&#39;ll start with AMD:</p>
         
         <p><em>What does &quot;AMD&quot; stand for?</em></p>
         
@@ -73,46 +73,46 @@
         
         <p><em>And what makes it special?</em></p>
         
-        <p>The &quot;module&quot; part should be clear enough since both CommonJS and AMD focus on linking modules together. And the &quot;definition&quot; part is about how it&#39;s a standard, rather than a library. However a key difference for AMD is the &quot;asynchronous&quot; bit. AMD loads each distinct module asynchronously for web performance. Instead of having one <em>giant</em> file with everything in it which causes a slow load time, you can load only the files you need, only when you need them, all asynchronously. Slick, huh?</p>
+        <p>The &quot;module&quot; part should be clear enough since both CommonJS and AMD focus on linking modules together. And the &quot;definition&quot; part is about how it’s a standard, rather than a library. However a key difference for AMD is the &quot;asynchronous&quot; bit. AMD loads each distinct module asynchronously for web performance. Instead of having one <em>giant</em> file with everything in it which causes a slow load time, you can load only the files you need, only when you need them, all asynchronously. Slick, huh?</p>
         
-        <p><em>So then what&#39;s special about CommonJS?</em></p>
+        <p><em>So then what’s special about CommonJS?</em></p>
         
         <p>CommonJS loads modules synchronously. My understanding is that this is better for server-side (Node.js) development. Again, CommonJS is a standard but it focuses more on JS out of the browser than AMD.</p>
         
-        <p><em>That&#39;s it? Async vs. Sync?</em></p>
+        <p><em>That’s it? Async vs. Sync?</em></p>
         
-        <p>Sort of. Of course the syntax for both is different too. Let&#39;s look at how to use each.</p>
+        <p>Sort of. Of course the syntax for both is different too. Let’s look at how to use each.</p>
         
         <h2>Syntax</h2>
         
         <p><strong>CommonJS</strong></p>
         
-        <p>We&#39;ll start with CommonJS since it&#39;s a bit easier to read.</p>
+        <p>We&#39;ll start with CommonJS since it’s a bit easier to read.</p>
         
         <p><em>Part 1: math module</em></p>
-        <pre class="highlight plaintext">// math.js&#x000A;var module = {&#x000A;  add: function(x, y) {&#x000A;    return x + y;&#x000A;  },&#x000A;  subtract: function(x, y) {&#x000A;    return x - y;&#x000A;  },&#x000A;  multiply: function(x, y) {&#x000A;    return x * y;&#x000A;  },&#x000A;  divide: function(x, y) {&#x000A;    return x / y;&#x000A;  }&#x000A;};&#x000A;export.math = module; // export is a commonJS specific method&#x000A;                      // export returns what's publicly available&#x000A;                      // the "math" gives the name of the module</pre>
+        <pre class="highlight plaintext">// math.js&#x000A;var module = {&#x000A;  add: function(x, y) {&#x000A;    return x + y;&#x000A;  },&#x000A;  subtract: function(x, y) {&#x000A;    return x - y;&#x000A;  },&#x000A;  multiply: function(x, y) {&#x000A;    return x * y;&#x000A;  },&#x000A;  divide: function(x, y) {&#x000A;    return x / y;&#x000A;  }&#x000A;};&#x000A;export.math = module; // export is a commonJS specific method&#x000A;                      // export returns what’s publicly available&#x000A;                      // the "math" gives the name of the module</pre>
         <p>This code doesn&#39;t output anything, but when we require the <code>math</code> module we&#39;ll have access to everything in the returned <code>module</code> object (namely <code>add</code>, <code>subtract</code>, <code>multiply</code>, and <code>divide</code>).</p>
         
         <p><em>Part 2: stats module</em></p>
         
         <p>Alright, now we&#39;ve created a module, we can require it in another module.</p>
-        <pre class="highlight plaintext">// stats.js&#x000A;var math = require('math');&#x000A;&#x000A;var module = {&#x000A;  average: function(x, y) {&#x000A;    var sum = math.add(x, y);&#x000A;    return math.divide(sum, 2);&#x000A;  }&#x000A;};&#x000A;export.stats = module; // export is a commonJS specific method&#x000A;                       // export returns what's publicly available&#x000A;                       // the "stats" gives the name of the module</pre>
+        <pre class="highlight plaintext">// stats.js&#x000A;var math = require('math');&#x000A;&#x000A;var module = {&#x000A;  average: function(x, y) {&#x000A;    var sum = math.add(x, y);&#x000A;    return math.divide(sum, 2);&#x000A;  }&#x000A;};&#x000A;export.stats = module; // export is a commonJS specific method&#x000A;                       // export returns what’s publicly available&#x000A;                       // the "stats" gives the name of the module</pre>
         <p><em>Part 3: get output</em></p>
         
         <p>Now we&#39;ve got two modules, we can use them to get output.</p>
-        <pre class="highlight plaintext">var math = require('math');&#x000A;var stats = require('stats');&#x000A;console.log(math.add(1, 2)) // logs "3"&#x000A;console.log(stats.average(0, 4)) // logs "2"</pre>
+        <pre class="highlight plaintext">var math = require('math');&#x000A;var stats = require(’stats');&#x000A;console.log(math.add(1, 2)) // logs "3"&#x000A;console.log(stats.average(0, 4)) // logs "2"</pre>
         <p><strong>AMD</strong></p>
         
         <p>We&#39;ll go through exactly the same example, but this time implement it with AMD.</p>
         
         <p><em>Part 1: math module</em></p>
-        <pre class="highlight plaintext">define( // AMD specific method used to define a module&#x000A;  'math', // name of the module (this is optional)&#x000A;  // Note: no dependencies (they're optional)&#x000A;  function() {&#x000A;    var module = {&#x000A;      add: function(x, y) {&#x000A;        return x + y;&#x000A;      },&#x000A;      subtract: function(x, y) {&#x000A;        return x - y;&#x000A;      },&#x000A;      multiply: function(x, y) {&#x000A;        return x * y;&#x000A;      },&#x000A;      divide: function(x, y) {&#x000A;        return x / y;&#x000A;      }&#x000A;    };&#x000A;    return module; // returns what's publicly available&#x000A;});</pre>
+        <pre class="highlight plaintext">define( // AMD specific method used to define a module&#x000A;  'math', // name of the module (this is optional)&#x000A;  // Note: no dependencies (they're optional)&#x000A;  function() {&#x000A;    var module = {&#x000A;      add: function(x, y) {&#x000A;        return x + y;&#x000A;      },&#x000A;      subtract: function(x, y) {&#x000A;        return x - y;&#x000A;      },&#x000A;      multiply: function(x, y) {&#x000A;        return x * y;&#x000A;      },&#x000A;      divide: function(x, y) {&#x000A;        return x / y;&#x000A;      }&#x000A;    };&#x000A;    return module; // returns what’s publicly available&#x000A;});</pre>
         <p>As with CommonJS, this code doesn&#39;t output anything.</p>
         
         <p><em>Part 2: stats module</em></p>
-        <pre class="highlight plaintext">define( // AMD specific method used to define a module&#x000A;  'stats', // name of the module (this is optional)&#x000A;  ['math'], // dependency, same name as module above&#x000A;            // it's an array since there can be more than one&#x000A;  function() {&#x000A;    var module = {&#x000A;      average: function(x, y) {&#x000A;        var sum = math.add(x, y);&#x000A;        return math.divide(sum, 2);&#x000A;      }&#x000A;    };&#x000A;    return module; // returns what's publicly available&#x000A;});</pre>
+        <pre class="highlight plaintext">define( // AMD specific method used to define a module&#x000A;  ’stats', // name of the module (this is optional)&#x000A;  ['math'], // dependency, same name as module above&#x000A;            // it’s an array since there can be more than one&#x000A;  function() {&#x000A;    var module = {&#x000A;      average: function(x, y) {&#x000A;        var sum = math.add(x, y);&#x000A;        return math.divide(sum, 2);&#x000A;      }&#x000A;    };&#x000A;    return module; // returns what’s publicly available&#x000A;});</pre>
         <p><em>Part 3: get output</em></p>
-        <pre class="highlight plaintext">require( // AMD specific method to run code&#x000A;  // Note: no name, require doesn't support names&#x000A;  ['math', 'stats'], // dependencies&#x000A;  function(math, stats) {&#x000A;    console.log(math.add(1, 2)) // logs "3"&#x000A;    console.log(stats.average(0, 4)) // logs "2"&#x000A;});</pre>
+        <pre class="highlight plaintext">require( // AMD specific method to run code&#x000A;  // Note: no name, require doesn't support names&#x000A;  ['math', ’stats'], // dependencies&#x000A;  function(math, stats) {&#x000A;    console.log(math.add(1, 2)) // logs "3"&#x000A;    console.log(stats.average(0, 4)) // logs "2"&#x000A;});</pre>
         <p><strong>Resources</strong></p>
         
         <ul>

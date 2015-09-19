@@ -61,9 +61,9 @@
         
         <p><strong>Fix one (bad)</strong></p>
         
-        <p>Mess with <code>document.write</code>. Basically Chrome has a check that an async loaded script doesn&#39;t make any calls to <code>document.write</code>. But it doesn&#39;t check for <code>$(&#39;body&#39;).append()</code> (yet). So if you set <code>document.write</code> to actually use <code>$(&#39;body&#39;).append()</code> the error goes away. Here&#39;s an example (taken from <a href="http://www.jakobbeyer.de/asynchronous-google-adwords-conversion-tracking">Jakob Beyer</a>):</p>
+        <p>Mess with <code>document.write</code>. Basically Chrome has a check that an async loaded script doesn&#39;t make any calls to <code>document.write</code>. But it doesn&#39;t check for <code>$(&#39;body&#39;).append()</code> (yet). So if you set <code>document.write</code> to actually use <code>$(&#39;body&#39;).append()</code> the error goes away. Here’s an example (taken from <a href="http://www.jakobbeyer.de/asynchronous-google-adwords-conversion-tracking">Jakob Beyer</a>):</p>
         <pre class="highlight plaintext">var oldDocumentWrite = document.write&#x000A;&#x000A;// change document.write temporary&#x000A;document.write = function(node){&#x000A;    $("body").append(node)&#x000A;}&#x000A;&#x000A;// get script&#x000A;$.getScript( "http://www.googleadservices.com/pagead/conversion.js", function() {&#x000A;    // replace the temp document.write with the original version&#x000A;    setTimeout(function() {&#x000A;        document.write = oldDocumentWrite&#x000A;    }, 100)&#x000A;});</pre>
-        <p>This threw up some red flags for me - why are we hijacking <code>document.write</code>? If we have to do this weird dance to get around the problem, maybe it&#39;s as unsafe as Chrome would have us believe - should we do something safer?</p>
+        <p>This threw up some red flags for me - why are we hijacking <code>document.write</code>? If we have to do this weird dance to get around the problem, maybe it’s as unsafe as Chrome would have us believe - should we do something safer?</p>
         
         <p>Time to do some more Googling...</p>
         
@@ -71,9 +71,9 @@
         
         <p>The correct way to deal with this problem is to use Google Adwords async script. I know it seems really simple and obvious, but I did find a lot of people suggesting the first way, so I&#39;m hoping this post is news to some of you.</p>
         
-        <p>Here&#39;s how to use Google&#39;s async code:</p>
+        <p>Here’s how to use Google’s async code:</p>
         
-        <p>On your main page (not anything that&#39;s loaded asynchronously) link to the async conversion file.</p>
+        <p>On your main page (not anything that’s loaded asynchronously) link to the async conversion file.</p>
         <pre class="highlight plaintext">&lt;script type="text/javascript" src="//www.googleadservices.com/pagead/conversion_async.js" charset="utf-8"&gt;&lt;/script&gt;</pre>
         <p>This way the <code>google_trackConversion</code> method is written on document load, and not async which caused the original warning we saw.</p>
         

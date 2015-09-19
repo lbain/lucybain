@@ -3,9 +3,9 @@ title: 'JS: .call vs. .apply'
 tags: js, interview-questions
 ---
 
-## What's the difference between `.call` and `.apply`?
+## What’s the difference between `.call` and `.apply`?
 
-Let's start with the similarities.
+Let’s start with the similarities.
 
 __What are `.call` and `.apply`?__
 
@@ -22,7 +22,7 @@ printer.apply({}, "world!") // logs "world!"
 
 *Wow. Awesome. A more verbose way to invoke functions. Fantastic. Why not just use `printer("hello")`?*
 
-Well actually, `.call` and `.apply` can do more than simply invoke a method, they can also pass through __context__. Here's an example:
+Well actually, `.call` and `.apply` can do more than simply invoke a method, they can also pass through __context__. Here’s an example:
 
 ```
 function Person(name){
@@ -47,9 +47,9 @@ So `.call` and `.apply` allow you to manipulate the `this` keyword for the invok
 
 On to the main question...
 
-__What's the difference between `.call` and `.apply`?__
+__What’s the difference between `.call` and `.apply`?__
 
-It's all about the way you pass parameters. That's it. Let's make our previous example more complex:
+It’s all about the way you pass parameters. That’s it. Let’s make our previous example more complex:
 
 ```
 function Person(name){
@@ -74,11 +74,11 @@ For `.call` you pass the parameters comma separated (like normal). For `.apply` 
 
 *Why would you even bother having these two ways? Why not standardise?*
 
-That's a fair question. But the two methods have different use cases. If you know exactly how many arguments you're passing, you should use `.call`. If you don't know, or if your arguments are already in an array, you should use `.apply`. (Rephrased from a helpful [stackoverflow answer](http://stackoverflow.com/a/1987244/863846).)
+That’s a fair question. But the two methods have different use cases. If you know exactly how many arguments you're passing, you should use `.call`. If you don't know, or if your arguments are already in an array, you should use `.apply`. (Rephrased from a helpful [stackoverflow answer](http://stackoverflow.com/a/1987244/863846).)
 
 *Ok, how am I going to remember this?*
 
-Turns out the folks on stackoverflow have some thoughts on that one too. Here's how I'll be remembering it:
+Turns out the folks on stackoverflow have some thoughts on that one too. Here’s how I'll be remembering it:
 
 > __a__pply uses __a__n __a__rray
 >
@@ -87,4 +87,4 @@ Turns out the folks on stackoverflow have some thoughts on that one too. Here's 
 __Resources__
 
 * [stackoverflow question](http://stackoverflow.com/questions/1986896/what-is-the-difference-between-call-and-apply)
-* [Scott Allen's post](http://odetocode.com/blogs/scott/archive/2007/07/04/function-apply-and-function-call-in-javascript.aspx)
+* [Scott Allen’s post](http://odetocode.com/blogs/scott/archive/2007/07/04/function-apply-and-function-call-in-javascript.aspx)

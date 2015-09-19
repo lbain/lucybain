@@ -47,19 +47,19 @@
         <h1>JS: Split vs. Splice</h1>
         <p>Published on: March 12, 2015</p>
         <p>Tags: <a href="/blog/tags/js/">js</a> and <a href="/blog/tags/interview-questions/">interview-questions</a></p>
-        <h2>What&#39;s the difference between <code>split</code> and <code>splice</code>?</h2>
+        <h2>What’s the difference between <code>split</code> and <code>splice</code>?</h2>
         
         <p><em>Well, what does <code>split</code> do?</em></p>
         
-        <p>Much like the name implies <code>split</code> breaks something into pieces. The <code>split</code> method is used for strings in JS. It has a few optional parameters, so let&#39;s see what the simplest call does:</p>
+        <p>Much like the name implies <code>split</code> breaks something into pieces. The <code>split</code> method is used for strings in JS. It has a few optional parameters, so let’s see what the simplest call does:</p>
         <pre class="highlight plaintext">var myString = 'My test string';&#x000A;console.log(myString.split()); // ['My test string']&#x000A;console.log(myString); // 'My test string'</pre>
-        <p>Hmmm, that&#39;s not super useful - <code>split</code> called without a parameter simply creates an array with one element, the string. But note that calling <code>split</code> on <code>myString</code> doesn&#39;t change <code>myString</code>.</p>
+        <p>Hmmm, that’s not super useful - <code>split</code> called without a parameter simply creates an array with one element, the string. But note that calling <code>split</code> on <code>myString</code> doesn&#39;t change <code>myString</code>.</p>
         
-        <p>Ok, let&#39;s try something a little more interesting. I want to break <code>myString</code> up into whole words. We can split <code>myString</code> on spaces like this:</p>
-        <pre class="highlight plaintext">var myString = 'My test string';&#x000A;console.log(myString.split(' ')); // ['My', 'test', 'string']&#x000A;console.log(myString); // 'My test string'</pre>
-        <p>Much more useful! When you call <code>split</code> with a parameter the string is <em>split</em> on every occurrence of that parameter. Note that the parameter itself is removed from the array (there are no spaces in <code>[&#39;My&#39;, &#39;test&#39;, &#39;string&#39;]</code>). Now we can know how many words are in a sentence, or find people&#39;s first and last names (sometimes, names can get tricky...). Again, note that <code>myString</code> wasn&#39;t changed.</p>
+        <p>Ok, let’s try something a little more interesting. I want to break <code>myString</code> up into whole words. We can split <code>myString</code> on spaces like this:</p>
+        <pre class="highlight plaintext">var myString = 'My test string';&#x000A;console.log(myString.split(' ')); // ['My', 'test', ’string']&#x000A;console.log(myString); // 'My test string'</pre>
+        <p>Much more useful! When you call <code>split</code> with a parameter the string is <em>split</em> on every occurrence of that parameter. Note that the parameter itself is removed from the array (there are no spaces in <code>[&#39;My&#39;, &#39;test&#39;, ’string&#39;]</code>). Now we can know how many words are in a sentence, or find people’s first and last names (sometimes, names can get tricky...). Again, note that <code>myString</code> wasn&#39;t changed.</p>
         
-        <p>But what if <code>myString</code> was really long? Maybe you don&#39;t want an array with hundreds of items in it. Or perhaps you only want to find the first nonoccurence of something. Let&#39;s look for the first two word in <code>myString</code>:</p>
+        <p>But what if <code>myString</code> was really long? Maybe you don&#39;t want an array with hundreds of items in it. Or perhaps you only want to find the first nonoccurence of something. Let’s look for the first two word in <code>myString</code>:</p>
         <pre class="highlight plaintext">var myString = 'My test string';&#x000A;console.log(myString.split(' ', 2)); // ['My', 'test']&#x000A;console.log(myString); // 'My test string'</pre>
         <p>Again, we split on spaces because we were looking for full words. The second parameter we sent to <code>split</code> was the number of elements to go in the array. We wanted the first two words, so we sent through 2.</p>
         
@@ -75,15 +75,15 @@
         
         <p><em>So, what does <code>splice</code> do?</em></p>
         
-        <p>The name isn&#39;t great, but it&#39;s related to <strong>splicing</strong> things together. Like you can take the end of one rope and splice it together with another. It&#39;s a <a href="https://www.google.com.au/search?q=splice+rope">real thing</a>.</p>
+        <p>The name isn&#39;t great, but it’s related to <strong>splicing</strong> things together. Like you can take the end of one rope and splice it together with another. It’s a <a href="https://www.google.com.au/search?q=splice+rope">real thing</a>.</p>
         
-        <p>Anyways... in JS <code>splice</code> is an array method. Let&#39;s look at a few sample calls:</p>
+        <p>Anyways... in JS <code>splice</code> is an array method. Let’s look at a few sample calls:</p>
         <pre class="highlight plaintext">var myArray = ['this', 'is', 'an', 'array'];&#x000A;myArray.splice(0, 2); // ['this', 'is']&#x000A;console.log(myArray); // ['an', 'array']</pre>
         <p>Ok, a really important thing to note is that <code>myArray</code> was changed during the call to <code>splice</code>. So if you ever want to use the original array you&#39;ll need to keep a backup somewhere. Another thing to note is that <code>splice</code> returns a value (in fact, it returns the elements that are missing from the array).</p>
         
         <p>Also, <code>splice</code> requires at least two parameters. The first parameter is an index in the array. I think of it as where the cursor is. The second parameter is how many elements to delete. So what we&#39;re really saying is &quot;from position <strong>0</strong> please remove <strong>2</strong> elements and return them to me.&quot;</p>
         
-        <p>Let&#39;s look at a similar example:</p>
+        <p>Let’s look at a similar example:</p>
         <pre class="highlight plaintext">var countingArray = [5, 6, 7, 8];&#x000A;countingArray.splice(1, 1); // [6]&#x000A;console.log(countingArray); // [5, 7, 8]</pre>
         <p>What we said was &quot;from position <strong>1</strong> please remove <strong>1</strong> element and return it to me.&quot;</p>
         

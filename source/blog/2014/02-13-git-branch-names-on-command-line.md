@@ -2,7 +2,7 @@
 title: Git Branch Names on Command Prompt
 ---
 
-I often forget which branch I'm on. Sure, I have `git branch` aliased (it's probably one of my most frequently used commands) but sometimes I'm convinced I'm on another branch. A few commits and merges later I find out I was wrong, and it's time for some branch cleaning.
+I often forget which branch I'm on. Sure, I have `git branch` aliased (it’s probably one of my most frequently used commands) but sometimes I'm convinced I'm on another branch. A few commits and merges later I find out I was wrong, and it’s time for some branch cleaning.
 
 
 Recently my coworker [Simon](https://plus.google.com/+SimonHildebrandt/) gave me the following code:

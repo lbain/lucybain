@@ -3,13 +3,13 @@ title: 'JS: feature detection vs. inference vs. UA string'
 tags: js, interview-questions
 ---
 
-## What's the difference between feature detection, feature inference, and using the UA string?
+## What’s the difference between feature detection, feature inference, and using the UA string?
 
-Let's start smaller...
+Let’s start smaller...
 
 **What is feature detection?**
 
-When you check if a certain feature exists, that's feature detection.
+When you check if a certain feature exists, that’s feature detection.
 
 We need to write code that checks if features exist in JS since different browsers have different implementations, something like this:
 
@@ -41,9 +41,9 @@ if(typeof applyElement != 'undefined') {
 
 But oops! Someone looked at that code in Firefox which doesn't implement `applyElement` or `Text`! They got an error :(
 
-So that's the problem. Since you're not checking for the feature you're using you're more likely to have inconsistencies. Also, if in the future one of the browsers changes what they implement all your assumptions will be inacurate.
+So that’s the problem. Since you're not checking for the feature you're using you're more likely to have inconsistencies. Also, if in the future one of the browsers changes what they implement all your assumptions will be inacurate.
 
-So yeah, it's bad.
+So yeah, it’s bad.
 
 **What is the UA string?**
 
@@ -67,4 +67,4 @@ Use feature detection if you're working with a feature that isn't available acro
 
 * [Feature detection is not browser detection](http://www.nczonline.net/blog/2009/12/29/feature-detection-is-not-browser-detection/)
 * [Stack overflow answer](http://stackoverflow.com/a/20105161/863846)
-* Mozilla's article on [working with the user agent](https://developer.mozilla.org/en-US/docs/Browser_detection_using_the_user_agent)
+* Mozilla’s article on [working with the user agent](https://developer.mozilla.org/en-US/docs/Browser_detection_using_the_user_agent)

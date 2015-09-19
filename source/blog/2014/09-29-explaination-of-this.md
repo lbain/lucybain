@@ -5,17 +5,17 @@ tags: js, interview-questions
 
 ## Explain how this works in JavaScript
 
-Huh, well that's something I've been trying to figure out as I work with JS. `this` still doesn't make perfect sense to me. But here's my current understanding...
+Huh, well that’s something I've been trying to figure out as I work with JS. `this` still doesn't make perfect sense to me. But here’s my current understanding...
 
 **`this` is the context the code is running in**
 
-However, the context seems to change a lot, and I find it rather confusing. So I signed upf for an [email series](http://derickbailey.com/email-courses/masteringthis/) on how `this` can change. Here's a sweeping overview of that series:
+However, the context seems to change a lot, and I find it rather confusing. So I signed upf for an [email series](http://derickbailey.com/email-courses/masteringthis/) on how `this` can change. Here’s a sweeping overview of that series:
 
 * `this` refers to the window
 
-At it's simplest, `this` is the window itself without anything fancy going on. You can call `this` in the console directly and get Window.
+At its simplest, `this` is the window itself without anything fancy going on. You can call `this` in the console directly and get Window.
 
-* `this` refers to the object it's being called from
+* `this` refers to the object it’s being called from
 
 ```js
 function currentYear() {
@@ -30,7 +30,7 @@ person.getAge();
 // returns 37
 ```
 
-You can see the call to `this.birthYear` in the `getAge` function references the `person`'s `birthYear`. That is the `this` refers to it's parent object. As a Ruby developer `this` is similar to `self`.
+You can see the call to `this.birthYear` in the `getAge` function references the `person`’s `birthYear`. That is the `this` refers to its parent object. As a Ruby developer `this` is similar to `self`.
 
 * `this` refers to the element the event is bound to
 

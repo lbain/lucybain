@@ -21,7 +21,7 @@ After some Googling around I know of two ways to fix this.
 
 **Fix one (bad)**
 
-Mess with `document.write`. Basically Chrome has a check that an async loaded script doesn't make any calls to `document.write`. But it doesn't check for `$('body').append()` (yet). So if you set `document.write` to actually use `$('body').append()` the error goes away. Here's an example (taken from [Jakob Beyer](http://www.jakobbeyer.de/asynchronous-google-adwords-conversion-tracking)):
+Mess with `document.write`. Basically Chrome has a check that an async loaded script doesn't make any calls to `document.write`. But it doesn't check for `$('body').append()` (yet). So if you set `document.write` to actually use `$('body').append()` the error goes away. Here’s an example (taken from [Jakob Beyer](http://www.jakobbeyer.de/asynchronous-google-adwords-conversion-tracking)):
 
 ```
 var oldDocumentWrite = document.write
@@ -40,7 +40,7 @@ $.getScript( "http://www.googleadservices.com/pagead/conversion.js", function() 
 });
 ```
 
-This threw up some red flags for me - why are we hijacking `document.write`? If we have to do this weird dance to get around the problem, maybe it's as unsafe as Chrome would have us believe - should we do something safer?
+This threw up some red flags for me - why are we hijacking `document.write`? If we have to do this weird dance to get around the problem, maybe it’s as unsafe as Chrome would have us believe - should we do something safer?
 
 Time to do some more Googling...
 
@@ -48,9 +48,9 @@ Time to do some more Googling...
 
 The correct way to deal with this problem is to use Google Adwords async script. I know it seems really simple and obvious, but I did find a lot of people suggesting the first way, so I'm hoping this post is news to some of you.
 
-Here's how to use Google's async code:
+Here’s how to use Google’s async code:
 
-On your main page (not anything that's loaded asynchronously) link to the async conversion file.
+On your main page (not anything that’s loaded asynchronously) link to the async conversion file.
 
 ```
 <script type="text/javascript" src="//www.googleadservices.com/pagead/conversion_async.js" charset="utf-8"></script>

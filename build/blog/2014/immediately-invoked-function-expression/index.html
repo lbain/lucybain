@@ -55,7 +55,7 @@
         
         <p><em>Great, so what are IIFEs?</em></p>
         
-        <p>An IIFE is an anonymous function that is created and then immediately invoked. It&#39;s not called from anywhere else (hence why it&#39;s anonymous), but runs just after being created.</p>
+        <p>An IIFE is an anonymous function that is created and then immediately invoked. It’s not called from anywhere else (hence why it’s anonymous), but runs just after being created.</p>
         
         <p>Example:</p>
         <pre class="highlight plaintext">(function () {&#x000A;  return 5;&#x000A;} ());&#x000A;// returns 5 right away</pre>
@@ -65,7 +65,7 @@
         <pre class="highlight plaintext">var v = 1;&#x000A;var getValue = (function(x) {&#x000A;  return function() { return x; };&#x000A;}(v));&#x000A;v = 2;&#x000A;&#x000A;getValue(); // returns 1</pre>
         <p><em>I can&#39;t even read that, what do all the nested functions mean?</em></p>
         
-        <p>Let&#39;s investigate the IIFE assigned to <code>getValue</code> by rewriting it with a helper function:</p>
+        <p>Let’s investigate the IIFE assigned to <code>getValue</code> by rewriting it with a helper function:</p>
         <pre class="highlight plaintext">var v = 1;&#x000A;&#x000A;function helperFunction(x) {&#x000A;  return function() {&#x000A;    return x;&#x000A;  };&#x000A;}&#x000A;var getValue = helperFunction(v); // returns an anonymous function&#x000A;&#x000A;v = 2;&#x000A;&#x000A;getValue(); // invokes that function</pre>
         <p><em>What happens when the <code>var getValue = helperFunction(v)</code> line is called?</em></p>
         
@@ -91,13 +91,13 @@
         <pre class="highlight plaintext">var counter = (function(){&#x000A;  var i = 0;&#x000A;&#x000A;  return {&#x000A;    get: function(){&#x000A;      return i;&#x000A;    },&#x000A;    set: function( val ){&#x000A;      i = val;&#x000A;    }&#x000A;  };&#x000A;}());&#x000A;&#x000A;counter.get(); // returns 0&#x000A;counter.set( 3 );&#x000A;counter.get(); // returns 3&#x000A;counter.i; // returns undefined</pre>
         <p><em>Again with the confusing nested functions! Can I have a rewrite?</em></p>
         <pre class="highlight plaintext">function helperFunction(){&#x000A;  var i = 0;&#x000A;&#x000A;  return {&#x000A;    get: function(){&#x000A;      return i;&#x000A;    },&#x000A;    set: function( val ){&#x000A;      i = val;&#x000A;    }&#x000A;  };&#x000A;};&#x000A;&#x000A;var counter = helperFunction();&#x000A;&#x000A;counter.get(); // returns 0&#x000A;counter.set( 3 );&#x000A;counter.get(); // returns 3&#x000A;counter.i; // returns undefined</pre>
-        <p><em>Ok, that&#39;s a bit clearer, but what is <code>counter</code> actually set to?</em></p>
+        <p><em>Ok, that’s a bit clearer, but what is <code>counter</code> actually set to?</em></p>
         
         <p><code>counter</code> is set to the return value of <code>helperFunction</code>, that is just this bit:</p>
         <pre class="highlight json"><span class="p">{</span><span class="w">&#x000A;  </span><span class="err">get</span><span class="p">:</span><span class="w"> </span><span class="err">function()</span><span class="p">{</span><span class="w">&#x000A;    </span><span class="err">return</span><span class="w"> </span><span class="err">i;</span><span class="w">&#x000A;  </span><span class="err">}</span><span class="p">,</span><span class="w">&#x000A;  </span><span class="err">set</span><span class="p">:</span><span class="w"> </span><span class="err">function(</span><span class="w"> </span><span class="err">val</span><span class="w"> </span><span class="err">)</span><span class="p">{</span><span class="w">&#x000A;    </span><span class="err">i</span><span class="w"> </span><span class="err">=</span><span class="w"> </span><span class="err">val;</span><span class="w">&#x000A;  </span><span class="err">}</span><span class="w">&#x000A;</span><span class="p">}</span><span class="err">;</span><span class="w">&#x000A;</span></pre>
         <p>You&#39;ll notice <code>var i</code> doesn&#39;t appear anywhere in there. <code>i</code> is defined elsewhere in the <code>helperFunction</code> / IIFE. Since the return value of <code>helperFunction</code> doesn&#39;t give explicit access to <code>i</code>, <code>counter</code> doesn&#39;t have access.</p>
         
-        <p><em>Fine, so if that&#39;s all that <code>counter</code> has access to, how does <code>counter.get()</code> return a value?</em></p>
+        <p><em>Fine, so if that’s all that <code>counter</code> has access to, how does <code>counter.get()</code> return a value?</em></p>
         
         <p>Scopes! The scope from <code>helperFunction</code> has access to <code>i</code>. The object returned by <code>helperFunction</code> (a.k.a <code>counter</code>) has access to all the variables defined in <code>helperFunction</code>. It works like this:</p>
         
@@ -113,23 +113,23 @@
         
         <h3>And now back to your scheduled program</h3>
         
-        <p>With all that explanation behind us, let&#39;s go back to the original question:</p>
+        <p>With all that explanation behind us, let’s go back to the original question:</p>
         
         <p><strong>Explain why the following doesn&#39;t work as an IIFE: <code>function foo(){ }();</code></strong></p>
         
-        <p>Because <code>foo</code> isn&#39;t being called! Here&#39;s a rewrite:</p>
+        <p>Because <code>foo</code> isn&#39;t being called! Here’s a rewrite:</p>
         <pre class="highlight plaintext">function foo(){&#x000A;}();</pre>
-        <p>This is a function <strong>definition</strong>, it defines <code>foo</code>. But it&#39;s not a function <strong>expression</strong> - that is, it&#39;s not understood by the JS parser to actually call a function.</p>
+        <p>This is a function <strong>definition</strong>, it defines <code>foo</code>. But it’s not a function <strong>expression</strong> - that is, it’s not understood by the JS parser to actually call a function.</p>
         
         <p>For the parser, things look like this:</p>
-        <pre class="highlight plaintext">function foo(){&#x000A;} // ok, done with that function definition&#x000A;  // (silly human left off the semicolon, how embarrassing!)&#x000A;&#x000A;(); // Are they trying to call something? What's the function's name?&#x000A;    // PARSE ERROR</pre>
+        <pre class="highlight plaintext">function foo(){&#x000A;} // ok, done with that function definition&#x000A;  // (silly human left off the semicolon, how embarrassing!)&#x000A;&#x000A;(); // Are they trying to call something? What’s the function’s name?&#x000A;    // PARSE ERROR</pre>
         <p>In order to prep the parser that we&#39;re actually dealing with a function <strong>expression</strong> we have to wrap things up in <code>()</code> like so:</p>
         <pre class="highlight plaintext">(&#x000A;  function foo(){&#x000A;  }()&#x000A;);</pre>
         <p>Now the parser reads this as:</p>
         <pre class="highlight plaintext">( // oh goody, we're going to call some function expressions!&#x000A;  function foo(){ // here's the function definition&#x000A;  }() // and here's where the function is actually called&#x000A;);</pre>
         <p>And to finish it all off with a return statement and everything:</p>
         <pre class="highlight plaintext">(function foo(){&#x000A;  return 'bar';&#x000A;}());</pre>
-        <p>For more information read Ben Alman&#39;s post <a href="http://benalman.com/news/2010/11/immediately-invoked-function-expression/">introducing IIFEs</a>.</p>
+        <p>For more information read Ben Alman’s post <a href="http://benalman.com/news/2010/11/immediately-invoked-function-expression/">introducing IIFEs</a>.</p>
         <hr>
         <div id='disqus_thread'></div>
         <script>

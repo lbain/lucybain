@@ -47,19 +47,19 @@
         <h1>JS: anonymous functions</h1>
         <p>Published on: November  2, 2014</p>
         <p>Tags: <a href="/blog/tags/js/">js</a> and <a href="/blog/tags/interview-questions/">interview-questions</a></p>
-        <h2>What&#39;s a typical use case for anonymous functions?</h2>
+        <h2>What’s a typical use case for anonymous functions?</h2>
         
-        <p>I&#39;m going to go with my high school training and focus on the word <strong>typical</strong>. So long as we&#39;re just talking about typical use, here&#39;s my answer:</p>
+        <p>I&#39;m going to go with my high school training and focus on the word <strong>typical</strong>. So long as we&#39;re just talking about typical use, here’s my answer:</p>
         
         <p>Anonymous functions are typically used as callbacks.</p>
         
-        <p><em>So what&#39;s a callback?</em></p>
+        <p><em>So what’s a callback?</em></p>
         
         <p>I&#39;m glad you asked!</p>
         <pre class="highlight plaintext">function takesACallback(callback) {&#x000A;    // do some interesting things here&#x000A;    return "The callback says: " + callback();&#x000A;}&#x000A;&#x000A;takesACallback(function() {&#x000A;    return "I'm the callback!";&#x000A;}); // returns "The callback says: I'm the callback!"</pre>
-        <p>See the function that&#39;s a parameter to the <code>takesACallback</code> call? Notice that it doesn&#39;t have a name? That&#39;s an anonymous function.</p>
+        <p>See the function that’s a parameter to the <code>takesACallback</code> call? Notice that it doesn&#39;t have a name? That’s an anonymous function.</p>
         
-        <p>Note that you can still have a reference to an anonymous function, just because it is unnamed it doesn&#39;t mean it&#39;s unreferenced.</p>
+        <p>Note that you can still have a reference to an anonymous function, just because it is unnamed it doesn&#39;t mean it’s unreferenced.</p>
         <pre class="highlight plaintext">var reference = function() {&#x000A;    return "I'm still an anonymous function";&#x000A;}&#x000A;&#x000A;reference(); // returns "I'm still an anonymous function"</pre>
         <p>This is almost the same as</p>
         <pre class="highlight plaintext">function reference() {&#x000A;    return "I'm not anonymous function";&#x000A;}&#x000A;&#x000A;reference(); // returns "I'm not anonymous function"</pre>
@@ -71,7 +71,7 @@
         <p>Anonymous functions are created at runtime ... Function declarations are different. They are run before any of the other code is executed so the functions do not have to be declared before the code that calls them.</p>
         </blockquote>
         
-        <p>So you can see there&#39;s a difference to how the two <code>reference</code> example functions are treated by JS, even if the code looks very similar.</p>
+        <p>So you can see there’s a difference to how the two <code>reference</code> example functions are treated by JS, even if the code looks very similar.</p>
         
         <p>You can find a list of pros and cons on <a href="http://stackoverflow.com/questions/10273185/what-are-the-benefits-to-using-anonymous-functions-instead-of-named-functions-fo">stackoverflow</a>.</p>
         <hr>

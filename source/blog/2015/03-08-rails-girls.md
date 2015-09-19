@@ -5,7 +5,7 @@ tags: community, rails
 
 Phew! Rails Girls Sydney, March 2015 was on Friday and Saturday, I wanted to update you
 
-Usually the Sydney Rails community runs a Rails Girls event every four-ish months. I've always enjoyed mentoring at them, but I've never organised one before . It's a great way to give back to the community and encourage new programmers. It's also aimed at women, which is something I'm also passionate about.
+Usually the Sydney Rails community runs a Rails Girls event every four-ish months. I've always enjoyed mentoring at them, but I've never organised one before . It’s a great way to give back to the community and encourage new programmers. It’s also aimed at women, which is something I'm also passionate about.
 
 The woman who organised the events in the past has moved to NYC (good for her, but sad for us). What with her leaving, and us not knowing what to do we took longer to run this event than usual. It ended up being about eight months between workshops.
 

@@ -56,14 +56,14 @@
         <p>So rather than having everything dumped in together...</p>
         <pre class="highlight plaintext">function bark() { /* ... */ }&#x000A;function meow() { /* ... */ }&#x000A;function wagTail() { /* ... */ }&#x000A;function sleepAllDay() { /* ... */ }&#x000A;function beHyper() { /* ... */ }&#x000A;function purr() { /* ... */ }</pre>
         <p>...you group similar things together...</p>
-        <pre class="highlight plaintext">// Dog's can...&#x000A;function bark() { /* ... */ }&#x000A;function wagTail() { /* ... */ }&#x000A;function beHyper() { /* ... */ }&#x000A;&#x000A;// Cat's can...&#x000A;function meow() { /* ... */ }&#x000A;function sleepAllDay() { /* ... */ }&#x000A;function purr() { /* ... */ }</pre>
+        <pre class="highlight plaintext">// Dog’s can...&#x000A;function bark() { /* ... */ }&#x000A;function wagTail() { /* ... */ }&#x000A;function beHyper() { /* ... */ }&#x000A;&#x000A;// Cat’s can...&#x000A;function meow() { /* ... */ }&#x000A;function sleepAllDay() { /* ... */ }&#x000A;function purr() { /* ... */ }</pre>
         <p>...and then give the groups a name!</p>
         <pre class="highlight plaintext">var dog = {&#x000A;  bark: function() { /* ... */ },&#x000A;  wagTail: function() { /* ... */ },&#x000A;  beHyper: function() { /* ... */ }&#x000A;};&#x000A;&#x000A;var cat = {&#x000A;  meow: function() { /* ... */ },&#x000A;  sleepAllDay: function() { /* ... */ },&#x000A;  purr: function() { /* ... */ }&#x000A;};</pre>
-        <p>Partly this is for ease of programming - it&#39;s simpler to keep track of many things if they&#39;re grouped into smaller numbers. But it&#39;s also really important for avoiding naming collisions.</p>
+        <p>Partly this is for ease of programming - it’s simpler to keep track of many things if they&#39;re grouped into smaller numbers. But it’s also really important for avoiding naming collisions.</p>
         
         <p><em>What are naming collisions?</em></p>
         
-        <p>Let&#39;s say I&#39;m working on a big project and I get a little lost in the code sometimes. At some point I defined a <code>warningAlert</code> function. Then, a few weeks later, I forget that I had a <code>warningAlert</code> function defined already, and I define a new one lower down.</p>
+        <p>Let’s say I&#39;m working on a big project and I get a little lost in the code sometimes. At some point I defined a <code>warningAlert</code> function. Then, a few weeks later, I forget that I had a <code>warningAlert</code> function defined already, and I define a new one lower down.</p>
         <pre class="highlight plaintext">function warningAlert(text) {&#x000A;  alert('Warning: ' + text);&#x000A;}&#x000A;&#x000A;/* ... */&#x000A;&#x000A;function warningAlert(text) {&#x000A;  alert('ALERT: ' + text);&#x000A;}</pre>
         <p>Now calls to <code>warningAlert</code> will use the second definition since it overwrote (collided with) the first definition.</p>
         
@@ -71,7 +71,7 @@
         <pre class="highlight plaintext">var alerts = {}&#x000A;alerts.warning = function(text) {&#x000A;  alert('Warning: ' + text);&#x000A;};</pre>
         <p>Namespaces aren&#39;t only for you (because I&#39;m sure <em>you&#39;d</em> never make a mistake like this... just for demonstration purposes, right?). They&#39;re also important when you start including code by a third party.</p>
         
-        <p>Since everything gets dumped into the global namespace there&#39;s no way to know what you wrote and what was written by someone else. It&#39;s generally a good idea to have a namespace for everything you wrote so you don&#39;t get naming conflicts with anyone else. Actually, jQuery does just that. All the jQuery functions are namespaced to <code>$</code>.</p>
+        <p>Since everything gets dumped into the global namespace there’s no way to know what you wrote and what was written by someone else. It’s generally a good idea to have a namespace for everything you wrote so you don&#39;t get naming conflicts with anyone else. Actually, jQuery does just that. All the jQuery functions are namespaced to <code>$</code>.</p>
         
         <p>As for <em>how is it used?</em> I&#39;ll leave the implementation details up to <a href="http://www.kenneth-truyers.net/2013/04/27/javascript-namespaces-and-modules/">Kenneth Truyers</a> since he did an excellent job listing out all your options.</p>
         

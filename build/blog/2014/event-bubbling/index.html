@@ -63,7 +63,7 @@
         
         <p><em>What if you don&#39;t want the event to bubble up?</em></p>
         
-        <p>A fair question. Often you only want the event to trigger on the element itself, without bothering all it&#39;s ancestors. Consider the following JS (with the same HTML as above):</p>
+        <p>A fair question. Often you only want the event to trigger on the element itself, without bothering all its ancestors. Consider the following JS (with the same HTML as above):</p>
         <pre class="highlight plaintext">$( "button" ).click(function(event) {&#x000A;  console.log( "button was clicked!" );&#x000A;});&#x000A;&#x000A;$( ".parent, .ancestor" ).click(function(event) {&#x000A;  console.log( "don't click me!" );&#x000A;});</pre>
         <p>As it stands, the <code>don&#39;t click me!</code> will get logged when the user clicks on the button, even though they haven&#39;t actually clicked on the parent or ancestor element.</p>
         

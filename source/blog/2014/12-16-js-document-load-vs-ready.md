@@ -7,11 +7,11 @@ tags: js, interview-questions
 
 **`$(document).ready()`** fires when the HTML has finished loading. You can't interact with the DOM before the HTML has finished loading, so we keep all our JS interactions wrapped up in the ready handler.
 
-Note: The ready event is just for jQuery, so that's a downside if you weren't planning on including all of jQuery on your site.
+Note: The ready event is just for jQuery, so that’s a downside if you weren't planning on including all of jQuery on your site.
 
 **`window.onload`** fires when all of the content (images, scripts, CSS, the whole lot) has finished loading. This can be really slow, so we try not to keep too much here. But it can be useful if you need to work with images of unknown size.
 
-And that's it! This has been the most straight forward answer yet :)
+And that’s it! This has been the most straight forward answer yet :)
 
 **References**
 

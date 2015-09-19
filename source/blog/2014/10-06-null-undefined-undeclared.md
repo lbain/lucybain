@@ -3,11 +3,11 @@ title: 'JS: null, undefined, and undeclared'
 tags: js, interview-questions
 ---
 
-## What's the difference between a variable that is: null, undefined, or undeclared?
+## What’s the difference between a variable that is: null, undefined, or undeclared?
 
-Here's a [TL;DR](http://stackoverflow.com/a/834095/863846) version I found quite useful when writing this.
+Here’s a [TL;DR](http://stackoverflow.com/a/834095/863846) version I found quite useful when writing this.
 
-I think they make more sense in the opposite order: undeclared, undefined, and null. That's the order I'm going to tackle them anyways.
+I think they make more sense in the opposite order: undeclared, undefined, and null. That’s the order I'm going to tackle them anyways.
 
 First up is **`undeclared`**.
 
@@ -30,13 +30,13 @@ declaredVariable; // 1
 ```
 
 
-For more discussion on undeclared variables, checkout [Mozilla's documentation](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/var).
+For more discussion on undeclared variables, checkout [Mozilla’s documentation](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/var).
 
 Note: this will not work in [strict mode](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Strict_mode). It will throw an error when it gets to the `undeclaredVariable` - see this [example](https://jsfiddle.net/glenselle/9czx6dLg/2/). Thanks to Glen Selle for his comment with this update.
 
 <br/>
 
-Now let's move on to **`undefined`**.
+Now let’s move on to **`undefined`**.
 
 Something is `undefined` when it hasn't been defined yet. If you call a variable or function without having actually created it yet the parser will give you an `not defined` error.
 
@@ -95,7 +95,7 @@ if( variable === null ) {
 ```
 
 <br/>
-I think the order "undeclared, undefined, and null" makes sense since it's increasing order of certainty.
+I think the order "undeclared, undefined, and null" makes sense since it’s increasing order of certainty.
 
 * `undeclared` variables don't even exist
 * `undefined` variables exist, but don't have anything assigned to them

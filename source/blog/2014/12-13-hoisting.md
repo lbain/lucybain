@@ -7,7 +7,7 @@ I'm continuing my series of [JS interview questions](https://github.com/h5bp/Fro
 
 ## Explain "hoisting"
 
-Hoisting is when a JS declaration is lifted ("hoisted") to the top of it's scope by the JS interpreter. What this really means is that a variable or function isn't necessarily declared where you think it is. Understandably, this can cause problems. Variables and functions are hoisted differently, as we'll see below.
+Hoisting is when a JS declaration is lifted ("hoisted") to the top of it’s scope by the JS interpreter. What this really means is that a variable or function isn't necessarily declared where you think it is. Understandably, this can cause problems. Variables and functions are hoisted differently, as we'll see below.
 
 **Hoisting variables**
 
@@ -26,7 +26,7 @@ containsHoisting(); // logs undefined
 
 *Wait, how did `hoistedVariable` get to be undefined? Surely it should be undeclared since we haven't hit `var hoistedVariable` yet.*
 
-It's because of hoisting! You see, although I wrote the code in the example above, the JS interpreter changes it to this:
+It’s because of hoisting! You see, although I wrote the code in the example above, the JS interpreter changes it to this:
 
 ```
 // What the interpreter changed it to:
@@ -38,9 +38,9 @@ function containsHoisting() {
 }
 ```
 
-That new line is `hoistedVariable` getting hoisted up to the top of it's scope. So it's now declared, but not defined.
+That new line is `hoistedVariable` getting hoisted up to the top of it’s scope. So it’s now declared, but not defined.
 
-Here's a more complex example (inspired by [Adequately Good](http://www.adequatelygood.com/JavaScript-Scoping-and-Hoisting.html))
+Here’s a more complex example (inspired by [Adequately Good](http://www.adequatelygood.com/JavaScript-Scoping-and-Hoisting.html))
 
 ```
 var hoistedVariable = 1;
@@ -59,7 +59,7 @@ scopingFunction(); // returns 10
 
 **Tangent about scopes**
 
-I was surprised about this myself until I understood JS scoping better, here's how it breaks down:
+I was surprised about this myself until I understood JS scoping better, here’s how it breaks down:
 
 >In Javascript scopes are defined at **function level**. Many other languages define scope at a block level (as in an `if` block or `for` loop). This is an important difference to remember.
 
@@ -102,7 +102,7 @@ function containingFunction() {
 containingFunction() // returns 4
 ```
 
-Hopefully that example wasn't surprising. But just to better understand what's going on, here's how the JS interpreter rewrote things:
+Hopefully that example wasn't surprising. But just to better understand what’s going on, here’s how the JS interpreter rewrote things:
 
 ```
 function containingFunction() {
@@ -121,7 +121,7 @@ containingFunction() // returns 4
 
 Notice that the entire `hoistedFunction` gets moved up, while only the declaration for the `hoistedVariable` is hoisted.
 
-Let's try with a more complicated example:
+Let’s try with a more complicated example:
 
 ```
 function containingFunction() {
@@ -136,7 +136,7 @@ containingFunction()
 
 *But wait, the `hoisted` function is defined right there, what gives?*
 
-Because functions are hoisted after variables, naming conflicts can happen. Again, let's look at what the JS interpreter wrote for this code
+Because functions are hoisted after variables, naming conflicts can happen. Again, let’s look at what the JS interpreter wrote for this code
 
 ```
 function containingFunction() {
@@ -153,7 +153,7 @@ function containingFunction() {
 containingFunction() // results in a TypeError
 ```
 
-As you can see, the function definition for `hoisted` is overwritten by the variable definition (`"I'm the variable"`) which appears lower down in the interpreter's version of the code. Yet another reason why good names are important!
+As you can see, the function definition for `hoisted` is overwritten by the variable definition (`"I'm the variable"`) which appears lower down in the interpreter’s version of the code. Yet another reason why good names are important!
 
 **Resources**
 

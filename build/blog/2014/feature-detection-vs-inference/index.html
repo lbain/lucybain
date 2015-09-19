@@ -47,13 +47,13 @@
         <h1>JS: feature detection vs. inference vs. UA string</h1>
         <p>Published on: December  4, 2014</p>
         <p>Tags: <a href="/blog/tags/js/">js</a> and <a href="/blog/tags/interview-questions/">interview-questions</a></p>
-        <h2>What&#39;s the difference between feature detection, feature inference, and using the UA string?</h2>
+        <h2>What’s the difference between feature detection, feature inference, and using the UA string?</h2>
         
-        <p>Let&#39;s start smaller...</p>
+        <p>Let’s start smaller...</p>
         
         <p><strong>What is feature detection?</strong></p>
         
-        <p>When you check if a certain feature exists, that&#39;s feature detection.</p>
+        <p>When you check if a certain feature exists, that’s feature detection.</p>
         
         <p>We need to write code that checks if features exist in JS since different browsers have different implementations, something like this:</p>
         <pre class="highlight plaintext">var text;&#x000A;if(typeof(Text) === "function"){&#x000A;    text = new Text('Oh, how quick that fox was!');&#x000A;} else {&#x000A;    text = 'Oh, how quick that fox was!';&#x000A;}</pre>
@@ -69,9 +69,9 @@
         <pre class="highlight plaintext">if(typeof applyElement != 'undefined') {&#x000A;    // now I know I'm not in IE, I'll just assume Text is available&#x000A;    text = new Text('Oh, how quick that fox was!');&#x000A;}</pre>
         <p>But oops! Someone looked at that code in Firefox which doesn&#39;t implement <code>applyElement</code> or <code>Text</code>! They got an error :(</p>
         
-        <p>So that&#39;s the problem. Since you&#39;re not checking for the feature you&#39;re using you&#39;re more likely to have inconsistencies. Also, if in the future one of the browsers changes what they implement all your assumptions will be inacurate.</p>
+        <p>So that’s the problem. Since you&#39;re not checking for the feature you&#39;re using you&#39;re more likely to have inconsistencies. Also, if in the future one of the browsers changes what they implement all your assumptions will be inacurate.</p>
         
-        <p>So yeah, it&#39;s bad.</p>
+        <p>So yeah, it’s bad.</p>
         
         <p><strong>What is the UA string?</strong></p>
         
@@ -92,7 +92,7 @@
         <ul>
         <li><a href="http://www.nczonline.net/blog/2009/12/29/feature-detection-is-not-browser-detection/">Feature detection is not browser detection</a></li>
         <li><a href="http://stackoverflow.com/a/20105161/863846">Stack overflow answer</a></li>
-        <li>Mozilla&#39;s article on <a href="https://developer.mozilla.org/en-US/docs/Browser_detection_using_the_user_agent">working with the user agent</a></li>
+        <li>Mozilla’s article on <a href="https://developer.mozilla.org/en-US/docs/Browser_detection_using_the_user_agent">working with the user agent</a></li>
         </ul>
         <hr>
         <div id='disqus_thread'></div>

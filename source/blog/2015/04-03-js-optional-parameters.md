@@ -3,7 +3,7 @@ title: "JS: How can you accept optional parameters?"
 tags: js, interview-questions
 ---
 
-There's more than one way to skin a cat, and there's more than one way to accept optional parameters. (Editors note: I do not condone skinning cats!)
+There’s more than one way to skin a cat, and there’s more than one way to accept optional parameters. (Editors note: I do not condone skinning cats!)
 
 ## Object
 
@@ -11,7 +11,7 @@ Coming from a Ruby background, I find this option the most intuitive. You can cr
 
 ```
 var params = {
-    size: 'small',
+    size: ’small',
     color: 'red'
 };
 
@@ -30,11 +30,11 @@ As you can see I didn't supply the `speed` parameter in my `params` object, but 
 
 **But `optionalParams` was still required**
 
-Yep, you caught me! This isn't really what people usually mean by "optional" parameters. But I did want to throw it out there as a possibility. I think it's an underrated option.
+Yep, you caught me! This isn't really what people usually mean by "optional" parameters. But I did want to throw it out there as a possibility. I think it’s an underrated option.
 
 **What if I wanted a default speed?**
 
-`optionalParams` didn't define a value for `speed`, but the sentence expected `speed` to be defined. In this case you can give a default value for the variable (such as `"fast"`). It's tempting to do this:
+`optionalParams` didn't define a value for `speed`, but the sentence expected `speed` to be defined. In this case you can give a default value for the variable (such as `"fast"`). It’s tempting to do this:
 
 ```
 var speed = optionalParams.speed || "fast";
@@ -51,7 +51,7 @@ if (typeof optionalParams.speed !== 'undefined') {
 }
 ```
 
-however that's quite wordy. You can cut it down with a [ternary](/blog/2014/js-ternary/), or make a `givenOrDefault` method (hopefully with a better name!).
+however that’s quite wordy. You can cut it down with a [ternary](/blog/2014/js-ternary/), or make a `givenOrDefault` method (hopefully with a better name!).
 
 ```
 function givenOrDefault(given, default) {
@@ -67,7 +67,7 @@ Thus our example becomes:
 
 ```
 var params = {
-    size: 'small',
+    size: ’small',
     color: 'red'
 };
 
@@ -156,11 +156,11 @@ add(1, 2, 3, 4); // returns 10
 
 **What is this black magic?!**
 
-Well it turns out `arguments` is a secret variable available in all functions that gives a list of the parameters passed to that function. It's a little bonus JS throws in free of charge.
+Well it turns out `arguments` is a secret variable available in all functions that gives a list of the parameters passed to that function. It’s a little bonus JS throws in free of charge.
 
-**So it's an array of all the params**
+**So it’s an array of all the params**
 
-Almost. It's not quite an array. It's like a kiddy array - hasn't got all the functionality just yet. If you want to use it for access only (as in the example above), then you're all good. But if you want to do interesting manipulations, `pop` things off, or reorder items, then you need to convert `arguments` to a full array:
+Almost. It’s not quite an array. It’s like a kiddy array - hasn't got all the functionality just yet. If you want to use it for access only (as in the example above), then you're all good. But if you want to do interesting manipulations, `pop` things off, or reorder items, then you need to convert `arguments` to a full array:
 
 ```
 var temp = Array.slice(arguments);

@@ -3,11 +3,11 @@ title: 'JS: AMD and CommonJS'
 tags: js, interview-questions
 ---
 
-## What's the difference between AMD and CommonJS?
+## What’s the difference between AMD and CommonJS?
 
-**Disclaimer:** I'm only going to talk about how this impacts the browser. I will not talk about Node.js, although I know it's relevant to this discussion. I don't know enough about Node.js to cover it properly. Ok, let's get to it!
+**Disclaimer:** I'm only going to talk about how this impacts the browser. I will not talk about Node.js, although I know it’s relevant to this discussion. I don't know enough about Node.js to cover it properly. Ok, let’s get to it!
 
-To start off, let's talk about their similarities.
+To start off, let’s talk about their similarities.
 
 *What problem are they trying to solve?*
 
@@ -19,9 +19,9 @@ Both AMD and CommonJS are a way of linking JS bits of code, called modules, toge
 
 Both AMD and CommonJS provide standards for other libraries to implement. There are quite a few libraries that have done just that ([RequireJS](http://requirejs.org/) and [Almond](https://github.com/jrburke/almond) are two that implement AMD). But you "use" AMD or CommonJS code any more than you can "use" object oriented code.
 
-*Ok, so that's how they're similar. How are they different?*
+*Ok, so that’s how they're similar. How are they different?*
 
-Let's look at each one individually. We'll start with AMD:
+Let’s look at each one individually. We'll start with AMD:
 
 *What does "AMD" stand for?*
 
@@ -29,21 +29,21 @@ AMD stands for **A**synchronous **M**odule **D**efinition.
 
 *And what makes it special?*
 
-The "module" part should be clear enough since both CommonJS and AMD focus on linking modules together. And the "definition" part is about how it's a standard, rather than a library. However a key difference for AMD is the "asynchronous" bit. AMD loads each distinct module asynchronously for web performance. Instead of having one *giant* file with everything in it which causes a slow load time, you can load only the files you need, only when you need them, all asynchronously. Slick, huh?
+The "module" part should be clear enough since both CommonJS and AMD focus on linking modules together. And the "definition" part is about how it’s a standard, rather than a library. However a key difference for AMD is the "asynchronous" bit. AMD loads each distinct module asynchronously for web performance. Instead of having one *giant* file with everything in it which causes a slow load time, you can load only the files you need, only when you need them, all asynchronously. Slick, huh?
 
-*So then what's special about CommonJS?*
+*So then what’s special about CommonJS?*
 
 CommonJS loads modules synchronously. My understanding is that this is better for server-side (Node.js) development. Again, CommonJS is a standard but it focuses more on JS out of the browser than AMD.
 
-*That's it? Async vs. Sync?*
+*That’s it? Async vs. Sync?*
 
-Sort of. Of course the syntax for both is different too. Let's look at how to use each.
+Sort of. Of course the syntax for both is different too. Let’s look at how to use each.
 
 ## Syntax
 
 **CommonJS**
 
-We'll start with CommonJS since it's a bit easier to read.
+We'll start with CommonJS since it’s a bit easier to read.
 
 *Part 1: math module*
 
@@ -64,7 +64,7 @@ var module = {
   }
 };
 export.math = module; // export is a commonJS specific method
-                      // export returns what's publicly available
+                      // export returns what’s publicly available
                       // the "math" gives the name of the module
 ```
 This code doesn't output anything, but when we require the `math` module we'll have access to everything in the returned `module` object (namely `add`, `subtract`, `multiply`, and `divide`).
@@ -84,7 +84,7 @@ var module = {
   }
 };
 export.stats = module; // export is a commonJS specific method
-                       // export returns what's publicly available
+                       // export returns what’s publicly available
                        // the "stats" gives the name of the module
 ```
 
@@ -94,7 +94,7 @@ Now we've got two modules, we can use them to get output.
 
 ```
 var math = require('math');
-var stats = require('stats');
+var stats = require(’stats');
 console.log(math.add(1, 2)) // logs "3"
 console.log(stats.average(0, 4)) // logs "2"
 ```
@@ -124,7 +124,7 @@ define( // AMD specific method used to define a module
         return x / y;
       }
     };
-    return module; // returns what's publicly available
+    return module; // returns what’s publicly available
 });
 ```
 As with CommonJS, this code doesn't output anything.
@@ -133,9 +133,9 @@ As with CommonJS, this code doesn't output anything.
 
 ```
 define( // AMD specific method used to define a module
-  'stats', // name of the module (this is optional)
+  ’stats', // name of the module (this is optional)
   ['math'], // dependency, same name as module above
-            // it's an array since there can be more than one
+            // it’s an array since there can be more than one
   function() {
     var module = {
       average: function(x, y) {
@@ -143,7 +143,7 @@ define( // AMD specific method used to define a module
         return math.divide(sum, 2);
       }
     };
-    return module; // returns what's publicly available
+    return module; // returns what’s publicly available
 });
 ```
 
@@ -152,7 +152,7 @@ define( // AMD specific method used to define a module
 ```
 require( // AMD specific method to run code
   // Note: no name, require doesn't support names
-  ['math', 'stats'], // dependencies
+  ['math', ’stats'], // dependencies
   function(math, stats) {
     console.log(math.add(1, 2)) // logs "3"
     console.log(stats.average(0, 4)) // logs "2"

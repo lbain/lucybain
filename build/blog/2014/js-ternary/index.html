@@ -49,7 +49,7 @@
         <p>Tags: <a href="/blog/tags/js/">js</a> and <a href="/blog/tags/interview-questions/">interview-questions</a></p>
         <h2>Why is it called a Ternary expression, what does the word &quot;Ternary&quot; indicate?</h2>
         
-        <p>Let&#39;s answer the second question first: what does the word &quot;ternary&quot; indicate? According to <a href="http://en.wikipedia.org/wiki/Ternary_operation">Wikipedia</a> the word &quot;ternary&quot; comes from the n-ary word setup. Other examples of n-ary words are u<strong>nary</strong> and bi<strong>nary</strong>. All of these (including ternary) are operands. The prefix section of their name lists how many inputs the operand accepts.</p>
+        <p>Let’s answer the second question first: what does the word &quot;ternary&quot; indicate? According to <a href="http://en.wikipedia.org/wiki/Ternary_operation">Wikipedia</a> the word &quot;ternary&quot; comes from the n-ary word setup. Other examples of n-ary words are u<strong>nary</strong> and bi<strong>nary</strong>. All of these (including ternary) are operands. The prefix section of their name lists how many inputs the operand accepts.</p>
         
         <p>A <strong>unary</strong> operand accepts one parameter, e.g. <code>-1</code>, where <code>-</code> is the operand, and 1 is the parameter.</p>
         
@@ -59,12 +59,12 @@
         
         <p>In programming the ternary operand we use is a rewrite of an if statement. Before we write an actual ternary, we&#39;ll just take a quick look at an if statement:</p>
         <pre class="highlight plaintext">if(conditional) { // one&#x000A;    truethy_block // two&#x000A;} else {&#x000A;    falsey_block // three&#x000A;}</pre>
-        <p>You can see there are three sections to an if statement. Let&#39;s write them as a property ternary expression:</p>
+        <p>You can see there are three sections to an if statement. Let’s write them as a property ternary expression:</p>
         <pre class="highlight plaintext">conditional ? truethy_block : falsey_block</pre>
-        <p>All the same code is there, but it&#39;s arranged slightly differently. The ternary&#39;s operand looks like <code>?:</code>.</p>
+        <p>All the same code is there, but it’s arranged slightly differently. The ternary’s operand looks like <code>?:</code>.</p>
         
         <p>In JS ternarys are often used for assignment:</p>
-        <pre class="highlight plaintext">is_sunny = true;&#x000A;var weather = is_sunny ? 'Sunny' : 'Cloudy';&#x000A;console.log(weather); // logs 'Sunny'</pre>
+        <pre class="highlight plaintext">is_sunny = true;&#x000A;var weather = is_sunny ? ’sunny' : 'Cloudy';&#x000A;console.log(weather); // logs ’sunny'</pre>
         <p>They can also be used for very short conditional statements. But be wary of using them for long or complex logic as they are harder to read than traditional statements.</p>
         
         <p><strong>Resources</strong></p>

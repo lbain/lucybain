@@ -5,7 +5,7 @@ tags: js, interview-questions
 
 ## Why is extending built in JavaScript objects not a good idea?
 
-Turns out there's lots written on this topic (lucky for me!), be sure to check out the references section at the end.
+Turns out there’s lots written on this topic (lucky for me!), be sure to check out the references section at the end.
 
 **What is "extending an object"?**
 
@@ -26,11 +26,11 @@ At first glance, this seems like such an awesome feature. Want the third element
 
 It depends on who you ask. This is one of those "JS standards" - unlike most of the questions that have a clear answer, this one has a bit more opinion.
 
-The main argument against doing this is: if, in future, a browser decides to implement it's own version of your method, your method might get overridden (silently) and the browser's implementation (which is probably different from yours) would take over. So not extending in the first place is future proofing your code.
+The main argument against doing this is: if, in future, a browser decides to implement its own version of your method, your method might get overridden (silently) and the browser’s implementation (which is probably different from yours) would take over. So not extending in the first place is future proofing your code.
 
 On the flip side, if you decide to overwrite the browsers definition, any future developer working on your code won't know about the change. They'll have a harder time getting up to speed.
 
-Generally it's safer to move your particular changes into a library (as with [underscore.js](http://documentcloud.github.io/underscore/)). That way your particular methods are clearly marked and there's no chance of conflict.
+Generally it’s safer to move your particular changes into a library (as with [underscore.js](http://documentcloud.github.io/underscore/)). That way your particular methods are clearly marked and there’s no chance of conflict.
 
 **But...**
 

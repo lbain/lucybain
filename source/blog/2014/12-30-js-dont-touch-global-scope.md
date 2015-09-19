@@ -11,14 +11,14 @@ Form most languages, global variables are [considered](http://en.wikipedia.org/w
 
 Some points on why **global variables are generally bad** (taken from [Cunningham & Cunningham](http://c2.com/cgi/wiki?GlobalVariablesAreBad) with modifications for easier reading):
 
-* It's harder to read the code and reason about it when variables seem to appear out of thin air (but really from the global scope).
-* Anyone can update a global variable from any point in the program at any time (and from any thread if there's more than one going).
+* It’s harder to read the code and reason about it when variables seem to appear out of thin air (but really from the global scope).
+* Anyone can update a global variable from any point in the program at any time (and from any thread if there’s more than one going).
 * General [code smell](http://en.wikipedia.org/wiki/Code_smell) - if you're too lazy to put the variable only where it needs to be then what other corners are you cutting?
-* It's probable that you'll encounter global variable name clashes. Since there's only one namespace you're more likely to double up on a variable name.
+* It’s probable that you'll encounter global variable name clashes. Since there’s only one namespace you're more likely to double up on a variable name.
 
 **Global variables are particularly bad for JS.**
 
-Not only are all of those points above true (and a few others I didn't include), but for JS specifically global variables can be particularly problematic. This is because JS defaults all variables to the global scope unless they are explicitly defined elsewhere. Here's an example:
+Not only are all of those points above true (and a few others I didn't include), but for JS specifically global variables can be particularly problematic. This is because JS defaults all variables to the global scope unless they are explicitly defined elsewhere. Here’s an example:
 
 ```
 function badlyScoped() {
@@ -29,7 +29,7 @@ badlyScoped();
 console.log(globalVariable); // logs "I'm a global variable"
 ```
 
-Well isn't that terrifying! We thought we were creating a local variable, since it was defined within a function, but nope! We forgot the `var` keyword, which would make the variable local. Here's a corrected version:
+Well isn't that terrifying! We thought we were creating a local variable, since it was defined within a function, but nope! We forgot the `var` keyword, which would make the variable local. Here’s a corrected version:
 
 ```
 function wellScoped() {

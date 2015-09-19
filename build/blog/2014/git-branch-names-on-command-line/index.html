@@ -46,7 +46,7 @@
       <div class=' blog-listing'>
         <h1>Git Branch Names on Command Prompt</h1>
         <p>Published on: February 13, 2014</p>
-        <p>I often forget which branch I&#39;m on. Sure, I have <code>git branch</code> aliased (it&#39;s probably one of my most frequently used commands) but sometimes I&#39;m convinced I&#39;m on another branch. A few commits and merges later I find out I was wrong, and it&#39;s time for some branch cleaning.</p>
+        <p>I often forget which branch I&#39;m on. Sure, I have <code>git branch</code> aliased (it’s probably one of my most frequently used commands) but sometimes I&#39;m convinced I&#39;m on another branch. A few commits and merges later I find out I was wrong, and it’s time for some branch cleaning.</p>
         
         <p>Recently my coworker <a href="https://plus.google.com/+SimonHildebrandt/">Simon</a> gave me the following code:</p>
         <pre class="highlight plaintext">parse_git_branch() {&#x000A;   git branch 2&gt; /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'&#x000A;}&#x000A;export PS1="\W\[\033[32m\]\$(parse_git_branch)\[\033[00m\] $ "</pre>

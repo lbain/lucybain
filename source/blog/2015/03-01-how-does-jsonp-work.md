@@ -5,7 +5,7 @@ tags: js, interview-questions
 
 ## How does JSONP work?
 
-Let's start smaller: *What does JSONP stand for?*
+Let’s start smaller: *What does JSONP stand for?*
 
 **J**ava**S**cript **O**bject **N**otation with **P**adding
 
@@ -15,7 +15,7 @@ We'll talk about the padding part in a minute.
 
 *What problem does it solve?*
 
-Browsers try to be security conscious. They don't let your JS talk to just any old server (see [Cross Site Scripting](https://www.google.com.au/webhp?sourceid=chrome-instant&ion=1&espv=2&ie=UTF-8#q=cross%20site%20scripting)). When you make AJAX requests, you can only query your server, not anyone else's. This is a problem if you want to get data from another server (perhaps see a stream of Tweets). The browsers will not let you make an AJAX call to another server, so you're stuck.
+Browsers try to be security conscious. They don't let your JS talk to just any old server (see [Cross Site Scripting](https://www.google.com.au/webhp?sourceid=chrome-instant&ion=1&espv=2&ie=UTF-8#q=cross%20site%20scripting)). When you make AJAX requests, you can only query your server, not anyone else’s. This is a problem if you want to get data from another server (perhaps see a stream of Tweets). The browsers will not let you make an AJAX call to another server, so you're stuck.
 
 *Ok, tell me a bit about JSONP*
 
@@ -45,9 +45,9 @@ Next, add a script tag to your page which calls the API and passes it an additio
 <script src="http://cool-stuff.com/api.json?callback=myCallbackFunction"></script>
 ```
 
-Notice the additional parameter? It's typically called `callback`, but not always, check the docs for your particular API. Also note the `callback` parameter's value. It's the same as the function we defined earlier. *This is crucial!* If those names don't match up you won't get your data.
+Notice the additional parameter? It’s typically called `callback`, but not always, check the docs for your particular API. Also note the `callback` parameter’s value. It’s the same as the function we defined earlier. *This is crucial!* If those names don't match up you won't get your data.
 
-An API that's set up to handle JSONP knows to look for that special parameter. If it's there, the response isn't just JSON, but the JSON wrapped (**P**added) with the name of the callback. So for us, the API would return:
+An API that’s set up to handle JSONP knows to look for that special parameter. If it’s there, the response isn't just JSON, but the JSON wrapped (**P**added) with the name of the callback. So for us, the API would return:
 
 ```
 myCallbackFunction({'awesome': 'data'});
@@ -71,7 +71,7 @@ $.ajax({
 });
 ```
 
-**Safety First!** There's a reason browsers don't like you talking to other servers - you never know what those servers will send back! Use good data validation, even if the data is "safe."
+**Safety First!** There’s a reason browsers don't like you talking to other servers - you never know what those servers will send back! Use good data validation, even if the data is "safe."
 
 **You can only use JSONP for `get` requests.** You can use normal AJAX to do `post` and `delete` and all data manipulations, but you cannot do this with JSONP. The practical reason for this is that HTML tags only ever get information, they can't do anything else (think image tags, links for style sheets, and script tags). The handy reason is that if you owned the API you almost certainly would not want randoms from the internet updating your data.
 

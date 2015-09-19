@@ -49,7 +49,7 @@
         <p>Tags: <a href="/blog/tags/js/">js</a> and <a href="/blog/tags/interview-questions/">interview-questions</a></p>
         <h2>Why is extending built in JavaScript objects not a good idea?</h2>
         
-        <p>Turns out there&#39;s lots written on this topic (lucky for me!), be sure to check out the references section at the end.</p>
+        <p>Turns out there’s lots written on this topic (lucky for me!), be sure to check out the references section at the end.</p>
         
         <p><strong>What is &quot;extending an object&quot;?</strong></p>
         
@@ -61,11 +61,11 @@
         
         <p>It depends on who you ask. This is one of those &quot;JS standards&quot; - unlike most of the questions that have a clear answer, this one has a bit more opinion.</p>
         
-        <p>The main argument against doing this is: if, in future, a browser decides to implement it&#39;s own version of your method, your method might get overridden (silently) and the browser&#39;s implementation (which is probably different from yours) would take over. So not extending in the first place is future proofing your code.</p>
+        <p>The main argument against doing this is: if, in future, a browser decides to implement its own version of your method, your method might get overridden (silently) and the browser’s implementation (which is probably different from yours) would take over. So not extending in the first place is future proofing your code.</p>
         
         <p>On the flip side, if you decide to overwrite the browsers definition, any future developer working on your code won&#39;t know about the change. They&#39;ll have a harder time getting up to speed.</p>
         
-        <p>Generally it&#39;s safer to move your particular changes into a library (as with <a href="http://documentcloud.github.io/underscore/">underscore.js</a>). That way your particular methods are clearly marked and there&#39;s no chance of conflict.</p>
+        <p>Generally it’s safer to move your particular changes into a library (as with <a href="http://documentcloud.github.io/underscore/">underscore.js</a>). That way your particular methods are clearly marked and there’s no chance of conflict.</p>
         
         <p><strong>But...</strong></p>
         

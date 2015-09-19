@@ -13,7 +13,7 @@ According to the latest [ECMAScript](http://en.wikipedia.org/wiki/ECMAScript) re
 * Symbol
 * Object
 
-Ok, let's run over those one by one:
+Ok, let’s run over those one by one:
 
 ### Boolean
 
@@ -89,7 +89,7 @@ console.log(dog[breed]); // logs "Corgi"
 
 ### Object
 
-Everything in JS that we didn't discuss above is an Object. So objects are the most complex data type; I'll dedicate a future post to them since it's a lot to cover here. But you've probably worked with objects in the past. They typically look like this:
+Everything in JS that we didn't discuss above is an Object. So objects are the most complex data type; I'll dedicate a future post to them since it’s a lot to cover here. But you've probably worked with objects in the past. They typically look like this:
 
 ```
 var cat = { sound: "meow" };
@@ -100,7 +100,7 @@ var whiskers = new function() {
     this.sound = "meow";
 }
 ```
-But notice that we haven't mentioned `Array`, `Date`, or even `function` that's because, [officially](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#.22Normal.22_objects.2C_and_functions), they're all of type `object`. Pretty crazy, huh?
+But notice that we haven't mentioned `Array`, `Date`, or even `function` that’s because, [officially](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#.22Normal.22_objects.2C_and_functions), they're all of type `object`. Pretty crazy, huh?
 
 ## Resources
 

@@ -49,23 +49,23 @@
         <p>Tags: <a href="/blog/tags/js/">js</a> and <a href="/blog/tags/interview-questions/">interview-questions</a></p>
         <h2>Explain how this works in JavaScript</h2>
         
-        <p>Huh, well that&#39;s something I&#39;ve been trying to figure out as I work with JS. <code>this</code> still doesn&#39;t make perfect sense to me. But here&#39;s my current understanding...</p>
+        <p>Huh, well that’s something I&#39;ve been trying to figure out as I work with JS. <code>this</code> still doesn&#39;t make perfect sense to me. But here’s my current understanding...</p>
         
         <p><strong><code>this</code> is the context the code is running in</strong></p>
         
-        <p>However, the context seems to change a lot, and I find it rather confusing. So I signed upf for an <a href="http://derickbailey.com/email-courses/masteringthis/">email series</a> on how <code>this</code> can change. Here&#39;s a sweeping overview of that series:</p>
+        <p>However, the context seems to change a lot, and I find it rather confusing. So I signed upf for an <a href="http://derickbailey.com/email-courses/masteringthis/">email series</a> on how <code>this</code> can change. Here’s a sweeping overview of that series:</p>
         
         <ul>
         <li><code>this</code> refers to the window</li>
         </ul>
         
-        <p>At it&#39;s simplest, <code>this</code> is the window itself without anything fancy going on. You can call <code>this</code> in the console directly and get Window.</p>
+        <p>At its simplest, <code>this</code> is the window itself without anything fancy going on. You can call <code>this</code> in the console directly and get Window.</p>
         
         <ul>
-        <li><code>this</code> refers to the object it&#39;s being called from</li>
+        <li><code>this</code> refers to the object it’s being called from</li>
         </ul>
         <pre class="highlight javascript"><span class="kd">function</span> <span class="nx">currentYear</span><span class="p">()</span> <span class="p">{</span>&#x000A;  <span class="k">return</span> <span class="mi">2014</span><span class="p">;</span>&#x000A;<span class="p">}</span>&#x000A;<span class="kd">var</span> <span class="nx">person</span> <span class="o">=</span> <span class="p">{</span> <span class="na">birthYear</span><span class="p">:</span> <span class="mi">1977</span><span class="p">,</span>&#x000A;               <span class="na">getAge</span><span class="p">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>&#x000A;                 <span class="k">return</span> <span class="nx">currentYear</span><span class="p">()</span> <span class="o">-</span> <span class="k">this</span><span class="p">.</span><span class="nx">birthYear</span><span class="p">;</span>&#x000A;               <span class="p">}</span>&#x000A;             <span class="p">};</span>&#x000A;<span class="nx">person</span><span class="p">.</span><span class="nx">getAge</span><span class="p">();</span>&#x000A;<span class="c1">// returns 37&#x000A;</span></pre>
-        <p>You can see the call to <code>this.birthYear</code> in the <code>getAge</code> function references the <code>person</code>&#39;s <code>birthYear</code>. That is the <code>this</code> refers to it&#39;s parent object. As a Ruby developer <code>this</code> is similar to <code>self</code>.</p>
+        <p>You can see the call to <code>this.birthYear</code> in the <code>getAge</code> function references the <code>person</code>’s <code>birthYear</code>. That is the <code>this</code> refers to its parent object. As a Ruby developer <code>this</code> is similar to <code>self</code>.</p>
         
         <ul>
         <li><code>this</code> refers to the element the event is bound to</li>

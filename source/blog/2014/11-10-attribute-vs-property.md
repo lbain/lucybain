@@ -3,15 +3,15 @@ title: 'JS: attribute vs. property'
 tags: js, interview-questions
 ---
 
-## What's the difference between an "attribute" and a "property"?
+## What’s the difference between an "attribute" and a "property"?
 
-As usual, let's start smaller.
+As usual, let’s start smaller.
 
 **What is a property?**
 
-JS DOM objects have properties. These properties are kind of like instance variables for the particular element. As such, a property can be different types (boolean, string, etc.). Properties can be accessed using jQuery's `prop` method (as seen below) and also by interacting with the object in vanilla JS.
+JS DOM objects have properties. These properties are kind of like instance variables for the particular element. As such, a property can be different types (boolean, string, etc.). Properties can be accessed using jQuery’s `prop` method (as seen below) and also by interacting with the object in vanilla JS.
 
-Let's take a look:
+Let’s take a look:
 
 ```
 <a href='page2.html' class='link classes' name='linkName' id='linkID'>Hi</a>
@@ -35,7 +35,7 @@ $('#linkID').prop('href'); // returns "http://example.com/page1.html"
 
 **What is an attribute?**
 
-Attributes are in the HTML itself, rather than in the DOM. They are very similar to properties, but not quite as good. When a property is available it's recommended that you work with properties rather than attributes.
+Attributes are in the HTML itself, rather than in the DOM. They are very similar to properties, but not quite as good. When a property is available it’s recommended that you work with properties rather than attributes.
 
 An attribute is only ever a string, no other type.
 

@@ -7,7 +7,7 @@ title: validate vs. validateS
 %p
   <code>::ActiveModel::Validations</code> treats <code>validates</code> and <code>validate</code> differently. <code>validates</code> is used for normal validations <code>presence</code>, <code>length</code>, and the like. <code>validate</code> is used for custom validation methods <code>validate_name_starts_with_a</code>, or whatever crazy method you come up with. These methods are clearly useful and help keep data clean.
 %p
-  That's all well and good, except for one tiny thing:
+  That’s all well and good, except for one tiny thing:
 
   :code
     #lang: ruby
@@ -34,13 +34,13 @@ title: validate vs. validateS
 
   That test <em>fails</em>.
 %p
-  Go ahead, copy that into a new file and run it for yourself. I'll wait. Yep, it fails. There's no value set for <code>bar</code> and yet <code>foo.valid?</code> still returns <code>true</code>. This is a problem.
+  Go ahead, copy that into a new file and run it for yourself. I'll wait. Yep, it fails. There’s no value set for <code>bar</code> and yet <code>foo.valid?</code> still returns <code>true</code>. This is a problem.
 %p
-  So what's going on here? I asked #{link_to 'StackOverflow', 'http://stackoverflow.com/questions/18140898/whats-the-difference-between-validate-and-validates'}, and it turns out there's a totally reasonable explanation. <code>validate</code> is written to look for a custom validation method, this time one called <code>bar</code>. It just so happens there is a <code>bar</code> method, set from the <code>attr_accessor :bar</code> line. That <code>bar</code> method returns doesn't return <code>false</code>, nor does it put an error messages on the main object's body. Therefore <code>validate</code> interprets the call to <code>bar</code> as a success and doesn't invalidate the object.
+  So what’s going on here? I asked #{link_to 'stackOverflow', 'http://stackoverflow.com/questions/18140898/whats-the-difference-between-validate-and-validates'}, and it turns out there’s a totally reasonable explanation. <code>validate</code> is written to look for a custom validation method, this time one called <code>bar</code>. It just so happens there is a <code>bar</code> method, set from the <code>attr_accessor :bar</code> line. That <code>bar</code> method returns doesn't return <code>false</code>, nor does it put an error messages on the main object’s body. Therefore <code>validate</code> interprets the call to <code>bar</code> as a success and doesn't invalidate the object.
 %p
-  This explanation also means there's no way for the code to "fail loudly" - to alert us that we haven't purposefully defined a custom method when we use <code>validate</code>. So I'd suggest grepping through your codebase for <code>validate :</code> and making very sure that's what you actually want.
+  This explanation also means there’s no way for the code to "fail loudly" - to alert us that we haven't purposefully defined a custom method when we use <code>validate</code>. So I'd suggest grepping through your codebase for <code>validate :</code> and making very sure that’s what you actually want.
 %p
-  So remember folks, <code>validates</code> is for Rails validators (and custom validator classes ending with <code>Validator</code> if that's what you're into), and <code>validate</code> is for your custom validator methods. Don't make a typo!
+  So remember folks, <code>validates</code> is for Rails validators (and custom validator classes ending with <code>Validator</code> if that’s what you're into), and <code>validate</code> is for your custom validator methods. Don't make a typo!
 
 
 

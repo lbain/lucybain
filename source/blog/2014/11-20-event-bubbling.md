@@ -41,7 +41,7 @@ When the user clicks the button the events starts at the button element, so `but
 
 *What if you don't want the event to bubble up?*
 
-A fair question. Often you only want the event to trigger on the element itself, without bothering all it's ancestors. Consider the following JS (with the same HTML as above):
+A fair question. Often you only want the event to trigger on the element itself, without bothering all its ancestors. Consider the following JS (with the same HTML as above):
 
 ```
 $( "button" ).click(function(event) {

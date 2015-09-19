@@ -56,17 +56,17 @@
         <p>Some points on why <strong>global variables are generally bad</strong> (taken from <a href="http://c2.com/cgi/wiki?GlobalVariablesAreBad">Cunningham &amp; Cunningham</a> with modifications for easier reading):</p>
         
         <ul>
-        <li>It&#39;s harder to read the code and reason about it when variables seem to appear out of thin air (but really from the global scope).</li>
-        <li>Anyone can update a global variable from any point in the program at any time (and from any thread if there&#39;s more than one going).</li>
+        <li>It’s harder to read the code and reason about it when variables seem to appear out of thin air (but really from the global scope).</li>
+        <li>Anyone can update a global variable from any point in the program at any time (and from any thread if there’s more than one going).</li>
         <li>General <a href="http://en.wikipedia.org/wiki/Code_smell">code smell</a> - if you&#39;re too lazy to put the variable only where it needs to be then what other corners are you cutting?</li>
-        <li>It&#39;s probable that you&#39;ll encounter global variable name clashes. Since there&#39;s only one namespace you&#39;re more likely to double up on a variable name.</li>
+        <li>It’s probable that you&#39;ll encounter global variable name clashes. Since there’s only one namespace you&#39;re more likely to double up on a variable name.</li>
         </ul>
         
         <p><strong>Global variables are particularly bad for JS.</strong></p>
         
-        <p>Not only are all of those points above true (and a few others I didn&#39;t include), but for JS specifically global variables can be particularly problematic. This is because JS defaults all variables to the global scope unless they are explicitly defined elsewhere. Here&#39;s an example:</p>
+        <p>Not only are all of those points above true (and a few others I didn&#39;t include), but for JS specifically global variables can be particularly problematic. This is because JS defaults all variables to the global scope unless they are explicitly defined elsewhere. Here’s an example:</p>
         <pre class="highlight plaintext">function badlyScoped() {&#x000A;    globalVariable = "I'm a global variable";&#x000A;}&#x000A;&#x000A;badlyScoped();&#x000A;console.log(globalVariable); // logs "I'm a global variable"</pre>
-        <p>Well isn&#39;t that terrifying! We thought we were creating a local variable, since it was defined within a function, but nope! We forgot the <code>var</code> keyword, which would make the variable local. Here&#39;s a corrected version:</p>
+        <p>Well isn&#39;t that terrifying! We thought we were creating a local variable, since it was defined within a function, but nope! We forgot the <code>var</code> keyword, which would make the variable local. Here’s a corrected version:</p>
         <pre class="highlight plaintext">function wellScoped() {&#x000A;    var localVariable = "I'm a local variable";&#x000A;}&#x000A;&#x000A;wellScoped();&#x000A;console.log(localVariable); // throws: "localVariable is not defined"</pre>
         <p>This is a quirk (<a href="http://www.amazon.com/JavaScript-Good-Parts-Douglas-Crockford/dp/0596517742">some say</a> a mistake) of JS. It makes global variables particularly dangerous since you might not even know you were creating one. So watch your back and don&#39;t forget to use <code>var</code>!</p>
         

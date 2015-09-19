@@ -7,17 +7,17 @@ The blog topic (like most of my interview question posts) comes from the [Front-
 
 ## Explain your understanding of the box model.
 
-Well, first off *what's this “box” you're talking about?*
+Well, first off *what’s this “box” you're talking about?*
 
 In CSS, at least in reference to the box model, the “box” is the content area as defined by the `width`. So it looks something like this:
 
 ![Image of box](/images/blog/box-model.jpg)
 
-Hopefully that's straight forward enough. However, browsers differ on what should and should not get included in the “content” area. Up for debate is the content itself (words), the padding, the borders, and the margin. As far as I know, everyone agrees that the words should count towards the width, and that the margin should not. But when it comes to the padding and border things are uncertain.
+Hopefully that’s straight forward enough. However, browsers differ on what should and should not get included in the “content” area. Up for debate is the content itself (words), the padding, the borders, and the margin. As far as I know, everyone agrees that the words should count towards the width, and that the margin should not. But when it comes to the padding and border things are uncertain.
 
 Some browsers (such as Firefox) think the width should only include the the content itself, not the padding, boarder, nor margin. Other browsers (such as IE) think the width should include the content, padding, and boarder, but not the margin. (So far I haven't found anyone who thinks the padding should be in and the boarder out - they seem to always go as a pair.)
 
-So for these two ways of looking at things, there are two ways to define the box. Let's look at them one by one.
+So for these two ways of looking at things, there are two ways to define the box. Let’s look at them one by one.
 
 ### Content box
 
@@ -51,9 +51,9 @@ So for these two ways of looking at things, there are two ways to define the box
   Content box
 </div>
 
-Go ahead and check out the CSS and HTML used to make the above. It's all inline right there so you can see I’m not doing anything tricky.
+Go ahead and check out the CSS and HTML used to make the above. It’s all inline right there so you can see I’m not doing anything tricky.
 
-Ok, to start with, we have a thick black line that's exactly 150px wide. That's your ruler. Next we have a div with an orange border (10px), blue padding (20px), and pink for the content itself. The div’s width is set to 150px using `box-sizing: content-box`, but, as you can see, the whole div is much larger than the 150px ruler just above it.
+Ok, to start with, we have a thick black line that’s exactly 150px wide. That’s your ruler. Next we have a div with an orange border (10px), blue padding (20px), and pink for the content itself. The div’s width is set to 150px using `box-sizing: content-box`, but, as you can see, the whole div is much larger than the 150px ruler just above it.
 
 *How much bigger?*
 
@@ -68,7 +68,7 @@ Well, since the border (10px) and padding (20px) don't count towards the total w
 
 ### Border box
 
-The other way to measure it is to include the padding and the border, which is exactly what border box does. Here's your example again:
+The other way to measure it is to include the padding and the border, which is exactly what border box does. Here’s your example again:
 
 <div class="border-box width">
 </div>
@@ -77,7 +77,7 @@ The other way to measure it is to include the padding and the border, which is e
   Border box
 </div>
 
-Same as above there's a thick black line set to 150px wide as a ruler. Then a div with the same measurements (an orange border (10px), blue padding (20px), and pink for the content itself). The div’s width is set to 150px using `box-sizing: border-box`, and the whole div is exactly the same width as the 150px ruler. This means the area for the content is smaller.
+Same as above there’s a thick black line set to 150px wide as a ruler. Then a div with the same measurements (an orange border (10px), blue padding (20px), and pink for the content itself). The div’s width is set to 150px using `box-sizing: border-box`, and the whole div is exactly the same width as the 150px ruler. This means the area for the content is smaller.
 
 *How much smaller?*
 
@@ -88,7 +88,7 @@ Well, the same as above - 60px smaller. So the area for the content is only 90px
 
 Well, exactly as above, using `box-sizing: border-box` or `box-sizing: content-box` depending on your need.
 
-While it's possible to set `box-sizing` per element (as I did in my examples) this is usually very confusing. If each element could be one way or another you wouldn't know what widths to set on things until you checked which box model they used. Therefore it’s recommended to set `box-sizing` on all your elements with `* { box-sizing: YOUR_DECISION_HERE; }`.
+While it’s possible to set `box-sizing` per element (as I did in my examples) this is usually very confusing. If each element could be one way or another you wouldn't know what widths to set on things until you checked which box model they used. Therefore it’s recommended to set `box-sizing` on all your elements with `* { box-sizing: YOUR_DECISION_HERE; }`.
 
 ## Which one should I use?
 

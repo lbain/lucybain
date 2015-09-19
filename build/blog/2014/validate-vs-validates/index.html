@@ -53,21 +53,21 @@
           <code>::ActiveModel::Validations</code> treats <code>validates</code> and <code>validate</code> differently. <code>validates</code> is used for normal validations <code>presence</code>, <code>length</code>, and the like. <code>validate</code> is used for custom validation methods <code>validate_name_starts_with_a</code>, or whatever crazy method you come up with. These methods are clearly useful and help keep data clean.
         </p>
         <p>
-          That's all well and good, except for one tiny thing:
+          That’s all well and good, except for one tiny thing:
           <pre class="highlight ruby"><span class="nb">require</span> <span class="s1">'active_record'</span>&#x000A;&#x000A;<span class="k">class</span> <span class="nc">Foo</span>&#x000A;  <span class="kp">include</span> <span class="o">::</span><span class="no">ActiveModel</span><span class="o">::</span><span class="no">Validations</span>&#x000A;&#x000A;  <span class="kp">attr_accessor</span> <span class="ss">:bar</span>&#x000A;  <span class="n">validate</span> <span class="ss">:bar</span><span class="p">,</span> <span class="ss">presence: </span><span class="kp">true</span>&#x000A;  <span class="c1"># Note the validate without an s!</span>&#x000A;<span class="k">end</span>&#x000A;&#x000A;&#x000A;<span class="nb">require</span> <span class="s1">'rspec'</span>&#x000A;<span class="nb">require</span> <span class="s1">'rspec/autorun'</span>&#x000A;&#x000A;<span class="n">describe</span> <span class="s1">'Foo'</span> <span class="k">do</span>&#x000A;  <span class="n">it</span> <span class="s1">'fails to actually validate'</span> <span class="k">do</span>&#x000A;    <span class="n">foo</span> <span class="o">=</span> <span class="no">Foo</span><span class="p">.</span><span class="nf">new</span>&#x000A;    <span class="n">foo</span><span class="p">.</span><span class="nf">valid?</span><span class="p">.</span><span class="nf">should</span> <span class="n">be_false</span>&#x000A;  <span class="k">end</span>&#x000A;<span class="k">end</span>&#x000A;</pre>
           That test <em>fails</em>.
         </p>
         <p>
-          Go ahead, copy that into a new file and run it for yourself. I'll wait. Yep, it fails. There's no value set for <code>bar</code> and yet <code>foo.valid?</code> still returns <code>true</code>. This is a problem.
+          Go ahead, copy that into a new file and run it for yourself. I'll wait. Yep, it fails. There’s no value set for <code>bar</code> and yet <code>foo.valid?</code> still returns <code>true</code>. This is a problem.
         </p>
         <p>
-          So what's going on here? I asked <a href="http://stackoverflow.com/questions/18140898/whats-the-difference-between-validate-and-validates">StackOverflow</a>, and it turns out there's a totally reasonable explanation. <code>validate</code> is written to look for a custom validation method, this time one called <code>bar</code>. It just so happens there is a <code>bar</code> method, set from the <code>attr_accessor :bar</code> line. That <code>bar</code> method returns doesn't return <code>false</code>, nor does it put an error messages on the main object's body. Therefore <code>validate</code> interprets the call to <code>bar</code> as a success and doesn't invalidate the object.
+          So what’s going on here? I asked <a href="http://stackoverflow.com/questions/18140898/whats-the-difference-between-validate-and-validates">stackOverflow</a>, and it turns out there’s a totally reasonable explanation. <code>validate</code> is written to look for a custom validation method, this time one called <code>bar</code>. It just so happens there is a <code>bar</code> method, set from the <code>attr_accessor :bar</code> line. That <code>bar</code> method returns doesn't return <code>false</code>, nor does it put an error messages on the main object’s body. Therefore <code>validate</code> interprets the call to <code>bar</code> as a success and doesn't invalidate the object.
         </p>
         <p>
-          This explanation also means there's no way for the code to "fail loudly" - to alert us that we haven't purposefully defined a custom method when we use <code>validate</code>. So I'd suggest grepping through your codebase for <code>validate :</code> and making very sure that's what you actually want.
+          This explanation also means there’s no way for the code to "fail loudly" - to alert us that we haven't purposefully defined a custom method when we use <code>validate</code>. So I'd suggest grepping through your codebase for <code>validate :</code> and making very sure that’s what you actually want.
         </p>
         <p>
-          So remember folks, <code>validates</code> is for Rails validators (and custom validator classes ending with <code>Validator</code> if that's what you're into), and <code>validate</code> is for your custom validator methods. Don't make a typo!
+          So remember folks, <code>validates</code> is for Rails validators (and custom validator classes ending with <code>Validator</code> if that’s what you're into), and <code>validate</code> is for your custom validator methods. Don't make a typo!
         </p>
         <hr>
         <div id='disqus_thread'></div>

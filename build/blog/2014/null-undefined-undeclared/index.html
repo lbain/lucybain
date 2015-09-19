@@ -47,11 +47,11 @@
         <h1>JS: null, undefined, and undeclared</h1>
         <p>Published on: October  6, 2014</p>
         <p>Tags: <a href="/blog/tags/js/">js</a> and <a href="/blog/tags/interview-questions/">interview-questions</a></p>
-        <h2>What&#39;s the difference between a variable that is: null, undefined, or undeclared?</h2>
+        <h2>What’s the difference between a variable that is: null, undefined, or undeclared?</h2>
         
-        <p>Here&#39;s a <a href="http://stackoverflow.com/a/834095/863846">TL;DR</a> version I found quite useful when writing this.</p>
+        <p>Here’s a <a href="http://stackoverflow.com/a/834095/863846">TL;DR</a> version I found quite useful when writing this.</p>
         
-        <p>I think they make more sense in the opposite order: undeclared, undefined, and null. That&#39;s the order I&#39;m going to tackle them anyways.</p>
+        <p>I think they make more sense in the opposite order: undeclared, undefined, and null. That’s the order I&#39;m going to tackle them anyways.</p>
         
         <p>First up is <strong><code>undeclared</code></strong>.</p>
         
@@ -59,13 +59,13 @@
         
         <p>Example:</p>
         <pre class="highlight plaintext">var declaredVariable = 1;&#x000A;&#x000A;function scoppedVariables() {&#x000A;  undeclaredVariable = 1;&#x000A;  var declaredVariable = 2;&#x000A;}&#x000A;&#x000A;scoppedVariables();&#x000A;&#x000A;undeclaredVariable; // 1&#x000A;declaredVariable; // 1</pre>
-        <p>For more discussion on undeclared variables, checkout <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/var">Mozilla&#39;s documentation</a>.</p>
+        <p>For more discussion on undeclared variables, checkout <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/var">Mozilla’s documentation</a>.</p>
         
         <p>Note: this will not work in <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Strict_mode">strict mode</a>. It will throw an error when it gets to the <code>undeclaredVariable</code> - see this <a href="https://jsfiddle.net/glenselle/9czx6dLg/2/">example</a>. Thanks to Glen Selle for his comment with this update.</p>
         
         <p><br/></p>
         
-        <p>Now let&#39;s move on to <strong><code>undefined</code></strong>.</p>
+        <p>Now let’s move on to <strong><code>undefined</code></strong>.</p>
         
         <p>Something is <code>undefined</code> when it hasn&#39;t been defined yet. If you call a variable or function without having actually created it yet the parser will give you an <code>not defined</code> error.</p>
         
@@ -88,7 +88,7 @@
         <p>You can know if a variable is null with the following:</p>
         <pre class="highlight plaintext">if( variable === null ) {&#x000A;  console.log('variable is null');&#x000A;} else {&#x000A;  console.log('variable is not null');&#x000A;}</pre>
         <p><br/>
-        I think the order &quot;undeclared, undefined, and null&quot; makes sense since it&#39;s increasing order of certainty.</p>
+        I think the order &quot;undeclared, undefined, and null&quot; makes sense since it’s increasing order of certainty.</p>
         
         <ul>
         <li><code>undeclared</code> variables don&#39;t even exist</li>

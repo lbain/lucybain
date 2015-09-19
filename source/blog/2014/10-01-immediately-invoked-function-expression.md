@@ -11,7 +11,7 @@ IIFE stands for Immediately Invoked Function Expressions
 
 *Great, so what are IIFEs?*
 
-An IIFE is an anonymous function that is created and then immediately invoked. It's not called from anywhere else (hence why it's anonymous), but runs just after being created.
+An IIFE is an anonymous function that is created and then immediately invoked. It’s not called from anywhere else (hence why it’s anonymous), but runs just after being created.
 
 Example:
 
@@ -37,7 +37,7 @@ getValue(); // returns 1
 ```
 *I can't even read that, what do all the nested functions mean?*
 
-Let's investigate the IIFE assigned to `getValue` by rewriting it with a helper function:
+Let’s investigate the IIFE assigned to `getValue` by rewriting it with a helper function:
 
 ```
 var v = 1;
@@ -140,7 +140,7 @@ counter.set( 3 );
 counter.get(); // returns 3
 counter.i; // returns undefined
 ```
-*Ok, that's a bit clearer, but what is `counter` actually set to?*
+*Ok, that’s a bit clearer, but what is `counter` actually set to?*
 
 `counter` is set to the return value of `helperFunction`, that is just this bit:
 
@@ -157,7 +157,7 @@ counter.i; // returns undefined
 
 You'll notice `var i` doesn't appear anywhere in there. `i` is defined elsewhere in the `helperFunction` / IIFE. Since the return value of `helperFunction` doesn't give explicit access to `i`, `counter` doesn't have access.
 
-*Fine, so if that's all that `counter` has access to, how does `counter.get()` return a value?*
+*Fine, so if that’s all that `counter` has access to, how does `counter.get()` return a value?*
 
 Scopes! The scope from `helperFunction` has access to `i`. The object returned by `helperFunction` (a.k.a `counter`) has access to all the variables defined in `helperFunction`. It works like this:
 
@@ -195,18 +195,18 @@ Scopes! The scope from `helperFunction` has access to `i`. The object returned b
 
 ### And now back to your scheduled program
 
-With all that explanation behind us, let's go back to the original question:
+With all that explanation behind us, let’s go back to the original question:
 
 **Explain why the following doesn't work as an IIFE: `function foo(){ }();`**
 
-Because `foo` isn't being called! Here's a rewrite:
+Because `foo` isn't being called! Here’s a rewrite:
 
 ```
 function foo(){
 }();
 ```
 
-This is a function **definition**, it defines `foo`. But it's not a function **expression** - that is, it's not understood by the JS parser to actually call a function.
+This is a function **definition**, it defines `foo`. But it’s not a function **expression** - that is, it’s not understood by the JS parser to actually call a function.
 
 For the parser, things look like this:
 
@@ -215,7 +215,7 @@ function foo(){
 } // ok, done with that function definition
   // (silly human left off the semicolon, how embarrassing!)
 
-(); // Are they trying to call something? What's the function's name?
+(); // Are they trying to call something? What’s the function’s name?
     // PARSE ERROR
 ```
 
@@ -243,4 +243,4 @@ And to finish it all off with a return statement and everything:
 }());
 ```
 
-For more information read Ben Alman's post [introducing IIFEs](http://benalman.com/news/2010/11/immediately-invoked-function-expression/).
+For more information read Ben Alman’s post [introducing IIFEs](http://benalman.com/news/2010/11/immediately-invoked-function-expression/).

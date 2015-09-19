@@ -15,7 +15,7 @@ JS interview topics left
 
 See email
 * How can you use closures to implement public/private methods?
-* What's the difference when invoking a function with or without the new keyword?
+* What’s the difference when invoking a function with or without the new keyword?
 * What types of things are potentially dangerous to define on the prototype?
 * How can you change the execution context of a function/method? (use bind, call, and apply) - kind of did this one, but not all together and I'd like to review
 * How can you force a JavaScript function to execute asynchronously?

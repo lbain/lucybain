@@ -49,7 +49,7 @@
         <p>Tags: <a href="/blog/tags/js/">js</a> and <a href="/blog/tags/interview-questions/">interview-questions</a></p>
         <h2>How does JSONP work?</h2>
         
-        <p>Let&#39;s start smaller: <em>What does JSONP stand for?</em></p>
+        <p>Let’s start smaller: <em>What does JSONP stand for?</em></p>
         
         <p><strong>J</strong>ava<strong>S</strong>cript <strong>O</strong>bject <strong>N</strong>otation with <strong>P</strong>adding</p>
         
@@ -59,7 +59,7 @@
         
         <p><em>What problem does it solve?</em></p>
         
-        <p>Browsers try to be security conscious. They don&#39;t let your JS talk to just any old server (see <a href="https://www.google.com.au/webhp?sourceid=chrome-instant&amp;amp;ion=1&amp;amp;espv=2&amp;amp;ie=UTF-8#q=cross%20site%20scripting">Cross Site Scripting</a>). When you make AJAX requests, you can only query your server, not anyone else&#39;s. This is a problem if you want to get data from another server (perhaps see a stream of Tweets). The browsers will not let you make an AJAX call to another server, so you&#39;re stuck.</p>
+        <p>Browsers try to be security conscious. They don&#39;t let your JS talk to just any old server (see <a href="https://www.google.com.au/webhp?sourceid=chrome-instant&amp;amp;ion=1&amp;amp;espv=2&amp;amp;ie=UTF-8#q=cross%20site%20scripting">Cross Site Scripting</a>). When you make AJAX requests, you can only query your server, not anyone else’s. This is a problem if you want to get data from another server (perhaps see a stream of Tweets). The browsers will not let you make an AJAX call to another server, so you&#39;re stuck.</p>
         
         <p><em>Ok, tell me a bit about JSONP</em></p>
         
@@ -75,9 +75,9 @@
         <pre class="highlight plaintext">function myCallbackFunction(data) {&#x000A;  console.log(data);&#x000A;}</pre>
         <p>Next, add a script tag to your page which calls the API and passes it an additional parameter. Something like this:</p>
         <pre class="highlight plaintext">&lt;script src="http://cool-stuff.com/api.json?callback=myCallbackFunction"&gt;&lt;/script&gt;</pre>
-        <p>Notice the additional parameter? It&#39;s typically called <code>callback</code>, but not always, check the docs for your particular API. Also note the <code>callback</code> parameter&#39;s value. It&#39;s the same as the function we defined earlier. <em>This is crucial!</em> If those names don&#39;t match up you won&#39;t get your data.</p>
+        <p>Notice the additional parameter? It’s typically called <code>callback</code>, but not always, check the docs for your particular API. Also note the <code>callback</code> parameter’s value. It’s the same as the function we defined earlier. <em>This is crucial!</em> If those names don&#39;t match up you won&#39;t get your data.</p>
         
-        <p>An API that&#39;s set up to handle JSONP knows to look for that special parameter. If it&#39;s there, the response isn&#39;t just JSON, but the JSON wrapped (<strong>P</strong>added) with the name of the callback. So for us, the API would return:</p>
+        <p>An API that’s set up to handle JSONP knows to look for that special parameter. If it’s there, the response isn&#39;t just JSON, but the JSON wrapped (<strong>P</strong>added) with the name of the callback. So for us, the API would return:</p>
         <pre class="highlight plaintext">myCallbackFunction({'awesome': 'data'});</pre>
         <p>Since the API returns to a script tag the JS is immediately executed. So <code>myCallbackFunction</code> gets called. We defined this function earlier, so we&#39;ll have <code>{&#39;awesome&#39;: &#39;data&#39;}</code> logged to the console!</p>
         
@@ -87,7 +87,7 @@
         
         <p>Generally you <strong>don&#39;t write the script tag yourself.</strong> You can get jQuery to do that for you :) To make the same call as we did previously you can just use:</p>
         <pre class="highlight plaintext">$.ajax({&#x000A;  url: 'http://cool-stuff.com/api.json',&#x000A;  dataType: 'jsonp',&#x000A;  success: function(data) {&#x000A;    console.log(data);&#x000A;  }&#x000A;});</pre>
-        <p><strong>Safety First!</strong> There&#39;s a reason browsers don&#39;t like you talking to other servers - you never know what those servers will send back! Use good data validation, even if the data is &quot;safe.&quot;</p>
+        <p><strong>Safety First!</strong> There’s a reason browsers don&#39;t like you talking to other servers - you never know what those servers will send back! Use good data validation, even if the data is &quot;safe.&quot;</p>
         
         <p><strong>You can only use JSONP for <code>get</code> requests.</strong> You can use normal AJAX to do <code>post</code> and <code>delete</code> and all data manipulations, but you cannot do this with JSONP. The practical reason for this is that HTML tags only ever get information, they can&#39;t do anything else (think image tags, links for style sheets, and script tags). The handy reason is that if you owned the API you almost certainly would not want randoms from the internet updating your data.</p>
         

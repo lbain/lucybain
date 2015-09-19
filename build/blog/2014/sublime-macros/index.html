@@ -56,7 +56,7 @@
           Ok, now we've got our macro, and you can invoke it by going to <code>Tools/Macros/User/add_macro</code>. (Note: you might need to restart Sublime first.) But going to the menu each time is lame, we're better than that.
         </p>
         <p>
-          Let's add a key binding!
+          Let’s add a key binding!
         </p>
         <p>
           I've done <a href="http://docs.sublimetext.info/en/latest/customization/key_bindings.html">key bindings</a> in the <a href="/blog/2014/Sublime-Auto-Indent/">past</a>, but not <a href="http://superuser.com/questions/609057/how-do-i-assign-a-keyboard-shortcut-to-recorded-macro-in-sublime-text">with macros</a>. I chose to use <code>command + b</code> for mine (you might have that map to build, just a heads up...). So my key binding looked like this:
@@ -69,7 +69,7 @@
           But I wanted more, a <code>- binding.pry</code> in haml, and a <code>debugger</code> in javascript. I also wanted to use the same key binding. I didn't want to think about if I'm in haml or JS.
         </p>
         <p>
-          Creating the macros was the same, but I needed the key bindings to know what kind of file I was in. I looked into how to make <a href="http://www.guiguan.net/how-to-set-a-key-binding-in-sublime-text-based-on-the-file-type-the-command-is-running-on/.">key bindings source aware</a>. I also needed to know how <a href="https://gist.github.com/iambibhas/4705378">Sublime names file types</a>.
+          Creating the macros was the same, but I needed the key bindings to know what kind of file I was in. I looked into how to make <a href="http://www.guiguan.net/how-to-set-a-key-binding-in-sublime-text-based-on-the-file-type-the-command-is-running-on/.">key bindings source aware</a>. I also needed to know how <a href="https://gist.github.com/iambibhas/4705378">sublime names file types</a>.
         </p>
         <p>
           Putting it all together, the final key bindings look like this:
