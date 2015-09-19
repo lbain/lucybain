@@ -4,16 +4,125 @@
   <id>http://lucybain.com/blog</id>
   <link href="http://lucybain.com/blog"/>
   <link href="http://lucybain.com/feed.xml" rel="self"/>
-  <updated>2015-04-23T00:00:00Z</updated>
+  <updated>2015-05-02T00:00:00Z</updated>
   <author>
     <name>Lucy Bain</name>
   </author>
+  <entry>
+    <title>CSS: the box model</title>
+    <link rel="alternate" href="http://lucybain.com/blog/2015/css-box-model/"/>
+    <id>http://lucybain.com/blog/2015/css-box-model/</id>
+    <published>2015-05-02T00:00:00Z</published>
+    <updated>2015-09-19T17:17:46+10:00</updated>
+    <author>
+      <name>Article Author</name>
+    </author>
+    <content type="html">&lt;p&gt;The blog topic (like most of my interview question posts) comes from the &lt;a href="https://github.com/h5bp/Front-end-Developer-Interview-Questions#css-questions"&gt;Front-end Job Interview Questions&lt;/a&gt;. Today I&amp;#39;m moving away from JS to talk about CSS’s box model.&lt;/p&gt;
+
+&lt;h2&gt;Explain your understanding of the box model.&lt;/h2&gt;
+
+&lt;p&gt;Well, first off &lt;em&gt;what&amp;#39;s this “box” you&amp;#39;re talking about?&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;In CSS, at least in reference to the box model, the “box” is the content area as defined by the &lt;code&gt;width&lt;/code&gt;. So it looks something like this:&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt="Image of box" src="/images/blog/box-model.jpg" /&gt;&lt;/p&gt;
+
+&lt;p&gt;Hopefully that&amp;#39;s straight forward enough. However, browsers differ on what should and should not get included in the “content” area. Up for debate is the content itself (words), the padding, the borders, and the margin. As far as I know, everyone agrees that the words should count towards the width, and that the margin should not. But when it comes to the padding and border things are uncertain.&lt;/p&gt;
+
+&lt;p&gt;Some browsers (such as Firefox) think the width should only include the the content itself, not the padding, boarder, nor margin. Other browsers (such as IE) think the width should include the content, padding, and boarder, but not the margin. (So far I haven&amp;#39;t found anyone who thinks the padding should be in and the boarder out - they seem to always go as a pair.)&lt;/p&gt;
+
+&lt;p&gt;So for these two ways of looking at things, there are two ways to define the box. Let&amp;#39;s look at them one by one.&lt;/p&gt;
+
+&lt;h3&gt;Content box&lt;/h3&gt;
+
+&lt;style&gt;
+  .border-box {
+    box-sizing: border-box;
+  }
+  .content-box {
+    box-sizing: content-box;
+  }
+  .width {
+    border: 5px solid black;
+    width: 150px;
+  }
+  .example {
+    text-align: center;
+    width: 150px;
+    border: 10px solid #FF7400;
+    padding: 20px;
+    background-image: linear-gradient(to bottom, #F55585 0%, #F55585 100%),
+                      linear-gradient(to bottom, #00CFCF 0%, #00CFCF 100%);
+    background-clip: content-box, padding-box;
+    margin-bottom: 10px;
+  }
+&lt;/style&gt;
+
+&lt;div class="border-box width"&gt;
+&lt;/div&gt;
+
+&lt;div class="content-box example"&gt;
+  Content box
+&lt;/div&gt;
+
+&lt;p&gt;Go ahead and check out the CSS and HTML used to make the above. It&amp;#39;s all inline right there so you can see I’m not doing anything tricky.&lt;/p&gt;
+
+&lt;p&gt;Ok, to start with, we have a thick black line that&amp;#39;s exactly 150px wide. That&amp;#39;s your ruler. Next we have a div with an orange border (10px), blue padding (20px), and pink for the content itself. The div’s width is set to 150px using &lt;code&gt;box-sizing: content-box&lt;/code&gt;, but, as you can see, the whole div is much larger than the 150px ruler just above it.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;How much bigger?&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;Well, since the border (10px) and padding (20px) don&amp;#39;t count towards the total width, the entire div is 10px (border left) + 20px (padding left) + 20px (padding right) + 10px (border right) larger. Or 60px larger all up, giving it an “actual” width of 210px. Here it is again with a ruler set to 210px (just in case you don&amp;#39;t believe me):&lt;/p&gt;
+
+&lt;div class="border-box width" style="width: 210px;"&gt;
+&lt;/div&gt;
+
+&lt;div class="content-box example"&gt;
+  Content box
+&lt;/div&gt;
+
+&lt;h3&gt;Border box&lt;/h3&gt;
+
+&lt;p&gt;The other way to measure it is to include the padding and the border, which is exactly what border box does. Here&amp;#39;s your example again:&lt;/p&gt;
+
+&lt;div class="border-box width"&gt;
+&lt;/div&gt;
+
+&lt;div class="border-box example"&gt;
+  Border box
+&lt;/div&gt;
+
+&lt;p&gt;Same as above there&amp;#39;s a thick black line set to 150px wide as a ruler. Then a div with the same measurements (an orange border (10px), blue padding (20px), and pink for the content itself). The div’s width is set to 150px using &lt;code&gt;box-sizing: border-box&lt;/code&gt;, and the whole div is exactly the same width as the 150px ruler. This means the area for the content is smaller.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;How much smaller?&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;Well, the same as above - 60px smaller. So the area for the content is only 90px wide.&lt;/p&gt;
+
+&lt;h2&gt;How you would tell the browser in CSS to render your layout in different box models?&lt;/h2&gt;
+
+&lt;p&gt;Well, exactly as above, using &lt;code&gt;box-sizing: border-box&lt;/code&gt; or &lt;code&gt;box-sizing: content-box&lt;/code&gt; depending on your need.&lt;/p&gt;
+
+&lt;p&gt;While it&amp;#39;s possible to set &lt;code&gt;box-sizing&lt;/code&gt; per element (as I did in my examples) this is usually very confusing. If each element could be one way or another you wouldn&amp;#39;t know what widths to set on things until you checked which box model they used. Therefore it’s recommended to set &lt;code&gt;box-sizing&lt;/code&gt; on all your elements with &lt;code&gt;* { box-sizing: YOUR_DECISION_HERE; }&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h2&gt;Which one should I use?&lt;/h2&gt;
+
+&lt;p&gt;This isn’t from the interview questions, but I think it’s interesting. Recently there’s been a big push to using &lt;code&gt;border-box&lt;/code&gt; on everything. The idea is, when you set the width of a thing, you expect that to be the actual width, and not to have padding and borders hanging outside the area. This can be particularly confusing when trying to get things to line up next to each other (such as columns). So to keep up with common trends, border box is the way to go.&lt;/p&gt;
+
+&lt;h2&gt;References&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;As always, &lt;a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Box_Model/Introduction_to_the_CSS_box_model"&gt;Mozilla&lt;/a&gt; is great for documentation&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://quirksmode.org/css/user-interface/boxsizing.html"&gt;Quirks Mode&lt;/a&gt; has some good visuals&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://www.paulirish.com/2012/box-sizing-border-box-ftw/"&gt;Paul Irish&lt;/a&gt; talks about why border box is the winner&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://css-tricks.com/the-css-box-model/"&gt;CSS Tricks&lt;/a&gt; goes into more details and covers far more edge cases than I got to here&lt;/li&gt;
+&lt;/ul&gt;
+</content>
+  </entry>
   <entry>
     <title>JS: AMD and CommonJS</title>
     <link rel="alternate" href="http://lucybain.com/blog/2015/js-amd-commonjs/"/>
     <id>http://lucybain.com/blog/2015/js-amd-commonjs/</id>
     <published>2015-04-23T00:00:00Z</published>
-    <updated>2015-09-19T15:35:13+10:00</updated>
+    <updated>2015-09-19T15:53:23+10:00</updated>
     <author>
       <name>Article Author</name>
     </author>
@@ -439,7 +548,7 @@ princess.bark();
     <link rel="alternate" href="http://lucybain.com/blog/2015/js-data-types/"/>
     <id>http://lucybain.com/blog/2015/js-data-types/</id>
     <published>2015-03-22T00:00:00Z</published>
-    <updated>2015-09-19T15:28:37+10:00</updated>
+    <updated>2015-09-19T15:48:42+10:00</updated>
     <author>
       <name>Article Author</name>
     </author>
@@ -534,91 +643,6 @@ var whiskers = new function() {
 &lt;li&gt;&lt;a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures"&gt;Mozilla&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://leanpub.com/understandinges6/read/#leanpub-auto-symbols"&gt;Symbols&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Working_with_Objects"&gt;Objects&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-</content>
-  </entry>
-  <entry>
-    <title>JS: What is Javascript namespacing? How and where is it used?</title>
-    <link rel="alternate" href="http://lucybain.com/blog/2015/js-namespacing/"/>
-    <id>http://lucybain.com/blog/2015/js-namespacing/</id>
-    <published>2015-03-17T00:00:00Z</published>
-    <updated>2015-05-24T18:18:27+10:00</updated>
-    <author>
-      <name>Article Author</name>
-    </author>
-    <content type="html">&lt;h2&gt;What is Javascript namespacing? How and where is it used?&lt;/h2&gt;
-
-&lt;p&gt;&lt;em&gt;Well, what is namespacing?&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;Namespacing is a way of organising your code. It organises concepts and ideas into a group and gives the group a &lt;strong&gt;name.&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;So rather than having everything dumped in together...&lt;/p&gt;
-&lt;pre class="highlight plaintext"&gt;function bark() { /* ... */ }
-function meow() { /* ... */ }
-function wagTail() { /* ... */ }
-function sleepAllDay() { /* ... */ }
-function beHyper() { /* ... */ }
-function purr() { /* ... */ }
-&lt;/pre&gt;
-&lt;p&gt;...you group similar things together...&lt;/p&gt;
-&lt;pre class="highlight plaintext"&gt;// Dog's can...
-function bark() { /* ... */ }
-function wagTail() { /* ... */ }
-function beHyper() { /* ... */ }
-
-// Cat's can...
-function meow() { /* ... */ }
-function sleepAllDay() { /* ... */ }
-function purr() { /* ... */ }
-&lt;/pre&gt;
-&lt;p&gt;...and then give the groups a name!&lt;/p&gt;
-&lt;pre class="highlight plaintext"&gt;var dog = {
-  bark: function() { /* ... */ },
-  wagTail: function() { /* ... */ },
-  beHyper: function() { /* ... */ }
-};
-
-var cat = {
-  meow: function() { /* ... */ },
-  sleepAllDay: function() { /* ... */ },
-  purr: function() { /* ... */ }
-};
-&lt;/pre&gt;
-&lt;p&gt;Partly this is for ease of programming - it&amp;#39;s simpler to keep track of many things if they&amp;#39;re grouped into smaller numbers. But it&amp;#39;s also really important for avoiding naming collisions.&lt;/p&gt;
-
-&lt;p&gt;&lt;em&gt;What are naming collisions?&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;Let&amp;#39;s say I&amp;#39;m working on a big project and I get a little lost in the code sometimes. At some point I defined a &lt;code&gt;warningAlert&lt;/code&gt; function. Then, a few weeks later, I forget that I had a &lt;code&gt;warningAlert&lt;/code&gt; function defined already, and I define a new one lower down.&lt;/p&gt;
-&lt;pre class="highlight plaintext"&gt;function warningAlert(text) {
-  alert('Warning: ' + text);
-}
-
-/* ... */
-
-function warningAlert(text) {
-  alert('ALERT: ' + text);
-}
-&lt;/pre&gt;
-&lt;p&gt;Now calls to &lt;code&gt;warningAlert&lt;/code&gt; will use the second definition since it overwrote (collided with) the first definition.&lt;/p&gt;
-
-&lt;p&gt;If I&amp;#39;d had a namespace for my &lt;code&gt;warningAlert&lt;/code&gt; method I probably would have known where to look for the function definition. Something like:&lt;/p&gt;
-&lt;pre class="highlight plaintext"&gt;var alerts = {}
-alerts.warning = function(text) {
-  alert('Warning: ' + text);
-};
-&lt;/pre&gt;
-&lt;p&gt;Namespaces aren&amp;#39;t only for you (because I&amp;#39;m sure &lt;em&gt;you&amp;#39;d&lt;/em&gt; never make a mistake like this... just for demonstration purposes, right?). They&amp;#39;re also important when you start including code by a third party.&lt;/p&gt;
-
-&lt;p&gt;Since everything gets dumped into the global namespace there&amp;#39;s no way to know what you wrote and what was written by someone else. It&amp;#39;s generally a good idea to have a namespace for everything you wrote so you don&amp;#39;t get naming conflicts with anyone else. Actually, jQuery does just that. All the jQuery functions are namespaced to &lt;code&gt;$&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;As for &lt;em&gt;how is it used?&lt;/em&gt; I&amp;#39;ll leave the implementation details up to &lt;a href="http://www.kenneth-truyers.net/2013/04/27/javascript-namespaces-and-modules/"&gt;Kenneth Truyers&lt;/a&gt; since he did an excellent job listing out all your options.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Resources&lt;/strong&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href="http://www.kenneth-truyers.net/2013/04/27/javascript-namespaces-and-modules/"&gt;Kenneth Truyers&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="http://stackoverflow.com/a/5947280/863846"&gt;Stackoverflow&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://javascriptweblog.wordpress.com/2010/12/07/namespacing-in-javascript/"&gt;Angus Croll&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 </content>
   </entry>
