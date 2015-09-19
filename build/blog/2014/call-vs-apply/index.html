@@ -6,7 +6,7 @@
     <meta content='IE=edge,chrome=1' http-equiv='X-UA-Compatible'>
     <link href='/images/favicon.ico' rel='icon' type='image/ico'>
     <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700|Source+Code+Pro' rel='stylesheet' type='text/css'>
-    <title>JS: <code>.call</code> vs. <code>.apply</code></title>
+    <title>JS: .call vs. .apply</title>
     <link href="/stylesheets/application.css" media="all" rel="stylesheet" type="text/css" />
     <script src='//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js'></script>
   </head>
@@ -44,8 +44,9 @@
     </script>
     <div class='content'>
       <div class=' blog-listing'>
-        <h1>JS: <code>.call</code> vs. <code>.apply</code></h1>
-        <p>tags: <a href="/blog/tags/js/">js</a> and <a href="/blog/tags/interview-questions/">interview-questions</a></p>
+        <h1>JS: .call vs. .apply</h1>
+        <p>Published on: November 30, 2014</p>
+        <p>Tags: <a href="/blog/tags/js/">js</a> and <a href="/blog/tags/interview-questions/">interview-questions</a></p>
         <h2>What&#39;s the difference between <code>.call</code> and <code>.apply</code>?</h2>
         
         <p>Let&#39;s start with the similarities.</p>
@@ -53,7 +54,7 @@
         <p><strong>What are <code>.call</code> and <code>.apply</code>?</strong></p>
         
         <p>Both methods allow you to invoke a function and pass parameters through.</p>
-        <pre class="highlight plaintext">function printer(message) {&#x000A;    console.log(message)&#x000A;}&#x000A;&#x000A;printer.call("hello") // logs "hello"&#x000A;printer.apply("world!") // logs "world!"</pre>
+        <pre class="highlight plaintext">function printer(message) {&#x000A;    console.log(message)&#x000A;}&#x000A;&#x000A;printer.call({}, "hello") // logs "hello"&#x000A;printer.apply({}, "world!") // logs "world!"</pre>
         <p><em>Wow. Awesome. A more verbose way to invoke functions. Fantastic. Why not just use <code>printer(&quot;hello&quot;)</code>?</em></p>
         
         <p>Well actually, <code>.call</code> and <code>.apply</code> can do more than simply invoke a method, they can also pass through <strong>context</strong>. Here&#39;s an example:</p>

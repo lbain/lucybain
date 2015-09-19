@@ -22,3 +22,4 @@ How can you change the execution context of a function/method? (use bind, call, 
 * How can you force a JavaScript function to execute asynchronously?
 What are some ways of managing lots of asyc operations (AKA avoiding callback * hell)?
 * How do promises/deferreds work?
+* anonymous function and hoisting

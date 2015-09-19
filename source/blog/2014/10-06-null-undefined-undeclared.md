@@ -32,6 +32,8 @@ declaredVariable; // 1
 
 For more discussion on undeclared variables, checkout [Mozilla's documentation](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/var).
 
+Note: this will not work in [strict mode](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Strict_mode). It will throw an error when it gets to the `undeclaredVariable` - see this [example](https://jsfiddle.net/glenselle/9czx6dLg/2/). Thanks to Glen Selle for his comment with this update.
+
 <br/>
 
 Now let's move on to **`undefined`**.
@@ -41,10 +43,10 @@ Something is `undefined` when it hasn't been defined yet. If you call a variable
 Example:
 
 ```
-var undefinedVariable; // ReferenceError: undefinedVariable is not defined
+var undefinedVariable; // undefined
 typeof undefinedVariable; // "undefined"
 
-undefinedFunction(); // ReferenceError: undefinedFunction is not defined
+undefinedFunction(); // undefined
 typeof undefinedFunction; // "undefined"
 ```
 Note that the `typeof` returns `"undefined"`, therefore `undefined` is a primitive type.

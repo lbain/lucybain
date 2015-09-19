@@ -1,5 +1,5 @@
 ---
-title: 'JS: <code>.call</code> vs. <code>.apply</code>'
+title: 'JS: .call vs. .apply'
 tags: js, interview-questions
 ---
 
@@ -16,8 +16,8 @@ function printer(message) {
     console.log(message)
 }
 
-printer.call("hello") // logs "hello"
-printer.apply("world!") // logs "world!"
+printer.call({}, "hello") // logs "hello"
+printer.apply({}, "world!") // logs "world!"
 ```
 
 *Wow. Awesome. A more verbose way to invoke functions. Fantastic. Why not just use `printer("hello")`?*

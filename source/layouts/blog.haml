@@ -1,9 +1,10 @@
 - wrap_layout :layout do
   %div{class: (current_page.data.page_class || '') + ' blog-listing'}
     %h1= current_page.data.title
+    %p Published on: #{current_page.date.strftime("%B %e, %Y")}
 
     - if current_page.methods.include?(:tags) && current_page.tags.count > 0
-      %p tags: #{ current_page.tags.map{ |tag| link_to "#{tag}", tag_path(tag) }.to_sentence }
+      %p Tags: #{ current_page.tags.map{ |tag| link_to "#{tag}", tag_path(tag) }.to_sentence }
 
     = find_and_preserve do
       = yield

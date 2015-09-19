@@ -168,7 +168,7 @@ Scopes! The scope from `helperFunction` has access to `i`. The object returned b
         return i;
        }
   ```
-1. The `get` function looks for it's local scope, which is `helperFunction` ...
+1. The `get` function looks for its local scope, which is `helperFunction` ...
 
   ```
   function helperFunction(){
