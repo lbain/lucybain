@@ -87,7 +87,7 @@
         
         <p>Generally you <strong>don&#39;t write the script tag yourself.</strong> You can get jQuery to do that for you :) To make the same call as we did previously you can just use:</p>
         <pre class="highlight plaintext">$.ajax({&#x000A;  url: 'http://cool-stuff.com/api.json',&#x000A;  dataType: 'jsonp',&#x000A;  success: function(data) {&#x000A;    console.log(data);&#x000A;  }&#x000A;});</pre>
-        <p><strong>Safety First!</strong> There’s a reason browsers don&#39;t like you talking to other servers - you never know what those servers will send back! Use good data validation, even if the data is &quot;safe.&quot;</p>
+        <p><strong>Safety First!</strong> There’s a reason browsers don&#39;t like you talking to other servers - you never know what those servers will send back! Use good data validation, even if the data is “safe.”</p>
         
         <p><strong>You can only use JSONP for <code>get</code> requests.</strong> You can use normal AJAX to do <code>post</code> and <code>delete</code> and all data manipulations, but you cannot do this with JSONP. The practical reason for this is that HTML tags only ever get information, they can&#39;t do anything else (think image tags, links for style sheets, and script tags). The handy reason is that if you owned the API you almost certainly would not want randoms from the internet updating your data.</p>
         

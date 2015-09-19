@@ -3,9 +3,9 @@ title: 'JS: ternary expressions'
 tags: js, interview-questions
 ---
 
-## Why is it called a Ternary expression, what does the word "Ternary" indicate?
+## Why is it called a Ternary expression, what does the word “Ternary” indicate?
 
-Let’s answer the second question first: what does the word "ternary" indicate? According to [Wikipedia](http://en.wikipedia.org/wiki/Ternary_operation) the word "ternary" comes from the n-ary word setup. Other examples of n-ary words are u**nary** and bi**nary**. All of these (including ternary) are operands. The prefix section of their name lists how many inputs the operand accepts.
+Let’s answer the second question first: what does the word “ternary” indicate? According to [Wikipedia](http://en.wikipedia.org/wiki/Ternary_operation) the word “ternary” comes from the n-ary word setup. Other examples of n-ary words are u**nary** and bi**nary**. All of these (including ternary) are operands. The prefix section of their name lists how many inputs the operand accepts.
 
 A **unary** operand accepts one parameter, e.g. `-1`, where `-` is the operand, and 1 is the parameter.
 

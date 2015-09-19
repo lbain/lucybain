@@ -7,7 +7,7 @@ tags: js, interview-questions
 
 Turns out there’s lots written on this topic (lucky for me!), be sure to check out the references section at the end.
 
-**What is "extending an object"?**
+**What is “extending an object”?**
 
 When you add functionality to an object using the `prototype`. An example looks like this:
 
@@ -24,7 +24,7 @@ At first glance, this seems like such an awesome feature. Want the third element
 
 **Why is this a bad thing?**
 
-It depends on who you ask. This is one of those "JS standards" - unlike most of the questions that have a clear answer, this one has a bit more opinion.
+It depends on who you ask. This is one of those “JS standards” - unlike most of the questions that have a clear answer, this one has a bit more opinion.
 
 The main argument against doing this is: if, in future, a browser decides to implement its own version of your method, your method might get overridden (silently) and the browser’s implementation (which is probably different from yours) would take over. So not extending in the first place is future proofing your code.
 

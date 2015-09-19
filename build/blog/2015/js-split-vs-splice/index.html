@@ -81,11 +81,11 @@
         <pre class="highlight plaintext">var myArray = ['this', 'is', 'an', 'array'];&#x000A;myArray.splice(0, 2); // ['this', 'is']&#x000A;console.log(myArray); // ['an', 'array']</pre>
         <p>Ok, a really important thing to note is that <code>myArray</code> was changed during the call to <code>splice</code>. So if you ever want to use the original array you&#39;ll need to keep a backup somewhere. Another thing to note is that <code>splice</code> returns a value (in fact, it returns the elements that are missing from the array).</p>
         
-        <p>Also, <code>splice</code> requires at least two parameters. The first parameter is an index in the array. I think of it as where the cursor is. The second parameter is how many elements to delete. So what we&#39;re really saying is &quot;from position <strong>0</strong> please remove <strong>2</strong> elements and return them to me.&quot;</p>
+        <p>Also, <code>splice</code> requires at least two parameters. The first parameter is an index in the array. I think of it as where the cursor is. The second parameter is how many elements to delete. So what we&#39;re really saying is “from position <strong>0</strong> please remove <strong>2</strong> elements and return them to me.”</p>
         
         <p>Let’s look at a similar example:</p>
         <pre class="highlight plaintext">var countingArray = [5, 6, 7, 8];&#x000A;countingArray.splice(1, 1); // [6]&#x000A;console.log(countingArray); // [5, 7, 8]</pre>
-        <p>What we said was &quot;from position <strong>1</strong> please remove <strong>1</strong> element and return it to me.&quot;</p>
+        <p>What we said was “from position <strong>1</strong> please remove <strong>1</strong> element and return it to me.”</p>
         
         <blockquote>
         <p>Note: JS doesn&#39;t have a <code>.delete(index)</code> for arrays. The best you can do is <code>delete array[index]</code>, but that actually just replaces the value at <code>array[index]</code> with <code>undefined</code>. Using <code>splice</code> in the above example is how you can actually delete elements from an array.</p>
@@ -93,15 +93,15 @@
         
         <p>Alright, on to the optional parameter(s)!</p>
         <pre class="highlight plaintext">var myArray = ['this', 'is', 'an', 'array'];&#x000A;myArray.splice(3, 0, 'awesome'); // []&#x000A;console.log(myArray); // ['this', 'is', 'an', 'awesome', 'array']</pre>
-        <p>Hopefully you&#39;ve got a good idea of what happened here. The first parameter is still an index. The second parameter is still how many elements to remove. And finally the third element is what to add <strong>after</strong> the index given in the first parameter. Again, what we&#39;re really saying is &quot;from position <strong>3</strong> please remove <strong>0</strong> elements, then <strong>after</strong> position <strong>3</strong> please add <strong>&#39;awesome&#39;</strong>.&quot;</p>
+        <p>Hopefully you&#39;ve got a good idea of what happened here. The first parameter is still an index. The second parameter is still how many elements to remove. And finally the third element is what to add <strong>after</strong> the index given in the first parameter. Again, what we&#39;re really saying is “from position <strong>3</strong> please remove <strong>0</strong> elements, then <strong>after</strong> position <strong>3</strong> please add <strong>&#39;awesome&#39;</strong>.”</p>
         
         <p>Another example:</p>
         <pre class="highlight plaintext">var myArray = ['this', 'is', 'an', 'array'];&#x000A;myArray.splice(3, 0, 'amazingly', 'awesome'); // []&#x000A;console.log(myArray); // ['this', 'is', 'an', 'amazingly', 'awesome', 'array']</pre>
-        <p>What we said was &quot;from position <strong>3</strong> please remove <strong>0</strong> elements, then <strong>after</strong> position <strong>3</strong> please add <strong>&#39;amazing&#39;</strong> and <strong>&#39;awesome&#39;</strong>.&quot; The third parameter can keep on going. If you wanted to add 100 elements to <code>myArray</code> you could do it with <code>splice</code>.</p>
+        <p>What we said was “from position <strong>3</strong> please remove <strong>0</strong> elements, then <strong>after</strong> position <strong>3</strong> please add <strong>&#39;amazing&#39;</strong> and <strong>&#39;awesome&#39;</strong>.” The third parameter can keep on going. If you wanted to add 100 elements to <code>myArray</code> you could do it with <code>splice</code>.</p>
         
         <p>Finally, you can also switch words in place:</p>
         <pre class="highlight plaintext">var myArray = ['this', 'is', 'an', 'array'];&#x000A;myArray.splice(2, 1, 'the'); // ['an']&#x000A;console.log(myArray); // ['this', 'is', 'the', 'array']</pre>
-        <p>What we said was &quot;from position <strong>2</strong> please remove <strong>1</strong> element and return it to me, then <strong>after</strong> position <strong>2</strong> please add <strong>&#39;the&#39;</strong>.&quot;</p>
+        <p>What we said was “from position <strong>2</strong> please remove <strong>1</strong> element and return it to me, then <strong>after</strong> position <strong>2</strong> please add <strong>&#39;the&#39;</strong>.”</p>
         
         <p>Overall <code>splice</code> can be used to:</p>
         

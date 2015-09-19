@@ -51,7 +51,7 @@
         
         <p>Turns out there’s lots written on this topic (lucky for me!), be sure to check out the references section at the end.</p>
         
-        <p><strong>What is &quot;extending an object&quot;?</strong></p>
+        <p><strong>What is “extending an object”?</strong></p>
         
         <p>When you add functionality to an object using the <code>prototype</code>. An example looks like this:</p>
         <pre class="highlight plaintext">Array.prototype.first = function(){&#x000A;    return this[0];&#x000A;}&#x000A;&#x000A;var temp = [1, 2, 3];&#x000A;temp.first(); // returns 1</pre>
@@ -59,7 +59,7 @@
         
         <p><strong>Why is this a bad thing?</strong></p>
         
-        <p>It depends on who you ask. This is one of those &quot;JS standards&quot; - unlike most of the questions that have a clear answer, this one has a bit more opinion.</p>
+        <p>It depends on who you ask. This is one of those “JS standards” - unlike most of the questions that have a clear answer, this one has a bit more opinion.</p>
         
         <p>The main argument against doing this is: if, in future, a browser decides to implement its own version of your method, your method might get overridden (silently) and the browser’s implementation (which is probably different from yours) would take over. So not extending in the first place is future proofing your code.</p>
         

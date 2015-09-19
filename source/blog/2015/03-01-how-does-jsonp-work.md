@@ -71,7 +71,7 @@ $.ajax({
 });
 ```
 
-**Safety First!** There’s a reason browsers don't like you talking to other servers - you never know what those servers will send back! Use good data validation, even if the data is "safe."
+**Safety First!** There’s a reason browsers don't like you talking to other servers - you never know what those servers will send back! Use good data validation, even if the data is “safe.”
 
 **You can only use JSONP for `get` requests.** You can use normal AJAX to do `post` and `delete` and all data manipulations, but you cannot do this with JSONP. The practical reason for this is that HTML tags only ever get information, they can't do anything else (think image tags, links for style sheets, and script tags). The handy reason is that if you owned the API you almost certainly would not want randoms from the internet updating your data.
 

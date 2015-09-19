@@ -59,7 +59,7 @@ console.log(myArray); // ['an', 'array']
 
 Ok, a really important thing to note is that `myArray` was changed during the call to `splice`. So if you ever want to use the original array you'll need to keep a backup somewhere. Another thing to note is that `splice` returns a value (in fact, it returns the elements that are missing from the array).
 
-Also, `splice` requires at least two parameters. The first parameter is an index in the array. I think of it as where the cursor is. The second parameter is how many elements to delete. So what we're really saying is "from position **0** please remove **2** elements and return them to me."
+Also, `splice` requires at least two parameters. The first parameter is an index in the array. I think of it as where the cursor is. The second parameter is how many elements to delete. So what we're really saying is “from position **0** please remove **2** elements and return them to me.”
 
 Let’s look at a similar example:
 
@@ -69,7 +69,7 @@ countingArray.splice(1, 1); // [6]
 console.log(countingArray); // [5, 7, 8]
 ```
 
-What we said was "from position **1** please remove **1** element and return it to me."
+What we said was “from position **1** please remove **1** element and return it to me.”
 
 > Note: JS doesn't have a `.delete(index)` for arrays. The best you can do is `delete array[index]`, but that actually just replaces the value at `array[index]` with `undefined`. Using `splice` in the above example is how you can actually delete elements from an array.
 
@@ -81,7 +81,7 @@ myArray.splice(3, 0, 'awesome'); // []
 console.log(myArray); // ['this', 'is', 'an', 'awesome', 'array']
 ```
 
-Hopefully you've got a good idea of what happened here. The first parameter is still an index. The second parameter is still how many elements to remove. And finally the third element is what to add **after** the index given in the first parameter. Again, what we're really saying is "from position **3** please remove **0** elements, then **after** position **3** please add **'awesome'**."
+Hopefully you've got a good idea of what happened here. The first parameter is still an index. The second parameter is still how many elements to remove. And finally the third element is what to add **after** the index given in the first parameter. Again, what we're really saying is “from position **3** please remove **0** elements, then **after** position **3** please add **'awesome'**.”
 
 Another example:
 
@@ -91,7 +91,7 @@ myArray.splice(3, 0, 'amazingly', 'awesome'); // []
 console.log(myArray); // ['this', 'is', 'an', 'amazingly', 'awesome', 'array']
 ```
 
-What we said was "from position **3** please remove **0** elements, then **after** position **3** please add **'amazing'** and **'awesome'**." The third parameter can keep on going. If you wanted to add 100 elements to `myArray` you could do it with `splice`.
+What we said was “from position **3** please remove **0** elements, then **after** position **3** please add **'amazing'** and **'awesome'**.” The third parameter can keep on going. If you wanted to add 100 elements to `myArray` you could do it with `splice`.
 
 Finally, you can also switch words in place:
 
@@ -101,7 +101,7 @@ myArray.splice(2, 1, 'the'); // ['an']
 console.log(myArray); // ['this', 'is', 'the', 'array']
 ```
 
-What we said was "from position **2** please remove **1** element and return it to me, then **after** position **2** please add **'the'**."
+What we said was “from position **2** please remove **1** element and return it to me, then **after** position **2** please add **'the'**.”
 
 Overall `splice` can be used to:
 

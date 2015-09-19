@@ -7,7 +7,7 @@ tags: js, interview-questions
 
 Let’s start smaller: **What does AJAX stand for?**
 
-**A**synchronous **J**avaScript **a**nd **X**ML (I think using the "a" in "and" is a little bit of a cheat, but there you go.)
+**A**synchronous **J**avaScript **a**nd **X**ML (I think using the “a” in “and” is a little bit of a cheat, but there you go.)
 
 *So how does it work?*
 

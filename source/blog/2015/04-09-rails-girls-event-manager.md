@@ -9,14 +9,14 @@ I'm looking for something that Rails Girls could use to manage our events, parti
 
 Required:
 
-* When people "sign up" it’s really an application to attend - they are not issued a ticket
+* When people “sign up” it’s really an application to attend - they are not issued a ticket
 * We can send custom emails to people when they are accepted, as well as before the event
 * Free, or maybe willing to be free for a non-profit (we're happy to list them as sponsors)
 
 Perfered:
 
 * Sign up form allows for custom fields
-* There is a "notes" (or similar) section for each applicant/attendee, or we can easily create one
+* There is a “notes” (or similar) section for each applicant/attendee, or we can easily create one
 
 Optional:
 

@@ -49,13 +49,13 @@
         <p>Tags: <a href="/blog/tags/js/">js</a> and <a href="/blog/tags/google-adwords/">google-adwords</a></p>
         <h2>How can I trigger a Google Adwords conversion when the page is loaded asynchronously?</h2>
         
-        <p>I&#39;ve been working with Google Adwords at work this week (yay learning!). My first task was to add a &quot;tracking pixel&quot; to a thank you page after a user has given us their contact details.</p>
+        <p>I&#39;ve been working with Google Adwords at work this week (yay learning!). My first task was to add a “tracking pixel” to a thank you page after a user has given us their contact details.</p>
         
         <p>(Side note: It turns out we don&#39;t really use pixels any more, we use JS to actually make the call, and only fall back to a pixel when the user doesn&#39;t have JS enabled.)</p>
         
         <p>Our thank you page is loaded asynchronously, so the Google Adwords script was getting injected into the dom in that async call. As it turns out, you can&#39;t just inject scripts into the dom and expect them to run. If you do inject the script (as I did) you&#39;ll get this warning in Chrome:</p>
         <pre class="highlight plaintext">Failed to execute 'write' on 'Document': It isn't possible to write into a document from an asynchronously-loaded external script unless it is explicitly opened.</pre>
-        <p>(Personally I think this should be an error, not just a warning. To me, this is saying &quot;Hey, your code that you think is running isn&#39;t actually running&quot; - that sounds like an error. But I digress...)</p>
+        <p>(Personally I think this should be an error, not just a warning. To me, this is saying “Hey, your code that you think is running isn&#39;t actually running” - that sounds like an error. But I digress...)</p>
         
         <p>After some Googling around I know of two ways to fix this.</p>
         

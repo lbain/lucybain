@@ -33,9 +33,9 @@ alice.distractedGreeting();
 // after 500ms logs "Hello, my name is Alice"
 ```
 
-See that line `var self = this;`? That’s called "caching `this`". (*Cache* as in save it away, not as in for optimisation purposes.)
+See that line `var self = this;`? That’s called “caching `this`”. (*Cache* as in save it away, not as in for optimisation purposes.)
 
-That’s pretty handy, since it gives you access to the `Person` context within the `setTimeout` function. The "inside" `this` refers to the `setTimeout` context, which doesn't have a `name` method.
+That’s pretty handy, since it gives you access to the `Person` context within the `setTimeout` function. The “inside” `this` refers to the `setTimeout` context, which doesn't have a `name` method.
 
 But, it turns out, there is a better way! You can use `bind`. The example above is updated to:
 
@@ -58,7 +58,7 @@ Notice that `.bind(this)` at the end of the function definition? That means that
 
 __Warning__
 
-So for one shining second I thought I'd solved a lot of my JS headaches. I could just always bind `this` and all my context troubles would be so far away. Unfortunately that’s not the case. There are times that you want access to the "inner" context (`setTimeout` in our example). If you `.bind(this)` you'll lose access to the inner `this`.
+So for one shining second I thought I'd solved a lot of my JS headaches. I could just always bind `this` and all my context troubles would be so far away. Unfortunately that’s not the case. There are times that you want access to the “inner” context (`setTimeout` in our example). If you `.bind(this)` you'll lose access to the inner `this`.
 
 How about an example to clear this up?
 

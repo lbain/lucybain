@@ -38,7 +38,7 @@ title: validate vs. validateS
 %p
   So what’s going on here? I asked #{link_to 'stackOverflow', 'http://stackoverflow.com/questions/18140898/whats-the-difference-between-validate-and-validates'}, and it turns out there’s a totally reasonable explanation. <code>validate</code> is written to look for a custom validation method, this time one called <code>bar</code>. It just so happens there is a <code>bar</code> method, set from the <code>attr_accessor :bar</code> line. That <code>bar</code> method returns doesn't return <code>false</code>, nor does it put an error messages on the main object’s body. Therefore <code>validate</code> interprets the call to <code>bar</code> as a success and doesn't invalidate the object.
 %p
-  This explanation also means there’s no way for the code to "fail loudly" - to alert us that we haven't purposefully defined a custom method when we use <code>validate</code>. So I'd suggest grepping through your codebase for <code>validate :</code> and making very sure that’s what you actually want.
+  This explanation also means there’s no way for the code to “fail loudly” - to alert us that we haven't purposefully defined a custom method when we use <code>validate</code>. So I'd suggest grepping through your codebase for <code>validate :</code> and making very sure that’s what you actually want.
 %p
   So remember folks, <code>validates</code> is for Rails validators (and custom validator classes ending with <code>Validator</code> if that’s what you're into), and <code>validate</code> is for your custom validator methods. Don't make a typo!
 

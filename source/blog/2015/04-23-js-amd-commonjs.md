@@ -17,19 +17,19 @@ Both AMD and CommonJS are a way of linking JS bits of code, called modules, toge
 
 *How do they solve that?*
 
-Both AMD and CommonJS provide standards for other libraries to implement. There are quite a few libraries that have done just that ([RequireJS](http://requirejs.org/) and [Almond](https://github.com/jrburke/almond) are two that implement AMD). But you "use" AMD or CommonJS code any more than you can "use" object oriented code.
+Both AMD and CommonJS provide standards for other libraries to implement. There are quite a few libraries that have done just that ([RequireJS](http://requirejs.org/) and [Almond](https://github.com/jrburke/almond) are two that implement AMD). But you “use” AMD or CommonJS code any more than you can “use” object oriented code.
 
 *Ok, so that’s how they're similar. How are they different?*
 
 Let’s look at each one individually. We'll start with AMD:
 
-*What does "AMD" stand for?*
+*What does “AMD” stand for?*
 
 AMD stands for **A**synchronous **M**odule **D**efinition.
 
 *And what makes it special?*
 
-The "module" part should be clear enough since both CommonJS and AMD focus on linking modules together. And the "definition" part is about how it’s a standard, rather than a library. However a key difference for AMD is the "asynchronous" bit. AMD loads each distinct module asynchronously for web performance. Instead of having one *giant* file with everything in it which causes a slow load time, you can load only the files you need, only when you need them, all asynchronously. Slick, huh?
+The “module” part should be clear enough since both CommonJS and AMD focus on linking modules together. And the “definition” part is about how it’s a standard, rather than a library. However a key difference for AMD is the “asynchronous” bit. AMD loads each distinct module asynchronously for web performance. Instead of having one *giant* file with everything in it which causes a slow load time, you can load only the files you need, only when you need them, all asynchronously. Slick, huh?
 
 *So then what’s special about CommonJS?*
 

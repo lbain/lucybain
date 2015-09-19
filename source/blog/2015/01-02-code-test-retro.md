@@ -42,11 +42,11 @@ That was the end of my three hours.
 
 **Tip:** Make sure you write down the start and end times of any work sections you do. I thought I'd remember, and I'm pretty sure I was fairly accurate, but I'm sure I wasn't perfect. Guesstimating exactly how many minutes you've spent on a coding test is stress you don't need.
 
-I moved on to the readme. I was actually pretty pleased how this turned out. In their directions they included what they expected from a readme ("a brief description of your app with reasons for your approach and technology as well as any future enhancements you would make given more time"), which was my guide. I also included a section about how to use my app, since they had to request permission to be a developer in order to get it working.
+I moved on to the readme. I was actually pretty pleased how this turned out. In their directions they included what they expected from a readme (“a brief description of your app with reasons for your approach and technology as well as any future enhancements you would make given more time”), which was my guide. I also included a section about how to use my app, since they had to request permission to be a developer in order to get it working.
 
 **Tip:** Try to make it as easy as possible for your reviewers to grade your code. Keep the install process as short, and your explanation of the install process as clear, as possible.
 
-I spent the most time on the "future enhancements" which included a lot about refactoring. I wasn't able to do everything I wanted to have beautiful code given the time constraints. I wanted them to know that I knew things weren't perfect. This was a good tactic - the couple of things they asked me about in my next interview were a the things I hadn't mentioned in my readme.
+I spent the most time on the “future enhancements” which included a lot about refactoring. I wasn't able to do everything I wanted to have beautiful code given the time constraints. I wanted them to know that I knew things weren't perfect. This was a good tactic - the couple of things they asked me about in my next interview were a the things I hadn't mentioned in my readme.
 
 **Tip:** The more questions you can answer in your readme (in the comfort of your own home), the fewer you have to answer in the interview (with someone staring at you).
 

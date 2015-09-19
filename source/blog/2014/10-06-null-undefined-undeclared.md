@@ -95,7 +95,7 @@ if( variable === null ) {
 ```
 
 <br/>
-I think the order "undeclared, undefined, and null" makes sense since it’s increasing order of certainty.
+I think the order “undeclared, undefined, and null” makes sense since it’s increasing order of certainty.
 
 * `undeclared` variables don't even exist
 * `undefined` variables exist, but don't have anything assigned to them

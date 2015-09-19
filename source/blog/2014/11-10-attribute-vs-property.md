@@ -3,7 +3,7 @@ title: 'JS: attribute vs. property'
 tags: js, interview-questions
 ---
 
-## What’s the difference between an "attribute" and a "property"?
+## What’s the difference between an “attribute” and a “property”?
 
 As usual, let’s start smaller.
 

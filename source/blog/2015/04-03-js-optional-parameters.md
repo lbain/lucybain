@@ -30,7 +30,7 @@ As you can see I didn't supply the `speed` parameter in my `params` object, but 
 
 **But `optionalParams` was still required**
 
-Yep, you caught me! This isn't really what people usually mean by "optional" parameters. But I did want to throw it out there as a possibility. I think it’s an underrated option.
+Yep, you caught me! This isn't really what people usually mean by “optional” parameters. But I did want to throw it out there as a possibility. I think it’s an underrated option.
 
 **What if I wanted a default speed?**
 

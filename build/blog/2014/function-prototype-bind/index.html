@@ -61,9 +61,9 @@
         
         <p>You know how you sometimes write code like this:</p>
         <pre class="highlight plaintext">function Person(name){&#x000A;  this.name = name;&#x000A;  this.distractedGreeting = function() {&#x000A;    var self = this; // &lt;-- this line!&#x000A;    setTimeout(function(){&#x000A;      console.log("Hello, my name is " + self.name); // &lt;-- and here!&#x000A;    }, 500);&#x000A;  }&#x000A;}&#x000A;&#x000A;var alice = new Person('Alice');&#x000A;alice.distractedGreeting();&#x000A;// after 500ms logs "Hello, my name is Alice"</pre>
-        <p>See that line <code>var self = this;</code>? That’s called &quot;caching <code>this</code>&quot;. (<em>Cache</em> as in save it away, not as in for optimisation purposes.)</p>
+        <p>See that line <code>var self = this;</code>? That’s called “caching <code>this</code>”. (<em>Cache</em> as in save it away, not as in for optimisation purposes.)</p>
         
-        <p>That’s pretty handy, since it gives you access to the <code>Person</code> context within the <code>setTimeout</code> function. The &quot;inside&quot; <code>this</code> refers to the <code>setTimeout</code> context, which doesn&#39;t have a <code>name</code> method.</p>
+        <p>That’s pretty handy, since it gives you access to the <code>Person</code> context within the <code>setTimeout</code> function. The “inside” <code>this</code> refers to the <code>setTimeout</code> context, which doesn&#39;t have a <code>name</code> method.</p>
         
         <p>But, it turns out, there is a better way! You can use <code>bind</code>. The example above is updated to:</p>
         <pre class="highlight plaintext">function Person(name){&#x000A;  this.name = name;&#x000A;  this.distractedGreeting = function() {&#x000A;    setTimeout(function(){&#x000A;      console.log("Hello, my name is " + this.name);&#x000A;    }.bind(this), 500); // &lt;-- this line!&#x000A;  }&#x000A;}&#x000A;&#x000A;var alice = new Person('Alice');&#x000A;alice.distractedGreeting();&#x000A;// after 500ms logs "Hello, my name is Alice"</pre>
@@ -71,7 +71,7 @@
         
         <p><strong>Warning</strong></p>
         
-        <p>So for one shining second I thought I&#39;d solved a lot of my JS headaches. I could just always bind <code>this</code> and all my context troubles would be so far away. Unfortunately that’s not the case. There are times that you want access to the &quot;inner&quot; context (<code>setTimeout</code> in our example). If you <code>.bind(this)</code> you&#39;ll lose access to the inner <code>this</code>.</p>
+        <p>So for one shining second I thought I&#39;d solved a lot of my JS headaches. I could just always bind <code>this</code> and all my context troubles would be so far away. Unfortunately that’s not the case. There are times that you want access to the “inner” context (<code>setTimeout</code> in our example). If you <code>.bind(this)</code> you&#39;ll lose access to the inner <code>this</code>.</p>
         
         <p>How about an example to clear this up?</p>
         <pre class="highlight plaintext">function Person(name){&#x000A;  this.name = name;&#x000A;  this.distractedGreeting = function() {&#x000A;    setTimeout(function(){&#x000A;      console.log("Hello, my name is " + this.name);&#x000A;      console.log(this.location.origin); // error!&#x000A;    }.bind(this), 500);&#x000A;  }&#x000A;}</pre>

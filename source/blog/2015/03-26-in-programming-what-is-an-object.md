@@ -7,7 +7,7 @@ As promissed in my last blog post: intro to objects.
 
 ## Objects
 
-Many languages have the concept of an "object." It’s a way of organising code based around objects (things) with similar characteristics. As in, most dogs have four legs, most cars can drive forward, most houses have doors. Templates (often called Classes) are used to create objects. These templates come with empty fields (like a form), and sometimes with default values as well (such as four legs). So it could look something like this:
+Many languages have the concept of an “object.” It’s a way of organising code based around objects (things) with similar characteristics. As in, most dogs have four legs, most cars can drive forward, most houses have doors. Templates (often called Classes) are used to create objects. These templates come with empty fields (like a form), and sometimes with default values as well (such as four legs). So it could look something like this:
 
 **Human**
 
@@ -18,7 +18,7 @@ Arms: _2_
 Legs: _2_
 ````
 
-As you can see some fields (name and gender) are left blank, and some (arms and legs) have a default value associated. Again, this is a template, these values are assigned for each object (often called "instance of the class"). Mine would look like this:
+As you can see some fields (name and gender) are left blank, and some (arms and legs) have a default value associated. Again, this is a template, these values are assigned for each object (often called “instance of the class”). Mine would look like this:
 
 ````
 Name: _Lucy_

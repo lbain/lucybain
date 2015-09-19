@@ -26,7 +26,7 @@ Some people think `document.write()` is a good solution for loading more files (
 
 **Possible situations to use `document.write()`**
 
-It seems that the only "approved" time to use `document.write()` is for third party code to be included (such as ads or Google Analytics). Since `document.write()` is always available (mostly) it is a good choice for third party vendors to use it to add their scripts. They don't know what environment you're using, if jQuery is or isn't available, or what your `onload` events are. And with `document.write()` they don't have to.
+It seems that the only “approved” time to use `document.write()` is for third party code to be included (such as ads or Google Analytics). Since `document.write()` is always available (mostly) it is a good choice for third party vendors to use it to add their scripts. They don't know what environment you're using, if jQuery is or isn't available, or what your `onload` events are. And with `document.write()` they don't have to.
 
 So don't use it yourself, unless your working for the third party.
 

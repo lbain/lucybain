@@ -5,7 +5,7 @@ tags: js, interview-questions
 
 ## Explain why the following doesn't work as an IIFE: `function foo(){ }();`
 
-*What does "IIFE" even stand for?*
+*What does “IIFE” even stand for?*
 
 IIFE stands for Immediately Invoked Function Expressions
 

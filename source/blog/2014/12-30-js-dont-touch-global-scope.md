@@ -7,7 +7,7 @@ One of the last installments from my series on [javascript interview questions](
 
 ## Why is it, in general, a good idea to leave the global scope of a website as-is and never touch it?
 
-Form most languages, global variables are [considered](http://en.wikipedia.org/wiki/Global_variable#Use) a "bad thing". JS is no different, but it probably has more severe consequences than most languages.
+Form most languages, global variables are [considered](http://en.wikipedia.org/wiki/Global_variable#Use) a “bad thing”. JS is no different, but it probably has more severe consequences than most languages.
 
 Some points on why **global variables are generally bad** (taken from [Cunningham & Cunningham](http://c2.com/cgi/wiki?GlobalVariablesAreBad) with modifications for easier reading):
 

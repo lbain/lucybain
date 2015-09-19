@@ -75,11 +75,11 @@
         
         <p><strong>What is the UA string?</strong></p>
         
-        <p>&quot;UA&quot; stands for user agent, which means the browser (and a whole lot of other stuff). Mine looks like this:</p>
+        <p>“UA” stands for user agent, which means the browser (and a whole lot of other stuff). Mine looks like this:</p>
         <pre class="highlight plaintext">Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.71</pre>
         <p>(You can find your user string at <a href="http://whatsmyuseragent.com/">whatsmyuseragent.com</a>.)</p>
         
-        <p>But you can see in there (at the end) it says what browser I&#39;m on. So it would be possible to check for a specific version of Chrome by &quot;sniffing&quot; the user agent string. This is generally considered bad practice (but seems to be slightly better practice than feature inference).</p>
+        <p>But you can see in there (at the end) it says what browser I&#39;m on. So it would be possible to check for a specific version of Chrome by “sniffing” the user agent string. This is generally considered bad practice (but seems to be slightly better practice than feature inference).</p>
         
         <p>Just like with feature inference, if you use the UA string you&#39;re making an assumption about how the string will be written, what changes are likely to happen in this particular version, and that your code will be able to handle any future changes.</p>
         
