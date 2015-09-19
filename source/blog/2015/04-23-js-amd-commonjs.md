@@ -1,7 +1,6 @@
 ---
 title: 'JS: AMD and CommonJS'
 tags: js, interview-questions
-published: true
 ---
 
 ## What's the difference between AMD and CommonJS?
