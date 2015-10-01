@@ -4,10 +4,140 @@
   <id>http://lucybain.com/blog</id>
   <link href="http://lucybain.com/blog"/>
   <link href="http://lucybain.com/feed.xml" rel="self"/>
-  <updated>2015-05-02T00:00:00Z</updated>
+  <updated>2015-09-28T00:00:00Z</updated>
   <author>
     <name>Lucy Bain</name>
   </author>
+  <entry>
+    <title>Bower link</title>
+    <link rel="alternate" href="http://lucybain.com/blog/2015/js-bower-link/"/>
+    <id>http://lucybain.com/blog/2015/js-bower-link/</id>
+    <published>2015-09-28T00:00:00Z</published>
+    <updated>2015-10-01T20:58:30+10:00</updated>
+    <author>
+      <name>Article Author</name>
+    </author>
+    <content type="html">&lt;p&gt;At work today I used &lt;code&gt;bower link&lt;/code&gt; and wanted to know more about how it works. I&amp;#39;m not going to talk about why you should use Bower, how to use it generally, or really anything useful for most people. I&amp;#39;m only going to talk about the &lt;code&gt;bower link&lt;/code&gt; command.&lt;/p&gt;
+
+&lt;h2&gt;What does it do?&lt;/h2&gt;
+
+&lt;p&gt;Linking with Bower creates symlinks. It makes a connection between two places on your computer so you can keep a clean file structure but still have all the code where you need it. It also means if you need the code in more than one place you only need one “master” copy and it can appear elsewhere as well.&lt;/p&gt;
+
+&lt;h2&gt;How do I use it?&lt;/h2&gt;
+
+&lt;p&gt;First, let’s lay out an example. You’re working on a project and need to write some new functionality. Typically you’d just make a new directory and include your feature’s code in there, but for this example you want the code to be stand alone (perhaps you’ll use it in another project, or perhaps you’ll publish it for others to use). So you decide to write a package for Bower to manage.&lt;/p&gt;
+
+&lt;p&gt;Here’s the setup so far:&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;code/
+  my_awesome_project/
+    lots.txt
+    of.rb
+    files.js
+    here.html
+
+  new_package/
+&lt;/pre&gt;
+&lt;h3&gt;Make your package a Bower package&lt;/h3&gt;
+&lt;pre class="highlight plaintext"&gt;$ cd ~/code/new_package
+$ bower init
+&lt;/pre&gt;
+&lt;p&gt;I just went ahead and accepted all the defaults, but if it was a real package you’d probably want to think about them. Again, this isn’t a post about all of Bower, so I’ll skip over any details on the &lt;code&gt;bower init&lt;/code&gt; command.&lt;/p&gt;
+
+&lt;p&gt;Now your package looks like this:&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;new_package/
+  node_modules/ &amp;lt;-- New!
+  bower.json &amp;lt;-- New!
+&lt;/pre&gt;
+&lt;h3&gt;Tell Bower about your package&lt;/h3&gt;
+
+&lt;p&gt;Next we need to tell Bower about the &lt;code&gt;new_package&lt;/code&gt; directory. This command won’t change the &lt;code&gt;new_package&lt;/code&gt; directory at all.&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;$ cd ~/code/new_package
+$ bower link
+&lt;/pre&gt;
+&lt;p&gt;For Mac computers, the output of that will be:&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;bower link /Users/lbain/.local/share/bower/links/new_package &amp;gt; /Users/lbain/code/new_package
+&lt;/pre&gt;
+&lt;p&gt;(Obviously the &lt;code&gt;lbain&lt;/code&gt; will be different in your case.)&lt;/p&gt;
+
+&lt;p&gt;Ok, let’s take a quick peak under the hood and look into &lt;code&gt;/Users/lbain/.local/share/bower/links&lt;/code&gt;.&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;$ cd /Users/lbain/.local/share/bower/links
+&lt;/pre&gt;
+&lt;p&gt;From here you can see all the links you’ve created (probably just the one &lt;code&gt;new_package&lt;/code&gt; link).&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;$ cd new_package
+&lt;/pre&gt;
+&lt;p&gt;And now you should see the &lt;code&gt;node_modules&lt;/code&gt; directory and the &lt;code&gt;bower.json&lt;/code&gt; right there. So you can see using &lt;code&gt;bower link&lt;/code&gt; creates a connection (some might even go so far as to say “link”) between the original and the bower-controlled code.&lt;/p&gt;
+
+&lt;p&gt;Ok, we’re halfway there! &lt;/p&gt;
+
+&lt;h3&gt;Tell your project about your package&lt;/h3&gt;
+
+&lt;p&gt;Now we can go back to your project and get to include your package.&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;$ cd ~/code/my_awesome_project
+&lt;/pre&gt;
+&lt;p&gt;From here we run the &lt;code&gt;bower link&lt;/code&gt; command, but with a parameter of the package name.&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;$ bower link new_package
+&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; The fact that you’re just giving the name of the directory you want to link is pretty much the only really clear advantage of using &lt;code&gt;bower link&lt;/code&gt; over a traditional symlink. Yes, you get all of the associated Bower-goodness, but for this example (where we’re not looking at the Bower-goodness) the name is about the only interesting thing.&lt;/p&gt;
+
+&lt;p&gt;The output of that is:&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;$ bower link /Users/lbain/code/my_awesome_project/bower_components/new_package &amp;gt; /Users/lbain/.local/share/bower/links/new_package
+&lt;/pre&gt;
+&lt;p&gt;The content of &lt;code&gt;/Users/lbain/.local/share/bower/links/&lt;/code&gt; hasn’t changed. Rather, that directory keeps a list of all linkable packages, not the packages that have been linked.&lt;/p&gt;
+
+&lt;p&gt;Now your directories should look like this:&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;code/
+  my_awesome_project/
+    bower_components/ &amp;lt;-- New!
+      new_package/ &amp;lt;-- New!
+        node_modules/ &amp;lt;-- New!
+        bower.json &amp;lt;-- New!
+    node_modules/ &amp;lt;-- New!
+    lots.txt
+    of.rb
+    files.js
+    here.html
+
+  new_package/
+    node_modules/
+    bower.json
+&lt;/pre&gt;
+&lt;p&gt;So, as you can see, you&amp;#39;ve got all of &lt;code&gt;new_package&lt;/code&gt;’s content in &lt;code&gt;my_awesome_project/bower_components&lt;/code&gt;. Any other Bower packages you link would also go to the &lt;code&gt;bower_components&lt;/code&gt; folder.&lt;/p&gt;
+
+&lt;h3&gt;Prove it!&lt;/h3&gt;
+
+&lt;p&gt;Alright, let’s give it a quick test. Make a new file in &lt;code&gt;new_package&lt;/code&gt; and save it. It should also be in &lt;code&gt;my_awesome_project&lt;/code&gt;!&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;code/
+  my_awesome_project/
+    new_package/
+      node_modules/
+      bower.json
+      test.txt &amp;lt;-- New!
+    lots.txt
+    of.rb
+    files.js
+    here.html
+
+  new_package/
+    node_modules/
+    bower.json
+    test.txt &amp;lt;-- New!
+&lt;/pre&gt;
+&lt;p&gt;You can also add files the other way. Make a new file in &lt;code&gt;my_awesome_project&lt;/code&gt; and save it. It should also be in &lt;code&gt;new_package&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Now you can develop as though your code was inline, but actually keep it as a stand alone package.&lt;/p&gt;
+
+&lt;p&gt;Done!&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; Again, this is a 100% normal symlink. The code used to make the link can be found on &lt;a href="https://github.com/bower/bower/blob/master/lib/util/createLink.js"&gt;Bower’s GitHub&lt;/a&gt; and doesn’t do anything fancy. If you go around moving &lt;code&gt;new_package&lt;/code&gt; the symlinks will break!&lt;/p&gt;
+
+&lt;h2&gt;References&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="http://code.tutsplus.com/tutorials/meet-bower-a-package-manager-for-the-web--net-27774"&gt;Intro to Bower&lt;/a&gt; - I really liked the style of this one, it’s quite chatty, just like me!&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/bower/bower/"&gt;Bower’s code&lt;/a&gt; if you want to look under the hood&lt;/li&gt;
+&lt;/ul&gt;
+</content>
+  </entry>
   <entry>
     <title>CSS: the box model</title>
     <link rel="alternate" href="http://lucybain.com/blog/2015/css-box-model/"/>
@@ -540,109 +670,6 @@ princess.bark();
 &lt;li&gt;&lt;a href="http://www.reddit.com/r/explainlikeimfive/comments/lii0o/eli5_what_do_it_programmer_developer_people_mean/"&gt;Reddit&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;More &lt;a href="http://www.reddit.com/r/explainlikeimfive/comments/j4dmq/eli5_what_is_objectoriented_programming/"&gt;Reddit&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;Still more &lt;a href="http://www.reddit.com/r/explainlikeimfive/comments/syjy3/can_someone_explain_object_oriented_programming/"&gt;Reddit&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-</content>
-  </entry>
-  <entry>
-    <title>JS: What datatypes are supported in Javascript?</title>
-    <link rel="alternate" href="http://lucybain.com/blog/2015/js-data-types/"/>
-    <id>http://lucybain.com/blog/2015/js-data-types/</id>
-    <published>2015-03-22T00:00:00Z</published>
-    <updated>2015-09-19T18:03:51+10:00</updated>
-    <author>
-      <name>Article Author</name>
-    </author>
-    <content type="html">&lt;p&gt;According to the latest &lt;a href="http://en.wikipedia.org/wiki/ECMAScript"&gt;ECMAScript&lt;/a&gt; release, these are the data types:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Boolean&lt;/li&gt;
-&lt;li&gt;Null&lt;/li&gt;
-&lt;li&gt;Undefined&lt;/li&gt;
-&lt;li&gt;Number&lt;/li&gt;
-&lt;li&gt;String&lt;/li&gt;
-&lt;li&gt;Symbol&lt;/li&gt;
-&lt;li&gt;Object&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Ok, let’s run over those one by one:&lt;/p&gt;
-
-&lt;h3&gt;Boolean&lt;/h3&gt;
-
-&lt;p&gt;Pretty standard across all languages, booleans are &lt;code&gt;true&lt;/code&gt; and &lt;code&gt;false&lt;/code&gt;. They&amp;#39;re often used for conditional statements.&lt;/p&gt;
-&lt;pre class="highlight plaintext"&gt;var raining = false;
-if(raining) {
-  bringUmbrella();
-}
-&lt;/pre&gt;
-&lt;h3&gt;Null and Undefined&lt;/h3&gt;
-
-&lt;p&gt;I&amp;#39;ve &lt;a href="/blog/2014/null-undefined-undeclared/"&gt;written&lt;/a&gt; about these before, so give that a read :)&lt;/p&gt;
-
-&lt;h3&gt;Number&lt;/h3&gt;
-
-&lt;p&gt;Things start to get more interesting here. The number data type covers integers and floats. That is, the &lt;code&gt;number&lt;/code&gt; type can handle normal numbers (1, 2, 3, 4), but also negative numbers and decimal places. This is different from many languages that have multiple data types to support different numbers.&lt;/p&gt;
-&lt;pre class="highlight plaintext"&gt;var num = 1;
-typeof num; // number
-
-var num = -2;
-typeof num; // number
-
-var num = 0.3;
-typeof num; // number
-&lt;/pre&gt;
-&lt;h3&gt;String&lt;/h3&gt;
-
-&lt;p&gt;As in most languages, JS strings are groupings of characters.&lt;/p&gt;
-&lt;pre class="highlight plaintext"&gt;"hello world";
-"I like cats";
-'Testing "quotes';
-&lt;/pre&gt;
-&lt;p&gt;I don’t think they&amp;#39;re particularly interesting, but they are remarkably powerful. The main way we communicate with our users is the written word and &lt;code&gt;string&lt;/code&gt; makes this possible.&lt;/p&gt;
-
-&lt;h3&gt;Symbol&lt;/h3&gt;
-
-&lt;p&gt;This is new in ECMAScript 6; check the &lt;a href="https://kangax.github.io/compat-table/es6/#Symbol"&gt;browser support&lt;/a&gt; before you use it.&lt;/p&gt;
-
-&lt;p&gt;Symbols allow for private(ish) properties on objects. Before ECMAScript 6 all properties for an object could be accessed through &lt;code&gt;for in&lt;/code&gt;, like this:&lt;/p&gt;
-&lt;pre class="highlight plaintext"&gt;var dog = { bark: true }
-
-for (var property in dog) {
-  if (dog.hasOwnProperty(property)) {
-    console.log(property); // logs "bark"
-  }
-}
-&lt;/pre&gt;
-&lt;p&gt;Since symbols are not enumerable they cannot be accessed in this way. However, the symbolised properties are not truly private since they can be accessed directly.&lt;/p&gt;
-&lt;pre class="highlight plaintext"&gt;var breed = Symbol("breed");
-var dog = { bark: true };
-dog[breed] = "Corgi";
-
-for (var property in dog) {
-  if (dog.hasOwnProperty(property)) {
-    console.log(property); // logs "bark", but not "breed"
-  }
-}
-console.log(dog[breed]); // logs "Corgi"
-&lt;/pre&gt;
-&lt;h3&gt;Object&lt;/h3&gt;
-
-&lt;p&gt;Everything in JS that we didn’t discuss above is an Object. So objects are the most complex data type; I&amp;#39;ll dedicate a future post to them since it’s a lot to cover here. But you&amp;#39;ve probably worked with objects in the past. They typically look like this:&lt;/p&gt;
-&lt;pre class="highlight plaintext"&gt;var cat = { sound: "meow" };
-
-var fluffy = new Cat();
-
-var whiskers = new function() {
-    this.sound = "meow";
-}
-&lt;/pre&gt;
-&lt;p&gt;But notice that we haven’t mentioned &lt;code&gt;Array&lt;/code&gt;, &lt;code&gt;Date&lt;/code&gt;, or even &lt;code&gt;function&lt;/code&gt; that’s because, &lt;a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#.22Normal.22_objects.2C_and_functions"&gt;officially&lt;/a&gt;, they&amp;#39;re all of type &lt;code&gt;object&lt;/code&gt;. Pretty crazy, huh?&lt;/p&gt;
-
-&lt;h2&gt;Resources&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures"&gt;Mozilla&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://leanpub.com/understandinges6/read/#leanpub-auto-symbols"&gt;Symbols&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Working_with_Objects"&gt;Objects&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 </content>
   </entry>
