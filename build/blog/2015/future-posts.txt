@@ -4,7 +4,6 @@ JS interview topics left
 * Difference between: function Person(){}, var person = Person(), and var person = new Person()?
 * Have you ever used JavaScript templating?
   If so, what libraries have you used? (Mustache.js, Handlebars etc.)
-* arguments keyword
 * the + opperator: What does “1”+2+4 evaluate to? What about 5 + 4 + “3”?
 * XSS
 * JSON
