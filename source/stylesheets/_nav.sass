@@ -4,23 +4,25 @@ nav
 
   .nav-display
     border-bottom: none
+    display: flex
+    justify-content: flex-end
     margin: 0
     padding: 20px
-    text-align: right
 
     &.open
       height: 250px
 
     li
-      display: inline
       font-size: 0.9em
+      list-style: none
+      margin-bottom: 0
 
       a
         border-radius: 5px
         color: $white
         font-weight: $bold
         margin-right: 15px
-        padding: 10px
+        padding: 10px 20px 10px
 
         &:hover
           background-color: $dark-accent
@@ -34,7 +36,6 @@ nav
     display: none
 
     ul
-      border: none
       margin-right: 20px
       margin-top: 22px
       position: absolute
