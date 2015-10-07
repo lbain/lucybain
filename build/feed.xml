@@ -139,6 +139,88 @@ $ bower link
 </content>
   </entry>
   <entry>
+    <title>Intro to Programming: Booleans</title>
+    <link rel="alternate" href="http://lucybain.com/blog/2015/intro-to-programming-booleans/"/>
+    <id>http://lucybain.com/blog/2015/intro-to-programming-booleans/</id>
+    <published>2015-06-01T00:00:00Z</published>
+    <updated>2015-10-07T21:25:19+11:00</updated>
+    <author>
+      <name>Article Author</name>
+    </author>
+    <content type="html">&lt;h2&gt;Explaination&lt;/h2&gt;
+
+&lt;p&gt;As you’ve probably heard, computers think in 1s and 0s. There is no middle ground, there’s no 0.5, no 1.1, no 1 and 0 at the same time. 1 or 0, that’s all they’ve got. It turns out, 1s and 0s are pretty powerful.&lt;/p&gt;
+
+&lt;p&gt;Humans have the same concepts as 1s and 0s, we just call them different things - &lt;code&gt;True&lt;/code&gt; or &lt;code&gt;False&lt;/code&gt;. For the sake of this post (and all the computers in the world) we will assume something is either entirely &lt;code&gt;True&lt;/code&gt;, or entirely &lt;code&gt;False&lt;/code&gt;. There is no middle ground, no maybe, no white lies. Something is either &lt;code&gt;True&lt;/code&gt; or &lt;code&gt;False&lt;/code&gt;. Something which is either &lt;code&gt;True&lt;/code&gt; or &lt;code&gt;False&lt;/code&gt; is known as a Boolean, after George Boole.&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;“The sky is blue” is &lt;code&gt;True&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;For me, “I am female” is also &lt;code&gt;True&lt;/code&gt;, while “I am very tall” is &lt;code&gt;False&lt;/code&gt;.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;In general, computers have no notion of time. There is only the now, no past, no future. A computer doesn’t know what it will be doing in a few minutes (that depends on what you tell it to do, and on what it’s doing now), and it isn’t interested in what it was doing an hour ago. So when computers decide if something is &lt;code&gt;True&lt;/code&gt; or &lt;code&gt;False&lt;/code&gt;, they have to decide &lt;em&gt;at that moment&lt;/em&gt; is the thing &lt;code&gt;True&lt;/code&gt; or &lt;code&gt;False&lt;/code&gt;?&lt;/p&gt;
+
+&lt;p&gt;“I am very tall” is &lt;code&gt;False&lt;/code&gt; right now. It’s possible (though unlikely) I’ll have a giant growth spurt and be very tall in the future. That doesn’t matter, we are not interested in what &lt;em&gt;will&lt;/em&gt; happen, only that I am not very tall &lt;em&gt;right now&lt;/em&gt;.&lt;/p&gt;
+
+&lt;p&gt;“Caramel is my favorite ice cream flavor” is presently &lt;code&gt;True&lt;/code&gt;. But it might change tomorrow when I try the best chocolate ice cream in the world. Certainly it has changed from my childhood favorite (Rainbow Sherbet). Again, we only focus on my current favorite flavor.&lt;/p&gt;
+
+&lt;h2&gt;Exercises&lt;/h2&gt;
+
+&lt;p&gt;Ok, now it’s your turn. Decide if each of these statements is &lt;code&gt;True&lt;/code&gt; or &lt;code&gt;False&lt;/code&gt; for you at the current moment.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;It is sunny outside.&lt;/li&gt;
+&lt;li&gt;I am over 5ft tall.&lt;/li&gt;
+&lt;li&gt;I am female.&lt;/li&gt;
+&lt;li&gt;Chocolate is my favorite ice cream flavor.&lt;/li&gt;
+&lt;li&gt;There are five continents.&lt;/li&gt;
+&lt;li&gt;The Egyptians built the pyramids.&lt;/li&gt;
+&lt;li&gt;I have eaten dinner.&lt;/li&gt;
+&lt;li&gt;The light is on.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Think about your every day life, and come up with at least five more examples of when things are &lt;code&gt;True&lt;/code&gt; or &lt;code&gt;False&lt;/code&gt;.&lt;/p&gt;
+
+&lt;iframe id="hidden_iframe" name="hidden_iframe" style="display:none;"&gt;
+&lt;/iframe&gt;
+
+&lt;form action="https://docs.google.com/forms/d/1u4xIbGktEd3RzHQHfJcSRwuqUklokVcmeNBTrVbH6oI/formResponse" method="POST" id="ss-form" onsubmit="hideQuestions();" target="hidden_iframe" class="programming-examples"&gt;
+  &lt;div class="example-questions"&gt;
+    &lt;input type="hidden" name="entry.1043295642" value="Boolean" id="group_1043295642_1" role="radio" class="ss-q-radio valid" aria-label="Boolean"&gt;
+    &lt;ol&gt;
+      &lt;li&gt;
+        &lt;textarea name="entry.1571729994" rows="8" cols="0" class="ss-q-long" id="entry_1571729994" dir="auto" aria-label="Example 1  "&gt;&lt;/textarea&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;textarea name="entry.332234193" rows="8" cols="0" class="ss-q-long" id="entry_332234193" dir="auto" aria-label="Example 2  "&gt;&lt;/textarea&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;textarea name="entry.796117189" rows="8" cols="0" class="ss-q-long" id="entry_796117189" dir="auto" aria-label="Example 3  "&gt;&lt;/textarea&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;textarea name="entry.1635444679" rows="8" cols="0" class="ss-q-long" id="entry_1635444679" dir="auto" aria-label="Example 4  "&gt;&lt;/textarea&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;textarea name="entry.341236292" rows="8" cols="0" class="ss-q-long" id="entry_341236292" dir="auto" aria-label="Example 5  "&gt;&lt;/textarea&gt;
+      &lt;/li&gt;
+    &lt;/ol&gt;
+    &lt;input type="submit" name="submit" value="Submit" id="ss-submit" class="jfk-button jfk-button-action "&gt;
+  &lt;/div&gt;
+  &lt;div class="thank-you"&gt;
+    Thanks for submitting your examples!
+  &lt;/div&gt;
+&lt;/form&gt;
+
+&lt;script&gt;
+function hideQuestions() {
+  document.getElementsByClassName('example-questions')[0].className+=' inactive';
+  document.getElementsByClassName('thank-you')[0].className+=' active';
+}
+&lt;/script&gt;
+</content>
+  </entry>
+  <entry>
     <title>CSS: Flexbox</title>
     <link rel="alternate" href="http://lucybain.com/blog/2015/css-flexbox/"/>
     <id>http://lucybain.com/blog/2015/css-flexbox/</id>
@@ -546,161 +628,6 @@ console.log(stats.average(0, 4)) // logs "2"
 
 &lt;p&gt;Thanks!
 Lucy and the Rails Girls Sydney team&lt;/p&gt;
-</content>
-  </entry>
-  <entry>
-    <title>JS: How can you accept optional parameters?</title>
-    <link rel="alternate" href="http://lucybain.com/blog/2015/js-optional-parameters/"/>
-    <id>http://lucybain.com/blog/2015/js-optional-parameters/</id>
-    <published>2015-04-03T00:00:00Z</published>
-    <updated>2015-09-19T18:03:47+10:00</updated>
-    <author>
-      <name>Article Author</name>
-    </author>
-    <content type="html">&lt;p&gt;There’s more than one way to skin a cat, and there’s more than one way to accept optional parameters. (Editors note: I do not condone skinning cats!)&lt;/p&gt;
-
-&lt;h2&gt;Object&lt;/h2&gt;
-
-&lt;p&gt;Coming from a Ruby background, I find this option the most intuitive. You can create an object of your optional parameters, it&amp;#39;d look something like this:&lt;/p&gt;
-&lt;pre class="highlight plaintext"&gt;var params = {
-    size: ’small',
-    color: 'red'
-};
-
-function carSentence(optionalParams) {
-    var size = optionalParams.size;
-    var color = optionalParams.color;
-    var speed = optionalParams.speed;
-    console.log("My favourite car is a " + size +
-                " sized " + color + " one that goes " + speed);
-}
-carSentence(params);
-// logs "My favourite car is a small sized red one that goes "
-&lt;/pre&gt;
-&lt;p&gt;As you can see I didn’t supply the &lt;code&gt;speed&lt;/code&gt; parameter in my &lt;code&gt;params&lt;/code&gt; object, but the &lt;code&gt;carSentence&lt;/code&gt; function still worked. So &lt;code&gt;speed&lt;/code&gt; was an optional parameter.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;But &lt;code&gt;optionalParams&lt;/code&gt; was still required&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;Yep, you caught me! This isn’t really what people usually mean by “optional” parameters. But I did want to throw it out there as a possibility. I think it’s an underrated option.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;What if I wanted a default speed?&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;code&gt;optionalParams&lt;/code&gt; didn’t define a value for &lt;code&gt;speed&lt;/code&gt;, but the sentence expected &lt;code&gt;speed&lt;/code&gt; to be defined. In this case you can give a default value for the variable (such as &lt;code&gt;&amp;quot;fast&amp;quot;&lt;/code&gt;). It’s tempting to do this:&lt;/p&gt;
-&lt;pre class="highlight plaintext"&gt;var speed = optionalParams.speed || "fast";
-&lt;/pre&gt;
-&lt;p&gt;but this won’t work when &lt;code&gt;optionalParams.speed&lt;/code&gt; is &lt;code&gt;false&lt;/code&gt;. The better way to handle it is:&lt;/p&gt;
-&lt;pre class="highlight plaintext"&gt;var speed;
-if (typeof optionalParams.speed !== 'undefined') {
-    speed = optionalParams.speed;
-} else {
-    speed = "fast";
-}
-&lt;/pre&gt;
-&lt;p&gt;however that’s quite wordy. You can cut it down with a &lt;a href="/blog/2014/js-ternary/"&gt;ternary&lt;/a&gt;, or make a &lt;code&gt;givenOrDefault&lt;/code&gt; method (hopefully with a better name!).&lt;/p&gt;
-&lt;pre class="highlight plaintext"&gt;function givenOrDefault(given, default) {
-    if (typeof given !== 'undefined') {
-        return given;
-    } else {
-        return default;
-    }
-}
-&lt;/pre&gt;
-&lt;p&gt;Thus our example becomes:&lt;/p&gt;
-&lt;pre class="highlight plaintext"&gt;var params = {
-    size: ’small',
-    color: 'red'
-};
-
-function carSentence(optionalParams) {
-    var size = givenOrDefault(optionalParams.size, "medium");
-    var color = givenOrDefault(optionalParams.color, "blue");
-    var speed = givenOrDefault(optionalParams.speed, "fast");
-    console.log("My favourite car is a " + size +
-                " sized " + color + " one that goes " + speed);
-}
-carSentence(params);
-// logs "My favourite car is a small sized red one that goes fast"
-&lt;/pre&gt;
-&lt;h2&gt;Missing parameters&lt;/h2&gt;
-
-&lt;p&gt;Another method of dealing with optional parameters is to simply allow them to be missing.&lt;/p&gt;
-&lt;pre class="highlight plaintext"&gt;function carSentence(size, color, speed) {
-    size = givenOrDefault(size, "medium");
-    color = givenOrDefault(color, "blue");
-    speed = givenOrDefault(speed, "fast");
-    console.log("My favourite car is a " + size +
-                " sized " + color + " one that goes " + speed);
-}
-carSentence("medium", "blue");
-// logs "My favourite car is a medium sized blue one that goes fast"
-&lt;/pre&gt;
-&lt;p&gt;This way of dealing with optional parameters works well if people won’t bother trying to extend it past the limit. However, not all functions meet this requirement, consider the following:&lt;/p&gt;
-&lt;pre class="highlight plaintext"&gt;function add(a, b, c) {
-    a = a || 0;
-    b = b || 0;
-    c = c || 0;
-    return a + b + c;
-}
-
-add(1, 2); // returns 3
-add(1, 2, 3); // returns 6
-add(1, undefined, 3); // returns 4
-&lt;/pre&gt;
-&lt;p&gt;It kinda works. It&amp;#39;ll fall over if you try &lt;code&gt;add(1, 2, 3, 4)&lt;/code&gt; which returns 6 rather than 10.&lt;/p&gt;
-
-&lt;h2&gt;arguments&lt;/h2&gt;
-
-&lt;p&gt;Finally we come to the &lt;code&gt;arguments&lt;/code&gt; keyword. it looks like this:&lt;/p&gt;
-&lt;pre class="highlight plaintext"&gt;function carSentence() {
-    size = givenOrDefault(arguments[0], "medium");
-    color = givenOrDefault(arguments[1], "blue");
-    speed = givenOrDefault(arguments[2], "fast");
-    console.log("My favourite car is a " + size +
-                " sized " + color + " one that goes " + speed);
-}
-carSentence("medium", "blue");
-// logs "My favourite car is a medium sized blue one that goes fast"
-&lt;/pre&gt;
-&lt;p&gt;or like this:&lt;/p&gt;
-&lt;pre class="highlight plaintext"&gt;function add() {
-    var sum = 0;
-    var index = 0;
-
-    while(index &amp;lt; arguments.length) {
-        if(typeof arguments[index] !== 'undefined') {
-            sum = sum + arguments[index];
-        }
-        index++;
-    }
-    return sum;
-}
-
-add(1, 2); // returns 3
-add(1, 2, 3); // returns 6
-add(1, undefined, 3); // returns 4
-add(1, 2, 3, 4); // returns 10
-&lt;/pre&gt;
-&lt;p&gt;&lt;strong&gt;What is this black magic?!&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;Well it turns out &lt;code&gt;arguments&lt;/code&gt; is a secret variable available in all functions that gives a list of the parameters passed to that function. It’s a little bonus JS throws in free of charge.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;So it’s an array of all the params&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;Almost. It’s not quite an array. It’s like a kiddy array - hasn’t got all the functionality just yet. If you want to use it for access only (as in the example above), then you&amp;#39;re all good. But if you want to do interesting manipulations, &lt;code&gt;pop&lt;/code&gt; things off, or reorder items, then you need to convert &lt;code&gt;arguments&lt;/code&gt; to a full array:&lt;/p&gt;
-&lt;pre class="highlight plaintext"&gt;var temp = Array.slice(arguments);
-&lt;/pre&gt;
-&lt;p&gt;I assume the reason for this is to make &lt;code&gt;arguments&lt;/code&gt; read only, although I haven’t researched that.&lt;/p&gt;
-
-&lt;p&gt;And there you have it - three ways to handle optional parameters in JavaScript.&lt;/p&gt;
-
-&lt;h2&gt;Resources&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href="http://stackoverflow.com/questions/148901/is-there-a-better-way-to-do-optional-function-parameters-in-javascript"&gt;Stackoverflow&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="http://www.markhansen.co.nz/javascript-optional-parameters/"&gt;Mark Hansen&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/arguments"&gt;Arguments&lt;/a&gt; official&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://javascriptweblog.wordpress.com/2011/01/18/javascripts-arguments-object-and-beyond/"&gt;Arguments&lt;/a&gt; this one is more entertaining&lt;/li&gt;
-&lt;/ul&gt;
 </content>
   </entry>
 </feed>

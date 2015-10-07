@@ -1,10 +1,39 @@
 .blog-listing
   hr
-    width: 20%
+    background-color: rgba(0, 0, 0, 0.2)
     border: none
     height: 1px
-    background-color: rgba(0, 0, 0, 0.2)
     margin: 4em auto
+    width: 20%
 
   img
     max-width: 100%
+
+.programming-examples
+  textarea
+    height: 2.6em
+    width: 90%
+
+  .example-questions
+    max-height: 1000px
+    opacity: 1
+    transition: max-height 0.75s ease-out
+
+    &.inactive
+      max-height: 0
+      overflow: hidden
+
+  .thank-you
+    background: $light-accent
+    border-radius: 5px
+    height: 0
+    opacity: 0
+    overflow: hidden
+    text-align: center
+    transition: opacity 1.5s ease-out
+
+    &.active
+      height: auto
+      margin: 10px 0
+      opacity: 1
+      padding: 20px

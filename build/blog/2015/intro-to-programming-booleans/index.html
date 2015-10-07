@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='width=device-width, initial-scale=1' name='viewport'>
+    <meta charset='utf-8'>
+    <meta content='IE=edge,chrome=1' http-equiv='X-UA-Compatible'>
+    <link href='/images/favicon.ico' rel='icon' type='image/ico'>
+    <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700|Source+Code+Pro' rel='stylesheet' type='text/css'>
+    <title>Intro to Programming: Booleans</title>
+    <link href="/stylesheets/application.css" media="all" rel="stylesheet" type="text/css" />
+    <script src='//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js'></script>
+  </head>
+  <body>
+    <nav>
+      <div class='nav-open-btn'>
+        <ul>
+          <li></li>
+          <li></li>
+          <li></li>
+        </ul>
+      </div>
+      <ul class='nav-display'>
+        <li>
+          <a class="nav-link" href="/">Me</a>
+        </li>
+        <li>
+          <a class="nav-link" href="/resume/">Resume</a>
+        </li>
+        <li>
+          <a class="nav-link" href="/contact-me/">Contact</a>
+        </li>
+        <li>
+          <a class="nav-link" href="/resources/">Resources</a>
+        </li>
+        <li>
+          <a class="nav-link active" href="/blog/">Blog</a>
+        </li>
+      </ul>
+    </nav>
+    <script>
+      $('nav .nav-open-btn').on('click', function(){
+        $('nav .nav-display').toggleClass('open');
+      })
+    </script>
+    <div class='content'>
+      <div class=' blog-listing'>
+        <h1>Intro to Programming: Booleans</h1>
+        <p>Published on: June  1, 2015</p>
+        <p>Tags: <a href="/blog/tags/programming/">programming</a> and <a href="/blog/tags/intro-programming/">intro-programming</a></p>
+        <h2>Explaination</h2>
+        
+        <p>As you’ve probably heard, computers think in 1s and 0s. There is no middle ground, there’s no 0.5, no 1.1, no 1 and 0 at the same time. 1 or 0, that’s all they’ve got. It turns out, 1s and 0s are pretty powerful.</p>
+        
+        <p>Humans have the same concepts as 1s and 0s, we just call them different things - <code>True</code> or <code>False</code>. For the sake of this post (and all the computers in the world) we will assume something is either entirely <code>True</code>, or entirely <code>False</code>. There is no middle ground, no maybe, no white lies. Something is either <code>True</code> or <code>False</code>. Something which is either <code>True</code> or <code>False</code> is known as a Boolean, after George Boole.</p>
+        
+        <blockquote>
+        <p>“The sky is blue” is <code>True</code>.</p>
+        
+        <p>For me, “I am female” is also <code>True</code>, while “I am very tall” is <code>False</code>.</p>
+        </blockquote>
+        
+        <p>In general, computers have no notion of time. There is only the now, no past, no future. A computer doesn’t know what it will be doing in a few minutes (that depends on what you tell it to do, and on what it’s doing now), and it isn’t interested in what it was doing an hour ago. So when computers decide if something is <code>True</code> or <code>False</code>, they have to decide <em>at that moment</em> is the thing <code>True</code> or <code>False</code>?</p>
+        
+        <p>“I am very tall” is <code>False</code> right now. It’s possible (though unlikely) I’ll have a giant growth spurt and be very tall in the future. That doesn’t matter, we are not interested in what <em>will</em> happen, only that I am not very tall <em>right now</em>.</p>
+        
+        <p>“Caramel is my favorite ice cream flavor” is presently <code>True</code>. But it might change tomorrow when I try the best chocolate ice cream in the world. Certainly it has changed from my childhood favorite (Rainbow Sherbet). Again, we only focus on my current favorite flavor.</p>
+        
+        <h2>Exercises</h2>
+        
+        <p>Ok, now it’s your turn. Decide if each of these statements is <code>True</code> or <code>False</code> for you at the current moment.</p>
+        
+        <ul>
+        <li>It is sunny outside.</li>
+        <li>I am over 5ft tall.</li>
+        <li>I am female.</li>
+        <li>Chocolate is my favorite ice cream flavor.</li>
+        <li>There are five continents.</li>
+        <li>The Egyptians built the pyramids.</li>
+        <li>I have eaten dinner.</li>
+        <li>The light is on.</li>
+        </ul>
+        
+        <p>Think about your every day life, and come up with at least five more examples of when things are <code>True</code> or <code>False</code>.</p>
+        
+        <iframe id="hidden_iframe" name="hidden_iframe" style="display:none;">
+        </iframe>
+        
+        <form action="https://docs.google.com/forms/d/1u4xIbGktEd3RzHQHfJcSRwuqUklokVcmeNBTrVbH6oI/formResponse" method="POST" id="ss-form" onsubmit="hideQuestions();" target="hidden_iframe" class="programming-examples">
+          <div class="example-questions">
+            <input type="hidden" name="entry.1043295642" value="Boolean" id="group_1043295642_1" role="radio" class="ss-q-radio valid" aria-label="Boolean">
+            <ol>
+              <li>
+                <textarea name="entry.1571729994" rows="8" cols="0" class="ss-q-long" id="entry_1571729994" dir="auto" aria-label="Example 1  "></textarea>
+              </li>
+              <li>
+                <textarea name="entry.332234193" rows="8" cols="0" class="ss-q-long" id="entry_332234193" dir="auto" aria-label="Example 2  "></textarea>
+              </li>
+              <li>
+                <textarea name="entry.796117189" rows="8" cols="0" class="ss-q-long" id="entry_796117189" dir="auto" aria-label="Example 3  "></textarea>
+              </li>
+              <li>
+                <textarea name="entry.1635444679" rows="8" cols="0" class="ss-q-long" id="entry_1635444679" dir="auto" aria-label="Example 4  "></textarea>
+              </li>
+              <li>
+                <textarea name="entry.341236292" rows="8" cols="0" class="ss-q-long" id="entry_341236292" dir="auto" aria-label="Example 5  "></textarea>
+              </li>
+            </ol>
+            <input type="submit" name="submit" value="Submit" id="ss-submit" class="jfk-button jfk-button-action ">
+          </div>
+          <div class="thank-you">
+            Thanks for submitting your examples!
+          </div>
+        </form>
+        
+        <script>
+        function hideQuestions() {
+          document.getElementsByClassName('example-questions')[0].className+=' inactive';
+          document.getElementsByClassName('thank-you')[0].className+=' active';
+        }
+        </script>
+        <hr>
+        <div id='disqus_thread'></div>
+        <script>
+          var disqus_shortname = 'lucybain';
+          (function() {
+              var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+              dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+              (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+          })();
+        </script>
+        <noscript>
+          Please enable JavaScript to view the
+          <a href='http://disqus.com/?ref_noscript'>comments powered by Disqus.</a>
+        </noscript>
+        <a class='dsq-brlink' href='http://disqus.com'>
+          comments powered by
+          <span class='logo-disqus'>Disqus</span>
+        </a>
+        <script>
+          var disqus_shortname = 'lucybain';
+          (function () {
+              var s = document.createElement('script'); s.async = true;
+              s.type = 'text/javascript';
+              s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+              (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+          }());
+        </script>
+      </div>
+    </div>
+  </body>
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    
+    ga('create', 'UA-45866381-1', 'lucybain.com');
+    ga('send', 'pageview');
+  </script>
+</html>
+
