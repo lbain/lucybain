@@ -139,6 +139,94 @@ $ bower link
 </content>
   </entry>
   <entry>
+    <title>CSS: Flexbox</title>
+    <link rel="alternate" href="http://lucybain.com/blog/2015/css-flexbox/"/>
+    <id>http://lucybain.com/blog/2015/css-flexbox/</id>
+    <published>2015-05-18T00:00:00Z</published>
+    <updated>2015-10-07T20:10:55+11:00</updated>
+    <author>
+      <name>Article Author</name>
+    </author>
+    <content type="html">&lt;p&gt;I recently learned about flex-box and have been doing some research into it. Hopefully I&amp;#39;ll write up a “All about flexbox” post, but for now I want to go through a hands on example of using flexbox in the wild.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;What are we working on?&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;I want to convert the menu of this site to use flexbox.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;What does it look like now?&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;Right now I support three cases:&lt;/p&gt;
+
+&lt;p&gt;Large (desktop)&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt="Image menu on desktop" src="/images/blog/css-flexbox/current-menu-large.png" /&gt;&lt;/p&gt;
+
+&lt;p&gt;Medium (tablet) - this looks almost the same but the fonts are slightly smaller.&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt="Image menu on tablet" src="/images/blog/css-flexbox/current-menu-medium.png" /&gt;&lt;/p&gt;
+
+&lt;p&gt;Small (phone)&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt="Image menu on phone" src="/images/blog/css-flexbox/current-menu-small.png" /&gt;&lt;/p&gt;
+
+&lt;h2&gt;Ok, let’s make it &lt;em&gt;flexible&lt;/em&gt;.&lt;/h2&gt;
+
+&lt;h3&gt;Step 1: remove most of the styling&lt;/h3&gt;
+
+&lt;p&gt;I went through and removed most of the styling. I kept some things I knew I wanted, but most of it went.&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt="remove styling" src="/images/blog/css-flexbox/remove-styling.png" /&gt;&lt;/p&gt;
+
+&lt;h3&gt;Step 2: add flexbox&lt;/h3&gt;
+
+&lt;p&gt;I added &lt;code&gt;display: flex&lt;/code&gt; to the containing element. It kinda worked, but looked funny becuase I’d removed the rest of the styling.&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt="inital flexbox" src="/images/blog/css-flexbox/inital-flexbox.png" /&gt;&lt;/p&gt;
+
+&lt;h3&gt;Step 3: layout within the flexbox&lt;/h3&gt;
+
+&lt;p&gt;Next I added how I wanted the content to flex within the flexbox by adding &lt;code&gt;justify-content: flex-end&lt;/code&gt;. This meant all the &lt;code&gt;&amp;lt;li&amp;gt;&lt;/code&gt;s got squished to the right.&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt="now with flex-end" src="/images/blog/css-flexbox/flex-end.png" /&gt;&lt;/p&gt;
+
+&lt;p&gt;I played around with a few options for &lt;code&gt;justify-content&lt;/code&gt;, particularly &lt;code&gt;space-between&lt;/code&gt;. While that would better show off flexbox’s capabilities, I decided I didn’t actually want my nav bar all that flexible. Having too much space between the items looks quite strange - especially true on larger monitors. I probably should have thought of this before I started converting my nav bar to use flexbox, but oh well. For learning!&lt;/p&gt;
+
+&lt;h3&gt;Step 4: add styling back in&lt;/h3&gt;
+
+&lt;p&gt;Most of my previous styles were still required. I&amp;#39;d hoped I could remove some lines, but it doesn’t seem to be the case.&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt="add styling back" src="/images/blog/css-flexbox/add-styling-back.png" /&gt;&lt;/p&gt;
+
+&lt;h3&gt;Step 5: mobile - vertical display&lt;/h3&gt;
+
+&lt;p&gt;Yes, yes, mobile first and all that. I just wanted to get things working, ok?&lt;/p&gt;
+
+&lt;p&gt;The &lt;code&gt;display: flex&lt;/code&gt; I added previously was applied to the mobile, so I didn&amp;#39;t need to add that again.&lt;/p&gt;
+
+&lt;p&gt;But I want the mobile navigation to go vertically, so I changed the &lt;code&gt;flex-direction&lt;/code&gt; from &lt;code&gt;row&lt;/code&gt; (the default) to &lt;code&gt;flex-direction: column&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt="vertical display mobile" src="/images/blog/css-flexbox/vertical-display-mobile.png" /&gt;&lt;/p&gt;
+
+&lt;p&gt;Woot! Getting pretty close!&lt;/p&gt;
+
+&lt;h3&gt;Step 6: mobile - center align&lt;/h3&gt;
+
+&lt;p&gt;Next up was to center the &lt;code&gt;&amp;lt;li&amp;gt;&lt;/code&gt;s across the screen. So I used &lt;code&gt;align-items: center&lt;/code&gt; to get all my ducks in a row.&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt="align center mobile" src="/images/blog/css-flexbox/align-center-mobile.png" /&gt;&lt;/p&gt;
+
+&lt;h3&gt;Step 7: mobile - spacing&lt;/h3&gt;
+
+&lt;p&gt;Finally the spacing around the &lt;code&gt;&amp;lt;li&amp;gt;&lt;/code&gt;s was a bit weird so I used &lt;code&gt;justify-content: space-around&lt;/code&gt; to display them evening within the nav dropdown&amp;#39;s space.&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt="mobile correct spacing" src="/images/blog/css-flexbox/mobile-correct-spacing.png" /&gt;&lt;/p&gt;
+
+&lt;h2&gt;Done!&lt;/h2&gt;
+
+&lt;p&gt;After all that it was quite a small change with no change to the user experience. But I did learn more about flexbox, so I’ve got that going for me!&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
     <title>CSS: the box model</title>
     <link rel="alternate" href="http://lucybain.com/blog/2015/css-box-model/"/>
     <id>http://lucybain.com/blog/2015/css-box-model/</id>
@@ -612,64 +700,6 @@ add(1, 2, 3, 4); // returns 10
 &lt;li&gt;&lt;a href="http://www.markhansen.co.nz/javascript-optional-parameters/"&gt;Mark Hansen&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/arguments"&gt;Arguments&lt;/a&gt; official&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://javascriptweblog.wordpress.com/2011/01/18/javascripts-arguments-object-and-beyond/"&gt;Arguments&lt;/a&gt; this one is more entertaining&lt;/li&gt;
-&lt;/ul&gt;
-</content>
-  </entry>
-  <entry>
-    <title>In programming, what is an object?</title>
-    <link rel="alternate" href="http://lucybain.com/blog/2015/in-programming-what-is-an-object/"/>
-    <id>http://lucybain.com/blog/2015/in-programming-what-is-an-object/</id>
-    <published>2015-03-26T00:00:00Z</published>
-    <updated>2015-09-19T17:57:32+10:00</updated>
-    <author>
-      <name>Article Author</name>
-    </author>
-    <content type="html">&lt;p&gt;As promissed in my last blog post: intro to objects.&lt;/p&gt;
-
-&lt;h2&gt;Objects&lt;/h2&gt;
-
-&lt;p&gt;Many languages have the concept of an “object.” It’s a way of organising code based around objects (things) with similar characteristics. As in, most dogs have four legs, most cars can drive forward, most houses have doors. Templates (often called Classes) are used to create objects. These templates come with empty fields (like a form), and sometimes with default values as well (such as four legs). So it could look something like this:&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Human&lt;/strong&gt;&lt;/p&gt;
-&lt;pre class="highlight plaintext"&gt;Name: ________
-Gender: ________
-Arms: _2_
-Legs: _2_
-&lt;/pre&gt;
-&lt;p&gt;As you can see some fields (name and gender) are left blank, and some (arms and legs) have a default value associated. Again, this is a template, these values are assigned for each object (often called “instance of the class”). Mine would look like this:&lt;/p&gt;
-&lt;pre class="highlight plaintext"&gt;Name: _Lucy_
-Gender: _Female_
-Arms: _2_
-Legs: _2_
-&lt;/pre&gt;
-&lt;p&gt;But objects hold more than just fields of information; they can also hold actions! Let’s build on our Human class.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Human&lt;/strong&gt;&lt;/p&gt;
-&lt;pre class="highlight plaintext"&gt;Name: ________
-Gender: ________
-Arms: _2_
-Legs: _2_
-Laugh: say "hahaha!"
-Run: move your legs quickly
-&lt;/pre&gt;
-&lt;p&gt;So you can see the Human template now has two actions associated with it (laugh and run). Here’s the great part about objects: those actions are shared! I only have to write the method &lt;em&gt;once&lt;/em&gt; and all humans can now laugh and run. Pretty slick, huh?&lt;/p&gt;
-
-&lt;p&gt;So a &lt;strong&gt;class&lt;/strong&gt; is a template of fields (variables) and actions (methods). Each &lt;strong&gt;object&lt;/strong&gt; fills out the template with it’s particular information. This is how you can write code like &lt;code&gt;me.name&lt;/code&gt; - the &lt;code&gt;me&lt;/code&gt; object has a &lt;code&gt;name&lt;/code&gt; field that keeps track of &lt;code&gt;me&lt;/code&gt;’s name. It’s also how you can write:&lt;/p&gt;
-&lt;pre class="highlight plaintext"&gt;fido.bark();
-buddy.bark();
-buster.bark();
-princess.bark();
-&lt;/pre&gt;
-&lt;p&gt;but only need to implement the &lt;code&gt;bark&lt;/code&gt; action on the &lt;code&gt;Dog&lt;/code&gt; template.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Object Oriented Programming&lt;/strong&gt; is a way of organising your code into these objects for ease of use, readability, and understanding. It’s not the only &lt;a href="http://upload.wikimedia.org/wikipedia/commons/f/f7/Programming_paradigms.svg"&gt;programming paradigm&lt;/a&gt;, but it’s been popular over the years.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Resources&lt;/strong&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href="http://www.reddit.com/r/explainlikeimfive/comments/lii0o/eli5_what_do_it_programmer_developer_people_mean/"&gt;Reddit&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;More &lt;a href="http://www.reddit.com/r/explainlikeimfive/comments/j4dmq/eli5_what_is_objectoriented_programming/"&gt;Reddit&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Still more &lt;a href="http://www.reddit.com/r/explainlikeimfive/comments/syjy3/can_someone_explain_object_oriented_programming/"&gt;Reddit&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 </content>
   </entry>
