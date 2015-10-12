@@ -189,6 +189,6 @@ Done! That was a long one - thanks for sticking with me!
 * [What `new` does](http://stackoverflow.com/a/3658673/863846) - I really recommend this question (give it an upvote for me!), as it spelled out the three steps that `new` takes
 * [Defensive new](http://stackoverflow.com/a/383503/863846) for discussion around scenario 2
 * [Strict mode and new](http://yuiblog.com/blog/2010/12/14/strict-mode-is-coming-to-town/) - look for the section called “Global Leakage”
-* [More discussion](http://zeekat.nl/articles/constructors-considered-mildly-confusing.html) this was the reference from the "what `new` does" answer, so I figured it should get some credit too.
+* [More discussion](http://zeekat.nl/articles/constructors-considered-mildly-confusing.html) this was the reference from the “what `new` does” answer, so I figured it should get some credit too.
 
  
