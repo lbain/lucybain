@@ -30,7 +30,7 @@ The main argument against doing this is: if, in future, a browser decides to imp
 
 On the flip side, if you decide to overwrite the browsers definition, any future developer working on your code won’t know about the change. They'll have a harder time getting up to speed.
 
-Generally it’s safer to move your particular changes into a library (as with [underscore.js](http://documentcloud.github.io/underscore/)). That way your particular methods are clearly marked and there’s no chance of conflict.
+Generally it’s safer to move your particular changes into a library (as with [underscore.js](http://underscorejs.org/)). That way your particular methods are clearly marked and there’s no chance of conflict.
 
 **But...**
 
