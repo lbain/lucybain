@@ -1,12 +1,8 @@
 ---
-pageable: true
+pageable: false
 ---
 
 .blog-listing
-  - if paginate && num_pages > 1
-    - if prev_page
-      %p= link_to 'Previous page', prev_page
-
   - page_articles.each do |article|
     %div
       %h1
@@ -14,9 +10,3 @@ pageable: true
       %p= article.date.strftime('%b %e, %Y')
       = article.summary(250)
     %hr
-
-  - if paginate
-    - if next_page
-      %p
-        Page #{page_number} of #{num_pages}
-      %p= link_to 'Next page', next_page
