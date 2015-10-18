@@ -53,6 +53,8 @@ GEM
       middleman-sprockets (>= 3.1.2)
       sass (>= 3.1.20)
       uglifier (~> 2.4.0)
+    middleman-alias (0.0.15)
+      middleman-core (~> 3.2)
     middleman-blog (3.5.1)
       addressable (~> 2.3.5)
       middleman-core (~> 3.2)
@@ -117,8 +119,12 @@ PLATFORMS
 DEPENDENCIES
   builder (~> 3.0)
   middleman
+  middleman-alias
   middleman-blog
   middleman-livereload (~> 3.1.0)
   middleman-syntax!
   nokogiri
   redcarpet
+
+BUNDLED WITH
+   1.10.6

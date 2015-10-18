@@ -92,6 +92,9 @@ activate :directory_indexes
 # Use middleman-syntax gem to color syntax
 activate :syntax
 
+# Use middleman-alias gem to keep trak of renames
+activate :alias
+
 # Methods defined in the helpers block are available in templates
 helpers do
   def nav_link(link_text, url, options = {})
