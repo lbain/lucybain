@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='width=device-width, initial-scale=1' name='viewport'>
+    <meta charset='utf-8'>
+    <meta content='IE=edge,chrome=1' http-equiv='X-UA-Compatible'>
+    <meta content='A look into JavaScript functions with particular focus on the “new” keyword for creating objects from JS constructors.' name='description'>
+    <meta content='JavaScript, JS, new, object, constructor' name='keywords'>
+    <link href='/images/favicon.ico' rel='icon' type='image/ico'>
+    <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700|Source+Code+Pro' rel='stylesheet' type='text/css'>
+    <title>JS: new keyword and functions</title>
+    <link href="/stylesheets/application.css" media="all" rel="stylesheet" type="text/css" />
+    <script src='//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js'></script>
+  </head>
+  <body>
+    <nav>
+      <div class='nav-open-btn'>
+        <ul>
+          <li></li>
+          <li></li>
+          <li></li>
+        </ul>
+      </div>
+      <ul class='nav-display'>
+        <li>
+          <a class="nav-link" href="/">Me</a>
+        </li>
+        <li>
+          <a class="nav-link" href="/resume/">Resume</a>
+        </li>
+        <li>
+          <a class="nav-link" href="/contact-me/">Contact</a>
+        </li>
+        <li>
+          <a class="nav-link" href="/resources/">Resources</a>
+        </li>
+        <li>
+          <a class="nav-link active" href="/blog/">Blog</a>
+        </li>
+      </ul>
+    </nav>
+    <script>
+      $('nav .nav-open-btn').on('click', function(){
+        $('nav .nav-display').toggleClass('open');
+      })
+    </script>
+    <div class='content'>
+      <div class=' blog-listing'>
+        <h1>JS: new keyword and functions</h1>
+        <p>Published on: October 12, 2015</p>
+        <p>Tags: <a href="/blog/tags/js/">js</a> and <a href="/blog/tags/interview-questions/">interview-questions</a></p>
+        <p>I’m still slowly making my through the <a href="https://github.com/h5bp/Front-end-Developer-Interview-Questions#js">javascript interview questions</a>, despite having started a new job on JS. There&#39;s just so much I don’t know! Maybe one day I&#39;ll actually interview someone with these questions...</p>
+        
+        <p>Alright, let’s get to today’s question:</p>
+        
+        <h2>What’s the difference between: <code>function Person(){}</code>, <code>var person = new Person()</code>, and <code>var person = Person()</code>?</h2>
+        
+        <p><em>Gah! Too many things!</em></p>
+        
+        <p>Let’s take them one by one:</p>
+        
+        <h3>1. <code>function Person(){}</code></h3>
+        
+        <p>Ok, well this defined a function. Hopefully that was fairly obvious by the <code>function</code> keyword.</p>
+        
+        <p><em>Wow, mind blowing stuff here...</em></p>
+        
+        <p>The more interesting side of it is the <code>Person</code>. Now, the name of the function is user defined (i.e. not a keyword like <code>function</code>), but what’s interesting here is the capital <code>P</code>. This is a JS convention. (JS doesn’t care at all if you follow it or not, but all the other devs will be sad if you don’t.) The convention is that if a function name starts with a capital letter then that function defines a constructor (similar to a class in other languages). So we can infer that <code>function Person(){}</code> defines a constructor.</p>
+        
+        <p><em>Ok, so functions with names starting with a capital letter are usually constructors.</em></p>
+        
+        <p>Yep, it’s really, really common (hopefully you’re using this convention too!), so it’s a pretty safe bet. Let’s move on.</p>
+        
+        <h3>2. <code>var person = new Person()</code></h3>
+        
+        <p>So in many other languages we’d say “The <code>new</code> keyword creates an instance of the <code>Person</code> class.”</p>
+        
+        <p><em>But this is JS, not some “other language.”</em></p>
+        
+        <p>Yes, very true. JS is a world unto itself. But I hope the sentence above will probably help someone from a more traditional object-oriented background.</p>
+        
+        <p><em>Ok, so how does <code>new</code> work for JS?</em></p>
+        
+        <p><code>new</code> does three main things:</p>
+        
+        <ol>
+        <li><code>new</code> creates a new object. It’s just a plain old, bog standard, nothing-in-it object. It looks like <code>{}</code>. Boring, I know, but it’s very important.</li>
+        <li>The newly created object has it’s prototype set to whatever the <code>Person</code>’s prototype is right now.</li>
+        <li>Finally the constructor function is called (the body of <code>Person</code>) with any references to <code>this</code> replaced with the object created in step 1.</li>
+        </ol>
+        
+        <p><em>Why is this important?</em></p>
+        
+        <p>Although I knew the final outcome of using the <code>new</code> keyword before, having those three steps spelled out helped remove some of the magic. So let’s talk about them in more detail.</p>
+        
+        <p><strong>Step 1</strong> (the plain old empty JS object) means that you get a unique “deep copy” (other languages would say “instance”) of the constructor each time it’s run. If <code>new</code> didn’t create a new object then you’d constantly be overwriting things in seemingly different objects.</p>
+        
+        <p><strong>Step 2</strong> (setting the prototype) means that you can set methods on the constructor’s prototype and they’ll be available on your new object. Something like this:</p>
+        <pre class="highlight plaintext">function Person(name) {&#x000A;    this.name = name;&#x000A;}&#x000A;Person.prototype.introduce = function() {&#x000A;    console.log("Hi, my name is " + this.name);&#x000A;}&#x000A;&#x000A;var lucy = new Person('Lucy');&#x000A;lucy.introduce(); // logs out: "Hi, my name is Lucy"</pre>
+        <p>If <code>lucy</code>’s prototype hadn’t been set to <code>Person</code>’s prototype then the <code>introduce</code> method wouldn’t have been available.</p>
+        
+        <p><strong>Step 3</strong> (constructor with <code>this</code> set) means that each object’s <code>this</code> points to the object, rather than the window or something else. Without the third step <code>this</code> from the <code>Person</code> constructor wouldn’t work correctly and <code>lucy</code> wouldn’t be able to introduce herself.</p>
+        
+        <p><em>Huh, ok, so the <code>new</code> keyword is super important for getting <strong>new</strong> objects. See what I did there?</em></p>
+        
+        <p>Moving on...</p>
+        
+        <h3>3. <code>var person = Person()</code></h3>
+        
+        <p>Things get a little tricky here, since we don’t actually have the <code>Person</code> constructor. It can go one of three ways so let’s look at all of them.</p>
+        
+        <h4>Scenario 1 - everything is ruined</h4>
+        
+        <p><code>Person</code> is a constructor that was written to work with the <code>new</code> keyword, such as the <code>Person</code> in my example above. In this case things will break, hopefully in an expected way given the three steps above.</p>
+        
+        <p>So, without the <code>new</code> keyword from above those three steps won’t happen. Let’s look at what that means step by step. We’re going to use the same example as above, but without the <code>new</code> keyword:</p>
+        <pre class="highlight plaintext">function Person(name) {&#x000A;    this.name = name;&#x000A;}&#x000A;Person.prototype.introduce = function() {&#x000A;    console.log("Hi, my name is " + this.name);&#x000A;}&#x000A;&#x000A;var lucy = Person('Lucy'); // &lt;-- NO NEW KEYWORD</pre>
+        <p><strong>Step 1</strong> (the plain old empty JS object) doesn’t happen. Now instead of getting a new object for <code>lucy</code> all we get is the return value of <code>Person</code>. Which is nothing (a.k.a <code>undefined</code>). Bummer.</p>
+        
+        <p><strong>Step 2</strong> (setting the prototype) doesn&#39;t happen. Well that’s kind of a given. Since there’s no new object (see step 1 that didn’t happen) there can’t be a prototype set on it.</p>
+        
+        <p><strong>Step 3</strong> (constructor with <code>this</code> set) tries to happen. It really does it’s very best. Since there’s no new object to set <code>this</code> to, JS does the next best thing and uses the default <code>this</code>, the window. So now there’s a brand new property on the window, and you can call it with <code>window.name</code> or <code>this.name</code> both of which are <code>&quot;Lucy&quot;</code>.</p>
+        
+        <p><em>Well that’s a problem.</em></p>
+        
+        <p>Yep, leaving of the <code>new</code> keyword when it’s expected will cause all kinds of headaches.</p>
+        
+        <p><em>What’s the “when it’s expected” caveat for?</em></p>
+        
+        <p>Great question! The above scenario is, I think, the most likely one, both for what the question was asking about, and in buggy real life code. However, there are two other options. Let’s look at them now.</p>
+        
+        <h4>Scenario 2 - nobody cares</h4>
+        
+        <p>It’s possible that the <code>Person</code> constructor was written to avoid just this pitfall. It would look something like this:</p>
+        <pre class="highlight plaintext">function Person(name) {&#x000A;    if (this instanceof Person) {&#x000A;        this.name = name;&#x000A;      } else {&#x000A;        return new Person(name);&#x000A;      }&#x000A;}&#x000A;Person.prototype.introduce = function() {&#x000A;    console.log("Hi, my name is " + this.name);&#x000A;}&#x000A;&#x000A;var lucy = new Person('Lucy'); // &lt;-- NEW KEYWORD IS PRESENT&#x000A;lucy.introduce(); // logs out: "Hi, my name is Lucy"&#x000A;&#x000A;var bob = Person('Bob'); // &lt;-- NO NEW KEYWORD&#x000A;bob.introduce(); // logs out: "Hi, my name is Bob"</pre>
+        <p>This takes advantage of the three steps that <code>new</code> goes through as discussed above. By the time the constructor is actually run there <em>should</em> be an object assigned to <code>this</code> with it’s prototype set correctly so <code>this instanceof Person</code> is <code>true</code>. <em>However</em> if someone happened to forget the <code>new</code> keyword then the constructor would go straight to the <code>else</code> section and create a new object, using the <code>new</code> keyword correctly.</p>
+        
+        <p>This means using the constructor with and without the <code>new</code> keyword works correctly (as shown by <code>bob</code> and <code>lucy</code> above).</p>
+        
+        <p><em>That’s a pretty sneaky trick!</em></p>
+        
+        <p>Yeah, it’s quite clever. It’s also <em>really</em> defensive programming. I mean, we can’t write everything to allow important keywords to just be forgotten... I think it’s bad practice (not to mention a little mean) to hide mistakes from people. I want to know when I mess up. Which brings us nicely to:</p>
+        
+        <h4>Scenario 3 - warning</h4>
+        
+        <p>Finally we reach a happy middle ground. Scenario 1 failed quietly. Scenario 2 didn’t fail at all, but also allowed incorrect code to work correctly. But scenario 3 will just give a warning, and it’s quite a simple fix.</p>
+        
+        <p>A while ago I wrote about <a href="/blog/2014/js-use-strict/">strict mode</a>, which is exactly what we’ll use now. Here’s an example:</p>
+        <pre class="highlight plaintext">"use strict"; // &lt;-- THIS LINE HERE&#x000A;&#x000A;function Person(name) {&#x000A;    this.name = name;&#x000A;}&#x000A;Person.prototype.introduce = function() {&#x000A;    console.log("Hi, my name is " + this.name);&#x000A;}&#x000A;&#x000A;var lucy = new Person('Lucy'); // &lt;-- NEW KEYWORD IS PRESENT&#x000A;lucy.introduce(); // logs out: "Hi, my name is Lucy"&#x000A;&#x000A;var bob = Person('Bob'); // &lt;-- NO NEW KEYWORD&#x000A;// throws "Uncaught TypeError: Cannot set property 'name' of undefined"</pre>
+        <p>As you can see, using the <code>new</code> keyword works exactly as expected. However, if you forget to use <code>new</code> an error will be thrown, alerting you to your mistake.</p>
+        
+        <p><em>What’s happening behind the scenes?</em></p>
+        
+        <p>Basically the <code>&quot;use strict&quot;</code> just means that JS won’t allow the <code>this</code> in the constructor to be bound to the window. Instead it leaves <code>this</code> as undefined (since no new object was created to be properly bound to <code>this</code>) which cuases the error <code>Cannot set property &#39;name&#39; of undefined&quot;</code>. I think it’s pretty slick.</p>
+        
+        <p>Note: I couldn’t get the <code>&quot;use strict&quot;</code> to work properly in this window’s console when I ran it just now, so here’s a <a href="https://jsfiddle.net/1nu5g2by/">JSFiddle</a> of the example if you want to double check. Just be sure to have the console of that window open to see the error.</p>
+        
+        <h2>Recap</h2>
+        
+        <p><em>That was quite a lot, can I have it one more time?</em></p>
+        
+        <p>Sure thing, let’s wrap it up!</p>
+        
+        <p>Our question was &quot;What’s the difference between: <code>function Person(){}</code>, <code>var person = new Person()</code>, and <code>var person = Person()</code>?&quot;</p>
+        
+        <p>The first one <code>function Person(){}</code> defines a function. Since it’s got a capital letter at the beginning of the function name we expect that it’s a constructor.</p>
+        
+        <p>Next <code>var person = new Person()</code> is one way to create new objects. Using this method <code>person</code> will have access to everything <code>Person.prototype</code> has access to, as well as any instance variables set in the <code>Person</code> constructor.</p>
+        
+        <p>Finally <code>var person = Person()</code> is a mistake. There are ways of dealing with mistakes like this (my preference is the <code>&quot;use strict&quot;</code> method), but ultimately this should be corrected.</p>
+        
+        <p><em>Done?</em></p>
+        
+        <p>Done! That was a long one - thanks for sticking with me!</p>
+        
+        <h2>References</h2>
+        
+        <ul>
+        <li><a href="http://stackoverflow.com/a/1564489/863846">Capitalise constructor function names</a></li>
+        <li><a href="http://stackoverflow.com/a/3658673/863846">What <code>new</code> does</a> - I really recommend this question (give it an upvote for me!), as it spelled out the three steps that <code>new</code> takes</li>
+        <li><a href="http://stackoverflow.com/a/383503/863846">Defensive new</a> for discussion around scenario 2</li>
+        <li><a href="http://yuiblog.com/blog/2010/12/14/strict-mode-is-coming-to-town/">Strict mode and new</a> - look for the section called “Global Leakage”</li>
+        <li><a href="http://zeekat.nl/articles/constructors-considered-mildly-confusing.html">More discussion</a> this was the reference from the “what <code>new</code> does” answer, so I figured it should get some credit too.</li>
+        </ul>
+        <hr>
+        <div id='disqus_thread'></div>
+        <script>
+          var disqus_shortname = 'lucybain';
+          (function() {
+              var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+              dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+              (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+          })();
+        </script>
+        <noscript>
+          Please enable JavaScript to view the
+          <a href='http://disqus.com/?ref_noscript'>comments powered by Disqus.</a>
+        </noscript>
+        <a class='dsq-brlink' href='http://disqus.com'>
+          comments powered by
+          <span class='logo-disqus'>Disqus</span>
+        </a>
+        <script>
+          var disqus_shortname = 'lucybain';
+          (function () {
+              var s = document.createElement('script'); s.async = true;
+              s.type = 'text/javascript';
+              s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+              (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+          }());
+        </script>
+      </div>
+    </div>
+  </body>
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    
+    ga('create', 'UA-45866381-1', 'lucybain.com');
+    ga('send', 'pageview');
+  </script>
+</html>
+

@@ -1,6 +1,10 @@
 ---
-title: 'JS: Ways to call functions'
+title: 'JS: new keyword and functions'
 tags: js, interview-questions
+alias : blog/2015/js-ways-to-call-functions/
+
+description: A look into JavaScript functions with particular focus on the “new” keyword for creating objects from JS constructors.
+keywords: JavaScript, JS, new, object, constructor
 ---
 
 I’m still slowly making my through the [javascript interview questions](https://github.com/h5bp/Front-end-Developer-Interview-Questions#js), despite having started a new job on JS. There's just so much I don’t know! Maybe one day I'll actually interview someone with these questions...

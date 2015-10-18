@@ -9,11 +9,11 @@
     <name>Lucy Bain</name>
   </author>
   <entry>
-    <title>JS: Ways to call functions</title>
-    <link rel="alternate" href="http://lucybain.com/blog/2015/js-ways-to-call-functions/"/>
-    <id>http://lucybain.com/blog/2015/js-ways-to-call-functions/</id>
+    <title>JS: new keyword and functions</title>
+    <link rel="alternate" href="http://lucybain.com/blog/2015/js-new-keyword-and-functions/"/>
+    <id>http://lucybain.com/blog/2015/js-new-keyword-and-functions/</id>
     <published>2015-10-12T00:00:00Z</published>
-    <updated>2015-10-12T22:38:21+11:00</updated>
+    <updated>2015-10-18T17:43:07+11:00</updated>
     <author>
       <name>Article Author</name>
     </author>
@@ -330,6 +330,50 @@ $ bower link
 </content>
   </entry>
   <entry>
+    <title>Periodic site maintenance</title>
+    <link rel="alternate" href="http://lucybain.com/blog/2015/site-maintenance/"/>
+    <id>http://lucybain.com/blog/2015/site-maintenance/</id>
+    <published>2015-06-15T00:00:00Z</published>
+    <updated>2015-10-18T18:04:16+11:00</updated>
+    <author>
+      <name>Article Author</name>
+    </author>
+    <content type="html">&lt;p&gt;Every now and then I spend some time going through my site to make sure things are working as expected. I might &lt;a href="https://github.com/lbain/lucybain/commit/98e7b6787934045a546114bfed96b41ac9f95bcb"&gt;tweak something&lt;/a&gt;, make some &lt;a href="https://github.com/lbain/lucybain/commit/33d8e3adc537b885905a1fa66b75b85921cf2011"&gt;SEO updates&lt;/a&gt;, &lt;a href="https://github.com/lbain/lucybain/commit/f4aa1b6185b947abc9841273b3a518d0326411d4"&gt;refactor&lt;/a&gt; messy code, or &lt;a href="https://github.com/lbain/lucybain/commit/8ea1b51a6d790effd008a4511ffe379288efaacb"&gt;fix something&lt;/a&gt; that was broken. Ususally days like this are pretty unstructured. I’ll be honest, they typically happen when I don’t feel like writing a blog post, but I still think these days are valuable. After all, this blog is like any piece of code - it needs constant love and attention or it will turn to legacy code. (Shudder)&lt;/p&gt;
+
+&lt;p&gt;The point of this post is to write down some ideas of what I can do for maintenance so when I have a day like this I don’t spend too much time waffling.&lt;/p&gt;
+
+&lt;h2&gt;Links&lt;/h2&gt;
+
+&lt;p&gt;Links go bad. Hopefully not my internal ones (although that’s happend before) but certainly the external ones can just disapear whenever they want to. Unfortunately Middleman doesn’t have &lt;a href="https://github.com/middleman/middleman/issues/902"&gt;broken link checks&lt;/a&gt; on build. That’d be quite handy since I’d get an update when a link broke. However, there are a &lt;a href="https://www.google.com/search?q=spider+site+for+broken+links&amp;amp;amp;oq=spider+site+for+b&amp;amp;amp;aqs=chrome.1.69i57j0l4.3126j0j4&amp;amp;amp;sourceid=chrome&amp;amp;amp;es_sm=119&amp;amp;amp;ie=UTF-8"&gt;lot of sites&lt;/a&gt; to help you find broken links. I used &lt;a href="http://www.brokenlinkcheck.com/"&gt;Broken Link Check&lt;/a&gt; and it worked just fine.&lt;/p&gt;
+
+&lt;h2&gt;SEO&lt;/h2&gt;
+
+&lt;p&gt;The suggestions around what you should and shouldn’t do for SEO seem to constantly change. It’s not something I’m particularly interested in, so I’m happy for someone to tell me what’s currently “right.” I used &lt;a href="http://seositecheckup.com/"&gt;SEO SiteCheckup&lt;/a&gt; to see what I was missing. Unforunately I didn’t have metadata associated with most of my posts, so now an ongoing task is to go back through old posts and add those.&lt;/p&gt;
+
+&lt;p&gt;I’ve also learned that the name of the post is really important. Not surprising since it’s the title of the page, but I didn’t know as much about naming when I started (nor do I always think of the best SEO friendly title at the time). I also go back and rename some posts as needed. In order to reduce hard coded redirect listings I now use &lt;a href="https://github.com/Octo-Labs/middleman-alias"&gt;Middleman::Alias&lt;/a&gt; to keep rename my posts.&lt;/p&gt;
+
+&lt;h2&gt;Code Improvements&lt;/h2&gt;
+
+&lt;p&gt;There’s always something that will make the code a little nicer to work with. I spent a fair bit of time working on refactoring my Sass a while back and it’s really paid off. I’m not so scared to make style changes and I have a better understanding of CSS. So taking the time to improve the code that backs the site means that I’m better able to continue maintaining it.&lt;/p&gt;
+
+&lt;p&gt;Some ongoing things to improve:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Sass, it seems to degrade remarkably quickly&lt;/li&gt;
+&lt;li&gt;The code Middleman uses to run the site (&lt;code&gt;config.rb&lt;/code&gt;)&lt;/li&gt;
+&lt;li&gt;Convert haml to markdown - when I started this blog I was more comfortable in haml than markdown. I’ve since changed my mind and would like to update the old haml pages to markdown.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2&gt;Usability&lt;/h2&gt;
+
+&lt;p&gt;This is probably the most fun one, but I never really get around to it. Anything that can improve the user’s experience is worth it. How best to test this? By reading my old posts! I’m constantly amazing by how many people find this site helpful, and I’m always looking for suggestions on how to make a post clearer. Even if no one asks a question in the comments, I usually find some errors by reading over what I wrote. Perferably something I wrote long enough ago to have forgotten the wording I used.&lt;/p&gt;
+
+&lt;p&gt;I write this blog for me - to help me learn things and better think through topics. But I &lt;em&gt;love&lt;/em&gt; that other people find it helpful and I want them to have a good experience. One example of this was my &lt;a href="https://github.com/lbain/lucybain/commit/ea42c6ea4b2983335f903edda5cba3c49ff77df4"&gt;very&lt;/a&gt; &lt;a href="https://github.com/lbain/lucybain/commit/0d21a940c235916211e3d06534702edc4f2f3255"&gt;long&lt;/a&gt; &lt;a href="https://github.com/lbain/lucybain/commit/cd55113c3dd2cb7b9f26a105a5bbd9472d344224"&gt;day&lt;/a&gt; converting to &lt;a href="http://smartquotesforsmartpeople.com/"&gt;smart quotes&lt;/a&gt;. I hope someone out there appreciates the update :)&lt;/p&gt;
+
+&lt;p&gt;Well, future me, I hope you found that list useful. Now get to work - if you’re not going to write a new post at least make the site better!&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
     <title>Intro to Programming: Booleans</title>
     <link rel="alternate" href="http://lucybain.com/blog/2015/intro-to-programming-booleans/"/>
     <id>http://lucybain.com/blog/2015/intro-to-programming-booleans/</id>
@@ -605,167 +649,6 @@ function hideQuestions() {
 &lt;li&gt;&lt;a href="http://quirksmode.org/css/user-interface/boxsizing.html"&gt;Quirks Mode&lt;/a&gt; has some good visuals&lt;/li&gt;
 &lt;li&gt;&lt;a href="http://www.paulirish.com/2012/box-sizing-border-box-ftw/"&gt;Paul Irish&lt;/a&gt; talks about why border box is the winner&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://css-tricks.com/the-css-box-model/"&gt;CSS Tricks&lt;/a&gt; goes into more details and covers far more edge cases than I got to here&lt;/li&gt;
-&lt;/ul&gt;
-</content>
-  </entry>
-  <entry>
-    <title>JS: AMD and CommonJS</title>
-    <link rel="alternate" href="http://lucybain.com/blog/2015/js-amd-commonjs/"/>
-    <id>http://lucybain.com/blog/2015/js-amd-commonjs/</id>
-    <published>2015-04-23T00:00:00Z</published>
-    <updated>2015-09-19T18:09:20+10:00</updated>
-    <author>
-      <name>Article Author</name>
-    </author>
-    <content type="html">&lt;h2&gt;What’s the difference between AMD and CommonJS?&lt;/h2&gt;
-
-&lt;p&gt;&lt;strong&gt;Disclaimer:&lt;/strong&gt; I’m only going to talk about how this impacts the browser. I will not talk about Node.js, although I know it’s relevant to this discussion. I don’t know enough about Node.js to cover it properly. Ok, let’s get to it!&lt;/p&gt;
-
-&lt;p&gt;To start off, let’s talk about their similarities.&lt;/p&gt;
-
-&lt;p&gt;&lt;em&gt;What problem are they trying to solve?&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;Typcially JS relies on having &lt;code&gt;&amp;lt;script&amp;gt;&lt;/code&gt; tags in the right order in the HTML. This can often lead to confusion and ordering mistakes. Beyond that, some people prefer to have all their JS compiled into one massive file. This is convenient since they have complete control on ordering and don’t need to rely on &lt;code&gt;&amp;lt;script&amp;gt;&lt;/code&gt; tags. However it means all JS gets loaded on each page, which isn’t very performant.&lt;/p&gt;
-
-&lt;p&gt;Both AMD and CommonJS are a way of linking JS bits of code, called modules, together. They are a way of defining which modules rely on which other modules so a computer can decide the best way to link everything together, rather than relying on error-prone coders.&lt;/p&gt;
-
-&lt;p&gt;&lt;em&gt;How do they solve that?&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;Both AMD and CommonJS provide standards for other libraries to implement. There are quite a few libraries that have done just that (&lt;a href="http://requirejs.org/"&gt;RequireJS&lt;/a&gt; and &lt;a href="https://github.com/jrburke/almond"&gt;Almond&lt;/a&gt; are two that implement AMD). But you “use” AMD or CommonJS code any more than you can “use” object oriented code.&lt;/p&gt;
-
-&lt;p&gt;&lt;em&gt;Ok, so that’s how they&amp;#39;re similar. How are they different?&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;Let’s look at each one individually. We&amp;#39;ll start with AMD:&lt;/p&gt;
-
-&lt;p&gt;&lt;em&gt;What does “AMD” stand for?&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;AMD stands for &lt;strong&gt;A&lt;/strong&gt;synchronous &lt;strong&gt;M&lt;/strong&gt;odule &lt;strong&gt;D&lt;/strong&gt;efinition.&lt;/p&gt;
-
-&lt;p&gt;&lt;em&gt;And what makes it special?&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;The “module” part should be clear enough since both CommonJS and AMD focus on linking modules together. And the “definition” part is about how it’s a standard, rather than a library. However a key difference for AMD is the “asynchronous” bit. AMD loads each distinct module asynchronously for web performance. Instead of having one &lt;em&gt;giant&lt;/em&gt; file with everything in it which causes a slow load time, you can load only the files you need, only when you need them, all asynchronously. Slick, huh?&lt;/p&gt;
-
-&lt;p&gt;&lt;em&gt;So then what’s special about CommonJS?&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;CommonJS loads modules synchronously. My understanding is that this is better for server-side (Node.js) development. Again, CommonJS is a standard but it focuses more on JS out of the browser than AMD.&lt;/p&gt;
-
-&lt;p&gt;&lt;em&gt;That’s it? Async vs. Sync?&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;Sort of. Of course the syntax for both is different too. Let’s look at how to use each.&lt;/p&gt;
-
-&lt;h2&gt;Syntax&lt;/h2&gt;
-
-&lt;p&gt;&lt;strong&gt;CommonJS&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;We&amp;#39;ll start with CommonJS since it’s a bit easier to read.&lt;/p&gt;
-
-&lt;p&gt;&lt;em&gt;Part 1: math module&lt;/em&gt;&lt;/p&gt;
-&lt;pre class="highlight plaintext"&gt;// math.js
-var module = {
-  add: function(x, y) {
-    return x + y;
-  },
-  subtract: function(x, y) {
-    return x - y;
-  },
-  multiply: function(x, y) {
-    return x * y;
-  },
-  divide: function(x, y) {
-    return x / y;
-  }
-};
-export.math = module; // export is a commonJS specific method
-                      // export returns what’s publicly available
-                      // the "math" gives the name of the module
-&lt;/pre&gt;
-&lt;p&gt;This code doesn’t output anything, but when we require the &lt;code&gt;math&lt;/code&gt; module we&amp;#39;ll have access to everything in the returned &lt;code&gt;module&lt;/code&gt; object (namely &lt;code&gt;add&lt;/code&gt;, &lt;code&gt;subtract&lt;/code&gt;, &lt;code&gt;multiply&lt;/code&gt;, and &lt;code&gt;divide&lt;/code&gt;).&lt;/p&gt;
-
-&lt;p&gt;&lt;em&gt;Part 2: stats module&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;Alright, now we&amp;#39;ve created a module, we can require it in another module.&lt;/p&gt;
-&lt;pre class="highlight plaintext"&gt;// stats.js
-var math = require('math');
-
-var module = {
-  average: function(x, y) {
-    var sum = math.add(x, y);
-    return math.divide(sum, 2);
-  }
-};
-export.stats = module; // export is a commonJS specific method
-                       // export returns what’s publicly available
-                       // the "stats" gives the name of the module
-&lt;/pre&gt;
-&lt;p&gt;&lt;em&gt;Part 3: get output&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;Now we&amp;#39;ve got two modules, we can use them to get output.&lt;/p&gt;
-&lt;pre class="highlight plaintext"&gt;var math = require('math');
-var stats = require(’stats');
-console.log(math.add(1, 2)) // logs "3"
-console.log(stats.average(0, 4)) // logs "2"
-&lt;/pre&gt;
-&lt;p&gt;&lt;strong&gt;AMD&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;We&amp;#39;ll go through exactly the same example, but this time implement it with AMD.&lt;/p&gt;
-
-&lt;p&gt;&lt;em&gt;Part 1: math module&lt;/em&gt;&lt;/p&gt;
-&lt;pre class="highlight plaintext"&gt;define( // AMD specific method used to define a module
-  'math', // name of the module (this is optional)
-  // Note: no dependencies (they're optional)
-  function() {
-    var module = {
-      add: function(x, y) {
-        return x + y;
-      },
-      subtract: function(x, y) {
-        return x - y;
-      },
-      multiply: function(x, y) {
-        return x * y;
-      },
-      divide: function(x, y) {
-        return x / y;
-      }
-    };
-    return module; // returns what’s publicly available
-});
-&lt;/pre&gt;
-&lt;p&gt;As with CommonJS, this code doesn’t output anything.&lt;/p&gt;
-
-&lt;p&gt;&lt;em&gt;Part 2: stats module&lt;/em&gt;&lt;/p&gt;
-&lt;pre class="highlight plaintext"&gt;define( // AMD specific method used to define a module
-  ’stats', // name of the module (this is optional)
-  ['math'], // dependency, same name as module above
-            // it’s an array since there can be more than one
-  function() {
-    var module = {
-      average: function(x, y) {
-        var sum = math.add(x, y);
-        return math.divide(sum, 2);
-      }
-    };
-    return module; // returns what’s publicly available
-});
-&lt;/pre&gt;
-&lt;p&gt;&lt;em&gt;Part 3: get output&lt;/em&gt;&lt;/p&gt;
-&lt;pre class="highlight plaintext"&gt;require( // AMD specific method to run code
-  // Note: no name, require doesn't support names
-  ['math', ’stats'], // dependencies
-  function(math, stats) {
-    console.log(math.add(1, 2)) // logs "3"
-    console.log(stats.average(0, 4)) // logs "2"
-});
-&lt;/pre&gt;
-&lt;p&gt;&lt;strong&gt;Resources&lt;/strong&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href="http://stackoverflow.com/questions/16521471/relation-between-commonjs-amd-and-requirejs"&gt;Relation between CommonJS, AMD and RequireJS?&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;RequireJS on &lt;a href="http://requirejs.org/docs/whyamd.html"&gt;AMD&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="http://0fps.net/2013/01/22/commonjs-why-and-how/"&gt;About CommonJS&lt;/a&gt; and using it on the browser&lt;/li&gt;
-&lt;li&gt;&lt;a href="http://addyosmani.com/writing-modular-js/"&gt;About AMD&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;A bit about &lt;a href="http://blog.millermedeiros.com/amd-is-better-for-the-web-than-commonjs-modules/"&gt;CommonJS vs. AMD&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;A little history about the &lt;a href="http://www.cubrid.org/blog/dev-platform/toward-javascript-standards-commonjs-and-amd/"&gt;development of both&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 </content>
   </entry>
