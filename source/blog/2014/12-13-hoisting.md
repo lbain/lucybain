@@ -9,7 +9,7 @@ I’m continuing my series of [JS interview questions](https://github.com/h5bp/F
 
 Hoisting is when a JS declaration is lifted (“hoisted”) to the top of it’s scope by the JS interpreter. What this really means is that a variable or function isn’t necessarily declared where you think it is. Understandably, this can cause problems. Variables and functions are hoisted differently, as we'll see below.
 
-**Hoisting variables**
+## Hoisting variables
 
 We'll start with an example:
 
@@ -57,7 +57,7 @@ scopingFunction(); // returns 10
 
 *What?! How can it return 10?*
 
-**Tangent about scopes**
+<h3 id="scopes"> Tangent about scopes </h3>
 
 I was surprised about this myself until I understood JS scoping better, here’s how it breaks down:
 
@@ -65,7 +65,7 @@ I was surprised about this myself until I understood JS scoping better, here’s
 
 Thus...
 
-**Back to the main event**
+### Back to the main event
 
 The code above gets rewritten in the JS interpreter to look like this:
 
@@ -85,7 +85,7 @@ scopingFunction(); // returns 10
 
 Note that the *global* `hoistedVariable` gets completely overwritten by the *local* `hoistedVariable` as declared in `scopingFunction`. So at the point of the `if` conditional `hoistedVariable` is `undefined` and not 1.
 
-**Function hoisting**
+## Function hoisting
 
 Hoisting functions works differently than variables. Since a function is declared and defined at the same time the function definition is hoisted along with the function name.
 
@@ -155,7 +155,7 @@ containingFunction() // results in a TypeError
 
 As you can see, the function definition for `hoisted` is overwritten by the variable definition (`"I'm the variable"`) which appears lower down in the interpreter’s version of the code. Yet another reason why good names are important!
 
-**Resources**
+## Resources
 
 * [JS is sexy](http://javascriptissexy.com/javascript-variable-scope-and-hoisting-explained/)
 * [Adequately Good](http://www.adequatelygood.com/JavaScript-Scoping-and-Hoisting.html) (which I think is a hilarious name for a coding blog!)
