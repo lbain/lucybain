@@ -547,11 +547,199 @@ $ bower link
 </content>
   </entry>
   <entry>
+    <title>CSS: What is Block Formatting Context (BFC)?</title>
+    <link rel="alternate" href="http://lucybain.com/blog/2015/css-block-formatting-context/"/>
+    <id>http://lucybain.com/blog/2015/css-block-formatting-context/</id>
+    <published>2015-07-12T00:00:00Z</published>
+    <updated>2015-10-25T18:26:49+11:00</updated>
+    <author>
+      <name>Article Author</name>
+    </author>
+    <content type="html">&lt;p&gt;Time for the next CSS interview question from the list of &lt;a href="https://github.com/h5bp/Front-end-Developer-Interview-Questions#css-questions"&gt;front end interview questions&lt;/a&gt;. My goodness that repo has a LOT of questions to get through!&lt;/p&gt;
+
+&lt;h2&gt;What is Block Formatting Context (BFC)?&lt;/h2&gt;
+
+&lt;p&gt;It seems that BFC is something that I’ve always assumed was part of how floats worked, and hadn’t realised was it’s own concept with a name. So if you’ve been playing with floats for a while (or if you’ve upgraded to &lt;a href="/blog/2015/css-flexbox/"&gt;flexbox&lt;/a&gt;) then this probably won’t be interesting to you. But hey - it’s always good to understand things more deeply!&lt;/p&gt;
+
+&lt;style&gt;
+.container {
+    background-color: #FF7400;
+}
+.box-1 {
+    background-color: #F55585;
+}
+.box-2 {
+    background-color: #00CFCF;
+}
+&lt;/style&gt;
+
+&lt;p&gt;From &lt;a href="https://developer.mozilla.org/en-US/docs/Web/Guide/CSS/Block_formatting_context"&gt;MDN&lt;/a&gt;:&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;A block formatting context is a part of a visual CSS rendering of a Web page. It is the region in which the layout of block boxes occurs and in which floats interact with each other&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;em&gt;Yawn, what was that?&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;Ok, so a block formatting context is an area where block boxes and floats go. I think of it as a containing element that has flow rules (so the block boxes are, well, block-y) and hard boundaries (so the floats don’t leave the container). Ultimately the page is a block formatting context, but you can have a bunch in a page. Actually, you can have BFCs in BFCs, Inception style. While that sounds cool (I mean, I just talked about Inception in a CSS post - that’s gotta count for something!), that’s what most of HTML and CSS is (&lt;code&gt;div&lt;/code&gt;s within &lt;code&gt;div&lt;/code&gt;s).&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Ok, so you’re telling me BFCs are totally normal CSS and nothing particularly interesting.&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;Well, yes, but they also have some handy features. Let’s talk about them now.&lt;/p&gt;
+
+&lt;p&gt;Block formatting contexts:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;stop margins from collapsing&lt;/li&gt;
+&lt;li&gt;restrain floats&lt;/li&gt;
+&lt;li&gt;contain floats&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3&gt;Block formatting contexts stop margins from collapsing&lt;/h3&gt;
+
+&lt;p&gt;What normally happens?&lt;/p&gt;
+
+&lt;style&gt;
+.margin {
+    margin: 20px;
+}
+&lt;/style&gt;
+
+&lt;div class="container"&gt;
+    &lt;div class="margin box-1"&gt;
+        This div has a 20px margin around it.
+    &lt;/div&gt;
+    &lt;div class="margin box-2"&gt;
+        So does this one.
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Since both of those &lt;code&gt;div&lt;/code&gt;s have 20px of margin around them you’d expect to see 20px of margin at the top and bottom as well. But actually there’s no margin there, that’s because CSS automatically collapses margins.&lt;/p&gt;
+
+&lt;p&gt;Now let’s check it in a block formatting context:&lt;/p&gt;
+
+&lt;style&gt;
+.block-formatting-context {
+    overflow: hidden;
+}
+&lt;/style&gt;
+
+&lt;div class="container block-formatting-context"&gt;
+    &lt;div class="margin box-1"&gt;
+        This div has a 20px margin around it.
+    &lt;/div&gt;
+    &lt;div class="margin box-2"&gt;
+        So does this one.
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Boom! See all that extra margin at the top and bottom? That’s because of the block formatting context! Now, in case you don’t feel like looking at the source, I made the containing &lt;code&gt;div&lt;/code&gt; a BFC by giving it &lt;code&gt;overflow: hidden;&lt;/code&gt;. Simple :)&lt;/p&gt;
+
+&lt;h3&gt;Block formatting contexts restrain floats&lt;/h3&gt;
+
+&lt;p&gt;Here’s what it looks like normally:&lt;/p&gt;
+
+&lt;style&gt;
+.float {
+    float: left;
+}
+&lt;/style&gt;
+
+&lt;div class="container"&gt;
+    &lt;div class="float box-1"&gt;
+        This div is floating left
+    &lt;/div&gt;
+    &lt;div class="box-2"&gt;
+        This one is &lt;b&gt;NOT&lt;/b&gt; floating. It’s got a lot of words in it. This div is probably your main section.
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;p&gt;That’s probably not what you want your two column layout to look like. Don’t worry, we can fix it!&lt;/p&gt;
+
+&lt;p&gt;Here it is with block formatting context properly enabled:&lt;/p&gt;
+
+&lt;style&gt;
+.block-formatting-context {
+    overflow: hidden;
+}
+&lt;/style&gt;
+
+&lt;div class="container"&gt;
+    &lt;div class="float box-1"&gt;
+        This div is floating left
+    &lt;/div&gt;
+    &lt;div class="box-2 block-formatting-context"&gt;
+        This one is &lt;b&gt;NOT&lt;/b&gt; floating, it is a &lt;b&gt;block formatting context&lt;/b&gt;. It’s got a lot of words in it. This div is probably your main section.
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;p&gt;As you an see, this ability makes BFCs really handy for doing column layouts.&lt;/p&gt;
+
+&lt;h3&gt;Block formatting contexts contain floats&lt;/h3&gt;
+
+&lt;p&gt;Here’s what it looks like normally:&lt;/p&gt;
+
+&lt;style&gt;
+.float {
+    float: left;
+}
+
+.border {
+    border: 2px solid black;
+}
+.clearfix {
+    clear: both;
+}
+&lt;/style&gt;
+
+&lt;div class="container border"&gt;
+    &lt;div class="float box-1"&gt;
+        This div is floating left
+    &lt;/div&gt;
+    &lt;div class="float box-2"&gt;
+        This one is too.
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="clearfix"&gt;&lt;/div&gt;
+
+&lt;p&gt;This time we’re trying to wrap two floated elements in a border. Obviously it didn’t work as expected. It’s actually worse than that. I had to add an invisible &lt;code&gt;div&lt;/code&gt; with &lt;code&gt;clear: both;&lt;/code&gt; (typically called a “clearfix”) before this paragraph to make sure the line breaks work properly. We shouldn’t need to do that!&lt;/p&gt;
+
+&lt;p&gt;Now we’ll add block formatting context:&lt;/p&gt;
+
+&lt;style&gt;
+.block-formatting-context {
+    overflow: hidden;
+}
+&lt;/style&gt;
+
+&lt;div class="container border block-formatting-context"&gt;
+    &lt;div class="float box-1"&gt;
+        This div is floating left
+    &lt;/div&gt;
+    &lt;div class="float box-2"&gt;
+        This one is too.
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Woot! Two boxes floating next to each other with a border around them and without using a clearfix. All by using a block formatting context!&lt;/p&gt;
+
+&lt;h2&gt;Resources&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://developer.mozilla.org/en-US/docs/Web/Guide/CSS/Block_formatting_context"&gt;MDN&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://tech.vg.no/2013/09/26/css-block-formatting-context/"&gt;VG Tech&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://maxdesign.com.au/jobs/sample-block-formatting-context/index.htm"&gt;Max Design&lt;/a&gt; - this one was particularly useful since it has a bunch of examples&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://yuiblog.com/blog/2010/05/19/css-101-block-formatting-contexts/"&gt;YUI&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</content>
+  </entry>
+  <entry>
     <title>JS: ES6’s let vs. var</title>
     <link rel="alternate" href="http://lucybain.com/blog/2015/js-es6-let-vs-var/"/>
     <id>http://lucybain.com/blog/2015/js-es6-let-vs-var/</id>
     <published>2015-06-28T00:00:00Z</published>
-    <updated>2015-10-25T14:24:51+11:00</updated>
+    <updated>2015-10-25T14:26:12+11:00</updated>
     <author>
       <name>Article Author</name>
     </author>
@@ -730,88 +918,6 @@ function testScope() {
 &lt;p&gt;I write this blog for me - to help me learn things and better think through topics. But I &lt;em&gt;love&lt;/em&gt; that other people find it helpful and I want them to have a good experience. One example of this was my &lt;a href="https://github.com/lbain/lucybain/commit/ea42c6ea4b2983335f903edda5cba3c49ff77df4"&gt;very&lt;/a&gt; &lt;a href="https://github.com/lbain/lucybain/commit/0d21a940c235916211e3d06534702edc4f2f3255"&gt;long&lt;/a&gt; &lt;a href="https://github.com/lbain/lucybain/commit/cd55113c3dd2cb7b9f26a105a5bbd9472d344224"&gt;day&lt;/a&gt; converting to &lt;a href="http://smartquotesforsmartpeople.com/"&gt;smart quotes&lt;/a&gt;. I hope someone out there appreciates the update :)&lt;/p&gt;
 
 &lt;p&gt;Well, future me, I hope you found that list useful. Now get to work - if you’re not going to write a new post at least make the site better!&lt;/p&gt;
-</content>
-  </entry>
-  <entry>
-    <title>Intro to Programming: Booleans</title>
-    <link rel="alternate" href="http://lucybain.com/blog/2015/intro-to-programming-booleans/"/>
-    <id>http://lucybain.com/blog/2015/intro-to-programming-booleans/</id>
-    <published>2015-06-01T00:00:00Z</published>
-    <updated>2015-10-07T21:25:19+11:00</updated>
-    <author>
-      <name>Article Author</name>
-    </author>
-    <content type="html">&lt;h2&gt;Explaination&lt;/h2&gt;
-
-&lt;p&gt;As you’ve probably heard, computers think in 1s and 0s. There is no middle ground, there’s no 0.5, no 1.1, no 1 and 0 at the same time. 1 or 0, that’s all they’ve got. It turns out, 1s and 0s are pretty powerful.&lt;/p&gt;
-
-&lt;p&gt;Humans have the same concepts as 1s and 0s, we just call them different things - &lt;code&gt;True&lt;/code&gt; or &lt;code&gt;False&lt;/code&gt;. For the sake of this post (and all the computers in the world) we will assume something is either entirely &lt;code&gt;True&lt;/code&gt;, or entirely &lt;code&gt;False&lt;/code&gt;. There is no middle ground, no maybe, no white lies. Something is either &lt;code&gt;True&lt;/code&gt; or &lt;code&gt;False&lt;/code&gt;. Something which is either &lt;code&gt;True&lt;/code&gt; or &lt;code&gt;False&lt;/code&gt; is known as a Boolean, after George Boole.&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;“The sky is blue” is &lt;code&gt;True&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;For me, “I am female” is also &lt;code&gt;True&lt;/code&gt;, while “I am very tall” is &lt;code&gt;False&lt;/code&gt;.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;In general, computers have no notion of time. There is only the now, no past, no future. A computer doesn’t know what it will be doing in a few minutes (that depends on what you tell it to do, and on what it’s doing now), and it isn’t interested in what it was doing an hour ago. So when computers decide if something is &lt;code&gt;True&lt;/code&gt; or &lt;code&gt;False&lt;/code&gt;, they have to decide &lt;em&gt;at that moment&lt;/em&gt; is the thing &lt;code&gt;True&lt;/code&gt; or &lt;code&gt;False&lt;/code&gt;?&lt;/p&gt;
-
-&lt;p&gt;“I am very tall” is &lt;code&gt;False&lt;/code&gt; right now. It’s possible (though unlikely) I’ll have a giant growth spurt and be very tall in the future. That doesn’t matter, we are not interested in what &lt;em&gt;will&lt;/em&gt; happen, only that I am not very tall &lt;em&gt;right now&lt;/em&gt;.&lt;/p&gt;
-
-&lt;p&gt;“Caramel is my favorite ice cream flavor” is presently &lt;code&gt;True&lt;/code&gt;. But it might change tomorrow when I try the best chocolate ice cream in the world. Certainly it has changed from my childhood favorite (Rainbow Sherbet). Again, we only focus on my current favorite flavor.&lt;/p&gt;
-
-&lt;h2&gt;Exercises&lt;/h2&gt;
-
-&lt;p&gt;Ok, now it’s your turn. Decide if each of these statements is &lt;code&gt;True&lt;/code&gt; or &lt;code&gt;False&lt;/code&gt; for you at the current moment.&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;It is sunny outside.&lt;/li&gt;
-&lt;li&gt;I am over 5ft tall.&lt;/li&gt;
-&lt;li&gt;I am female.&lt;/li&gt;
-&lt;li&gt;Chocolate is my favorite ice cream flavor.&lt;/li&gt;
-&lt;li&gt;There are five continents.&lt;/li&gt;
-&lt;li&gt;The Egyptians built the pyramids.&lt;/li&gt;
-&lt;li&gt;I have eaten dinner.&lt;/li&gt;
-&lt;li&gt;The light is on.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Think about your every day life, and come up with at least five more examples of when things are &lt;code&gt;True&lt;/code&gt; or &lt;code&gt;False&lt;/code&gt;.&lt;/p&gt;
-
-&lt;iframe id="hidden_iframe" name="hidden_iframe" style="display:none;"&gt;
-&lt;/iframe&gt;
-
-&lt;form action="https://docs.google.com/forms/d/1u4xIbGktEd3RzHQHfJcSRwuqUklokVcmeNBTrVbH6oI/formResponse" method="POST" id="ss-form" onsubmit="hideQuestions();" target="hidden_iframe" class="programming-examples"&gt;
-  &lt;div class="example-questions"&gt;
-    &lt;input type="hidden" name="entry.1043295642" value="Boolean" id="group_1043295642_1" role="radio" class="ss-q-radio valid" aria-label="Boolean"&gt;
-    &lt;ol&gt;
-      &lt;li&gt;
-        &lt;textarea name="entry.1571729994" rows="8" cols="0" class="ss-q-long" id="entry_1571729994" dir="auto" aria-label="Example 1  "&gt;&lt;/textarea&gt;
-      &lt;/li&gt;
-      &lt;li&gt;
-        &lt;textarea name="entry.332234193" rows="8" cols="0" class="ss-q-long" id="entry_332234193" dir="auto" aria-label="Example 2  "&gt;&lt;/textarea&gt;
-      &lt;/li&gt;
-      &lt;li&gt;
-        &lt;textarea name="entry.796117189" rows="8" cols="0" class="ss-q-long" id="entry_796117189" dir="auto" aria-label="Example 3  "&gt;&lt;/textarea&gt;
-      &lt;/li&gt;
-      &lt;li&gt;
-        &lt;textarea name="entry.1635444679" rows="8" cols="0" class="ss-q-long" id="entry_1635444679" dir="auto" aria-label="Example 4  "&gt;&lt;/textarea&gt;
-      &lt;/li&gt;
-      &lt;li&gt;
-        &lt;textarea name="entry.341236292" rows="8" cols="0" class="ss-q-long" id="entry_341236292" dir="auto" aria-label="Example 5  "&gt;&lt;/textarea&gt;
-      &lt;/li&gt;
-    &lt;/ol&gt;
-    &lt;input type="submit" name="submit" value="Submit" id="ss-submit" class="jfk-button jfk-button-action "&gt;
-  &lt;/div&gt;
-  &lt;div class="thank-you"&gt;
-    Thanks for submitting your examples!
-  &lt;/div&gt;
-&lt;/form&gt;
-
-&lt;script&gt;
-function hideQuestions() {
-  document.getElementsByClassName('example-questions')[0].className+=' inactive';
-  document.getElementsByClassName('thank-you')[0].className+=' active';
-}
-&lt;/script&gt;
 </content>
   </entry>
 </feed>
