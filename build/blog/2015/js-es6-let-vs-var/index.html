@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='width=device-width, initial-scale=1' name='viewport'>
+    <meta charset='utf-8'>
+    <meta content='IE=edge,chrome=1' http-equiv='X-UA-Compatible'>
+    <meta content='es6, js, interview-questions' name='keywords'>
+    <link href='/images/favicon.ico' rel='icon' type='image/ico'>
+    <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700|Source+Code+Pro' rel='stylesheet' type='text/css'>
+    <title>JS: ES6’s let vs. var</title>
+    <link href="/stylesheets/application.css" media="all" rel="stylesheet" type="text/css" />
+    <script src='//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js'></script>
+  </head>
+  <body>
+    <nav>
+      <div class='nav-open-btn'>
+        <ul>
+          <li></li>
+          <li></li>
+          <li></li>
+        </ul>
+      </div>
+      <ul class='nav-display'>
+        <li>
+          <a class="nav-link" href="/">Me</a>
+        </li>
+        <li>
+          <a class="nav-link" href="/resume/">Resume</a>
+        </li>
+        <li>
+          <a class="nav-link" href="/contact-me/">Contact</a>
+        </li>
+        <li>
+          <a class="nav-link" href="/resources/">Resources</a>
+        </li>
+        <li>
+          <a class="nav-link active" href="/blog/">Blog</a>
+        </li>
+      </ul>
+    </nav>
+    <script>
+      $('nav .nav-open-btn').on('click', function(){
+        $('nav .nav-display').toggleClass('open');
+      })
+    </script>
+    <div class='content'>
+      <div class=' blog-listing'>
+        <h1>JS: ES6’s let vs. var</h1>
+        <p>Published on: June 28, 2015</p>
+        <p>Tags: <a href="/blog/tags/js/">js</a> and <a href="/blog/tags/es6/">es6</a></p>
+        <p>This isn’t a “real” interview question from the list, but I reckon it’s a good one. Plus it came up at work today and I didn’t know the difference. So here it is in question form:</p>
+        
+        <h2>What’s the difference between ES6’s <code>let</code> and “traditional” JS’s <code>var</code>?</h2>
+        
+        <p><em>Let’s start with the traditional <code>var</code>.</em></p>
+        
+        <h2>function vs. block level scoping</h2>
+        
+        <p>Can do! As you may remember I <a href="/blog/2014/hoisting/#scopes">wrote about</a> scopes in JS a while ago. We’ll cover it again here with more examples to be really clear about it. Many other languages use <strong>block</strong> level scoping. However, JS decided to use <strong>function</strong> level scoping.</p>
+        
+        <p><em>What does that mean?</em></p>
+        
+        <p>Well, here‘s an example of <strong>block</strong> level scoping in Ruby.</p>
+        <pre class="highlight plaintext">def testScope&#x000A;    if true&#x000A;        scope_tester = 1&#x000A;        puts scope_tester # 1&#x000A;    end&#x000A;    puts scope_tester # nil&#x000A;end</pre>
+        <p>As you can see, the <code>scope_tester</code> in the if <strong>block</strong> only lived in the if block. It didn’t set the value of <code>scope_tester</code> outside the block. That’s because Ruby uses block level scoping which means the <code>scope_tester</code> in the block only lives in the block. It could have been called <code>inside_scope</code> for all it matters.</p>
+        
+        <p>Note that you can declare a variable out of the block level scope, use it in the block level scope, and those changes will be persisted. Here’s an example of that:</p>
+        <pre class="highlight plaintext">def test_scope&#x000A;    scope_tester = 0&#x000A;    puts scope_tester # 0&#x000A;&#x000A;    if true&#x000A;        scope_tester = 1&#x000A;        puts scope_tester # 1&#x000A;    end&#x000A;&#x000A;    puts scope_tester # 1&#x000A;end</pre>
+        <p>That’s because variables are available through the block they are defined in. In this case the <code>test_scope</code> function’s block defines the boundaries for <code>scope_tester</code>.</p>
+        
+        <h2>Traditional JS’s <code>var</code></h2>
+        
+        <p>Now we’ll look at the <strong>function</strong> level scoping that JS uses:</p>
+        <pre class="highlight plaintext">function testScope() {&#x000A;    if (true) {&#x000A;        var scopeTester = 1;&#x000A;        console.log(scopeTester); // 1&#x000A;    }&#x000A;    console.log(scopeTester); // 1 &lt;-- surprise!&#x000A;}</pre>
+        <p>Here the value of <code>scopeTester</code> is persisted through out of the if block. In fact, the single <code>scopeTester</code> variable is available throughout the entire <code>testScope</code> method. That’s because <a href="/blog/2014/hoisting/">JS uses hoisting</a> to define the variables.</p>
+        
+        <p>Note that this isn’t surprising when you use a variable that was defined out of the if block in the function:</p>
+        <pre class="highlight plaintext">function testScope() {&#x000A;    var scopeTester = 0;&#x000A;    console.log(scopeTester); // 0&#x000A;&#x000A;    if (true) {&#x000A;        scopeTester = 1;&#x000A;        console.log(scopeTester); // 1&#x000A;    }&#x000A;    console.log(scopeTester); // 1 &lt;-- not surprise!&#x000A;}</pre>
+        <p>For people who aren’t used to JS this use of scoping looks in consistent. Sometimes, like in the second example, you expect the change to persist outside of the if block, and sometimes, as in the first example, you don&#39;t.</p>
+        
+        <h2><code>let</code> from ES6</h2>
+        
+        <p>Unsurprisingly this block vs. function scoping causes problems for people new to JS (like me!). It also adds complexity for the programmer to think about that’s often unnecessary. So for ES6 the powers that be decided to add a new keyword <code>let</code> that would have block scope.</p>
+        
+        <p>Let’s run through those examples again! Unfortunately ES6 isn’t properly implemented in browsers yet, so we can’t just chuck the ES6 code into the console like we normally would. However we can use <a href="https://babeljs.io/">Babel</a> to convert the ES6 code to normal JS code and see what would happen.</p>
+        
+        <p>ES6 code:</p>
+        <pre class="highlight plaintext">function testScope() {&#x000A;    if (true) {&#x000A;        let scopeTester = 1; // &lt;-- using let here!&#x000A;        console.log(scopeTester); // 1&#x000A;    }&#x000A;    console.log(scopeTester); // undefined &lt;-- awesome!&#x000A;}</pre>
+        <p>Translates to:</p>
+        <pre class="highlight plaintext">"use strict";&#x000A;&#x000A;function testScope() {&#x000A;    if (true) {&#x000A;        var _scopeTester = 1; // &lt;-- using let here!&#x000A;        console.log(_scopeTester); // 1&#x000A;    }&#x000A;    console.log(scopeTester); // undefined &lt;-- awesome!&#x000A;}</pre>
+        <p>As you can see, using <code>let</code> creates a whole new variable to make sure there is no naming conflict. Sweet - now the <code>scopeTester</code> variable is only available in the if block where it’s defined. This gives JS the consistent block level scoping that we’ve come to expect from other languages.</p>
+        
+        <p>Now we’ll look at the second example:</p>
+        <pre class="highlight plaintext">function testScope() {&#x000A;    var scopeTester = 0;&#x000A;    console.log(scopeTester); // 0&#x000A;&#x000A;    if (true) {&#x000A;        let scopeTester = 1; // &lt;-- using let here!&#x000A;        console.log(scopeTester);&#x000A;    }&#x000A;    console.log(scopeTester);&#x000A;}</pre>
+        <p>Translates to:</p>
+        <pre class="highlight plaintext">"use strict";&#x000A;&#x000A;function testScope() {&#x000A;    var scopeTester = 0;&#x000A;    console.log(scopeTester); // 0&#x000A;&#x000A;    if (true) {&#x000A;        var _scopeTester = 1; // &lt;-- using let here!&#x000A;        console.log(_scopeTester);&#x000A;    }&#x000A;    console.log(scopeTester); // 0&#x000A;}</pre>
+        <p>Again, we got a whole new variable inside the if block, so no need to worry about the unexpected function scope of <code>var</code>.</p>
+        
+        <p><em>Thanks ES6, that’s really helpful!</em></p>
+        
+        <h2>Resources</h2>
+        
+        <ul>
+        <li><a href="http://stackoverflow.com/questions/762011/javascript-let-keyword-vs-var-keyword">StackOverflow</a></li>
+        <li><a href="https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Statements/let">MDN</a></li>
+        <li>On why you should <a href="http://programmers.stackexchange.com/questions/274342/is-there-any-reason-to-use-the-var-keyword-in-es6">always use <code>let</code></a></li>
+        <li>To see what ES6 code looks like in “normal” JS you can use <a href="https://babeljs.io/repl">Babel’s REPL</a></li>
+        </ul>
+        <hr>
+        <div id='disqus_thread'></div>
+        <script>
+          var disqus_shortname = 'lucybain';
+          (function() {
+              var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+              dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+              (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+          })();
+        </script>
+        <noscript>
+          Please enable JavaScript to view the
+          <a href='http://disqus.com/?ref_noscript'>comments powered by Disqus.</a>
+        </noscript>
+        <a class='dsq-brlink' href='http://disqus.com'>
+          comments powered by
+          <span class='logo-disqus'>Disqus</span>
+        </a>
+        <script>
+          var disqus_shortname = 'lucybain';
+          (function () {
+              var s = document.createElement('script'); s.async = true;
+              s.type = 'text/javascript';
+              s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+              (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+          }());
+        </script>
+      </div>
+    </div>
+  </body>
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    
+    ga('create', 'UA-45866381-1', 'lucybain.com');
+    ga('send', 'pageview');
+  </script>
+</html>
+

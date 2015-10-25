@@ -4,10 +4,227 @@
   <id>http://lucybain.com/blog</id>
   <link href="http://lucybain.com/blog"/>
   <link href="http://lucybain.com/feed.xml" rel="self"/>
-  <updated>2015-10-12T00:00:00Z</updated>
+  <updated>2015-10-20T00:00:00Z</updated>
   <author>
     <name>Lucy Bain</name>
   </author>
+  <entry>
+    <title>CSS: Flexbox in action - Bitbucket Server pull request header</title>
+    <link rel="alternate" href="http://lucybain.com/blog/2015/css-flexbox-in-action/"/>
+    <id>http://lucybain.com/blog/2015/css-flexbox-in-action/</id>
+    <published>2015-10-20T00:00:00Z</published>
+    <updated>2015-10-15T19:28:15+11:00</updated>
+    <author>
+      <name>Article Author</name>
+    </author>
+    <content type="html">&lt;p&gt;I &lt;a href="/blog/2015/css-flexbox/"&gt;recently wrote&lt;/a&gt; about using the &lt;code&gt;flex-box&lt;/code&gt; rule in CSS. That was a practice round because I knew I needed to use flexbox at work in the future. Well, the time has come!&lt;/p&gt;
+
+&lt;p&gt;As you might know, I work for Atlassian on the &lt;a href="https://www.atlassian.com/software/bitbucket/download"&gt;Bitbucket Server&lt;/a&gt; product. Today I spent some time implementing flexbox on our pull request page, specifically in the header. Let’s take a look at what it’s currently like:&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt="current pull request header" src="/images/blog/pr-header/current.png" /&gt;&lt;/p&gt;
+
+&lt;p&gt;Adding flexbox is part of a much larger chunk of work, so my “finished product” looks like this:&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt="current pull request header" src="/images/blog/pr-header/rough-draft.png" /&gt;&lt;/p&gt;
+
+&lt;p&gt;Obviously it’s got a ways to go, but this little bit is done! The main point is that we utilise all of the space available to us. Previously we were’t able to expand a branch name fully even though there was enough space for it.&lt;/p&gt;
+
+&lt;h2&gt;Description&lt;/h2&gt;
+
+&lt;p&gt;I was fortunate enough to be able to throw away all existing HTML and CSS. Nothing else relies on this piece of code and I had full control of how to implement this part of the feature (with lots of feedback from my fantastic colegues!). So we don’t need to talk about what &lt;em&gt;was&lt;/em&gt; there, we’re starting from scratch.&lt;/p&gt;
+
+&lt;h3&gt;Desired outcome&lt;/h3&gt;
+
+&lt;p&gt;The pull request header (known as PRH from now on) has X main sections:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;author (avatar and name)&lt;/li&gt;
+&lt;li&gt;branch details (source, destination and an arrow between them)&lt;/li&gt;
+&lt;li&gt;PR status&lt;/li&gt;
+&lt;li&gt;reviewers (avatars only)&lt;/li&gt;
+&lt;li&gt;approve button&lt;/li&gt;
+&lt;li&gt;indication of merge issues&lt;/li&gt;
+&lt;li&gt;merge button&lt;/li&gt;
+&lt;li&gt;menu for other options&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Ultimately only the author and branches should be “flexible.” Everything else should always be completely visible. After a little thought and discussion we decided that the branches should be more flexible than the author (i.e. branches should shrink faster than the author).&lt;/p&gt;
+
+&lt;h2&gt;Code&lt;/h2&gt;
+
+&lt;p&gt;Ok, so now we understand the problem, let’s start coding!&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;NOTE: to keep the CSS easy to read, the demo pages only work in Chrome.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;h3&gt;Getting started&lt;/h3&gt;
+
+&lt;p&gt;When I first got into it I figured I’d just work with everything all together. I already had the HTML set up from another bit of work, so I’d &lt;em&gt;just&lt;/em&gt; add the CSS. This wasn’t successful. There were too many moving parts and I didn’t have a good enough understanding of how flexbox worked to hold all the parts in my head.&lt;/p&gt;
+
+&lt;p&gt;I followed the (very good) advice I give to people new to programming:&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;It’s easier to get a small thing right.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Rather than think about the whole thing at once I focused on just the branch details section.&lt;/p&gt;
+
+&lt;h3&gt;Branch details&lt;/h3&gt;
+
+&lt;p&gt;The branch details looks like this:&lt;/p&gt;
+
+&lt;p&gt;your-awesome-branch --&amp;gt; the-destination-branch&lt;/p&gt;
+
+&lt;p&gt;So I set up my HTML like this:&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;&amp;lt;div class="branch-details"&amp;gt;
+    &amp;lt;div class="source"&amp;gt;
+        your-awesome-branch
+    &amp;lt;/div&amp;gt;
+
+    &amp;lt;div class="arrow"&amp;gt;
+        --&amp;gt;
+    &amp;lt;/div&amp;gt;
+
+    &amp;lt;div class="destination"&amp;gt;
+        the-destination-branch
+    &amp;lt;/div&amp;gt;
+&amp;lt;/div&amp;gt;
+&lt;/pre&gt;
+&lt;p&gt;(Obviously we use a better arrow really, but we’ll ignore that for this post.)&lt;/p&gt;
+
+&lt;p&gt;Alright, now we’re getting somewhere!&lt;/p&gt;
+
+&lt;p&gt;So &lt;code&gt;source&lt;/code&gt; and &lt;code&gt;destination&lt;/code&gt; ultimately need to be shrinkable. In order to allow them to shrink we need to make their container, &lt;code&gt;branch-details&lt;/code&gt;, flexible.&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;.branch-details {
+    display: flex;
+}
+&lt;/pre&gt;
+&lt;p&gt;At this point everything is flexibile. So if you &lt;a href="/blog/2015/pr-header/simple-flexbox"&gt;play with it&lt;/a&gt; you can see everything shrinks equally and the branch names wrap across lines. This wrapping makes sense for “normal” uses of flexbox (i.e. columns of text) but it isn’t what we want for the branch names.&lt;/p&gt;
+
+&lt;p&gt;We can stop words from wrapping with a quick &lt;code&gt;white-space: nowrap&lt;/code&gt; rule. &lt;a href="/blog/2015/pr-header/no-wrap"&gt;This works&lt;/a&gt; in that the words don’t wrap, but it has the unfortuante side effect of stopping things from shrinking. Let‘s put that back by hiding overflowing text: &lt;code&gt;overflow: hidden;&lt;/code&gt;. While we’re at it, we can style the ending with an ellipsis using &lt;code&gt;text-overflow: ellipsis;&lt;/code&gt;. Ok, we’re &lt;a href="/blog/2015/pr-header/ellipsis"&gt;back in buisness&lt;/a&gt; now!&lt;/p&gt;
+
+&lt;p&gt;And that’s it for the branch details! The source and destination branches shrink equally while the arrow remains full width.&lt;/p&gt;
+
+&lt;h3&gt;Add the author&lt;/h3&gt;
+
+&lt;p&gt;The other element that can strink is the author. From the designs the author, branch details and PR status are all to the left, so I’ll group these all together in my HTML. We’ll add this next layer of wrapping to make sure the author can shrink, the PR status cannot shink, and the braches continue to shrink as expected.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="/blog/2015/pr-header/author-branches-status"&gt;New HTML:&lt;/a&gt;&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;&amp;lt;div class="pr-info"&amp;gt;
+    &amp;lt;div class="author"&amp;gt;
+        Author name
+    &amp;lt;/div&amp;gt;
+    &amp;lt;div class="branch-details"&amp;gt;
+        &amp;lt;div class="source"&amp;gt;
+            your-awesome-branch
+        &amp;lt;/div&amp;gt;
+
+        &amp;lt;div class="arrow"&amp;gt;
+            --&amp;gt;
+        &amp;lt;/div&amp;gt;
+
+        &amp;lt;div class="destination"&amp;gt;
+            the-destination-branch
+        &amp;lt;/div&amp;gt;
+    &amp;lt;/div&amp;gt;
+    &amp;lt;div class="status"&amp;gt;
+        PR status
+    &amp;lt;/div&amp;gt;
+&amp;lt;/div&amp;gt;
+&lt;/pre&gt;
+&lt;p&gt;Again, the author name needs to be flexible, so we’ll apply most of the same styles we did for the branch details to the &lt;code&gt;pr-info&lt;/code&gt; section.&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;.pr-info, .branch-details {
+    display: flex;
+    white-space: nowrap;
+}
+
+.author, .source, .destination {
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+&lt;/pre&gt;
+&lt;p&gt;So we’re left with quite a good &lt;a href="http://localhost:4567/blog/2015/pr-header/author-branches-status-basic-flexible"&gt;base&lt;/a&gt; of what we want. However, you’ll noice that if you start to shrink the screen too much the author gets complete hidden. We need a better way to keep the author at least somewhat visible, and actually we want to shrink the author slower than the branches (something like: for every 5px the branches shrink the author only shrinks 1px).&lt;/p&gt;
+
+&lt;p&gt;Well, keeping the author always somewhat visible is easy enough: we can just chuck a &lt;code&gt;min-width: 5em&lt;/code&gt; on there so we don&amp;#39;t accedentally hide the author completely. But now the branch details section doesn’t flex at all. WHY NOT??? Since the branches can flex down to nothing we’ll give the branch details a &lt;code&gt;min-width: 0&lt;/code&gt;. (In real life the PRH has the same min-width as the page and won’t be able to shrink down to completely hide the branch details. For this post I’m not going to worry about the page shrinking too small.)&lt;/p&gt;
+
+&lt;p&gt;Ok, now we have both the author and the branch details shrinking, time to make that happen at different rates. Flexbox items have a &lt;code&gt;flex-grow&lt;/code&gt; property which says how fast the items should grow; there’s also a &lt;code&gt;flex-shrink&lt;/code&gt; property that, surprise, surprise, deals with how fast items should shrink. So we’ll make the branches shrink faster than the author by adding:&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;.author {
+    flex-shrink: 1;
+}
+
+.branch-details {
+    flex-shrink: 5;
+}
+&lt;/pre&gt;
+&lt;p&gt;The rates are fairly arbetrary, but easily changed if needed.&lt;/p&gt;
+
+&lt;p&gt;Here’s the &lt;a href="/blog/2015/pr-header/author-branches-status-flexible"&gt;working version&lt;/a&gt; for you to play with.&lt;/p&gt;
+
+&lt;h3&gt;Put it in context&lt;/h3&gt;
+
+&lt;p&gt;Finally we can add the rest of the PRH code in. As a reminder, that’s the: 
+reviewers, approve button, indication of merge issues, merge button, and menu for other options. Thankfully all of these will be full width (no shrinking) and most will be a consistent size.&lt;/p&gt;
+
+&lt;p&gt;New HTML:&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;&amp;lt;div class="pr-header"&amp;gt;
+    &amp;lt;div class="pr-info"&amp;gt;
+        &amp;lt;div class="author"&amp;gt;
+            Author name that’s really long, like super duper long
+        &amp;lt;/div&amp;gt;
+        &amp;lt;div class="branch-details"&amp;gt;
+            &amp;lt;div class="source"&amp;gt;
+                your-awesome-branch-with-a-reall-really-really-long-and-annoying-name
+            &amp;lt;/div&amp;gt;
+
+            &amp;lt;div class="arrow"&amp;gt;
+                --&amp;gt;
+            &amp;lt;/div&amp;gt;
+
+            &amp;lt;div class="destination"&amp;gt;
+                the-destination-branch-with-a-reall-really-really-long-and-annoying-name
+            &amp;lt;/div&amp;gt;
+        &amp;lt;/div&amp;gt;
+        &amp;lt;div class="status"&amp;gt;
+            PR status
+        &amp;lt;/div&amp;gt;
+    &amp;lt;/div&amp;gt;
+    &amp;lt;div class="pr-actions"&amp;gt;
+        &amp;lt;div&amp;gt;reviewers&amp;lt;/div&amp;gt;
+        &amp;lt;div&amp;gt;approve button&amp;lt;/div&amp;gt;
+        &amp;lt;div&amp;gt;merge issues&amp;lt;/div&amp;gt;
+        &amp;lt;div&amp;gt;merge button&amp;lt;/div&amp;gt;
+        &amp;lt;div&amp;gt;menu&amp;lt;/div&amp;gt;
+    &amp;lt;/div&amp;gt;
+&amp;lt;/div&amp;gt;
+&lt;/pre&gt;
+&lt;p&gt;Since we know we want the header to be flexible I’ll go ahead and add the basics in. Right now the &lt;code&gt;div&lt;/code&gt;s in the &lt;code&gt;.pr-actions&lt;/code&gt; are all displayed as block elements, so let’s line them up nicely. Here are the changes:&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;.pr-header, .pr-info, .branch-details {
+    display: flex;
+    white-space: nowrap;
+}
+
+.pr-info, .author, .source, .destination {
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.pr-actions div {
+    display: inline-block;
+}
+&lt;/pre&gt;
+&lt;p&gt;And &lt;a href="/blog/2015/pr-header/in-context"&gt;that’s it!&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3&gt;Safari&lt;/h3&gt;
+
+&lt;p&gt;Except for Safari. Once I had the proper vendor prefixing in, everything worked as expected in all browsers (even IE!) but not Safari. This &lt;a href="LINK%20HERE"&gt;bug&lt;/a&gt; might be the culprate, but I’m really not sure. If you have any knowledge about what’s causing this, I’m interested! Anyways, for whatever reason you need to add &lt;code&gt;flex-shrink: 0&lt;/code&gt; to the things you don’t want to shrink. So for this we’ll add:&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;.arrow, .status, .pr-actions {
+    flex-shrink: 0;
+}
+&lt;/pre&gt;
+&lt;p&gt;And with that it’s &lt;a href="/blog/2015/pr-header/in-context-safari"&gt;Safari compliant!&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2&gt;Done&lt;/h2&gt;
+</content>
+  </entry>
   <entry>
     <title>JS: new keyword and functions</title>
     <link rel="alternate" href="http://lucybain.com/blog/2015/js-new-keyword-and-functions/"/>
@@ -330,6 +547,148 @@ $ bower link
 </content>
   </entry>
   <entry>
+    <title>JS: ES6’s let vs. var</title>
+    <link rel="alternate" href="http://lucybain.com/blog/2015/js-es6-let-vs-var/"/>
+    <id>http://lucybain.com/blog/2015/js-es6-let-vs-var/</id>
+    <published>2015-06-28T00:00:00Z</published>
+    <updated>2015-10-25T14:24:51+11:00</updated>
+    <author>
+      <name>Article Author</name>
+    </author>
+    <content type="html">&lt;p&gt;This isn’t a “real” interview question from the list, but I reckon it’s a good one. Plus it came up at work today and I didn’t know the difference. So here it is in question form:&lt;/p&gt;
+
+&lt;h2&gt;What’s the difference between ES6’s &lt;code&gt;let&lt;/code&gt; and “traditional” JS’s &lt;code&gt;var&lt;/code&gt;?&lt;/h2&gt;
+
+&lt;p&gt;&lt;em&gt;Let’s start with the traditional &lt;code&gt;var&lt;/code&gt;.&lt;/em&gt;&lt;/p&gt;
+
+&lt;h2&gt;function vs. block level scoping&lt;/h2&gt;
+
+&lt;p&gt;Can do! As you may remember I &lt;a href="/blog/2014/hoisting/#scopes"&gt;wrote about&lt;/a&gt; scopes in JS a while ago. We’ll cover it again here with more examples to be really clear about it. Many other languages use &lt;strong&gt;block&lt;/strong&gt; level scoping. However, JS decided to use &lt;strong&gt;function&lt;/strong&gt; level scoping.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;What does that mean?&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;Well, here‘s an example of &lt;strong&gt;block&lt;/strong&gt; level scoping in Ruby.&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;def testScope
+    if true
+        scope_tester = 1
+        puts scope_tester # 1
+    end
+    puts scope_tester # nil
+end
+&lt;/pre&gt;
+&lt;p&gt;As you can see, the &lt;code&gt;scope_tester&lt;/code&gt; in the if &lt;strong&gt;block&lt;/strong&gt; only lived in the if block. It didn’t set the value of &lt;code&gt;scope_tester&lt;/code&gt; outside the block. That’s because Ruby uses block level scoping which means the &lt;code&gt;scope_tester&lt;/code&gt; in the block only lives in the block. It could have been called &lt;code&gt;inside_scope&lt;/code&gt; for all it matters.&lt;/p&gt;
+
+&lt;p&gt;Note that you can declare a variable out of the block level scope, use it in the block level scope, and those changes will be persisted. Here’s an example of that:&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;def test_scope
+    scope_tester = 0
+    puts scope_tester # 0
+
+    if true
+        scope_tester = 1
+        puts scope_tester # 1
+    end
+
+    puts scope_tester # 1
+end
+&lt;/pre&gt;
+&lt;p&gt;That’s because variables are available through the block they are defined in. In this case the &lt;code&gt;test_scope&lt;/code&gt; function’s block defines the boundaries for &lt;code&gt;scope_tester&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h2&gt;Traditional JS’s &lt;code&gt;var&lt;/code&gt;&lt;/h2&gt;
+
+&lt;p&gt;Now we’ll look at the &lt;strong&gt;function&lt;/strong&gt; level scoping that JS uses:&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;function testScope() {
+    if (true) {
+        var scopeTester = 1;
+        console.log(scopeTester); // 1
+    }
+    console.log(scopeTester); // 1 &amp;lt;-- surprise!
+}
+&lt;/pre&gt;
+&lt;p&gt;Here the value of &lt;code&gt;scopeTester&lt;/code&gt; is persisted through out of the if block. In fact, the single &lt;code&gt;scopeTester&lt;/code&gt; variable is available throughout the entire &lt;code&gt;testScope&lt;/code&gt; method. That’s because &lt;a href="/blog/2014/hoisting/"&gt;JS uses hoisting&lt;/a&gt; to define the variables.&lt;/p&gt;
+
+&lt;p&gt;Note that this isn’t surprising when you use a variable that was defined out of the if block in the function:&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;function testScope() {
+    var scopeTester = 0;
+    console.log(scopeTester); // 0
+
+    if (true) {
+        scopeTester = 1;
+        console.log(scopeTester); // 1
+    }
+    console.log(scopeTester); // 1 &amp;lt;-- not surprise!
+}
+&lt;/pre&gt;
+&lt;p&gt;For people who aren’t used to JS this use of scoping looks in consistent. Sometimes, like in the second example, you expect the change to persist outside of the if block, and sometimes, as in the first example, you don&amp;#39;t.&lt;/p&gt;
+
+&lt;h2&gt;&lt;code&gt;let&lt;/code&gt; from ES6&lt;/h2&gt;
+
+&lt;p&gt;Unsurprisingly this block vs. function scoping causes problems for people new to JS (like me!). It also adds complexity for the programmer to think about that’s often unnecessary. So for ES6 the powers that be decided to add a new keyword &lt;code&gt;let&lt;/code&gt; that would have block scope.&lt;/p&gt;
+
+&lt;p&gt;Let’s run through those examples again! Unfortunately ES6 isn’t properly implemented in browsers yet, so we can’t just chuck the ES6 code into the console like we normally would. However we can use &lt;a href="https://babeljs.io/"&gt;Babel&lt;/a&gt; to convert the ES6 code to normal JS code and see what would happen.&lt;/p&gt;
+
+&lt;p&gt;ES6 code:&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;function testScope() {
+    if (true) {
+        let scopeTester = 1; // &amp;lt;-- using let here!
+        console.log(scopeTester); // 1
+    }
+    console.log(scopeTester); // undefined &amp;lt;-- awesome!
+}
+&lt;/pre&gt;
+&lt;p&gt;Translates to:&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;"use strict";
+
+function testScope() {
+    if (true) {
+        var _scopeTester = 1; // &amp;lt;-- using let here!
+        console.log(_scopeTester); // 1
+    }
+    console.log(scopeTester); // undefined &amp;lt;-- awesome!
+}
+&lt;/pre&gt;
+&lt;p&gt;As you can see, using &lt;code&gt;let&lt;/code&gt; creates a whole new variable to make sure there is no naming conflict. Sweet - now the &lt;code&gt;scopeTester&lt;/code&gt; variable is only available in the if block where it’s defined. This gives JS the consistent block level scoping that we’ve come to expect from other languages.&lt;/p&gt;
+
+&lt;p&gt;Now we’ll look at the second example:&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;function testScope() {
+    var scopeTester = 0;
+    console.log(scopeTester); // 0
+
+    if (true) {
+        let scopeTester = 1; // &amp;lt;-- using let here!
+        console.log(scopeTester);
+    }
+    console.log(scopeTester);
+}
+&lt;/pre&gt;
+&lt;p&gt;Translates to:&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;"use strict";
+
+function testScope() {
+    var scopeTester = 0;
+    console.log(scopeTester); // 0
+
+    if (true) {
+        var _scopeTester = 1; // &amp;lt;-- using let here!
+        console.log(_scopeTester);
+    }
+    console.log(scopeTester); // 0
+}
+&lt;/pre&gt;
+&lt;p&gt;Again, we got a whole new variable inside the if block, so no need to worry about the unexpected function scope of &lt;code&gt;var&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Thanks ES6, that’s really helpful!&lt;/em&gt;&lt;/p&gt;
+
+&lt;h2&gt;Resources&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="http://stackoverflow.com/questions/762011/javascript-let-keyword-vs-var-keyword"&gt;StackOverflow&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Statements/let"&gt;MDN&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;On why you should &lt;a href="http://programmers.stackexchange.com/questions/274342/is-there-any-reason-to-use-the-var-keyword-in-es6"&gt;always use &lt;code&gt;let&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;To see what ES6 code looks like in “normal” JS you can use &lt;a href="https://babeljs.io/repl"&gt;Babel’s REPL&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</content>
+  </entry>
+  <entry>
     <title>Periodic site maintenance</title>
     <link rel="alternate" href="http://lucybain.com/blog/2015/site-maintenance/"/>
     <id>http://lucybain.com/blog/2015/site-maintenance/</id>
@@ -453,203 +812,6 @@ function hideQuestions() {
   document.getElementsByClassName('thank-you')[0].className+=' active';
 }
 &lt;/script&gt;
-</content>
-  </entry>
-  <entry>
-    <title>CSS: Flexbox</title>
-    <link rel="alternate" href="http://lucybain.com/blog/2015/css-flexbox/"/>
-    <id>http://lucybain.com/blog/2015/css-flexbox/</id>
-    <published>2015-05-18T00:00:00Z</published>
-    <updated>2015-10-14T20:08:55+11:00</updated>
-    <author>
-      <name>Article Author</name>
-    </author>
-    <content type="html">&lt;p&gt;I recently learned about flex-box and have been doing some research into it. Hopefully I&amp;#39;ll write up a “All about flexbox” post, but for now I want to go through a hands on example of using flexbox in the wild.&lt;/p&gt;
-
-&lt;p&gt;&lt;em&gt;What are we working on?&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;I want to convert the menu of this site to use flexbox.&lt;/p&gt;
-
-&lt;p&gt;&lt;em&gt;What does it look like now?&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;Right now I support three cases:&lt;/p&gt;
-
-&lt;p&gt;Large (desktop)&lt;/p&gt;
-
-&lt;p&gt;&lt;img alt="Image menu on desktop" src="/images/blog/css-flexbox/current-menu-large.png" /&gt;&lt;/p&gt;
-
-&lt;p&gt;Medium (tablet) - this looks almost the same but the fonts are slightly smaller.&lt;/p&gt;
-
-&lt;p&gt;&lt;img alt="Image menu on tablet" src="/images/blog/css-flexbox/current-menu-medium.png" /&gt;&lt;/p&gt;
-
-&lt;p&gt;Small (phone)&lt;/p&gt;
-
-&lt;p&gt;&lt;img alt="Image menu on phone" src="/images/blog/css-flexbox/current-menu-small.png" /&gt;&lt;/p&gt;
-
-&lt;h2&gt;Ok, let’s make it &lt;em&gt;flexible&lt;/em&gt;.&lt;/h2&gt;
-
-&lt;h3&gt;Step 1: remove most of the styling&lt;/h3&gt;
-
-&lt;p&gt;I went through and removed most of the styling. I kept some things I knew I wanted, but most of it went.&lt;/p&gt;
-
-&lt;p&gt;&lt;img alt="remove styling" src="/images/blog/css-flexbox/remove-styling.png" /&gt;&lt;/p&gt;
-
-&lt;h3&gt;Step 2: add flexbox&lt;/h3&gt;
-
-&lt;p&gt;I added &lt;code&gt;display: flex&lt;/code&gt; to the containing element. It kinda worked, but looked funny becuase I’d removed the rest of the styling.&lt;/p&gt;
-
-&lt;p&gt;&lt;img alt="inital flexbox" src="/images/blog/css-flexbox/inital-flexbox.png" /&gt;&lt;/p&gt;
-
-&lt;h3&gt;Step 3: layout within the flexbox&lt;/h3&gt;
-
-&lt;p&gt;Next I added how I wanted the content to flex within the flexbox by adding &lt;code&gt;justify-content: flex-end&lt;/code&gt;. This meant all the &lt;code&gt;&amp;lt;li&amp;gt;&lt;/code&gt;s got squished to the right.&lt;/p&gt;
-
-&lt;p&gt;&lt;img alt="now with flex-end" src="/images/blog/css-flexbox/flex-end.png" /&gt;&lt;/p&gt;
-
-&lt;p&gt;I played around with a few options for &lt;code&gt;justify-content&lt;/code&gt;, particularly &lt;code&gt;space-between&lt;/code&gt;. While that would better show off flexbox’s capabilities, I decided I didn’t actually want my nav bar all that flexible. Having too much space between the items looks quite strange - especially true on larger monitors. I probably should have thought of this before I started converting my nav bar to use flexbox, but oh well. For learning!&lt;/p&gt;
-
-&lt;h3&gt;Step 4: add styling back in&lt;/h3&gt;
-
-&lt;p&gt;Most of my previous styles were still required. I&amp;#39;d hoped I could remove some lines, but it doesn’t seem to be the case.&lt;/p&gt;
-
-&lt;p&gt;&lt;img alt="add styling back" src="/images/blog/css-flexbox/add-styling-back.png" /&gt;&lt;/p&gt;
-
-&lt;h3&gt;Step 5: mobile - vertical display&lt;/h3&gt;
-
-&lt;p&gt;Yes, yes, mobile first and all that. I just wanted to get things working, ok?&lt;/p&gt;
-
-&lt;p&gt;The &lt;code&gt;display: flex&lt;/code&gt; I added previously was applied to the mobile, so I didn&amp;#39;t need to add that again.&lt;/p&gt;
-
-&lt;p&gt;But I want the mobile navigation to go vertically, so I changed the &lt;code&gt;flex-direction&lt;/code&gt; from &lt;code&gt;row&lt;/code&gt; (the default) to &lt;code&gt;flex-direction: column&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;&lt;img alt="vertical display mobile" src="/images/blog/css-flexbox/vertical-display-mobile.png" /&gt;&lt;/p&gt;
-
-&lt;p&gt;Woot! Getting pretty close!&lt;/p&gt;
-
-&lt;h3&gt;Step 6: mobile - center align&lt;/h3&gt;
-
-&lt;p&gt;Next up was to center the &lt;code&gt;&amp;lt;li&amp;gt;&lt;/code&gt;s across the screen. So I used &lt;code&gt;align-items: center&lt;/code&gt; to get all my ducks in a row.&lt;/p&gt;
-
-&lt;p&gt;&lt;img alt="align center mobile" src="/images/blog/css-flexbox/align-center-mobile.png" /&gt;&lt;/p&gt;
-
-&lt;h3&gt;Step 7: mobile - spacing&lt;/h3&gt;
-
-&lt;p&gt;Finally the spacing around the &lt;code&gt;&amp;lt;li&amp;gt;&lt;/code&gt;s was a bit weird so I used &lt;code&gt;justify-content: space-around&lt;/code&gt; to display them evening within the nav dropdown&amp;#39;s space.&lt;/p&gt;
-
-&lt;p&gt;&lt;img alt="mobile correct spacing" src="/images/blog/css-flexbox/mobile-correct-spacing.png" /&gt;&lt;/p&gt;
-
-&lt;h2&gt;Done!&lt;/h2&gt;
-
-&lt;p&gt;After all that it was quite a small change with no change to the user experience. But I did learn more about flexbox, so I’ve got that going for me!&lt;/p&gt;
-</content>
-  </entry>
-  <entry>
-    <title>CSS: the box model</title>
-    <link rel="alternate" href="http://lucybain.com/blog/2015/css-box-model/"/>
-    <id>http://lucybain.com/blog/2015/css-box-model/</id>
-    <published>2015-05-02T00:00:00Z</published>
-    <updated>2015-09-19T18:09:18+10:00</updated>
-    <author>
-      <name>Article Author</name>
-    </author>
-    <content type="html">&lt;p&gt;The blog topic (like most of my interview question posts) comes from the &lt;a href="https://github.com/h5bp/Front-end-Developer-Interview-Questions#css-questions"&gt;Front-end Job Interview Questions&lt;/a&gt;. Today I’m moving away from JS to talk about CSS’s box model.&lt;/p&gt;
-
-&lt;h2&gt;Explain your understanding of the box model.&lt;/h2&gt;
-
-&lt;p&gt;Well, first off &lt;em&gt;what’s this “box” you&amp;#39;re talking about?&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;In CSS, at least in reference to the box model, the “box” is the content area as defined by the &lt;code&gt;width&lt;/code&gt;. So it looks something like this:&lt;/p&gt;
-
-&lt;p&gt;&lt;img alt="Image of box" src="/images/blog/box-model.jpg" /&gt;&lt;/p&gt;
-
-&lt;p&gt;Hopefully that’s straight forward enough. However, browsers differ on what should and should not get included in the “content” area. Up for debate is the content itself (words), the padding, the borders, and the margin. As far as I know, everyone agrees that the words should count towards the width, and that the margin should not. But when it comes to the padding and border things are uncertain.&lt;/p&gt;
-
-&lt;p&gt;Some browsers (such as Firefox) think the width should only include the the content itself, not the padding, boarder, nor margin. Other browsers (such as IE) think the width should include the content, padding, and boarder, but not the margin. (So far I haven’t found anyone who thinks the padding should be in and the boarder out - they seem to always go as a pair.)&lt;/p&gt;
-
-&lt;p&gt;So for these two ways of looking at things, there are two ways to define the box. Let’s look at them one by one.&lt;/p&gt;
-
-&lt;h3&gt;Content box&lt;/h3&gt;
-
-&lt;style&gt;
-  .border-box {
-    box-sizing: border-box;
-  }
-  .content-box {
-    box-sizing: content-box;
-  }
-  .width {
-    border: 5px solid black;
-    width: 150px;
-  }
-  .example {
-    text-align: center;
-    width: 150px;
-    border: 10px solid #FF7400;
-    padding: 20px;
-    background-image: linear-gradient(to bottom, #F55585 0%, #F55585 100%),
-                      linear-gradient(to bottom, #00CFCF 0%, #00CFCF 100%);
-    background-clip: content-box, padding-box;
-    margin-bottom: 10px;
-  }
-&lt;/style&gt;
-
-&lt;div class="border-box width"&gt;
-&lt;/div&gt;
-
-&lt;div class="content-box example"&gt;
-  Content box
-&lt;/div&gt;
-
-&lt;p&gt;Go ahead and check out the CSS and HTML used to make the above. It’s all inline right there so you can see I’m not doing anything tricky.&lt;/p&gt;
-
-&lt;p&gt;Ok, to start with, we have a thick black line that’s exactly 150px wide. That’s your ruler. Next we have a div with an orange border (10px), blue padding (20px), and pink for the content itself. The div’s width is set to 150px using &lt;code&gt;box-sizing: content-box&lt;/code&gt;, but, as you can see, the whole div is much larger than the 150px ruler just above it.&lt;/p&gt;
-
-&lt;p&gt;&lt;em&gt;How much bigger?&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;Well, since the border (10px) and padding (20px) don’t count towards the total width, the entire div is 10px (border left) + 20px (padding left) + 20px (padding right) + 10px (border right) larger. Or 60px larger all up, giving it an “actual” width of 210px. Here it is again with a ruler set to 210px (just in case you don’t believe me):&lt;/p&gt;
-
-&lt;div class="border-box width" style="width: 210px;"&gt;
-&lt;/div&gt;
-
-&lt;div class="content-box example"&gt;
-  Content box
-&lt;/div&gt;
-
-&lt;h3&gt;Border box&lt;/h3&gt;
-
-&lt;p&gt;The other way to measure it is to include the padding and the border, which is exactly what border box does. Here’s your example again:&lt;/p&gt;
-
-&lt;div class="border-box width"&gt;
-&lt;/div&gt;
-
-&lt;div class="border-box example"&gt;
-  Border box
-&lt;/div&gt;
-
-&lt;p&gt;Same as above there’s a thick black line set to 150px wide as a ruler. Then a div with the same measurements (an orange border (10px), blue padding (20px), and pink for the content itself). The div’s width is set to 150px using &lt;code&gt;box-sizing: border-box&lt;/code&gt;, and the whole div is exactly the same width as the 150px ruler. This means the area for the content is smaller.&lt;/p&gt;
-
-&lt;p&gt;&lt;em&gt;How much smaller?&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;Well, the same as above - 60px smaller. So the area for the content is only 90px wide.&lt;/p&gt;
-
-&lt;h2&gt;How you would tell the browser in CSS to render your layout in different box models?&lt;/h2&gt;
-
-&lt;p&gt;Well, exactly as above, using &lt;code&gt;box-sizing: border-box&lt;/code&gt; or &lt;code&gt;box-sizing: content-box&lt;/code&gt; depending on your need.&lt;/p&gt;
-
-&lt;p&gt;While it’s possible to set &lt;code&gt;box-sizing&lt;/code&gt; per element (as I did in my examples) this is usually very confusing. If each element could be one way or another you wouldn’t know what widths to set on things until you checked which box model they used. Therefore it’s recommended to set &lt;code&gt;box-sizing&lt;/code&gt; on all your elements with &lt;code&gt;* { box-sizing: YOUR_DECISION_HERE; }&lt;/code&gt;.&lt;/p&gt;
-
-&lt;h2&gt;Which one should I use?&lt;/h2&gt;
-
-&lt;p&gt;This isn’t from the interview questions, but I think it’s interesting. Recently there’s been a big push to using &lt;code&gt;border-box&lt;/code&gt; on everything. The idea is, when you set the width of a thing, you expect that to be the actual width, and not to have padding and borders hanging outside the area. This can be particularly confusing when trying to get things to line up next to each other (such as columns). So to keep up with common trends, border box is the way to go.&lt;/p&gt;
-
-&lt;h2&gt;References&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;As always, &lt;a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Box_Model/Introduction_to_the_CSS_box_model"&gt;Mozilla&lt;/a&gt; is great for documentation&lt;/li&gt;
-&lt;li&gt;&lt;a href="http://quirksmode.org/css/user-interface/boxsizing.html"&gt;Quirks Mode&lt;/a&gt; has some good visuals&lt;/li&gt;
-&lt;li&gt;&lt;a href="http://www.paulirish.com/2012/box-sizing-border-box-ftw/"&gt;Paul Irish&lt;/a&gt; talks about why border box is the winner&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://css-tricks.com/the-css-box-model/"&gt;CSS Tricks&lt;/a&gt; goes into more details and covers far more edge cases than I got to here&lt;/li&gt;
-&lt;/ul&gt;
 </content>
   </entry>
 </feed>
