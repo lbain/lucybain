@@ -1,16 +1,16 @@
 JS interview topics left
-
 * How do you organize your code? (module pattern, classical inheritance?)
+  Series on design patterns: http://jstherightway.org/#patterns, http://addyosmani.com/resources/essentialjsdesignpatterns/book/
+* Difference between: function Person(){}, var person = Person(), and var person = new Person()?
 * Have you ever used JavaScript templating?
   If so, what libraries have you used? (Mustache.js, Handlebars etc.)
 * XSS
 * JSON
 * objects
-
 * How do you go about testing your JavaScript?
 * When do you optimize your code?
 
-See email
+
 * How can you use closures to implement public/private methods?
 * What’s the difference when invoking a function with or without the new keyword?
 * What types of things are potentially dangerous to define on the prototype?
@@ -21,3 +21,13 @@ What are some ways of managing lots of asyc operations (AKA avoiding callback he
 * anonymous function and hoisting
 * how do you pick a job company?
 
+From work:
+* What is "flex-box"?
+
+Who are your female role models?
+I don't "do" role models as much as "people I think are awesome". Role models feel far away (I'm probably never going to have a meaningful chat with Sheryl Sandberg), but I've met a lot of awesome people.
+- My mom, she's taught me a lot about compassion
+- Megan Cook (another one of the video members), she's generally kick ass and has tought me about standing up for myself
+- My aunt, she took on a whole new career and taught me about pursing joy in life
+- Angie, she decided to learn programming, did a three month bootcamp and got a job. She taught me about determination, hard work, and focus.
+The list goes on, some are women in Atlassian, some aren't. Some are people I see everyday and others I haven't seen for years. Every one of them has impacted my life and challenged how I view things. I'm grateful to have such amazing women in my life.
