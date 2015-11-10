@@ -547,6 +547,134 @@ $ bower link
 </content>
   </entry>
   <entry>
+    <title>Intro to programming: If statements</title>
+    <link rel="alternate" href="http://lucybain.com/blog/2015/intro-to-programming-if-statements/"/>
+    <id>http://lucybain.com/blog/2015/intro-to-programming-if-statements/</id>
+    <published>2015-07-24T00:00:00Z</published>
+    <updated>2015-11-10T20:54:37+11:00</updated>
+    <author>
+      <name>Article Author</name>
+    </author>
+    <content type="html">&lt;h2&gt;Explanation&lt;/h2&gt;
+
+&lt;p&gt;Although computers live in a very predictable world of 1s and 0s they need to be able to handle uncertainties.&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;If&lt;/strong&gt; a customer has enough money in his account &lt;strong&gt;then&lt;/strong&gt; the ATM should give money out.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;If&lt;/strong&gt; a shirt is on sale &lt;strong&gt;then&lt;/strong&gt; the shirt’s price must be updated &lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;You deal with uncertainties by using the same kind of &lt;strong&gt;if statements&lt;/strong&gt; as a computer every day.&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;If&lt;/strong&gt; it is sunny &lt;strong&gt;then&lt;/strong&gt; we will have a picnic.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;You first determine that it’s sunny, then you know you will have a picnic.&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;If&lt;/strong&gt; you are over 4ft tall &lt;strong&gt;then&lt;/strong&gt; you can ride this roller coaster.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Once you know you know you are over 4ft tall you also know you are allowed to ride this roller coaster.&lt;/p&gt;
+
+&lt;p&gt;Each if statement will occur only under a certain condition (it’s sunny or you are over 4ft tall in the above examples). This condition will be a &lt;code&gt;True&lt;/code&gt; or &lt;code&gt;False&lt;/code&gt; statement. When the condition is &lt;code&gt;True&lt;/code&gt;, the “then” section will occur. When the condition is &lt;code&gt;False&lt;/code&gt;, the “then” section is ignored.&lt;/p&gt;
+
+&lt;p&gt;We might string many of these ifs together:&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;If&lt;/strong&gt; it is sunny &lt;strong&gt;then&lt;/strong&gt; we will have a picnic.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;If&lt;/strong&gt; it is raining &lt;strong&gt;then&lt;/strong&gt; I will bring an umbrella.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;If&lt;/strong&gt; it is cold &lt;strong&gt;then&lt;/strong&gt; I will wear a coat.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Let’s assume that it’s both sunny and cold. Using your “human” brain, reread the above.&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;Will you go on a picnic? Yes.&lt;/li&gt;
+&lt;li&gt;Will you bring an umbrella? No.&lt;/li&gt;
+&lt;li&gt;Will you wear a coat? Yes.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Lovely! You&amp;#39;ve got a picnic wearing a light jacket to look forward to!&lt;/p&gt;
+
+&lt;p&gt;Now look at the conditions in the examples above with your “computer” brain. Notice anything? These conditions are always a statement that is &lt;code&gt;True&lt;/code&gt; or &lt;code&gt;False&lt;/code&gt;. “It is sunny”, “it is raining”, and “it is cold” are all boolean expressions. So the computer can read these examples as:&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;If&lt;/strong&gt; &lt;code&gt;True&lt;/code&gt; &lt;strong&gt;then&lt;/strong&gt; we will have a picnic.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;If&lt;/strong&gt; &lt;code&gt;False&lt;/code&gt; (this is ignored since the condition evaluated to &lt;code&gt;False&lt;/code&gt;)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;If&lt;/strong&gt; &lt;code&gt;True&lt;/code&gt; &lt;strong&gt;then&lt;/strong&gt; I will wear a coat.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Computers use these if statements to determine what should happen next. If statements control the flow of the program, some things happen (like having a picnic), while others are skipped over (like bringing an umbrella).&lt;/p&gt;
+
+&lt;h2&gt;Exercises&lt;/h2&gt;
+
+&lt;p&gt;Ok, now it’s your turn. Answer the following questions for you at the current moment.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;If&lt;/strong&gt; it is sunny &lt;strong&gt;then&lt;/strong&gt; we will have a picnic.&lt;/p&gt;
+
+&lt;p&gt;Will you have a picnic today?&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;If&lt;/strong&gt; you eat your vegetables &lt;strong&gt;then&lt;/strong&gt; you can have dessert.&lt;/p&gt;
+
+&lt;p&gt;Any dessert for you?&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;If&lt;/strong&gt; the sky is blue &lt;strong&gt;then&lt;/strong&gt; the world is turning.&lt;/p&gt;
+
+&lt;p&gt;Is the world still turning?&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;If&lt;/strong&gt; the light is off &lt;strong&gt;then&lt;/strong&gt; the teacher will turn it on.&lt;/p&gt;
+
+&lt;p&gt;Does the teacher turn on the light?&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Think about your every day life, and come up with at least five more examples of when you use if statements to decide what to do.&lt;/p&gt;
+
+&lt;iframe id="hidden_iframe" name="hidden_iframe" style="display:none;"&gt;
+&lt;/iframe&gt;
+
+&lt;form action="https://docs.google.com/forms/d/1u4xIbGktEd3RzHQHfJcSRwuqUklokVcmeNBTrVbH6oI/formResponse" method="POST" id="ss-form" onsubmit="hideQuestions();" target="hidden_iframe" class="programming-examples"&gt;
+  &lt;div class="example-questions"&gt;
+    &lt;input type="hidden" name="entry.1043295642" value="If statements" id="group_1043295642_1" role="radio" class="ss-q-radio valid" aria-label="Boolean"&gt;
+    &lt;ol&gt;
+      &lt;li&gt;
+        &lt;textarea name="entry.1571729994" rows="8" cols="0" class="ss-q-long" id="entry_1571729994" dir="auto" aria-label="Example 1  "&gt;&lt;/textarea&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;textarea name="entry.332234193" rows="8" cols="0" class="ss-q-long" id="entry_332234193" dir="auto" aria-label="Example 2  "&gt;&lt;/textarea&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;textarea name="entry.796117189" rows="8" cols="0" class="ss-q-long" id="entry_796117189" dir="auto" aria-label="Example 3  "&gt;&lt;/textarea&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;textarea name="entry.1635444679" rows="8" cols="0" class="ss-q-long" id="entry_1635444679" dir="auto" aria-label="Example 4  "&gt;&lt;/textarea&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;textarea name="entry.341236292" rows="8" cols="0" class="ss-q-long" id="entry_341236292" dir="auto" aria-label="Example 5  "&gt;&lt;/textarea&gt;
+      &lt;/li&gt;
+    &lt;/ol&gt;
+    &lt;input type="submit" name="submit" value="Submit" id="ss-submit" class="jfk-button jfk-button-action "&gt;
+  &lt;/div&gt;
+  &lt;div class="thank-you"&gt;
+    Thanks for submitting your examples!
+  &lt;/div&gt;
+&lt;/form&gt;
+
+&lt;script&gt;
+function hideQuestions() {
+  document.getElementsByClassName('example-questions')[0].className+=' inactive';
+  document.getElementsByClassName('thank-you')[0].className+=' active';
+}
+&lt;/script&gt;
+</content>
+  </entry>
+  <entry>
     <title>CSS: What is Block Formatting Context (BFC)?</title>
     <link rel="alternate" href="http://lucybain.com/blog/2015/css-block-formatting-context/"/>
     <id>http://lucybain.com/blog/2015/css-block-formatting-context/</id>
@@ -874,50 +1002,6 @@ function testScope() {
 &lt;li&gt;On why you should &lt;a href="http://programmers.stackexchange.com/questions/274342/is-there-any-reason-to-use-the-var-keyword-in-es6"&gt;always use &lt;code&gt;let&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;To see what ES6 code looks like in “normal” JS you can use &lt;a href="https://babeljs.io/repl"&gt;Babel’s REPL&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
-</content>
-  </entry>
-  <entry>
-    <title>Periodic site maintenance</title>
-    <link rel="alternate" href="http://lucybain.com/blog/2015/site-maintenance/"/>
-    <id>http://lucybain.com/blog/2015/site-maintenance/</id>
-    <published>2015-06-15T00:00:00Z</published>
-    <updated>2015-10-18T18:04:16+11:00</updated>
-    <author>
-      <name>Article Author</name>
-    </author>
-    <content type="html">&lt;p&gt;Every now and then I spend some time going through my site to make sure things are working as expected. I might &lt;a href="https://github.com/lbain/lucybain/commit/98e7b6787934045a546114bfed96b41ac9f95bcb"&gt;tweak something&lt;/a&gt;, make some &lt;a href="https://github.com/lbain/lucybain/commit/33d8e3adc537b885905a1fa66b75b85921cf2011"&gt;SEO updates&lt;/a&gt;, &lt;a href="https://github.com/lbain/lucybain/commit/f4aa1b6185b947abc9841273b3a518d0326411d4"&gt;refactor&lt;/a&gt; messy code, or &lt;a href="https://github.com/lbain/lucybain/commit/8ea1b51a6d790effd008a4511ffe379288efaacb"&gt;fix something&lt;/a&gt; that was broken. Ususally days like this are pretty unstructured. I’ll be honest, they typically happen when I don’t feel like writing a blog post, but I still think these days are valuable. After all, this blog is like any piece of code - it needs constant love and attention or it will turn to legacy code. (Shudder)&lt;/p&gt;
-
-&lt;p&gt;The point of this post is to write down some ideas of what I can do for maintenance so when I have a day like this I don’t spend too much time waffling.&lt;/p&gt;
-
-&lt;h2&gt;Links&lt;/h2&gt;
-
-&lt;p&gt;Links go bad. Hopefully not my internal ones (although that’s happend before) but certainly the external ones can just disapear whenever they want to. Unfortunately Middleman doesn’t have &lt;a href="https://github.com/middleman/middleman/issues/902"&gt;broken link checks&lt;/a&gt; on build. That’d be quite handy since I’d get an update when a link broke. However, there are a &lt;a href="https://www.google.com/search?q=spider+site+for+broken+links&amp;amp;amp;oq=spider+site+for+b&amp;amp;amp;aqs=chrome.1.69i57j0l4.3126j0j4&amp;amp;amp;sourceid=chrome&amp;amp;amp;es_sm=119&amp;amp;amp;ie=UTF-8"&gt;lot of sites&lt;/a&gt; to help you find broken links. I used &lt;a href="http://www.brokenlinkcheck.com/"&gt;Broken Link Check&lt;/a&gt; and it worked just fine.&lt;/p&gt;
-
-&lt;h2&gt;SEO&lt;/h2&gt;
-
-&lt;p&gt;The suggestions around what you should and shouldn’t do for SEO seem to constantly change. It’s not something I’m particularly interested in, so I’m happy for someone to tell me what’s currently “right.” I used &lt;a href="http://seositecheckup.com/"&gt;SEO SiteCheckup&lt;/a&gt; to see what I was missing. Unforunately I didn’t have metadata associated with most of my posts, so now an ongoing task is to go back through old posts and add those.&lt;/p&gt;
-
-&lt;p&gt;I’ve also learned that the name of the post is really important. Not surprising since it’s the title of the page, but I didn’t know as much about naming when I started (nor do I always think of the best SEO friendly title at the time). I also go back and rename some posts as needed. In order to reduce hard coded redirect listings I now use &lt;a href="https://github.com/Octo-Labs/middleman-alias"&gt;Middleman::Alias&lt;/a&gt; to keep rename my posts.&lt;/p&gt;
-
-&lt;h2&gt;Code Improvements&lt;/h2&gt;
-
-&lt;p&gt;There’s always something that will make the code a little nicer to work with. I spent a fair bit of time working on refactoring my Sass a while back and it’s really paid off. I’m not so scared to make style changes and I have a better understanding of CSS. So taking the time to improve the code that backs the site means that I’m better able to continue maintaining it.&lt;/p&gt;
-
-&lt;p&gt;Some ongoing things to improve:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Sass, it seems to degrade remarkably quickly&lt;/li&gt;
-&lt;li&gt;The code Middleman uses to run the site (&lt;code&gt;config.rb&lt;/code&gt;)&lt;/li&gt;
-&lt;li&gt;Convert haml to markdown - when I started this blog I was more comfortable in haml than markdown. I’ve since changed my mind and would like to update the old haml pages to markdown.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2&gt;Usability&lt;/h2&gt;
-
-&lt;p&gt;This is probably the most fun one, but I never really get around to it. Anything that can improve the user’s experience is worth it. How best to test this? By reading my old posts! I’m constantly amazing by how many people find this site helpful, and I’m always looking for suggestions on how to make a post clearer. Even if no one asks a question in the comments, I usually find some errors by reading over what I wrote. Perferably something I wrote long enough ago to have forgotten the wording I used.&lt;/p&gt;
-
-&lt;p&gt;I write this blog for me - to help me learn things and better think through topics. But I &lt;em&gt;love&lt;/em&gt; that other people find it helpful and I want them to have a good experience. One example of this was my &lt;a href="https://github.com/lbain/lucybain/commit/ea42c6ea4b2983335f903edda5cba3c49ff77df4"&gt;very&lt;/a&gt; &lt;a href="https://github.com/lbain/lucybain/commit/0d21a940c235916211e3d06534702edc4f2f3255"&gt;long&lt;/a&gt; &lt;a href="https://github.com/lbain/lucybain/commit/cd55113c3dd2cb7b9f26a105a5bbd9472d344224"&gt;day&lt;/a&gt; converting to &lt;a href="http://smartquotesforsmartpeople.com/"&gt;smart quotes&lt;/a&gt;. I hope someone out there appreciates the update :)&lt;/p&gt;
-
-&lt;p&gt;Well, future me, I hope you found that list useful. Now get to work - if you’re not going to write a new post at least make the site better!&lt;/p&gt;
 </content>
   </entry>
 </feed>
