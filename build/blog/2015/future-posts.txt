@@ -1,7 +1,6 @@
 JS interview topics left
 * How do you organize your code? (module pattern, classical inheritance?)
   Series on design patterns: http://jstherightway.org/#patterns, http://addyosmani.com/resources/essentialjsdesignpatterns/book/
-* Difference between: function Person(){}, var person = Person(), and var person = new Person()?
 * Have you ever used JavaScript templating?
   If so, what libraries have you used? (Mustache.js, Handlebars etc.)
 * XSS
@@ -12,7 +11,6 @@ JS interview topics left
 
 
 * How can you use closures to implement public/private methods?
-* What’s the difference when invoking a function with or without the new keyword?
 * What types of things are potentially dangerous to define on the prototype?
 * How can you change the execution context of a function/method? (use bind, call, and apply) - kind of did this one, but not all together and I'd like to review
 * How can you force a JavaScript function to execute asynchronously?
@@ -21,8 +19,6 @@ What are some ways of managing lots of asyc operations (AKA avoiding callback he
 * anonymous function and hoisting
 * how do you pick a job company?
 
-From work:
-* What is "flex-box"?
 
 Who are your female role models?
 I don't "do" role models as much as "people I think are awesome". Role models feel far away (I'm probably never going to have a meaningful chat with Sheryl Sandberg), but I've met a lot of awesome people.
