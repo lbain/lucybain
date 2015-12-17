@@ -547,6 +547,100 @@ $ bower link
 </content>
   </entry>
   <entry>
+    <title>JS: ES6 Const keyword</title>
+    <link rel="alternate" href="http://lucybain.com/blog/2015/js-es6-const/"/>
+    <id>http://lucybain.com/blog/2015/js-es6-const/</id>
+    <published>2015-08-02T00:00:00Z</published>
+    <updated>2015-12-17T22:33:11+11:00</updated>
+    <author>
+      <name>Article Author</name>
+    </author>
+    <content type="html">&lt;h2&gt;A little bit of background&lt;/h2&gt;
+
+&lt;h3&gt;ES6&lt;/h3&gt;
+
+&lt;p&gt;ECMAScript 6 (ES6) introduced a lot of new JS keywords to play with. Generally these changes make JS a bit more approchable for new JS developers by making JS more similar to other programming languages.&lt;/p&gt;
+
+&lt;h3&gt;Constants&lt;/h3&gt;
+
+&lt;p&gt;Some languages (particularly compiled ones like Java) have a concept of &lt;em&gt;constants&lt;/em&gt;. This are like &lt;em&gt;variables&lt;/em&gt;, but the opposite.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Wow, that was really clear...&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;Constants are like variables in that a value can be assigned to them. They are unlike variables in that their value cannot be changed after the a value has been assigned to them. (There’s a lot more that could be said about this, but I’ll leave it there since it’s enough to get through this post.)&lt;/p&gt;
+
+&lt;p&gt;In sudo code it would look kinda like this:&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;variable = 1
+constant = 2
+
+variable = 3 // All good since variables can change
+constant = 4 // Error since constants can't change
+&lt;/pre&gt;
+&lt;h2&gt;Let’s talk about JS&lt;/h2&gt;
+
+&lt;p&gt;&lt;em&gt;So that’s how other languages do it - but what about JS?&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;Honestly ES6’s implementation seems pretty similar to other languages.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; Since ES6 isn’t fully implemented in browsers most people are using a compiler to get from ES6 syntax to normal JS. These compilers might throw errors for some of the examples below.&lt;/p&gt;
+
+&lt;h3&gt;Basic usage&lt;/h3&gt;
+
+&lt;p&gt;ES6 introduced a new &lt;code&gt;const&lt;/code&gt; keyword to behave like a constant. Something that is defined &lt;code&gt;const&lt;/code&gt; can only be assigned once.&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;const cat = 'meow';
+cat = 'woof';
+console.log(cat); // logs 'meow'
+&lt;/pre&gt;
+&lt;p&gt;&lt;em&gt;But what if I try something tricky?&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;There’re are a couple of ways you could try to beat the system, but ES6 has covered them.&lt;/p&gt;
+
+&lt;p&gt;Reuse the &lt;code&gt;const&lt;/code&gt; keyword:&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;const cat = 'meow';
+const cat = 'woof';
+console.log(cat); // logs 'meow'
+&lt;/pre&gt;
+&lt;p&gt;Change a constant to a variable:&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;const cat = 'meow';
+var cat = 'woof';
+console.log(cat); // logs 'meow'
+&lt;/pre&gt;
+&lt;p&gt;Declare a constant without defining it:&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;const cat; // SyntaxError
+&lt;/pre&gt;
+&lt;p&gt;Ideally you should use constants in their intended way without getting too tricky!&lt;/p&gt;
+
+&lt;h3&gt;Gotcha&lt;/h3&gt;
+
+&lt;p&gt;Here’s the big catch: a constant can only be defined once, but it can be changed in other ways. In “programming terms” something that cannot be changed in anyway is &lt;strong&gt;immutable&lt;/strong&gt;. ES6 constants are mutable (i.e. not immutable, i.e. changeable).&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;How can I change a constant?&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;Some object types can be changed without assigning again. Let’s look at a couple.&lt;/p&gt;
+
+&lt;p&gt;Arrays:&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;const animals = [];
+animals.push('cat', 'dog');
+console.log(animals); // ['cat', 'dog']
+&lt;/pre&gt;
+&lt;p&gt;Objects:&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;const cat = {'sound': 'meow'};
+cat.sound = 'woof'
+console.log(cat.sound); // 'meow'
+&lt;/pre&gt;
+&lt;p&gt;Any mutable object type will have this problem. The immutable types are: Boolean, Null, Undefined, Number, String, Symbol (the primative types).&lt;/p&gt;
+
+&lt;h2&gt;Resources&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/const"&gt;Mozilla&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://strongloop.com/strongblog/es6-variable-declarations/"&gt;StrongLoop&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://babeljs.io/repl/"&gt;Babel REPL&lt;/a&gt; if you want to play around with ES6&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://programmers.stackexchange.com/questions/278652/how-much-should-i-be-using-let-vs-const-in-es6"&gt;StackExchange&lt;/a&gt; for a discussion about when to use &lt;code&gt;const&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</content>
+  </entry>
+  <entry>
     <title>Intro to programming: If statements</title>
     <link rel="alternate" href="http://lucybain.com/blog/2015/intro-to-programming-if-statements/"/>
     <id>http://lucybain.com/blog/2015/intro-to-programming-if-statements/</id>
@@ -859,148 +953,6 @@ function hideQuestions() {
 &lt;li&gt;&lt;a href="http://tech.vg.no/2013/09/26/css-block-formatting-context/"&gt;VG Tech&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="http://maxdesign.com.au/jobs/sample-block-formatting-context/index.htm"&gt;Max Design&lt;/a&gt; - this one was particularly useful since it has a bunch of examples&lt;/li&gt;
 &lt;li&gt;&lt;a href="http://yuiblog.com/blog/2010/05/19/css-101-block-formatting-contexts/"&gt;YUI&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-</content>
-  </entry>
-  <entry>
-    <title>JS: ES6’s let vs. var</title>
-    <link rel="alternate" href="http://lucybain.com/blog/2015/js-es6-let-vs-var/"/>
-    <id>http://lucybain.com/blog/2015/js-es6-let-vs-var/</id>
-    <published>2015-06-28T00:00:00Z</published>
-    <updated>2015-10-25T14:26:12+11:00</updated>
-    <author>
-      <name>Article Author</name>
-    </author>
-    <content type="html">&lt;p&gt;This isn’t a “real” interview question from the list, but I reckon it’s a good one. Plus it came up at work today and I didn’t know the difference. So here it is in question form:&lt;/p&gt;
-
-&lt;h2&gt;What’s the difference between ES6’s &lt;code&gt;let&lt;/code&gt; and “traditional” JS’s &lt;code&gt;var&lt;/code&gt;?&lt;/h2&gt;
-
-&lt;p&gt;&lt;em&gt;Let’s start with the traditional &lt;code&gt;var&lt;/code&gt;.&lt;/em&gt;&lt;/p&gt;
-
-&lt;h2&gt;function vs. block level scoping&lt;/h2&gt;
-
-&lt;p&gt;Can do! As you may remember I &lt;a href="/blog/2014/hoisting/#scopes"&gt;wrote about&lt;/a&gt; scopes in JS a while ago. We’ll cover it again here with more examples to be really clear about it. Many other languages use &lt;strong&gt;block&lt;/strong&gt; level scoping. However, JS decided to use &lt;strong&gt;function&lt;/strong&gt; level scoping.&lt;/p&gt;
-
-&lt;p&gt;&lt;em&gt;What does that mean?&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;Well, here‘s an example of &lt;strong&gt;block&lt;/strong&gt; level scoping in Ruby.&lt;/p&gt;
-&lt;pre class="highlight plaintext"&gt;def testScope
-    if true
-        scope_tester = 1
-        puts scope_tester # 1
-    end
-    puts scope_tester # nil
-end
-&lt;/pre&gt;
-&lt;p&gt;As you can see, the &lt;code&gt;scope_tester&lt;/code&gt; in the if &lt;strong&gt;block&lt;/strong&gt; only lived in the if block. It didn’t set the value of &lt;code&gt;scope_tester&lt;/code&gt; outside the block. That’s because Ruby uses block level scoping which means the &lt;code&gt;scope_tester&lt;/code&gt; in the block only lives in the block. It could have been called &lt;code&gt;inside_scope&lt;/code&gt; for all it matters.&lt;/p&gt;
-
-&lt;p&gt;Note that you can declare a variable out of the block level scope, use it in the block level scope, and those changes will be persisted. Here’s an example of that:&lt;/p&gt;
-&lt;pre class="highlight plaintext"&gt;def test_scope
-    scope_tester = 0
-    puts scope_tester # 0
-
-    if true
-        scope_tester = 1
-        puts scope_tester # 1
-    end
-
-    puts scope_tester # 1
-end
-&lt;/pre&gt;
-&lt;p&gt;That’s because variables are available through the block they are defined in. In this case the &lt;code&gt;test_scope&lt;/code&gt; function’s block defines the boundaries for &lt;code&gt;scope_tester&lt;/code&gt;.&lt;/p&gt;
-
-&lt;h2&gt;Traditional JS’s &lt;code&gt;var&lt;/code&gt;&lt;/h2&gt;
-
-&lt;p&gt;Now we’ll look at the &lt;strong&gt;function&lt;/strong&gt; level scoping that JS uses:&lt;/p&gt;
-&lt;pre class="highlight plaintext"&gt;function testScope() {
-    if (true) {
-        var scopeTester = 1;
-        console.log(scopeTester); // 1
-    }
-    console.log(scopeTester); // 1 &amp;lt;-- surprise!
-}
-&lt;/pre&gt;
-&lt;p&gt;Here the value of &lt;code&gt;scopeTester&lt;/code&gt; is persisted through out of the if block. In fact, the single &lt;code&gt;scopeTester&lt;/code&gt; variable is available throughout the entire &lt;code&gt;testScope&lt;/code&gt; method. That’s because &lt;a href="/blog/2014/hoisting/"&gt;JS uses hoisting&lt;/a&gt; to define the variables.&lt;/p&gt;
-
-&lt;p&gt;Note that this isn’t surprising when you use a variable that was defined out of the if block in the function:&lt;/p&gt;
-&lt;pre class="highlight plaintext"&gt;function testScope() {
-    var scopeTester = 0;
-    console.log(scopeTester); // 0
-
-    if (true) {
-        scopeTester = 1;
-        console.log(scopeTester); // 1
-    }
-    console.log(scopeTester); // 1 &amp;lt;-- not surprise!
-}
-&lt;/pre&gt;
-&lt;p&gt;For people who aren’t used to JS this use of scoping looks in consistent. Sometimes, like in the second example, you expect the change to persist outside of the if block, and sometimes, as in the first example, you don&amp;#39;t.&lt;/p&gt;
-
-&lt;h2&gt;&lt;code&gt;let&lt;/code&gt; from ES6&lt;/h2&gt;
-
-&lt;p&gt;Unsurprisingly this block vs. function scoping causes problems for people new to JS (like me!). It also adds complexity for the programmer to think about that’s often unnecessary. So for ES6 the powers that be decided to add a new keyword &lt;code&gt;let&lt;/code&gt; that would have block scope.&lt;/p&gt;
-
-&lt;p&gt;Let’s run through those examples again! Unfortunately ES6 isn’t properly implemented in browsers yet, so we can’t just chuck the ES6 code into the console like we normally would. However we can use &lt;a href="https://babeljs.io/"&gt;Babel&lt;/a&gt; to convert the ES6 code to normal JS code and see what would happen.&lt;/p&gt;
-
-&lt;p&gt;ES6 code:&lt;/p&gt;
-&lt;pre class="highlight plaintext"&gt;function testScope() {
-    if (true) {
-        let scopeTester = 1; // &amp;lt;-- using let here!
-        console.log(scopeTester); // 1
-    }
-    console.log(scopeTester); // undefined &amp;lt;-- awesome!
-}
-&lt;/pre&gt;
-&lt;p&gt;Translates to:&lt;/p&gt;
-&lt;pre class="highlight plaintext"&gt;"use strict";
-
-function testScope() {
-    if (true) {
-        var _scopeTester = 1; // &amp;lt;-- using let here!
-        console.log(_scopeTester); // 1
-    }
-    console.log(scopeTester); // undefined &amp;lt;-- awesome!
-}
-&lt;/pre&gt;
-&lt;p&gt;As you can see, using &lt;code&gt;let&lt;/code&gt; creates a whole new variable to make sure there is no naming conflict. Sweet - now the &lt;code&gt;scopeTester&lt;/code&gt; variable is only available in the if block where it’s defined. This gives JS the consistent block level scoping that we’ve come to expect from other languages.&lt;/p&gt;
-
-&lt;p&gt;Now we’ll look at the second example:&lt;/p&gt;
-&lt;pre class="highlight plaintext"&gt;function testScope() {
-    var scopeTester = 0;
-    console.log(scopeTester); // 0
-
-    if (true) {
-        let scopeTester = 1; // &amp;lt;-- using let here!
-        console.log(scopeTester);
-    }
-    console.log(scopeTester);
-}
-&lt;/pre&gt;
-&lt;p&gt;Translates to:&lt;/p&gt;
-&lt;pre class="highlight plaintext"&gt;"use strict";
-
-function testScope() {
-    var scopeTester = 0;
-    console.log(scopeTester); // 0
-
-    if (true) {
-        var _scopeTester = 1; // &amp;lt;-- using let here!
-        console.log(_scopeTester);
-    }
-    console.log(scopeTester); // 0
-}
-&lt;/pre&gt;
-&lt;p&gt;Again, we got a whole new variable inside the if block, so no need to worry about the unexpected function scope of &lt;code&gt;var&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;&lt;em&gt;Thanks ES6, that’s really helpful!&lt;/em&gt;&lt;/p&gt;
-
-&lt;h2&gt;Resources&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href="http://stackoverflow.com/questions/762011/javascript-let-keyword-vs-var-keyword"&gt;StackOverflow&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Statements/let"&gt;MDN&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;On why you should &lt;a href="http://programmers.stackexchange.com/questions/274342/is-there-any-reason-to-use-the-var-keyword-in-es6"&gt;always use &lt;code&gt;let&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;To see what ES6 code looks like in “normal” JS you can use &lt;a href="https://babeljs.io/repl"&gt;Babel’s REPL&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 </content>
   </entry>
