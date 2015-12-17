@@ -127,6 +127,10 @@ helpers do
   def path_to_link(path)
     '/' << path.sub('.html', '/')
   end
+
+  def keywords(page_data)
+    page_data.keywords || page_data.tags || false
+  end
 end
 
 set :css_dir, 'stylesheets'
