@@ -87,6 +87,12 @@
         <pre class="highlight plaintext">const cat = 'meow';&#x000A;var cat = 'woof';&#x000A;console.log(cat); // logs 'meow'</pre>
         <p>Declare a constant without defining it:</p>
         <pre class="highlight plaintext">const cat; // SyntaxError</pre>
+        <p>Use block scope:</p>
+        <pre class="highlight plaintext">const cat = 'meow';&#x000A;if (true) {&#x000A;  const cat = 'woof';&#x000A;}&#x000A;console.log(cat); // logs meow</pre>
+        <p>Use function scope:</p>
+        <pre class="highlight plaintext">const cat = 'meow';&#x000A;function testConsts () {&#x000A;  const cat = 'woof';&#x000A;  console.log(cat)&#x000A;}&#x000A;testConsts(); // logs woof&#x000A;console.log(cat); // logs meow</pre>
+        <p>(Hopefully those last couple weren’t a surprise becuase JS uses <a href="http://lucybain.com/blog/2015/js-es6-let-vs-var/">function scoping</a>.)</p>
+        
         <p>Ideally you should use constants in their intended way without getting too tricky!</p>
         
         <h3>Gotcha</h3>

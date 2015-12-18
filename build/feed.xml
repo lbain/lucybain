@@ -551,7 +551,7 @@ $ bower link
     <link rel="alternate" href="http://lucybain.com/blog/2015/js-es6-const/"/>
     <id>http://lucybain.com/blog/2015/js-es6-const/</id>
     <published>2015-08-02T00:00:00Z</published>
-    <updated>2015-12-17T22:33:11+11:00</updated>
+    <updated>2015-12-18T19:22:49+11:00</updated>
     <author>
       <name>Article Author</name>
     </author>
@@ -608,6 +608,24 @@ console.log(cat); // logs 'meow'
 &lt;p&gt;Declare a constant without defining it:&lt;/p&gt;
 &lt;pre class="highlight plaintext"&gt;const cat; // SyntaxError
 &lt;/pre&gt;
+&lt;p&gt;Use block scope:&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;const cat = 'meow';
+if (true) {
+  const cat = 'woof';
+}
+console.log(cat); // logs meow
+&lt;/pre&gt;
+&lt;p&gt;Use function scope:&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;const cat = 'meow';
+function testConsts () {
+  const cat = 'woof';
+  console.log(cat)
+}
+testConsts(); // logs woof
+console.log(cat); // logs meow
+&lt;/pre&gt;
+&lt;p&gt;(Hopefully those last couple weren’t a surprise becuase JS uses &lt;a href="http://lucybain.com/blog/2015/js-es6-let-vs-var/"&gt;function scoping&lt;/a&gt;.)&lt;/p&gt;
+
 &lt;p&gt;Ideally you should use constants in their intended way without getting too tricky!&lt;/p&gt;
 
 &lt;h3&gt;Gotcha&lt;/h3&gt;

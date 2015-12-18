@@ -75,6 +75,30 @@ Declare a constant without defining it:
 const cat; // SyntaxError
 ```
 
+Use block scope:
+
+```
+const cat = 'meow';
+if (true) {
+  const cat = 'woof';
+}
+console.log(cat); // logs meow
+```
+
+Use function scope:
+
+```
+const cat = 'meow';
+function testConsts () {
+  const cat = 'woof';
+  console.log(cat)
+}
+testConsts(); // logs woof
+console.log(cat); // logs meow
+```
+
+(Hopefully those last couple weren’t a surprise becuase JS uses [function scoping](http://lucybain.com/blog/2015/js-es6-let-vs-var/).)
+
 Ideally you should use constants in their intended way without getting too tricky!
 
 ### Gotcha
