@@ -1,6 +1,8 @@
 ---
 title: 'JS Immediately Invoked Function Expressions'
 tags: js, interview-questions
+
+featured: true
 ---
 
 ## Explain why the following doesn’t work as an IIFE: `function foo(){ }();`

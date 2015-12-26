@@ -81,6 +81,10 @@
         <p>Well, since closures keep access to the variables they can be used to save state. And things that save state look a whole lot like objects. (Before I get any haters, I know you can use closures for a bunch of other things, but this is a reasonable example.)</p>
         <pre class="highlight plaintext">function cat(name) {&#x000A;    return {&#x000A;        sayName: function() {&#x000A;            return name;&#x000A;        }&#x000A;    }&#x000A;}&#x000A;&#x000A;var fluffy = cat('Mr. Fluffy');&#x000A;fluffy.name // returns undefined&#x000A;fluffy.sayName() // returns 'Mr. Fluffy'&#x000A;&#x000A;var whiskers = cat('Whiskers');&#x000A;whiskers.sayName() // returns 'Whiskers'</pre>
         <p>So this way you can create a whole bunch of <code>cat</code> objects that have a private <code>name</code> variable, which you can access via the <code>sayName</code> method.</p>
+        <div class='recommended-reading'>
+          <h2>Recommended reading</h2>
+          <p>You might also like <a href="/blog/2014/google-adwords-async/">JS: Async Google Adwords conversion</a></p>
+        </div>
         <hr>
         <div id='disqus_thread'></div>
         <script>

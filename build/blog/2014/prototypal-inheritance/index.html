@@ -55,6 +55,10 @@
         <p><strong>(the obligatory animal) Example:</strong></p>
         <pre class="highlight plaintext">function Animal(){&#x000A;  this.alive = true;&#x000A;}&#x000A;&#x000A;function Mammal() {&#x000A;  this.warmBlooded = true;&#x000A;  this.hasTail = false;&#x000A;  this.move = function(){&#x000A;    if(this.hasTail){&#x000A;      return "Moving with tail";&#x000A;    } else {&#x000A;      return "Moving with tail";&#x000A;    }&#x000A;  };&#x000A;}&#x000A;Mammal.prototype = new Animal();&#x000A;&#x000A;function Cat(name) {&#x000A;  this.sound = 'Meow';&#x000A;  this.hasTail = true;&#x000A;  this.name = name;&#x000A;  this.greet = function() {&#x000A;    return "Hello, I'm " + this.name;&#x000A;  };&#x000A;}&#x000A;Cat.prototype = new Mammal();&#x000A;&#x000A;var mittens = new Cat('Mittens');&#x000A;&#x000A;mittens.sound; // returns 'Meow' (as defined on Cat)&#x000A;&#x000A;mittens.hasTail; // returns true (as defined on Cat)&#x000A;  // Although Mammal also defines hasTail, the Cat's&#x000A;  // definition takes precidence&#x000A;&#x000A;mittens.warmBlooded; // returns true (as defined on Mammal)&#x000A;&#x000A;mittens.alive; // returns true (as defined on Animal)&#x000A;&#x000A;mittens.greet() // returns "Hello, I'm Mittens"&#x000A;  // greet() accesses the "name" attribute defined on Cat&#x000A;&#x000A;mittens.move() // returns "Moving with tail"&#x000A;  // move() accesses the "hasTail" attribute which is defined&#x000A;  // on Cat and Mammal. Although Mammal defines the move function&#x000A;  // "this" refers to mittens, so move() uses mitten's "hasTail"&#x000A;  // attribute, which is set to true</pre>
         <p>There’s a longer explaination from <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Inheritance_and_the_prototype_chain">Mozilla</a>.</p>
+        <div class='recommended-reading'>
+          <h2>Recommended reading</h2>
+          <p>You might also like <a href="/blog/2014/immediately-invoked-function-expression/">JS Immediately Invoked Function Expressions</a></p>
+        </div>
         <hr>
         <div id='disqus_thread'></div>
         <script>

@@ -131,6 +131,19 @@ helpers do
   def keywords(page_data)
     page_data.keywords || page_data.tags || false
   end
+
+  def popular_blog_posts
+    blog.articles.select do |item|
+      item.metadata[:page]["featured"] rescue false
+    end
+  end
+
+  def random_popular_post(current_page)
+    resonable_posts = popular_blog_posts.delete_if do |item|
+      item == current_page
+    end
+    resonable_posts.sample
+  end
 end
 
 set :css_dir, 'stylesheets'

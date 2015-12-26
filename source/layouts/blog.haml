@@ -9,6 +9,13 @@
     = find_and_preserve do
       = yield
 
+
+    .recommended-reading
+      %h2 Recommended reading
+      - recommended_reading = random_popular_post(current_page)
+      %p You might also like #{link_to(recommended_reading.data.title, recommended_reading)}
+
+
     - unless current_page.data.no_comments
       %hr
       #disqus_thread

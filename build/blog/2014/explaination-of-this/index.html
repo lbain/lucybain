@@ -54,7 +54,7 @@
         
         <p><strong><code>this</code> is the context the code is running in</strong></p>
         
-        <p>However, the context seems to change a lot, and I find it rather confusing. So I signed upf for an <a href="http://derickbailey.com/email-courses/masteringthis/">email series</a> on how <code>this</code> can change. Here’s a sweeping overview of that series:</p>
+        <p>However, the context seems to change a lot, and I find it rather confusing. So I signed up for an <a href="http://derickbailey.com/email-courses/masteringthis/">email series</a> on how <code>this</code> can change. Here’s a sweeping overview of that series:</p>
         
         <ul>
         <li><code>this</code> refers to the window</li>
@@ -80,6 +80,10 @@
         
         <p>Apparently you can use <code>call</code> or <code>apply</code> and pass a context explicitly. In that case <code>this</code> refers to the passed context.</p>
         <pre class="highlight javascript"><span class="kd">function</span> <span class="nx">greeter</span><span class="p">(){</span>&#x000A;  <span class="k">return</span> <span class="s1">'Hello '</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">+</span> <span class="s1">'!'</span><span class="p">;</span>&#x000A;<span class="p">}</span>&#x000A;&#x000A;<span class="kd">var</span> <span class="nx">passableContext</span> <span class="o">=</span> <span class="p">{</span> <span class="na">name</span><span class="p">:</span> <span class="s1">'world'</span> <span class="p">};</span>&#x000A;<span class="nx">greeter</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">passableContext</span><span class="p">)</span>&#x000A;<span class="c1">// returns 'Hello world!'&#x000A;</span></pre>
+        <div class='recommended-reading'>
+          <h2>Recommended reading</h2>
+          <p>You might also like <a href="/blog/2014/immediately-invoked-function-expression/">JS Immediately Invoked Function Expressions</a></p>
+        </div>
         <hr>
         <div id='disqus_thread'></div>
         <script>

@@ -1,6 +1,8 @@
 ---
 title: 'JS: document load vs document ready'
 tags: js, interview-questions
+
+featured: true
 ---
 
 ## Difference between document load event and document ready event?

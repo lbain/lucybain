@@ -9,7 +9,7 @@ Huh, well that’s something I've been trying to figure out as I work with JS. `
 
 **`this` is the context the code is running in**
 
-However, the context seems to change a lot, and I find it rather confusing. So I signed upf for an [email series](http://derickbailey.com/email-courses/masteringthis/) on how `this` can change. Here’s a sweeping overview of that series:
+However, the context seems to change a lot, and I find it rather confusing. So I signed up for an [email series](http://derickbailey.com/email-courses/masteringthis/) on how `this` can change. Here’s a sweeping overview of that series:
 
 * `this` refers to the window
 

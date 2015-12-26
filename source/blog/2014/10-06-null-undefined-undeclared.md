@@ -1,6 +1,8 @@
 ---
 title: 'JS: null, undefined, and undeclared'
 tags: js, interview-questions
+
+featured: true
 ---
 
 ## What’s the difference between a variable that is: null, undefined, or undeclared?

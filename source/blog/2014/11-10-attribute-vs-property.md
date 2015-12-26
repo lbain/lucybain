@@ -1,6 +1,8 @@
 ---
 title: 'JS: attribute vs. property'
 tags: js, interview-questions
+
+featured: true
 ---
 
 ## What’s the difference between an “attribute” and a “property”?

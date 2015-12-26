@@ -1,6 +1,8 @@
 ---
 title: 'JS: Async Google Adwords conversion'
 tags: js, google-adwords
+
+featured: true
 ---
 
 ## How can I trigger a Google Adwords conversion when the page is loaded asynchronously?

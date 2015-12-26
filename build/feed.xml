@@ -547,6 +547,100 @@ $ bower link
 </content>
   </entry>
   <entry>
+    <title>JS: ES6’s string templates</title>
+    <link rel="alternate" href="http://lucybain.com/blog/2015/js-es6-string-templates/"/>
+    <id>http://lucybain.com/blog/2015/js-es6-string-templates/</id>
+    <published>2015-08-18T00:00:00Z</published>
+    <updated>2015-12-19T19:21:12+11:00</updated>
+    <author>
+      <name>Article Author</name>
+    </author>
+    <content type="html">&lt;h2&gt;How are the new string templates better?&lt;/h2&gt;
+
+&lt;p&gt;The traditional JS way of working with strings leaves a lot to be desired. &lt;/p&gt;
+
+&lt;h3&gt;variables&lt;/h3&gt;
+
+&lt;p&gt;It’s not easy to read...&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;var someVar = "world";
+console.log("Hello" + someVar + "!");
+&lt;/pre&gt;
+&lt;h3&gt;newlines&lt;/h3&gt;
+
+&lt;p&gt;It doesn’t handle new lines well...&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;console.log("Add a break\nhere");
+console.log("Add a break" + 
+"here");
+console.log("Add a break\
+here");
+&lt;/pre&gt;
+&lt;h3&gt;standardisation with other languages&lt;/h3&gt;
+
+&lt;p&gt;And it looks longingly at Ruby’s string interpolation...&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;someVar = "world"
+puts "Hello #{someVar}"
+&lt;/pre&gt;
+&lt;h2&gt;How can I use them?&lt;/h2&gt;
+
+&lt;p&gt;&lt;em&gt;Ok, you sold me on that Ruby example... Tell me about ES6!&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;ES6 introduced string templating to make working with strings easier and more elegant. Here are the same examples again:&lt;/p&gt;
+
+&lt;h3&gt;variables&lt;/h3&gt;
+
+&lt;p&gt;Wrap up variables, or any other JS code in &lt;code&gt;${}&lt;/code&gt;. The JS code will be evaluated first and then put into the rest of the string.&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;var someVar = "world";
+console.log(`Hello ${someVar}!`); // "Hello world!"
+
+console.log(`bonus example ${2 - 1}`) // "bonus example 1"
+&lt;/pre&gt;
+&lt;h3&gt;newlines&lt;/h3&gt;
+
+&lt;p&gt;You can add a real newline to your code when you want a newline in your string. Of course the &lt;code&gt;\n&lt;/code&gt; still works.&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;console.log(`Add a break
+    here`);
+console.log(`Add a break\nhere`);
+&lt;/pre&gt;
+&lt;h3&gt;standardisation with other languages&lt;/h3&gt;
+
+&lt;p&gt;Now ES6’s strings work much like other languages.&lt;/p&gt;
+
+&lt;p&gt;Ruby:&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;someVar = "world"
+puts "Hello #{someVar}"
+&lt;/pre&gt;
+&lt;p&gt;JS:&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;var someVar = "world";
+console.log(`Hello ${someVar}`);
+&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; you can also use “tagged” template strings. I haven’t fully figured this out or found clear usecases for it, so I’m skipping it for now. But you can do more with templates than I’ve talked about.&lt;/p&gt;
+
+&lt;h2&gt;Warning!&lt;/h2&gt;
+
+&lt;p&gt;The &lt;code&gt;${}&lt;/code&gt; in ES6 evaluates &lt;em&gt;all&lt;/em&gt; JS. It’s very important that you trust anything that goes in there. For example, don’t do something like:&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;// imagine this pulled from a DB and is user supplied
+var user = {name: 'lucy'};
+console.log(`Your name is: ${user.name}`)
+&lt;/pre&gt;
+&lt;p&gt;&lt;em&gt;Why not?&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;Because the JS in the string interpolation executes in the same context of the rest of your JS.&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;// here the user entered their name as: ' + alert('test') + '
+var user = {name: '' + alert(window) + ''};
+console.log(`Your name is: ${user.name}`)
+&lt;/pre&gt;
+&lt;p&gt;This will trigger an alert. Don’t believe me? Enter the code above in &lt;a href="http://www.es6fiddle.net/"&gt;ES6 fiddle&lt;/a&gt;. If you’re not careful people can gain access to your “hidden” variables.&lt;/p&gt;
+
+&lt;h2&gt;Resources&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/template_strings"&gt;Mozilla&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://developers.google.com/web/updates/2015/01/ES6-Template-Strings?hl=en"&gt;Google Developers&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://www.sitepoint.com/understanding-ecmascript-6-template-strings/"&gt;Sitepoint&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</content>
+  </entry>
+  <entry>
     <title>JS: ES6 Const keyword</title>
     <link rel="alternate" href="http://lucybain.com/blog/2015/js-es6-const/"/>
     <id>http://lucybain.com/blog/2015/js-es6-const/</id>
@@ -784,194 +878,6 @@ function hideQuestions() {
   document.getElementsByClassName('thank-you')[0].className+=' active';
 }
 &lt;/script&gt;
-</content>
-  </entry>
-  <entry>
-    <title>CSS: What is Block Formatting Context (BFC)?</title>
-    <link rel="alternate" href="http://lucybain.com/blog/2015/css-block-formatting-context/"/>
-    <id>http://lucybain.com/blog/2015/css-block-formatting-context/</id>
-    <published>2015-07-12T00:00:00Z</published>
-    <updated>2015-10-25T18:26:49+11:00</updated>
-    <author>
-      <name>Article Author</name>
-    </author>
-    <content type="html">&lt;p&gt;Time for the next CSS interview question from the list of &lt;a href="https://github.com/h5bp/Front-end-Developer-Interview-Questions#css-questions"&gt;front end interview questions&lt;/a&gt;. My goodness that repo has a LOT of questions to get through!&lt;/p&gt;
-
-&lt;h2&gt;What is Block Formatting Context (BFC)?&lt;/h2&gt;
-
-&lt;p&gt;It seems that BFC is something that I’ve always assumed was part of how floats worked, and hadn’t realised was it’s own concept with a name. So if you’ve been playing with floats for a while (or if you’ve upgraded to &lt;a href="/blog/2015/css-flexbox/"&gt;flexbox&lt;/a&gt;) then this probably won’t be interesting to you. But hey - it’s always good to understand things more deeply!&lt;/p&gt;
-
-&lt;style&gt;
-.container {
-    background-color: #FF7400;
-}
-.box-1 {
-    background-color: #F55585;
-}
-.box-2 {
-    background-color: #00CFCF;
-}
-&lt;/style&gt;
-
-&lt;p&gt;From &lt;a href="https://developer.mozilla.org/en-US/docs/Web/Guide/CSS/Block_formatting_context"&gt;MDN&lt;/a&gt;:&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;A block formatting context is a part of a visual CSS rendering of a Web page. It is the region in which the layout of block boxes occurs and in which floats interact with each other&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;&lt;em&gt;Yawn, what was that?&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;Ok, so a block formatting context is an area where block boxes and floats go. I think of it as a containing element that has flow rules (so the block boxes are, well, block-y) and hard boundaries (so the floats don’t leave the container). Ultimately the page is a block formatting context, but you can have a bunch in a page. Actually, you can have BFCs in BFCs, Inception style. While that sounds cool (I mean, I just talked about Inception in a CSS post - that’s gotta count for something!), that’s what most of HTML and CSS is (&lt;code&gt;div&lt;/code&gt;s within &lt;code&gt;div&lt;/code&gt;s).&lt;/p&gt;
-
-&lt;p&gt;&lt;em&gt;Ok, so you’re telling me BFCs are totally normal CSS and nothing particularly interesting.&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;Well, yes, but they also have some handy features. Let’s talk about them now.&lt;/p&gt;
-
-&lt;p&gt;Block formatting contexts:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;stop margins from collapsing&lt;/li&gt;
-&lt;li&gt;restrain floats&lt;/li&gt;
-&lt;li&gt;contain floats&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3&gt;Block formatting contexts stop margins from collapsing&lt;/h3&gt;
-
-&lt;p&gt;What normally happens?&lt;/p&gt;
-
-&lt;style&gt;
-.margin {
-    margin: 20px;
-}
-&lt;/style&gt;
-
-&lt;div class="container"&gt;
-    &lt;div class="margin box-1"&gt;
-        This div has a 20px margin around it.
-    &lt;/div&gt;
-    &lt;div class="margin box-2"&gt;
-        So does this one.
-    &lt;/div&gt;
-&lt;/div&gt;
-
-&lt;p&gt;Since both of those &lt;code&gt;div&lt;/code&gt;s have 20px of margin around them you’d expect to see 20px of margin at the top and bottom as well. But actually there’s no margin there, that’s because CSS automatically collapses margins.&lt;/p&gt;
-
-&lt;p&gt;Now let’s check it in a block formatting context:&lt;/p&gt;
-
-&lt;style&gt;
-.block-formatting-context {
-    overflow: hidden;
-}
-&lt;/style&gt;
-
-&lt;div class="container block-formatting-context"&gt;
-    &lt;div class="margin box-1"&gt;
-        This div has a 20px margin around it.
-    &lt;/div&gt;
-    &lt;div class="margin box-2"&gt;
-        So does this one.
-    &lt;/div&gt;
-&lt;/div&gt;
-
-&lt;p&gt;Boom! See all that extra margin at the top and bottom? That’s because of the block formatting context! Now, in case you don’t feel like looking at the source, I made the containing &lt;code&gt;div&lt;/code&gt; a BFC by giving it &lt;code&gt;overflow: hidden;&lt;/code&gt;. Simple :)&lt;/p&gt;
-
-&lt;h3&gt;Block formatting contexts restrain floats&lt;/h3&gt;
-
-&lt;p&gt;Here’s what it looks like normally:&lt;/p&gt;
-
-&lt;style&gt;
-.float {
-    float: left;
-}
-&lt;/style&gt;
-
-&lt;div class="container"&gt;
-    &lt;div class="float box-1"&gt;
-        This div is floating left
-    &lt;/div&gt;
-    &lt;div class="box-2"&gt;
-        This one is &lt;b&gt;NOT&lt;/b&gt; floating. It’s got a lot of words in it. This div is probably your main section.
-    &lt;/div&gt;
-&lt;/div&gt;
-
-&lt;p&gt;That’s probably not what you want your two column layout to look like. Don’t worry, we can fix it!&lt;/p&gt;
-
-&lt;p&gt;Here it is with block formatting context properly enabled:&lt;/p&gt;
-
-&lt;style&gt;
-.block-formatting-context {
-    overflow: hidden;
-}
-&lt;/style&gt;
-
-&lt;div class="container"&gt;
-    &lt;div class="float box-1"&gt;
-        This div is floating left
-    &lt;/div&gt;
-    &lt;div class="box-2 block-formatting-context"&gt;
-        This one is &lt;b&gt;NOT&lt;/b&gt; floating, it is a &lt;b&gt;block formatting context&lt;/b&gt;. It’s got a lot of words in it. This div is probably your main section.
-    &lt;/div&gt;
-&lt;/div&gt;
-
-&lt;p&gt;As you an see, this ability makes BFCs really handy for doing column layouts.&lt;/p&gt;
-
-&lt;h3&gt;Block formatting contexts contain floats&lt;/h3&gt;
-
-&lt;p&gt;Here’s what it looks like normally:&lt;/p&gt;
-
-&lt;style&gt;
-.float {
-    float: left;
-}
-
-.border {
-    border: 2px solid black;
-}
-.clearfix {
-    clear: both;
-}
-&lt;/style&gt;
-
-&lt;div class="container border"&gt;
-    &lt;div class="float box-1"&gt;
-        This div is floating left
-    &lt;/div&gt;
-    &lt;div class="float box-2"&gt;
-        This one is too.
-    &lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div class="clearfix"&gt;&lt;/div&gt;
-
-&lt;p&gt;This time we’re trying to wrap two floated elements in a border. Obviously it didn’t work as expected. It’s actually worse than that. I had to add an invisible &lt;code&gt;div&lt;/code&gt; with &lt;code&gt;clear: both;&lt;/code&gt; (typically called a “clearfix”) before this paragraph to make sure the line breaks work properly. We shouldn’t need to do that!&lt;/p&gt;
-
-&lt;p&gt;Now we’ll add block formatting context:&lt;/p&gt;
-
-&lt;style&gt;
-.block-formatting-context {
-    overflow: hidden;
-}
-&lt;/style&gt;
-
-&lt;div class="container border block-formatting-context"&gt;
-    &lt;div class="float box-1"&gt;
-        This div is floating left
-    &lt;/div&gt;
-    &lt;div class="float box-2"&gt;
-        This one is too.
-    &lt;/div&gt;
-&lt;/div&gt;
-
-&lt;p&gt;Woot! Two boxes floating next to each other with a border around them and without using a clearfix. All by using a block formatting context!&lt;/p&gt;
-
-&lt;h2&gt;Resources&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href="https://developer.mozilla.org/en-US/docs/Web/Guide/CSS/Block_formatting_context"&gt;MDN&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="http://tech.vg.no/2013/09/26/css-block-formatting-context/"&gt;VG Tech&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="http://maxdesign.com.au/jobs/sample-block-formatting-context/index.htm"&gt;Max Design&lt;/a&gt; - this one was particularly useful since it has a bunch of examples&lt;/li&gt;
-&lt;li&gt;&lt;a href="http://yuiblog.com/blog/2010/05/19/css-101-block-formatting-contexts/"&gt;YUI&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
 </content>
   </entry>
 </feed>
