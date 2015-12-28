@@ -544,14 +544,22 @@
         <hr>
         <div>
           <h1>
-            <a href="/blog/2014/anonymous-functions/">JS: anonymous functions</a>
+            <a href="/blog/2014/js-anonymous-referenced-declared-functions/">JS: Anonymous vs. referenced vs. declared functions</a>
           </h1>
           <p>Nov  2, 2014</p>
-          <h2>What’s a typical use case for anonymous functions?</h2>
+          <h2>Anonymous</h2>
           
-          <p>I’m going to go with my high school training and focus on the word <strong>typical</strong>. So long as we're just talking about typical use, here’s my answer:</p>
+          <p>Anonymous functions are typically used as callbacks.</p>
           
-          <p>Anonymous functions are typically used as callbacks...</p>
+          <p><em>So what’s a callback?</em></p>
+          
+          <p>I’m glad you asked!</p>
+          <pre class="highlight plaintext">function takesACallback(callback) {
+              // do some interesting things here
+              return "The callback says: " + callback();
+          }
+          
+          takesACallback...</pre>
         </div>
         <hr>
         <div>

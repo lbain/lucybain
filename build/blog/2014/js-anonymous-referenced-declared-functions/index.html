@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='width=device-width, initial-scale=1' name='viewport'>
+    <meta charset='utf-8'>
+    <meta content='IE=edge,chrome=1' http-equiv='X-UA-Compatible'>
+    <meta content='An introduction to different ways of referencing and calling functions in javascript.' name='description'>
+    <meta content='javascript, js, function, anonymous, referenced, declared' name='keywords'>
+    <link href='/images/favicon.ico' rel='icon' type='image/ico'>
+    <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700|Source+Code+Pro' rel='stylesheet' type='text/css'>
+    <title>JS: Anonymous vs. referenced vs. declared functions</title>
+    <link href="/stylesheets/application.css" media="all" rel="stylesheet" type="text/css" />
+    <script src='//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js'></script>
+  </head>
+  <body>
+    <nav>
+      <div class='nav-open-btn'>
+        <ul>
+          <li></li>
+          <li></li>
+          <li></li>
+        </ul>
+      </div>
+      <ul class='nav-display'>
+        <li>
+          <a class="nav-link" href="/">Me</a>
+        </li>
+        <li>
+          <a class="nav-link" href="/resume/">Resume</a>
+        </li>
+        <li>
+          <a class="nav-link" href="/contact-me/">Contact</a>
+        </li>
+        <li>
+          <a class="nav-link" href="/resources/">Resources</a>
+        </li>
+        <li>
+          <a class="nav-link active" href="/blog/">Blog</a>
+        </li>
+      </ul>
+    </nav>
+    <script>
+      $('nav .nav-open-btn').on('click', function(){
+        $('nav .nav-display').toggleClass('open');
+      })
+    </script>
+    <div class='content'>
+      <div class=' blog-listing'>
+        <h1>JS: Anonymous vs. referenced vs. declared functions</h1>
+        <p>Published on: November  2, 2014</p>
+        <p>Tags: <a href="/blog/tags/js/">js</a> and <a href="/blog/tags/interview-questions/">interview-questions</a></p>
+        <h2>Anonymous</h2>
+        
+        <p>Anonymous functions are typically used as callbacks.</p>
+        
+        <p><em>So what’s a callback?</em></p>
+        
+        <p>I’m glad you asked!</p>
+        <pre class="highlight plaintext">function takesACallback(callback) {&#x000A;    // do some interesting things here&#x000A;    return "The callback says: " + callback();&#x000A;}&#x000A;&#x000A;takesACallback(function() {&#x000A;    return "I'm the callback!";&#x000A;}); // returns "The callback says: I'm the callback!"</pre>
+        <p>See the function that’s a parameter to the <code>takesACallback</code> call? Notice that it doesn’t have a name? That’s an anonymous function.</p>
+        
+        <h2>Referenced</h2>
+        
+        <p>However, you can still have a <strong>reference</strong> to an anonymous function, just because it is unnamed it doesn’t mean it’s unreferenced.</p>
+        <pre class="highlight plaintext">var reference = function() {&#x000A;    return "I'm still an anonymous function";&#x000A;}&#x000A;&#x000A;reference(); // returns "I'm still an anonymous function"</pre>
+        <p>The function itself is still anonymous (it doesn’t have a name directly attached to it), but you can call the function by the named reference.</p>
+        
+        <h2>Declared</h2>
+        
+        <p>Declared functions are not anonymous. They have a name directly attached to the function, with no need for a named reference.</p>
+        <pre class="highlight plaintext">function declared() {&#x000A;    return "I'm not anonymous function";&#x000A;}&#x000A;&#x000A;declared(); // returns "I'm not anonymous function"</pre>
+        <p>Writing a named function like this results in a <strong>function declaration.</strong></p>
+        
+        <h1>Gotcha</h1>
+        
+        <p>According to <a href="http://helephant.com/2008/08/23/javascript-anonymous-functions/">Helen</a>:</p>
+        
+        <blockquote>
+        <p>Anonymous functions are created at runtime ... Function declarations are different. They are run before any of the other code is executed so the functions do not have to be declared before the code that calls them.</p>
+        </blockquote>
+        
+        <p>Here’s an example of the referenced anonymous function and a declared function in action:</p>
+        <pre class="highlight plaintext">function tester() {&#x000A;  declaredFunction();&#x000A;  referencedFunction();&#x000A;&#x000A;  function declaredFunction() {&#x000A;    console.log("I'm a declared function");&#x000A;  }&#x000A;&#x000A;  var referencedFunction = function () {&#x000A;    console.log("I'm an anonymous function called by a reference");&#x000A;  };&#x000A;}&#x000A;&#x000A;tester();&#x000A;// logs "I'm a declared function"&#x000A;// Uncaught TypeError: referencedFunction is not a function</pre>
+        <p><em>Huh? Why did only one of those work?</em></p>
+        
+        <p>This is directly related to <a href="#">hoisting</a> - if you’re not familiar with that term you should read up about it. Go ahead, I’ll wait. All caught up? Good!</p>
+        
+        <p>Hopefully after reading about hoisting you’ve got an idea of what’s going on. Let’s look in a bit more detail. Although you wrote the code above the JS interpreter converts it to:</p>
+        <pre class="highlight plaintext">function tester() {&#x000A;  function declaredFunction() {&#x000A;    console.log("I'm a declared function");&#x000A;  }&#x000A;&#x000A;  var referencedFunction;&#x000A;&#x000A;  declaredFunction();&#x000A;  referencedFunction();&#x000A;&#x000A;  referencedFunction = function () {&#x000A;    console.log("I'm an anonymous function called by a reference");&#x000A;  };&#x000A;}</pre>
+        <p>Now Helen’s quote should make more sense. The anonymous function (which is referenced by <code>referencedFunction</code>) isn’t created until it’s position in the code (at runtime). However the declared function is hoisted to the top of the scope and is immediately available for use.</p>
+        
+        <p>You can find a list of pros and cons for using anonymous functions on <a href="http://stackoverflow.com/questions/10273185/what-are-the-benefits-to-using-anonymous-functions-instead-of-named-functions-fo">stackoverflow</a>.</p>
+        <div class='recommended-reading'>
+          <h2>Recommended reading</h2>
+          <p>You might also like <a href="/blog/2014/google-adwords-async/">JS: Async Google Adwords conversion</a></p>
+        </div>
+        <hr>
+        <div id='disqus_thread'></div>
+        <script>
+          var disqus_shortname = 'lucybain';
+          (function() {
+              var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+              dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+              (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+          })();
+        </script>
+        <noscript>
+          Please enable JavaScript to view the
+          <a href='http://disqus.com/?ref_noscript'>comments powered by Disqus.</a>
+        </noscript>
+        <a class='dsq-brlink' href='http://disqus.com'>
+          comments powered by
+          <span class='logo-disqus'>Disqus</span>
+        </a>
+        <script>
+          var disqus_shortname = 'lucybain';
+          (function () {
+              var s = document.createElement('script'); s.async = true;
+              s.type = 'text/javascript';
+              s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+              (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+          }());
+        </script>
+      </div>
+    </div>
+  </body>
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    
+    ga('create', 'UA-45866381-1', 'lucybain.com');
+    ga('send', 'pageview');
+  </script>
+</html>
+
