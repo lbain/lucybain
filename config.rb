@@ -34,13 +34,16 @@ end
 
 page "/feed.xml", layout: false
 
-
-redirect "udacity/index.html", to: "/resources/udacity-python-study-group/"
-redirect "python/index.html", to: "/resources/udacity-python-study-group/"
-redirect "cv/index.html", to: "/resume/"
-
-redirect "odin/index.html", to: "/resources/js-jquery-study-group/"
-redirect "js/index.html", to: "/resources/js-jquery-study-group/"
+{
+  "udacity/index.html" => "/resources/udacity-python-study-group/",
+  "python/index.html" => "/resources/udacity-python-study-group/",
+  "cv/index.html" => "/resume/",
+  "odin/index.html" => "/resources/js-jquery-study-group/",
+  "js/index.html" => "/resources/js-jquery-study-group/",
+  'blog/2014/anonymous-functions/index.html' => '/blog/2014/js-anonymous-referenced-declared-functions/'
+}.each do |from, to|
+  redirect from, to: to
+end
 
 set :markdown, :tables => true, :autolink => true, :gh_blockcode => true, :fenced_code_blocks => true
 set :markdown_engine, :redcarpet
