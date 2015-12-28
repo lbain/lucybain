@@ -43,7 +43,7 @@ Here the `this` refers to the link the user clicked on, just like `event.target`
 
 * `this` refers to the context that was explicitly set
 
-Apparently you can use `call` or `apply` and pass a context explicitly. In that case `this` refers to the passed context.
+Apparently you can use [`call` or `apply`](/blog/2014/call-vs-apply/) and pass a context explicitly. In that case `this` refers to the passed context.
 
 ```js
 function greeter(){

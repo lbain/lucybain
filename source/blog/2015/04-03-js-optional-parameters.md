@@ -11,7 +11,7 @@ Coming from a Ruby background, I find this option the most intuitive. You can cr
 
 ```
 var params = {
-    size: ’small',
+    size: 'small',
     color: 'red'
 };
 
@@ -23,7 +23,7 @@ function carSentence(optionalParams) {
                 " sized " + color + " one that goes " + speed);
 }
 carSentence(params);
-// logs "My favourite car is a small sized red one that goes "
+// logs "My favourite car is a small sized red one that goes undefined"
 ```
 
 As you can see I didn’t supply the `speed` parameter in my `params` object, but the `carSentence` function still worked. So `speed` was an optional parameter.
@@ -44,9 +44,7 @@ but this won’t work when `optionalParams.speed` is `false`. The better way to 
 
 ```
 var speed;
-if (typeof optionalParams.speed !== 'undefined') {
-    speed = optionalParams.speed;
-} else {
+if (typeof optionalParams.speed === 'undefined') {
     speed = "fast";
 }
 ```
