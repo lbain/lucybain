@@ -547,6 +547,42 @@ $ bower link
 </content>
   </entry>
   <entry>
+    <title>Languages, cultures, and opinions</title>
+    <link rel="alternate" href="http://lucybain.com/blog/2015/opinions-and-languages/"/>
+    <id>http://lucybain.com/blog/2015/opinions-and-languages/</id>
+    <published>2015-08-31T00:00:00Z</published>
+    <updated>2016-01-02T16:45:30+11:00</updated>
+    <author>
+      <name>Article Author</name>
+    </author>
+    <content type="html">&lt;h2&gt;I wrote Ruby&lt;/h2&gt;
+
+&lt;p&gt;I have a lot of shirts that have “Ruby” on them from past Rails Girls events. I love wearing them. Partly I like the style of the script (thanks &lt;a href="http://carlahackett.com/"&gt;Carla Hackett&lt;/a&gt; for the beautiful lettering!) and the fact that the shirts look girly and are about programming. But mostly I like Rails Girls and what it’s meant for me.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="https://twitter.com/lucykbain/status/487738897221185536"&gt;&lt;img alt="Rails Girls shirts" src="/images/blog/ruby-shirt.jpg" /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;These shirts occasionally propt questions. My current job doesn’t use much Ruby at all. I’ve written a bit of it for our wallboards, but that’s about it. So when people at work see me wearing a Ruby shirt they’re a bit curious. Some people ask about Rails Girls (it’s awesome), others ask what my last job was (at a Rails shop), and some ask “Do you miss it?”&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Note: I do still write ruby on personal time, but it’s way less than I used to.&lt;/em&gt;&lt;/p&gt;
+
+&lt;h2&gt;I’m an expat&lt;/h2&gt;
+
+&lt;p&gt;I’m originally from the USA, but I live in Australia now. My accent is a dead give away. Some people ask me about where I’m originally from (near Washington DC), others ask what the differences are between the two (distances and prices), and some ask “Do you miss it?”&lt;/p&gt;
+
+&lt;h2&gt;So, do I miss it?&lt;/h2&gt;
+
+&lt;p&gt;Yes, of course. I miss my family, my friends, the home I grew up in. I miss knowing the right words and cultural references. I miss driving on right side of the road. I miss cold Christmases and having my birthday in the fall.&lt;/p&gt;
+
+&lt;p&gt;But there are a bunch of things I don’t mind going without. The things you pass by without connecting with. I’m happy to skip trips to Walmart and traffic jams. I don’t need the rolling hills of Virginia when I have the beaches of Sydney. I’ve found new restraunts to take over from my previous huants. Life moves on and I adapt.&lt;/p&gt;
+
+&lt;p&gt;It’s been the same with Ruby. I miss how much I used to know and get frustrated with needing to relearn so many pieces. I miss seeing people I only know from twitter. I miss the culture of pair programming and knowing which gems were “in.”&lt;/p&gt;
+
+&lt;p&gt;But the language itself? I don’t think it matters as much. In general, Ruby and JS can do about the same things. Both offer their own perks and quirks. They are different but similar.&lt;/p&gt;
+
+&lt;p&gt;I miss people more than things, experiences more than places, and communities more than the languages.&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
     <title>JS: ES6’s string templates</title>
     <link rel="alternate" href="http://lucybain.com/blog/2015/js-es6-string-templates/"/>
     <id>http://lucybain.com/blog/2015/js-es6-string-templates/</id>
@@ -750,134 +786,6 @@ console.log(cat.sound); // 'meow'
 &lt;li&gt;&lt;a href="https://babeljs.io/repl/"&gt;Babel REPL&lt;/a&gt; if you want to play around with ES6&lt;/li&gt;
 &lt;li&gt;&lt;a href="http://programmers.stackexchange.com/questions/278652/how-much-should-i-be-using-let-vs-const-in-es6"&gt;StackExchange&lt;/a&gt; for a discussion about when to use &lt;code&gt;const&lt;/code&gt;&lt;/li&gt;
 &lt;/ul&gt;
-</content>
-  </entry>
-  <entry>
-    <title>Intro to programming: If statements</title>
-    <link rel="alternate" href="http://lucybain.com/blog/2015/intro-to-programming-if-statements/"/>
-    <id>http://lucybain.com/blog/2015/intro-to-programming-if-statements/</id>
-    <published>2015-07-24T00:00:00Z</published>
-    <updated>2015-11-10T20:54:37+11:00</updated>
-    <author>
-      <name>Article Author</name>
-    </author>
-    <content type="html">&lt;h2&gt;Explanation&lt;/h2&gt;
-
-&lt;p&gt;Although computers live in a very predictable world of 1s and 0s they need to be able to handle uncertainties.&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;If&lt;/strong&gt; a customer has enough money in his account &lt;strong&gt;then&lt;/strong&gt; the ATM should give money out.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;If&lt;/strong&gt; a shirt is on sale &lt;strong&gt;then&lt;/strong&gt; the shirt’s price must be updated &lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;You deal with uncertainties by using the same kind of &lt;strong&gt;if statements&lt;/strong&gt; as a computer every day.&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;If&lt;/strong&gt; it is sunny &lt;strong&gt;then&lt;/strong&gt; we will have a picnic.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;You first determine that it’s sunny, then you know you will have a picnic.&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;If&lt;/strong&gt; you are over 4ft tall &lt;strong&gt;then&lt;/strong&gt; you can ride this roller coaster.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;Once you know you know you are over 4ft tall you also know you are allowed to ride this roller coaster.&lt;/p&gt;
-
-&lt;p&gt;Each if statement will occur only under a certain condition (it’s sunny or you are over 4ft tall in the above examples). This condition will be a &lt;code&gt;True&lt;/code&gt; or &lt;code&gt;False&lt;/code&gt; statement. When the condition is &lt;code&gt;True&lt;/code&gt;, the “then” section will occur. When the condition is &lt;code&gt;False&lt;/code&gt;, the “then” section is ignored.&lt;/p&gt;
-
-&lt;p&gt;We might string many of these ifs together:&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;If&lt;/strong&gt; it is sunny &lt;strong&gt;then&lt;/strong&gt; we will have a picnic.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;If&lt;/strong&gt; it is raining &lt;strong&gt;then&lt;/strong&gt; I will bring an umbrella.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;If&lt;/strong&gt; it is cold &lt;strong&gt;then&lt;/strong&gt; I will wear a coat.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;Let’s assume that it’s both sunny and cold. Using your “human” brain, reread the above.&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;ul&gt;
-&lt;li&gt;Will you go on a picnic? Yes.&lt;/li&gt;
-&lt;li&gt;Will you bring an umbrella? No.&lt;/li&gt;
-&lt;li&gt;Will you wear a coat? Yes.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;Lovely! You&amp;#39;ve got a picnic wearing a light jacket to look forward to!&lt;/p&gt;
-
-&lt;p&gt;Now look at the conditions in the examples above with your “computer” brain. Notice anything? These conditions are always a statement that is &lt;code&gt;True&lt;/code&gt; or &lt;code&gt;False&lt;/code&gt;. “It is sunny”, “it is raining”, and “it is cold” are all boolean expressions. So the computer can read these examples as:&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;If&lt;/strong&gt; &lt;code&gt;True&lt;/code&gt; &lt;strong&gt;then&lt;/strong&gt; we will have a picnic.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;If&lt;/strong&gt; &lt;code&gt;False&lt;/code&gt; (this is ignored since the condition evaluated to &lt;code&gt;False&lt;/code&gt;)&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;If&lt;/strong&gt; &lt;code&gt;True&lt;/code&gt; &lt;strong&gt;then&lt;/strong&gt; I will wear a coat.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;Computers use these if statements to determine what should happen next. If statements control the flow of the program, some things happen (like having a picnic), while others are skipped over (like bringing an umbrella).&lt;/p&gt;
-
-&lt;h2&gt;Exercises&lt;/h2&gt;
-
-&lt;p&gt;Ok, now it’s your turn. Answer the following questions for you at the current moment.&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;If&lt;/strong&gt; it is sunny &lt;strong&gt;then&lt;/strong&gt; we will have a picnic.&lt;/p&gt;
-
-&lt;p&gt;Will you have a picnic today?&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;If&lt;/strong&gt; you eat your vegetables &lt;strong&gt;then&lt;/strong&gt; you can have dessert.&lt;/p&gt;
-
-&lt;p&gt;Any dessert for you?&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;If&lt;/strong&gt; the sky is blue &lt;strong&gt;then&lt;/strong&gt; the world is turning.&lt;/p&gt;
-
-&lt;p&gt;Is the world still turning?&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;If&lt;/strong&gt; the light is off &lt;strong&gt;then&lt;/strong&gt; the teacher will turn it on.&lt;/p&gt;
-
-&lt;p&gt;Does the teacher turn on the light?&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Think about your every day life, and come up with at least five more examples of when you use if statements to decide what to do.&lt;/p&gt;
-
-&lt;iframe id="hidden_iframe" name="hidden_iframe" style="display:none;"&gt;
-&lt;/iframe&gt;
-
-&lt;form action="https://docs.google.com/forms/d/1u4xIbGktEd3RzHQHfJcSRwuqUklokVcmeNBTrVbH6oI/formResponse" method="POST" id="ss-form" onsubmit="hideQuestions();" target="hidden_iframe" class="programming-examples"&gt;
-  &lt;div class="example-questions"&gt;
-    &lt;input type="hidden" name="entry.1043295642" value="If statements" id="group_1043295642_1" role="radio" class="ss-q-radio valid" aria-label="Boolean"&gt;
-    &lt;ol&gt;
-      &lt;li&gt;
-        &lt;textarea name="entry.1571729994" rows="8" cols="0" class="ss-q-long" id="entry_1571729994" dir="auto" aria-label="Example 1  "&gt;&lt;/textarea&gt;
-      &lt;/li&gt;
-      &lt;li&gt;
-        &lt;textarea name="entry.332234193" rows="8" cols="0" class="ss-q-long" id="entry_332234193" dir="auto" aria-label="Example 2  "&gt;&lt;/textarea&gt;
-      &lt;/li&gt;
-      &lt;li&gt;
-        &lt;textarea name="entry.796117189" rows="8" cols="0" class="ss-q-long" id="entry_796117189" dir="auto" aria-label="Example 3  "&gt;&lt;/textarea&gt;
-      &lt;/li&gt;
-      &lt;li&gt;
-        &lt;textarea name="entry.1635444679" rows="8" cols="0" class="ss-q-long" id="entry_1635444679" dir="auto" aria-label="Example 4  "&gt;&lt;/textarea&gt;
-      &lt;/li&gt;
-      &lt;li&gt;
-        &lt;textarea name="entry.341236292" rows="8" cols="0" class="ss-q-long" id="entry_341236292" dir="auto" aria-label="Example 5  "&gt;&lt;/textarea&gt;
-      &lt;/li&gt;
-    &lt;/ol&gt;
-    &lt;input type="submit" name="submit" value="Submit" id="ss-submit" class="jfk-button jfk-button-action "&gt;
-  &lt;/div&gt;
-  &lt;div class="thank-you"&gt;
-    Thanks for submitting your examples!
-  &lt;/div&gt;
-&lt;/form&gt;
-
-&lt;script&gt;
-function hideQuestions() {
-  document.getElementsByClassName('example-questions')[0].className+=' inactive';
-  document.getElementsByClassName('thank-you')[0].className+=' active';
-}
-&lt;/script&gt;
 </content>
   </entry>
 </feed>

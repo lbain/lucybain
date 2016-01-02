@@ -53,7 +53,7 @@
         <h2>Object</h2>
         
         <p>Coming from a Ruby background, I find this option the most intuitive. You can create an object of your optional parameters, it&#39;d look something like this:</p>
-        <pre class="highlight plaintext">var params = {&#x000A;    size: ’small',&#x000A;    color: 'red'&#x000A;};&#x000A;&#x000A;function carSentence(optionalParams) {&#x000A;    var size = optionalParams.size;&#x000A;    var color = optionalParams.color;&#x000A;    var speed = optionalParams.speed;&#x000A;    console.log("My favourite car is a " + size +&#x000A;                " sized " + color + " one that goes " + speed);&#x000A;}&#x000A;carSentence(params);&#x000A;// logs "My favourite car is a small sized red one that goes "</pre>
+        <pre class="highlight plaintext">var params = {&#x000A;    size: 'small',&#x000A;    color: 'red'&#x000A;};&#x000A;&#x000A;function carSentence(optionalParams) {&#x000A;    var size = optionalParams.size;&#x000A;    var color = optionalParams.color;&#x000A;    var speed = optionalParams.speed;&#x000A;    console.log("My favourite car is a " + size +&#x000A;                " sized " + color + " one that goes " + speed);&#x000A;}&#x000A;carSentence(params);&#x000A;// logs "My favourite car is a small sized red one that goes undefined"</pre>
         <p>As you can see I didn’t supply the <code>speed</code> parameter in my <code>params</code> object, but the <code>carSentence</code> function still worked. So <code>speed</code> was an optional parameter.</p>
         
         <p><strong>But <code>optionalParams</code> was still required</strong></p>
@@ -65,7 +65,7 @@
         <p><code>optionalParams</code> didn’t define a value for <code>speed</code>, but the sentence expected <code>speed</code> to be defined. In this case you can give a default value for the variable (such as <code>&quot;fast&quot;</code>). It’s tempting to do this:</p>
         <pre class="highlight plaintext">var speed = optionalParams.speed || "fast";</pre>
         <p>but this won’t work when <code>optionalParams.speed</code> is <code>false</code>. The better way to handle it is:</p>
-        <pre class="highlight plaintext">var speed;&#x000A;if (typeof optionalParams.speed !== 'undefined') {&#x000A;    speed = optionalParams.speed;&#x000A;} else {&#x000A;    speed = "fast";&#x000A;}</pre>
+        <pre class="highlight plaintext">var speed;&#x000A;if (typeof optionalParams.speed === 'undefined') {&#x000A;    speed = "fast";&#x000A;}</pre>
         <p>however that’s quite wordy. You can cut it down with a <a href="/blog/2014/js-ternary/">ternary</a>, or make a <code>givenOrDefault</code> method (hopefully with a better name!).</p>
         <pre class="highlight plaintext">function givenOrDefault(given, default) {&#x000A;    if (typeof given !== 'undefined') {&#x000A;        return given;&#x000A;    } else {&#x000A;        return default;&#x000A;    }&#x000A;}</pre>
         <p>Thus our example becomes:</p>
@@ -106,7 +106,7 @@
         </ul>
         <div class='recommended-reading'>
           <h2>Recommended reading</h2>
-          <p>You might also like <a href="/blog/2014/null-undefined-undeclared/">JS: null, undefined, and undeclared</a></p>
+          <p>You might also like <a href="/blog/2014/js-document-load-vs-ready/">JS: document load vs document ready</a></p>
         </div>
         <hr>
         <div id='disqus_thread'></div>
