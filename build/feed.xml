@@ -4,10 +4,168 @@
   <id>http://lucybain.com/blog</id>
   <link href="http://lucybain.com/blog"/>
   <link href="http://lucybain.com/feed.xml" rel="self"/>
-  <updated>2015-10-20T00:00:00Z</updated>
+  <updated>2015-11-01T00:00:00Z</updated>
   <author>
     <name>Lucy Bain</name>
   </author>
+  <entry>
+    <title>JS: Enhanced object literals</title>
+    <link rel="alternate" href="http://lucybain.com/blog/2015/enhanced-obj-literals/"/>
+    <id>http://lucybain.com/blog/2015/enhanced-obj-literals/</id>
+    <published>2015-11-01T00:00:00Z</published>
+    <updated>2016-01-10T14:13:09+11:00</updated>
+    <author>
+      <name>Article Author</name>
+    </author>
+    <content type="html">&lt;p&gt;Here’s some nice &lt;a href="/blog/tags/es6/"&gt;ES6&lt;/a&gt; syntactic sugar for creating object literals. I found it hard to read at first and needed a few examples before I could understand what was happening. It’s got a few uses, so we’ll build up more and more complicated examples to see what it can do.&lt;/p&gt;
+
+&lt;h2&gt;Ordinary object literals&lt;/h2&gt;
+
+&lt;p&gt;In vanilla JS we create object literals like this:&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;var a = 1,
+    b = 2,
+    c = 3;
+
+var obj = {
+    a : a,
+    b : b,
+    c : c
+};
+
+console.log(obj); // logs { "a" : 1, "b" : 2, "c" : 3 }
+&lt;/pre&gt;
+&lt;p&gt;&lt;em&gt;What’s wrong with this way?&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;This works, but is quite repetitive and fairly heavy. You have to give the name of the key, even though it’s the same as the name of the variable.&lt;/p&gt;
+
+&lt;p&gt;Let’s rewrite it with ES6 object literals:&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;let a = 1,
+    b = 2,
+    c = 3;
+
+let obj = { a, b, c };
+
+console.log(obj); // logs { "a" : 1, "b" : 2, "c" : 3 }
+&lt;/pre&gt;
+&lt;p&gt;&lt;em&gt;Gah! What’s happening here??&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;This is how I felt when I first read the &lt;code&gt;let obj = { a, b, c };&lt;/code&gt; line as well. Especially because &lt;code&gt;{}&lt;/code&gt; is a pretty common way to create hashes (Ruby) or dictionaries (Python). This syntax just felt wrong. But it is certainly more concise so we’re just gonna need to get past the weirdness.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Yeah, but what’s the code &lt;strong&gt;really&lt;/strong&gt;?&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;To ease concerns... If you put the above ES6 code into the &lt;a href="https://babeljs.io/repl/"&gt;Babel REPL&lt;/a&gt; it will produce the following vanilla JS code:&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;"use strict";
+
+var a = 1,
+    b = 2,
+    c = 3;
+
+var obj = { a: a, b: b, c: c };
+
+console.log(obj);
+&lt;/pre&gt;
+&lt;p&gt;No funny business here - promise!&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;I&amp;#39;m not convinced - what’s an example of this being useful?&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;What happens if you change the name of a variable to be something more meaningful, but forget to change the object key? In vanilla JS we have something like this:&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;var firstPlace = 1,
+    secondPlace = 2,
+    thirdPlace = 3;
+
+var obj = {
+    a : firstPlace,
+    b : secondPlace,
+    c : thirdPlace
+};
+
+console.log(obj); // logs { "a" : 1, "b" : 2, "c" : 3 }
+console.log(obj.thirdPlace); // undefined
+&lt;/pre&gt;
+&lt;p&gt;We had all the best intentions of using better names, but they didn’t come through after you created the object. (I’m sure you’re a perfect dev who would never do something like this. But I have, and it was super annoying to debug.)&lt;/p&gt;
+
+&lt;p&gt;Here’s the same example with ES6 helping us out:&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;let firstPlace = 1,
+    secondPlace = 2,
+    thirdPlace = 3;
+
+let obj = { firstPlace, secondPlace, thirdPlace };
+
+console.log(obj); // logs { "firstPlace" : 1, "secondPlace" : 2, "thirdPlace" : 3 }
+console.log(obj.thirdPlace); // logs 3
+&lt;/pre&gt;
+&lt;p&gt;You can see that it’s a bit easier to keep track of everything with the enhanced object literals.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Ok, so that was the most basic one. Give me something more interesting!&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;Sure thing!&lt;/p&gt;
+
+&lt;h2&gt;Dynamic keys&lt;/h2&gt;
+
+&lt;p&gt;The new syntax also allows dynamic keys to be created more easily. Here’s an example of the ES6 version:&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;let a = 1,
+    b = 2,
+    c = 3;
+
+let obj = {
+
+
+
+}
+
+console.log(obj); // logs { "2" : 1, "3" : 2, "4" : 3 }
+&lt;/pre&gt;
+&lt;p&gt;&lt;em&gt;But you can have dynamic keys in vanilla JS!&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;True, we could use [] notation to remove this problem:&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;var numbers = [1, 2, 3];
+var obj = {};
+
+for (var i = 0; i &amp;lt; numbers.length; i++) {
+    obj[numbers[i] + 1] = numbers[i];
+}
+
+console.log(obj); // logs { "2" : 1, "3" : 2, "4" : 3 }
+&lt;/pre&gt;
+&lt;p&gt;Now the keys and values can be dynamic, but look at that code! The new way is certainly easier to read and write.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Yeah, it’s looking pretty nice, let’s do another one!&lt;/em&gt;&lt;/p&gt;
+
+&lt;h2&gt;Methods&lt;/h2&gt;
+
+&lt;p&gt;It’s easy enough to put methods on objects in vanilla JS:&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;var obj = {
+    hello: function(name) {
+        console.log('hello ' + name);
+    }
+}
+obj.hello('world'); // logs "hello world"
+&lt;/pre&gt;
+&lt;p&gt;But with enhanced object literals we can get rid of some of the boiler plate code to tighten things up a bit:&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;let obj = {
+  hello(name) {
+    console.log('hello ' + name);
+  }
+};
+obj.hello('world'); // logs "hello world"
+&lt;/pre&gt;
+&lt;p&gt;&lt;em&gt;That’s crazy! Where’s the function keyword?&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;It’s not needed any more! ES6 knows &lt;code&gt;hello&lt;/code&gt; is a function because of the &lt;code&gt;()&lt;/code&gt; and the method gets created automatically.&lt;/p&gt;
+
+&lt;h2&gt;Review&lt;/h2&gt;
+
+&lt;p&gt;So there you have it! ES6’s enhanced object literals can make object creating easier by adding syntactic sugar. Remember, this doesn’t change how objects work in general. All of these examples can also be written in vanilla JS, so it does’t add new functionality. But it does make writing JS that much easier!&lt;/p&gt;
+
+&lt;h2&gt;Resources&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://maximilianhoffmann.com/posts/object-based-javascript-in-es6"&gt;Maximilian Hoffmann&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Object_initializer"&gt;Mozilla&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Overview of all &lt;a href="https://github.com/lukehoban/es6features#enhanced-object-literals"&gt;ES6 features&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</content>
+  </entry>
   <entry>
     <title>CSS: Flexbox in action - Bitbucket Server pull request header</title>
     <link rel="alternate" href="http://lucybain.com/blog/2015/css-flexbox-in-action/"/>
@@ -673,118 +831,6 @@ console.log(`Your name is: ${user.name}`)
 &lt;li&gt;&lt;a href="https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/template_strings"&gt;Mozilla&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://developers.google.com/web/updates/2015/01/ES6-Template-Strings?hl=en"&gt;Google Developers&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="http://www.sitepoint.com/understanding-ecmascript-6-template-strings/"&gt;Sitepoint&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-</content>
-  </entry>
-  <entry>
-    <title>JS: ES6 Const keyword</title>
-    <link rel="alternate" href="http://lucybain.com/blog/2015/js-es6-const/"/>
-    <id>http://lucybain.com/blog/2015/js-es6-const/</id>
-    <published>2015-08-02T00:00:00Z</published>
-    <updated>2015-12-18T19:22:49+11:00</updated>
-    <author>
-      <name>Article Author</name>
-    </author>
-    <content type="html">&lt;h2&gt;A little bit of background&lt;/h2&gt;
-
-&lt;h3&gt;ES6&lt;/h3&gt;
-
-&lt;p&gt;ECMAScript 6 (ES6) introduced a lot of new JS keywords to play with. Generally these changes make JS a bit more approchable for new JS developers by making JS more similar to other programming languages.&lt;/p&gt;
-
-&lt;h3&gt;Constants&lt;/h3&gt;
-
-&lt;p&gt;Some languages (particularly compiled ones like Java) have a concept of &lt;em&gt;constants&lt;/em&gt;. This are like &lt;em&gt;variables&lt;/em&gt;, but the opposite.&lt;/p&gt;
-
-&lt;p&gt;&lt;em&gt;Wow, that was really clear...&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;Constants are like variables in that a value can be assigned to them. They are unlike variables in that their value cannot be changed after the a value has been assigned to them. (There’s a lot more that could be said about this, but I’ll leave it there since it’s enough to get through this post.)&lt;/p&gt;
-
-&lt;p&gt;In sudo code it would look kinda like this:&lt;/p&gt;
-&lt;pre class="highlight plaintext"&gt;variable = 1
-constant = 2
-
-variable = 3 // All good since variables can change
-constant = 4 // Error since constants can't change
-&lt;/pre&gt;
-&lt;h2&gt;Let’s talk about JS&lt;/h2&gt;
-
-&lt;p&gt;&lt;em&gt;So that’s how other languages do it - but what about JS?&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;Honestly ES6’s implementation seems pretty similar to other languages.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; Since ES6 isn’t fully implemented in browsers most people are using a compiler to get from ES6 syntax to normal JS. These compilers might throw errors for some of the examples below.&lt;/p&gt;
-
-&lt;h3&gt;Basic usage&lt;/h3&gt;
-
-&lt;p&gt;ES6 introduced a new &lt;code&gt;const&lt;/code&gt; keyword to behave like a constant. Something that is defined &lt;code&gt;const&lt;/code&gt; can only be assigned once.&lt;/p&gt;
-&lt;pre class="highlight plaintext"&gt;const cat = 'meow';
-cat = 'woof';
-console.log(cat); // logs 'meow'
-&lt;/pre&gt;
-&lt;p&gt;&lt;em&gt;But what if I try something tricky?&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;There’re are a couple of ways you could try to beat the system, but ES6 has covered them.&lt;/p&gt;
-
-&lt;p&gt;Reuse the &lt;code&gt;const&lt;/code&gt; keyword:&lt;/p&gt;
-&lt;pre class="highlight plaintext"&gt;const cat = 'meow';
-const cat = 'woof';
-console.log(cat); // logs 'meow'
-&lt;/pre&gt;
-&lt;p&gt;Change a constant to a variable:&lt;/p&gt;
-&lt;pre class="highlight plaintext"&gt;const cat = 'meow';
-var cat = 'woof';
-console.log(cat); // logs 'meow'
-&lt;/pre&gt;
-&lt;p&gt;Declare a constant without defining it:&lt;/p&gt;
-&lt;pre class="highlight plaintext"&gt;const cat; // SyntaxError
-&lt;/pre&gt;
-&lt;p&gt;Use block scope:&lt;/p&gt;
-&lt;pre class="highlight plaintext"&gt;const cat = 'meow';
-if (true) {
-  const cat = 'woof';
-}
-console.log(cat); // logs meow
-&lt;/pre&gt;
-&lt;p&gt;Use function scope:&lt;/p&gt;
-&lt;pre class="highlight plaintext"&gt;const cat = 'meow';
-function testConsts () {
-  const cat = 'woof';
-  console.log(cat)
-}
-testConsts(); // logs woof
-console.log(cat); // logs meow
-&lt;/pre&gt;
-&lt;p&gt;(Hopefully those last couple weren’t a surprise becuase JS uses &lt;a href="http://lucybain.com/blog/2015/js-es6-let-vs-var/"&gt;function scoping&lt;/a&gt;.)&lt;/p&gt;
-
-&lt;p&gt;Ideally you should use constants in their intended way without getting too tricky!&lt;/p&gt;
-
-&lt;h3&gt;Gotcha&lt;/h3&gt;
-
-&lt;p&gt;Here’s the big catch: a constant can only be defined once, but it can be changed in other ways. In “programming terms” something that cannot be changed in anyway is &lt;strong&gt;immutable&lt;/strong&gt;. ES6 constants are mutable (i.e. not immutable, i.e. changeable).&lt;/p&gt;
-
-&lt;p&gt;&lt;em&gt;How can I change a constant?&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;Some object types can be changed without assigning again. Let’s look at a couple.&lt;/p&gt;
-
-&lt;p&gt;Arrays:&lt;/p&gt;
-&lt;pre class="highlight plaintext"&gt;const animals = [];
-animals.push('cat', 'dog');
-console.log(animals); // ['cat', 'dog']
-&lt;/pre&gt;
-&lt;p&gt;Objects:&lt;/p&gt;
-&lt;pre class="highlight plaintext"&gt;const cat = {'sound': 'meow'};
-cat.sound = 'woof'
-console.log(cat.sound); // 'meow'
-&lt;/pre&gt;
-&lt;p&gt;Any mutable object type will have this problem. The immutable types are: Boolean, Null, Undefined, Number, String, Symbol (the primative types).&lt;/p&gt;
-
-&lt;h2&gt;Resources&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/const"&gt;Mozilla&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://strongloop.com/strongblog/es6-variable-declarations/"&gt;StrongLoop&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://babeljs.io/repl/"&gt;Babel REPL&lt;/a&gt; if you want to play around with ES6&lt;/li&gt;
-&lt;li&gt;&lt;a href="http://programmers.stackexchange.com/questions/278652/how-much-should-i-be-using-let-vs-const-in-es6"&gt;StackExchange&lt;/a&gt; for a discussion about when to use &lt;code&gt;const&lt;/code&gt;&lt;/li&gt;
 &lt;/ul&gt;
 </content>
   </entry>
