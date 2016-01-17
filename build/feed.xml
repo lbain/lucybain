@@ -13,7 +13,7 @@
     <link rel="alternate" href="http://lucybain.com/blog/2015/js-destructuring-assignment-es6/"/>
     <id>http://lucybain.com/blog/2015/js-destructuring-assignment-es6/</id>
     <published>2015-11-13T00:00:00Z</published>
-    <updated>2016-01-17T18:29:58+11:00</updated>
+    <updated>2016-01-17T18:53:44+11:00</updated>
     <author>
       <name>Article Author</name>
     </author>
@@ -160,7 +160,7 @@ console.log(c); // logs [4, 5, 6]
 &lt;p&gt;I’ve seen this feature used more with arrays than objects, but it is possible to use destructuring assignment with objects as well. Let’s take a look:&lt;/p&gt;
 &lt;pre class="highlight plaintext"&gt;let obj = {cat: 'meow', dog: 'woof', mouse: 'squeak'};
 
-let {cat: a, dog: b, mouse: c} = obj;
+let {cat, dog, mouse} = obj;
 console.log(a); // logs 'meow'
 console.log(b); // logs 'woof'
 console.log(c); // logs 'squeak'
@@ -170,20 +170,35 @@ console.log(c); // logs 'squeak'
 &lt;p&gt;I found the syntax for objects much less intuitive and picky than expected. Here are a couple of examples that &lt;strong&gt;don’t&lt;/strong&gt; work.&lt;/p&gt;
 
 &lt;h3&gt;Need the key names&lt;/h3&gt;
+
+&lt;p&gt;This doesn&amp;#39;t work:&lt;/p&gt;
 &lt;pre class="highlight plaintext"&gt;let obj = {cat: 'meow', dog: 'woof', mouse: 'squeak'};
 
 let {a, b, c} = obj;
 &lt;/pre&gt;
 &lt;p&gt;This doesn’t work becuase object keys aren’t ordered. There’s no way for JS to know that you want &lt;code&gt;cat&lt;/code&gt; to be first becuase there is no concept of “first” for objects.&lt;/p&gt;
 
-&lt;h3&gt;Can’t pre-declare variables&lt;/h3&gt;
+&lt;p&gt;This does work:&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;let obj = {cat: 'meow', dog: 'woof', mouse: 'squeak'};
+
+let {cat: a, dog: b, mouse: c} = obj;
+&lt;/pre&gt;
+&lt;h3&gt;Special syntax for pre-declare variables&lt;/h3&gt;
+
+&lt;p&gt;This doesn’t work:&lt;/p&gt;
 &lt;pre class="highlight plaintext"&gt;let a, b, c
 let obj = {cat: 'meow', dog: 'woof', mouse: 'squeak'};
 
 {cat: a, dog: b, mouse: c} = obj;
 &lt;/pre&gt;
-&lt;p&gt;I’m not sure what this is about. I assume it a quirk of the REPL rather than officially not supported by ES6. I’ve asked a &lt;a href="http://stackoverflow.com/questions/34836126/can-i-pre-declare-variables-for-destructuring-assignment-of-objects"&gt;question&lt;/a&gt; about it though, so hopefully I’ll have more answers for you soon!&lt;/p&gt;
+&lt;p&gt;I was particularly confused about this. So I asked a &lt;a href="http://stackoverflow.com/questions/34836126/can-i-pre-declare-variables-for-destructuring-assignment-of-objects"&gt;question&lt;/a&gt; about it and got an answer in no time (thank you Stackoverflow!).&lt;/p&gt;
 
+&lt;p&gt;Since there’s no keyword before the first &lt;code&gt;{&lt;/code&gt; in the line &lt;code&gt;{cat: a, dog: b, mouse: c} = obj;&lt;/code&gt; the &lt;code&gt;{&lt;/code&gt; is interpreted as opening a new block, rather than being part of an assignment operation. To overcome this we need to tell JS to interpret the &lt;code&gt;{&lt;/code&gt; as part of the assignment by giving more syntax. This does work:&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;let a, b, c
+let obj = {cat: 'meow', dog: 'woof', mouse: 'squeak'};
+
+({cat: a, dog: b, mouse: c} = obj);
+&lt;/pre&gt;
 &lt;h2&gt;Usage: Function returns&lt;/h2&gt;
 
 &lt;p&gt;A really cool use for this feature is to easily process multiple results returned from a function. (Python typically uses tuples for this.)&lt;/p&gt;

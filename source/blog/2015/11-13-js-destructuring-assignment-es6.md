@@ -181,7 +181,7 @@ I’ve seen this feature used more with arrays than objects, but it is possible 
 ```
 let obj = {cat: 'meow', dog: 'woof', mouse: 'squeak'};
 
-let {cat: a, dog: b, mouse: c} = obj;
+let {cat, dog, mouse} = obj;
 console.log(a); // logs 'meow'
 console.log(b); // logs 'woof'
 console.log(c); // logs 'squeak'
@@ -193,6 +193,8 @@ I found the syntax for objects much less intuitive and picky than expected. Here
 
 ### Need the key names
 
+This doesn't work:
+
 ```
 let obj = {cat: 'meow', dog: 'woof', mouse: 'squeak'};
 
@@ -201,7 +203,17 @@ let {a, b, c} = obj;
 
 This doesn’t work becuase object keys aren’t ordered. There’s no way for JS to know that you want `cat` to be first becuase there is no concept of “first” for objects.
 
-### Can’t pre-declare variables
+This does work:
+
+```
+let obj = {cat: 'meow', dog: 'woof', mouse: 'squeak'};
+
+let {cat: a, dog: b, mouse: c} = obj;
+```
+
+### Special syntax for pre-declare variables
+
+This doesn’t work:
 
 ```
 let a, b, c
@@ -210,7 +222,18 @@ let obj = {cat: 'meow', dog: 'woof', mouse: 'squeak'};
 {cat: a, dog: b, mouse: c} = obj;
 ```
 
-I’m not sure what this is about. I assume it a quirk of the REPL rather than officially not supported by ES6. I’ve asked a [question](http://stackoverflow.com/questions/34836126/can-i-pre-declare-variables-for-destructuring-assignment-of-objects) about it though, so hopefully I’ll have more answers for you soon!
+I was particularly confused about this. So I asked a [question](http://stackoverflow.com/questions/34836126/can-i-pre-declare-variables-for-destructuring-assignment-of-objects) about it and got an answer in no time (thank you Stackoverflow!).
+
+Since there’s no keyword before the first `{` in the line `{cat: a, dog: b, mouse: c} = obj;` the `{` is interpreted as opening a new block, rather than being part of an assignment operation. To overcome this we need to tell JS to interpret the `{` as part of the assignment by giving more syntax. This does work:
+
+```
+let a, b, c
+let obj = {cat: 'meow', dog: 'woof', mouse: 'squeak'};
+
+({cat: a, dog: b, mouse: c} = obj);
+```
+
+
 
 ## Usage: Function returns
 

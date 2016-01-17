@@ -96,19 +96,27 @@
         <h2>With objects</h2>
         
         <p>I’ve seen this feature used more with arrays than objects, but it is possible to use destructuring assignment with objects as well. Let’s take a look:</p>
-        <pre class="highlight plaintext">let obj = {cat: 'meow', dog: 'woof', mouse: 'squeak'};&#x000A;&#x000A;let {cat: a, dog: b, mouse: c} = obj;&#x000A;console.log(a); // logs 'meow'&#x000A;console.log(b); // logs 'woof'&#x000A;console.log(c); // logs 'squeak'</pre>
+        <pre class="highlight plaintext">let obj = {cat: 'meow', dog: 'woof', mouse: 'squeak'};&#x000A;&#x000A;let {cat, dog, mouse} = obj;&#x000A;console.log(a); // logs 'meow'&#x000A;console.log(b); // logs 'woof'&#x000A;console.log(c); // logs 'squeak'</pre>
         <p><em>Weird, I tried a version in the REPL and it didn’t work...</em></p>
         
         <p>I found the syntax for objects much less intuitive and picky than expected. Here are a couple of examples that <strong>don’t</strong> work.</p>
         
         <h3>Need the key names</h3>
+        
+        <p>This doesn&#39;t work:</p>
         <pre class="highlight plaintext">let obj = {cat: 'meow', dog: 'woof', mouse: 'squeak'};&#x000A;&#x000A;let {a, b, c} = obj;</pre>
         <p>This doesn’t work becuase object keys aren’t ordered. There’s no way for JS to know that you want <code>cat</code> to be first becuase there is no concept of “first” for objects.</p>
         
-        <h3>Can’t pre-declare variables</h3>
-        <pre class="highlight plaintext">let a, b, c&#x000A;let obj = {cat: 'meow', dog: 'woof', mouse: 'squeak'};&#x000A;&#x000A;{cat: a, dog: b, mouse: c} = obj;</pre>
-        <p>I’m not sure what this is about. I assume it a quirk of the REPL rather than officially not supported by ES6. I’ve asked a <a href="http://stackoverflow.com/questions/34836126/can-i-pre-declare-variables-for-destructuring-assignment-of-objects">question</a> about it though, so hopefully I’ll have more answers for you soon!</p>
+        <p>This does work:</p>
+        <pre class="highlight plaintext">let obj = {cat: 'meow', dog: 'woof', mouse: 'squeak'};&#x000A;&#x000A;let {cat: a, dog: b, mouse: c} = obj;</pre>
+        <h3>Special syntax for pre-declare variables</h3>
         
+        <p>This doesn’t work:</p>
+        <pre class="highlight plaintext">let a, b, c&#x000A;let obj = {cat: 'meow', dog: 'woof', mouse: 'squeak'};&#x000A;&#x000A;{cat: a, dog: b, mouse: c} = obj;</pre>
+        <p>I was particularly confused about this. So I asked a <a href="http://stackoverflow.com/questions/34836126/can-i-pre-declare-variables-for-destructuring-assignment-of-objects">question</a> about it and got an answer in no time (thank you Stackoverflow!).</p>
+        
+        <p>Since there’s no keyword before the first <code>{</code> in the line <code>{cat: a, dog: b, mouse: c} = obj;</code> the <code>{</code> is interpreted as opening a new block, rather than being part of an assignment operation. To overcome this we need to tell JS to interpret the <code>{</code> as part of the assignment by giving more syntax. This does work:</p>
+        <pre class="highlight plaintext">let a, b, c&#x000A;let obj = {cat: 'meow', dog: 'woof', mouse: 'squeak'};&#x000A;&#x000A;({cat: a, dog: b, mouse: c} = obj);</pre>
         <h2>Usage: Function returns</h2>
         
         <p>A really cool use for this feature is to easily process multiple results returned from a function. (Python typically uses tuples for this.)</p>
@@ -128,7 +136,7 @@
         </ul>
         <div class='recommended-reading'>
           <h2>Recommended reading</h2>
-          <p>You might also like <a href="/blog/2014/null-undefined-undeclared/">JS: null, undefined, and undeclared</a></p>
+          <p>You might also like <a href="/blog/2014/google-adwords-async/">JS: Async Google Adwords conversion</a></p>
         </div>
         <hr>
         <div id='disqus_thread'></div>
