@@ -1,6 +1,6 @@
 ---
 title: Languages, cultures, and opinions
-tags: rambilings, discussion, ruby, js, community
+tags: ramblings, discussion, ruby, js, community
 
 description: An opinion piece about working in different languages, particularly Ruby and Javascript
 ---
@@ -25,7 +25,7 @@ I’m originally from the USA, but I live in Australia now. My accent is a dead 
 
 Yes, of course. I miss my family, my friends, the home I grew up in. I miss knowing the right words and cultural references. I miss driving on right side of the road. I miss cold Christmases and having my birthday in the fall.
 
-But there are a bunch of things I don’t mind going without. The things you pass by without connecting with. I’m happy to skip trips to Walmart and traffic jams. I don’t need the rolling hills of Virginia when I have the beaches of Sydney. I’ve found new restraunts to take over from my previous huants. Life moves on and I adapt.
+But there are a bunch of things I don’t mind going without. The things you pass by without connecting with. I’m happy to skip trips to Walmart and traffic jams. I don’t need the rolling hills of Virginia when I have the beaches of Sydney. I’ve found new restaurants to take over from my previous haunts. Life moves on and I adapt.
 
 It’s been the same with Ruby. I miss how much I used to know and get frustrated with needing to relearn so many pieces. I miss seeing people I only know from twitter. I miss the culture of pair programming and knowing which gems were “in.”
 

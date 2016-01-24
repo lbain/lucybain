@@ -94,7 +94,7 @@ And that’s it for the branch details! The source and destination branches shri
 
 ### Add the author
 
-The other element that can shrink is the author. From the designs the author, branch details and PR status are all to the left, so I’ll group these all together in my HTML. We’ll add this next layer of wrapping to make sure the author can shrink, the PR status cannot shink, and the braches continue to shrink as expected.
+The other element that can shrink is the author. From the designs the author, branch details and PR status are all to the left, so I’ll group these all together in my HTML. We’ll add this next layer of wrapping to make sure the author can shrink, the PR status cannot shink, and the branches continue to shrink as expected.
 
 [New HTML:](/blog/2015/pr-header/author-branches-status)
 
@@ -136,7 +136,7 @@ Again, the author name needs to be flexible, so we’ll apply most of the same s
 }
 ```
 
-So we’re left with quite a good [base](http://localhost:4567/blog/2015/pr-header/author-branches-status-basic-flexible) of what we want. However, you’ll noice that if you start to shrink the screen too much the author gets complete hidden. We need a better way to keep the author at least somewhat visible, and actually we want to shrink the author slower than the branches (something like: for every 5px the branches shrink the author only shrinks 1px).
+So we’re left with quite a good [base](http://localhost:4567/blog/2015/pr-header/author-branches-status-basic-flexible) of what we want. However, you’ll notice that if you start to shrink the screen too much the author gets complete hidden. We need a better way to keep the author at least somewhat visible, and actually we want to shrink the author slower than the branches (something like: for every 5px the branches shrink the author only shrinks 1px).
 
 Well, keeping the author always somewhat visible is easy enough: we can just chuck a `min-width: 5em` on there so we don't accidentally hide the author completely. But now the branch details section doesn’t flex at all. WHY NOT??? Since the branches can flex down to nothing we’ll give the branch details a `min-width: 0`. (In real life the PRH has the same min-width as the page and won’t be able to shrink down to completely hide the branch details. For this post I’m not going to worry about the page shrinking too small.)
 

@@ -1,5 +1,5 @@
 ---
-title: "JS: What datatypes are supported in Javascript?"
+title: "JS: What data types are supported in Javascript?"
 tags: js, interview-questions
 ---
 
