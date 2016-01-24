@@ -201,7 +201,7 @@ let obj = {cat: 'meow', dog: 'woof', mouse: 'squeak'};
 let {a, b, c} = obj;
 ```
 
-This doesn’t work becuase object keys aren’t ordered. There’s no way for JS to know that you want `cat` to be first becuase there is no concept of “first” for objects.
+This doesn’t work because object keys aren’t ordered. There’s no way for JS to know that you want `cat` to be first because there is no concept of “first” for objects.
 
 This does work:
 

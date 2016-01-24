@@ -62,7 +62,7 @@
         
         <h2>Description</h2>
         
-        <p>I was fortunate enough to be able to throw away all existing HTML and CSS. Nothing else relies on this piece of code and I had full control of how to implement this part of the feature (with lots of feedback from my fantastic colegues!). So we don’t need to talk about what <em>was</em> there, we’re starting from scratch.</p>
+        <p>I was fortunate enough to be able to throw away all existing HTML and CSS. Nothing else relies on this piece of code and I had full control of how to implement this part of the feature (with lots of feedback from my fantastic colleagues!). So we don’t need to talk about what <em>was</em> there, we’re starting from scratch.</p>
         
         <h3>Desired outcome</h3>
         
@@ -113,15 +113,15 @@
         
         <p>So <code>source</code> and <code>destination</code> ultimately need to be shrinkable. In order to allow them to shrink we need to make their container, <code>branch-details</code>, flexible.</p>
         <pre class="highlight plaintext">.branch-details {&#x000A;    display: flex;&#x000A;}</pre>
-        <p>At this point everything is flexibile. So if you <a href="/blog/2015/pr-header/simple-flexbox">play with it</a> you can see everything shrinks equally and the branch names wrap across lines. This wrapping makes sense for “normal” uses of flexbox (i.e. columns of text) but it isn’t what we want for the branch names.</p>
+        <p>At this point everything is flexible. So if you <a href="/blog/2015/pr-header/simple-flexbox">play with it</a> you can see everything shrinks equally and the branch names wrap across lines. This wrapping makes sense for “normal” uses of flexbox (i.e. columns of text) but it isn’t what we want for the branch names.</p>
         
-        <p>We can stop words from wrapping with a quick <code>white-space: nowrap</code> rule. <a href="/blog/2015/pr-header/no-wrap">This works</a> in that the words don’t wrap, but it has the unfortuante side effect of stopping things from shrinking. Let‘s put that back by hiding overflowing text: <code>overflow: hidden;</code>. While we’re at it, we can style the ending with an ellipsis using <code>text-overflow: ellipsis;</code>. Ok, we’re <a href="/blog/2015/pr-header/ellipsis">back in buisness</a> now!</p>
+        <p>We can stop words from wrapping with a quick <code>white-space: nowrap</code> rule. <a href="/blog/2015/pr-header/no-wrap">This works</a> in that the words don’t wrap, but it has the unfortuante side effect of stopping things from shrinking. Let‘s put that back by hiding overflowing text: <code>overflow: hidden;</code>. While we’re at it, we can style the ending with an ellipsis using <code>text-overflow: ellipsis;</code>. Ok, we’re <a href="/blog/2015/pr-header/ellipsis">back in business</a> now!</p>
         
         <p>And that’s it for the branch details! The source and destination branches shrink equally while the arrow remains full width.</p>
         
         <h3>Add the author</h3>
         
-        <p>The other element that can strink is the author. From the designs the author, branch details and PR status are all to the left, so I’ll group these all together in my HTML. We’ll add this next layer of wrapping to make sure the author can shrink, the PR status cannot shink, and the braches continue to shrink as expected.</p>
+        <p>The other element that can shrink is the author. From the designs the author, branch details and PR status are all to the left, so I’ll group these all together in my HTML. We’ll add this next layer of wrapping to make sure the author can shrink, the PR status cannot shink, and the braches continue to shrink as expected.</p>
         
         <p><a href="/blog/2015/pr-header/author-branches-status">New HTML:</a></p>
         <pre class="highlight plaintext">&lt;div class="pr-info"&gt;&#x000A;    &lt;div class="author"&gt;&#x000A;        Author name&#x000A;    &lt;/div&gt;&#x000A;    &lt;div class="branch-details"&gt;&#x000A;        &lt;div class="source"&gt;&#x000A;            your-awesome-branch&#x000A;        &lt;/div&gt;&#x000A;&#x000A;        &lt;div class="arrow"&gt;&#x000A;            --&gt;&#x000A;        &lt;/div&gt;&#x000A;&#x000A;        &lt;div class="destination"&gt;&#x000A;            the-destination-branch&#x000A;        &lt;/div&gt;&#x000A;    &lt;/div&gt;&#x000A;    &lt;div class="status"&gt;&#x000A;        PR status&#x000A;    &lt;/div&gt;&#x000A;&lt;/div&gt;</pre>
@@ -129,11 +129,11 @@
         <pre class="highlight plaintext">.pr-info, .branch-details {&#x000A;    display: flex;&#x000A;    white-space: nowrap;&#x000A;}&#x000A;&#x000A;.author, .source, .destination {&#x000A;    overflow: hidden;&#x000A;    text-overflow: ellipsis;&#x000A;}</pre>
         <p>So we’re left with quite a good <a href="http://localhost:4567/blog/2015/pr-header/author-branches-status-basic-flexible">base</a> of what we want. However, you’ll noice that if you start to shrink the screen too much the author gets complete hidden. We need a better way to keep the author at least somewhat visible, and actually we want to shrink the author slower than the branches (something like: for every 5px the branches shrink the author only shrinks 1px).</p>
         
-        <p>Well, keeping the author always somewhat visible is easy enough: we can just chuck a <code>min-width: 5em</code> on there so we don&#39;t accedentally hide the author completely. But now the branch details section doesn’t flex at all. WHY NOT??? Since the branches can flex down to nothing we’ll give the branch details a <code>min-width: 0</code>. (In real life the PRH has the same min-width as the page and won’t be able to shrink down to completely hide the branch details. For this post I’m not going to worry about the page shrinking too small.)</p>
+        <p>Well, keeping the author always somewhat visible is easy enough: we can just chuck a <code>min-width: 5em</code> on there so we don&#39;t accidentally hide the author completely. But now the branch details section doesn’t flex at all. WHY NOT??? Since the branches can flex down to nothing we’ll give the branch details a <code>min-width: 0</code>. (In real life the PRH has the same min-width as the page and won’t be able to shrink down to completely hide the branch details. For this post I’m not going to worry about the page shrinking too small.)</p>
         
         <p>Ok, now we have both the author and the branch details shrinking, time to make that happen at different rates. Flexbox items have a <code>flex-grow</code> property which says how fast the items should grow; there’s also a <code>flex-shrink</code> property that, surprise, surprise, deals with how fast items should shrink. So we’ll make the branches shrink faster than the author by adding:</p>
         <pre class="highlight plaintext">.author {&#x000A;    flex-shrink: 1;&#x000A;}&#x000A;&#x000A;.branch-details {&#x000A;    flex-shrink: 5;&#x000A;}</pre>
-        <p>The rates are fairly arbetrary, but easily changed if needed.</p>
+        <p>The rates are fairly arbitrary, but easily changed if needed.</p>
         
         <p>Here’s the <a href="/blog/2015/pr-header/author-branches-status-flexible">working version</a> for you to play with.</p>
         
@@ -150,14 +150,14 @@
         
         <h3>Safari</h3>
         
-        <p>Except for Safari. Once I had the proper vendor prefixing in, everything worked as expected in all browsers (even IE!) but not Safari. This <a href="LINK%20HERE">bug</a> might be the culprate, but I’m really not sure. If you have any knowledge about what’s causing this, I’m interested! Anyways, for whatever reason you need to add <code>flex-shrink: 0</code> to the things you don’t want to shrink. So for this we’ll add:</p>
+        <p>Except for Safari. Once I had the proper vendor prefixing in, everything worked as expected in all browsers (even IE!) but not Safari. This <a href="LINK%20HERE">bug</a> might be the culprit, but I’m really not sure. If you have any knowledge about what’s causing this, I’m interested! Anyways, for whatever reason you need to add <code>flex-shrink: 0</code> to the things you don’t want to shrink. So for this we’ll add:</p>
         <pre class="highlight plaintext">.arrow, .status, .pr-actions {&#x000A;    flex-shrink: 0;&#x000A;}</pre>
         <p>And with that it’s <a href="/blog/2015/pr-header/in-context-safari">Safari compliant!</a></p>
         
         <h2>Done</h2>
         <div class='recommended-reading'>
           <h2>Recommended reading</h2>
-          <p>You might also like <a href="/blog/2014/js-document-load-vs-ready/">JS: document load vs document ready</a></p>
+          <p>You might also like <a href="/blog/2014/immediately-invoked-function-expression/">JS Immediately Invoked Function Expressions</a></p>
         </div>
         <hr>
         <div id='disqus_thread'></div>

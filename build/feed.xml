@@ -4,16 +4,251 @@
   <id>http://lucybain.com/blog</id>
   <link href="http://lucybain.com/blog"/>
   <link href="http://lucybain.com/feed.xml" rel="self"/>
-  <updated>2015-11-13T00:00:00Z</updated>
+  <updated>2015-11-25T00:00:00Z</updated>
   <author>
     <name>Lucy Bain</name>
   </author>
+  <entry>
+    <title>Programming theory: Evaluation strategies</title>
+    <link rel="alternate" href="http://lucybain.com/blog/2015/programming-theory-evaluation-strategies/"/>
+    <id>http://lucybain.com/blog/2015/programming-theory-evaluation-strategies/</id>
+    <published>2015-11-25T00:00:00Z</published>
+    <updated>2016-01-24T16:31:03+11:00</updated>
+    <author>
+      <name>Article Author</name>
+    </author>
+    <content type="html">&lt;p&gt;This is a topic I learned at university, but didn’t fully understand all the repercussions of until later. This post is to help you understand the differences and to help me remember them :)&lt;/p&gt;
+
+&lt;p&gt;Let’s get started!&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;But wait, what’s an “evaluation strategy”? I’ve never heard of that before!&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;To be honest, I hadn’t either until I did some research for this post. The title for this group of concepts isn’t widely used, so knowing “evaluation strategy” probably won’t be super useful. However, the question all evaluation strategies are trying to answer is “how do parameters work in this particular language?” And it is &lt;em&gt;very&lt;/em&gt; useful to know the answer to that question for your language.&lt;/p&gt;
+
+&lt;p&gt;For example, this non-language below (which is purposefully a mismatch of ruby, python, and JS so it doesn’t look real):&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;a = 1
+
+function passBySomething(param):
+    param = 2
+end
+
+passBySomething(a)
+log(a) // what happens here?
+&lt;/pre&gt;
+&lt;p&gt;There are a few options that could happen, which is what today’s post is all about.&lt;/p&gt;
+
+&lt;p&gt;Since I love metaphors and because we haven’t talked about how computer memory works yet (although it might show up soon!) we won’t cover “under the hood” details. Instead we will work with a story:&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;As you look around your apartment you decide you would like some new artwork to spruce the place up a bit. As it so happens you have a nice piece of canvas at home, all ready to go. You also have a friend, Fred, who is an artist and who’s agreed to make you something (that you’ll pay for, of course!).&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;With that in mind we’re ready to go! &lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Disclaimer:&lt;/strong&gt; Because we’re not going into the details, nor are we looking at a particular language, these explanations might not apply 100% to your language. Please look up additional examples for your language.&lt;/p&gt;
+
+&lt;h2&gt;Pass by reference&lt;/h2&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;You give your canvas to Fred and &lt;strong&gt;he paints it for you&lt;/strong&gt; (thanks Fred!). Then he gives you the painted canvas back.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;This is probably the easiest one to get our heads around, since it’s pretty much what happens in real life.&lt;/p&gt;
+
+&lt;p&gt;Here’s what pass by reference would be in our pretend language:&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;canvas = [] // (this is a blank canvas)
+
+function artistFred(item):
+    paint(item) // notice the lack of return keyword
+end
+
+log(canvas) // [] (blank canvas)
+artistFred(canvas)
+log(canvas) // [*&amp;amp;] (painted canvas)
+&lt;/pre&gt;
+&lt;p&gt;Seems straight forward enough, but what if Fred decides to do something different?&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;You give your canvas to Fred and &lt;strong&gt;he makes a sculpture instead&lt;/strong&gt;. Then he gives you the sculpture back.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Again, this translates to the following “code”:&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;canvas = [] // (blank canvas)
+
+function artistFred(item):
+    item = new Sculpture()
+end
+
+log(canvas) // [] (blank canvas)
+artistFred(canvas)
+log(canvas) // V (new sculpture)
+&lt;/pre&gt;
+&lt;p&gt;Now you don’t have your original canvas (Fred replaced it entirely), you only have the sculpture Fred gave you.&lt;/p&gt;
+
+&lt;p&gt;Pass by reference is incredibly trusting. You like Fred, and he’s a really good artist. If he says a sculpture would be better for your space you’re cool to go with that. If he paints the whole canvas one colour and tells you it’s art, you’ll believe him and put it up with pride. After all, Fred’s a good guy and you trust him.&lt;/p&gt;
+
+&lt;h3&gt;More formal definition&lt;/h3&gt;
+
+&lt;p&gt;In pass by reference the original variable (declared outside the function’s scope) can be changed in any way by the function. It can be altered or reassigned in the function and the new value will persist after the function has returned.&lt;/p&gt;
+
+&lt;h2&gt;Pass by value&lt;/h2&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;You go to the store and buy a new piece of canvas that is exactly the same as the one you already own. You give the new canvas to Fred and &lt;strong&gt;he paints it for you&lt;/strong&gt; (thanks Fred!). Then he gives you the painted canvas back, and you can choose to replace your blank canvas with the painted one, keep both, or just look at Fred’s work and decide not to keep it.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;In our pretend coding language it would look something like this:&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;canvas = [] // (blank canvas)
+
+function artistFred(item):
+    return paint(item) // notice the new return keyword
+end
+
+log(canvas) // [] (blank canvas)
+artistFred(canvas) // look at the Fred’s work but decide not to keep it
+log(canvas) // [] (blank canvas)
+
+newCanvas = artistFred(canvas) // keep both
+log(canvas) // [] (blank canvas)
+log(newCanvas) // [*&amp;amp;] (painted canvas)
+
+canvas = artistFred(canvas) // replace blank canvas with the painted one
+log(canvas) // [*&amp;amp;] (painted canvas)
+&lt;/pre&gt;
+&lt;p&gt;Of course, Fred might decide to do something else entirely. Let’s look at another possibility:&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;You go to the store and buy a new piece of canvas that is exactly the same as the one you already own. You give the new canvas to Fred, but he throws away the new canvas and &lt;strong&gt;decides to make a sculpture instead.&lt;/strong&gt; Then he gives you the sculpture back, and you can choose to replace your blank canvas with the sculpture, keep both, or just look at Fred’s work and decide not to keep it.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Again, in our fake language would be:&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;canvas = [] // (blank canvas)
+
+function artistFred(item):
+    item = new Sculpture()
+    return item
+end
+
+log(canvas) // [] (blank canvas)
+artistFred(canvas) // look at the Fred’s work but decide not to keep it
+log(canvas) // [] (blank canvas)
+
+newSculpture = artistFred(canvas) // keep both
+log(canvas) // [] (blank canvas)
+log(newSculpture) // V (sculpture)
+
+canvas = artistFred(canvas) // replace blank canvas with the sculpture
+log(canvas) // V (sculpture)
+&lt;/pre&gt;
+&lt;p&gt;I think of pass by value as slightly paranoid. Because really, you don’t trust Fred very much. You think he might make an ugly painting and you want to keep your piece of canvas safe in case that happens. Or you know he doesn’t follow directions well and you didn’t want that sculpture anyway...&lt;/p&gt;
+
+&lt;h3&gt;More formal definition&lt;/h3&gt;
+
+&lt;p&gt;In pass by value the original variable (declared outside the function’s scope) is not altered in any way by the function. It must be explicitly overwritten by reassigning it with the results of the function call.&lt;/p&gt;
+
+&lt;h2&gt;Pass by sharing&lt;/h2&gt;
+
+&lt;p&gt;This is a bit of a mix between pass by reference and pass by value.&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;You give your (only) canvas to Fred and &lt;strong&gt;he paints it for you&lt;/strong&gt; (thanks Fred!). Then he gives you the painted canvas back.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;So far this is exactly the same as pass by reference.&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;canvas = [] // (blank canvas)
+
+function artistFred(item):
+    paint(item)
+end
+
+log(canvas) // [] (blank canvas)
+artistFred(canvas)
+log(canvas) // [*&amp;amp;] (painted canvas)
+&lt;/pre&gt;
+&lt;p&gt;But again, Fred might decide to do something different:&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;You give your (only) canvas to Fred. He sets the untouched canvas aside and &lt;strong&gt;makes a sculpture instead&lt;/strong&gt;. Then he gives you the sculpture back, and you can choose to replace your blank canvas with the sculpture, keep both, or just look at Fred’s work and decide not to keep it.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;pre class="highlight plaintext"&gt;canvas = [] // (blank canvas)
+
+function artistFred(item):
+    item = new Sculpture()
+    return item
+end
+
+log(canvas) // [] (blank canvas)
+artistFred(canvas) // look at the Fred’s work but decide not to keep it
+log(canvas) // [] (blank canvas)
+
+newSculpture = artistFred(canvas) // keep both
+log(canvas) // [] (blank canvas)
+log(newSculpture) // V (sculpture)
+
+canvas = artistFred(canvas) // replace blank canvas with the painted one
+log(canvas) // V (sculpture)
+&lt;/pre&gt;
+&lt;p&gt;This version is exactly the same as pass by value.&lt;/p&gt;
+
+&lt;p&gt;This is probably the most reasonable level of trust. You asked for a painting and a sculpture just won’t do. You trust Fred enough to paint a blank canvas, but you want your canvas to be usable if he decided to go off an make a sculpture instead. After all, you asked for a painting, not a sculpture.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;What gives? How can you mix and match like that?&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;It all depends on if the canvas is altered or replaced. If Fred simply alters the canvas by painting it, then the original (blank) canvas is changed forever. However, if Fred wants to replace the canvas, he can’t throw it away, but must create a sculpture as an entirely new thing.&lt;/p&gt;
+
+&lt;h3&gt;More fomal definition&lt;/h3&gt;
+
+&lt;p&gt;In pass by sharing the original variable (declared outside the function’s scope) can only be altered in so far as it is mutable. It cannot be reassigned inside the function call. Any changes to a mutable type will persist after the function returns. Any attempts to reassign a variable will not persist.&lt;/p&gt;
+
+&lt;h2&gt;And one more thing...&lt;/h2&gt;
+
+&lt;p&gt;People use the wrong name all. the. time. Officially most languages use pass by sharing. Per &lt;a href="https://en.wikipedia.org/wiki/Evaluation_strategy#Call_by_sharing"&gt;Wikipedia&lt;/a&gt;:&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;It is used by languages such as Python, Iota, Java (for object references), Ruby, JavaScript, Scheme, OCaml, AppleScript, and many others.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;However, most people don’t say a particular language is “pass by sharing.” Unfortuantely “pass by reference” and “pass by value” are much more famous phrases than “pass by sharing” (probably because it’s what we’re taught at universities), and so people often use one of those terms even when it’s incorrect.&lt;/p&gt;
+
+&lt;p&gt;This semantic mixing caused me a fair amount of confusion because JS shows some pass by reference qualities:&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;var obj = {a: 1};
+
+function referenceTest(input) {
+    input.a = 2;
+}
+
+console.log(obj); // logs {a: 1}
+referenceTest(obj);
+console.log(obj); // logs {a: 2}
+&lt;/pre&gt;
+&lt;p&gt;and some pass by value qualities:&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;var num = 1;
+
+function valueTest(input) {
+    input = 1;
+}
+
+console.log(num); // logs 1
+valueTest(num);
+console.log(num); // logs 1
+&lt;/pre&gt;
+&lt;p&gt;It took me a long time to realise that JS was pass by reference &lt;em&gt;sometimes&lt;/em&gt; and pass by value &lt;em&gt;other times&lt;/em&gt;. And I only learned today that this mix of of the two, which many common languages use, is called pass by sharing.&lt;/p&gt;
+
+&lt;h2&gt;Resources&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://en.wikipedia.org/wiki/Evaluation_strategy"&gt;Wikipedia&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://stackoverflow.com/questions/518000/is-javascript-a-pass-by-reference-or-pass-by-value-language"&gt;Stackoverflow&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Examples and explanation for &lt;a href="https://www.jeffknupp.com/blog/2012/11/13/is-python-callbyvalue-or-callbyreference-neither/"&gt;Python&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</content>
+  </entry>
   <entry>
     <title>JS: Destructuring assignment with ES6</title>
     <link rel="alternate" href="http://lucybain.com/blog/2015/js-destructuring-assignment-es6/"/>
     <id>http://lucybain.com/blog/2015/js-destructuring-assignment-es6/</id>
     <published>2015-11-13T00:00:00Z</published>
-    <updated>2016-01-17T18:53:44+11:00</updated>
+    <updated>2016-01-24T16:29:10+11:00</updated>
     <author>
       <name>Article Author</name>
     </author>
@@ -176,7 +411,7 @@ console.log(c); // logs 'squeak'
 
 let {a, b, c} = obj;
 &lt;/pre&gt;
-&lt;p&gt;This doesn’t work becuase object keys aren’t ordered. There’s no way for JS to know that you want &lt;code&gt;cat&lt;/code&gt; to be first becuase there is no concept of “first” for objects.&lt;/p&gt;
+&lt;p&gt;This doesn’t work because object keys aren’t ordered. There’s no way for JS to know that you want &lt;code&gt;cat&lt;/code&gt; to be first because there is no concept of “first” for objects.&lt;/p&gt;
 
 &lt;p&gt;This does work:&lt;/p&gt;
 &lt;pre class="highlight plaintext"&gt;let obj = {cat: 'meow', dog: 'woof', mouse: 'squeak'};
@@ -389,7 +624,7 @@ obj.hello('world'); // logs "hello world"
     <link rel="alternate" href="http://lucybain.com/blog/2015/css-flexbox-in-action/"/>
     <id>http://lucybain.com/blog/2015/css-flexbox-in-action/</id>
     <published>2015-10-20T00:00:00Z</published>
-    <updated>2015-10-15T19:28:15+11:00</updated>
+    <updated>2016-01-24T16:26:23+11:00</updated>
     <author>
       <name>Article Author</name>
     </author>
@@ -407,7 +642,7 @@ obj.hello('world'); // logs "hello world"
 
 &lt;h2&gt;Description&lt;/h2&gt;
 
-&lt;p&gt;I was fortunate enough to be able to throw away all existing HTML and CSS. Nothing else relies on this piece of code and I had full control of how to implement this part of the feature (with lots of feedback from my fantastic colegues!). So we don’t need to talk about what &lt;em&gt;was&lt;/em&gt; there, we’re starting from scratch.&lt;/p&gt;
+&lt;p&gt;I was fortunate enough to be able to throw away all existing HTML and CSS. Nothing else relies on this piece of code and I had full control of how to implement this part of the feature (with lots of feedback from my fantastic colleagues!). So we don’t need to talk about what &lt;em&gt;was&lt;/em&gt; there, we’re starting from scratch.&lt;/p&gt;
 
 &lt;h3&gt;Desired outcome&lt;/h3&gt;
 
@@ -474,15 +709,15 @@ obj.hello('world'); // logs "hello world"
     display: flex;
 }
 &lt;/pre&gt;
-&lt;p&gt;At this point everything is flexibile. So if you &lt;a href="/blog/2015/pr-header/simple-flexbox"&gt;play with it&lt;/a&gt; you can see everything shrinks equally and the branch names wrap across lines. This wrapping makes sense for “normal” uses of flexbox (i.e. columns of text) but it isn’t what we want for the branch names.&lt;/p&gt;
+&lt;p&gt;At this point everything is flexible. So if you &lt;a href="/blog/2015/pr-header/simple-flexbox"&gt;play with it&lt;/a&gt; you can see everything shrinks equally and the branch names wrap across lines. This wrapping makes sense for “normal” uses of flexbox (i.e. columns of text) but it isn’t what we want for the branch names.&lt;/p&gt;
 
-&lt;p&gt;We can stop words from wrapping with a quick &lt;code&gt;white-space: nowrap&lt;/code&gt; rule. &lt;a href="/blog/2015/pr-header/no-wrap"&gt;This works&lt;/a&gt; in that the words don’t wrap, but it has the unfortuante side effect of stopping things from shrinking. Let‘s put that back by hiding overflowing text: &lt;code&gt;overflow: hidden;&lt;/code&gt;. While we’re at it, we can style the ending with an ellipsis using &lt;code&gt;text-overflow: ellipsis;&lt;/code&gt;. Ok, we’re &lt;a href="/blog/2015/pr-header/ellipsis"&gt;back in buisness&lt;/a&gt; now!&lt;/p&gt;
+&lt;p&gt;We can stop words from wrapping with a quick &lt;code&gt;white-space: nowrap&lt;/code&gt; rule. &lt;a href="/blog/2015/pr-header/no-wrap"&gt;This works&lt;/a&gt; in that the words don’t wrap, but it has the unfortuante side effect of stopping things from shrinking. Let‘s put that back by hiding overflowing text: &lt;code&gt;overflow: hidden;&lt;/code&gt;. While we’re at it, we can style the ending with an ellipsis using &lt;code&gt;text-overflow: ellipsis;&lt;/code&gt;. Ok, we’re &lt;a href="/blog/2015/pr-header/ellipsis"&gt;back in business&lt;/a&gt; now!&lt;/p&gt;
 
 &lt;p&gt;And that’s it for the branch details! The source and destination branches shrink equally while the arrow remains full width.&lt;/p&gt;
 
 &lt;h3&gt;Add the author&lt;/h3&gt;
 
-&lt;p&gt;The other element that can strink is the author. From the designs the author, branch details and PR status are all to the left, so I’ll group these all together in my HTML. We’ll add this next layer of wrapping to make sure the author can shrink, the PR status cannot shink, and the braches continue to shrink as expected.&lt;/p&gt;
+&lt;p&gt;The other element that can shrink is the author. From the designs the author, branch details and PR status are all to the left, so I’ll group these all together in my HTML. We’ll add this next layer of wrapping to make sure the author can shrink, the PR status cannot shink, and the braches continue to shrink as expected.&lt;/p&gt;
 
 &lt;p&gt;&lt;a href="/blog/2015/pr-header/author-branches-status"&gt;New HTML:&lt;/a&gt;&lt;/p&gt;
 &lt;pre class="highlight plaintext"&gt;&amp;lt;div class="pr-info"&amp;gt;
@@ -520,7 +755,7 @@ obj.hello('world'); // logs "hello world"
 &lt;/pre&gt;
 &lt;p&gt;So we’re left with quite a good &lt;a href="http://localhost:4567/blog/2015/pr-header/author-branches-status-basic-flexible"&gt;base&lt;/a&gt; of what we want. However, you’ll noice that if you start to shrink the screen too much the author gets complete hidden. We need a better way to keep the author at least somewhat visible, and actually we want to shrink the author slower than the branches (something like: for every 5px the branches shrink the author only shrinks 1px).&lt;/p&gt;
 
-&lt;p&gt;Well, keeping the author always somewhat visible is easy enough: we can just chuck a &lt;code&gt;min-width: 5em&lt;/code&gt; on there so we don&amp;#39;t accedentally hide the author completely. But now the branch details section doesn’t flex at all. WHY NOT??? Since the branches can flex down to nothing we’ll give the branch details a &lt;code&gt;min-width: 0&lt;/code&gt;. (In real life the PRH has the same min-width as the page and won’t be able to shrink down to completely hide the branch details. For this post I’m not going to worry about the page shrinking too small.)&lt;/p&gt;
+&lt;p&gt;Well, keeping the author always somewhat visible is easy enough: we can just chuck a &lt;code&gt;min-width: 5em&lt;/code&gt; on there so we don&amp;#39;t accidentally hide the author completely. But now the branch details section doesn’t flex at all. WHY NOT??? Since the branches can flex down to nothing we’ll give the branch details a &lt;code&gt;min-width: 0&lt;/code&gt;. (In real life the PRH has the same min-width as the page and won’t be able to shrink down to completely hide the branch details. For this post I’m not going to worry about the page shrinking too small.)&lt;/p&gt;
 
 &lt;p&gt;Ok, now we have both the author and the branch details shrinking, time to make that happen at different rates. Flexbox items have a &lt;code&gt;flex-grow&lt;/code&gt; property which says how fast the items should grow; there’s also a &lt;code&gt;flex-shrink&lt;/code&gt; property that, surprise, surprise, deals with how fast items should shrink. So we’ll make the branches shrink faster than the author by adding:&lt;/p&gt;
 &lt;pre class="highlight plaintext"&gt;.author {
@@ -531,7 +766,7 @@ obj.hello('world'); // logs "hello world"
     flex-shrink: 5;
 }
 &lt;/pre&gt;
-&lt;p&gt;The rates are fairly arbetrary, but easily changed if needed.&lt;/p&gt;
+&lt;p&gt;The rates are fairly arbitrary, but easily changed if needed.&lt;/p&gt;
 
 &lt;p&gt;Here’s the &lt;a href="/blog/2015/pr-header/author-branches-status-flexible"&gt;working version&lt;/a&gt; for you to play with.&lt;/p&gt;
 
@@ -591,7 +826,7 @@ reviewers, approve button, indication of merge issues, merge button, and menu fo
 
 &lt;h3&gt;Safari&lt;/h3&gt;
 
-&lt;p&gt;Except for Safari. Once I had the proper vendor prefixing in, everything worked as expected in all browsers (even IE!) but not Safari. This &lt;a href="LINK%20HERE"&gt;bug&lt;/a&gt; might be the culprate, but I’m really not sure. If you have any knowledge about what’s causing this, I’m interested! Anyways, for whatever reason you need to add &lt;code&gt;flex-shrink: 0&lt;/code&gt; to the things you don’t want to shrink. So for this we’ll add:&lt;/p&gt;
+&lt;p&gt;Except for Safari. Once I had the proper vendor prefixing in, everything worked as expected in all browsers (even IE!) but not Safari. This &lt;a href="LINK%20HERE"&gt;bug&lt;/a&gt; might be the culprit, but I’m really not sure. If you have any knowledge about what’s causing this, I’m interested! Anyways, for whatever reason you need to add &lt;code&gt;flex-shrink: 0&lt;/code&gt; to the things you don’t want to shrink. So for this we’ll add:&lt;/p&gt;
 &lt;pre class="highlight plaintext"&gt;.arrow, .status, .pr-actions {
     flex-shrink: 0;
 }
@@ -606,7 +841,7 @@ reviewers, approve button, indication of merge issues, merge button, and menu fo
     <link rel="alternate" href="http://lucybain.com/blog/2015/js-new-keyword-and-functions/"/>
     <id>http://lucybain.com/blog/2015/js-new-keyword-and-functions/</id>
     <published>2015-10-12T00:00:00Z</published>
-    <updated>2015-10-18T17:43:07+11:00</updated>
+    <updated>2016-01-24T16:26:22+11:00</updated>
     <author>
       <name>Article Author</name>
     </author>
@@ -759,7 +994,7 @@ var bob = Person('Bob'); // &amp;lt;-- NO NEW KEYWORD
 
 &lt;p&gt;&lt;em&gt;What’s happening behind the scenes?&lt;/em&gt;&lt;/p&gt;
 
-&lt;p&gt;Basically the &lt;code&gt;&amp;quot;use strict&amp;quot;&lt;/code&gt; just means that JS won’t allow the &lt;code&gt;this&lt;/code&gt; in the constructor to be bound to the window. Instead it leaves &lt;code&gt;this&lt;/code&gt; as undefined (since no new object was created to be properly bound to &lt;code&gt;this&lt;/code&gt;) which cuases the error &lt;code&gt;Cannot set property &amp;#39;name&amp;#39; of undefined&amp;quot;&lt;/code&gt;. I think it’s pretty slick.&lt;/p&gt;
+&lt;p&gt;Basically the &lt;code&gt;&amp;quot;use strict&amp;quot;&lt;/code&gt; just means that JS won’t allow the &lt;code&gt;this&lt;/code&gt; in the constructor to be bound to the window. Instead it leaves &lt;code&gt;this&lt;/code&gt; as undefined (since no new object was created to be properly bound to &lt;code&gt;this&lt;/code&gt;) which causes the error &lt;code&gt;Cannot set property &amp;#39;name&amp;#39; of undefined&amp;quot;&lt;/code&gt;. I think it’s pretty slick.&lt;/p&gt;
 
 &lt;p&gt;Note: I couldn’t get the &lt;code&gt;&amp;quot;use strict&amp;quot;&lt;/code&gt; to work properly in this window’s console when I ran it just now, so here’s a &lt;a href="https://jsfiddle.net/1nu5g2by/"&gt;JSFiddle&lt;/a&gt; of the example if you want to double check. Just be sure to have the console of that window open to see the error.&lt;/p&gt;
 
@@ -920,42 +1155,6 @@ $ bower link
 &lt;li&gt;&lt;a href="http://code.tutsplus.com/tutorials/meet-bower-a-package-manager-for-the-web--net-27774"&gt;Intro to Bower&lt;/a&gt; - I really liked the style of this one, it’s quite chatty, just like me!&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://github.com/bower/bower/"&gt;Bower’s code&lt;/a&gt; if you want to look under the hood&lt;/li&gt;
 &lt;/ul&gt;
-</content>
-  </entry>
-  <entry>
-    <title>Languages, cultures, and opinions</title>
-    <link rel="alternate" href="http://lucybain.com/blog/2015/opinions-and-languages/"/>
-    <id>http://lucybain.com/blog/2015/opinions-and-languages/</id>
-    <published>2015-08-31T00:00:00Z</published>
-    <updated>2016-01-02T16:45:30+11:00</updated>
-    <author>
-      <name>Article Author</name>
-    </author>
-    <content type="html">&lt;h2&gt;I wrote Ruby&lt;/h2&gt;
-
-&lt;p&gt;I have a lot of shirts that have “Ruby” on them from past Rails Girls events. I love wearing them. Partly I like the style of the script (thanks &lt;a href="http://carlahackett.com/"&gt;Carla Hackett&lt;/a&gt; for the beautiful lettering!) and the fact that the shirts look girly and are about programming. But mostly I like Rails Girls and what it’s meant for me.&lt;/p&gt;
-
-&lt;p&gt;&lt;a href="https://twitter.com/lucykbain/status/487738897221185536"&gt;&lt;img alt="Rails Girls shirts" src="/images/blog/ruby-shirt.jpg" /&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;These shirts occasionally propt questions. My current job doesn’t use much Ruby at all. I’ve written a bit of it for our wallboards, but that’s about it. So when people at work see me wearing a Ruby shirt they’re a bit curious. Some people ask about Rails Girls (it’s awesome), others ask what my last job was (at a Rails shop), and some ask “Do you miss it?”&lt;/p&gt;
-
-&lt;p&gt;&lt;em&gt;Note: I do still write ruby on personal time, but it’s way less than I used to.&lt;/em&gt;&lt;/p&gt;
-
-&lt;h2&gt;I’m an expat&lt;/h2&gt;
-
-&lt;p&gt;I’m originally from the USA, but I live in Australia now. My accent is a dead give away. Some people ask me about where I’m originally from (near Washington DC), others ask what the differences are between the two (distances and prices), and some ask “Do you miss it?”&lt;/p&gt;
-
-&lt;h2&gt;So, do I miss it?&lt;/h2&gt;
-
-&lt;p&gt;Yes, of course. I miss my family, my friends, the home I grew up in. I miss knowing the right words and cultural references. I miss driving on right side of the road. I miss cold Christmases and having my birthday in the fall.&lt;/p&gt;
-
-&lt;p&gt;But there are a bunch of things I don’t mind going without. The things you pass by without connecting with. I’m happy to skip trips to Walmart and traffic jams. I don’t need the rolling hills of Virginia when I have the beaches of Sydney. I’ve found new restraunts to take over from my previous huants. Life moves on and I adapt.&lt;/p&gt;
-
-&lt;p&gt;It’s been the same with Ruby. I miss how much I used to know and get frustrated with needing to relearn so many pieces. I miss seeing people I only know from twitter. I miss the culture of pair programming and knowing which gems were “in.”&lt;/p&gt;
-
-&lt;p&gt;But the language itself? I don’t think it matters as much. In general, Ruby and JS can do about the same things. Both offer their own perks and quirks. They are different but similar.&lt;/p&gt;
-
-&lt;p&gt;I miss people more than things, experiences more than places, and communities more than the languages.&lt;/p&gt;
 </content>
   </entry>
 </feed>

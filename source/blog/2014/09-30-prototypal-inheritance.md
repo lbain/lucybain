@@ -5,7 +5,7 @@ tags: js, interview-questions
 
 ## Explain how prototypal inheritance works
 
-JS objects each have a “hook” to its parent object, or prototype. Obviously everything the child object defines it has access to, but it also can climb up the prototype tree to access its parent’s (or ancesstor’s) methods and properties.
+JS objects each have a “hook” to its parent object, or prototype. Obviously everything the child object defines it has access to, but it also can climb up the prototype tree to access its parent’s (or ancestor’s) methods and properties.
 
 **(the obligatory animal) Example:**
 

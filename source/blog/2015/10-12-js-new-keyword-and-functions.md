@@ -166,7 +166,7 @@ As you can see, using the `new` keyword works exactly as expected. However, if y
 
 *What’s happening behind the scenes?*
 
-Basically the `"use strict"` just means that JS won’t allow the `this` in the constructor to be bound to the window. Instead it leaves `this` as undefined (since no new object was created to be properly bound to `this`) which cuases the error `Cannot set property 'name' of undefined"`. I think it’s pretty slick.
+Basically the `"use strict"` just means that JS won’t allow the `this` in the constructor to be bound to the window. Instead it leaves `this` as undefined (since no new object was created to be properly bound to `this`) which causes the error `Cannot set property 'name' of undefined"`. I think it’s pretty slick.
 
 Note: I couldn’t get the `"use strict"` to work properly in this window’s console when I ran it just now, so here’s a [JSFiddle](https://jsfiddle.net/1nu5g2by/) of the example if you want to double check. Just be sure to have the console of that window open to see the error.
 

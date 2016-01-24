@@ -9,7 +9,7 @@ description: Learn about the new `const` keyword available in ECMAScript 6
 
 ### ES6
 
-ECMAScript 6 (ES6) introduced a lot of new JS keywords to play with. Generally these changes make JS a bit more approchable for new JS developers by making JS more similar to other programming languages.
+ECMAScript 6 (ES6) introduced a lot of new JS keywords to play with. Generally these changes make JS a bit more approachable for new JS developers by making JS more similar to other programming languages.
 
 ### Constants
 
@@ -97,7 +97,7 @@ testConsts(); // logs woof
 console.log(cat); // logs meow
 ```
 
-(Hopefully those last couple weren’t a surprise becuase JS uses [function scoping](http://lucybain.com/blog/2015/js-es6-let-vs-var/).)
+(Hopefully those last couple weren’t a surprise because JS uses [function scoping](http://lucybain.com/blog/2015/js-es6-let-vs-var/).)
 
 Ideally you should use constants in their intended way without getting too tricky!
 
@@ -125,7 +125,7 @@ cat.sound = 'woof'
 console.log(cat.sound); // 'meow'
 ```
 
-Any mutable object type will have this problem. The immutable types are: Boolean, Null, Undefined, Number, String, Symbol (the primative types).
+Any mutable object type will have this problem. The immutable types are: Boolean, Null, Undefined, Number, String, Symbol (the primitive types).
 
 ## Resources
 

@@ -35,7 +35,7 @@ I went through and removed most of the styling. I kept some things I knew I want
 
 ### Step 2: add flexbox
 
-I added `display: flex` to the containing element. It kinda worked, but looked funny becuase I’d removed the rest of the styling.
+I added `display: flex` to the containing element. It kinda worked, but looked funny because I’d removed the rest of the styling.
 
 ![inital flexbox](/images/blog/css-flexbox/inital-flexbox.png)
 
