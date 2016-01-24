@@ -84,7 +84,7 @@ var someVar = "world";
 console.log(`Hello ${someVar}`);
 ```
 
-**Note:** you can also use “tagged” template strings. I haven’t fully figured this out or found clear usecases for it, so I’m skipping it for now. But you can do more with templates than I’ve talked about.
+**Note:** you can also use “tagged” template strings. I haven’t fully figured this out or found clear use cases for it, so I’m skipping it for now. But you can do more with templates than I’ve talked about.
 
 ## Warning!
 

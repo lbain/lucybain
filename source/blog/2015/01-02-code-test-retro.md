@@ -14,7 +14,7 @@ Your app should retrieve a data set from a persistence layer or data service of 
 
 Ok, so three hours is way too long for a simple AJAX call and display of four columns and five rows. So I figured they wanted something a little more interesting than a table of data. I also didn’t want to waste any of my precious three hours working on a back-end - I applied for a front-end role and that’s what I wanted to work on. I decided to work with data from Facebook.
 
-**Tip:** It turns out there’s a TON of very interesting [data avaialble](https://www.reddit.com/r/datasets). If you have to do anything like this in the future look into these rather than using FB!
+**Tip:** It turns out there’s a TON of very interesting [data available](https://www.reddit.com/r/datasets). If you have to do anything like this in the future look into these rather than using FB!
 
 I wanted to work with something real that users might care about. I also wanted to get more experience with working with Facebook since it’s often used on sites. These were great reasons to choose Facebook, but, as it turns out, probably not a good decision for a coding test. Working with FB requires OAuth and a bunch of setup.
 

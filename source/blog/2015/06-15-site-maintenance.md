@@ -12,7 +12,7 @@ The point of this post is to write down some ideas of what I can do for maintena
 
 ## Links
 
-Links go bad. Hopefully not my internal ones (although that’s happened before) but certainly the external ones can just disapear whenever they want to. Unfortunately Middleman doesn’t have [broken link checks](https://github.com/middleman/middleman/issues/902) on build. That’d be quite handy since I’d get an update when a link broke. However, there are a [lot of sites](https://www.google.com/search?q=spider+site+for+broken+links&oq=spider+site+for+b&aqs=chrome.1.69i57j0l4.3126j0j4&sourceid=chrome&es_sm=119&ie=UTF-8) to help you find broken links. I used [Broken Link Check](http://www.brokenlinkcheck.com/) and it worked just fine.
+Links go bad. Hopefully not my internal ones (although that’s happened before) but certainly the external ones can just disappear whenever they want to. Unfortunately Middleman doesn’t have [broken link checks](https://github.com/middleman/middleman/issues/902) on build. That’d be quite handy since I’d get an update when a link broke. However, there are a [lot of sites](https://www.google.com/search?q=spider+site+for+broken+links&oq=spider+site+for+b&aqs=chrome.1.69i57j0l4.3126j0j4&sourceid=chrome&es_sm=119&ie=UTF-8) to help you find broken links. I used [Broken Link Check](http://www.brokenlinkcheck.com/) and it worked just fine.
 
 ## SEO
 

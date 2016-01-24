@@ -88,13 +88,13 @@ So `source` and `destination` ultimately need to be shrinkable. In order to allo
 
 At this point everything is flexible. So if you [play with it](/blog/2015/pr-header/simple-flexbox) you can see everything shrinks equally and the branch names wrap across lines. This wrapping makes sense for “normal” uses of flexbox (i.e. columns of text) but it isn’t what we want for the branch names.
 
-We can stop words from wrapping with a quick `white-space: nowrap` rule. [This works](/blog/2015/pr-header/no-wrap) in that the words don’t wrap, but it has the unfortuante side effect of stopping things from shrinking. Let‘s put that back by hiding overflowing text: `overflow: hidden;`. While we’re at it, we can style the ending with an ellipsis using `text-overflow: ellipsis;`. Ok, we’re [back in business](/blog/2015/pr-header/ellipsis) now!
+We can stop words from wrapping with a quick `white-space: nowrap` rule. [This works](/blog/2015/pr-header/no-wrap) in that the words don’t wrap, but it has the unfortunate side effect of stopping things from shrinking. Let‘s put that back by hiding overflowing text: `overflow: hidden;`. While we’re at it, we can style the ending with an ellipsis using `text-overflow: ellipsis;`. Ok, we’re [back in business](/blog/2015/pr-header/ellipsis) now!
 
 And that’s it for the branch details! The source and destination branches shrink equally while the arrow remains full width.
 
 ### Add the author
 
-The other element that can shrink is the author. From the designs the author, branch details and PR status are all to the left, so I’ll group these all together in my HTML. We’ll add this next layer of wrapping to make sure the author can shrink, the PR status cannot shink, and the branches continue to shrink as expected.
+The other element that can shrink is the author. From the designs the author, branch details and PR status are all to the left, so I’ll group these all together in my HTML. We’ll add this next layer of wrapping to make sure the author can shrink, the PR status cannot shrink, and the branches continue to shrink as expected.
 
 [New HTML:](/blog/2015/pr-header/author-branches-status)
 

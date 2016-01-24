@@ -41,7 +41,7 @@ Number('0') == Number(false)
 0 == 0
 ```
 
-From here we can test for equalty with type since both operands are numbers.
+From here we can test for equality with type since both operands are numbers.
 
 **TL;DR**
 

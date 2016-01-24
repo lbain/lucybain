@@ -193,7 +193,7 @@ This is probably the most reasonable level of trust. You asked for a painting an
 
 It all depends on if the canvas is altered or replaced. If Fred simply alters the canvas by painting it, then the original (blank) canvas is changed forever. However, if Fred wants to replace the canvas, he can’t throw it away, but must create a sculpture as an entirely new thing.
 
-### More fomal definition
+### More formal definition
 
 In pass by sharing the original variable (declared outside the function’s scope) can only be altered in so far as it is mutable. It cannot be reassigned inside the function call. Any changes to a mutable type will persist after the function returns. Any attempts to reassign a variable will not persist.
 
