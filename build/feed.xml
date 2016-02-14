@@ -9,1046 +9,11 @@
     <name>Lucy Bain</name>
   </author>
   <entry>
-    <title/>
-    <link rel="alternate" href="http://lucybain.com/blog/2016/speaking-resources/"/>
-    <id>http://lucybain.com/blog/2016/speaking-resources/</id>
-    <published>2016-02-14T00:00:00Z</published>
-    <updated>2016-02-14T18:54:50+11:00</updated>
-    <author>
-      <name>Article Author</name>
-    </author>
-    <content type="html">&lt;!DOCTYPE html&gt;&lt;html&gt;&lt;head&gt;&lt;meta charset="utf-8"&gt;&lt;meta name="tags" content=""&gt;
-&lt;meta name="published" content="false"&gt;&lt;style&gt;body {
-  width: 45em;
-  border: 1px solid #ddd;
-  outline: 1300px solid #fff;
-  margin: 16px auto;
-}
-
-body .markdown-body
-{
-  padding: 30px;
-}
-
-@font-face {
-  font-family: fontawesome-mini;
-  src: url(data:font/woff;charset=utf-8;base64,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) format('woff');
-}
-
-@font-face {
-  font-family: octicons-anchor;
-  src: url(data:font/woff;charset=utf-8;base64,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) format('woff');
-}
-
-.markdown-body {
-  font-family: sans-serif;
-  -ms-text-size-adjust: 100%;
-  -webkit-text-size-adjust: 100%;
-  color: #333333;
-  overflow: hidden;
-  font-family: "Helvetica Neue", Helvetica, "Segoe UI", Arial, freesans, sans-serif;
-  font-size: 16px;
-  line-height: 1.6;
-  word-wrap: break-word;
-}
-
-.markdown-body a {
-  background: transparent;
-}
-
-.markdown-body a:active,
-.markdown-body a:hover {
-  outline: 0;
-}
-
-.markdown-body b,
-.markdown-body strong {
-  font-weight: bold;
-}
-
-.markdown-body mark {
-  background: #ff0;
-  color: #000;
-  font-style: italic;
-  font-weight: bold;
-}
-
-.markdown-body sub,
-.markdown-body sup {
-  font-size: 75%;
-  line-height: 0;
-  position: relative;
-  vertical-align: baseline;
-}
-.markdown-body sup {
-  top: -0.5em;
-}
-.markdown-body sub {
-  bottom: -0.25em;
-}
-
-.markdown-body h1 {
-  font-size: 2em;
-  margin: 0.67em 0;
-}
-
-.markdown-body img {
-  border: 0;
-}
-
-.markdown-body hr {
-  -moz-box-sizing: content-box;
-  box-sizing: content-box;
-  height: 0;
-}
-
-.markdown-body pre {
-  overflow: auto;
-}
-
-.markdown-body code,
-.markdown-body kbd,
-.markdown-body pre,
-.markdown-body samp {
-  font-family: monospace, monospace;
-  font-size: 1em;
-}
-
-.markdown-body input {
-  color: inherit;
-  font: inherit;
-  margin: 0;
-}
-
-.markdown-body html input[disabled] {
-  cursor: default;
-}
-
-.markdown-body input {
-  line-height: normal;
-}
-
-.markdown-body input[type="checkbox"] {
-  box-sizing: border-box;
-  padding: 0;
-}
-
-.markdown-body table {
-  border-collapse: collapse;
-  border-spacing: 0;
-}
-
-.markdown-body td,
-.markdown-body th {
-  padding: 0;
-}
-
-.markdown-body .codehilitetable {
-  border: 0;
-  border-spacing: 0;
-}
-
-.markdown-body .codehilitetable tr {
-  border: 0;
-}
-
-.markdown-body .codehilitetable pre,
-.markdown-body .codehilitetable div.codehilite {
-  margin: 0;
-}
-
-.markdown-body .linenos,
-.markdown-body .code,
-.markdown-body .codehilitetable td {
-  border: 0;
-  padding: 0;
-}
-
-.markdown-body td:not(.linenos) .linenodiv {
-  padding: 0 !important;
-}
-
-.markdown-body .code {
-  width: 100%;
-}
-
-.markdown-body .linenos div pre,
-.markdown-body .linenodiv pre,
-.markdown-body .linenodiv {
-  border: 0;
-  -webkit-border-radius: 0;
-  -moz-border-radius: 0;
-  border-radius: 0;
-  -webkit-border-top-left-radius: 3px;
-  -webkit-border-bottom-left-radius: 3px;
-  -moz-border-radius-topleft: 3px;
-  -moz-border-radius-bottomleft: 3px;
-  border-top-left-radius: 3px;
-  border-bottom-left-radius: 3px;
-}
-
-.markdown-body .code div pre,
-.markdown-body .code div {
-  border: 0;
-  -webkit-border-radius: 0;
-  -moz-border-radius: 0;
-  border-radius: 0;
-  -webkit-border-top-right-radius: 3px;
-  -webkit-border-bottom-right-radius: 3px;
-  -moz-border-radius-topright: 3px;
-  -moz-border-radius-bottomright: 3px;
-  border-top-right-radius: 3px;
-  border-bottom-right-radius: 3px;
-}
-
-.markdown-body * {
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-}
-
-.markdown-body input {
-  font: 13px Helvetica, arial, freesans, clean, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol";
-  line-height: 1.4;
-}
-
-.markdown-body a {
-  color: #4183c4;
-  text-decoration: none;
-}
-
-.markdown-body a:hover,
-.markdown-body a:focus,
-.markdown-body a:active {
-  text-decoration: underline;
-}
-
-.markdown-body hr {
-  height: 0;
-  margin: 15px 0;
-  overflow: hidden;
-  background: transparent;
-  border: 0;
-  border-bottom: 1px solid #ddd;
-}
-
-.markdown-body hr:before,
-.markdown-body hr:after {
-  display: table;
-  content: " ";
-}
-
-.markdown-body hr:after {
-  clear: both;
-}
-
-.markdown-body h1,
-.markdown-body h2,
-.markdown-body h3,
-.markdown-body h4,
-.markdown-body h5,
-.markdown-body h6 {
-  margin-top: 15px;
-  margin-bottom: 15px;
-  line-height: 1.1;
-}
-
-.markdown-body h1 {
-  font-size: 30px;
-}
-
-.markdown-body h2 {
-  font-size: 21px;
-}
-
-.markdown-body h3 {
-  font-size: 16px;
-}
-
-.markdown-body h4 {
-  font-size: 14px;
-}
-
-.markdown-body h5 {
-  font-size: 12px;
-}
-
-.markdown-body h6 {
-  font-size: 11px;
-}
-
-.markdown-body blockquote {
-  margin: 0;
-}
-
-.markdown-body ul,
-.markdown-body ol {
-  padding: 0;
-  margin-top: 0;
-  margin-bottom: 0;
-}
-
-.markdown-body ol ol,
-.markdown-body ul ol {
-  list-style-type: lower-roman;
-}
-
-.markdown-body ul ul ol,
-.markdown-body ul ol ol,
-.markdown-body ol ul ol,
-.markdown-body ol ol ol {
-  list-style-type: lower-alpha;
-}
-
-.markdown-body dd {
-  margin-left: 0;
-}
-
-.markdown-body code,
-.markdown-body pre,
-.markdown-body samp {
-  font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
-  font-size: 12px;
-}
-
-.markdown-body pre {
-  margin-top: 0;
-  margin-bottom: 0;
-}
-
-.markdown-body kbd {
-  background-color: #e7e7e7;
-  background-image: -moz-linear-gradient(#fefefe, #e7e7e7);
-  background-image: -webkit-linear-gradient(#fefefe, #e7e7e7);
-  background-image: linear-gradient(#fefefe, #e7e7e7);
-  background-repeat: repeat-x;
-  border-radius: 2px;
-  border: 1px solid #cfcfcf;
-  color: #000;
-  padding: 3px 5px;
-  line-height: 10px;
-  font: 11px Consolas, "Liberation Mono", Menlo, Courier, monospace;
-  display: inline-block;
-}
-
-.markdown-body&gt;*:first-child {
-  margin-top: 0 !important;
-}
-
-.markdown-body&gt;*:last-child {
-  margin-bottom: 0 !important;
-}
-
-.markdown-body .headeranchor-link {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  display: block;
-  padding-right: 6px;
-  padding-left: 30px;
-  margin-left: -30px;
-}
-
-.markdown-body .headeranchor-link:focus {
-  outline: none;
-}
-
-.markdown-body h1,
-.markdown-body h2,
-.markdown-body h3,
-.markdown-body h4,
-.markdown-body h5,
-.markdown-body h6 {
-  position: relative;
-  margin-top: 1em;
-  margin-bottom: 16px;
-  font-weight: bold;
-  line-height: 1.4;
-}
-
-.markdown-body h1 .headeranchor,
-.markdown-body h2 .headeranchor,
-.markdown-body h3 .headeranchor,
-.markdown-body h4 .headeranchor,
-.markdown-body h5 .headeranchor,
-.markdown-body h6 .headeranchor {
-  display: none;
-  color: #000;
-  vertical-align: middle;
-}
-
-.markdown-body h1:hover .headeranchor-link,
-.markdown-body h2:hover .headeranchor-link,
-.markdown-body h3:hover .headeranchor-link,
-.markdown-body h4:hover .headeranchor-link,
-.markdown-body h5:hover .headeranchor-link,
-.markdown-body h6:hover .headeranchor-link {
-  height: 1em;
-  padding-left: 8px;
-  margin-left: -30px;
-  line-height: 1;
-  text-decoration: none;
-}
-
-.markdown-body h1:hover .headeranchor-link .headeranchor,
-.markdown-body h2:hover .headeranchor-link .headeranchor,
-.markdown-body h3:hover .headeranchor-link .headeranchor,
-.markdown-body h4:hover .headeranchor-link .headeranchor,
-.markdown-body h5:hover .headeranchor-link .headeranchor,
-.markdown-body h6:hover .headeranchor-link .headeranchor {
-  display: inline-block;
-}
-
-.markdown-body h1 {
-  padding-bottom: 0.3em;
-  font-size: 2.25em;
-  line-height: 1.2;
-  border-bottom: 1px solid #eee;
-}
-
-.markdown-body h2 {
-  padding-bottom: 0.3em;
-  font-size: 1.75em;
-  line-height: 1.225;
-  border-bottom: 1px solid #eee;
-}
-
-.markdown-body h3 {
-  font-size: 1.5em;
-  line-height: 1.43;
-}
-
-.markdown-body h4 {
-  font-size: 1.25em;
-}
-
-.markdown-body h5 {
-  font-size: 1em;
-}
-
-.markdown-body h6 {
-  font-size: 1em;
-  color: #777;
-}
-
-.markdown-body p,
-.markdown-body blockquote,
-.markdown-body ul,
-.markdown-body ol,
-.markdown-body dl,
-.markdown-body table,
-.markdown-body pre,
-.markdown-body .admonition {
-  margin-top: 0;
-  margin-bottom: 16px;
-}
-
-.markdown-body hr {
-  height: 4px;
-  padding: 0;
-  margin: 16px 0;
-  background-color: #e7e7e7;
-  border: 0 none;
-}
-
-.markdown-body ul,
-.markdown-body ol {
-  padding-left: 2em;
-}
-
-.markdown-body ul ul,
-.markdown-body ul ol,
-.markdown-body ol ol,
-.markdown-body ol ul {
-  margin-top: 0;
-  margin-bottom: 0;
-}
-
-.markdown-body li&gt;p {
-  margin-top: 16px;
-}
-
-.markdown-body dl {
-  padding: 0;
-}
-
-.markdown-body dl dt {
-  padding: 0;
-  margin-top: 16px;
-  font-size: 1em;
-  font-style: italic;
-  font-weight: bold;
-}
-
-.markdown-body dl dd {
-  padding: 0 16px;
-  margin-bottom: 16px;
-}
-
-.markdown-body blockquote {
-  padding: 0 15px;
-  color: #777;
-  border-left: 4px solid #ddd;
-}
-
-.markdown-body blockquote&gt;:first-child {
-  margin-top: 0;
-}
-
-.markdown-body blockquote&gt;:last-child {
-  margin-bottom: 0;
-}
-
-.markdown-body table {
-  display: block;
-  width: 100%;
-  overflow: auto;
-  word-break: normal;
-  word-break: keep-all;
-}
-
-.markdown-body table th {
-  font-weight: bold;
-}
-
-.markdown-body table th,
-.markdown-body table td {
-  padding: 6px 13px;
-  border: 1px solid #ddd;
-}
-
-.markdown-body table tr {
-  background-color: #fff;
-  border-top: 1px solid #ccc;
-}
-
-.markdown-body table tr:nth-child(2n) {
-  background-color: #f8f8f8;
-}
-
-.markdown-body img {
-  max-width: 100%;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-}
-
-.markdown-body code,
-.markdown-body samp {
-  padding: 0;
-  padding-top: 0.2em;
-  padding-bottom: 0.2em;
-  margin: 0;
-  font-size: 85%;
-  background-color: rgba(0,0,0,0.04);
-  border-radius: 3px;
-}
-
-.markdown-body code:before,
-.markdown-body code:after {
-  letter-spacing: -0.2em;
-  content: "\00a0";
-}
-
-.markdown-body pre&gt;code {
-  padding: 0;
-  margin: 0;
-  font-size: 100%;
-  word-break: normal;
-  white-space: pre;
-  background: transparent;
-  border: 0;
-}
-
-.markdown-body .codehilite {
-  margin-bottom: 16px;
-}
-
-.markdown-body .codehilite pre,
-.markdown-body pre {
-  padding: 16px;
-  overflow: auto;
-  font-size: 85%;
-  line-height: 1.45;
-  background-color: #f7f7f7;
-  border-radius: 3px;
-}
-
-.markdown-body .codehilite pre {
-  margin-bottom: 0;
-  word-break: normal;
-}
-
-.markdown-body pre {
-  word-wrap: normal;
-}
-
-.markdown-body pre code {
-  display: inline;
-  max-width: initial;
-  padding: 0;
-  margin: 0;
-  overflow: initial;
-  line-height: inherit;
-  word-wrap: normal;
-  background-color: transparent;
-  border: 0;
-}
-
-.markdown-body pre code:before,
-.markdown-body pre code:after {
-  content: normal;
-}
-
-/* Admonition */
-.markdown-body .admonition {
-  -webkit-border-radius: 3px;
-  -moz-border-radius: 3px;
-  position: relative;
-  border-radius: 3px;
-  border: 1px solid #e0e0e0;
-  border-left: 6px solid #333;
-  padding: 10px 10px 10px 30px;
-}
-
-.markdown-body .admonition table {
-  color: #333;
-}
-
-.markdown-body .admonition p {
-  padding: 0;
-}
-
-.markdown-body .admonition-title {
-  font-weight: bold;
-  margin: 0;
-}
-
-.markdown-body .admonition&gt;.admonition-title {
-  color: #333;
-}
-
-.markdown-body .attention&gt;.admonition-title {
-  color: #a6d796;
-}
-
-.markdown-body .caution&gt;.admonition-title {
-  color: #d7a796;
-}
-
-.markdown-body .hint&gt;.admonition-title {
-  color: #96c6d7;
-}
-
-.markdown-body .danger&gt;.admonition-title {
-  color: #c25f77;
-}
-
-.markdown-body .question&gt;.admonition-title {
-  color: #96a6d7;
-}
-
-.markdown-body .note&gt;.admonition-title {
-  color: #d7c896;
-}
-
-.markdown-body .admonition:before,
-.markdown-body .attention:before,
-.markdown-body .caution:before,
-.markdown-body .hint:before,
-.markdown-body .danger:before,
-.markdown-body .question:before,
-.markdown-body .note:before {
-  font: normal normal 16px fontawesome-mini;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  line-height: 1.5;
-  color: #333;
-  position: absolute;
-  left: 0;
-  top: 0;
-  padding-top: 10px;
-  padding-left: 10px;
-}
-
-.markdown-body .admonition:before {
-  content: "\f056\00a0";
-  color: 333;
-}
-
-.markdown-body .attention:before {
-  content: "\f058\00a0";
-  color: #a6d796;
-}
-
-.markdown-body .caution:before {
-  content: "\f06a\00a0";
-  color: #d7a796;
-}
-
-.markdown-body .hint:before {
-  content: "\f05a\00a0";
-  color: #96c6d7;
-}
-
-.markdown-body .danger:before {
-  content: "\f057\00a0";
-  color: #c25f77;
-}
-
-.markdown-body .question:before {
-  content: "\f059\00a0";
-  color: #96a6d7;
-}
-
-.markdown-body .note:before {
-  content: "\f040\00a0";
-  color: #d7c896;
-}
-
-.markdown-body .admonition::after {
-  content: normal;
-}
-
-.markdown-body .attention {
-  border-left: 6px solid #a6d796;
-}
-
-.markdown-body .caution {
-  border-left: 6px solid #d7a796;
-}
-
-.markdown-body .hint {
-  border-left: 6px solid #96c6d7;
-}
-
-.markdown-body .danger {
-  border-left: 6px solid #c25f77;
-}
-
-.markdown-body .question {
-  border-left: 6px solid #96a6d7;
-}
-
-.markdown-body .note {
-  border-left: 6px solid #d7c896;
-}
-
-.markdown-body .admonition&gt;*:first-child {
-  margin-top: 0 !important;
-}
-
-.markdown-body .admonition&gt;*:last-child {
-  margin-bottom: 0 !important;
-}
-
-/* progress bar*/
-.markdown-body .progress {
-  display: block;
-  width: 300px;
-  margin: 10px 0;
-  height: 24px;
-  -webkit-border-radius: 3px;
-  -moz-border-radius: 3px;
-  border-radius: 3px;
-  background-color: #ededed;
-  position: relative;
-  box-shadow: inset -1px 1px 3px rgba(0, 0, 0, .1);
-}
-
-.markdown-body .progress-label {
-  position: absolute;
-  text-align: center;
-  font-weight: bold;
-  width: 100%; margin: 0;
-  line-height: 24px;
-  color: #333;
-  text-shadow: 1px 1px 0 #fefefe, -1px -1px 0 #fefefe, -1px 1px 0 #fefefe, 1px -1px 0 #fefefe, 0 1px 0 #fefefe, 0 -1px 0 #fefefe, 1px 0 0 #fefefe, -1px 0 0 #fefefe, 1px 1px 2px #000;
-  -webkit-font-smoothing: antialiased !important;
-  white-space: nowrap;
-  overflow: hidden;
-}
-
-.markdown-body .progress-bar {
-  height: 24px;
-  float: left;
-  -webkit-border-radius: 3px;
-  -moz-border-radius: 3px;
-  border-radius: 3px;
-  background-color: #96c6d7;
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .5), inset 0 -1px 0 rgba(0, 0, 0, .1);
-  background-size: 30px 30px;
-  background-image: -webkit-linear-gradient(
-    135deg, rgba(255, 255, 255, .4) 27%,
-    transparent 27%,
-    transparent 52%, rgba(255, 255, 255, .4) 52%,
-    rgba(255, 255, 255, .4) 77%,
-    transparent 77%, transparent
-  );
-  background-image: -moz-linear-gradient(
-    135deg,
-    rgba(255, 255, 255, .4) 27%, transparent 27%,
-    transparent 52%, rgba(255, 255, 255, .4) 52%,
-    rgba(255, 255, 255, .4) 77%, transparent 77%,
-    transparent
-  );
-  background-image: -ms-linear-gradient(
-    135deg,
-    rgba(255, 255, 255, .4) 27%, transparent 27%,
-    transparent 52%, rgba(255, 255, 255, .4) 52%,
-    rgba(255, 255, 255, .4) 77%, transparent 77%,
-    transparent
-  );
-  background-image: -o-linear-gradient(
-    135deg,
-    rgba(255, 255, 255, .4) 27%, transparent 27%,
-    transparent 52%, rgba(255, 255, 255, .4) 52%,
-    rgba(255, 255, 255, .4) 77%, transparent 77%,
-    transparent
-  );
-  background-image: linear-gradient(
-    135deg,
-    rgba(255, 255, 255, .4) 27%, transparent 27%,
-    transparent 52%, rgba(255, 255, 255, .4) 52%,
-    rgba(255, 255, 255, .4) 77%, transparent 77%,
-    transparent
-  );
-}
-
-.markdown-body .progress-100plus .progress-bar {
-  background-color: #a6d796;
-}
-
-.markdown-body .progress-80plus .progress-bar {
-  background-color: #c6d796;
-}
-
-.markdown-body .progress-60plus .progress-bar {
-  background-color: #d7c896;
-}
-
-.markdown-body .progress-40plus .progress-bar {
-  background-color: #d7a796;
-}
-
-.markdown-body .progress-20plus .progress-bar {
-  background-color: #d796a6;
-}
-
-.markdown-body .progress-0plus .progress-bar {
-  background-color: #c25f77;
-}
-
-.markdown-body .candystripe-animate .progress-bar{
-  -webkit-animation: animate-stripes 3s linear infinite;
-  -moz-animation: animate-stripes 3s linear infinite;
-  animation: animate-stripes 3s linear infinite;
-}
-
-@-webkit-keyframes animate-stripes {
-  0% {
-    background-position: 0 0;
-  }
-
-  100% {
-    background-position: 60px 0;
-  }
-}
-
-@-moz-keyframes animate-stripes {
-  0% {
-    background-position: 0 0;
-  }
-
-  100% {
-    background-position: 60px 0;
-  }
-}
-
-@keyframes animate-stripes {
-  0% {
-    background-position: 0 0;
-  }
-
-  100% {
-    background-position: 60px 0;
-  }
-}
-
-.markdown-body .gloss .progress-bar {
-  box-shadow:
-    inset 0 4px 12px rgba(255, 255, 255, .7),
-    inset 0 -12px 0 rgba(0, 0, 0, .05);
-}
-
-/* Multimarkdown Critic Blocks */
-.markdown-body .critic_mark {
-  background: #ff0;
-}
-
-.markdown-body .critic_delete {
-  color: #c82829;
-  text-decoration: line-through;
-}
-
-.markdown-body .critic_insert {
-  color: #718c00 ;
-  text-decoration: underline;
-}
-
-.markdown-body .critic_comment {
-  color: #8e908c;
-  font-style: italic;
-}
-
-.markdown-body .headeranchor {
-  font: normal normal 16px octicons-anchor;
-  line-height: 1;
-  display: inline-block;
-  text-decoration: none;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-}
-
-.headeranchor:before {
-  content: '\f05c';
-}
-
-.markdown-body .task-list-item {
-  list-style-type: none;
-}
-
-.markdown-body .task-list-item+.task-list-item {
-  margin-top: 3px;
-}
-
-.markdown-body .task-list-item input {
-  margin: 0 4px 0.25em -20px;
-  vertical-align: middle;
-}
-
-/* Media */
-@media only screen and (min-width: 480px) {
-  .markdown-body {
-    font-size:14px;
-  }
-}
-
-@media only screen and (min-width: 768px) {
-  .markdown-body {
-    font-size:16px;
-  }
-}
-
-@media print {
-  .markdown-body * {
-    background: transparent !important;
-    color: black !important;
-    filter:none !important;
-    -ms-filter: none !important;
-  }
-
-  .markdown-body {
-    font-size:12pt;
-    max-width:100%;
-    outline:none;
-    border: 0;
-  }
-
-  .markdown-body a,
-  .markdown-body a:visited {
-    text-decoration: underline;
-  }
-
-  .markdown-body .headeranchor-link {
-    display: none;
-  }
-
-  .markdown-body a[href]:after {
-    content: " (" attr(href) ")";
-  }
-
-  .markdown-body abbr[title]:after {
-    content: " (" attr(title) ")";
-  }
-
-  .markdown-body .ir a:after,
-  .markdown-body a[href^="javascript:"]:after,
-  .markdown-body a[href^="#"]:after {
-    content: "";
-  }
-
-  .markdown-body pre {
-    white-space: pre;
-    white-space: pre-wrap;
-    word-wrap: break-word;
-  }
-
-  .markdown-body pre,
-  .markdown-body blockquote {
-    border: 1px solid #999;
-    padding-right: 1em;
-    page-break-inside: avoid;
-  }
-
-  .markdown-body .progress,
-  .markdown-body .progress-bar {
-    -moz-box-shadow: none;
-    -webkit-box-shadow: none;
-    box-shadow: none;
-  }
-
-  .markdown-body .progress {
-    border: 1px solid #ddd;
-  }
-
-  .markdown-body .progress-bar {
-    height: 22px;
-    border-right: 1px solid #ddd;
-  }
-
-  .markdown-body tr,
-  .markdown-body img {
-    page-break-inside: avoid;
-  }
-
-  .markdown-body img {
-    max-width: 100% !important;
-  }
-
-  .markdown-body p,
-  .markdown-body h2,
-  .markdown-body h3 {
-    orphans: 3;
-    widows: 3;
-  }
-
-  .markdown-body h2,
-  .markdown-body h3 {
-    page-break-after: avoid;
-  }
-}
-&lt;/style&gt;&lt;title&gt;02-14-speaking-resources&lt;/title&gt;&lt;/head&gt;&lt;body&gt;&lt;article class="markdown-body"&gt;&lt;p&gt;description:&lt;br /&gt;
-keywords:&lt;/p&gt;
-&lt;hr /&gt;
-&lt;h2 id="secondary-header"&gt;&lt;a name="user-content-secondary-header" href="#secondary-header" class="headeranchor-link" aria-hidden="true"&gt;&lt;span class="headeranchor"&gt;&lt;/span&gt;&lt;/a&gt;Secondary header&lt;/h2&gt;
-&lt;h2 id="resources"&gt;&lt;a name="user-content-resources" href="#resources" class="headeranchor-link" aria-hidden="true"&gt;&lt;span class="headeranchor"&gt;&lt;/span&gt;&lt;/a&gt;Resources&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;something&lt;/li&gt;
-&lt;/ul&gt;&lt;/article&gt;&lt;/body&gt;&lt;/html&gt;</content>
-  </entry>
-  <entry>
     <title>How to come up with conference proposal ideas</title>
     <link rel="alternate" href="http://lucybain.com/blog/2016/conference-proposal-ideas/"/>
     <id>http://lucybain.com/blog/2016/conference-proposal-ideas/</id>
     <published>2016-02-14T00:00:00Z</published>
-    <updated>2016-02-14T22:53:07+11:00</updated>
+    <updated>2016-02-15T09:42:56+11:00</updated>
     <author>
       <name>Article Author</name>
     </author>
@@ -1169,7 +134,7 @@ keywords:&lt;/p&gt;
     <link rel="alternate" href="http://lucybain.com/blog/2015/programming-theory-evaluation-strategies/"/>
     <id>http://lucybain.com/blog/2015/programming-theory-evaluation-strategies/</id>
     <published>2015-11-25T00:00:00Z</published>
-    <updated>2016-01-24T16:46:52+11:00</updated>
+    <updated>2016-02-15T09:42:56+11:00</updated>
     <author>
       <name>Article Author</name>
     </author>
@@ -1404,7 +369,7 @@ console.log(num); // logs 1
     <link rel="alternate" href="http://lucybain.com/blog/2015/js-destructuring-assignment-es6/"/>
     <id>http://lucybain.com/blog/2015/js-destructuring-assignment-es6/</id>
     <published>2015-11-13T00:00:00Z</published>
-    <updated>2016-01-24T16:29:10+11:00</updated>
+    <updated>2016-02-15T09:42:56+11:00</updated>
     <author>
       <name>Article Author</name>
     </author>
@@ -1622,7 +587,7 @@ console.log(c); // logs 3
     <link rel="alternate" href="http://lucybain.com/blog/2015/enhanced-obj-literals/"/>
     <id>http://lucybain.com/blog/2015/enhanced-obj-literals/</id>
     <published>2015-11-01T00:00:00Z</published>
-    <updated>2016-01-10T14:13:09+11:00</updated>
+    <updated>2016-02-15T09:42:56+11:00</updated>
     <author>
       <name>Article Author</name>
     </author>
@@ -1780,7 +745,7 @@ obj.hello('world'); // logs "hello world"
     <link rel="alternate" href="http://lucybain.com/blog/2015/css-flexbox-in-action/"/>
     <id>http://lucybain.com/blog/2015/css-flexbox-in-action/</id>
     <published>2015-10-20T00:00:00Z</published>
-    <updated>2016-01-24T16:46:34+11:00</updated>
+    <updated>2016-02-15T09:42:56+11:00</updated>
     <author>
       <name>Article Author</name>
     </author>
@@ -1990,6 +955,197 @@ reviewers, approve button, indication of merge issues, merge button, and menu fo
 &lt;p&gt;And with that it’s &lt;a href="/blog/2015/pr-header/in-context-safari"&gt;Safari compliant!&lt;/a&gt;&lt;/p&gt;
 
 &lt;h2&gt;Done&lt;/h2&gt;
+</content>
+  </entry>
+  <entry>
+    <title>JS: new keyword and functions</title>
+    <link rel="alternate" href="http://lucybain.com/blog/2015/js-new-keyword-and-functions/"/>
+    <id>http://lucybain.com/blog/2015/js-new-keyword-and-functions/</id>
+    <published>2015-10-12T00:00:00Z</published>
+    <updated>2016-02-15T09:42:56+11:00</updated>
+    <author>
+      <name>Article Author</name>
+    </author>
+    <content type="html">&lt;p&gt;I’m still slowly making my through the &lt;a href="https://github.com/h5bp/Front-end-Developer-Interview-Questions#js"&gt;javascript interview questions&lt;/a&gt;, despite having started a new job on JS. There&amp;#39;s just so much I don’t know! Maybe one day I&amp;#39;ll actually interview someone with these questions...&lt;/p&gt;
+
+&lt;p&gt;Alright, let’s get to today’s question:&lt;/p&gt;
+
+&lt;h2&gt;What’s the difference between: &lt;code&gt;function Person(){}&lt;/code&gt;, &lt;code&gt;var person = new Person()&lt;/code&gt;, and &lt;code&gt;var person = Person()&lt;/code&gt;?&lt;/h2&gt;
+
+&lt;p&gt;&lt;em&gt;Gah! Too many things!&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;Let’s take them one by one:&lt;/p&gt;
+
+&lt;h3&gt;1. &lt;code&gt;function Person(){}&lt;/code&gt;&lt;/h3&gt;
+
+&lt;p&gt;Ok, well this defined a function. Hopefully that was fairly obvious by the &lt;code&gt;function&lt;/code&gt; keyword.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Wow, mind blowing stuff here...&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;The more interesting side of it is the &lt;code&gt;Person&lt;/code&gt;. Now, the name of the function is user defined (i.e. not a keyword like &lt;code&gt;function&lt;/code&gt;), but what’s interesting here is the capital &lt;code&gt;P&lt;/code&gt;. This is a JS convention. (JS doesn’t care at all if you follow it or not, but all the other devs will be sad if you don’t.) The convention is that if a function name starts with a capital letter then that function defines a constructor (similar to a class in other languages). So we can infer that &lt;code&gt;function Person(){}&lt;/code&gt; defines a constructor.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Ok, so functions with names starting with a capital letter are usually constructors.&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;Yep, it’s really, really common (hopefully you’re using this convention too!), so it’s a pretty safe bet. Let’s move on.&lt;/p&gt;
+
+&lt;h3&gt;2. &lt;code&gt;var person = new Person()&lt;/code&gt;&lt;/h3&gt;
+
+&lt;p&gt;So in many other languages we’d say “The &lt;code&gt;new&lt;/code&gt; keyword creates an instance of the &lt;code&gt;Person&lt;/code&gt; class.”&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;But this is JS, not some “other language.”&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;Yes, very true. JS is a world unto itself. But I hope the sentence above will probably help someone from a more traditional object-oriented background.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Ok, so how does &lt;code&gt;new&lt;/code&gt; work for JS?&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;new&lt;/code&gt; does three main things:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;code&gt;new&lt;/code&gt; creates a new object. It’s just a plain old, bog standard, nothing-in-it object. It looks like &lt;code&gt;{}&lt;/code&gt;. Boring, I know, but it’s very important.&lt;/li&gt;
+&lt;li&gt;The newly created object has it’s prototype set to whatever the &lt;code&gt;Person&lt;/code&gt;’s prototype is right now.&lt;/li&gt;
+&lt;li&gt;Finally the constructor function is called (the body of &lt;code&gt;Person&lt;/code&gt;) with any references to &lt;code&gt;this&lt;/code&gt; replaced with the object created in step 1.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;&lt;em&gt;Why is this important?&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;Although I knew the final outcome of using the &lt;code&gt;new&lt;/code&gt; keyword before, having those three steps spelled out helped remove some of the magic. So let’s talk about them in more detail.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Step 1&lt;/strong&gt; (the plain old empty JS object) means that you get a unique “deep copy” (other languages would say “instance”) of the constructor each time it’s run. If &lt;code&gt;new&lt;/code&gt; didn’t create a new object then you’d constantly be overwriting things in seemingly different objects.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Step 2&lt;/strong&gt; (setting the prototype) means that you can set methods on the constructor’s prototype and they’ll be available on your new object. Something like this:&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;function Person(name) {
+    this.name = name;
+}
+Person.prototype.introduce = function() {
+    console.log("Hi, my name is " + this.name);
+}
+
+var lucy = new Person('Lucy');
+lucy.introduce(); // logs out: "Hi, my name is Lucy"
+&lt;/pre&gt;
+&lt;p&gt;If &lt;code&gt;lucy&lt;/code&gt;’s prototype hadn’t been set to &lt;code&gt;Person&lt;/code&gt;’s prototype then the &lt;code&gt;introduce&lt;/code&gt; method wouldn’t have been available.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Step 3&lt;/strong&gt; (constructor with &lt;code&gt;this&lt;/code&gt; set) means that each object’s &lt;code&gt;this&lt;/code&gt; points to the object, rather than the window or something else. Without the third step &lt;code&gt;this&lt;/code&gt; from the &lt;code&gt;Person&lt;/code&gt; constructor wouldn’t work correctly and &lt;code&gt;lucy&lt;/code&gt; wouldn’t be able to introduce herself.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Huh, ok, so the &lt;code&gt;new&lt;/code&gt; keyword is super important for getting &lt;strong&gt;new&lt;/strong&gt; objects. See what I did there?&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;Moving on...&lt;/p&gt;
+
+&lt;h3&gt;3. &lt;code&gt;var person = Person()&lt;/code&gt;&lt;/h3&gt;
+
+&lt;p&gt;Things get a little tricky here, since we don’t actually have the &lt;code&gt;Person&lt;/code&gt; constructor. It can go one of three ways so let’s look at all of them.&lt;/p&gt;
+
+&lt;h4&gt;Scenario 1 - everything is ruined&lt;/h4&gt;
+
+&lt;p&gt;&lt;code&gt;Person&lt;/code&gt; is a constructor that was written to work with the &lt;code&gt;new&lt;/code&gt; keyword, such as the &lt;code&gt;Person&lt;/code&gt; in my example above. In this case things will break, hopefully in an expected way given the three steps above.&lt;/p&gt;
+
+&lt;p&gt;So, without the &lt;code&gt;new&lt;/code&gt; keyword from above those three steps won’t happen. Let’s look at what that means step by step. We’re going to use the same example as above, but without the &lt;code&gt;new&lt;/code&gt; keyword:&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;function Person(name) {
+    this.name = name;
+}
+Person.prototype.introduce = function() {
+    console.log("Hi, my name is " + this.name);
+}
+
+var lucy = Person('Lucy'); // &amp;lt;-- NO NEW KEYWORD
+&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;Step 1&lt;/strong&gt; (the plain old empty JS object) doesn’t happen. Now instead of getting a new object for &lt;code&gt;lucy&lt;/code&gt; all we get is the return value of &lt;code&gt;Person&lt;/code&gt;. Which is nothing (a.k.a &lt;code&gt;undefined&lt;/code&gt;). Bummer.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Step 2&lt;/strong&gt; (setting the prototype) doesn&amp;#39;t happen. Well that’s kind of a given. Since there’s no new object (see step 1 that didn’t happen) there can’t be a prototype set on it.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Step 3&lt;/strong&gt; (constructor with &lt;code&gt;this&lt;/code&gt; set) tries to happen. It really does it’s very best. Since there’s no new object to set &lt;code&gt;this&lt;/code&gt; to, JS does the next best thing and uses the default &lt;code&gt;this&lt;/code&gt;, the window. So now there’s a brand new property on the window, and you can call it with &lt;code&gt;window.name&lt;/code&gt; or &lt;code&gt;this.name&lt;/code&gt; both of which are &lt;code&gt;&amp;quot;Lucy&amp;quot;&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Well that’s a problem.&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;Yep, leaving of the &lt;code&gt;new&lt;/code&gt; keyword when it’s expected will cause all kinds of headaches.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;What’s the “when it’s expected” caveat for?&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;Great question! The above scenario is, I think, the most likely one, both for what the question was asking about, and in buggy real life code. However, there are two other options. Let’s look at them now.&lt;/p&gt;
+
+&lt;h4&gt;Scenario 2 - nobody cares&lt;/h4&gt;
+
+&lt;p&gt;It’s possible that the &lt;code&gt;Person&lt;/code&gt; constructor was written to avoid just this pitfall. It would look something like this:&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;function Person(name) {
+    if (this instanceof Person) {
+        this.name = name;
+      } else {
+        return new Person(name);
+      }
+}
+Person.prototype.introduce = function() {
+    console.log("Hi, my name is " + this.name);
+}
+
+var lucy = new Person('Lucy'); // &amp;lt;-- NEW KEYWORD IS PRESENT
+lucy.introduce(); // logs out: "Hi, my name is Lucy"
+
+var bob = Person('Bob'); // &amp;lt;-- NO NEW KEYWORD
+bob.introduce(); // logs out: "Hi, my name is Bob"
+&lt;/pre&gt;
+&lt;p&gt;This takes advantage of the three steps that &lt;code&gt;new&lt;/code&gt; goes through as discussed above. By the time the constructor is actually run there &lt;em&gt;should&lt;/em&gt; be an object assigned to &lt;code&gt;this&lt;/code&gt; with it’s prototype set correctly so &lt;code&gt;this instanceof Person&lt;/code&gt; is &lt;code&gt;true&lt;/code&gt;. &lt;em&gt;However&lt;/em&gt; if someone happened to forget the &lt;code&gt;new&lt;/code&gt; keyword then the constructor would go straight to the &lt;code&gt;else&lt;/code&gt; section and create a new object, using the &lt;code&gt;new&lt;/code&gt; keyword correctly.&lt;/p&gt;
+
+&lt;p&gt;This means using the constructor with and without the &lt;code&gt;new&lt;/code&gt; keyword works correctly (as shown by &lt;code&gt;bob&lt;/code&gt; and &lt;code&gt;lucy&lt;/code&gt; above).&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;That’s a pretty sneaky trick!&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;Yeah, it’s quite clever. It’s also &lt;em&gt;really&lt;/em&gt; defensive programming. I mean, we can’t write everything to allow important keywords to just be forgotten... I think it’s bad practice (not to mention a little mean) to hide mistakes from people. I want to know when I mess up. Which brings us nicely to:&lt;/p&gt;
+
+&lt;h4&gt;Scenario 3 - warning&lt;/h4&gt;
+
+&lt;p&gt;Finally we reach a happy middle ground. Scenario 1 failed quietly. Scenario 2 didn’t fail at all, but also allowed incorrect code to work correctly. But scenario 3 will just give a warning, and it’s quite a simple fix.&lt;/p&gt;
+
+&lt;p&gt;A while ago I wrote about &lt;a href="/blog/2014/js-use-strict/"&gt;strict mode&lt;/a&gt;, which is exactly what we’ll use now. Here’s an example:&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;"use strict"; // &amp;lt;-- THIS LINE HERE
+
+function Person(name) {
+    this.name = name;
+}
+Person.prototype.introduce = function() {
+    console.log("Hi, my name is " + this.name);
+}
+
+var lucy = new Person('Lucy'); // &amp;lt;-- NEW KEYWORD IS PRESENT
+lucy.introduce(); // logs out: "Hi, my name is Lucy"
+
+var bob = Person('Bob'); // &amp;lt;-- NO NEW KEYWORD
+// throws "Uncaught TypeError: Cannot set property 'name' of undefined"
+&lt;/pre&gt;
+&lt;p&gt;As you can see, using the &lt;code&gt;new&lt;/code&gt; keyword works exactly as expected. However, if you forget to use &lt;code&gt;new&lt;/code&gt; an error will be thrown, alerting you to your mistake.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;What’s happening behind the scenes?&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;Basically the &lt;code&gt;&amp;quot;use strict&amp;quot;&lt;/code&gt; just means that JS won’t allow the &lt;code&gt;this&lt;/code&gt; in the constructor to be bound to the window. Instead it leaves &lt;code&gt;this&lt;/code&gt; as undefined (since no new object was created to be properly bound to &lt;code&gt;this&lt;/code&gt;) which causes the error &lt;code&gt;Cannot set property &amp;#39;name&amp;#39; of undefined&amp;quot;&lt;/code&gt;. I think it’s pretty slick.&lt;/p&gt;
+
+&lt;p&gt;Note: I couldn’t get the &lt;code&gt;&amp;quot;use strict&amp;quot;&lt;/code&gt; to work properly in this window’s console when I ran it just now, so here’s a &lt;a href="https://jsfiddle.net/1nu5g2by/"&gt;JSFiddle&lt;/a&gt; of the example if you want to double check. Just be sure to have the console of that window open to see the error.&lt;/p&gt;
+
+&lt;h2&gt;Recap&lt;/h2&gt;
+
+&lt;p&gt;&lt;em&gt;That was quite a lot, can I have it one more time?&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;Sure thing, let’s wrap it up!&lt;/p&gt;
+
+&lt;p&gt;Our question was &amp;quot;What’s the difference between: &lt;code&gt;function Person(){}&lt;/code&gt;, &lt;code&gt;var person = new Person()&lt;/code&gt;, and &lt;code&gt;var person = Person()&lt;/code&gt;?&amp;quot;&lt;/p&gt;
+
+&lt;p&gt;The first one &lt;code&gt;function Person(){}&lt;/code&gt; defines a function. Since it’s got a capital letter at the beginning of the function name we expect that it’s a constructor.&lt;/p&gt;
+
+&lt;p&gt;Next &lt;code&gt;var person = new Person()&lt;/code&gt; is one way to create new objects. Using this method &lt;code&gt;person&lt;/code&gt; will have access to everything &lt;code&gt;Person.prototype&lt;/code&gt; has access to, as well as any instance variables set in the &lt;code&gt;Person&lt;/code&gt; constructor.&lt;/p&gt;
+
+&lt;p&gt;Finally &lt;code&gt;var person = Person()&lt;/code&gt; is a mistake. There are ways of dealing with mistakes like this (my preference is the &lt;code&gt;&amp;quot;use strict&amp;quot;&lt;/code&gt; method), but ultimately this should be corrected.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Done?&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;Done! That was a long one - thanks for sticking with me!&lt;/p&gt;
+
+&lt;h2&gt;References&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="http://stackoverflow.com/a/1564489/863846"&gt;Capitalise constructor function names&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://stackoverflow.com/a/3658673/863846"&gt;What &lt;code&gt;new&lt;/code&gt; does&lt;/a&gt; - I really recommend this question (give it an upvote for me!), as it spelled out the three steps that &lt;code&gt;new&lt;/code&gt; takes&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://stackoverflow.com/a/383503/863846"&gt;Defensive new&lt;/a&gt; for discussion around scenario 2&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://yuiblog.com/blog/2010/12/14/strict-mode-is-coming-to-town/"&gt;Strict mode and new&lt;/a&gt; - look for the section called “Global Leakage”&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://zeekat.nl/articles/constructors-considered-mildly-confusing.html"&gt;More discussion&lt;/a&gt; this was the reference from the “what &lt;code&gt;new&lt;/code&gt; does” answer, so I figured it should get some credit too.&lt;/li&gt;
+&lt;/ul&gt;
 </content>
   </entry>
 </feed>
