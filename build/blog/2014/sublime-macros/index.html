@@ -45,8 +45,10 @@
     </script>
     <div class='content'>
       <div class=' blog-listing'>
-        <h1>Sublime Text Macros</h1>
-        <p>Published on: June 18, 2014</p>
+        <div class='meta'>
+          <h1>Sublime Text Macros</h1>
+          <p>Published on: June 18, 2014</p>
+        </div>
         <p>
           My coworker users vim, and has a snazzy macro to put a <code>binding.pry</code> wherever he using a keyboard shortcut. I thought it was a neat trick (and he mentioned something about Sublime not being a real editor), so I decided to implement it for Sublime as well.
         </p>
@@ -78,35 +80,36 @@
         <pre class="highlight json"><span class="p">{</span><span class="w"> </span><span class="s2">"keys"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"super+b"</span><span class="p">],</span><span class="w">&#x000A;  </span><span class="s2">"command"</span><span class="p">:</span><span class="w"> </span><span class="s2">"run_macro_file"</span><span class="p">,</span><span class="w">&#x000A;  </span><span class="s2">"args"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"file"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Packages/User/add_binding.sublime-macro"</span><span class="p">},</span><span class="w">&#x000A;  </span><span class="s2">"context"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="s2">"key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"selector"</span><span class="p">,</span><span class="w"> </span><span class="s2">"operator"</span><span class="p">:</span><span class="w"> </span><span class="s2">"equal"</span><span class="p">,</span><span class="w"> </span><span class="s2">"operand"</span><span class="p">:</span><span class="w"> </span><span class="s2">"source.ruby,source.ruby.rails"</span><span class="p">}]</span><span class="w"> </span><span class="p">}</span><span class="err">,</span><span class="w">&#x000A;&#x000A;</span><span class="p">{</span><span class="w"> </span><span class="s2">"keys"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"super+b"</span><span class="p">],</span><span class="w">&#x000A;  </span><span class="s2">"command"</span><span class="p">:</span><span class="w"> </span><span class="s2">"run_macro_file"</span><span class="p">,</span><span class="w">&#x000A;  </span><span class="s2">"args"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"file"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Packages/User/add_haml_binding.sublime-macro"</span><span class="p">},</span><span class="w">&#x000A;  </span><span class="s2">"context"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="s2">"key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"selector"</span><span class="p">,</span><span class="w"> </span><span class="s2">"operator"</span><span class="p">:</span><span class="w"> </span><span class="s2">"equal"</span><span class="p">,</span><span class="w"> </span><span class="s2">"operand"</span><span class="p">:</span><span class="w"> </span><span class="s2">"text.haml"</span><span class="p">}]</span><span class="w"> </span><span class="p">}</span><span class="err">,</span><span class="w">&#x000A;&#x000A;</span><span class="p">{</span><span class="w"> </span><span class="s2">"keys"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"super+b"</span><span class="p">],</span><span class="w">&#x000A;  </span><span class="s2">"command"</span><span class="p">:</span><span class="w"> </span><span class="s2">"run_macro_file"</span><span class="p">,</span><span class="w">&#x000A;  </span><span class="s2">"args"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"file"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Packages/User/add_debugger.sublime-macro"</span><span class="p">},</span><span class="w">&#x000A;  </span><span class="s2">"context"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="s2">"key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"selector"</span><span class="p">,</span><span class="w"> </span><span class="s2">"operator"</span><span class="p">:</span><span class="w"> </span><span class="s2">"equal"</span><span class="p">,</span><span class="w"> </span><span class="s2">"operand"</span><span class="p">:</span><span class="w"> </span><span class="s2">"source.js,source.coffee"</span><span class="p">}]</span><span class="w"> </span><span class="p">}</span><span class="w">&#x000A;</span></pre>
         <div class='recommended-reading'>
           <h2>Recommended reading</h2>
-          <p>You might also like <a href="/blog/2014/null-undefined-undeclared/">JS: null, undefined, and undeclared</a></p>
+          <p>You might also like <a href="/blog/2014/js-document-load-vs-ready/">JS: document load vs document ready</a></p>
         </div>
-        <hr>
-        <div id='disqus_thread'></div>
-        <script>
-          var disqus_shortname = 'lucybain';
-          (function() {
-              var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-              dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-              (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-          })();
-        </script>
-        <noscript>
-          Please enable JavaScript to view the
-          <a href='http://disqus.com/?ref_noscript'>comments powered by Disqus.</a>
-        </noscript>
-        <a class='dsq-brlink' href='http://disqus.com'>
-          comments powered by
-          <span class='logo-disqus'>Disqus</span>
-        </a>
-        <script>
-          var disqus_shortname = 'lucybain';
-          (function () {
-              var s = document.createElement('script'); s.async = true;
-              s.type = 'text/javascript';
-              s.src = '//' + disqus_shortname + '.disqus.com/count.js';
-              (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
-          }());
-        </script>
+        <div id='disqus_thread'>
+          <hr>
+          <script>
+            var disqus_shortname = 'lucybain';
+            (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+          </script>
+          <noscript>
+            Please enable JavaScript to view the
+            <a href='http://disqus.com/?ref_noscript'>comments powered by Disqus.</a>
+          </noscript>
+          <a class='dsq-brlink' href='http://disqus.com'>
+            comments powered by
+            <span class='logo-disqus'>Disqus</span>
+          </a>
+          <script>
+            var disqus_shortname = 'lucybain';
+            (function () {
+                var s = document.createElement('script'); s.async = true;
+                s.type = 'text/javascript';
+                s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+                (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+            }());
+          </script>
+        </div>
       </div>
     </div>
   </body>

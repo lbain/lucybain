@@ -46,9 +46,11 @@
     </script>
     <div class='content'>
       <div class=' blog-listing'>
-        <h1>Intro to Programming: Booleans</h1>
-        <p>Published on: June  1, 2015</p>
-        <p>Tags: <a href="/blog/tags/programming/">programming</a> and <a href="/blog/tags/intro-programming/">intro-programming</a></p>
+        <div class='meta'>
+          <h1>Intro to Programming: Booleans</h1>
+          <p>Published on: June  1, 2015</p>
+          <p>Tags: <a href="/blog/tags/programming/">programming</a> and <a href="/blog/tags/intro-programming/">intro-programming</a></p>
+        </div>
         <h2>Explaination</h2>
         
         <p>As you’ve probably heard, computers think in 1s and 0s. There is no middle ground, there’s no 0.5, no 1.1, no 1 and 0 at the same time. 1 or 0, that’s all they’ve got. It turns out, 1s and 0s are pretty powerful.</p>
@@ -122,35 +124,36 @@
         </script>
         <div class='recommended-reading'>
           <h2>Recommended reading</h2>
-          <p>You might also like <a href="/blog/2014/immediately-invoked-function-expression/">JS Immediately Invoked Function Expressions</a></p>
+          <p>You might also like <a href="/blog/2014/null-undefined-undeclared/">JS: null, undefined, and undeclared</a></p>
         </div>
-        <hr>
-        <div id='disqus_thread'></div>
-        <script>
-          var disqus_shortname = 'lucybain';
-          (function() {
-              var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-              dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-              (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-          })();
-        </script>
-        <noscript>
-          Please enable JavaScript to view the
-          <a href='http://disqus.com/?ref_noscript'>comments powered by Disqus.</a>
-        </noscript>
-        <a class='dsq-brlink' href='http://disqus.com'>
-          comments powered by
-          <span class='logo-disqus'>Disqus</span>
-        </a>
-        <script>
-          var disqus_shortname = 'lucybain';
-          (function () {
-              var s = document.createElement('script'); s.async = true;
-              s.type = 'text/javascript';
-              s.src = '//' + disqus_shortname + '.disqus.com/count.js';
-              (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
-          }());
-        </script>
+        <div id='disqus_thread'>
+          <hr>
+          <script>
+            var disqus_shortname = 'lucybain';
+            (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+          </script>
+          <noscript>
+            Please enable JavaScript to view the
+            <a href='http://disqus.com/?ref_noscript'>comments powered by Disqus.</a>
+          </noscript>
+          <a class='dsq-brlink' href='http://disqus.com'>
+            comments powered by
+            <span class='logo-disqus'>Disqus</span>
+          </a>
+          <script>
+            var disqus_shortname = 'lucybain';
+            (function () {
+                var s = document.createElement('script'); s.async = true;
+                s.type = 'text/javascript';
+                s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+                (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+            }());
+          </script>
+        </div>
       </div>
     </div>
   </body>

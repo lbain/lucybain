@@ -46,9 +46,11 @@
     </script>
     <div class='content'>
       <div class=' blog-listing'>
-        <h1>Periodic site maintenance</h1>
-        <p>Published on: June 15, 2015</p>
-        <p>Tags: <a href="/blog/tags/webmaster/">webmaster</a></p>
+        <div class='meta'>
+          <h1>Periodic site maintenance</h1>
+          <p>Published on: June 15, 2015</p>
+          <p>Tags: <a href="/blog/tags/webmaster/">webmaster</a></p>
+        </div>
         <p>Every now and then I spend some time going through my site to make sure things are working as expected. I might <a href="https://github.com/lbain/lucybain/commit/98e7b6787934045a546114bfed96b41ac9f95bcb">tweak something</a>, make some <a href="https://github.com/lbain/lucybain/commit/33d8e3adc537b885905a1fa66b75b85921cf2011">SEO updates</a>, <a href="https://github.com/lbain/lucybain/commit/f4aa1b6185b947abc9841273b3a518d0326411d4">refactor</a> messy code, or <a href="https://github.com/lbain/lucybain/commit/8ea1b51a6d790effd008a4511ffe379288efaacb">fix something</a> that was broken. Ususally days like this are pretty unstructured. I’ll be honest, they typically happen when I don’t feel like writing a blog post, but I still think these days are valuable. After all, this blog is like any piece of code - it needs constant love and attention or it will turn to legacy code. (Shudder)</p>
         
         <p>The point of this post is to write down some ideas of what I can do for maintenance so when I have a day like this I don’t spend too much time waffling.</p>
@@ -86,33 +88,34 @@
           <h2>Recommended reading</h2>
           <p>You might also like <a href="/blog/2014/immediately-invoked-function-expression/">JS Immediately Invoked Function Expressions</a></p>
         </div>
-        <hr>
-        <div id='disqus_thread'></div>
-        <script>
-          var disqus_shortname = 'lucybain';
-          (function() {
-              var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-              dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-              (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-          })();
-        </script>
-        <noscript>
-          Please enable JavaScript to view the
-          <a href='http://disqus.com/?ref_noscript'>comments powered by Disqus.</a>
-        </noscript>
-        <a class='dsq-brlink' href='http://disqus.com'>
-          comments powered by
-          <span class='logo-disqus'>Disqus</span>
-        </a>
-        <script>
-          var disqus_shortname = 'lucybain';
-          (function () {
-              var s = document.createElement('script'); s.async = true;
-              s.type = 'text/javascript';
-              s.src = '//' + disqus_shortname + '.disqus.com/count.js';
-              (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
-          }());
-        </script>
+        <div id='disqus_thread'>
+          <hr>
+          <script>
+            var disqus_shortname = 'lucybain';
+            (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+          </script>
+          <noscript>
+            Please enable JavaScript to view the
+            <a href='http://disqus.com/?ref_noscript'>comments powered by Disqus.</a>
+          </noscript>
+          <a class='dsq-brlink' href='http://disqus.com'>
+            comments powered by
+            <span class='logo-disqus'>Disqus</span>
+          </a>
+          <script>
+            var disqus_shortname = 'lucybain';
+            (function () {
+                var s = document.createElement('script'); s.async = true;
+                s.type = 'text/javascript';
+                s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+                (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+            }());
+          </script>
+        </div>
       </div>
     </div>
   </body>

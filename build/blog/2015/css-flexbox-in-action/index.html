@@ -46,9 +46,11 @@
     </script>
     <div class='content'>
       <div class=' blog-listing'>
-        <h1>CSS: Flexbox in action - Bitbucket Server pull request header</h1>
-        <p>Published on: October 20, 2015</p>
-        <p>Tags: <a href="/blog/tags/css/">css</a>, <a href="/blog/tags/hands-on/">hands-on</a>, and <a href="/blog/tags/flexbox/">flexbox</a></p>
+        <div class='meta'>
+          <h1>CSS: Flexbox in action - Bitbucket Server pull request header</h1>
+          <p>Published on: October 20, 2015</p>
+          <p>Tags: <a href="/blog/tags/css/">css</a>, <a href="/blog/tags/hands-on/">hands-on</a>, and <a href="/blog/tags/flexbox/">flexbox</a></p>
+        </div>
         <p>I <a href="/blog/2015/css-flexbox/">recently wrote</a> about using the <code>flex-box</code> rule in CSS. That was a practice round because I knew I needed to use flexbox at work in the future. Well, the time has come!</p>
         
         <p>As you might know, I work for Atlassian on the <a href="https://www.atlassian.com/software/bitbucket/download">Bitbucket Server</a> product. Today I spent some time implementing flexbox on our pull request page, specifically in the header. Let’s take a look at what it’s currently like:</p>
@@ -158,35 +160,36 @@
         <h2>Done</h2>
         <div class='recommended-reading'>
           <h2>Recommended reading</h2>
-          <p>You might also like <a href="/blog/2014/immediately-invoked-function-expression/">JS Immediately Invoked Function Expressions</a></p>
+          <p>You might also like <a href="/blog/2014/attribute-vs-property/">JS: attribute vs. property</a></p>
         </div>
-        <hr>
-        <div id='disqus_thread'></div>
-        <script>
-          var disqus_shortname = 'lucybain';
-          (function() {
-              var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-              dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-              (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-          })();
-        </script>
-        <noscript>
-          Please enable JavaScript to view the
-          <a href='http://disqus.com/?ref_noscript'>comments powered by Disqus.</a>
-        </noscript>
-        <a class='dsq-brlink' href='http://disqus.com'>
-          comments powered by
-          <span class='logo-disqus'>Disqus</span>
-        </a>
-        <script>
-          var disqus_shortname = 'lucybain';
-          (function () {
-              var s = document.createElement('script'); s.async = true;
-              s.type = 'text/javascript';
-              s.src = '//' + disqus_shortname + '.disqus.com/count.js';
-              (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
-          }());
-        </script>
+        <div id='disqus_thread'>
+          <hr>
+          <script>
+            var disqus_shortname = 'lucybain';
+            (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+          </script>
+          <noscript>
+            Please enable JavaScript to view the
+            <a href='http://disqus.com/?ref_noscript'>comments powered by Disqus.</a>
+          </noscript>
+          <a class='dsq-brlink' href='http://disqus.com'>
+            comments powered by
+            <span class='logo-disqus'>Disqus</span>
+          </a>
+          <script>
+            var disqus_shortname = 'lucybain';
+            (function () {
+                var s = document.createElement('script'); s.async = true;
+                s.type = 'text/javascript';
+                s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+                (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+            }());
+          </script>
+        </div>
       </div>
     </div>
   </body>

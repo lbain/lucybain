@@ -46,9 +46,11 @@
     </script>
     <div class='content'>
       <div class=' blog-listing'>
-        <h1>JS: Async Google Adwords conversion</h1>
-        <p>Published on: December 10, 2014</p>
-        <p>Tags: <a href="/blog/tags/js/">js</a> and <a href="/blog/tags/google-adwords/">google-adwords</a></p>
+        <div class='meta'>
+          <h1>JS: Async Google Adwords conversion</h1>
+          <p>Published on: December 10, 2014</p>
+          <p>Tags: <a href="/blog/tags/js/">js</a> and <a href="/blog/tags/google-adwords/">google-adwords</a></p>
+        </div>
         <h2>How can I trigger a Google Adwords conversion when the page is loaded asynchronously?</h2>
         
         <p>I&#39;ve been working with Google Adwords at work this week (yay learning!). My first task was to add a “tracking pixel” to a thank you page after a user has given us their contact details.</p>
@@ -90,35 +92,36 @@
         </ul>
         <div class='recommended-reading'>
           <h2>Recommended reading</h2>
-          <p>You might also like <a href="/blog/2014/immediately-invoked-function-expression/">JS Immediately Invoked Function Expressions</a></p>
+          <p>You might also like <a href="/blog/2014/js-document-load-vs-ready/">JS: document load vs document ready</a></p>
         </div>
-        <hr>
-        <div id='disqus_thread'></div>
-        <script>
-          var disqus_shortname = 'lucybain';
-          (function() {
-              var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-              dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-              (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-          })();
-        </script>
-        <noscript>
-          Please enable JavaScript to view the
-          <a href='http://disqus.com/?ref_noscript'>comments powered by Disqus.</a>
-        </noscript>
-        <a class='dsq-brlink' href='http://disqus.com'>
-          comments powered by
-          <span class='logo-disqus'>Disqus</span>
-        </a>
-        <script>
-          var disqus_shortname = 'lucybain';
-          (function () {
-              var s = document.createElement('script'); s.async = true;
-              s.type = 'text/javascript';
-              s.src = '//' + disqus_shortname + '.disqus.com/count.js';
-              (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
-          }());
-        </script>
+        <div id='disqus_thread'>
+          <hr>
+          <script>
+            var disqus_shortname = 'lucybain';
+            (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+          </script>
+          <noscript>
+            Please enable JavaScript to view the
+            <a href='http://disqus.com/?ref_noscript'>comments powered by Disqus.</a>
+          </noscript>
+          <a class='dsq-brlink' href='http://disqus.com'>
+            comments powered by
+            <span class='logo-disqus'>Disqus</span>
+          </a>
+          <script>
+            var disqus_shortname = 'lucybain';
+            (function () {
+                var s = document.createElement('script'); s.async = true;
+                s.type = 'text/javascript';
+                s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+                (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+            }());
+          </script>
+        </div>
       </div>
     </div>
   </body>
