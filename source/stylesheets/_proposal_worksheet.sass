@@ -1,0 +1,19 @@
+.proposal-worksheet
+  hr
+    display: none
+
+  @media print
+    nav, .meta, .hide-print, #disqus_thread
+      display: none
+
+    .content
+      font-size: 12px
+
+    .worksheet-questions hr
+      background: transparent
+      border: none
+      border-top: solid 1px $dark-gray
+      display: block
+      height: 1px
+      margin: 3em auto
+      width: 100%
