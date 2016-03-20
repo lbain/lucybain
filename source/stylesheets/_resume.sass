@@ -89,9 +89,18 @@ $technical-color: #f78a4f
   margin-left: 15px
   color: $light-gray
   @include respond(medium-large)
-    margin-left: 0
-    margin-bottom: 5px
+    margin-left: 0 !important
+    margin-bottom: 5px !important
     display: block
+
+.titles.wrap
+  .item-company-title
+    margin-bottom: 0
+
+  .item-personal-title
+    display: block
+    margin-left: 0
+    margin-bottom: 15px
 
 .item-personal-details
   margin-top: 0
