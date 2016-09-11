@@ -99,6 +99,11 @@ page_class: proposal-worksheet
         <li>Are there any talks you would enjoy giving? It can be on any topic and aimed at any audience.</li>
         <hr>
         <hr>
+        <li>Write out a bunch of adjectives and nouns about yourself. Also jot down various things you’ve done. Play around with some of those words and history and see if you can find a talk in the overlap. (For example I’m a programmer, baker, and I’ve run a few study groups. I might come up with how does baking relate to programming? Or how can programmers continue learning with study groups?)</li>
+        <hr>
+        <hr>
+        <hr>
+        <hr>
         <li>Other</li>
         <hr>
         <hr>
