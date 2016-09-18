@@ -14,18 +14,10 @@ $technical-color: #f78a4f
 
 .category
   position: relative
-  margin-top: 1.5em
+  margin-top: 3em
 
 .category-title
-  font-size: 0.9em
   max-width: 150px
-  text-align: center
-  padding: 10px 15px
-  border-radius: 5px
-  color: white
-  position: relative
-  left: -20px
-  top: 0
   font-weight: $bold
   @include respond(small)
     left: 0
@@ -38,8 +30,7 @@ $technical-color: #f78a4f
   &:nth-child(2)
     margin-top: 30px
   &:last-child
-    border: none
-    margin-left: 5px
+    padding-bottom: 0
   @include respond(small)
     border: none
     padding-left: 0
@@ -109,10 +100,11 @@ $technical-color: #f78a4f
 .overview
   .item
     padding-left: 0
+    border: none
 
 @mixin category_colors($color)
   .category-title
-    background-color: $color
+    color: $color
   .item
     border-color: $color
   .target-border
