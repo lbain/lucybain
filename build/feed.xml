@@ -13,7 +13,7 @@
     <link rel="alternate" href="http://lucybain.com/blog/2016/proposal-ideas-workshop/"/>
     <id>http://lucybain.com/blog/2016/proposal-ideas-workshop/</id>
     <published>2016-02-21T00:00:00Z</published>
-    <updated>2016-02-21T15:04:33+13:00</updated>
+    <updated>2016-02-21T13:04:33+11:00</updated>
     <author>
       <name>Article Author</name>
     </author>
@@ -126,7 +126,7 @@
     <link rel="alternate" href="http://lucybain.com/blog/2016/conference-proposal-ideas/"/>
     <id>http://lucybain.com/blog/2016/conference-proposal-ideas/</id>
     <published>2016-02-14T00:00:00Z</published>
-    <updated>2016-09-11T14:25:20+12:00</updated>
+    <updated>2016-09-11T12:25:20+10:00</updated>
     <author>
       <name>Article Author</name>
     </author>
@@ -259,7 +259,7 @@
     <link rel="alternate" href="http://lucybain.com/blog/2015/programming-theory-evaluation-strategies/"/>
     <id>http://lucybain.com/blog/2015/programming-theory-evaluation-strategies/</id>
     <published>2015-11-25T00:00:00Z</published>
-    <updated>2016-01-24T18:46:52+13:00</updated>
+    <updated>2016-01-24T16:46:52+11:00</updated>
     <author>
       <name>Article Author</name>
     </author>
@@ -494,7 +494,7 @@ console.log(num); // logs 1
     <link rel="alternate" href="http://lucybain.com/blog/2015/js-destructuring-assignment-es6/"/>
     <id>http://lucybain.com/blog/2015/js-destructuring-assignment-es6/</id>
     <published>2015-11-13T00:00:00Z</published>
-    <updated>2016-01-24T18:29:10+13:00</updated>
+    <updated>2016-01-24T16:29:10+11:00</updated>
     <author>
       <name>Article Author</name>
     </author>
@@ -712,7 +712,7 @@ console.log(c); // logs 3
     <link rel="alternate" href="http://lucybain.com/blog/2015/enhanced-obj-literals/"/>
     <id>http://lucybain.com/blog/2015/enhanced-obj-literals/</id>
     <published>2015-11-01T00:00:00Z</published>
-    <updated>2016-01-10T16:13:09+13:00</updated>
+    <updated>2016-01-10T14:13:09+11:00</updated>
     <author>
       <name>Article Author</name>
     </author>
@@ -870,7 +870,7 @@ obj.hello('world'); // logs "hello world"
     <link rel="alternate" href="http://lucybain.com/blog/2015/css-flexbox-in-action/"/>
     <id>http://lucybain.com/blog/2015/css-flexbox-in-action/</id>
     <published>2015-10-20T00:00:00Z</published>
-    <updated>2016-01-24T18:46:34+13:00</updated>
+    <updated>2016-01-24T16:46:34+11:00</updated>
     <author>
       <name>Article Author</name>
     </author>
