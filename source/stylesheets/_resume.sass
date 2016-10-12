@@ -74,15 +74,19 @@ $technical-color: #f78a4f
     right: auto
     top: auto
     text-align: left
-    margin-bottom: 5px
+    margin-bottom: 0.2em
 
 .item-personal-title
   margin-left: 15px
   color: $light-gray
   @include respond(medium-large)
     margin-left: 0 !important
-    margin-bottom: 5px !important
+    margin-bottom: 0.2em !important
     display: block
+
+.item-key-tech
+  color: $light-gray
+  font-size: 0.8em
 
 .titles.wrap
   .item-company-title
@@ -125,6 +129,8 @@ $technical-color: #f78a4f
 
 .education
   @include category_colors($education-color)
+  p
+    margin: 0
 
 .technical
   @include category_colors($technical-color)
@@ -148,6 +154,7 @@ $technical-color: #f78a4f
       margin-top: 20px
     .category-title
       max-width: 80px
+      margin-top: 1em
       left: -5px
     .target-border
       left: -22px
