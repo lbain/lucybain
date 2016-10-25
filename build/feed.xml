@@ -4,16 +4,127 @@
   <id>http://lucybain.com/blog</id>
   <link href="http://lucybain.com/blog"/>
   <link href="http://lucybain.com/feed.xml" rel="self"/>
-  <updated>2016-02-21T00:00:00Z</updated>
+  <updated>2016-10-15T00:00:00Z</updated>
   <author>
     <name>Lucy Bain</name>
   </author>
+  <entry>
+    <title>Attending Vogue Codes</title>
+    <link rel="alternate" href="http://lucybain.com/blog/2016/vogue-codes/"/>
+    <id>http://lucybain.com/blog/2016/vogue-codes/</id>
+    <published>2016-10-15T00:00:00Z</published>
+    <updated>2016-10-24T23:16:03-07:00</updated>
+    <author>
+      <name>Article Author</name>
+    </author>
+    <content type="html">&lt;p&gt;A couple weeks ago I was invited to attend Vogue Codes, an event for women in technology. I was lucky enough that my boss let me have the day off with almost no warning (thanks boss, and thanks Atlassian!). I was again lucky that my coworker told me she was going to wear a dress for the event, so I wore one too - this is the first tech conference where I would have felt weird wearing jeans and sneakers!&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt="Atlassian team!" src="/images/blog/vogue-codes/vogue-team.jpg" /&gt;&lt;/p&gt;
+
+&lt;h2&gt;Overall impressions&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Vogue knows how to do glamor! I know this shouldn’t be surprising, but we had Wedgewood tea cups, beautiful table settings, and an embossed notebook at every seat. It was, by far, the girliest tech event I’ve ever been to. (And honestly, I loved it - I ran Classy Coding for Women Who Code which was a massively cheaper event, but in the same spirit.)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img alt="Such a pretty venue" src="/images/blog/vogue-codes/vogue-pretty.jpg" /&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;So many women! There were ~15 tables of ~8 people each, so ~120 people at the event - almost all of them were women. I’ve been to similarly sized Girl Geek events, but never in so large a place. We took up the whole room, and there was a line for the bathroom. Very cool.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img alt="So many women" src="/images/blog/vogue-codes/vogue-women.jpg" /&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;So few programmers :( During the event someone asked us to raise our hand if we were in: media, PR, HR, etc. When they got to “programmers” I gleefully shot my hand up. My heart sank as I looked around the room at the other… 10? women with their hands up. Similarly, I did a rough check of how many of the speakers coded. Of the ~17 speakers guess how many coded on a day to day basis? One.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2&gt;Notes from the talks&lt;/h2&gt;
+
+&lt;h3&gt;The future is being written in lines of code by Kathryn Parsons&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Don’t ask “can you be an engineer?” ask “are you creative? Persistent? Logical?”&lt;/li&gt;
+&lt;li&gt;It’s not that women aren’t capable of being developers, it’s that they’re opting out.
+
+&lt;ul&gt;
+&lt;li&gt;They’re dropping out of the roles they’re in&lt;/li&gt;
+&lt;li&gt;Girls aren’t choosing CS at schools&lt;/li&gt;
+&lt;li&gt;Girls are far less confident that they’ll be able to engineer&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;Talked about the importance of networking, and how women are often not included in traditional networks&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3&gt;Art vs Science: why can’t we all just get along? with Nikki Durkin, Naomi Shepherd, Melanie Perkins&lt;/h3&gt;
+
+&lt;p&gt;&lt;img alt="Art vs Science" src="/images/blog/vogue-codes/panel-1.jpg" /&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Discussion about how code is involved in creative endeavors - “code is a tool, just like a paint brush”&lt;/li&gt;
+&lt;li&gt;Don’t ask “do you want to code?” ask “do you want to help people?” Clearly a common thread that “coding” is a turnoff for girls and women…&lt;/li&gt;
+&lt;li&gt;Discussion around education
+
+&lt;ul&gt;
+&lt;li&gt;Learning to code through projects&lt;/li&gt;
+&lt;li&gt;Continuing education throughout your life - “never stop learning”&lt;/li&gt;
+&lt;li&gt;Questioning if a uni education is still valuable, and how it needs to change to stay up to date&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3&gt;ABCs to CSS: solving the technology question with education with Ethy Levy, Dave Curran, Annie Parker, Verity Firth&lt;/h3&gt;
+
+&lt;p&gt;&lt;img alt="ABCs to CSS" src="/images/blog/vogue-codes/panel-2.jpg" /&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Learning to code impacts other subjects as well. Teachers noticed better collaboration skills and students taking on problems on their own.&lt;/li&gt;
+&lt;li&gt;Things like Code Club (and CS First) are great for some kids, but it’s the Government&amp;#39;s job to make those things available to everyone - it’s slow work...&lt;/li&gt;
+&lt;li&gt;Don’t wait for tech to be 50% women before joining in. Be the woman who takes it from 20% to 21%&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3&gt;The fashion technologist: solving the style question with technology with Amber Venz Box&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Predicted tech trend: more “walled gardens” like instagram where the platform has the power - companies intentionally offering little functionality that’s very focused.&lt;/li&gt;
+&lt;li&gt;Talked about work/life balance and having dedicated calendar time for being with her family&lt;/li&gt;
+&lt;li&gt;Know your value and take it&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3&gt;The career disruption: reinvent your own career with Canna Campbell, Georgie Abay, Alyce Tran, Alice Brennan&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Two of the speakers started new businesses after leaving their previous roles and having children.&lt;/li&gt;
+&lt;li&gt;“What a waste not to be passionate about what you do for a living.”&lt;/li&gt;
+&lt;li&gt;Talked about having very unstructured days as founders and CEOs, but they always have some time dedicated to ideas and quiet working. This means having clear priorities is even more important for them.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2&gt;Technology: why not women? With Aubrey Blanche, Anastasia Cammaroto, Alisa Bowen, Mikaela Jade&lt;/h2&gt;
+
+&lt;p&gt;&lt;img alt="Why not women?" src="/images/blog/vogue-codes/panel-3.jpg" /&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;More discussion about tech’s “marketing problem” - mentioned advertising free beer more often than good parental leave policies&lt;/li&gt;
+&lt;li&gt;Brief vocab lesson:
+
+&lt;ul&gt;
+&lt;li&gt;Sponsorship - using your network and clout to help someone once off&lt;/li&gt;
+&lt;li&gt;Mentorship - 1:1 long term help, building someone up and helping them grow&lt;/li&gt;
+&lt;li&gt;Reverse mentorship - junior employees helping senior employees (typically for technical tasks the younger employees have more experience with)&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;Small actions can make an overall change. Some suggestions:
+
+&lt;ul&gt;
+&lt;li&gt;Take an hour a week to do sponsorship or mentorship&lt;/li&gt;
+&lt;li&gt;Every few months (starting now) look at who you follow on Twitter. Are they all one gender, race, political view, sexual orientation, etc.? Rebalance to better represent society’s distribution.&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</content>
+  </entry>
   <entry>
     <title>Workshop for conference proposals</title>
     <link rel="alternate" href="http://lucybain.com/blog/2016/proposal-ideas-workshop/"/>
     <id>http://lucybain.com/blog/2016/proposal-ideas-workshop/</id>
     <published>2016-02-21T00:00:00Z</published>
-    <updated>2016-02-21T13:04:33+11:00</updated>
+    <updated>2016-04-19T16:32:28-07:00</updated>
     <author>
       <name>Article Author</name>
     </author>
@@ -126,7 +237,7 @@
     <link rel="alternate" href="http://lucybain.com/blog/2016/conference-proposal-ideas/"/>
     <id>http://lucybain.com/blog/2016/conference-proposal-ideas/</id>
     <published>2016-02-14T00:00:00Z</published>
-    <updated>2016-09-11T12:25:20+10:00</updated>
+    <updated>2016-10-24T14:47:41-07:00</updated>
     <author>
       <name>Article Author</name>
     </author>
@@ -259,7 +370,7 @@
     <link rel="alternate" href="http://lucybain.com/blog/2015/programming-theory-evaluation-strategies/"/>
     <id>http://lucybain.com/blog/2015/programming-theory-evaluation-strategies/</id>
     <published>2015-11-25T00:00:00Z</published>
-    <updated>2016-01-24T16:46:52+11:00</updated>
+    <updated>2016-02-14T14:42:56-08:00</updated>
     <author>
       <name>Article Author</name>
     </author>
@@ -494,7 +605,7 @@ console.log(num); // logs 1
     <link rel="alternate" href="http://lucybain.com/blog/2015/js-destructuring-assignment-es6/"/>
     <id>http://lucybain.com/blog/2015/js-destructuring-assignment-es6/</id>
     <published>2015-11-13T00:00:00Z</published>
-    <updated>2016-01-24T16:29:10+11:00</updated>
+    <updated>2016-02-14T14:42:56-08:00</updated>
     <author>
       <name>Article Author</name>
     </author>
@@ -712,7 +823,7 @@ console.log(c); // logs 3
     <link rel="alternate" href="http://lucybain.com/blog/2015/enhanced-obj-literals/"/>
     <id>http://lucybain.com/blog/2015/enhanced-obj-literals/</id>
     <published>2015-11-01T00:00:00Z</published>
-    <updated>2016-01-10T14:13:09+11:00</updated>
+    <updated>2016-02-14T14:42:56-08:00</updated>
     <author>
       <name>Article Author</name>
     </author>
@@ -863,223 +974,6 @@ obj.hello('world'); // logs "hello world"
 &lt;li&gt;&lt;a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Object_initializer"&gt;Mozilla&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;Overview of all &lt;a href="https://github.com/lukehoban/es6features#enhanced-object-literals"&gt;ES6 features&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
-</content>
-  </entry>
-  <entry>
-    <title>CSS: Flexbox in action - Bitbucket Server pull request header</title>
-    <link rel="alternate" href="http://lucybain.com/blog/2015/css-flexbox-in-action/"/>
-    <id>http://lucybain.com/blog/2015/css-flexbox-in-action/</id>
-    <published>2015-10-20T00:00:00Z</published>
-    <updated>2016-01-24T16:46:34+11:00</updated>
-    <author>
-      <name>Article Author</name>
-    </author>
-    <content type="html">&lt;p&gt;I &lt;a href="/blog/2015/css-flexbox/"&gt;recently wrote&lt;/a&gt; about using the &lt;code&gt;flex-box&lt;/code&gt; rule in CSS. That was a practice round because I knew I needed to use flexbox at work in the future. Well, the time has come!&lt;/p&gt;
-
-&lt;p&gt;As you might know, I work for Atlassian on the &lt;a href="https://www.atlassian.com/software/bitbucket/download"&gt;Bitbucket Server&lt;/a&gt; product. Today I spent some time implementing flexbox on our pull request page, specifically in the header. Let’s take a look at what it’s currently like:&lt;/p&gt;
-
-&lt;p&gt;&lt;img alt="current pull request header" src="/images/blog/pr-header/current.png" /&gt;&lt;/p&gt;
-
-&lt;p&gt;Adding flexbox is part of a much larger chunk of work, so my “finished product” looks like this:&lt;/p&gt;
-
-&lt;p&gt;&lt;img alt="current pull request header" src="/images/blog/pr-header/rough-draft.png" /&gt;&lt;/p&gt;
-
-&lt;p&gt;Obviously it’s got a ways to go, but this little bit is done! The main point is that we utilise all of the space available to us. Previously we were’t able to expand a branch name fully even though there was enough space for it.&lt;/p&gt;
-
-&lt;h2&gt;Description&lt;/h2&gt;
-
-&lt;p&gt;I was fortunate enough to be able to throw away all existing HTML and CSS. Nothing else relies on this piece of code and I had full control of how to implement this part of the feature (with lots of feedback from my fantastic colleagues!). So we don’t need to talk about what &lt;em&gt;was&lt;/em&gt; there, we’re starting from scratch.&lt;/p&gt;
-
-&lt;h3&gt;Desired outcome&lt;/h3&gt;
-
-&lt;p&gt;The pull request header (known as PRH from now on) has X main sections:&lt;/p&gt;
-
-&lt;ol&gt;
-&lt;li&gt;author (avatar and name)&lt;/li&gt;
-&lt;li&gt;branch details (source, destination and an arrow between them)&lt;/li&gt;
-&lt;li&gt;PR status&lt;/li&gt;
-&lt;li&gt;reviewers (avatars only)&lt;/li&gt;
-&lt;li&gt;approve button&lt;/li&gt;
-&lt;li&gt;indication of merge issues&lt;/li&gt;
-&lt;li&gt;merge button&lt;/li&gt;
-&lt;li&gt;menu for other options&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;Ultimately only the author and branches should be “flexible.” Everything else should always be completely visible. After a little thought and discussion we decided that the branches should be more flexible than the author (i.e. branches should shrink faster than the author).&lt;/p&gt;
-
-&lt;h2&gt;Code&lt;/h2&gt;
-
-&lt;p&gt;Ok, so now we understand the problem, let’s start coding!&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;NOTE: to keep the CSS easy to read, the demo pages only work in Chrome.&lt;/strong&gt;&lt;/p&gt;
-
-&lt;h3&gt;Getting started&lt;/h3&gt;
-
-&lt;p&gt;When I first got into it I figured I’d just work with everything all together. I already had the HTML set up from another bit of work, so I’d &lt;em&gt;just&lt;/em&gt; add the CSS. This wasn’t successful. There were too many moving parts and I didn’t have a good enough understanding of how flexbox worked to hold all the parts in my head.&lt;/p&gt;
-
-&lt;p&gt;I followed the (very good) advice I give to people new to programming:&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;It’s easier to get a small thing right.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;Rather than think about the whole thing at once I focused on just the branch details section.&lt;/p&gt;
-
-&lt;h3&gt;Branch details&lt;/h3&gt;
-
-&lt;p&gt;The branch details looks like this:&lt;/p&gt;
-
-&lt;p&gt;your-awesome-branch --&amp;gt; the-destination-branch&lt;/p&gt;
-
-&lt;p&gt;So I set up my HTML like this:&lt;/p&gt;
-&lt;pre class="highlight plaintext"&gt;&amp;lt;div class="branch-details"&amp;gt;
-    &amp;lt;div class="source"&amp;gt;
-        your-awesome-branch
-    &amp;lt;/div&amp;gt;
-
-    &amp;lt;div class="arrow"&amp;gt;
-        --&amp;gt;
-    &amp;lt;/div&amp;gt;
-
-    &amp;lt;div class="destination"&amp;gt;
-        the-destination-branch
-    &amp;lt;/div&amp;gt;
-&amp;lt;/div&amp;gt;
-&lt;/pre&gt;
-&lt;p&gt;(Obviously we use a better arrow really, but we’ll ignore that for this post.)&lt;/p&gt;
-
-&lt;p&gt;Alright, now we’re getting somewhere!&lt;/p&gt;
-
-&lt;p&gt;So &lt;code&gt;source&lt;/code&gt; and &lt;code&gt;destination&lt;/code&gt; ultimately need to be shrinkable. In order to allow them to shrink we need to make their container, &lt;code&gt;branch-details&lt;/code&gt;, flexible.&lt;/p&gt;
-&lt;pre class="highlight plaintext"&gt;.branch-details {
-    display: flex;
-}
-&lt;/pre&gt;
-&lt;p&gt;At this point everything is flexible. So if you &lt;a href="/blog/2015/pr-header/simple-flexbox"&gt;play with it&lt;/a&gt; you can see everything shrinks equally and the branch names wrap across lines. This wrapping makes sense for “normal” uses of flexbox (i.e. columns of text) but it isn’t what we want for the branch names.&lt;/p&gt;
-
-&lt;p&gt;We can stop words from wrapping with a quick &lt;code&gt;white-space: nowrap&lt;/code&gt; rule. &lt;a href="/blog/2015/pr-header/no-wrap"&gt;This works&lt;/a&gt; in that the words don’t wrap, but it has the unfortunate side effect of stopping things from shrinking. Let‘s put that back by hiding overflowing text: &lt;code&gt;overflow: hidden;&lt;/code&gt;. While we’re at it, we can style the ending with an ellipsis using &lt;code&gt;text-overflow: ellipsis;&lt;/code&gt;. Ok, we’re &lt;a href="/blog/2015/pr-header/ellipsis"&gt;back in business&lt;/a&gt; now!&lt;/p&gt;
-
-&lt;p&gt;And that’s it for the branch details! The source and destination branches shrink equally while the arrow remains full width.&lt;/p&gt;
-
-&lt;h3&gt;Add the author&lt;/h3&gt;
-
-&lt;p&gt;The other element that can shrink is the author. From the designs the author, branch details and PR status are all to the left, so I’ll group these all together in my HTML. We’ll add this next layer of wrapping to make sure the author can shrink, the PR status cannot shrink, and the branches continue to shrink as expected.&lt;/p&gt;
-
-&lt;p&gt;&lt;a href="/blog/2015/pr-header/author-branches-status"&gt;New HTML:&lt;/a&gt;&lt;/p&gt;
-&lt;pre class="highlight plaintext"&gt;&amp;lt;div class="pr-info"&amp;gt;
-    &amp;lt;div class="author"&amp;gt;
-        Author name
-    &amp;lt;/div&amp;gt;
-    &amp;lt;div class="branch-details"&amp;gt;
-        &amp;lt;div class="source"&amp;gt;
-            your-awesome-branch
-        &amp;lt;/div&amp;gt;
-
-        &amp;lt;div class="arrow"&amp;gt;
-            --&amp;gt;
-        &amp;lt;/div&amp;gt;
-
-        &amp;lt;div class="destination"&amp;gt;
-            the-destination-branch
-        &amp;lt;/div&amp;gt;
-    &amp;lt;/div&amp;gt;
-    &amp;lt;div class="status"&amp;gt;
-        PR status
-    &amp;lt;/div&amp;gt;
-&amp;lt;/div&amp;gt;
-&lt;/pre&gt;
-&lt;p&gt;Again, the author name needs to be flexible, so we’ll apply most of the same styles we did for the branch details to the &lt;code&gt;pr-info&lt;/code&gt; section.&lt;/p&gt;
-&lt;pre class="highlight plaintext"&gt;.pr-info, .branch-details {
-    display: flex;
-    white-space: nowrap;
-}
-
-.author, .source, .destination {
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-&lt;/pre&gt;
-&lt;p&gt;So we’re left with quite a good &lt;a href="http://localhost:4567/blog/2015/pr-header/author-branches-status-basic-flexible"&gt;base&lt;/a&gt; of what we want. However, you’ll notice that if you start to shrink the screen too much the author gets complete hidden. We need a better way to keep the author at least somewhat visible, and actually we want to shrink the author slower than the branches (something like: for every 5px the branches shrink the author only shrinks 1px).&lt;/p&gt;
-
-&lt;p&gt;Well, keeping the author always somewhat visible is easy enough: we can just chuck a &lt;code&gt;min-width: 5em&lt;/code&gt; on there so we don&amp;#39;t accidentally hide the author completely. But now the branch details section doesn’t flex at all. WHY NOT??? Since the branches can flex down to nothing we’ll give the branch details a &lt;code&gt;min-width: 0&lt;/code&gt;. (In real life the PRH has the same min-width as the page and won’t be able to shrink down to completely hide the branch details. For this post I’m not going to worry about the page shrinking too small.)&lt;/p&gt;
-
-&lt;p&gt;Ok, now we have both the author and the branch details shrinking, time to make that happen at different rates. Flexbox items have a &lt;code&gt;flex-grow&lt;/code&gt; property which says how fast the items should grow; there’s also a &lt;code&gt;flex-shrink&lt;/code&gt; property that, surprise, surprise, deals with how fast items should shrink. So we’ll make the branches shrink faster than the author by adding:&lt;/p&gt;
-&lt;pre class="highlight plaintext"&gt;.author {
-    flex-shrink: 1;
-}
-
-.branch-details {
-    flex-shrink: 5;
-}
-&lt;/pre&gt;
-&lt;p&gt;The rates are fairly arbitrary, but easily changed if needed.&lt;/p&gt;
-
-&lt;p&gt;Here’s the &lt;a href="/blog/2015/pr-header/author-branches-status-flexible"&gt;working version&lt;/a&gt; for you to play with.&lt;/p&gt;
-
-&lt;h3&gt;Put it in context&lt;/h3&gt;
-
-&lt;p&gt;Finally we can add the rest of the PRH code in. As a reminder, that’s the: 
-reviewers, approve button, indication of merge issues, merge button, and menu for other options. Thankfully all of these will be full width (no shrinking) and most will be a consistent size.&lt;/p&gt;
-
-&lt;p&gt;New HTML:&lt;/p&gt;
-&lt;pre class="highlight plaintext"&gt;&amp;lt;div class="pr-header"&amp;gt;
-    &amp;lt;div class="pr-info"&amp;gt;
-        &amp;lt;div class="author"&amp;gt;
-            Author name that’s really long, like super duper long
-        &amp;lt;/div&amp;gt;
-        &amp;lt;div class="branch-details"&amp;gt;
-            &amp;lt;div class="source"&amp;gt;
-                your-awesome-branch-with-a-reall-really-really-long-and-annoying-name
-            &amp;lt;/div&amp;gt;
-
-            &amp;lt;div class="arrow"&amp;gt;
-                --&amp;gt;
-            &amp;lt;/div&amp;gt;
-
-            &amp;lt;div class="destination"&amp;gt;
-                the-destination-branch-with-a-reall-really-really-long-and-annoying-name
-            &amp;lt;/div&amp;gt;
-        &amp;lt;/div&amp;gt;
-        &amp;lt;div class="status"&amp;gt;
-            PR status
-        &amp;lt;/div&amp;gt;
-    &amp;lt;/div&amp;gt;
-    &amp;lt;div class="pr-actions"&amp;gt;
-        &amp;lt;div&amp;gt;reviewers&amp;lt;/div&amp;gt;
-        &amp;lt;div&amp;gt;approve button&amp;lt;/div&amp;gt;
-        &amp;lt;div&amp;gt;merge issues&amp;lt;/div&amp;gt;
-        &amp;lt;div&amp;gt;merge button&amp;lt;/div&amp;gt;
-        &amp;lt;div&amp;gt;menu&amp;lt;/div&amp;gt;
-    &amp;lt;/div&amp;gt;
-&amp;lt;/div&amp;gt;
-&lt;/pre&gt;
-&lt;p&gt;Since we know we want the header to be flexible I’ll go ahead and add the basics in. Right now the &lt;code&gt;div&lt;/code&gt;s in the &lt;code&gt;.pr-actions&lt;/code&gt; are all displayed as block elements, so let’s line them up nicely. Here are the changes:&lt;/p&gt;
-&lt;pre class="highlight plaintext"&gt;.pr-header, .pr-info, .branch-details {
-    display: flex;
-    white-space: nowrap;
-}
-
-.pr-info, .author, .source, .destination {
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
-.pr-actions div {
-    display: inline-block;
-}
-&lt;/pre&gt;
-&lt;p&gt;And &lt;a href="/blog/2015/pr-header/in-context"&gt;that’s it!&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3&gt;Safari&lt;/h3&gt;
-
-&lt;p&gt;Except for Safari. Once I had the proper vendor prefixing in, everything worked as expected in all browsers (even IE!) but not Safari. This &lt;a href="LINK%20HERE"&gt;bug&lt;/a&gt; might be the culprit, but I’m really not sure. If you have any knowledge about what’s causing this, I’m interested! Anyways, for whatever reason you need to add &lt;code&gt;flex-shrink: 0&lt;/code&gt; to the things you don’t want to shrink. So for this we’ll add:&lt;/p&gt;
-&lt;pre class="highlight plaintext"&gt;.arrow, .status, .pr-actions {
-    flex-shrink: 0;
-}
-&lt;/pre&gt;
-&lt;p&gt;And with that it’s &lt;a href="/blog/2015/pr-header/in-context-safari"&gt;Safari compliant!&lt;/a&gt;&lt;/p&gt;
-
-&lt;h2&gt;Done&lt;/h2&gt;
 </content>
   </entry>
 </feed>
