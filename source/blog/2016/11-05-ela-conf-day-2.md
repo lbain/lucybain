@@ -44,8 +44,6 @@ We started off with some stories from the organisers about how they got into tec
 
 ![Mulan’s Squad](/images/blog/ela-conf/squad.jpg)
 
-### Tell Your Story: Crafting An Authentic Elevator Pitch That Works (workshop), by [Hillary Rea](https://twitter.com/tmasphilly)
-
 
 ### Leadership and management (panel)
 
