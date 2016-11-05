@@ -1,5 +1,5 @@
 ---
-title: Ela Conf - morning of day two
+title: Ela Conf - day two
 tags: conference, women in tech
 
 description: Notes I took from the first day of Ela Conf in Philadelphia
