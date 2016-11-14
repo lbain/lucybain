@@ -4,16 +4,60 @@
   <id>http://lucybain.com/blog</id>
   <link href="http://lucybain.com/blog"/>
   <link href="http://lucybain.com/feed.xml" rel="self"/>
-  <updated>2016-11-05T00:00:00Z</updated>
+  <updated>2016-11-14T00:00:00Z</updated>
   <author>
     <name>Lucy Bain</name>
   </author>
+  <entry>
+    <title>Ela Conf - closing thoughts</title>
+    <link rel="alternate" href="http://lucybain.com/blog/2016/ela-conf-closing-thoughts/"/>
+    <id>http://lucybain.com/blog/2016/ela-conf-closing-thoughts/</id>
+    <published>2016-11-14T00:00:00Z</published>
+    <updated>2016-11-15T10:22:41+11:00</updated>
+    <author>
+      <name>Article Author</name>
+    </author>
+    <content type="html">&lt;p&gt;Well, Ela Conf 2016 is over and done. It’s been just over a week since I attended - time to write up some musings from the event!&lt;/p&gt;
+
+&lt;h2&gt;Topics&lt;/h2&gt;
+
+&lt;p&gt;Ela Conf is very much about non-technical topics for technical women. Their tag line is “Empowering more women to be leaders in tech.” But the topics are fairly generic - accepting negative feedback is something everyone has to deal with. The lessons on leadership would apply to any company. That’s not to say the talks were too generic to be useful, but I think it’s an interesting question if this kind of conference should continue to market itself as “for technical women” or if they should be for any woman wanting a leadership role or perhaps for anyone wanting to be a leader.&lt;/p&gt;
+
+&lt;p&gt;Personally, I valued the shared language and community that this conference offered. A speaker could reference making a commit, fixing a bug, or the head-baning frustration of feeling completely stuck on a problem. We could all relate. When I introduced myself I could say that I’m a frontender at Atlassian, rather than I’m a programmer at a tech company.&lt;/p&gt;
+
+&lt;p&gt;On the flip side, I was surprisingly disappointed by the lack of technical topics. I knew none of the talks were going to be technical going in, but somehow with so many technical people around I felt something was missing without the technical talks. Uncomfortably, having so many technical &lt;em&gt;women&lt;/em&gt; and not having &lt;em&gt;any&lt;/em&gt; technical talks felt as though we were admitting that we weren’t technical enough, that women are more interested in feelings and “soft topics” than Real Programming. Of course, I know this isn’t the case, and that the goals of this conference aren’t around Real Programming.&lt;/p&gt;
+
+&lt;h2&gt;Attendees&lt;/h2&gt;
+
+&lt;p&gt;I’m making massive assumptions in this section because I don’t know the demographic details of the attendees.&lt;/p&gt;
+
+&lt;p&gt;Attendees’s average age seemed to be around my own, but there was a reasonably sized spread. We had mom’s with teen-aged kids, and students from uni. I’m sure it tended towards younger, but it made me happy to see so many moms and long-time programmers there.&lt;/p&gt;
+
+&lt;p&gt;Many people had switched careers, so there was a lot of diversity in experience. It was great to hear about people’s past in their talks, and to get some history about how they got into programming.&lt;/p&gt;
+
+&lt;p&gt;A &lt;em&gt;lot&lt;/em&gt; of people came from bootcamps or were self taught. I’m pretty sure I was in the minority of people who did uni degrees in CS. I don’t see that as a bad thing, but it was unusual for a tech conference. I’m curious why more women with CS degrees didn’t attend. Is it because there aren’t as many of them or they don’t feel they would benefit as much? Something else?&lt;/p&gt;
+
+&lt;h2&gt;Feels&lt;/h2&gt;
+
+&lt;p&gt;Oh man, so many feels! Certainly a great conference to go to if you need some girl power in your life. But more than that, I loved how the speakers nomalised the “woman experience.” Typical tech talks don’t mention musicals or baking, but these both came up at Ela Conf. Women generally don’t say “babies are really boring,” but this came up too. It felt like everyone had agreed to “this is a safe place to say things you wouldn’t normally - don’t hold back” and &lt;em&gt;massive&lt;/em&gt; props to the organisers for creating and encouraging that vibe.&lt;/p&gt;
+
+&lt;h2&gt;Networking&lt;/h2&gt;
+
+&lt;p&gt;I’m not a great networker. I put a lot of things into place so I don’t need to talk about the weather with strangers. Being at Ela Conf was a bit isolating, and I didn’t do anything to stop that. I knew I was only in Philadelphia for the weekend, and that I was incredibly unlikely to bump into any of the attendees again. So I didn’t bother to connect with many of them. For their part, they didn’t do much to welcome me. Many of the attendees know each other from other Philly meetups and were excited to spend time together. I’m not grudging them that time - I certainly do it at my Sydney meetings.&lt;/p&gt;
+
+&lt;h2&gt;Sum it up&lt;/h2&gt;
+
+&lt;p&gt;All in all, I‘m really glad I attended and I’m grateful Atlassian made it possible for me to go. Would I do it again? Well, I won’t fly from Sydney to Philly to attend next year, but if there was one at home I’d certainly join in. Would I change anything? For what the organisers wanted, I believe they made exactly the right event. If I ran an event for technical women, I’d want something a little difference and I‘d make some changes.&lt;/p&gt;
+
+&lt;p&gt;Big props to the organisers for all of the hard work they’ve done over the past year - it was a beautiful event!&lt;/p&gt;
+</content>
+  </entry>
   <entry>
     <title>Ela Conf - day two</title>
     <link rel="alternate" href="http://lucybain.com/blog/2016/ela-conf-day-2/"/>
     <id>http://lucybain.com/blog/2016/ela-conf-day-2/</id>
     <published>2016-11-05T00:00:00Z</published>
-    <updated>2016-11-05T17:24:45-04:00</updated>
+    <updated>2016-11-15T10:21:34+11:00</updated>
     <author>
       <name>Article Author</name>
     </author>
@@ -126,7 +170,7 @@
     <link rel="alternate" href="http://lucybain.com/blog/2016/ela-conf-day-1/"/>
     <id>http://lucybain.com/blog/2016/ela-conf-day-1/</id>
     <published>2016-11-04T00:00:00Z</published>
-    <updated>2016-11-05T09:19:54-04:00</updated>
+    <updated>2016-11-06T00:19:54+11:00</updated>
     <author>
       <name>Article Author</name>
     </author>
@@ -204,7 +248,7 @@
     <link rel="alternate" href="http://lucybain.com/blog/2016/vogue-codes/"/>
     <id>http://lucybain.com/blog/2016/vogue-codes/</id>
     <published>2016-10-15T00:00:00Z</published>
-    <updated>2016-10-25T02:16:03-04:00</updated>
+    <updated>2016-10-25T17:16:03+11:00</updated>
     <author>
       <name>Article Author</name>
     </author>
@@ -315,7 +359,7 @@
     <link rel="alternate" href="http://lucybain.com/blog/2016/proposal-ideas-workshop/"/>
     <id>http://lucybain.com/blog/2016/proposal-ideas-workshop/</id>
     <published>2016-02-21T00:00:00Z</published>
-    <updated>2016-04-19T19:32:28-04:00</updated>
+    <updated>2016-04-20T09:32:28+10:00</updated>
     <author>
       <name>Article Author</name>
     </author>
@@ -428,7 +472,7 @@
     <link rel="alternate" href="http://lucybain.com/blog/2016/conference-proposal-ideas/"/>
     <id>http://lucybain.com/blog/2016/conference-proposal-ideas/</id>
     <published>2016-02-14T00:00:00Z</published>
-    <updated>2016-10-24T17:47:41-04:00</updated>
+    <updated>2016-10-25T08:47:41+11:00</updated>
     <author>
       <name>Article Author</name>
     </author>
@@ -554,241 +598,6 @@
 
   &lt;p&gt;The questions started from a workshop ran by Rosemary and John Allsopp.&lt;/p&gt;
 &lt;/div&gt;
-</content>
-  </entry>
-  <entry>
-    <title>Programming theory: Evaluation strategies</title>
-    <link rel="alternate" href="http://lucybain.com/blog/2015/programming-theory-evaluation-strategies/"/>
-    <id>http://lucybain.com/blog/2015/programming-theory-evaluation-strategies/</id>
-    <published>2015-11-25T00:00:00Z</published>
-    <updated>2016-02-14T17:42:56-05:00</updated>
-    <author>
-      <name>Article Author</name>
-    </author>
-    <content type="html">&lt;p&gt;This is a topic I learned at university, but didn’t fully understand all the repercussions of until later. This post is to help you understand the differences and to help me remember them :)&lt;/p&gt;
-
-&lt;p&gt;Let’s get started!&lt;/p&gt;
-
-&lt;p&gt;&lt;em&gt;But wait, what’s an “evaluation strategy”? I’ve never heard of that before!&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;To be honest, I hadn’t either until I did some research for this post. The title for this group of concepts isn’t widely used, so knowing “evaluation strategy” probably won’t be super useful. However, the question all evaluation strategies are trying to answer is “how do parameters work in this particular language?” And it is &lt;em&gt;very&lt;/em&gt; useful to know the answer to that question for your language.&lt;/p&gt;
-
-&lt;p&gt;For example, this non-language below (which is purposefully a mismatch of ruby, python, and JS so it doesn’t look real):&lt;/p&gt;
-&lt;pre class="highlight plaintext"&gt;a = 1
-
-function passBySomething(param):
-    param = 2
-end
-
-passBySomething(a)
-log(a) // what happens here?
-&lt;/pre&gt;
-&lt;p&gt;There are a few options that could happen, which is what today’s post is all about.&lt;/p&gt;
-
-&lt;p&gt;Since I love metaphors and because we haven’t talked about how computer memory works yet (although it might show up soon!) we won’t cover “under the hood” details. Instead we will work with a story:&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;As you look around your apartment you decide you would like some new artwork to spruce the place up a bit. As it so happens you have a nice piece of canvas at home, all ready to go. You also have a friend, Fred, who is an artist and who’s agreed to make you something (that you’ll pay for, of course!).&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;With that in mind we’re ready to go! &lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Disclaimer:&lt;/strong&gt; Because we’re not going into the details, nor are we looking at a particular language, these explanations might not apply 100% to your language. Please look up additional examples for your language.&lt;/p&gt;
-
-&lt;h2&gt;Pass by reference&lt;/h2&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;You give your canvas to Fred and &lt;strong&gt;he paints it for you&lt;/strong&gt; (thanks Fred!). Then he gives you the painted canvas back.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;This is probably the easiest one to get our heads around, since it’s pretty much what happens in real life.&lt;/p&gt;
-
-&lt;p&gt;Here’s what pass by reference would be in our pretend language:&lt;/p&gt;
-&lt;pre class="highlight plaintext"&gt;canvas = [] // (this is a blank canvas)
-
-function artistFred(item):
-    paint(item) // notice the lack of return keyword
-end
-
-log(canvas) // [] (blank canvas)
-artistFred(canvas)
-log(canvas) // [*&amp;amp;] (painted canvas)
-&lt;/pre&gt;
-&lt;p&gt;Seems straight forward enough, but what if Fred decides to do something different?&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;You give your canvas to Fred and &lt;strong&gt;he makes a sculpture instead&lt;/strong&gt;. Then he gives you the sculpture back.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;Again, this translates to the following “code”:&lt;/p&gt;
-&lt;pre class="highlight plaintext"&gt;canvas = [] // (blank canvas)
-
-function artistFred(item):
-    item = new Sculpture()
-end
-
-log(canvas) // [] (blank canvas)
-artistFred(canvas)
-log(canvas) // V (new sculpture)
-&lt;/pre&gt;
-&lt;p&gt;Now you don’t have your original canvas (Fred replaced it entirely), you only have the sculpture Fred gave you.&lt;/p&gt;
-
-&lt;p&gt;Pass by reference is incredibly trusting. You like Fred, and he’s a really good artist. If he says a sculpture would be better for your space you’re cool to go with that. If he paints the whole canvas one colour and tells you it’s art, you’ll believe him and put it up with pride. After all, Fred’s a good guy and you trust him.&lt;/p&gt;
-
-&lt;h3&gt;More formal definition&lt;/h3&gt;
-
-&lt;p&gt;In pass by reference the original variable (declared outside the function’s scope) can be changed in any way by the function. It can be altered or reassigned in the function and the new value will persist after the function has returned.&lt;/p&gt;
-
-&lt;h2&gt;Pass by value&lt;/h2&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;You go to the store and buy a new piece of canvas that is exactly the same as the one you already own. You give the new canvas to Fred and &lt;strong&gt;he paints it for you&lt;/strong&gt; (thanks Fred!). Then he gives you the painted canvas back, and you can choose to replace your blank canvas with the painted one, keep both, or just look at Fred’s work and decide not to keep it.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;In our pretend coding language it would look something like this:&lt;/p&gt;
-&lt;pre class="highlight plaintext"&gt;canvas = [] // (blank canvas)
-
-function artistFred(item):
-    return paint(item) // notice the new return keyword
-end
-
-log(canvas) // [] (blank canvas)
-artistFred(canvas) // look at the Fred’s work but decide not to keep it
-log(canvas) // [] (blank canvas)
-
-newCanvas = artistFred(canvas) // keep both
-log(canvas) // [] (blank canvas)
-log(newCanvas) // [*&amp;amp;] (painted canvas)
-
-canvas = artistFred(canvas) // replace blank canvas with the painted one
-log(canvas) // [*&amp;amp;] (painted canvas)
-&lt;/pre&gt;
-&lt;p&gt;Of course, Fred might decide to do something else entirely. Let’s look at another possibility:&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;You go to the store and buy a new piece of canvas that is exactly the same as the one you already own. You give the new canvas to Fred, but he throws away the new canvas and &lt;strong&gt;decides to make a sculpture instead.&lt;/strong&gt; Then he gives you the sculpture back, and you can choose to replace your blank canvas with the sculpture, keep both, or just look at Fred’s work and decide not to keep it.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;Again, in our fake language would be:&lt;/p&gt;
-&lt;pre class="highlight plaintext"&gt;canvas = [] // (blank canvas)
-
-function artistFred(item):
-    item = new Sculpture()
-    return item
-end
-
-log(canvas) // [] (blank canvas)
-artistFred(canvas) // look at the Fred’s work but decide not to keep it
-log(canvas) // [] (blank canvas)
-
-newSculpture = artistFred(canvas) // keep both
-log(canvas) // [] (blank canvas)
-log(newSculpture) // V (sculpture)
-
-canvas = artistFred(canvas) // replace blank canvas with the sculpture
-log(canvas) // V (sculpture)
-&lt;/pre&gt;
-&lt;p&gt;I think of pass by value as slightly paranoid. Because really, you don’t trust Fred very much. You think he might make an ugly painting and you want to keep your piece of canvas safe in case that happens. Or you know he doesn’t follow directions well and you didn’t want that sculpture anyway...&lt;/p&gt;
-
-&lt;h3&gt;More formal definition&lt;/h3&gt;
-
-&lt;p&gt;In pass by value the original variable (declared outside the function’s scope) is not altered in any way by the function. It must be explicitly overwritten by reassigning it with the results of the function call.&lt;/p&gt;
-
-&lt;h2&gt;Pass by sharing&lt;/h2&gt;
-
-&lt;p&gt;This is a bit of a mix between pass by reference and pass by value.&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;You give your (only) canvas to Fred and &lt;strong&gt;he paints it for you&lt;/strong&gt; (thanks Fred!). Then he gives you the painted canvas back.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;So far this is exactly the same as pass by reference.&lt;/p&gt;
-&lt;pre class="highlight plaintext"&gt;canvas = [] // (blank canvas)
-
-function artistFred(item):
-    paint(item)
-end
-
-log(canvas) // [] (blank canvas)
-artistFred(canvas)
-log(canvas) // [*&amp;amp;] (painted canvas)
-&lt;/pre&gt;
-&lt;p&gt;But again, Fred might decide to do something different:&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;You give your (only) canvas to Fred. He sets the untouched canvas aside and &lt;strong&gt;makes a sculpture instead&lt;/strong&gt;. Then he gives you the sculpture back, and you can choose to replace your blank canvas with the sculpture, keep both, or just look at Fred’s work and decide not to keep it.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;pre class="highlight plaintext"&gt;canvas = [] // (blank canvas)
-
-function artistFred(item):
-    item = new Sculpture()
-    return item
-end
-
-log(canvas) // [] (blank canvas)
-artistFred(canvas) // look at the Fred’s work but decide not to keep it
-log(canvas) // [] (blank canvas)
-
-newSculpture = artistFred(canvas) // keep both
-log(canvas) // [] (blank canvas)
-log(newSculpture) // V (sculpture)
-
-canvas = artistFred(canvas) // replace blank canvas with the painted one
-log(canvas) // V (sculpture)
-&lt;/pre&gt;
-&lt;p&gt;This version is exactly the same as pass by value.&lt;/p&gt;
-
-&lt;p&gt;This is probably the most reasonable level of trust. You asked for a painting and a sculpture just won’t do. You trust Fred enough to paint a blank canvas, but you want your canvas to be usable if he decided to go off an make a sculpture instead. After all, you asked for a painting, not a sculpture.&lt;/p&gt;
-
-&lt;p&gt;&lt;em&gt;What gives? How can you mix and match like that?&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;It all depends on if the canvas is altered or replaced. If Fred simply alters the canvas by painting it, then the original (blank) canvas is changed forever. However, if Fred wants to replace the canvas, he can’t throw it away, but must create a sculpture as an entirely new thing.&lt;/p&gt;
-
-&lt;h3&gt;More formal definition&lt;/h3&gt;
-
-&lt;p&gt;In pass by sharing the original variable (declared outside the function’s scope) can only be altered in so far as it is mutable. It cannot be reassigned inside the function call. Any changes to a mutable type will persist after the function returns. Any attempts to reassign a variable will not persist.&lt;/p&gt;
-
-&lt;h2&gt;And one more thing...&lt;/h2&gt;
-
-&lt;p&gt;People use the wrong name all. the. time. Officially most languages use pass by sharing. Per &lt;a href="https://en.wikipedia.org/wiki/Evaluation_strategy#Call_by_sharing"&gt;Wikipedia&lt;/a&gt;:&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;It is used by languages such as Python, Iota, Java (for object references), Ruby, JavaScript, Scheme, OCaml, AppleScript, and many others.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;However, most people don’t say a particular language is “pass by sharing.” Unfortuantely “pass by reference” and “pass by value” are much more famous phrases than “pass by sharing” (probably because it’s what we’re taught at universities), and so people often use one of those terms even when it’s incorrect.&lt;/p&gt;
-
-&lt;p&gt;This semantic mixing caused me a fair amount of confusion because JS shows some pass by reference qualities:&lt;/p&gt;
-&lt;pre class="highlight plaintext"&gt;var obj = {a: 1};
-
-function referenceTest(input) {
-    input.a = 2;
-}
-
-console.log(obj); // logs {a: 1}
-referenceTest(obj);
-console.log(obj); // logs {a: 2}
-&lt;/pre&gt;
-&lt;p&gt;and some pass by value qualities:&lt;/p&gt;
-&lt;pre class="highlight plaintext"&gt;var num = 1;
-
-function valueTest(input) {
-    input = 1;
-}
-
-console.log(num); // logs 1
-valueTest(num);
-console.log(num); // logs 1
-&lt;/pre&gt;
-&lt;p&gt;It took me a long time to realise that JS was pass by reference &lt;em&gt;sometimes&lt;/em&gt; and pass by value &lt;em&gt;other times&lt;/em&gt;. And I only learned today that this mix of of the two, which many common languages use, is called pass by sharing.&lt;/p&gt;
-
-&lt;h2&gt;Resources&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href="https://en.wikipedia.org/wiki/Evaluation_strategy"&gt;Wikipedia&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="http://stackoverflow.com/questions/518000/is-javascript-a-pass-by-reference-or-pass-by-value-language"&gt;Stackoverflow&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Examples and explanation for &lt;a href="https://www.jeffknupp.com/blog/2012/11/13/is-python-callbyvalue-or-callbyreference-neither/"&gt;Python&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
 </content>
   </entry>
 </feed>

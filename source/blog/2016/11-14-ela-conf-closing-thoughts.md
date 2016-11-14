@@ -27,7 +27,7 @@ A *lot* of people came from bootcamps or were self taught. I’m pretty sure I w
 
 ## Feels
 
-Oh man, so many feels! Certainly a great conference to go to if you need some girl power in your life. But more than that, I loved how the speakers nomalised the “woman experience.” Typical tech talks don’t mention __ or ___, but these both came up at Ela Conf. Typical women’s conversations don’t bring up __, but this came up too. It felt like everyone had agreed to “this is a safe place to say things you wouldn’t normally - don’t hold back” and *massive* props to the organisers for creating and encouraging that vibe.
+Oh man, so many feels! Certainly a great conference to go to if you need some girl power in your life. But more than that, I loved how the speakers nomalised the “woman experience.” Typical tech talks don’t mention musicals or baking, but these both came up at Ela Conf. Women generally don’t say “babies are really boring,” but this came up too. It felt like everyone had agreed to “this is a safe place to say things you wouldn’t normally - don’t hold back” and *massive* props to the organisers for creating and encouraging that vibe.
 
 ## Networking
 
