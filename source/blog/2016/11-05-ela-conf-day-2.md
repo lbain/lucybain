@@ -2,7 +2,7 @@
 title: Ela Conf - day two
 tags: conference, women in tech
 
-description: Notes I took from the first day of Ela Conf in Philadelphia
+description: Notes I took from the second day of Ela Conf in Philadelphia
 
 page_class: small-images
 ---
