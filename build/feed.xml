@@ -4,10 +4,387 @@
   <id>http://lucybain.com/blog</id>
   <link href="http://lucybain.com/blog"/>
   <link href="http://lucybain.com/feed.xml" rel="self"/>
-  <updated>2016-11-27T00:00:00Z</updated>
+  <updated>2016-11-30T00:00:00Z</updated>
   <author>
     <name>Lucy Bain</name>
   </author>
+  <entry>
+    <title>Javascript: pre-Promises</title>
+    <link rel="alternate" href="http://lucybain.com/blog/2016/js-promises-1/"/>
+    <id>http://lucybain.com/blog/2016/js-promises-1/</id>
+    <published>2016-11-30T00:00:00Z</published>
+    <updated>2016-12-02T21:01:42+11:00</updated>
+    <author>
+      <name>Article Author</name>
+    </author>
+    <content type="html">&lt;p&gt;Promises have confused me for quite a while, so I decided I should spend some time thinking about them. Turns out they’re really powerful, and there’s a fair bit going on with promises. This first post has no promises code, but instead gives some general information about promises and then sets up the problem that promises are meant to solve. I’ll reference this problem in my next blog post which will have plenty of promise code!&lt;/p&gt;
+
+&lt;h2&gt;Background&lt;/h2&gt;
+
+&lt;p&gt;&lt;em&gt;Ok, you got me all excited about promises, but what do they even &lt;strong&gt;do&lt;/strong&gt;?&lt;/em&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;The Promise object is used for asynchronous computations. A Promise represents a value which may be available now, or in the future, or never.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;– MDN’s &lt;a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise"&gt;documentation&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;But I’ll admit I didn’t really know what that meant when I first read it, so let’s break it down a bit:&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;The Promise object&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Ok, we know promises are objects, and since they wrote &lt;strong&gt;P&lt;/strong&gt;romise with a capital P we also know it’s a &lt;a href="/blog/2015/js-new-keyword-and-functions/"&gt;constructor&lt;/a&gt;.&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;used for asynchronous computations&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Well, “asynchronous computations” are ones that don’t block the main execution thread, typically because they are long running. A common example is an &lt;a href="/blog/2015/js-how-does-ajax-work/"&gt;ajax&lt;/a&gt; request for data from the server. We can fire off the request, but we don’t want to stop the rest of the page from working while we wait for that request to return. Another example (which we’ll work with later) is timeouts - the whole page shouldn’t get locked while we wait for the timer to expire!&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;A Promise represents a value&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Hmmm, now things are getting a bit weird. It “represents” a value, but isn’t the value itself. It’s not that the promise &lt;em&gt;is&lt;/em&gt; &lt;code&gt;5&lt;/code&gt;, but that it represents something else. Let’s keep reading...&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;a value which may be available now, or in the future, or never.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Alright, so this value is a bit of a &lt;a href="https://en.wikipedia.org/wiki/Schr%C3%B6dinger&amp;amp;#x27;s_cat"&gt;Schrödinger&amp;#39;s cat&lt;/a&gt; type value. It may or may not be available, both now and in the future.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Yikes! How are we supposed to program with so many unknowns?!&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;But you already do!&lt;/p&gt;
+
+&lt;h2&gt;Async code without promises&lt;/h2&gt;
+
+&lt;h3&gt;Round one&lt;/h3&gt;
+
+&lt;p&gt;Let’s start with our timer example. It was recently Thanksgiving, so we’re going put on a Thanksgiving feast!&lt;/p&gt;
+
+&lt;p&gt;First we need to roast the turkey:&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;function makeTurkey() {
+  console.log('Making turkey');
+  setTimeout(() =&amp;gt; {
+    console.log('turkey - done!');
+  }, 1000);
+}
+
+makeTurkey();
+&lt;/pre&gt;
+&lt;p&gt;&lt;em&gt;1 second to roast a turkey...?&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;Just go with it, no need for the examples to run in real time!&lt;/p&gt;
+
+&lt;p&gt;As you can see, we’ll log out &lt;code&gt;Making turkey&lt;/code&gt; and then a second later we’ll log &lt;code&gt;turkey - done!&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;So far so good. We’re running asynchronous code without promises and not hitting any problems.&lt;/p&gt;
+
+&lt;p&gt;But our Thanksgiving feast is pretty sad. Just a turkey. It needs some sides!&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;function roastVeggies() {
+  console.log('Roasting veggies');
+  setTimeout(() =&amp;gt; {
+    console.log('veggies - done!');
+  }, 1000);
+}
+
+roastVeggies();
+&lt;/pre&gt;
+&lt;p&gt;Fantastic, now we can have a side of roast veggies. But we only have a small oven! We can’t roast the veggies and the turkey at the same time, so we’ll have to modify our code a little.&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;function makeTurkey() {
+  console.log('Making turkey');
+  setTimeout(() =&amp;gt; {
+    console.log('turkey - done!');
+    roastVeggies(); // &amp;lt;-- New line here!
+  }, 1000);
+}
+
+makeTurkey();
+&lt;/pre&gt;
+&lt;p&gt;Ok, we’re back on track for our feast! Except we don’t have any plates to eat off of - oops!&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;function setTable() {
+  console.log('Setting table');
+  setTimeout(() =&amp;gt; {
+    console.log('table - done!');
+  }, 1000);
+}
+&lt;/pre&gt;
+&lt;p&gt;Of course, we only want to set the table when the turkey and veggies are done (we’re using the table as a work surface for dessert until we’re ready to eat). So again, we need to modify the code a bit:&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;function makeTurkey() {
+  console.log('Making turkey');
+  setTimeout(() =&amp;gt; {
+    console.log('turkey - done!');
+    roastVeggies();
+    setTable(); // &amp;lt;-- New line here!
+  }, 1000);
+}
+
+makeTurkey();
+&lt;/pre&gt;
+&lt;p&gt;&lt;em&gt;But that won&amp;#39;t work, we need to wait for the veggies to finish roasting first&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;Right you are, let’s fix that:&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;function roastVeggies() {
+  console.log('Roasting veggies');
+  setTimeout(() =&amp;gt; {
+    console.log('veggies - done!');
+    setTable(); // &amp;lt;-- New line here!
+  }, 1000);
+}
+
+roastVeggies();
+&lt;/pre&gt;
+&lt;p&gt;Let’s write out the full code in all it’s glory:&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;function makeTurkey() {
+  console.log('Making turkey');
+  setTimeout(() =&amp;gt; {
+    console.log('turkey - done!');
+    roastVeggies();
+  }, 1000);
+}
+
+function roastVeggies() {
+  console.log('Roasting veggies');
+  setTimeout(() =&amp;gt; {
+    console.log('veggies - done!');
+    setTable();
+  }, 1000);
+}
+
+function setTable() {
+  console.log('Setting table');
+  setTimeout(() =&amp;gt; {
+    console.log('table - done!');
+  }, 1000);
+}
+
+makeTurkey();
+&lt;/pre&gt;
+&lt;p&gt;Code on &lt;a href="https://codepen.io/lbain/pen/QGaJXo"&gt;CodePen&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Excellent! We get the output:&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;Making turkey
+turkey - done!
+Roasting veggies
+veggies - done!
+Setting table
+table - done!
+&lt;/pre&gt;
+&lt;p&gt;So everything works as expected.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;The code isn’t too bad...&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;Yeah, I agree. It’s not too bad. Yet.&lt;/p&gt;
+
+&lt;h3&gt;Round two&lt;/h3&gt;
+
+&lt;p&gt;Let’s make our requirements a bit more complicated. Now we can roast our veggies and the turkey at the same time (we got a bigger oven), but we still only want to set the table when all the cooking is finished.&lt;/p&gt;
+
+&lt;p&gt;First we’ll update the &lt;code&gt;makeTurkey&lt;/code&gt; code so it doesn’t call &lt;code&gt;roastVeggies&lt;/code&gt;&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;function makeTurkey() {
+  console.log('Making turkey');
+  setTimeout(() =&amp;gt; {
+    console.log('turkey - done!');
+    // roastVeggies(); &amp;lt;-- This line no longer needed
+  }, 1000);
+}
+&lt;/pre&gt;
+&lt;p&gt;Next we’ll update the main project execution to call &lt;code&gt;roastVeggies&lt;/code&gt; at the same time as &lt;code&gt;makeTurkey&lt;/code&gt;.&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;makeTurkey();
+roastVeggies();
+&lt;/pre&gt;
+&lt;p&gt;&lt;em&gt;But how do we know when to set the table?&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;Well, for now we can leave &lt;code&gt;setTable&lt;/code&gt; where it is in the &lt;code&gt;roastVeggies&lt;/code&gt; call. Since &lt;code&gt;roastVeggies&lt;/code&gt; and &lt;code&gt;makeTurkey&lt;/code&gt; both take &lt;code&gt;1000ms&lt;/code&gt; to complete it doesn’t much matter where the set table is called from. (Note: this isn’t entirely accurate as one must finish before the other, but we’ll ignore that race condition. For now!)&lt;/p&gt;
+
+&lt;p&gt;Ok, so here’s our final code:&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;function makeTurkey() {
+  console.log('Making turkey');
+  setTimeout(() =&amp;gt; {
+    console.log('turkey - done!');
+  }, 1000);
+}
+
+function roastVeggies() {
+  console.log('Roasting veggies');
+  setTimeout(() =&amp;gt; {
+    console.log('veggies - done!');
+    setTable();
+  }, 1000);
+}
+
+function setTable() {
+  console.log('Setting table');
+  setTimeout(() =&amp;gt; {
+    console.log('table - done!');
+  }, 1000);
+}
+
+makeTurkey();
+roastVeggies();
+&lt;/pre&gt;
+&lt;p&gt;Code on &lt;a href="https://codepen.io/lbain/pen/rWpoax"&gt;CodePen&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;And our output is:&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;Making turkey
+Roasting veggies
+turkey - done!
+veggies - done!
+Setting table
+table - done!
+&lt;/pre&gt;
+&lt;p&gt;Which is exactly what we want! The turkey and veggies start roasting at the same time, finish some time later, and then we set the table.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;I get the feeling there’s a catch...&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;Unfortunately, there is.&lt;/p&gt;
+
+&lt;p&gt;Unlike cooking, most async calls take an unknown length of time to complete (like an ajax request). We can’t count on one call returning before another, or taking the same length of time. We cheated a bit in the previous example because we knew that roasting the turkey and veggies would take the same amount of time.&lt;/p&gt;
+
+&lt;p&gt;So let’s look at a more realistic example:&lt;/p&gt;
+
+&lt;h3&gt;Round three&lt;/h3&gt;
+
+&lt;p&gt;First we’ll write a quick random number generator:&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;function random(min, max) {
+    return Math.random() * (max - min) + min;
+}
+&lt;/pre&gt;
+&lt;p&gt;Next, we’ll set &lt;code&gt;roastTurkey&lt;/code&gt; and &lt;code&gt;roastVeggies&lt;/code&gt; to take a random amount of time between 100 and 2000 ms.&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;function makeTurkey() {
+  console.log('Making turkey');
+  setTimeout(() =&amp;gt; {
+    console.log('turkey - done!');
+  }, random(100, 2000)); // &amp;lt;-- line updated!
+}
+
+function roastVeggies() {
+  console.log('Roasting veggies');
+  setTimeout(() =&amp;gt; {
+    console.log('veggies - done!');
+    setTable();
+  }, random(100, 2000)); // &amp;lt;-- line updated!
+}
+&lt;/pre&gt;
+&lt;p&gt;Then we’ll run the code and see what happens! (It might take a few attempts to get result below.)&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;Making turkey
+Roasting veggies
+veggies - done!
+Setting table
+turkey - done!
+table - done!
+&lt;/pre&gt;
+&lt;p&gt;&lt;em&gt;Oh no! We’ve started on the table before the turkey was done!&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;Oh no indeed! Now that the turkey and veggies take a variable time to cook (a much more realistic example of async code) we don’t know when to set the table.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Ok, so now what?&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;We’ll do one more iteration to get this version to work properly.&lt;/p&gt;
+
+&lt;p&gt;Remember, our constraints are:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;The two roastings can happen at the same time (they’re at least started together).&lt;/li&gt;
+&lt;li&gt;The table must not be set while anything is roasting.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Now we need a way to know when the timers have finished.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Warning!&lt;/strong&gt; This is not good code! The whole point of this exercise is to find an example where promises would be a better solution. Do not try this at home!&lt;/p&gt;
+
+&lt;p&gt;We’ll start by keeping track of the two timers and clearing them out when the timers have expired:&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;let turkeyTimer;
+let veggieTimer;
+
+function makeTurkey() {
+  console.log('Making turkey');
+  turkeyTimer = setTimeout(() =&amp;gt; { // &amp;lt;-- line updated
+    console.log('turkey - done!');
+    turkeyTimer = false;  // &amp;lt;-- new line
+  }, random(100, 2000));
+}
+
+function roastVeggies() {
+  console.log('Roasting veggies');
+  veggieTimer = setTimeout(() =&amp;gt; { // &amp;lt;-- line updated
+    console.log('veggies - done!');
+    veggieTimer = false;  // &amp;lt;-- new line
+  }, random(100, 2000));
+}
+&lt;/pre&gt;
+&lt;p&gt;You’ll notice these are global variables.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;boo, hiss&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;That’s right, but we’ll need to access them in just a moment.&lt;/p&gt;
+
+&lt;p&gt;Alright, now we’ve got our timers all set up we need to check for when they’ve completed. Again, we don’t know when this will happen so we have to check the timers every millisecond to find when they’ve finished. Once they’ve finished we’ll set the table and clear out the check method.&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;const checkReady = setInterval(() =&amp;gt; {
+  if (!turkeyTimer &amp;amp;&amp;amp; !veggieTimer) {
+    setTable();
+    clearInterval(checkReady);
+  }
+}, 1);
+&lt;/pre&gt;
+&lt;p&gt;So the final version of this round looks like:&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;let turkeyTimer;
+let veggieTimer;
+
+function random(min, max) {
+    return Math.random() * (max - min) + min;
+}
+
+function makeTurkey() {
+  console.log('Making turkey');
+  turkeyTimer = setTimeout(() =&amp;gt; {
+    console.log('turkey - done!');
+    turkeyTimer = false;
+  }, random(100, 2000));
+}
+
+function roastVeggies() {
+  console.log('Roasting veggies');
+  veggieTimer = setTimeout(() =&amp;gt; {
+    console.log('veggies - done!');
+    veggieTimer = false;
+  }, random(100, 2000));
+}
+
+function setTable() {
+  console.log('Setting table');
+  setTimeout(() =&amp;gt; {
+    console.log('table - done!');
+  }, 1000);
+}
+
+makeTurkey();
+roastVeggies();
+
+const checkReady = setInterval(() =&amp;gt; {
+  if (!turkeyTimer &amp;amp;&amp;amp; !veggieTimer) {
+    setTable();
+    clearInterval(checkReady);
+  }
+}, 1);
+
+&lt;/pre&gt;
+&lt;p&gt;Code on &lt;a href="https://codepen.io/lbain/pen/ObzrPB"&gt;CodePen&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Yikes!&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;That’s right. This code is not very nice. It works, but it’s confusing and needing to poll every 1ms to see if it’s time to set the table is pretty terrible.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;There must be a better way!&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;There is! We’ll be looking at promises next time to do just that.&lt;/p&gt;
+
+&lt;p&gt;Check in again soon to see how all this can be so much better!&lt;/p&gt;
+</content>
+  </entry>
   <entry>
     <title>ReactJS: Props vs. State</title>
     <link rel="alternate" href="http://lucybain.com/blog/2016/react-state-vs-pros/"/>
@@ -582,119 +959,6 @@ count: newCount
 &lt;li&gt;Take an hour a week to do sponsorship or mentorship&lt;/li&gt;
 &lt;li&gt;Every few months (starting now) look at who you follow on Twitter. Are they all one gender, race, political view, sexual orientation, etc.? Rebalance to better represent society’s distribution.&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;
-</content>
-  </entry>
-  <entry>
-    <title>Workshop for conference proposals</title>
-    <link rel="alternate" href="http://lucybain.com/blog/2016/proposal-ideas-workshop/"/>
-    <id>http://lucybain.com/blog/2016/proposal-ideas-workshop/</id>
-    <published>2016-02-21T00:00:00Z</published>
-    <updated>2016-02-21T13:04:33+11:00</updated>
-    <author>
-      <name>Article Author</name>
-    </author>
-    <content type="html">&lt;p&gt;Last Wednesday I ran a workshop to help people come up with and refine conference talk ideas and then start working on a proposal for it. In preparation for the workshop I wrote a &lt;a href="/blog/2016/conference-proposal-ideas/"&gt;worksheet&lt;/a&gt; to help people come up with proposal ideas. This week I’ll write about the workshop and how you can run one as well.&lt;/p&gt;
-
-&lt;p&gt;This workshop is ideal for beginners to run. All of the hard work is in the preparation, so you can take all the time you need.&lt;/p&gt;
-
-&lt;h2&gt;Preparation&lt;/h2&gt;
-
-&lt;p&gt;You don’t need any special knowledge about conferences to run this workshop. If you happen to have conference proposal experience, all the better! But remember that it’s optional, so go for it!&lt;/p&gt;
-
-&lt;p&gt;If possible, find someone to help you with the workshop. They should be someone who has a lot of experience reviewing conference proposals, ideally they were on a selection committee recently. If you are writing your proposals for a specific conference then reach out to the organisers and let them know you’re going to run this workshop. Ask them if they can recommend anyone form the selection committee last year. When I’ve done this the organisers have always had at least one person to reach out to about helping.&lt;/p&gt;
-
-&lt;p&gt;If you were able to find someone with reviewing experience then ask them to prepare a short (5-10 minute) talk for the workshop. Something like “Would you please give an overview of how the [Conference name here] process works, and how it&amp;#39;s similar and different to other conferences?” For my workshop this person was sick and wasn’t able to make it. The workshop still went smoothly, but I wasn’t able to give the attendees more information about how the selection process works.&lt;/p&gt;
-
-&lt;p&gt;Pick a casual space with chairs that move easily. As you’ll see, most of this workshop is moving around and bouncing ideas off people. It’s important to pick a space that facilitates this. Something like a university lecture hall wouldn’t be a good pick. Instead, choose somewhere that feels relaxed and makes moving around easy. Desks are handy, otherwise remind people to bring a notebook to press on.&lt;/p&gt;
-
-&lt;p&gt;Having a projector is optional, but if there’s one handy I recommend it. I’ve included my &lt;a href="https://www.dropbox.com/s/47z32c7gxjs9vws/cfp-workshop-public.key?dl=0"&gt;presentation&lt;/a&gt; for you to use. There’s nothing particularly useful or mind blowing in it - mostly it’s full of timers to help people stay on track. It’s fine for you to keep track of the time on your laptop, but if you can have it up somewhere it makes it a bit easier on the participants to keep track of the time themselves.&lt;/p&gt;
-
-&lt;p&gt;Ask attendees to bring a filled out copy of the ideas &lt;a href="/blog/2016/conference-proposal-ideas/"&gt;worksheet&lt;/a&gt;. This worksheet is their ticket - no worksheet, no workshop. Most of the workshop is bouncing ideas around and it’s not fair to the other attendees if someone doesn’t bring anything to the table.&lt;/p&gt;
-
-&lt;p&gt;Print out copies of the &lt;a href="https://docs.google.com/document/d/13DfiDw6rpasjq33ckGzqlLBrK59M2m6iQgyrv1IV_VM/edit?usp=sharing"&gt;resources&lt;/a&gt;, &lt;a href="https://docs.google.com/document/d/1BEfA3m4hP08o0-MOpeecJ5SuhU0LBjfFmuB-bErdveo/edit?usp=sharing"&gt;proposal worksheet&lt;/a&gt;, and &lt;a href="https://docs.google.com/document/d/1BI7f7i3vI8vm4J47HoqDpB1OCRDfZPo5cUXMP8yHUgM/edit?usp=sharing"&gt;accountability worksheet&lt;/a&gt; for everyone. It’s also a good idea to have some spare paper for people to write on.&lt;/p&gt;
-
-&lt;h2&gt;The workshop (1.5 - 2 hours)&lt;/h2&gt;
-
-&lt;p&gt;Ok, so you’ve got your space, someone with selection experience, and your attendees all have their worksheets filled out - the hard part is done! Seriously, the actual workshop isn’t very much work on your part.&lt;/p&gt;
-
-&lt;p&gt;Things can get loud during this workshop, so be sure you’ve got a whistle, bell, or something that can make a lot of noise. I used bongo drums - it was awesome!&lt;/p&gt;
-
-&lt;p&gt;The workshop is divided into two parts. The first part is on brainstorming and idea clarification. The second part is for coming up with a rough draft of the proposal. If you found them, your proposal selection expert goes in the middle.&lt;/p&gt;
-
-&lt;h3&gt;Part 1 - speed dating (70 minutes)&lt;/h3&gt;
-
-&lt;p&gt;For this section people will pair up and discus their ideas. It’s important that everyone keeps switching pairs. I like to get people to move around a bit and get their blood flowing, so don’t ask them to pair up with the person next to them, instead pick something random (“find someone with the same first letter of your first name”). It’s silly, which is perfect - it gets people laughing, running around, and, most importantly, makes the whole workshop less serious and stressful.&lt;/p&gt;
-
-&lt;p&gt;Each pairing should discuss the ideas and decide which are the best ones. They should suggest ideas that are similar, places that would be good to give the talk, audiences who would be particularly interested, etc.&lt;/p&gt;
-
-&lt;p&gt;If you have your proposal selection expert include them into this mix as well so they can be paired up with anyone.&lt;/p&gt;
-
-&lt;h4&gt;Pair 1 (15 minutes)&lt;/h4&gt;
-
-&lt;p&gt;The first time people pair up ask them to go through each of the questions on the worksheet one by one. So Person A talks about what ideas they came up with for question 1 then Person B goes through their answer, then they discuss.  Ideally they should end up with around &lt;strong&gt;five&lt;/strong&gt; ideas they want to keep pursing.&lt;/p&gt;
-
-&lt;h4&gt;Pair 2 (12 minutes)&lt;/h4&gt;
-
-&lt;p&gt;Discuss the previous ideas and choose &lt;strong&gt;four&lt;/strong&gt; ideas to move forward with.&lt;/p&gt;
-
-&lt;h4&gt;Pair 3 (9 minutes)&lt;/h4&gt;
-
-&lt;p&gt;Discuss the previous ideas and choose &lt;strong&gt;three&lt;/strong&gt; ideas to move forward with.&lt;/p&gt;
-
-&lt;h4&gt;Pair 4 (6 minutes)&lt;/h4&gt;
-
-&lt;p&gt;Discuss the previous ideas and choose &lt;strong&gt;two&lt;/strong&gt; ideas to move forward with.&lt;/p&gt;
-
-&lt;h4&gt;Pair 5 (3 minutes)&lt;/h4&gt;
-
-&lt;p&gt;Discuss the previous ideas and choose &lt;strong&gt;one&lt;/strong&gt; idea to move forward with.&lt;/p&gt;
-
-&lt;h4&gt;Group 1 (10 minutes)&lt;/h4&gt;
-
-&lt;p&gt;Ask people to get into small groups (4-6 people per group). Have them discuss their final ideas and give feedback.&lt;/p&gt;
-
-&lt;h4&gt;Group 2 (15 minutes)&lt;/h4&gt;
-
-&lt;p&gt;Ask people to get into large groups (about twenty people per group). Go around the room and say what each person&amp;#39;s idea is. It’s amazing to hear what people have come up with!&lt;/p&gt;
-
-&lt;h3&gt;Selection expert (5-15 minutes)&lt;/h3&gt;
-
-&lt;p&gt;At this point ask your proposal selection helper to give their spiel. The move on to a (brief) time for questions, but don’t let it go on too long. Any questions like “what do you think of idea X” are banned - this is a time for big picture questions about the selection &lt;em&gt;process&lt;/em&gt; and nothing else.&lt;/p&gt;
-
-&lt;h3&gt;Part 2 - writing for the proposal (25 minutes)&lt;/h3&gt;
-
-&lt;h4&gt;Read the resources (5 minutes)&lt;/h4&gt;
-
-&lt;p&gt;Ask everyone to read through the &lt;a href="https://docs.google.com/document/d/13DfiDw6rpasjq33ckGzqlLBrK59M2m6iQgyrv1IV_VM/edit?usp=sharing"&gt;resources&lt;/a&gt; on writing proposals.&lt;/p&gt;
-
-&lt;h4&gt;Fill out the proposal worksheet (5 minutes)&lt;/h4&gt;
-
-&lt;p&gt;The &lt;a href="https://docs.google.com/document/d/1BEfA3m4hP08o0-MOpeecJ5SuhU0LBjfFmuB-bErdveo/edit?usp=sharing"&gt;proposal worksheet&lt;/a&gt; helps make an idea more concrete and focuses people’s thoughts on actually giving the talk.&lt;/p&gt;
-
-&lt;h4&gt;Bullet point rough draft (10 minutes)&lt;/h4&gt;
-
-&lt;p&gt;It’s time to come up with a rough draft! This can be as messy as they want. Bullet points are fine - just take some time to get something on the page.&lt;/p&gt;
-
-&lt;h4&gt;Talk it through (3 minutes)&lt;/h4&gt;
-
-&lt;p&gt;Ask people to pair up one more time. Have them talk through their proposal ideas and get some initial feedback.&lt;/p&gt;
-
-&lt;h4&gt;Accountability (2 minutes)&lt;/h4&gt;
-
-&lt;p&gt;In that same pair ask people to fill out the &lt;a href="https://docs.google.com/document/d/1BI7f7i3vI8vm4J47HoqDpB1OCRDfZPo5cUXMP8yHUgM/edit?usp=sharing"&gt;accountability worksheet&lt;/a&gt;. It’s very easy to come up with an idea and never submit it - this worksheet is to help people commit and follow through.&lt;/p&gt;
-
-&lt;h2&gt;Done!&lt;/h2&gt;
-
-&lt;p&gt;And that’s it! You’ve done a whole workshop to help people come up with ideas, refine those ideas, and get started on a rough draft of a proposal. Fantastic job :)&lt;/p&gt;
-
-&lt;h2&gt;Resources&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Workshop &lt;a href="https://www.dropbox.com/s/47z32c7gxjs9vws/cfp-workshop-public.key?dl=0"&gt;presentation&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;How to write a proposal &lt;a href="https://docs.google.com/document/d/13DfiDw6rpasjq33ckGzqlLBrK59M2m6iQgyrv1IV_VM/edit?usp=sharing"&gt;resources&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://docs.google.com/document/d/1BEfA3m4hP08o0-MOpeecJ5SuhU0LBjfFmuB-bErdveo/edit?usp=sharing"&gt;Proposal worksheet&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://docs.google.com/document/d/1BI7f7i3vI8vm4J47HoqDpB1OCRDfZPo5cUXMP8yHUgM/edit?usp=sharing"&gt;Accountability worksheet&lt;/a&gt; &lt;/li&gt;
 &lt;/ul&gt;
 </content>
   </entry>
