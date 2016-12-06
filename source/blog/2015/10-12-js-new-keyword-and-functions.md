@@ -1,7 +1,6 @@
 ---
 title: 'JS: new keyword and functions'
 tags: js, interview-questions
-alias : blog/2015/js-ways-to-call-functions/
 
 description: A look into JavaScript functions with particular focus on the “new” keyword for creating objects from JS constructors.
 keywords: JavaScript, JS, new, object, constructor
