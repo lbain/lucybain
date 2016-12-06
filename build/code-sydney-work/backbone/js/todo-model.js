@@ -1,1 +1,0 @@
-var app=app||{};app.Todo=Backbone.Model.extend({defaults:{title:"",completed:!1,ordinal:null},toggle:function(){this.save({completed:!this.get("completed")})}});

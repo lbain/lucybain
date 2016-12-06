@@ -1,1 +1,0 @@
-function City(i,t){this.alive=!0,this.x=i,this.y=t,this.radius=30,$.extend(this,hitable)}

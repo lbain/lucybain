@@ -1,1 +1,0 @@
-var Utils={arraysEqual:function(r,n){if(r===n)return!0;if(null==r||null==n)return!1;if(r.length!=n.length)return!1;for(var t=0;t<r.length;++t)if(r[t]!==n[t])return!1;return!0},randomNumber:function(r){return Math.floor(Math.random()*r)},cell:function(r){return $("#"+r[0]+"-"+r[1])}};

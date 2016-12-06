@@ -1,1 +1,0 @@
-var Carousel=function(){var i,t,n=this;return n.init=function(){return i=4,t=0,$(".arrow").on("click",function(){var i=$(this).attr("direction");"right"===i?n.next():"left"===i&&n.previous()}),n},n.next=function(){$(".active").removeClass("active"),t=(t+1)%i,$(".slide[index="+t+"]").addClass("active")},n.init()};$(function(){carousel=new Carousel});

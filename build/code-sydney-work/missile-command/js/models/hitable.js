@@ -1,1 +1,0 @@
-function randomNumber(t){return Math.floor(Math.random()*t)}var hitable={isHit:function(t){var r=this.x-t.x,i=this.y-t.y,n=Math.sqrt(r*r+i*i);return n<this.radius+t.radius},done:function(){return!this.alive}};
