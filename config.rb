@@ -27,9 +27,7 @@ activate :blog do |blog|
   # blog.calendar_template = "blog/calendar.html"
 
   # Enable pagination
-  blog.paginate = true
-  blog.per_page = 10
-  blog.page_link = "page/{num}"
+  blog.paginate = false
 end
 
 page "/feed.xml", layout: false
