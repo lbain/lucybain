@@ -1,0 +1,272 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+  <head>
+    <meta content='width=device-width, initial-scale=1' name='viewport'>
+<meta charset='utf-8'>
+<meta content='IE=edge,chrome=1' http-equiv='X-UA-Compatible'>
+<meta content='Looking at some new features introduced in ES6 for easier object creation.' name='description'>
+<meta content='js, es6, enhanced objects' name='keywords'>
+<link href='/images/favicon.ico' rel='icon' type='image/ico'>
+<link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700|Source+Code+Pro' rel='stylesheet' type='text/css'>
+<title>JS: Enhanced object literals</title>
+<link href="/stylesheets/application.css" rel="stylesheet" media="all" />
+<script src='//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js'></script>
+<script src='//cdn.optimizely.com/js/4606022905.js'></script>
+
+  </head>
+  <body class="">
+    <nav>
+  <div class='nav-open-btn'>
+    <ul>
+      <li></li>
+      <li></li>
+      <li></li>
+    </ul>
+  </div>
+  <ul class='nav-display'>
+    <li>
+      <a href="/" class="nav-link">Me</a>
+    </li>
+    <li>
+      <a href="/resume/" class="nav-link">Resume</a>
+    </li>
+    <li>
+      <a href="/contact-me/" class="nav-link">Contact</a>
+    </li>
+    <li>
+      <a href="/resources/" class="nav-link">Resources</a>
+    </li>
+    <li>
+      <a href="/blog/" class="nav-link active">Blog</a>
+    </li>
+  </ul>
+</nav>
+<script>
+  $('nav .nav-open-btn').on('click', function(){
+    $('nav .nav-display').toggleClass('open');
+  })
+</script>
+
+    <div class="content">
+        <div class=" blog-listing">
+    <div class="meta">
+      <h1>
+        JS: Enhanced object literals
+      </h1>
+      <p>Published on: November  1, 2015</p>
+        <p>Tags: <a href="/blog/tags/js/">js</a> and <a href="/blog/tags/es6/">es6</a></p>
+    </div>
+    <p>Here’s some nice <a href="/blog/tags/es6/">ES6</a> syntactic sugar for creating object literals. I found it hard to read at first and needed a few examples before I could understand what was happening. It’s got a few uses, so we’ll build up more and more complicated examples to see what it can do.</p>
+
+<h2>Ordinary object literals</h2>
+
+<p>In vanilla JS we create object literals like this:</p>
+
+<pre><code>var a = 1,
+    b = 2,
+    c = 3;
+
+var obj = {
+    a : a,
+    b : b,
+    c : c
+};
+
+console.log(obj); // logs { &quot;a&quot; : 1, &quot;b&quot; : 2, &quot;c&quot; : 3 }
+</code></pre>
+
+<p><em>What’s wrong with this way?</em></p>
+
+<p>This works, but is quite repetitive and fairly heavy. You have to give the name of the key, even though it’s the same as the name of the variable.</p>
+
+<p>Let’s rewrite it with ES6 object literals:</p>
+
+<pre><code>let a = 1,
+    b = 2,
+    c = 3;
+
+let obj = { a, b, c };
+
+console.log(obj); // logs { &quot;a&quot; : 1, &quot;b&quot; : 2, &quot;c&quot; : 3 }
+</code></pre>
+
+<p><em>Gah! What’s happening here??</em></p>
+
+<p>This is how I felt when I first read the <code>let obj = { a, b, c };</code> line as well. Especially because <code>{}</code> is a pretty common way to create hashes (Ruby) or dictionaries (Python). This syntax just felt wrong. But it is certainly more concise so we’re just gonna need to get past the weirdness.</p>
+
+<p><em>Yeah, but what’s the code <strong>really</strong>?</em></p>
+
+<p>To ease concerns... If you put the above ES6 code into the <a href="https://babeljs.io/repl/">Babel REPL</a> it will produce the following vanilla JS code:</p>
+
+<pre><code>&quot;use strict&quot;;
+
+var a = 1,
+    b = 2,
+    c = 3;
+
+var obj = { a: a, b: b, c: c };
+
+console.log(obj);
+</code></pre>
+
+<p>No funny business here - promise!</p>
+
+<p><em>I&#39;m not convinced - what’s an example of this being useful?</em></p>
+
+<p>What happens if you change the name of a variable to be something more meaningful, but forget to change the object key? In vanilla JS we have something like this:</p>
+
+<pre><code>var firstPlace = 1,
+    secondPlace = 2,
+    thirdPlace = 3;
+
+var obj = {
+    a : firstPlace,
+    b : secondPlace,
+    c : thirdPlace
+};
+
+console.log(obj); // logs { &quot;a&quot; : 1, &quot;b&quot; : 2, &quot;c&quot; : 3 }
+console.log(obj.thirdPlace); // undefined
+</code></pre>
+
+<p>We had all the best intentions of using better names, but they didn’t come through after you created the object. (I’m sure you’re a perfect dev who would never do something like this. But I have, and it was super annoying to debug.)</p>
+
+<p>Here’s the same example with ES6 helping us out:</p>
+
+<pre><code>let firstPlace = 1,
+    secondPlace = 2,
+    thirdPlace = 3;
+
+let obj = { firstPlace, secondPlace, thirdPlace };
+
+console.log(obj); // logs { &quot;firstPlace&quot; : 1, &quot;secondPlace&quot; : 2, &quot;thirdPlace&quot; : 3 }
+console.log(obj.thirdPlace); // logs 3
+</code></pre>
+
+<p>You can see that it’s a bit easier to keep track of everything with the enhanced object literals.</p>
+
+<p><em>Ok, so that was the most basic one. Give me something more interesting!</em></p>
+
+<p>Sure thing!</p>
+
+<h2>Dynamic keys</h2>
+
+<p>The new syntax also allows dynamic keys to be created more easily. Here’s an example of the ES6 version:</p>
+
+<pre><code>let a = 1,
+    b = 2,
+    c = 3;
+
+let obj = {
+
+
+
+}
+
+console.log(obj); // logs { &quot;2&quot; : 1, &quot;3&quot; : 2, &quot;4&quot; : 3 }
+</code></pre>
+
+<p><em>But you can have dynamic keys in vanilla JS!</em></p>
+
+<p>True, we could use [] notation to remove this problem:</p>
+
+<pre><code>var numbers = [1, 2, 3];
+var obj = {};
+
+for (var i = 0; i &lt; numbers.length; i++) {
+    obj[numbers[i] + 1] = numbers[i];
+}
+
+console.log(obj); // logs { &quot;2&quot; : 1, &quot;3&quot; : 2, &quot;4&quot; : 3 }
+</code></pre>
+
+<p>Now the keys and values can be dynamic, but look at that code! The new way is certainly easier to read and write.</p>
+
+<p><em>Yeah, it’s looking pretty nice, let’s do another one!</em></p>
+
+<h2>Methods</h2>
+
+<p>It’s easy enough to put methods on objects in vanilla JS:</p>
+
+<pre><code>var obj = {
+    hello: function(name) {
+        console.log(&#39;hello &#39; + name);
+    }
+}
+obj.hello(&#39;world&#39;); // logs &quot;hello world&quot;
+</code></pre>
+
+<p>But with enhanced object literals we can get rid of some of the boiler plate code to tighten things up a bit:</p>
+
+<pre><code>let obj = {
+  hello(name) {
+    console.log(&#39;hello &#39; + name);
+  }
+};
+obj.hello(&#39;world&#39;); // logs &quot;hello world&quot;
+</code></pre>
+
+<p><em>That’s crazy! Where’s the function keyword?</em></p>
+
+<p>It’s not needed any more! ES6 knows <code>hello</code> is a function because of the <code>()</code> and the method gets created automatically.</p>
+
+<h2>Review</h2>
+
+<p>So there you have it! ES6’s enhanced object literals can make object creating easier by adding syntactic sugar. Remember, this doesn’t change how objects work in general. All of these examples can also be written in vanilla JS, so it does’t add new functionality. But it does make writing JS that much easier!</p>
+
+<h2>Resources</h2>
+
+<ul>
+<li><a href="https://maximilianhoffmann.com/posts/object-based-javascript-in-es6">Maximilian Hoffmann</a></li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Object_initializer">Mozilla</a></li>
+<li>Overview of all <a href="https://github.com/lukehoban/es6features#enhanced-object-literals">ES6 features</a></li>
+</ul>
+
+
+      <div id="disqus_thread">
+        <hr/>
+        <script>
+
+          var disqus_shortname = 'lucybain';
+          (function() {
+              var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+              dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+              (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+          })();
+
+        </script>
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+        <a class="dsq-brlink" href="http://disqus.com">
+          comments powered by
+          <span class="logo-disqus">Disqus</span>
+        </a>
+        <script>
+
+          var disqus_shortname = 'lucybain';
+          (function () {
+              var s = document.createElement('script'); s.async = true;
+              s.type = 'text/javascript';
+              s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+              (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+          }());
+
+        </script>
+      </div>
+  </div>
+
+    </div>
+  </body>
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  
+  ga('create', 'UA-45866381-1', 'lucybain.com');
+  ga('send', 'pageview');
+</script>
+
+</html>

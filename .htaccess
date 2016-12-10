@@ -1,0 +1,3 @@
+order allow,deny
+deny from 49.188.7.47
+allow from all

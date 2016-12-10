@@ -1,0 +1,179 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+  <head>
+    <meta content='width=device-width, initial-scale=1' name='viewport'>
+<meta charset='utf-8'>
+<meta content='IE=edge,chrome=1' http-equiv='X-UA-Compatible'>
+<meta content='js, interview-questions' name='keywords'>
+<link href='/images/favicon.ico' rel='icon' type='image/ico'>
+<link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700|Source+Code+Pro' rel='stylesheet' type='text/css'>
+<title>JS: attribute vs. property</title>
+<link href="/stylesheets/application.css" rel="stylesheet" media="all" />
+<script src='//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js'></script>
+<script src='//cdn.optimizely.com/js/4606022905.js'></script>
+
+  </head>
+  <body class="">
+    <nav>
+  <div class='nav-open-btn'>
+    <ul>
+      <li></li>
+      <li></li>
+      <li></li>
+    </ul>
+  </div>
+  <ul class='nav-display'>
+    <li>
+      <a href="/" class="nav-link">Me</a>
+    </li>
+    <li>
+      <a href="/resume/" class="nav-link">Resume</a>
+    </li>
+    <li>
+      <a href="/contact-me/" class="nav-link">Contact</a>
+    </li>
+    <li>
+      <a href="/resources/" class="nav-link">Resources</a>
+    </li>
+    <li>
+      <a href="/blog/" class="nav-link active">Blog</a>
+    </li>
+  </ul>
+</nav>
+<script>
+  $('nav .nav-open-btn').on('click', function(){
+    $('nav .nav-display').toggleClass('open');
+  })
+</script>
+
+    <div class="content">
+        <div class=" blog-listing">
+    <div class="meta">
+      <h1>
+        JS: attribute vs. property
+      </h1>
+      <p>Published on: November 10, 2014</p>
+        <p>Tags: <a href="/blog/tags/js/">js</a> and <a href="/blog/tags/interview-questions/">interview-questions</a></p>
+    </div>
+    <h2>What’s the difference between an “attribute” and a “property”?</h2>
+
+<p>As usual, let’s start smaller.</p>
+
+<p><strong>What is a property?</strong></p>
+
+<p>JS DOM objects have properties. These properties are kind of like instance variables for the particular element. As such, a property can be different types (boolean, string, etc.). Properties can be accessed using jQuery’s <code>prop</code> method (as seen below) and also by interacting with the object in vanilla JS.</p>
+
+<p>Let’s take a look:</p>
+
+<pre><code>&lt;a href=&#39;page2.html&#39; class=&#39;link classes&#39; name=&#39;linkName&#39; id=&#39;linkID&#39;&gt;Hi&lt;/a&gt;
+
+$(&#39;#linkID&#39;).prop(&#39;href&#39;); // returns &quot;http://example.com/page2.html&quot;
+$(&#39;#linkID&#39;).prop(&#39;name&#39;); // returns &quot;linkName&quot;
+$(&#39;#linkID&#39;).prop(&#39;id&#39;); // returns &quot;linkID&quot;
+$(&#39;#linkID&#39;).prop(&#39;className&#39;); // returns &quot;link classes&quot;
+</code></pre>
+
+<p>As you can see, all of the properties we set in the HTML are available through <code>prop</code>. Other properties are available too, such as <code>style</code>, even though we didn’t explicitly set them.</p>
+
+<p>Properties can also be updated through the <code>prop</code> method:</p>
+
+<pre><code>&lt;a href=&#39;page2.html&#39;&gt;Hi&lt;/a&gt;
+
+$(&#39;#linkID&#39;).prop(&#39;href&#39;, &#39;page1.html&#39;);
+$(&#39;#linkID&#39;).prop(&#39;href&#39;); // returns &quot;http://example.com/page1.html&quot;
+</code></pre>
+
+<p><strong>What is an attribute?</strong></p>
+
+<p>Attributes are in the HTML itself, rather than in the DOM. They are very similar to properties, but not quite as good. When a property is available it’s recommended that you work with properties rather than attributes.</p>
+
+<p>An attribute is only ever a string, no other type.</p>
+
+<pre><code>&lt;input type=&quot;checkbox&quot; checked=true/&gt;
+
+$(&#39;input&#39;).prop(&#39;checked&#39;); // returns true
+$(&#39;input&#39;).attr(&#39;checked&#39;); // returns &quot;checked&quot;
+</code></pre>
+
+<p>If an element has a default value, the attribute shows the default value even if the value has changed.</p>
+
+<pre><code>&lt;input type=&quot;text&quot; name=&quot;username&quot; value=&quot;user123&quot;&gt;
+
+$(&#39;input&#39;).prop(&#39;value&#39;, &#39;456user&#39;);
+$(&#39;input&#39;).prop(&#39;value&#39;); // returns &quot;456user&quot;
+$(&#39;input&#39;).attr(&#39;value&#39;); // returns &quot;user123&quot;
+</code></pre>
+
+<p>Attributes can be useful when you want to set a custom attribute, that is, when there is no property associated.</p>
+
+<pre><code>&lt;input type=&quot;text&quot;&gt;
+
+$(&#39;input&#39;).attr(&#39;customAttribute&#39;, &#39;something custom&#39;);
+$(&#39;input&#39;).attr(&#39;customAttribute&#39;); // returns &quot;something custom&quot;
+$(&#39;input&#39;).prop(&#39;customAttribute&#39;); // returns undefined
+</code></pre>
+
+<p>But, to be fair, you can also use custom properties (although this might be bad practice).</p>
+
+<pre><code>&lt;input type=&quot;text&quot;&gt;
+
+$(&#39;input&#39;).prop(&#39;customAttribute&#39;, &#39;something custom&#39;);
+$(&#39;input&#39;).prop(&#39;customAttribute&#39;); // returns &quot;something custom&quot;
+$(&#39;input&#39;).attr(&#39;customAttribute&#39;); // returns undefined
+</code></pre>
+
+<p><strong>References</strong></p>
+
+<ul>
+<li><a href="http://stackoverflow.com/a/5884994/863846">Stack overflow</a></li>
+<li><a href="http://jquery-howto.blogspot.com.au/2011/06/html-difference-between-attribute-and.html">jQuery Howto</a></li>
+</ul>
+
+
+      <div id="disqus_thread">
+        <hr/>
+        <script>
+
+          var disqus_shortname = 'lucybain';
+          (function() {
+              var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+              dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+              (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+          })();
+
+        </script>
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+        <a class="dsq-brlink" href="http://disqus.com">
+          comments powered by
+          <span class="logo-disqus">Disqus</span>
+        </a>
+        <script>
+
+          var disqus_shortname = 'lucybain';
+          (function () {
+              var s = document.createElement('script'); s.async = true;
+              s.type = 'text/javascript';
+              s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+              (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+          }());
+
+        </script>
+      </div>
+  </div>
+
+    </div>
+  </body>
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  
+  ga('create', 'UA-45866381-1', 'lucybain.com');
+  ga('send', 'pageview');
+</script>
+
+</html>

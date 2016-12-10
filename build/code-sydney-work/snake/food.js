@@ -1,0 +1,1 @@
+function Food(t){var i;this.init=function(t){return this.generate(t),this},this.generate=function(t){i=[Utils.randomNumber(t),Utils.randomNumber(t)]},this.display=function(){Utils.cell(i).addClass("food")},this.getLocation=function(){return i},this.removeDisplay=function(){Utils.cell(i).removeClass("food")},this.init(t)}

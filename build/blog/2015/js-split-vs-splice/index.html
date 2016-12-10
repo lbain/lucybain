@@ -1,0 +1,219 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+  <head>
+    <meta content='width=device-width, initial-scale=1' name='viewport'>
+<meta charset='utf-8'>
+<meta content='IE=edge,chrome=1' http-equiv='X-UA-Compatible'>
+<meta content='js, interview-questions' name='keywords'>
+<link href='/images/favicon.ico' rel='icon' type='image/ico'>
+<link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700|Source+Code+Pro' rel='stylesheet' type='text/css'>
+<title>JS: Split vs. Splice</title>
+<link href="/stylesheets/application.css" rel="stylesheet" media="all" />
+<script src='//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js'></script>
+<script src='//cdn.optimizely.com/js/4606022905.js'></script>
+
+  </head>
+  <body class="">
+    <nav>
+  <div class='nav-open-btn'>
+    <ul>
+      <li></li>
+      <li></li>
+      <li></li>
+    </ul>
+  </div>
+  <ul class='nav-display'>
+    <li>
+      <a href="/" class="nav-link">Me</a>
+    </li>
+    <li>
+      <a href="/resume/" class="nav-link">Resume</a>
+    </li>
+    <li>
+      <a href="/contact-me/" class="nav-link">Contact</a>
+    </li>
+    <li>
+      <a href="/resources/" class="nav-link">Resources</a>
+    </li>
+    <li>
+      <a href="/blog/" class="nav-link active">Blog</a>
+    </li>
+  </ul>
+</nav>
+<script>
+  $('nav .nav-open-btn').on('click', function(){
+    $('nav .nav-display').toggleClass('open');
+  })
+</script>
+
+    <div class="content">
+        <div class=" blog-listing">
+    <div class="meta">
+      <h1>
+        JS: Split vs. Splice
+      </h1>
+      <p>Published on: March 12, 2015</p>
+        <p>Tags: <a href="/blog/tags/js/">js</a> and <a href="/blog/tags/interview-questions/">interview-questions</a></p>
+    </div>
+    <h2>What’s the difference between <code>split</code> and <code>splice</code>?</h2>
+
+<p><em>Well, what does <code>split</code> do?</em></p>
+
+<p>Much like the name implies <code>split</code> breaks something into pieces. The <code>split</code> method is used for strings in JS. It has a few optional parameters, so let’s see what the simplest call does:</p>
+
+<pre><code>var myString = &#39;My test string&#39;;
+console.log(myString.split()); // [&#39;My test string&#39;]
+console.log(myString); // &#39;My test string&#39;
+</code></pre>
+
+<p>Hmmm, that’s not super useful - <code>split</code> called without a parameter simply creates an array with one element, the string. But note that calling <code>split</code> on <code>myString</code> doesn’t change <code>myString</code>.</p>
+
+<p>Ok, let’s try something a little more interesting. I want to break <code>myString</code> up into whole words. We can split <code>myString</code> on spaces like this:</p>
+
+<pre><code>var myString = &#39;My test string&#39;;
+console.log(myString.split(&#39; &#39;)); // [&#39;My&#39;, &#39;test&#39;, ’string&#39;]
+console.log(myString); // &#39;My test string&#39;
+</code></pre>
+
+<p>Much more useful! When you call <code>split</code> with a parameter the string is <em>split</em> on every occurrence of that parameter. Note that the parameter itself is removed from the array (there are no spaces in <code>[&#39;My&#39;, &#39;test&#39;, ’string&#39;]</code>). Now we can know how many words are in a sentence, or find people’s first and last names (sometimes, names can get tricky...). Again, note that <code>myString</code> wasn’t changed.</p>
+
+<p>But what if <code>myString</code> was really long? Maybe you don’t want an array with hundreds of items in it. Or perhaps you only want to find the first nonoccurence of something. Let’s look for the first two word in <code>myString</code>:</p>
+
+<pre><code>var myString = &#39;My test string&#39;;
+console.log(myString.split(&#39; &#39;, 2)); // [&#39;My&#39;, &#39;test&#39;]
+console.log(myString); // &#39;My test string&#39;
+</code></pre>
+
+<p>Again, we split on spaces because we were looking for full words. The second parameter we sent to <code>split</code> was the number of elements to go in the array. We wanted the first two words, so we sent through 2.</p>
+
+<p>Overall <code>split</code> can be used to:</p>
+
+<ul>
+<li>wrap a string up in an array <code>string.split()</code></li>
+<li>break up a string whenever a particular string is found <code>string.split(breakString)</code></li>
+<li>return only a certain number of elements from all the break points <code>string.split(breakString, 3)</code></li>
+</ul>
+
+<p>Sweet, we&#39;re halfway there!</p>
+
+<p><em>So, what does <code>splice</code> do?</em></p>
+
+<p>The name isn’t great, but it’s related to <strong>splicing</strong> things together. Like you can take the end of one rope and splice it together with another. It’s a <a href="https://www.google.com.au/search?q=splice+rope">real thing</a>.</p>
+
+<p>Anyways... in JS <code>splice</code> is an array method. Let’s look at a few sample calls:</p>
+
+<pre><code>var myArray = [&#39;this&#39;, &#39;is&#39;, &#39;an&#39;, &#39;array&#39;];
+myArray.splice(0, 2); // [&#39;this&#39;, &#39;is&#39;]
+console.log(myArray); // [&#39;an&#39;, &#39;array&#39;]
+</code></pre>
+
+<p>Ok, a really important thing to note is that <code>myArray</code> was changed during the call to <code>splice</code>. So if you ever want to use the original array you&#39;ll need to keep a backup somewhere. Another thing to note is that <code>splice</code> returns a value (in fact, it returns the elements that are missing from the array).</p>
+
+<p>Also, <code>splice</code> requires at least two parameters. The first parameter is an index in the array. I think of it as where the cursor is. The second parameter is how many elements to delete. So what we&#39;re really saying is “from position <strong>0</strong> please remove <strong>2</strong> elements and return them to me.”</p>
+
+<p>Let’s look at a similar example:</p>
+
+<pre><code>var countingArray = [5, 6, 7, 8];
+countingArray.splice(1, 1); // [6]
+console.log(countingArray); // [5, 7, 8]
+</code></pre>
+
+<p>What we said was “from position <strong>1</strong> please remove <strong>1</strong> element and return it to me.”</p>
+
+<blockquote>
+<p>Note: JS doesn’t have a <code>.delete(index)</code> for arrays. The best you can do is <code>delete array[index]</code>, but that actually just replaces the value at <code>array[index]</code> with <code>undefined</code>. Using <code>splice</code> in the above example is how you can actually delete elements from an array.</p>
+</blockquote>
+
+<p>Alright, on to the optional parameter(s)!</p>
+
+<pre><code>var myArray = [&#39;this&#39;, &#39;is&#39;, &#39;an&#39;, &#39;array&#39;];
+myArray.splice(3, 0, &#39;awesome&#39;); // []
+console.log(myArray); // [&#39;this&#39;, &#39;is&#39;, &#39;an&#39;, &#39;awesome&#39;, &#39;array&#39;]
+</code></pre>
+
+<p>Hopefully you&#39;ve got a good idea of what happened here. The first parameter is still an index. The second parameter is still how many elements to remove. And finally the third element is what to add <strong>after</strong> the index given in the first parameter. Again, what we&#39;re really saying is “from position <strong>3</strong> please remove <strong>0</strong> elements, then <strong>after</strong> position <strong>3</strong> please add <strong>&#39;awesome&#39;</strong>.”</p>
+
+<p>Another example:</p>
+
+<pre><code>var myArray = [&#39;this&#39;, &#39;is&#39;, &#39;an&#39;, &#39;array&#39;];
+myArray.splice(3, 0, &#39;amazingly&#39;, &#39;awesome&#39;); // []
+console.log(myArray); // [&#39;this&#39;, &#39;is&#39;, &#39;an&#39;, &#39;amazingly&#39;, &#39;awesome&#39;, &#39;array&#39;]
+</code></pre>
+
+<p>What we said was “from position <strong>3</strong> please remove <strong>0</strong> elements, then <strong>after</strong> position <strong>3</strong> please add <strong>&#39;amazing&#39;</strong> and <strong>&#39;awesome&#39;</strong>.” The third parameter can keep on going. If you wanted to add 100 elements to <code>myArray</code> you could do it with <code>splice</code>.</p>
+
+<p>Finally, you can also switch words in place:</p>
+
+<pre><code>var myArray = [&#39;this&#39;, &#39;is&#39;, &#39;an&#39;, &#39;array&#39;];
+myArray.splice(2, 1, &#39;the&#39;); // [&#39;an&#39;]
+console.log(myArray); // [&#39;this&#39;, &#39;is&#39;, &#39;the&#39;, &#39;array&#39;]
+</code></pre>
+
+<p>What we said was “from position <strong>2</strong> please remove <strong>1</strong> element and return it to me, then <strong>after</strong> position <strong>2</strong> please add <strong>&#39;the&#39;</strong>.”</p>
+
+<p>Overall <code>splice</code> can be used to:</p>
+
+<ul>
+<li>remove elements by index</li>
+<li>add elements after an index</li>
+<li>add and remove in one step</li>
+</ul>
+
+<p>Phew! Thanks for sticking with me - this was a long one!</p>
+
+<p><strong>Resources</strong></p>
+
+<ul>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/split">Mozilla (split)</a></li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/splice">Mozilla (splice)</a></li>
+<li><a href="http://ariya.ofilabs.com/2014/02/javascript-array-slice-vs-splice.html">split vs. splice</a></li>
+</ul>
+
+
+      <div id="disqus_thread">
+        <hr/>
+        <script>
+
+          var disqus_shortname = 'lucybain';
+          (function() {
+              var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+              dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+              (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+          })();
+
+        </script>
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+        <a class="dsq-brlink" href="http://disqus.com">
+          comments powered by
+          <span class="logo-disqus">Disqus</span>
+        </a>
+        <script>
+
+          var disqus_shortname = 'lucybain';
+          (function () {
+              var s = document.createElement('script'); s.async = true;
+              s.type = 'text/javascript';
+              s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+              (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+          }());
+
+        </script>
+      </div>
+  </div>
+
+    </div>
+  </body>
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  
+  ga('create', 'UA-45866381-1', 'lucybain.com');
+  ga('send', 'pageview');
+</script>
+
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Tic Tac Toe in Javascript</title>
+    <link href='http://fonts.googleapis.com/css?family=Montserrat:700|Iceland' rel='stylesheet' type='text/css'>
+    <link type="text/css" rel="stylesheet" href="style.css"/>
+</head>
+<body>
+<div class='display'>
+    <h1> Tic Tac Toe </h1>
+    <div id="questions">
+        <h2> How big would you like your board? </h2>
+        <input type='text' name='size' id='size-input'>
+        <label for="size-input">cells by <span id="size-display">_</span> cells</label>
+        <input type="submit" value="Start Game!">
+    </div>
+
+    <div class="board hide">
+    </div>
+
+    <div id="outcome" class="hide">
+        <h2></h2>
+    </div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="tic_tac_toe.js"></script>
+</body>
+</html>

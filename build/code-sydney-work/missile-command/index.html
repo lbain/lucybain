@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Missile Command</title>
+    <style>
+        html, body {
+            height: 100%;
+            width: 100%;
+            margin: 0;
+            padding: 0;
+            position: relative;
+        }
+
+        canvas {
+            position: absolute;
+            border: 1px solid black;
+            margin: -300px 0 0 -400px;
+            top: 50%;
+            left: 50%;
+            cursor: crosshair;
+        }
+    </style>
+</head>
+<body>
+        <canvas width="800" height="600" id="canvas"></canvas>
+
+        <script type="text/javascript" src="../jquery-1.11.1.min.js"></script>
+        <script type="text/javascript" src="js/models/hitable.js"></script>
+        <script type="text/javascript" src="js/models/missile.js"></script>
+        <script type="text/javascript" src="js/models/city.js"></script>
+        <script type="text/javascript" src="js/models/bunker.js"></script>
+        <script type="text/javascript" src="js/models/explosion.js"></script>
+        <script type="text/javascript" src="js/renderer.js"></script>
+        <script type="text/javascript" src="js/game.js"></script>
+</body>
+</html>

@@ -1,0 +1,183 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+  <head>
+    <meta content='width=device-width, initial-scale=1' name='viewport'>
+<meta charset='utf-8'>
+<meta content='IE=edge,chrome=1' http-equiv='X-UA-Compatible'>
+<meta content='css, hands-on, flexbox' name='keywords'>
+<link href='/images/favicon.ico' rel='icon' type='image/ico'>
+<link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700|Source+Code+Pro' rel='stylesheet' type='text/css'>
+<title>CSS: Flexbox</title>
+<link href="/stylesheets/application.css" rel="stylesheet" media="all" />
+<script src='//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js'></script>
+<script src='//cdn.optimizely.com/js/4606022905.js'></script>
+
+  </head>
+  <body class="">
+    <nav>
+  <div class='nav-open-btn'>
+    <ul>
+      <li></li>
+      <li></li>
+      <li></li>
+    </ul>
+  </div>
+  <ul class='nav-display'>
+    <li>
+      <a href="/" class="nav-link">Me</a>
+    </li>
+    <li>
+      <a href="/resume/" class="nav-link">Resume</a>
+    </li>
+    <li>
+      <a href="/contact-me/" class="nav-link">Contact</a>
+    </li>
+    <li>
+      <a href="/resources/" class="nav-link">Resources</a>
+    </li>
+    <li>
+      <a href="/blog/" class="nav-link active">Blog</a>
+    </li>
+  </ul>
+</nav>
+<script>
+  $('nav .nav-open-btn').on('click', function(){
+    $('nav .nav-display').toggleClass('open');
+  })
+</script>
+
+    <div class="content">
+        <div class=" blog-listing">
+    <div class="meta">
+      <h1>
+        CSS: Flexbox
+      </h1>
+      <p>Published on: May 18, 2015</p>
+        <p>Tags: <a href="/blog/tags/css/">css</a>, <a href="/blog/tags/hands-on/">hands-on</a>, and <a href="/blog/tags/flexbox/">flexbox</a></p>
+    </div>
+    <p>I recently learned about flex-box and have been doing some research into it. Hopefully I&#39;ll write up a “All about flexbox” post, but for now I want to go through a hands on example of using flexbox in the wild.</p>
+
+<p><em>What are we working on?</em></p>
+
+<p>I want to convert the menu of this site to use flexbox.</p>
+
+<p><em>What does it look like now?</em></p>
+
+<p>Right now I support three cases:</p>
+
+<p>Large (desktop)</p>
+
+<p><img src="/images/blog/css-flexbox/current-menu-large.png" alt="Image menu on desktop" /></p>
+
+<p>Medium (tablet) - this looks almost the same but the fonts are slightly smaller.</p>
+
+<p><img src="/images/blog/css-flexbox/current-menu-medium.png" alt="Image menu on tablet" /></p>
+
+<p>Small (phone)</p>
+
+<p><img src="/images/blog/css-flexbox/current-menu-small.png" alt="Image menu on phone" /></p>
+
+<h2>Ok, let’s make it <em>flexible</em>.</h2>
+
+<h3>Step 1: remove most of the styling</h3>
+
+<p>I went through and removed most of the styling. I kept some things I knew I wanted, but most of it went.</p>
+
+<p><img src="/images/blog/css-flexbox/remove-styling.png" alt="remove styling" /></p>
+
+<h3>Step 2: add flexbox</h3>
+
+<p>I added <code>display: flex</code> to the containing element. It kinda worked, but looked funny because I’d removed the rest of the styling.</p>
+
+<p><img src="/images/blog/css-flexbox/inital-flexbox.png" alt="inital flexbox" /></p>
+
+<h3>Step 3: layout within the flexbox</h3>
+
+<p>Next I added how I wanted the content to flex within the flexbox by adding <code>justify-content: flex-end</code>. This meant all the <code>&lt;li&gt;</code>s got squished to the right.</p>
+
+<p><img src="/images/blog/css-flexbox/flex-end.png" alt="now with flex-end" /></p>
+
+<p>I played around with a few options for <code>justify-content</code>, particularly <code>space-between</code>. While that would better show off flexbox’s capabilities, I decided I didn’t actually want my nav bar all that flexible. Having too much space between the items looks quite strange - especially true on larger monitors. I probably should have thought of this before I started converting my nav bar to use flexbox, but oh well. For learning!</p>
+
+<h3>Step 4: add styling back in</h3>
+
+<p>Most of my previous styles were still required. I&#39;d hoped I could remove some lines, but it doesn’t seem to be the case.</p>
+
+<p><img src="/images/blog/css-flexbox/add-styling-back.png" alt="add styling back" /></p>
+
+<h3>Step 5: mobile - vertical display</h3>
+
+<p>Yes, yes, mobile first and all that. I just wanted to get things working, ok?</p>
+
+<p>The <code>display: flex</code> I added previously was applied to the mobile, so I didn&#39;t need to add that again.</p>
+
+<p>But I want the mobile navigation to go vertically, so I changed the <code>flex-direction</code> from <code>row</code> (the default) to <code>flex-direction: column</code>.</p>
+
+<p><img src="/images/blog/css-flexbox/vertical-display-mobile.png" alt="vertical display mobile" /></p>
+
+<p>Woot! Getting pretty close!</p>
+
+<h3>Step 6: mobile - center align</h3>
+
+<p>Next up was to center the <code>&lt;li&gt;</code>s across the screen. So I used <code>align-items: center</code> to get all my ducks in a row.</p>
+
+<p><img src="/images/blog/css-flexbox/align-center-mobile.png" alt="align center mobile" /></p>
+
+<h3>Step 7: mobile - spacing</h3>
+
+<p>Finally the spacing around the <code>&lt;li&gt;</code>s was a bit weird so I used <code>justify-content: space-around</code> to display them evening within the nav dropdown&#39;s space.</p>
+
+<p><img src="/images/blog/css-flexbox/mobile-correct-spacing.png" alt="mobile correct spacing" /></p>
+
+<h2>Done!</h2>
+
+<p>After all that it was quite a small change with no change to the user experience. But I did learn more about flexbox, so I’ve got that going for me!</p>
+
+
+      <div id="disqus_thread">
+        <hr/>
+        <script>
+
+          var disqus_shortname = 'lucybain';
+          (function() {
+              var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+              dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+              (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+          })();
+
+        </script>
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+        <a class="dsq-brlink" href="http://disqus.com">
+          comments powered by
+          <span class="logo-disqus">Disqus</span>
+        </a>
+        <script>
+
+          var disqus_shortname = 'lucybain';
+          (function () {
+              var s = document.createElement('script'); s.async = true;
+              s.type = 'text/javascript';
+              s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+              (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+          }());
+
+        </script>
+      </div>
+  </div>
+
+    </div>
+  </body>
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  
+  ga('create', 'UA-45866381-1', 'lucybain.com');
+  ga('send', 'pageview');
+</script>
+
+</html>

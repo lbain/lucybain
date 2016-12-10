@@ -1,0 +1,128 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+  <head>
+    <meta content='width=device-width, initial-scale=1' name='viewport'>
+<meta charset='utf-8'>
+<meta content='IE=edge,chrome=1' http-equiv='X-UA-Compatible'>
+<link href='/images/favicon.ico' rel='icon' type='image/ico'>
+<link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700|Source+Code+Pro' rel='stylesheet' type='text/css'>
+<title>TDD Day 4</title>
+<link href="/stylesheets/application.css" rel="stylesheet" media="all" />
+<script src='//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js'></script>
+<script src='//cdn.optimizely.com/js/4606022905.js'></script>
+
+  </head>
+  <body class="">
+    <nav>
+  <div class='nav-open-btn'>
+    <ul>
+      <li></li>
+      <li></li>
+      <li></li>
+    </ul>
+  </div>
+  <ul class='nav-display'>
+    <li>
+      <a href="/" class="nav-link">Me</a>
+    </li>
+    <li>
+      <a href="/resume/" class="nav-link">Resume</a>
+    </li>
+    <li>
+      <a href="/contact-me/" class="nav-link">Contact</a>
+    </li>
+    <li>
+      <a href="/resources/" class="nav-link">Resources</a>
+    </li>
+    <li>
+      <a href="/blog/" class="nav-link active">Blog</a>
+    </li>
+  </ul>
+</nav>
+<script>
+  $('nav .nav-open-btn').on('click', function(){
+    $('nav .nav-display').toggleClass('open');
+  })
+</script>
+
+    <div class="content">
+        <div class=" blog-listing">
+    <div class="meta">
+      <h1>
+        TDD Day 4
+      </h1>
+      <p>Published on: January  8, 2014</p>
+    </div>
+    <h3>
+  What did I do today?
+</h3>
+<p>
+  I’m continuing on at Coders Dojo, today I worked on <a href="http://content.codersdojo.org/code-kata-catalogue/roman-numerals/">Roman Numerals</a>. I've heard this problem talked about, but haven’t actually worked on it myself. It was harder than I expected (and involved a lot of Googling for the correct way to convert numbers to roman numerals), but I did <a href="https://github.com/lbain/tdd-practice/tree/master/day-4">finish</a> it with all green specs.
+</p>
+<p>
+  I also watch the next <a href="https://www.youtube.com/watch?v=dyBybIZJpyA&amp;list=PLVBFw0Pn9e9IduDzgOx7Yoh0ur7SZa7hu&amp;index=3">video</a> from RubyOnRailsVideos about TDD. This one talked about writing pending specs before you get properly started to give you some scaffolding to work with (among other things). I tried to work with that today. I started by going through and writing up an outline of how I thought the tests should go, in increasing difficulty, and with clear titles. Overall I think it helped me stay focused. I was certainly much better at Red-Green-Refactor, particularly the refactoring bit.
+</p>
+<h3>
+  Reflections
+</h3>
+<p>
+  I found that once I had a couple of hard coded examples of code that passed specs I found it much easier to move to a more abstract implementations. Normally I would just head to the abstraction since I know that’s what I'll have to end up with. But focusing on the “least code possible” for a green test it was easier to work out what the final code should be. So there’s something concrete and useful about using TDD...
+</p>
+<p>
+  As with the prime number converter I looked around for a solution to this kata after I had finished it. Other people solved it more simply, although I felt like they were cheating. An interesting idea, if it’s voluntary work done for your personal betterment, can you really cheat? They simply wrote more cases for the base dictionary (i.e. 4, 9, 90, etc.). As I said, I feel like this is cheating. It seems like your application should only know the minimum numerals available, and not need to look up any additional combinations. At that point, why not just hard code all of the solutions?
+</p>
+<p>
+  Well, because that would be extremely tedious, and with the few additional numbers these other solutions used they were able to save a considerable amount of code. In the real world, theirs would be the preferred solution by far. It was far simpler, had fewer lines of code, and did not hard code anything that was likely to change in the future (those Roman numerals have been around for a while). So although I may feel self-righteous about my solution, I do believe theirs is preferred.
+</p>
+<p>
+  I do think I’m starting to see more of a use for TDD, and testing in general. Refactoring the code was much easier with all the tests I had to make sure I didn’t forget anything small.
+</p>
+
+
+      <div id="disqus_thread">
+        <hr/>
+        <script>
+
+          var disqus_shortname = 'lucybain';
+          (function() {
+              var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+              dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+              (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+          })();
+
+        </script>
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+        <a class="dsq-brlink" href="http://disqus.com">
+          comments powered by
+          <span class="logo-disqus">Disqus</span>
+        </a>
+        <script>
+
+          var disqus_shortname = 'lucybain';
+          (function () {
+              var s = document.createElement('script'); s.async = true;
+              s.type = 'text/javascript';
+              s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+              (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+          }());
+
+        </script>
+      </div>
+  </div>
+
+    </div>
+  </body>
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  
+  ga('create', 'UA-45866381-1', 'lucybain.com');
+  ga('send', 'pageview');
+</script>
+
+</html>

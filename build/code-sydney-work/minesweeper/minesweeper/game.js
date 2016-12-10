@@ -1,0 +1,1 @@
+var board=new Board(8,3),display=new DisplayDom(board);

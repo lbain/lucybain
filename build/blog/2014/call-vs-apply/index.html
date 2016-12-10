@@ -1,0 +1,192 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+  <head>
+    <meta content='width=device-width, initial-scale=1' name='viewport'>
+<meta charset='utf-8'>
+<meta content='IE=edge,chrome=1' http-equiv='X-UA-Compatible'>
+<meta content='js, interview-questions' name='keywords'>
+<link href='/images/favicon.ico' rel='icon' type='image/ico'>
+<link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700|Source+Code+Pro' rel='stylesheet' type='text/css'>
+<title>JS: .call vs. .apply</title>
+<link href="/stylesheets/application.css" rel="stylesheet" media="all" />
+<script src='//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js'></script>
+<script src='//cdn.optimizely.com/js/4606022905.js'></script>
+
+  </head>
+  <body class="">
+    <nav>
+  <div class='nav-open-btn'>
+    <ul>
+      <li></li>
+      <li></li>
+      <li></li>
+    </ul>
+  </div>
+  <ul class='nav-display'>
+    <li>
+      <a href="/" class="nav-link">Me</a>
+    </li>
+    <li>
+      <a href="/resume/" class="nav-link">Resume</a>
+    </li>
+    <li>
+      <a href="/contact-me/" class="nav-link">Contact</a>
+    </li>
+    <li>
+      <a href="/resources/" class="nav-link">Resources</a>
+    </li>
+    <li>
+      <a href="/blog/" class="nav-link active">Blog</a>
+    </li>
+  </ul>
+</nav>
+<script>
+  $('nav .nav-open-btn').on('click', function(){
+    $('nav .nav-display').toggleClass('open');
+  })
+</script>
+
+    <div class="content">
+        <div class=" blog-listing">
+    <div class="meta">
+      <h1>
+        JS: .call vs. .apply
+      </h1>
+      <p>Published on: November 30, 2014</p>
+        <p>Tags: <a href="/blog/tags/js/">js</a> and <a href="/blog/tags/interview-questions/">interview-questions</a></p>
+    </div>
+    <h2>What’s the difference between <code>.call</code> and <code>.apply</code>?</h2>
+
+<p>Let’s start with the similarities.</p>
+
+<p><strong>What are <code>.call</code> and <code>.apply</code>?</strong></p>
+
+<p>Both methods allow you to invoke a function and pass parameters through.</p>
+
+<pre><code>function printer(message) {
+    console.log(message)
+}
+
+printer.call({}, &quot;hello&quot;) // logs &quot;hello&quot;
+printer.apply({}, &quot;world!&quot;) // logs &quot;world!&quot;
+</code></pre>
+
+<p><em>Wow. Awesome. A more verbose way to invoke functions. Fantastic. Why not just use <code>printer(&quot;hello&quot;)</code>?</em></p>
+
+<p>Well actually, <code>.call</code> and <code>.apply</code> can do more than simply invoke a method, they can also pass through <strong>context</strong>. Here’s an example:</p>
+
+<pre><code>function Person(name){
+    this.name = name;
+    this.introduceSelf = function() {
+        console.log(&quot;Hello, my name is &quot; + this.name);
+    }
+}
+
+var alice = new Person(&#39;Alice&#39;);
+alice.introduceSelf();
+// logs &quot;Hello, my name is Alice&quot;, as expected
+
+alice.introduceSelf.call({name: &quot;Bob&quot;});
+// logs &quot;Hello, my name is Bob&quot;
+
+alice.introduceSelf.apply({name: &quot;Casey&quot;});
+// logs &quot;Hello, my name is Casey&quot;
+</code></pre>
+
+<p>So <code>.call</code> and <code>.apply</code> allow you to manipulate the <code>this</code> keyword for the invoked function.</p>
+
+<p>On to the main question...</p>
+
+<p><strong>What’s the difference between <code>.call</code> and <code>.apply</code>?</strong></p>
+
+<p>It’s all about the way you pass parameters. That’s it. Let’s make our previous example more complex:</p>
+
+<pre><code>function Person(name){
+    this.name = name;
+    this.introduceSelf = function(greeting) {
+        console.log(greeting + &quot;, my name is &quot; + this.name);
+    }
+}
+
+var alice = new Person(&#39;Alice&#39;);
+alice.introduceSelf(&#39;Hello&#39;);
+// logs &quot;Hello, my name is Alice&quot;, as expected
+
+alice.introduceSelf.call({name: &quot;Bob&quot;}, &#39;Bonjour&#39;);
+// logs &quot;Bonjour, my name is Bob&quot;
+
+alice.introduceSelf.apply({name: &quot;Casey&quot;}, [&#39;Hola&#39;]);
+// logs &quot;Hola, my name is Casey&quot;
+</code></pre>
+
+<p>For <code>.call</code> you pass the parameters comma separated (like normal). For <code>.apply</code> you pass the parameters in an array.</p>
+
+<p><em>Why would you even bother having these two ways? Why not standardise?</em></p>
+
+<p>That’s a fair question. But the two methods have different use cases. If you know exactly how many arguments you&#39;re passing, you should use <code>.call</code>. If you don’t know, or if your arguments are already in an array, you should use <code>.apply</code>. (Rephrased from a helpful <a href="http://stackoverflow.com/a/1987244/863846">stackoverflow answer</a>.)</p>
+
+<p><em>Ok, how am I going to remember this?</em></p>
+
+<p>Turns out the folks on stackoverflow have some thoughts on that one too. Here’s how I&#39;ll be remembering it:</p>
+
+<blockquote>
+<p><strong>a</strong>pply uses <strong>a</strong>n <strong>a</strong>rray</p>
+
+<p><strong>c</strong>all <strong>c</strong>ounts with <strong>c</strong>ommas</p>
+</blockquote>
+
+<p><strong>Resources</strong></p>
+
+<ul>
+<li><a href="http://stackoverflow.com/questions/1986896/what-is-the-difference-between-call-and-apply">stackoverflow question</a></li>
+<li><a href="http://odetocode.com/blogs/scott/archive/2007/07/04/function-apply-and-function-call-in-javascript.aspx">Scott Allen’s post</a></li>
+</ul>
+
+
+      <div id="disqus_thread">
+        <hr/>
+        <script>
+
+          var disqus_shortname = 'lucybain';
+          (function() {
+              var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+              dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+              (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+          })();
+
+        </script>
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+        <a class="dsq-brlink" href="http://disqus.com">
+          comments powered by
+          <span class="logo-disqus">Disqus</span>
+        </a>
+        <script>
+
+          var disqus_shortname = 'lucybain';
+          (function () {
+              var s = document.createElement('script'); s.async = true;
+              s.type = 'text/javascript';
+              s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+              (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+          }());
+
+        </script>
+      </div>
+  </div>
+
+    </div>
+  </body>
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  
+  ga('create', 'UA-45866381-1', 'lucybain.com');
+  ga('send', 'pageview');
+</script>
+
+</html>

@@ -1,0 +1,205 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+  <head>
+    <meta content='width=device-width, initial-scale=1' name='viewport'>
+<meta charset='utf-8'>
+<meta content='IE=edge,chrome=1' http-equiv='X-UA-Compatible'>
+<meta content='js, interview-questions' name='keywords'>
+<link href='/images/favicon.ico' rel='icon' type='image/ico'>
+<link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700|Source+Code+Pro' rel='stylesheet' type='text/css'>
+<title>JS: what is a closure?</title>
+<link href="/stylesheets/application.css" rel="stylesheet" media="all" />
+<script src='//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js'></script>
+<script src='//cdn.optimizely.com/js/4606022905.js'></script>
+
+  </head>
+  <body class="">
+    <nav>
+  <div class='nav-open-btn'>
+    <ul>
+      <li></li>
+      <li></li>
+      <li></li>
+    </ul>
+  </div>
+  <ul class='nav-display'>
+    <li>
+      <a href="/" class="nav-link">Me</a>
+    </li>
+    <li>
+      <a href="/resume/" class="nav-link">Resume</a>
+    </li>
+    <li>
+      <a href="/contact-me/" class="nav-link">Contact</a>
+    </li>
+    <li>
+      <a href="/resources/" class="nav-link">Resources</a>
+    </li>
+    <li>
+      <a href="/blog/" class="nav-link active">Blog</a>
+    </li>
+  </ul>
+</nav>
+<script>
+  $('nav .nav-open-btn').on('click', function(){
+    $('nav .nav-display').toggleClass('open');
+  })
+</script>
+
+    <div class="content">
+        <div class=" blog-listing">
+    <div class="meta">
+      <h1>
+        JS: what is a closure?
+      </h1>
+      <p>Published on: October 18, 2014</p>
+        <p>Tags: <a href="/blog/tags/js/">js</a> and <a href="/blog/tags/interview-questions/">interview-questions</a></p>
+    </div>
+    <h2>What is a closure, and how/why would you use one?</h2>
+
+<p>A closure is a way of keeping access to variables in a function after that function has returned.</p>
+
+<p><em>Fantastic, now again, not as a dictionary.</em></p>
+
+<p>Usually you lose access to variables when a function returns:</p>
+
+<pre><code>function notAClosure() {
+    var shortLivedVariable = &quot;I&#39;m only here for a little while&quot;;
+    return shortLivedVariable;
+}
+notAClosure(); // returns &quot;I&#39;m only here for a little while&quot;
+</code></pre>
+
+<p>Notice that nothing has access to <code>shortLivedVariable</code> now that <code>notAClosure</code> has run. Sure, you can call <code>notAClosure</code> again (and again and again), but each call will create a whole new <code>shortLivedVariable</code>. But hey, it’s hard to tell that each <code>shortLivedVariable</code> is brand new, so let’s clear that up a bit.</p>
+
+<pre><code>function stillNotAClosure(anotherShortLivedVariable) {
+    return anotherShortLivedVariable;
+}
+stillNotAClosure(&quot;brand&quot;); // returns &quot;brand&quot;
+stillNotAClosure(&quot;new&quot;); // returns &quot;new&quot;
+stillNotAClosure(&quot;string&quot;); // returns &quot;string&quot;
+</code></pre>
+
+<p>Thus, you can see <code>stillNotAClosure</code> doesn’t retain any reference to previous calls.</p>
+
+<p><em>Ok, so that’s what a closure isn’t, but what <strong>is</strong> a closure?</em></p>
+
+<p>In a closure those variables stick around for a while longer since there is a reference to the variables after the function returns.</p>
+
+<pre><code>function aClosure() {
+    var longLivedVariable = &quot;I&#39;m here for a long time&quot;;
+    var innerFunction = function inner() {
+        return longLivedVariable;
+    }
+    return innerFunction;
+}
+var closure = aClosure(); // returns a reference to innerFunction
+closure(); // returns &quot;I&#39;m here for a long time&quot;
+</code></pre>
+
+<p>Notice that <code>aClosure</code> doesn’t return <code>longLivedVariable</code>, but rather <code>innerFunction</code>. This means there’s a reference hanging around to <code>innerFunction</code>, and because <code>innerFunction</code> has a reference to <code>longLivedVariable</code>, that variable continues to exist.</p>
+
+<p>Finally, when we call <code>closure()</code>, we&#39;re really calling <code>innerFunction()</code> (the returned value of <code>aClosure()</code>), which in turn returns <code>longLivedVariable</code>.</p>
+
+<p><em>Prove it, call the closure multiple times.</em></p>
+
+<p>You got it.</p>
+
+<pre><code>function stillAClosure(anotherLongLivedVariable) {
+    var innerFunction = function inner() {
+        return anotherLongLivedVariable;
+    }
+    return innerFunction;
+}
+var closure = stillAClosure(&quot;The same string&quot;);
+closure(); // returns &quot;The same string&quot;
+closure(); // returns &quot;The same string&quot;
+closure(); // returns &quot;The same string&quot;
+</code></pre>
+
+<p>And here’s even more proof:</p>
+
+<pre><code>var closure1 = stillAClosure(&quot;String 1&quot;);
+closure1(); // returns &quot;String 1&quot;
+closure1(); // returns &quot;String 1&quot;
+
+var closure2 = stillAClosure(&quot;String 2&quot;);
+closure2(); // returns &quot;String 2&quot;
+closure2(); // returns &quot;String 2&quot;
+
+// And here&#39;s the kicker
+closure1(); // returns &quot;String 1&quot;
+</code></pre>
+
+<p>Bam! Did you see that! <code>closure1</code> kept a reference to <code>&quot;String 1&quot;</code> even though <code>stillAClosure</code> had been called with a whole other parameter (namely <code>&quot;String 2&quot;</code>). That’s some pretty cool stuff!</p>
+
+<p><em>OK, I’m convinced. But now <strong>why</strong> would I ever want to use a closure?</em></p>
+
+<p>Well, since closures keep access to the variables they can be used to save state. And things that save state look a whole lot like objects. (Before I get any haters, I know you can use closures for a bunch of other things, but this is a reasonable example.)</p>
+
+<pre><code>function cat(name) {
+    return {
+        sayName: function() {
+            return name;
+        }
+    }
+}
+
+var fluffy = cat(&#39;Mr. Fluffy&#39;);
+fluffy.name // returns undefined
+fluffy.sayName() // returns &#39;Mr. Fluffy&#39;
+
+var whiskers = cat(&#39;Whiskers&#39;);
+whiskers.sayName() // returns &#39;Whiskers&#39;
+</code></pre>
+
+<p>So this way you can create a whole bunch of <code>cat</code> objects that have a private <code>name</code> variable, which you can access via the <code>sayName</code> method.</p>
+
+
+      <div id="disqus_thread">
+        <hr/>
+        <script>
+
+          var disqus_shortname = 'lucybain';
+          (function() {
+              var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+              dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+              (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+          })();
+
+        </script>
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+        <a class="dsq-brlink" href="http://disqus.com">
+          comments powered by
+          <span class="logo-disqus">Disqus</span>
+        </a>
+        <script>
+
+          var disqus_shortname = 'lucybain';
+          (function () {
+              var s = document.createElement('script'); s.async = true;
+              s.type = 'text/javascript';
+              s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+              (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+          }());
+
+        </script>
+      </div>
+  </div>
+
+    </div>
+  </body>
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  
+  ga('create', 'UA-45866381-1', 'lucybain.com');
+  ga('send', 'pageview');
+</script>
+
+</html>

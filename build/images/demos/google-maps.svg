@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="400px" height="400px" viewBox="0 0 400 400" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: Sketch 3.1.1 (8761) - http://www.bohemiancoding.com/sketch -->
+    <title>Google Maps</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="Google-Maps" sketch:type="MSArtboardGroup">
+            <g sketch:type="MSLayerGroup" transform="translate(-26.000000, -34.000000)">
+                <rect id="Rectangle-1" fill="#B3D1FF" sketch:type="MSShapeGroup" x="26" y="34" width="400" height="400"></rect>
+                <path d="M38.3979432,381.471294 C85.8972509,339.940874 65.186029,288.22679 121.25306,268.13562 C177.32009,248.044449 220.989406,313.359218 262.106758,301.307037 C303.224109,289.254855 309.651313,238.998333 314.581665,211.467783 C319.512017,183.937232 261.511611,180.775788 288.344211,154.799945 C315.176812,128.824103 387.586145,145.659494 398.8177,129.921383 C410.049255,114.183271 348.764,91.5480768 343.580956,77.3999727 C338.397911,63.2518686 361.902559,66.2516352 368.43749,46.9928406 C374.972422,27.7340459 368.43749,4.14642711 368.43749,4.14642711 L19.0650827,0 L1.11314082,373.17844 C1.11314082,373.17844 -9.10136442,423.001713 38.3979432,381.471294 Z" id="Path-10" stroke="#83A8E2" stroke-width="8" fill="#CADFAA" sketch:type="MSShapeGroup"></path>
+                <g id="Marker" transform="translate(166.000000, 124.000000)" sketch:type="MSShapeGroup">
+                    <path d="M79.9747927,41.4334816 C79.9915507,40.9577216 80,40.4798475 80,40 C80,17.90861 62.09139,0 40,0 C17.90861,0 0,17.90861 0,40 C0,40.3333723 0.00407826031,40.6657922 0.0121876118,40.9972123 C-0.806718969,65.171064 39.9155181,120 39.9155181,120 C39.9155181,120 81.1634899,66.7255361 79.9747927,41.4334816 Z" id="Oval-1" stroke="#C5594F" stroke-width="8" fill="#E46559"></path>
+                    <circle id="Oval" fill="#333333" cx="40" cy="40" r="20"></circle>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

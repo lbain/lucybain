@@ -1,0 +1,226 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+  <head>
+    <meta content='width=device-width, initial-scale=1' name='viewport'>
+<meta charset='utf-8'>
+<meta content='IE=edge,chrome=1' http-equiv='X-UA-Compatible'>
+<meta content='Learn about the new `const` keyword available in ECMAScript 6' name='description'>
+<meta content='js, ECMAScript 6, const' name='keywords'>
+<link href='/images/favicon.ico' rel='icon' type='image/ico'>
+<link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700|Source+Code+Pro' rel='stylesheet' type='text/css'>
+<title>JS: ES6 Const keyword</title>
+<link href="/stylesheets/application.css" rel="stylesheet" media="all" />
+<script src='//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js'></script>
+<script src='//cdn.optimizely.com/js/4606022905.js'></script>
+
+  </head>
+  <body class="">
+    <nav>
+  <div class='nav-open-btn'>
+    <ul>
+      <li></li>
+      <li></li>
+      <li></li>
+    </ul>
+  </div>
+  <ul class='nav-display'>
+    <li>
+      <a href="/" class="nav-link">Me</a>
+    </li>
+    <li>
+      <a href="/resume/" class="nav-link">Resume</a>
+    </li>
+    <li>
+      <a href="/contact-me/" class="nav-link">Contact</a>
+    </li>
+    <li>
+      <a href="/resources/" class="nav-link">Resources</a>
+    </li>
+    <li>
+      <a href="/blog/" class="nav-link active">Blog</a>
+    </li>
+  </ul>
+</nav>
+<script>
+  $('nav .nav-open-btn').on('click', function(){
+    $('nav .nav-display').toggleClass('open');
+  })
+</script>
+
+    <div class="content">
+        <div class=" blog-listing">
+    <div class="meta">
+      <h1>
+        JS: ES6 Const keyword
+      </h1>
+      <p>Published on: August  2, 2015</p>
+        <p>Tags: <a href="/blog/tags/js/">js</a>, <a href="/blog/tags/ecmascript-6/">ECMAScript 6</a>, and <a href="/blog/tags/const/">const</a></p>
+    </div>
+    <h2>A little bit of background</h2>
+
+<h3>ES6</h3>
+
+<p>ECMAScript 6 (ES6) introduced a lot of new JS keywords to play with. Generally these changes make JS a bit more approachable for new JS developers by making JS more similar to other programming languages.</p>
+
+<h3>Constants</h3>
+
+<p>Some languages (particularly compiled ones like Java) have a concept of <em>constants</em>. This are like <em>variables</em>, but the opposite.</p>
+
+<p><em>Wow, that was really clear...</em></p>
+
+<p>Constants are like variables in that a value can be assigned to them. They are unlike variables in that their value cannot be changed after the a value has been assigned to them. (There’s a lot more that could be said about this, but I’ll leave it there since it’s enough to get through this post.)</p>
+
+<p>In sudo code it would look kinda like this:</p>
+
+<pre><code>variable = 1
+constant = 2
+
+variable = 3 // All good since variables can change
+constant = 4 // Error since constants can&#39;t change
+</code></pre>
+
+<h2>Let’s talk about JS</h2>
+
+<p><em>So that’s how other languages do it - but what about JS?</em></p>
+
+<p>Honestly ES6’s implementation seems pretty similar to other languages.</p>
+
+<p><strong>Note:</strong> Since ES6 isn’t fully implemented in browsers most people are using a compiler to get from ES6 syntax to normal JS. These compilers might throw errors for some of the examples below.</p>
+
+<h3>Basic usage</h3>
+
+<p>ES6 introduced a new <code>const</code> keyword to behave like a constant. Something that is defined <code>const</code> can only be assigned once.</p>
+
+<pre><code>const cat = &#39;meow&#39;;
+cat = &#39;woof&#39;;
+console.log(cat); // logs &#39;meow&#39;
+</code></pre>
+
+<p><em>But what if I try something tricky?</em></p>
+
+<p>There’re are a couple of ways you could try to beat the system, but ES6 has covered them.</p>
+
+<p>Reuse the <code>const</code> keyword:</p>
+
+<pre><code>const cat = &#39;meow&#39;;
+const cat = &#39;woof&#39;;
+console.log(cat); // logs &#39;meow&#39;
+</code></pre>
+
+<p>Change a constant to a variable:</p>
+
+<pre><code>const cat = &#39;meow&#39;;
+var cat = &#39;woof&#39;;
+console.log(cat); // logs &#39;meow&#39;
+</code></pre>
+
+<p>Declare a constant without defining it:</p>
+
+<pre><code>const cat; // SyntaxError
+</code></pre>
+
+<p>Use block scope:</p>
+
+<pre><code>const cat = &#39;meow&#39;;
+if (true) {
+  const cat = &#39;woof&#39;;
+}
+console.log(cat); // logs meow
+</code></pre>
+
+<p>Use function scope:</p>
+
+<pre><code>const cat = &#39;meow&#39;;
+function testConsts () {
+  const cat = &#39;woof&#39;;
+  console.log(cat)
+}
+testConsts(); // logs woof
+console.log(cat); // logs meow
+</code></pre>
+
+<p>(Hopefully those last couple weren’t a surprise because JS uses <a href="http://lucybain.com/blog/2015/js-es6-let-vs-var/">function scoping</a>.)</p>
+
+<p>Ideally you should use constants in their intended way without getting too tricky!</p>
+
+<h3>Gotcha</h3>
+
+<p>Here’s the big catch: a constant can only be defined once, but it can be changed in other ways. In “programming terms” something that cannot be changed in anyway is <strong>immutable</strong>. ES6 constants are mutable (i.e. not immutable, i.e. changeable).</p>
+
+<p><em>How can I change a constant?</em></p>
+
+<p>Some object types can be changed without assigning again. Let’s look at a couple.</p>
+
+<p>Arrays:</p>
+
+<pre><code>const animals = [];
+animals.push(&#39;cat&#39;, &#39;dog&#39;);
+console.log(animals); // [&#39;cat&#39;, &#39;dog&#39;]
+</code></pre>
+
+<p>Objects:</p>
+
+<pre><code>const cat = {&#39;sound&#39;: &#39;meow&#39;};
+cat.sound = &#39;woof&#39;
+console.log(cat.sound); // &#39;meow&#39;
+</code></pre>
+
+<p>Any mutable object type will have this problem. The immutable types are: Boolean, Null, Undefined, Number, String, Symbol (the primitive types).</p>
+
+<h2>Resources</h2>
+
+<ul>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/const">Mozilla</a></li>
+<li><a href="https://strongloop.com/strongblog/es6-variable-declarations/">StrongLoop</a></li>
+<li><a href="https://babeljs.io/repl/">Babel REPL</a> if you want to play around with ES6</li>
+<li><a href="http://programmers.stackexchange.com/questions/278652/how-much-should-i-be-using-let-vs-const-in-es6">StackExchange</a> for a discussion about when to use <code>const</code></li>
+</ul>
+
+
+      <div id="disqus_thread">
+        <hr/>
+        <script>
+
+          var disqus_shortname = 'lucybain';
+          (function() {
+              var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+              dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+              (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+          })();
+
+        </script>
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+        <a class="dsq-brlink" href="http://disqus.com">
+          comments powered by
+          <span class="logo-disqus">Disqus</span>
+        </a>
+        <script>
+
+          var disqus_shortname = 'lucybain';
+          (function () {
+              var s = document.createElement('script'); s.async = true;
+              s.type = 'text/javascript';
+              s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+              (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+          }());
+
+        </script>
+      </div>
+  </div>
+
+    </div>
+  </body>
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  
+  ga('create', 'UA-45866381-1', 'lucybain.com');
+  ga('send', 'pageview');
+</script>
+
+</html>

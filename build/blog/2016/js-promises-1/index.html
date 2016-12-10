@@ -1,0 +1,509 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+  <head>
+    <meta content='width=device-width, initial-scale=1' name='viewport'>
+<meta charset='utf-8'>
+<meta content='IE=edge,chrome=1' http-equiv='X-UA-Compatible'>
+<meta content='This post sets the scene for the promises work coming in the next blog post.' name='description'>
+<meta content='js' name='keywords'>
+<link href='/images/favicon.ico' rel='icon' type='image/ico'>
+<link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700|Source+Code+Pro' rel='stylesheet' type='text/css'>
+<title>Javascript: pre-Promises</title>
+<link href="/stylesheets/application.css" rel="stylesheet" media="all" />
+<script src='//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js'></script>
+<script src='//cdn.optimizely.com/js/4606022905.js'></script>
+
+  </head>
+  <body class="">
+    <nav>
+  <div class='nav-open-btn'>
+    <ul>
+      <li></li>
+      <li></li>
+      <li></li>
+    </ul>
+  </div>
+  <ul class='nav-display'>
+    <li>
+      <a href="/" class="nav-link">Me</a>
+    </li>
+    <li>
+      <a href="/resume/" class="nav-link">Resume</a>
+    </li>
+    <li>
+      <a href="/contact-me/" class="nav-link">Contact</a>
+    </li>
+    <li>
+      <a href="/resources/" class="nav-link">Resources</a>
+    </li>
+    <li>
+      <a href="/blog/" class="nav-link active">Blog</a>
+    </li>
+  </ul>
+</nav>
+<script>
+  $('nav .nav-open-btn').on('click', function(){
+    $('nav .nav-display').toggleClass('open');
+  })
+</script>
+
+    <div class="content">
+        <div class=" blog-listing">
+    <div class="meta">
+      <h1>
+        Javascript: pre-Promises
+      </h1>
+      <p>Published on: November 30, 2016</p>
+        <p>Tags: <a href="/blog/tags/js/">js</a></p>
+    </div>
+    <p>Promises have confused me for quite a while, so I decided I should spend some time thinking about them. Turns out they’re really powerful, and there’s a fair bit going on with promises. This first post has no promises code, but instead gives some general information about promises and then sets up the problem that promises are meant to solve. I’ll reference this problem in my next blog post which will have plenty of promise code!</p>
+
+<h2>Background</h2>
+
+<p><em>Ok, you got me all excited about promises, but what do they even <strong>do</strong>?</em></p>
+
+<blockquote>
+<p>The Promise object is used for asynchronous computations. A Promise represents a value which may be available now, or in the future, or never.</p>
+</blockquote>
+
+<p>– MDN’s <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">documentation</a></p>
+
+<p>But I’ll admit I didn’t really know what that meant when I first read it, so let’s break it down a bit:</p>
+
+<blockquote>
+<p>The Promise object</p>
+</blockquote>
+
+<p>Ok, we know promises are objects, and since they wrote <strong>P</strong>romise with a capital P we also know it’s a <a href="/blog/2015/js-new-keyword-and-functions/">constructor</a>.</p>
+
+<blockquote>
+<p>used for asynchronous computations</p>
+</blockquote>
+
+<p>Well, “asynchronous computations” are ones that don’t block the main execution thread, typically because they are long running. A common example is an <a href="/blog/2015/js-how-does-ajax-work/">ajax</a> request for data from the server. We can fire off the request, but we don’t want to stop the rest of the page from working while we wait for that request to return. Another example (which we’ll work with later) is timeouts - the whole page shouldn’t get locked while we wait for the timer to expire!</p>
+
+<blockquote>
+<p>A Promise represents a value</p>
+</blockquote>
+
+<p>Hmmm, now things are getting a bit weird. It “represents” a value, but isn’t the value itself. It’s not that the promise <em>is</em> <code>5</code>, but that it represents something else. Let’s keep reading...</p>
+
+<blockquote>
+<p>a value which may be available now, or in the future, or never.</p>
+</blockquote>
+
+<p>Alright, so this value is a bit of a <a href="https://en.wikipedia.org/wiki/Schr%C3%B6dinger's_cat">Schrödinger&#39;s cat</a> type value. It may or may not be available, both now and in the future.</p>
+
+<p><em>Yikes! How are we supposed to program with so many unknowns?!</em></p>
+
+<p>But you already do!</p>
+
+<h2>Async code without promises</h2>
+
+<h3>Round one</h3>
+
+<p>Let’s start with our timer example. It was recently Thanksgiving, so we’re going put on a Thanksgiving feast!</p>
+
+<p>First we need to roast the turkey:</p>
+
+<pre><code>function makeTurkey() {
+  console.log(&#39;Making turkey&#39;);
+  setTimeout(() =&gt; {
+    console.log(&#39;turkey - done!&#39;);
+  }, 1000);
+}
+
+makeTurkey();
+</code></pre>
+
+<p><em>1 second to roast a turkey...?</em></p>
+
+<p>Just go with it, no need for the examples to run in real time!</p>
+
+<p>As you can see, we’ll log out <code>Making turkey</code> and then a second later we’ll log <code>turkey - done!</code>.</p>
+
+<p>So far so good. We’re running asynchronous code without promises and not hitting any problems.</p>
+
+<p>But our Thanksgiving feast is pretty sad. Just a turkey. It needs some sides!</p>
+
+<pre><code>function roastVeggies() {
+  console.log(&#39;Roasting veggies&#39;);
+  setTimeout(() =&gt; {
+    console.log(&#39;veggies - done!&#39;);
+  }, 1000);
+}
+
+roastVeggies();
+</code></pre>
+
+<p>Fantastic, now we can have a side of roast veggies. But we only have a small oven! We can’t roast the veggies and the turkey at the same time, so we’ll have to modify our code a little.</p>
+
+<pre><code>function makeTurkey() {
+  console.log(&#39;Making turkey&#39;);
+  setTimeout(() =&gt; {
+    console.log(&#39;turkey - done!&#39;);
+    roastVeggies(); // &lt;-- New line here!
+  }, 1000);
+}
+
+makeTurkey();
+</code></pre>
+
+<p>Ok, we’re back on track for our feast! Except we don’t have any plates to eat off of - oops!</p>
+
+<pre><code>function setTable() {
+  console.log(&#39;Setting table&#39;);
+  setTimeout(() =&gt; {
+    console.log(&#39;table - done!&#39;);
+  }, 1000);
+}
+</code></pre>
+
+<p>Of course, we only want to set the table when the turkey and veggies are done (we’re using the table as a work surface for dessert until we’re ready to eat). So again, we need to modify the code a bit:</p>
+
+<pre><code>function makeTurkey() {
+  console.log(&#39;Making turkey&#39;);
+  setTimeout(() =&gt; {
+    console.log(&#39;turkey - done!&#39;);
+    roastVeggies();
+    setTable(); // &lt;-- New line here!
+  }, 1000);
+}
+
+makeTurkey();
+</code></pre>
+
+<p><em>But that won&#39;t work, we need to wait for the veggies to finish roasting first</em></p>
+
+<p>Right you are, let’s fix that:</p>
+
+<pre><code>function roastVeggies() {
+  console.log(&#39;Roasting veggies&#39;);
+  setTimeout(() =&gt; {
+    console.log(&#39;veggies - done!&#39;);
+    setTable(); // &lt;-- New line here!
+  }, 1000);
+}
+
+roastVeggies();
+</code></pre>
+
+<p>Let’s write out the full code in all it’s glory:</p>
+
+<pre><code>function makeTurkey() {
+  console.log(&#39;Making turkey&#39;);
+  setTimeout(() =&gt; {
+    console.log(&#39;turkey - done!&#39;);
+    roastVeggies();
+  }, 1000);
+}
+
+function roastVeggies() {
+  console.log(&#39;Roasting veggies&#39;);
+  setTimeout(() =&gt; {
+    console.log(&#39;veggies - done!&#39;);
+    setTable();
+  }, 1000);
+}
+
+function setTable() {
+  console.log(&#39;Setting table&#39;);
+  setTimeout(() =&gt; {
+    console.log(&#39;table - done!&#39;);
+  }, 1000);
+}
+
+makeTurkey();
+</code></pre>
+
+<p>Code on <a href="https://codepen.io/lbain/pen/QGaJXo">CodePen</a></p>
+
+<p>Excellent! We get the output:</p>
+
+<pre><code>Making turkey
+turkey - done!
+Roasting veggies
+veggies - done!
+Setting table
+table - done!
+</code></pre>
+
+<p>So everything works as expected.</p>
+
+<p><em>The code isn’t too bad...</em></p>
+
+<p>Yeah, I agree. It’s not too bad. Yet.</p>
+
+<h3>Round two</h3>
+
+<p>Let’s make our requirements a bit more complicated. Now we can roast our veggies and the turkey at the same time (we got a bigger oven), but we still only want to set the table when all the cooking is finished.</p>
+
+<p>First we’ll update the <code>makeTurkey</code> code so it doesn’t call <code>roastVeggies</code></p>
+
+<pre><code>function makeTurkey() {
+  console.log(&#39;Making turkey&#39;);
+  setTimeout(() =&gt; {
+    console.log(&#39;turkey - done!&#39;);
+    // roastVeggies(); &lt;-- This line no longer needed
+  }, 1000);
+}
+</code></pre>
+
+<p>Next we’ll update the main project execution to call <code>roastVeggies</code> at the same time as <code>makeTurkey</code>.</p>
+
+<pre><code>makeTurkey();
+roastVeggies();
+</code></pre>
+
+<p><em>But how do we know when to set the table?</em></p>
+
+<p>Well, for now we can leave <code>setTable</code> where it is in the <code>roastVeggies</code> call. Since <code>roastVeggies</code> and <code>makeTurkey</code> both take <code>1000ms</code> to complete it doesn’t much matter where the set table is called from. (Note: this isn’t entirely accurate as one must finish before the other, but we’ll ignore that race condition. For now!)</p>
+
+<p>Ok, so here’s our final code:</p>
+
+<pre><code>function makeTurkey() {
+  console.log(&#39;Making turkey&#39;);
+  setTimeout(() =&gt; {
+    console.log(&#39;turkey - done!&#39;);
+  }, 1000);
+}
+
+function roastVeggies() {
+  console.log(&#39;Roasting veggies&#39;);
+  setTimeout(() =&gt; {
+    console.log(&#39;veggies - done!&#39;);
+    setTable();
+  }, 1000);
+}
+
+function setTable() {
+  console.log(&#39;Setting table&#39;);
+  setTimeout(() =&gt; {
+    console.log(&#39;table - done!&#39;);
+  }, 1000);
+}
+
+makeTurkey();
+roastVeggies();
+</code></pre>
+
+<p>Code on <a href="https://codepen.io/lbain/pen/rWpoax">CodePen</a></p>
+
+<p>And our output is:</p>
+
+<pre><code>Making turkey
+Roasting veggies
+turkey - done!
+veggies - done!
+Setting table
+table - done!
+</code></pre>
+
+<p>Which is exactly what we want! The turkey and veggies start roasting at the same time, finish some time later, and then we set the table.</p>
+
+<p><em>I get the feeling there’s a catch...</em></p>
+
+<p>Unfortunately, there is.</p>
+
+<p>Unlike cooking, most async calls take an unknown length of time to complete (like an ajax request). We can’t count on one call returning before another, or taking the same length of time. We cheated a bit in the previous example because we knew that roasting the turkey and veggies would take the same amount of time.</p>
+
+<p>So let’s look at a more realistic example:</p>
+
+<h3>Round three</h3>
+
+<p>First we’ll write a quick random number generator:</p>
+
+<pre><code>function random(min, max) {
+    return Math.random() * (max - min) + min;
+}
+</code></pre>
+
+<p>Next, we’ll set <code>roastTurkey</code> and <code>roastVeggies</code> to take a random amount of time between 100 and 2000 ms.</p>
+
+<pre><code>function makeTurkey() {
+  console.log(&#39;Making turkey&#39;);
+  setTimeout(() =&gt; {
+    console.log(&#39;turkey - done!&#39;);
+  }, random(100, 2000)); // &lt;-- line updated!
+}
+
+function roastVeggies() {
+  console.log(&#39;Roasting veggies&#39;);
+  setTimeout(() =&gt; {
+    console.log(&#39;veggies - done!&#39;);
+    setTable();
+  }, random(100, 2000)); // &lt;-- line updated!
+}
+</code></pre>
+
+<p>Then we’ll run the code and see what happens! (It might take a few attempts to get result below.)</p>
+
+<pre><code>Making turkey
+Roasting veggies
+veggies - done!
+Setting table
+turkey - done!
+table - done!
+</code></pre>
+
+<p><em>Oh no! We’ve started on the table before the turkey was done!</em></p>
+
+<p>Oh no indeed! Now that the turkey and veggies take a variable time to cook (a much more realistic example of async code) we don’t know when to set the table.</p>
+
+<p><em>Ok, so now what?</em></p>
+
+<p>We’ll do one more iteration to get this version to work properly.</p>
+
+<p>Remember, our constraints are:</p>
+
+<ol>
+<li>The two roastings can happen at the same time (they’re at least started together).</li>
+<li>The table must not be set while anything is roasting.</li>
+</ol>
+
+<p>Now we need a way to know when the timers have finished.</p>
+
+<p><strong>Warning!</strong> This is not good code! The whole point of this exercise is to find an example where promises would be a better solution. Do not try this at home!</p>
+
+<p>We’ll start by keeping track of the two timers and clearing them out when the timers have expired:</p>
+
+<pre><code>let turkeyTimer;
+let veggieTimer;
+
+function makeTurkey() {
+  console.log(&#39;Making turkey&#39;);
+  turkeyTimer = setTimeout(() =&gt; { // &lt;-- line updated
+    console.log(&#39;turkey - done!&#39;);
+    turkeyTimer = false;  // &lt;-- new line
+  }, random(100, 2000));
+}
+
+function roastVeggies() {
+  console.log(&#39;Roasting veggies&#39;);
+  veggieTimer = setTimeout(() =&gt; { // &lt;-- line updated
+    console.log(&#39;veggies - done!&#39;);
+    veggieTimer = false;  // &lt;-- new line
+  }, random(100, 2000));
+}
+</code></pre>
+
+<p>You’ll notice these are global variables.</p>
+
+<p><em>boo, hiss</em></p>
+
+<p>That’s right, but we’ll need to access them in just a moment.</p>
+
+<p>Alright, now we’ve got our timers all set up we need to check for when they’ve completed. Again, we don’t know when this will happen so we have to check the timers every millisecond to find when they’ve finished. Once they’ve finished we’ll set the table and clear out the check method.</p>
+
+<pre><code>const checkReady = setInterval(() =&gt; {
+  if (!turkeyTimer &amp;&amp; !veggieTimer) {
+    setTable();
+    clearInterval(checkReady);
+  }
+}, 1);
+</code></pre>
+
+<p>So the final version of this round looks like:</p>
+
+<pre><code>let turkeyTimer;
+let veggieTimer;
+
+function random(min, max) {
+    return Math.random() * (max - min) + min;
+}
+
+function makeTurkey() {
+  console.log(&#39;Making turkey&#39;);
+  turkeyTimer = setTimeout(() =&gt; {
+    console.log(&#39;turkey - done!&#39;);
+    turkeyTimer = false;
+  }, random(100, 2000));
+}
+
+function roastVeggies() {
+  console.log(&#39;Roasting veggies&#39;);
+  veggieTimer = setTimeout(() =&gt; {
+    console.log(&#39;veggies - done!&#39;);
+    veggieTimer = false;
+  }, random(100, 2000));
+}
+
+function setTable() {
+  console.log(&#39;Setting table&#39;);
+  setTimeout(() =&gt; {
+    console.log(&#39;table - done!&#39;);
+  }, 1000);
+}
+
+makeTurkey();
+roastVeggies();
+
+const checkReady = setInterval(() =&gt; {
+  if (!turkeyTimer &amp;&amp; !veggieTimer) {
+    setTable();
+    clearInterval(checkReady);
+  }
+}, 1);
+
+</code></pre>
+
+<p>Code on <a href="https://codepen.io/lbain/pen/ObzrPB">CodePen</a></p>
+
+<p><em>Yikes!</em></p>
+
+<p>That’s right. This code is not very nice. It works, but it’s confusing and needing to poll every 1ms to see if it’s time to set the table is pretty terrible.</p>
+
+<p><em>There must be a better way!</em></p>
+
+<p>There is! We’ll be looking at promises next time to do just that.</p>
+
+<p>Check in again soon to see how all this can be so much better!</p>
+
+
+      <div id="disqus_thread">
+        <hr/>
+        <script>
+
+          var disqus_shortname = 'lucybain';
+          (function() {
+              var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+              dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+              (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+          })();
+
+        </script>
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+        <a class="dsq-brlink" href="http://disqus.com">
+          comments powered by
+          <span class="logo-disqus">Disqus</span>
+        </a>
+        <script>
+
+          var disqus_shortname = 'lucybain';
+          (function () {
+              var s = document.createElement('script'); s.async = true;
+              s.type = 'text/javascript';
+              s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+              (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+          }());
+
+        </script>
+      </div>
+  </div>
+
+    </div>
+  </body>
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  
+  ga('create', 'UA-45866381-1', 'lucybain.com');
+  ga('send', 'pageview');
+</script>
+
+</html>
