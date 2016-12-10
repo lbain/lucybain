@@ -4,16 +4,135 @@
   <id>http://lucybain.com/blog</id>
   <link href="http://lucybain.com/blog"/>
   <link href="http://lucybain.com/feed.xml" rel="self"/>
-  <updated>2016-11-30T11:00:00+11:00</updated>
+  <updated>2016-12-10T11:00:00+11:00</updated>
   <author>
     <name>Lucy Bain</name>
   </author>
+  <entry>
+    <title>Upgrading to Middleman v4</title>
+    <link rel="alternate" href="http://lucybain.com/blog/2016/middleman-v4/"/>
+    <id>http://lucybain.com/blog/2016/middleman-v4/</id>
+    <published>2016-12-10T11:00:00+11:00</published>
+    <updated>2016-12-10T23:17:37+11:00</updated>
+    <author>
+      <name>Article Author</name>
+    </author>
+    <content type="html">&lt;p&gt;My blog runs on &lt;a href="https://middlemanapp.com/"&gt;Middleman&lt;/a&gt; - I really like the way they’ve set things up, and it feels very familiar to me since it’s written in Ruby. However, v4 came out almost a year ago, and I never upgraded. I tried half heartedly a couple of times, but never committed. But this time I made the leap, what you see before you is a blog built by Middleman 4.0.0 (ok, I need to upgrade it even more, but this is an improvement!).&lt;/p&gt;
+
+&lt;p&gt;I hit some snags as I went along, so let’s talk about those&lt;/p&gt;
+
+&lt;h2&gt;Removed “Implied Extension feature”&lt;/h2&gt;
+
+&lt;p&gt;The first issue is listed in their &lt;a href="https://middlemanapp.com/basics/upgrade-v4/"&gt;upgrade docs&lt;/a&gt; as:&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;Removed &amp;quot;Implied Extension feature&amp;quot;, all templates must include a full file name plus the list of desired templating extensions.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;I completely missed this (it’s about halfway down a long list of bullet points, most of which didn’t apply to me), but eventually found it referenced in a few issues.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;What does that mean?&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;Good question, it wasn’t obvious to me either. The “full file name” is the normal name of the file (this file’s name is &lt;code&gt;12-10-middleman-v4&lt;/code&gt;) which is simple enough. But the “list of desired templating extensions” needs to include the ultimate format you want your page to end up in (in this case, &lt;code&gt;.html&lt;/code&gt;). This is new, you used to be able to just have &lt;code&gt;12-10-middleman-v4.md&lt;/code&gt;, but now you need the full &lt;code&gt;12-10-middleman-v4.html.md&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Updating all your files to add a &lt;code&gt;.html&lt;/code&gt; before the previous extension is more than a little annoying. So I wrote a little script to help me out:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;path_to_project = &amp;quot;&amp;quot; # FILL ME IN
+
+# Step 1: get a list of all the extensions you use
+
+require &amp;#39;set&amp;#39;
+extensions = Set.new []
+
+Dir.glob(path_to_project).each do |file|
+  parts = file.split(&amp;#39;.&amp;#39;)
+  extensions.merge(parts[1.. parts.length])
+end
+
+extensions.each do |extension|
+  puts extension
+end
+
+# Step 2: convert the extensions you want converted
+
+extensions_to_convert = [] # FILL ME IN
+
+Dir.glob(path_to_project).each do |file|
+  parts = file.split(&amp;#39;.&amp;#39;)
+  should_convert_extension? = (parts &amp;amp; extensions_to_convert).any?
+  already_converted? = parts.include? &amp;#39;html&amp;#39;
+  next unless should_convert_extension? and not already_converted?
+  new_name = parts[0] + &amp;#39;.html.&amp;#39; + parts[1..parts.length].join(&amp;#39;.&amp;#39;)
+
+  # verify file conversion
+  puts &amp;quot;#{file} &amp;gt; #{new_name}&amp;quot;
+
+  # uncomment to make actual changes
+  # File.rename(file, new_name)
+end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;You can find it &lt;a href="https://gist.github.com/lbain/5ce9ef81f6a3ce6f3b4b84774f9a63d8"&gt;here&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h2&gt;Filter errors with &lt;code&gt;&amp;lt;code&amp;gt;&lt;/code&gt; and &lt;code&gt;:code&lt;/code&gt;&lt;/h2&gt;
+
+&lt;p&gt;Some of my earlier blog posts were written in Haml (this was back when I was writing more Ruby and didn’t know Markdown as well). In general these moved from &lt;code&gt;.haml&lt;/code&gt; to &lt;code&gt;.html.haml&lt;/code&gt; without a hitch, but a few threw errors on &lt;code&gt;&amp;lt;code&amp;gt;&lt;/code&gt; and &lt;code&gt;:code&lt;/code&gt; saying:&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;Filter &amp;quot;code&amp;quot; is not defined.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;I have no idea what changed in Haml or Middleman to trigger this failure (I assume it was a Middleman change since I only moved from &lt;a href="https://github.com/lbain/lucybain/commit/0cab70d26bd82946dbc6475fe0a4bb147f5639b4"&gt;Haml 4.0.5 to 4.0.7&lt;/a&gt;). Since I only had a few of these errors it was easiest to convert the Haml files to Markdown files. It’s something I’ve been meaning to do anyway, and this was as good a time as any.&lt;/p&gt;
+
+&lt;h2&gt;Sass files should include Sass files&lt;/h2&gt;
+
+&lt;p&gt;I had a tiny issue with a Sass file that used to be &lt;code&gt;@include&lt;/code&gt;ing a CSS file, but now died. Seems like that should never have worked, but it was an easy fix to convert my one &lt;a href="http://css2sass.herokuapp.com/"&gt;CSS file to a Sass&lt;/a&gt; file and have everything work.&lt;/p&gt;
+
+&lt;h2&gt;Middleman-blog doesn’t like Haml layout&lt;/h2&gt;
+
+&lt;p&gt;I don’t really know what’s going on here, but I’m not the only &lt;a href="https://github.com/middleman/middleman-blog/issues/324"&gt;person&lt;/a&gt; experiencing this &lt;a href="https://github.com/middleman/middleman-blog/issues/322"&gt;issue&lt;/a&gt;. At the end of the day there’s something wonky happening with how the blog template plays with the general site template in Haml. After a fair amount of tinkering (and hair pulling...) I gave up and &lt;a href="https://haml2erb.org/"&gt;converted the layouts&lt;/a&gt; to &lt;code&gt;.erb&lt;/code&gt; files. I’m not super happy with this outcome (I had &lt;code&gt;.haml&lt;/code&gt; files for a reason!), but it works and I want to enjoy my remaining hair.&lt;/p&gt;
+
+&lt;p&gt;An issue with converting from &lt;code&gt;.haml&lt;/code&gt; to &lt;code&gt;.erb&lt;/code&gt;: in order to preserve whitespace and nice things in a markdown converted blog post with code snippets I needed to use &lt;code&gt;find_and_preserve&lt;/code&gt;. However, this method only exists in Haml, and so isn’t available in an &lt;code&gt;.erb&lt;/code&gt; file. It’s not needed for embedded Ruby, but it’ll throw errors until you delete it.&lt;/p&gt;
+
+&lt;h2&gt;&lt;code&gt;&amp;lt;pre&amp;gt;&amp;lt;code&amp;gt;&lt;/code&gt; wrapping&lt;/h2&gt;
+
+&lt;p&gt;Last of all I found the updated &lt;a href="https://github.com/vmg/redcarpet"&gt;Redcarpet gem&lt;/a&gt; now wraps all code in &lt;code&gt;&amp;lt;code&amp;gt;&lt;/code&gt; tags. Now you’d think this wasn’t a big deal, but it really messed with my head. What used to happen was...&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;`single ticks`
+&amp;lt;code&amp;gt;single ticks&amp;lt;/code&amp;gt;
+
+
+```
+triple ticks
+```
+&amp;lt;pre&amp;gt;triple ticks&amp;lt;/pre&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;But now the ``` is different:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;```
+triple ticks
+```
+&amp;lt;pre&amp;gt;&amp;lt;code&amp;gt;triple ticks&amp;lt;/code&amp;gt;&amp;lt;/pre&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Unfortunately all my styling relied on the &lt;code&gt;&amp;lt;code&amp;gt;&lt;/code&gt; only being used inline and the &lt;code&gt;&amp;lt;pre&amp;gt;&lt;/code&gt; only being used for code blocks. It &lt;a href="https://github.com/lbain/lucybain/commit/945fd5c249731572e1c9ebeb2a3a7e97351de2cd"&gt;wasn’t hard to fix&lt;/a&gt;, but it make my blog posts look weird and caused a good deal of despair.&lt;/p&gt;
+
+&lt;h2&gt;Lessons learned&lt;/h2&gt;
+
+&lt;p&gt;Usually the lesson from this kind of thing is “update earlier!” but I’m honestly not sure that would have helped. There weren’t a lot of resources out there to find (or my Google searches were completely off base), and the &lt;a href="https://forum.middlemanapp.com"&gt;Middleman forum&lt;/a&gt; kept not loading. Which is why I’m writing this post - I hope it helps someone!&lt;/p&gt;
+
+&lt;p&gt;I did hugely underestimate the amount of time involved with doing the upgrade. Often solving the issue wasn’t too difficult, but finding it was hard. And, in the case of the Haml layouts, I never solved it but had to call it quits and move on to the next thing.&lt;/p&gt;
+
+&lt;p&gt;I also got really frustrated with the whole thing and nearly called it off at least twice. It’s hard to keep going when you don’t know how close to the end you are. &lt;/p&gt;
+</content>
+  </entry>
   <entry>
     <title>Javascript: pre-Promises</title>
     <link rel="alternate" href="http://lucybain.com/blog/2016/js-promises-1/"/>
     <id>http://lucybain.com/blog/2016/js-promises-1/</id>
     <published>2016-11-30T11:00:00+11:00</published>
-    <updated>2016-12-10T16:30:28+11:00</updated>
+    <updated>2016-12-10T22:10:54+11:00</updated>
     <author>
       <name>Article Author</name>
     </author>
@@ -426,7 +545,7 @@ const checkReady = setInterval(() =&amp;gt; {
     <link rel="alternate" href="http://lucybain.com/blog/2016/react-state-vs-pros/"/>
     <id>http://lucybain.com/blog/2016/react-state-vs-pros/</id>
     <published>2016-11-27T11:00:00+11:00</published>
-    <updated>2016-11-27T20:56:37+11:00</updated>
+    <updated>2016-12-10T22:10:54+11:00</updated>
     <author>
       <name>Article Author</name>
     </author>
@@ -678,7 +797,7 @@ count: newCount
     <link rel="alternate" href="http://lucybain.com/blog/2016/ela-conf-closing-thoughts/"/>
     <id>http://lucybain.com/blog/2016/ela-conf-closing-thoughts/</id>
     <published>2016-11-14T11:00:00+11:00</published>
-    <updated>2016-11-27T16:40:01+11:00</updated>
+    <updated>2016-12-10T22:10:54+11:00</updated>
     <author>
       <name>Article Author</name>
     </author>
@@ -722,7 +841,7 @@ count: newCount
     <link rel="alternate" href="http://lucybain.com/blog/2016/ela-conf-day-2/"/>
     <id>http://lucybain.com/blog/2016/ela-conf-day-2/</id>
     <published>2016-11-05T11:00:00+11:00</published>
-    <updated>2016-11-14T20:50:25+11:00</updated>
+    <updated>2016-12-10T22:10:54+11:00</updated>
     <author>
       <name>Article Author</name>
     </author>
@@ -835,7 +954,7 @@ count: newCount
     <link rel="alternate" href="http://lucybain.com/blog/2016/ela-conf-day-1/"/>
     <id>http://lucybain.com/blog/2016/ela-conf-day-1/</id>
     <published>2016-11-04T11:00:00+11:00</published>
-    <updated>2016-11-14T20:48:26+11:00</updated>
+    <updated>2016-12-10T22:10:54+11:00</updated>
     <author>
       <name>Article Author</name>
     </author>
@@ -906,117 +1025,6 @@ count: newCount
 &lt;/ul&gt;
 
 &lt;p&gt;&lt;img src="/images/blog/ela-conf/shaved-head.jpg" alt="No hair == better programmer" /&gt;&lt;/p&gt;
-</content>
-  </entry>
-  <entry>
-    <title>Attending Vogue Codes</title>
-    <link rel="alternate" href="http://lucybain.com/blog/2016/vogue-codes/"/>
-    <id>http://lucybain.com/blog/2016/vogue-codes/</id>
-    <published>2016-10-15T11:00:00+11:00</published>
-    <updated>2016-11-14T20:48:26+11:00</updated>
-    <author>
-      <name>Article Author</name>
-    </author>
-    <content type="html">&lt;p&gt;A couple weeks ago I was invited to attend Vogue Codes, an event for women in technology. I was lucky enough that my boss let me have the day off with almost no warning (thanks boss, and thanks Atlassian!). I was again lucky that my coworker told me she was going to wear a dress for the event, so I wore one too - this is the first tech conference where I would have felt weird wearing jeans and sneakers!&lt;/p&gt;
-
-&lt;p&gt;&lt;img src="/images/blog/vogue-codes/vogue-team.jpg" alt="Atlassian team!" /&gt;&lt;/p&gt;
-
-&lt;h2&gt;Overall impressions&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Vogue knows how to do glamor! I know this shouldn’t be surprising, but we had Wedgewood tea cups, beautiful table settings, and an embossed notebook at every seat. It was, by far, the girliest tech event I’ve ever been to. (And honestly, I loved it - I ran Classy Coding for Women Who Code which was a massively cheaper event, but in the same spirit.)&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src="/images/blog/vogue-codes/vogue-pretty.jpg" alt="Such a pretty venue" /&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;So many women! There were ~15 tables of ~8 people each, so ~120 people at the event - almost all of them were women. I’ve been to similarly sized Girl Geek events, but never in so large a place. We took up the whole room, and there was a line for the bathroom. Very cool.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src="/images/blog/vogue-codes/vogue-women.jpg" alt="So many women" /&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;So few programmers :( During the event someone asked us to raise our hand if we were in: media, PR, HR, etc. When they got to “programmers” I gleefully shot my hand up. My heart sank as I looked around the room at the other… 10? women with their hands up. Similarly, I did a rough check of how many of the speakers coded. Of the ~17 speakers guess how many coded on a day to day basis? One.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2&gt;Notes from the talks&lt;/h2&gt;
-
-&lt;h3&gt;The future is being written in lines of code by Kathryn Parsons&lt;/h3&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Don’t ask “can you be an engineer?” ask “are you creative? Persistent? Logical?”&lt;/li&gt;
-&lt;li&gt;It’s not that women aren’t capable of being developers, it’s that they’re opting out.
-
-&lt;ul&gt;
-&lt;li&gt;They’re dropping out of the roles they’re in&lt;/li&gt;
-&lt;li&gt;Girls aren’t choosing CS at schools&lt;/li&gt;
-&lt;li&gt;Girls are far less confident that they’ll be able to engineer&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;Talked about the importance of networking, and how women are often not included in traditional networks&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3&gt;Art vs Science: why can’t we all just get along? with Nikki Durkin, Naomi Shepherd, Melanie Perkins&lt;/h3&gt;
-
-&lt;p&gt;&lt;img src="/images/blog/vogue-codes/panel-1.jpg" alt="Art vs Science" /&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Discussion about how code is involved in creative endeavors - “code is a tool, just like a paint brush”&lt;/li&gt;
-&lt;li&gt;Don’t ask “do you want to code?” ask “do you want to help people?” Clearly a common thread that “coding” is a turnoff for girls and women…&lt;/li&gt;
-&lt;li&gt;Discussion around education
-
-&lt;ul&gt;
-&lt;li&gt;Learning to code through projects&lt;/li&gt;
-&lt;li&gt;Continuing education throughout your life - “never stop learning”&lt;/li&gt;
-&lt;li&gt;Questioning if a uni education is still valuable, and how it needs to change to stay up to date&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3&gt;ABCs to CSS: solving the technology question with education with Ethy Levy, Dave Curran, Annie Parker, Verity Firth&lt;/h3&gt;
-
-&lt;p&gt;&lt;img src="/images/blog/vogue-codes/panel-2.jpg" alt="ABCs to CSS" /&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Learning to code impacts other subjects as well. Teachers noticed better collaboration skills and students taking on problems on their own.&lt;/li&gt;
-&lt;li&gt;Things like Code Club (and CS First) are great for some kids, but it’s the Government&amp;#39;s job to make those things available to everyone - it’s slow work...&lt;/li&gt;
-&lt;li&gt;Don’t wait for tech to be 50% women before joining in. Be the woman who takes it from 20% to 21%&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3&gt;The fashion technologist: solving the style question with technology with Amber Venz Box&lt;/h3&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Predicted tech trend: more “walled gardens” like instagram where the platform has the power - companies intentionally offering little functionality that’s very focused.&lt;/li&gt;
-&lt;li&gt;Talked about work/life balance and having dedicated calendar time for being with her family&lt;/li&gt;
-&lt;li&gt;Know your value and take it&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3&gt;The career disruption: reinvent your own career with Canna Campbell, Georgie Abay, Alyce Tran, Alice Brennan&lt;/h3&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Two of the speakers started new businesses after leaving their previous roles and having children.&lt;/li&gt;
-&lt;li&gt;“What a waste not to be passionate about what you do for a living.”&lt;/li&gt;
-&lt;li&gt;Talked about having very unstructured days as founders and CEOs, but they always have some time dedicated to ideas and quiet working. This means having clear priorities is even more important for them.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2&gt;Technology: why not women? With Aubrey Blanche, Anastasia Cammaroto, Alisa Bowen, Mikaela Jade&lt;/h2&gt;
-
-&lt;p&gt;&lt;img src="/images/blog/vogue-codes/panel-3.jpg" alt="Why not women?" /&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;More discussion about tech’s “marketing problem” - mentioned advertising free beer more often than good parental leave policies&lt;/li&gt;
-&lt;li&gt;Brief vocab lesson:
-
-&lt;ul&gt;
-&lt;li&gt;Sponsorship - using your network and clout to help someone once off&lt;/li&gt;
-&lt;li&gt;Mentorship - 1:1 long term help, building someone up and helping them grow&lt;/li&gt;
-&lt;li&gt;Reverse mentorship - junior employees helping senior employees (typically for technical tasks the younger employees have more experience with)&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;Small actions can make an overall change. Some suggestions:
-
-&lt;ul&gt;
-&lt;li&gt;Take an hour a week to do sponsorship or mentorship&lt;/li&gt;
-&lt;li&gt;Every few months (starting now) look at who you follow on Twitter. Are they all one gender, race, political view, sexual orientation, etc.? Rebalance to better represent society’s distribution.&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;
 </content>
   </entry>
 </feed>
