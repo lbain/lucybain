@@ -1,221 +1,349 @@
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
   <head>
     <meta content='width=device-width, initial-scale=1' name='viewport'>
-    <meta charset='utf-8'>
-    <meta content='IE=edge,chrome=1' http-equiv='X-UA-Compatible'>
-    <meta content='A look at various ways to pass variables to functions. Specifically by reference, value, and by sharing.' name='description'>
-    <meta content='pass by reference, pass by value, pass by sharing, vs.' name='keywords'>
-    <link href='/images/favicon.ico' rel='icon' type='image/ico'>
-    <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700|Source+Code+Pro' rel='stylesheet' type='text/css'>
-    <title>Programming theory: Evaluation strategies</title>
-    <link href="/stylesheets/application.css" media="all" rel="stylesheet" type="text/css" />
-    <script src='//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js'></script>
-    <script src='//cdn.optimizely.com/js/4606022905.js'></script>
+<meta charset='utf-8'>
+<meta content='IE=edge,chrome=1' http-equiv='X-UA-Compatible'>
+<meta content='A look at various ways to pass variables to functions. Specifically by reference, value, and by sharing.' name='description'>
+<meta content='pass by reference, pass by value, pass by sharing, vs.' name='keywords'>
+<link href='/images/favicon.ico' rel='icon' type='image/ico'>
+<link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700|Source+Code+Pro' rel='stylesheet' type='text/css'>
+<title>Programming theory: Evaluation strategies</title>
+<link href="/stylesheets/application.css" rel="stylesheet" media="all" />
+<script src='//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js'></script>
+<script src='//cdn.optimizely.com/js/4606022905.js'></script>
+
   </head>
-  <body>
+  <body class="">
     <nav>
-      <div class='nav-open-btn'>
-        <ul>
-          <li></li>
-          <li></li>
-          <li></li>
-        </ul>
+  <div class='nav-open-btn'>
+    <ul>
+      <li></li>
+      <li></li>
+      <li></li>
+    </ul>
+  </div>
+  <ul class='nav-display'>
+    <li>
+      <a href="/" class="nav-link">Me</a>
+    </li>
+    <li>
+      <a href="/resume/" class="nav-link">Resume</a>
+    </li>
+    <li>
+      <a href="/contact-me/" class="nav-link">Contact</a>
+    </li>
+    <li>
+      <a href="/resources/" class="nav-link">Resources</a>
+    </li>
+    <li>
+      <a href="/blog/" class="nav-link active">Blog</a>
+    </li>
+  </ul>
+</nav>
+<script>
+  $('nav .nav-open-btn').on('click', function(){
+    $('nav .nav-display').toggleClass('open');
+  })
+</script>
+
+    <div class="content">
+        <div class=" blog-listing">
+    <div class="meta">
+      <h1>
+        Programming theory: Evaluation strategies
+      </h1>
+      <p>Published on: November 25, 2015</p>
+        <p>Tags: <a href="/blog/tags/programming/">programming</a>, <a href="/blog/tags/intro-programming/">intro-programming</a>, and <a href="/blog/tags/theory/">theory</a></p>
+    </div>
+    <p>This is a topic I learned at university, but didn’t fully understand all the repercussions of until later. This post is to help you understand the differences and to help me remember them :)</p>
+
+<p>Let’s get started!</p>
+
+<p><em>But wait, what’s an “evaluation strategy”? I’ve never heard of that before!</em></p>
+
+<p>To be honest, I hadn’t either until I did some research for this post. The title for this group of concepts isn’t widely used, so knowing “evaluation strategy” probably won’t be super useful. However, the question all evaluation strategies are trying to answer is “how do parameters work in this particular language?” And it is <em>very</em> useful to know the answer to that question for your language.</p>
+
+<p>For example, this non-language below (which is purposefully a mismatch of ruby, python, and JS so it doesn’t look real):</p>
+
+<pre><code>a = 1
+
+function passBySomething(param):
+    param = 2
+end
+
+passBySomething(a)
+log(a) // what happens here?
+</code></pre>
+
+<p>There are a few options that could happen, which is what today’s post is all about.</p>
+
+<p>Since I love metaphors and because we haven’t talked about how computer memory works yet (although it might show up soon!) we won’t cover “under the hood” details. Instead we will work with a story:</p>
+
+<blockquote>
+<p>As you look around your apartment you decide you would like some new artwork to spruce the place up a bit. As it so happens you have a nice piece of canvas at home, all ready to go. You also have a friend, Fred, who is an artist and who’s agreed to make you something (that you’ll pay for, of course!).</p>
+</blockquote>
+
+<p>With that in mind we’re ready to go! </p>
+
+<p><strong>Disclaimer:</strong> Because we’re not going into the details, nor are we looking at a particular language, these explanations might not apply 100% to your language. Please look up additional examples for your language.</p>
+
+<h2>Pass by reference</h2>
+
+<blockquote>
+<p>You give your canvas to Fred and <strong>he paints it for you</strong> (thanks Fred!). Then he gives you the painted canvas back.</p>
+</blockquote>
+
+<p>This is probably the easiest one to get our heads around, since it’s pretty much what happens in real life.</p>
+
+<p>Here’s what pass by reference would be in our pretend language:</p>
+
+<pre><code>canvas = [] // (this is a blank canvas)
+
+function artistFred(item):
+    paint(item) // notice the lack of return keyword
+end
+
+log(canvas) // [] (blank canvas)
+artistFred(canvas)
+log(canvas) // [*&amp;] (painted canvas)
+</code></pre>
+
+<p>Seems straight forward enough, but what if Fred decides to do something different?</p>
+
+<blockquote>
+<p>You give your canvas to Fred and <strong>he makes a sculpture instead</strong>. Then he gives you the sculpture back.</p>
+</blockquote>
+
+<p>Again, this translates to the following “code”:</p>
+
+<pre><code>canvas = [] // (blank canvas)
+
+function artistFred(item):
+    item = new Sculpture()
+end
+
+log(canvas) // [] (blank canvas)
+artistFred(canvas)
+log(canvas) // V (new sculpture)
+</code></pre>
+
+<p>Now you don’t have your original canvas (Fred replaced it entirely), you only have the sculpture Fred gave you.</p>
+
+<p>Pass by reference is incredibly trusting. You like Fred, and he’s a really good artist. If he says a sculpture would be better for your space you’re cool to go with that. If he paints the whole canvas one colour and tells you it’s art, you’ll believe him and put it up with pride. After all, Fred’s a good guy and you trust him.</p>
+
+<h3>More formal definition</h3>
+
+<p>In pass by reference the original variable (declared outside the function’s scope) can be changed in any way by the function. It can be altered or reassigned in the function and the new value will persist after the function has returned.</p>
+
+<h2>Pass by value</h2>
+
+<blockquote>
+<p>You go to the store and buy a new piece of canvas that is exactly the same as the one you already own. You give the new canvas to Fred and <strong>he paints it for you</strong> (thanks Fred!). Then he gives you the painted canvas back, and you can choose to replace your blank canvas with the painted one, keep both, or just look at Fred’s work and decide not to keep it.</p>
+</blockquote>
+
+<p>In our pretend coding language it would look something like this:</p>
+
+<pre><code>canvas = [] // (blank canvas)
+
+function artistFred(item):
+    return paint(item) // notice the new return keyword
+end
+
+log(canvas) // [] (blank canvas)
+artistFred(canvas) // look at the Fred’s work but decide not to keep it
+log(canvas) // [] (blank canvas)
+
+newCanvas = artistFred(canvas) // keep both
+log(canvas) // [] (blank canvas)
+log(newCanvas) // [*&amp;] (painted canvas)
+
+canvas = artistFred(canvas) // replace blank canvas with the painted one
+log(canvas) // [*&amp;] (painted canvas)
+</code></pre>
+
+<p>Of course, Fred might decide to do something else entirely. Let’s look at another possibility:</p>
+
+<blockquote>
+<p>You go to the store and buy a new piece of canvas that is exactly the same as the one you already own. You give the new canvas to Fred, but he throws away the new canvas and <strong>decides to make a sculpture instead.</strong> Then he gives you the sculpture back, and you can choose to replace your blank canvas with the sculpture, keep both, or just look at Fred’s work and decide not to keep it.</p>
+</blockquote>
+
+<p>Again, in our fake language would be:</p>
+
+<pre><code>canvas = [] // (blank canvas)
+
+function artistFred(item):
+    item = new Sculpture()
+    return item
+end
+
+log(canvas) // [] (blank canvas)
+artistFred(canvas) // look at the Fred’s work but decide not to keep it
+log(canvas) // [] (blank canvas)
+
+newSculpture = artistFred(canvas) // keep both
+log(canvas) // [] (blank canvas)
+log(newSculpture) // V (sculpture)
+
+canvas = artistFred(canvas) // replace blank canvas with the sculpture
+log(canvas) // V (sculpture)
+</code></pre>
+
+<p>I think of pass by value as slightly paranoid. Because really, you don’t trust Fred very much. You think he might make an ugly painting and you want to keep your piece of canvas safe in case that happens. Or you know he doesn’t follow directions well and you didn’t want that sculpture anyway...</p>
+
+<h3>More formal definition</h3>
+
+<p>In pass by value the original variable (declared outside the function’s scope) is not altered in any way by the function. It must be explicitly overwritten by reassigning it with the results of the function call.</p>
+
+<h2>Pass by sharing</h2>
+
+<p>This is a bit of a mix between pass by reference and pass by value.</p>
+
+<blockquote>
+<p>You give your (only) canvas to Fred and <strong>he paints it for you</strong> (thanks Fred!). Then he gives you the painted canvas back.</p>
+</blockquote>
+
+<p>So far this is exactly the same as pass by reference.</p>
+
+<pre><code>canvas = [] // (blank canvas)
+
+function artistFred(item):
+    paint(item)
+end
+
+log(canvas) // [] (blank canvas)
+artistFred(canvas)
+log(canvas) // [*&amp;] (painted canvas)
+</code></pre>
+
+<p>But again, Fred might decide to do something different:</p>
+
+<blockquote>
+<p>You give your (only) canvas to Fred. He sets the untouched canvas aside and <strong>makes a sculpture instead</strong>. Then he gives you the sculpture back, and you can choose to replace your blank canvas with the sculpture, keep both, or just look at Fred’s work and decide not to keep it.</p>
+</blockquote>
+
+<pre><code>canvas = [] // (blank canvas)
+
+function artistFred(item):
+    item = new Sculpture()
+    return item
+end
+
+log(canvas) // [] (blank canvas)
+artistFred(canvas) // look at the Fred’s work but decide not to keep it
+log(canvas) // [] (blank canvas)
+
+newSculpture = artistFred(canvas) // keep both
+log(canvas) // [] (blank canvas)
+log(newSculpture) // V (sculpture)
+
+canvas = artistFred(canvas) // replace blank canvas with the painted one
+log(canvas) // V (sculpture)
+</code></pre>
+
+<p>This version is exactly the same as pass by value.</p>
+
+<p>This is probably the most reasonable level of trust. You asked for a painting and a sculpture just won’t do. You trust Fred enough to paint a blank canvas, but you want your canvas to be usable if he decided to go off an make a sculpture instead. After all, you asked for a painting, not a sculpture.</p>
+
+<p><em>What gives? How can you mix and match like that?</em></p>
+
+<p>It all depends on if the canvas is altered or replaced. If Fred simply alters the canvas by painting it, then the original (blank) canvas is changed forever. However, if Fred wants to replace the canvas, he can’t throw it away, but must create a sculpture as an entirely new thing.</p>
+
+<h3>More formal definition</h3>
+
+<p>In pass by sharing the original variable (declared outside the function’s scope) can only be altered in so far as it is mutable. It cannot be reassigned inside the function call. Any changes to a mutable type will persist after the function returns. Any attempts to reassign a variable will not persist.</p>
+
+<h2>And one more thing...</h2>
+
+<p>People use the wrong name all. the. time. Officially most languages use pass by sharing. Per <a href="https://en.wikipedia.org/wiki/Evaluation_strategy#Call_by_sharing">Wikipedia</a>:</p>
+
+<blockquote>
+<p>It is used by languages such as Python, Iota, Java (for object references), Ruby, JavaScript, Scheme, OCaml, AppleScript, and many others.</p>
+</blockquote>
+
+<p>However, most people don’t say a particular language is “pass by sharing.” Unfortuantely “pass by reference” and “pass by value” are much more famous phrases than “pass by sharing” (probably because it’s what we’re taught at universities), and so people often use one of those terms even when it’s incorrect.</p>
+
+<p>This semantic mixing caused me a fair amount of confusion because JS shows some pass by reference qualities:</p>
+
+<pre><code>var obj = {a: 1};
+
+function referenceTest(input) {
+    input.a = 2;
+}
+
+console.log(obj); // logs {a: 1}
+referenceTest(obj);
+console.log(obj); // logs {a: 2}
+</code></pre>
+
+<p>and some pass by value qualities:</p>
+
+<pre><code>var num = 1;
+
+function valueTest(input) {
+    input = 1;
+}
+
+console.log(num); // logs 1
+valueTest(num);
+console.log(num); // logs 1
+</code></pre>
+
+<p>It took me a long time to realise that JS was pass by reference <em>sometimes</em> and pass by value <em>other times</em>. And I only learned today that this mix of of the two, which many common languages use, is called pass by sharing.</p>
+
+<h2>Resources</h2>
+
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/Evaluation_strategy">Wikipedia</a></li>
+<li><a href="http://stackoverflow.com/questions/518000/is-javascript-a-pass-by-reference-or-pass-by-value-language">Stackoverflow</a></li>
+<li>Examples and explanation for <a href="https://www.jeffknupp.com/blog/2012/11/13/is-python-callbyvalue-or-callbyreference-neither/">Python</a></li>
+</ul>
+
+
+      <div id="disqus_thread">
+        <hr/>
+        <script>
+
+          var disqus_shortname = 'lucybain';
+          (function() {
+              var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+              dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+              (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+          })();
+
+        </script>
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+        <a class="dsq-brlink" href="http://disqus.com">
+          comments powered by
+          <span class="logo-disqus">Disqus</span>
+        </a>
+        <script>
+
+          var disqus_shortname = 'lucybain';
+          (function () {
+              var s = document.createElement('script'); s.async = true;
+              s.type = 'text/javascript';
+              s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+              (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+          }());
+
+        </script>
       </div>
-      <ul class='nav-display'>
-        <li>
-          <a class="nav-link" href="/">Me</a>
-        </li>
-        <li>
-          <a class="nav-link" href="/resume/">Resume</a>
-        </li>
-        <li>
-          <a class="nav-link" href="/contact-me/">Contact</a>
-        </li>
-        <li>
-          <a class="nav-link" href="/resources/">Resources</a>
-        </li>
-        <li>
-          <a class="nav-link active" href="/blog/">Blog</a>
-        </li>
-      </ul>
-    </nav>
-    <script>
-      $('nav .nav-open-btn').on('click', function(){
-        $('nav .nav-display').toggleClass('open');
-      })
-    </script>
-    <div class='content'>
-      <div class=' blog-listing'>
-        <div class='meta'>
-          <h1>Programming theory: Evaluation strategies</h1>
-          <p>Published on: November 25, 2015</p>
-          <p>Tags: <a href="/blog/tags/programming/">programming</a>, <a href="/blog/tags/intro-programming/">intro-programming</a>, and <a href="/blog/tags/theory/">theory</a></p>
-        </div>
-        <p>This is a topic I learned at university, but didn’t fully understand all the repercussions of until later. This post is to help you understand the differences and to help me remember them :)</p>
-        
-        <p>Let’s get started!</p>
-        
-        <p><em>But wait, what’s an “evaluation strategy”? I’ve never heard of that before!</em></p>
-        
-        <p>To be honest, I hadn’t either until I did some research for this post. The title for this group of concepts isn’t widely used, so knowing “evaluation strategy” probably won’t be super useful. However, the question all evaluation strategies are trying to answer is “how do parameters work in this particular language?” And it is <em>very</em> useful to know the answer to that question for your language.</p>
-        
-        <p>For example, this non-language below (which is purposefully a mismatch of ruby, python, and JS so it doesn’t look real):</p>
-        <pre class="highlight plaintext">a = 1&#x000A;&#x000A;function passBySomething(param):&#x000A;    param = 2&#x000A;end&#x000A;&#x000A;passBySomething(a)&#x000A;log(a) // what happens here?</pre>
-        <p>There are a few options that could happen, which is what today’s post is all about.</p>
-        
-        <p>Since I love metaphors and because we haven’t talked about how computer memory works yet (although it might show up soon!) we won’t cover “under the hood” details. Instead we will work with a story:</p>
-        
-        <blockquote>
-        <p>As you look around your apartment you decide you would like some new artwork to spruce the place up a bit. As it so happens you have a nice piece of canvas at home, all ready to go. You also have a friend, Fred, who is an artist and who’s agreed to make you something (that you’ll pay for, of course!).</p>
-        </blockquote>
-        
-        <p>With that in mind we’re ready to go! </p>
-        
-        <p><strong>Disclaimer:</strong> Because we’re not going into the details, nor are we looking at a particular language, these explanations might not apply 100% to your language. Please look up additional examples for your language.</p>
-        
-        <h2>Pass by reference</h2>
-        
-        <blockquote>
-        <p>You give your canvas to Fred and <strong>he paints it for you</strong> (thanks Fred!). Then he gives you the painted canvas back.</p>
-        </blockquote>
-        
-        <p>This is probably the easiest one to get our heads around, since it’s pretty much what happens in real life.</p>
-        
-        <p>Here’s what pass by reference would be in our pretend language:</p>
-        <pre class="highlight plaintext">canvas = [] // (this is a blank canvas)&#x000A;&#x000A;function artistFred(item):&#x000A;    paint(item) // notice the lack of return keyword&#x000A;end&#x000A;&#x000A;log(canvas) // [] (blank canvas)&#x000A;artistFred(canvas)&#x000A;log(canvas) // [*&amp;] (painted canvas)</pre>
-        <p>Seems straight forward enough, but what if Fred decides to do something different?</p>
-        
-        <blockquote>
-        <p>You give your canvas to Fred and <strong>he makes a sculpture instead</strong>. Then he gives you the sculpture back.</p>
-        </blockquote>
-        
-        <p>Again, this translates to the following “code”:</p>
-        <pre class="highlight plaintext">canvas = [] // (blank canvas)&#x000A;&#x000A;function artistFred(item):&#x000A;    item = new Sculpture()&#x000A;end&#x000A;&#x000A;log(canvas) // [] (blank canvas)&#x000A;artistFred(canvas)&#x000A;log(canvas) // V (new sculpture)</pre>
-        <p>Now you don’t have your original canvas (Fred replaced it entirely), you only have the sculpture Fred gave you.</p>
-        
-        <p>Pass by reference is incredibly trusting. You like Fred, and he’s a really good artist. If he says a sculpture would be better for your space you’re cool to go with that. If he paints the whole canvas one colour and tells you it’s art, you’ll believe him and put it up with pride. After all, Fred’s a good guy and you trust him.</p>
-        
-        <h3>More formal definition</h3>
-        
-        <p>In pass by reference the original variable (declared outside the function’s scope) can be changed in any way by the function. It can be altered or reassigned in the function and the new value will persist after the function has returned.</p>
-        
-        <h2>Pass by value</h2>
-        
-        <blockquote>
-        <p>You go to the store and buy a new piece of canvas that is exactly the same as the one you already own. You give the new canvas to Fred and <strong>he paints it for you</strong> (thanks Fred!). Then he gives you the painted canvas back, and you can choose to replace your blank canvas with the painted one, keep both, or just look at Fred’s work and decide not to keep it.</p>
-        </blockquote>
-        
-        <p>In our pretend coding language it would look something like this:</p>
-        <pre class="highlight plaintext">canvas = [] // (blank canvas)&#x000A;&#x000A;function artistFred(item):&#x000A;    return paint(item) // notice the new return keyword&#x000A;end&#x000A;&#x000A;log(canvas) // [] (blank canvas)&#x000A;artistFred(canvas) // look at the Fred’s work but decide not to keep it&#x000A;log(canvas) // [] (blank canvas)&#x000A;&#x000A;newCanvas = artistFred(canvas) // keep both&#x000A;log(canvas) // [] (blank canvas)&#x000A;log(newCanvas) // [*&amp;] (painted canvas)&#x000A;&#x000A;canvas = artistFred(canvas) // replace blank canvas with the painted one&#x000A;log(canvas) // [*&amp;] (painted canvas)</pre>
-        <p>Of course, Fred might decide to do something else entirely. Let’s look at another possibility:</p>
-        
-        <blockquote>
-        <p>You go to the store and buy a new piece of canvas that is exactly the same as the one you already own. You give the new canvas to Fred, but he throws away the new canvas and <strong>decides to make a sculpture instead.</strong> Then he gives you the sculpture back, and you can choose to replace your blank canvas with the sculpture, keep both, or just look at Fred’s work and decide not to keep it.</p>
-        </blockquote>
-        
-        <p>Again, in our fake language would be:</p>
-        <pre class="highlight plaintext">canvas = [] // (blank canvas)&#x000A;&#x000A;function artistFred(item):&#x000A;    item = new Sculpture()&#x000A;    return item&#x000A;end&#x000A;&#x000A;log(canvas) // [] (blank canvas)&#x000A;artistFred(canvas) // look at the Fred’s work but decide not to keep it&#x000A;log(canvas) // [] (blank canvas)&#x000A;&#x000A;newSculpture = artistFred(canvas) // keep both&#x000A;log(canvas) // [] (blank canvas)&#x000A;log(newSculpture) // V (sculpture)&#x000A;&#x000A;canvas = artistFred(canvas) // replace blank canvas with the sculpture&#x000A;log(canvas) // V (sculpture)</pre>
-        <p>I think of pass by value as slightly paranoid. Because really, you don’t trust Fred very much. You think he might make an ugly painting and you want to keep your piece of canvas safe in case that happens. Or you know he doesn’t follow directions well and you didn’t want that sculpture anyway...</p>
-        
-        <h3>More formal definition</h3>
-        
-        <p>In pass by value the original variable (declared outside the function’s scope) is not altered in any way by the function. It must be explicitly overwritten by reassigning it with the results of the function call.</p>
-        
-        <h2>Pass by sharing</h2>
-        
-        <p>This is a bit of a mix between pass by reference and pass by value.</p>
-        
-        <blockquote>
-        <p>You give your (only) canvas to Fred and <strong>he paints it for you</strong> (thanks Fred!). Then he gives you the painted canvas back.</p>
-        </blockquote>
-        
-        <p>So far this is exactly the same as pass by reference.</p>
-        <pre class="highlight plaintext">canvas = [] // (blank canvas)&#x000A;&#x000A;function artistFred(item):&#x000A;    paint(item)&#x000A;end&#x000A;&#x000A;log(canvas) // [] (blank canvas)&#x000A;artistFred(canvas)&#x000A;log(canvas) // [*&amp;] (painted canvas)</pre>
-        <p>But again, Fred might decide to do something different:</p>
-        
-        <blockquote>
-        <p>You give your (only) canvas to Fred. He sets the untouched canvas aside and <strong>makes a sculpture instead</strong>. Then he gives you the sculpture back, and you can choose to replace your blank canvas with the sculpture, keep both, or just look at Fred’s work and decide not to keep it.</p>
-        </blockquote>
-        <pre class="highlight plaintext">canvas = [] // (blank canvas)&#x000A;&#x000A;function artistFred(item):&#x000A;    item = new Sculpture()&#x000A;    return item&#x000A;end&#x000A;&#x000A;log(canvas) // [] (blank canvas)&#x000A;artistFred(canvas) // look at the Fred’s work but decide not to keep it&#x000A;log(canvas) // [] (blank canvas)&#x000A;&#x000A;newSculpture = artistFred(canvas) // keep both&#x000A;log(canvas) // [] (blank canvas)&#x000A;log(newSculpture) // V (sculpture)&#x000A;&#x000A;canvas = artistFred(canvas) // replace blank canvas with the painted one&#x000A;log(canvas) // V (sculpture)</pre>
-        <p>This version is exactly the same as pass by value.</p>
-        
-        <p>This is probably the most reasonable level of trust. You asked for a painting and a sculpture just won’t do. You trust Fred enough to paint a blank canvas, but you want your canvas to be usable if he decided to go off an make a sculpture instead. After all, you asked for a painting, not a sculpture.</p>
-        
-        <p><em>What gives? How can you mix and match like that?</em></p>
-        
-        <p>It all depends on if the canvas is altered or replaced. If Fred simply alters the canvas by painting it, then the original (blank) canvas is changed forever. However, if Fred wants to replace the canvas, he can’t throw it away, but must create a sculpture as an entirely new thing.</p>
-        
-        <h3>More formal definition</h3>
-        
-        <p>In pass by sharing the original variable (declared outside the function’s scope) can only be altered in so far as it is mutable. It cannot be reassigned inside the function call. Any changes to a mutable type will persist after the function returns. Any attempts to reassign a variable will not persist.</p>
-        
-        <h2>And one more thing...</h2>
-        
-        <p>People use the wrong name all. the. time. Officially most languages use pass by sharing. Per <a href="https://en.wikipedia.org/wiki/Evaluation_strategy#Call_by_sharing">Wikipedia</a>:</p>
-        
-        <blockquote>
-        <p>It is used by languages such as Python, Iota, Java (for object references), Ruby, JavaScript, Scheme, OCaml, AppleScript, and many others.</p>
-        </blockquote>
-        
-        <p>However, most people don’t say a particular language is “pass by sharing.” Unfortuantely “pass by reference” and “pass by value” are much more famous phrases than “pass by sharing” (probably because it’s what we’re taught at universities), and so people often use one of those terms even when it’s incorrect.</p>
-        
-        <p>This semantic mixing caused me a fair amount of confusion because JS shows some pass by reference qualities:</p>
-        <pre class="highlight plaintext">var obj = {a: 1};&#x000A;&#x000A;function referenceTest(input) {&#x000A;    input.a = 2;&#x000A;}&#x000A;&#x000A;console.log(obj); // logs {a: 1}&#x000A;referenceTest(obj);&#x000A;console.log(obj); // logs {a: 2}</pre>
-        <p>and some pass by value qualities:</p>
-        <pre class="highlight plaintext">var num = 1;&#x000A;&#x000A;function valueTest(input) {&#x000A;    input = 1;&#x000A;}&#x000A;&#x000A;console.log(num); // logs 1&#x000A;valueTest(num);&#x000A;console.log(num); // logs 1</pre>
-        <p>It took me a long time to realise that JS was pass by reference <em>sometimes</em> and pass by value <em>other times</em>. And I only learned today that this mix of of the two, which many common languages use, is called pass by sharing.</p>
-        
-        <h2>Resources</h2>
-        
-        <ul>
-        <li><a href="https://en.wikipedia.org/wiki/Evaluation_strategy">Wikipedia</a></li>
-        <li><a href="http://stackoverflow.com/questions/518000/is-javascript-a-pass-by-reference-or-pass-by-value-language">Stackoverflow</a></li>
-        <li>Examples and explanation for <a href="https://www.jeffknupp.com/blog/2012/11/13/is-python-callbyvalue-or-callbyreference-neither/">Python</a></li>
-        </ul>
-        <div class='recommended-reading'>
-          <h2>Recommended reading</h2>
-          <p>You might also like <a href="/blog/2014/js-document-load-vs-ready/">JS: document load vs document ready</a></p>
-        </div>
-        <div id='disqus_thread'>
-          <hr>
-          <script>
-            var disqus_shortname = 'lucybain';
-            (function() {
-                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-                dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-            })();
-          </script>
-          <noscript>
-            Please enable JavaScript to view the
-            <a href='http://disqus.com/?ref_noscript'>comments powered by Disqus.</a>
-          </noscript>
-          <a class='dsq-brlink' href='http://disqus.com'>
-            comments powered by
-            <span class='logo-disqus'>Disqus</span>
-          </a>
-          <script>
-            var disqus_shortname = 'lucybain';
-            (function () {
-                var s = document.createElement('script'); s.async = true;
-                s.type = 'text/javascript';
-                s.src = '//' + disqus_shortname + '.disqus.com/count.js';
-                (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
-            }());
-          </script>
-        </div>
-      </div>
+  </div>
+
     </div>
   </body>
   <script>
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-    
-    ga('create', 'UA-45866381-1', 'lucybain.com');
-    ga('send', 'pageview');
-  </script>
-</html>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  
+  ga('create', 'UA-45866381-1', 'lucybain.com');
+  ga('send', 'pageview');
+</script>
 
+</html>

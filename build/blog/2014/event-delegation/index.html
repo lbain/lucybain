@@ -1,112 +1,126 @@
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
   <head>
     <meta content='width=device-width, initial-scale=1' name='viewport'>
-    <meta charset='utf-8'>
-    <meta content='IE=edge,chrome=1' http-equiv='X-UA-Compatible'>
-    <meta content='js, interview-questions' name='keywords'>
-    <link href='/images/favicon.ico' rel='icon' type='image/ico'>
-    <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700|Source+Code+Pro' rel='stylesheet' type='text/css'>
-    <title>JS: event delegation</title>
-    <link href="/stylesheets/application.css" media="all" rel="stylesheet" type="text/css" />
-    <script src='//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js'></script>
-    <script src='//cdn.optimizely.com/js/4606022905.js'></script>
+<meta charset='utf-8'>
+<meta content='IE=edge,chrome=1' http-equiv='X-UA-Compatible'>
+<meta content='js, interview-questions' name='keywords'>
+<link href='/images/favicon.ico' rel='icon' type='image/ico'>
+<link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700|Source+Code+Pro' rel='stylesheet' type='text/css'>
+<title>JS: event delegation</title>
+<link href="/stylesheets/application.css" rel="stylesheet" media="all" />
+<script src='//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js'></script>
+<script src='//cdn.optimizely.com/js/4606022905.js'></script>
+
   </head>
-  <body>
+  <body class="">
     <nav>
-      <div class='nav-open-btn'>
-        <ul>
-          <li></li>
-          <li></li>
-          <li></li>
-        </ul>
+  <div class='nav-open-btn'>
+    <ul>
+      <li></li>
+      <li></li>
+      <li></li>
+    </ul>
+  </div>
+  <ul class='nav-display'>
+    <li>
+      <a href="/" class="nav-link">Me</a>
+    </li>
+    <li>
+      <a href="/resume/" class="nav-link">Resume</a>
+    </li>
+    <li>
+      <a href="/contact-me/" class="nav-link">Contact</a>
+    </li>
+    <li>
+      <a href="/resources/" class="nav-link">Resources</a>
+    </li>
+    <li>
+      <a href="/blog/" class="nav-link active">Blog</a>
+    </li>
+  </ul>
+</nav>
+<script>
+  $('nav .nav-open-btn').on('click', function(){
+    $('nav .nav-display').toggleClass('open');
+  })
+</script>
+
+    <div class="content">
+        <div class=" blog-listing">
+    <div class="meta">
+      <h1>
+        JS: event delegation
+      </h1>
+      <p>Published on: September 25, 2014</p>
+        <p>Tags: <a href="/blog/tags/js/">js</a> and <a href="/blog/tags/interview-questions/">interview-questions</a></p>
+    </div>
+    <p>I’m continuing my JS learning and found a list of <a href="https://github.com/darcyclarke/Front-end-Developer-Interview-Questions">front end interview questions</a>. There’s a section devoted to JS on there for me to work through. If they’re important enough to know in an interview, they’re important enough for me!</p>
+
+<h2>Explain event delegation</h2>
+
+<p>Well I’m glad you asked! As it turns out we covered this topic in my <a href="http://codesydney.com/2014-js/">JS study group</a> when I wrote my <a href="/code-sydney-work/tic-tac-toe/">Tic Tac Toe game.</a></p>
+
+<p>Event delegation is when you bind an event listener to a parent (or ancestor) element rather than the element(s) you are particularly interested in. When the event is triggered you can check the event target to make sure it was actually the triggered on the element of interest. In general this would be inefficient as you’re now listening to events on the parent, and have to filter out any that aren’t on the particular element of interest. However, event delegation is particularly useful when you have many siblings (or decedents of the ancestor) that you’re interested in.</p>
+
+<p>A simple example is as follows:</p>
+
+<pre><code>&lt;ul&gt;
+  &lt;li&gt; First list element &lt;/li&gt;
+  &lt;li&gt; Second list element &lt;/li&gt;
+  &lt;li&gt; Third list element &lt;/li&gt;
+&lt;/ul&gt;
+</code></pre>
+
+<p>While it would be possible to bind to the individual <code>li</code> elements it would require 3 listeners. Using event delegation it is possible to bind one event listener to the <code>ul</code> element and just check if the event’s target is an li element (very likely in this case...).</p>
+
+<p>For my Tic Tac Toe game I listened to all click events on the board, and then checked the particular cell they clicked on, rather than listening for events on all the cells at once.</p>
+
+
+      <div id="disqus_thread">
+        <hr/>
+        <script>
+
+          var disqus_shortname = 'lucybain';
+          (function() {
+              var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+              dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+              (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+          })();
+
+        </script>
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+        <a class="dsq-brlink" href="http://disqus.com">
+          comments powered by
+          <span class="logo-disqus">Disqus</span>
+        </a>
+        <script>
+
+          var disqus_shortname = 'lucybain';
+          (function () {
+              var s = document.createElement('script'); s.async = true;
+              s.type = 'text/javascript';
+              s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+              (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+          }());
+
+        </script>
       </div>
-      <ul class='nav-display'>
-        <li>
-          <a class="nav-link" href="/">Me</a>
-        </li>
-        <li>
-          <a class="nav-link" href="/resume/">Resume</a>
-        </li>
-        <li>
-          <a class="nav-link" href="/contact-me/">Contact</a>
-        </li>
-        <li>
-          <a class="nav-link" href="/resources/">Resources</a>
-        </li>
-        <li>
-          <a class="nav-link active" href="/blog/">Blog</a>
-        </li>
-      </ul>
-    </nav>
-    <script>
-      $('nav .nav-open-btn').on('click', function(){
-        $('nav .nav-display').toggleClass('open');
-      })
-    </script>
-    <div class='content'>
-      <div class=' blog-listing'>
-        <div class='meta'>
-          <h1>JS: event delegation</h1>
-          <p>Published on: September 25, 2014</p>
-          <p>Tags: <a href="/blog/tags/js/">js</a> and <a href="/blog/tags/interview-questions/">interview-questions</a></p>
-        </div>
-        <p>I’m continuing my JS learning and found a list of <a href="https://github.com/darcyclarke/Front-end-Developer-Interview-Questions">front end interview questions</a>. There’s a section devoted to JS on there for me to work through. If they’re important enough to know in an interview, they’re important enough for me!</p>
-        
-        <h2>Explain event delegation</h2>
-        
-        <p>Well I’m glad you asked! As it turns out we covered this topic in my <a href="http://codesydney.com/2014-js/">JS study group</a> when I wrote my <a href="/code-sydney-work/tic-tac-toe/">Tic Tac Toe game.</a></p>
-        
-        <p>Event delegation is when you bind an event listener to a parent (or ancestor) element rather than the element(s) you are particularly interested in. When the event is triggered you can check the event target to make sure it was actually the triggered on the element of interest. In general this would be inefficient as you’re now listening to events on the parent, and have to filter out any that aren’t on the particular element of interest. However, event delegation is particularly useful when you have many siblings (or decedents of the ancestor) that you’re interested in.</p>
-        
-        <p>A simple example is as follows:</p>
-        <pre class="highlight plaintext">&lt;ul&gt;&#x000A;  &lt;li&gt; First list element &lt;/li&gt;&#x000A;  &lt;li&gt; Second list element &lt;/li&gt;&#x000A;  &lt;li&gt; Third list element &lt;/li&gt;&#x000A;&lt;/ul&gt;</pre>
-        <p>While it would be possible to bind to the individual <code>li</code> elements it would require 3 listeners. Using event delegation it is possible to bind one event listener to the <code>ul</code> element and just check if the event’s target is an li element (very likely in this case...).</p>
-        
-        <p>For my Tic Tac Toe game I listened to all click events on the board, and then checked the particular cell they clicked on, rather than listening for events on all the cells at once.</p>
-        <div class='recommended-reading'>
-          <h2>Recommended reading</h2>
-          <p>You might also like <a href="/blog/2014/google-adwords-async/">JS: Async Google Adwords conversion</a></p>
-        </div>
-        <div id='disqus_thread'>
-          <hr>
-          <script>
-            var disqus_shortname = 'lucybain';
-            (function() {
-                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-                dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-            })();
-          </script>
-          <noscript>
-            Please enable JavaScript to view the
-            <a href='http://disqus.com/?ref_noscript'>comments powered by Disqus.</a>
-          </noscript>
-          <a class='dsq-brlink' href='http://disqus.com'>
-            comments powered by
-            <span class='logo-disqus'>Disqus</span>
-          </a>
-          <script>
-            var disqus_shortname = 'lucybain';
-            (function () {
-                var s = document.createElement('script'); s.async = true;
-                s.type = 'text/javascript';
-                s.src = '//' + disqus_shortname + '.disqus.com/count.js';
-                (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
-            }());
-          </script>
-        </div>
-      </div>
+  </div>
+
     </div>
   </body>
   <script>
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-    
-    ga('create', 'UA-45866381-1', 'lucybain.com');
-    ga('send', 'pageview');
-  </script>
-</html>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  
+  ga('create', 'UA-45866381-1', 'lucybain.com');
+  ga('send', 'pageview');
+</script>
 
+</html>

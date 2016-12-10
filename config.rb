@@ -14,7 +14,6 @@ activate :blog do |blog|
   # blog.sources = "{year}-{month}-{day}-{title}.html"
   blog.sources = "{year}/{month}-{day}-{title}.html"
   # blog.taglink = "tags/{tag}.html"
-  # blog.layout = "blog/layout"
   blog.layout = "layouts/blog"
   # blog.summary_separator = /(READMORE)/
   # blog.summary_length = 250
@@ -27,9 +26,7 @@ activate :blog do |blog|
   # blog.calendar_template = "blog/calendar.html"
 
   # Enable pagination
-  blog.paginate = true
-  blog.per_page = 10
-  blog.page_link = "page/{num}"
+  blog.paginate = false
 end
 
 page "/feed.xml", layout: false
@@ -40,7 +37,8 @@ page "/feed.xml", layout: false
   "cv/index.html" => "/resume/",
   "odin/index.html" => "/resources/js-jquery-study-group/",
   "js/index.html" => "/resources/js-jquery-study-group/",
-  'blog/2014/anonymous-functions/index.html' => '/blog/2014/js-anonymous-referenced-declared-functions/'
+  'blog/2014/anonymous-functions/index.html' => '/blog/2014/js-anonymous-referenced-declared-functions/',
+  'blog/2015/js-ways-to-call-functions/' => '/blog/2015/js-new-keyword-and-functions/'
 }.each do |from, to|
   redirect from, to: to
 end
@@ -87,16 +85,16 @@ set :markdown_engine, :redcarpet
 # activate :automatic_image_sizes
 
 # Reload the browser automatically whenever files change
-activate :livereload
+# activate :livereload
 
 # Tell Middleman to create a folder for each .html file
 activate :directory_indexes
 
 # Use middleman-syntax gem to color syntax
-activate :syntax
+# activate :syntax
 
 # Use middleman-alias gem to keep trak of renames
-activate :alias
+# activate :alias
 
 # Methods defined in the helpers block are available in templates
 helpers do

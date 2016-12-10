@@ -1,247 +1,348 @@
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
   <head>
     <meta content='width=device-width, initial-scale=1' name='viewport'>
-    <meta charset='utf-8'>
-    <meta content='IE=edge,chrome=1' http-equiv='X-UA-Compatible'>
-    <meta content="A look into ReactJS's props and state work, with lots of examples!" name='description'>
-    <meta content='reactjs, js' name='keywords'>
-    <link href='/images/favicon.ico' rel='icon' type='image/ico'>
-    <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700|Source+Code+Pro' rel='stylesheet' type='text/css'>
-    <title>ReactJS: Props vs. State</title>
-    <link href="/stylesheets/application.css" media="all" rel="stylesheet" type="text/css" />
-    <script src='//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js'></script>
-    <script src='//cdn.optimizely.com/js/4606022905.js'></script>
+<meta charset='utf-8'>
+<meta content='IE=edge,chrome=1' http-equiv='X-UA-Compatible'>
+<meta content="A look into ReactJS's props and state work, with lots of examples!" name='description'>
+<meta content='reactjs, js' name='keywords'>
+<link href='/images/favicon.ico' rel='icon' type='image/ico'>
+<link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700|Source+Code+Pro' rel='stylesheet' type='text/css'>
+<title>ReactJS: Props vs. State</title>
+<link href="/stylesheets/application.css" rel="stylesheet" media="all" />
+<script src='//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js'></script>
+<script src='//cdn.optimizely.com/js/4606022905.js'></script>
+
   </head>
-  <body>
+  <body class="">
     <nav>
-      <div class='nav-open-btn'>
-        <ul>
-          <li></li>
-          <li></li>
-          <li></li>
-        </ul>
+  <div class='nav-open-btn'>
+    <ul>
+      <li></li>
+      <li></li>
+      <li></li>
+    </ul>
+  </div>
+  <ul class='nav-display'>
+    <li>
+      <a href="/" class="nav-link">Me</a>
+    </li>
+    <li>
+      <a href="/resume/" class="nav-link">Resume</a>
+    </li>
+    <li>
+      <a href="/contact-me/" class="nav-link">Contact</a>
+    </li>
+    <li>
+      <a href="/resources/" class="nav-link">Resources</a>
+    </li>
+    <li>
+      <a href="/blog/" class="nav-link active">Blog</a>
+    </li>
+  </ul>
+</nav>
+<script>
+  $('nav .nav-open-btn').on('click', function(){
+    $('nav .nav-display').toggleClass('open');
+  })
+</script>
+
+    <div class="content">
+        <div class=" blog-listing">
+    <div class="meta">
+      <h1>
+        ReactJS: Props vs. State
+      </h1>
+      <p>Published on: November 27, 2016</p>
+        <p>Tags: <a href="/blog/tags/reactjs/">reactjs</a> and <a href="/blog/tags/js/">js</a></p>
+    </div>
+    <p>I’ve been using ReactJS with Redux at work recently, and I have quite a few questions about how it all fits together. I figured I’d start small, with just some React questions and see how it goes.</p>
+
+<p>This “props vs. state” question is <a href="http://stackoverflow.com/search?q=%5Breactjs%5D+state+props">pretty common</a> for new React devs - they look so similar, but are used differently. So what’s going on there?</p>
+
+<h2>Props</h2>
+
+<p><em>What does “props” even mean?</em></p>
+
+<p>To get the jargon out of the way, “props” is short for “properties” so nothing particularly fancy there.</p>
+
+<p><em>Well, all right then. What makes props special?</em></p>
+
+<h3><code>props</code> are passed into the component</h3>
+
+<p>Here’s an example (code from the <a href="https://facebook.github.io/react/docs/components-and-props.html">React Guide</a>):</p>
+
+<pre><code>class Welcome extends React.Component {
+  render() {
+    return &lt;h1&gt;Hello {this.props.name}&lt;/h1&gt;;
+  }
+}
+
+const element = &lt;Welcome name=&quot;Sara&quot; /&gt;;
+</code></pre>
+
+<p>You can play with this on <a href="https://codepen.io/anon/pen/aByERM?editors=1011">CodePen</a>.</p>
+
+<p>The line <code>&lt;Welcome name=&quot;Sara&quot; /&gt;</code> creates a property <code>name</code> with value <code>&quot;Sara&quot;</code>. </p>
+
+<p><em>That sounds kinda like a function call...</em></p>
+
+<p>Yep, the property is passed to the component, similar to how an argument is passed to a function. In fact, we could even rewrite the component to be simpler:</p>
+
+<pre><code>function Welcome(props) {
+  return &lt;h1&gt;Hello {props.name}&lt;/h1&gt;;
+}
+</code></pre>
+
+<p>Now the “props as arguments” comparison is even clearer.</p>
+
+<p><em>OK, so props “come from above.”</em></p>
+
+<p>Often, but not always. A component can also have default props, so if a prop isn’t passed through it can still be set.</p>
+
+<p>We can make the <code>name</code> property optional by adding <code>defaultProps</code> to the <code>Welcome</code> class:</p>
+
+<pre><code>class Welcome extends React.Component {
+  render() {
+    return &lt;h1&gt;Hello {this.props.name}&lt;/h1&gt;;
+  }
+}
+
+Welcome.defaultProps = {
+  name: &quot;world&quot;,
+};
+</code></pre>
+
+<p>If <code>Welcome</code> is called without a name it will simply render <code>&lt;h1&gt; Hello world&lt;/h1&gt;</code>.</p>
+
+<p>So <code>props</code> can come from the parent, or can be set by the component itself.</p>
+
+<h3><code>props</code> should not change</h3>
+
+<p><em>What?! I’ve totally done that!</em></p>
+
+<p>You used to be able to change <code>props</code> with <code>setProps</code> and <code>replaceProps</code> but these have been <a href="https://facebook.github.io/react/blog/2015/10/07/react-v0.14.html#new-deprecations-introduced-with-a-warning">deprecated</a>. During a component’s life cycle <code>props</code> should not change (consider them immutable).</p>
+
+<p><em>Fine, I won’t change props any more.</em></p>
+
+<p>Since <code>props</code> are passed in, and they cannot change, you can think of any React component that only uses <code>props</code> (and not <code>state</code>) as “pure,” that is, it will always render the same output given the same input. This makes them really easy to test - win!</p>
+
+<h2>State</h2>
+
+<p>Like <code>props</code>, <code>state</code> holds information about the component. However, the kind of information and how it is handled is different.</p>
+
+<p>By default, a component has no state. The <code>Welcome</code> component from above is stateless:</p>
+
+<pre><code>function Welcome(props) {
+  return &lt;h1&gt;Hello {props.name}&lt;/h1&gt;;
+}
+</code></pre>
+
+<p><em>So when would you use state?</em></p>
+
+<p>When a component needs to keep track of information between renderings the component <em>itself</em> can create, update, and use state.</p>
+
+<p>We’ll be working with a fairly simple component to see <code>state</code> working in action. We’ve got a button that keeps track of how many times you’ve clicked it.</p>
+
+<p><em>Yawn...</em></p>
+
+<p>I know, but here’s the code:</p>
+
+<pre><code>class Button extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      count: 0,
+    };
+  }
+
+  updateCount() {
+    const newCount = this.state.count + 1;
+    this.setState({
+      count: newCount
+    });
+  }
+
+  render() {
+    return (&lt;button
+              onClick={this.updateCount.bind(this)}
+            &gt;
+              Clicked {this.state.count} times
+            &lt;/button&gt;);
+  }
+}
+</code></pre>
+
+<p>You can play with this code on <a href="https://codepen.io/anon/pen/WoEdNx?editors=1011">CodePen</a>.</p>
+
+<p><em>Gah! There’s so much there! What’s going on?</em></p>
+
+<p>So now we’re working with <code>state</code> things are a bit more complicated. But we’ll break it down to make it more understandable.</p>
+
+<p>Our first real difference between <code>props</code> and <code>state</code> is that...</p>
+
+<h3><code>state</code> is created in the component</h3>
+
+<p>Let’s look at the <code>constructor</code> method:</p>
+
+<pre><code>constructor() {
+  super();
+  this.state = {
+    count: 0,
+  };
+}
+</code></pre>
+
+<p>This is where <code>state</code> gets it’s initial data. The inital data can be hard coded (as above), but it can also come from <code>props</code>.</p>
+
+<p><em>Well that’s just confusing.</em></p>
+
+<p>It is, I know. But it makes sense - you can’t change <code>props</code>, but it’s pretty reasonable to want to do stuff to the data that a component receives. That’s where state comes in.</p>
+
+<p>Moving on brings us to our second difference...</p>
+
+<h3><code>state</code> is changeable</h3>
+
+<p>Here’s <code>updateCount</code> again:</p>
+
+<pre><code>updateCount() {
+  const newCount = this.state.count + 1;
+  this.setState({
+    count: newCount
+  });
+}
+</code></pre>
+
+<p>We change the state to keep track of the total number of clicks. The important bit is <code>setState</code> - this updates the state object <strong>and</strong> re-renders the component.</p>
+
+<p><em>Boom!</em></p>
+
+<p>Yeah, this is pretty great of React to do, no need for us to explicitly re-render or worry about anything. React will take care of it all!</p>
+
+<p><strong>Warning!</strong></p>
+
+<p>It is tempting to write <code>this.state.count = newCount</code>. <em>Do not do this!</em> React cannot listen to the state getting updated in this way, so your component will not re-render. Always use <code>setState</code>.</p>
+
+<p>And finally, <code>render</code></p>
+
+<pre><code>render() {
+  return (&lt;button
+            onClick={this.updateCount.bind(this)}
+          &gt;
+            Clicked {this.state.count} times
+          &lt;/button&gt;);
+}
+</code></pre>
+
+<p><code>onClick={this.updateCount.bind(this)}</code> means that when the button is clicked the <code>updateCount</code> method will be called. We need to use <a href="/blog/2014/function-prototype-bind/">bind</a> so <code>updateCount</code> will have access to this instance’s <code>state</code>.</p>
+
+<p>The text rendered in the button is <code>Clicked {this.state.count} times</code>, which will use whatever <code>this.state.count</code> is at the time of rendering.</p>
+
+<p><em>Phew! That was a lot! Can I have it one more time?</em></p>
+
+<p>Sure thing, let’s look at the whole flow:</p>
+
+<ol>
+<li><p>The component is initialised and <code>state.count</code> is set to 0</p>
+
+<pre><code>this.state = {
+  count: 0,
+};
+</code></pre></li>
+<li><p>The component renders, with “Clicked 0 times” as the button text</p>
+
+<pre><code>Clicked {this.state.count} times
+</code></pre></li>
+<li><p>The user clicks the button</p>
+
+<p><em>click!</em></p></li>
+<li><p><code>updateCount</code> is called, bound to this instance of the component</p>
+
+<pre><code>onClick={this.updateCount.bind(this)}
+</code></pre></li>
+<li><p><code>updateCount</code> calls <code>setState</code> with <code>{count: 1}</code> as the argument</p>
+
+<pre><code>this.setState({
+count: newCount
+});
+</code></pre></li>
+<li><p><code>setState</code> triggers a call to <code>render</code></p>
+
+<p><em>React magic!</em></p></li>
+<li><p>The component renders, with “Clicked 1 times” as the button text</p>
+
+<pre><code>Clicked {this.state.count} times
+</code></pre></li>
+</ol>
+
+<h2>Review</h2>
+
+<p>While <code>props</code> and <code>state</code> both hold information relating to the component, they are used differently and should be kept separate.</p>
+
+<p><code>props</code> contains information set by the parent component (although defaults can be set) and should not be changed.</p>
+
+<p><code>state</code> contains “private” information for the component to initialise, change, and use on it’s own.</p>
+
+<blockquote>
+<p>... props are a way of passing data from parent to child. ... State is reserved only for interactivity, that is, data that changes over time. </p>
+</blockquote>
+
+<p>– Facebook&#39;s <a href="https://facebook.github.io/react/docs/thinking-in-react.html">React Guide</a>.</p>
+
+<h2>Resources</h2>
+
+<ul>
+<li>Amazing guide on <a href="https://github.com/uberVU/react-guide/blob/master/props-vs-state.md">state vs. props</a></li>
+<li>Stackoverflow <a href="http://stackoverflow.com/questions/23481061/reactjs-state-vs-prop">question</a></li>
+<li>Docs on <a href="https://facebook.github.io/react/docs/components-and-props.html">Components and Props</a></li>
+<li>Docs on <a href="https://facebook.github.io/react/docs/state-and-lifecycle.html">State and Lifecycle</a></li>
+</ul>
+
+
+      <div id="disqus_thread">
+        <hr/>
+        <script>
+
+          var disqus_shortname = 'lucybain';
+          (function() {
+              var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+              dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+              (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+          })();
+
+        </script>
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+        <a class="dsq-brlink" href="http://disqus.com">
+          comments powered by
+          <span class="logo-disqus">Disqus</span>
+        </a>
+        <script>
+
+          var disqus_shortname = 'lucybain';
+          (function () {
+              var s = document.createElement('script'); s.async = true;
+              s.type = 'text/javascript';
+              s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+              (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+          }());
+
+        </script>
       </div>
-      <ul class='nav-display'>
-        <li>
-          <a class="nav-link" href="/">Me</a>
-        </li>
-        <li>
-          <a class="nav-link" href="/resume/">Resume</a>
-        </li>
-        <li>
-          <a class="nav-link" href="/contact-me/">Contact</a>
-        </li>
-        <li>
-          <a class="nav-link" href="/resources/">Resources</a>
-        </li>
-        <li>
-          <a class="nav-link active" href="/blog/">Blog</a>
-        </li>
-      </ul>
-    </nav>
-    <script>
-      $('nav .nav-open-btn').on('click', function(){
-        $('nav .nav-display').toggleClass('open');
-      })
-    </script>
-    <div class='content'>
-      <div class=' blog-listing'>
-        <div class='meta'>
-          <h1>ReactJS: Props vs. State</h1>
-          <p>Published on: November 27, 2016</p>
-          <p>Tags: <a href="/blog/tags/reactjs/">reactjs</a> and <a href="/blog/tags/js/">js</a></p>
-        </div>
-        <p>I’ve been using ReactJS with Redux at work recently, and I have quite a few questions about how it all fits together. I figured I’d start small, with just some React questions and see how it goes.</p>
-        
-        <p>This “props vs. state” question is <a href="http://stackoverflow.com/search?q=%5Breactjs%5D+state+props">pretty common</a> for new React devs - they look so similar, but are used differently. So what’s going on there?</p>
-        
-        <h2>Props</h2>
-        
-        <p><em>What does “props” even mean?</em></p>
-        
-        <p>To get the jargon out of the way, “props” is short for “properties” so nothing particularly fancy there.</p>
-        
-        <p><em>Well, all right then. What makes props special?</em></p>
-        
-        <h3><code>props</code> are passed into the component</h3>
-        
-        <p>Here’s an example (code from the <a href="https://facebook.github.io/react/docs/components-and-props.html">React Guide</a>):</p>
-        <pre class="highlight plaintext">class Welcome extends React.Component {&#x000A;  render() {&#x000A;    return &lt;h1&gt;Hello {this.props.name}&lt;/h1&gt;;&#x000A;  }&#x000A;}&#x000A;&#x000A;const element = &lt;Welcome name="Sara" /&gt;;</pre>
-        <p>You can play with this on <a href="https://codepen.io/anon/pen/aByERM?editors=1011">CodePen</a>.</p>
-        
-        <p>The line <code>&lt;Welcome name=&quot;Sara&quot; /&gt;</code> creates a property <code>name</code> with value <code>&quot;Sara&quot;</code>. </p>
-        
-        <p><em>That sounds kinda like a function call...</em></p>
-        
-        <p>Yep, the property is passed to the component, similar to how an argument is passed to a function. In fact, we could even rewrite the component to be simpler:</p>
-        <pre class="highlight plaintext">function Welcome(props) {&#x000A;  return &lt;h1&gt;Hello {props.name}&lt;/h1&gt;;&#x000A;}</pre>
-        <p>Now the “props as arguments” comparison is even clearer.</p>
-        
-        <p><em>OK, so props “come from above.”</em></p>
-        
-        <p>Often, but not always. A component can also have default props, so if a prop isn’t passed through it can still be set.</p>
-        
-        <p>We can make the <code>name</code> property optional by adding <code>defaultProps</code> to the <code>Welcome</code> class:</p>
-        <pre class="highlight plaintext">class Welcome extends React.Component {&#x000A;  render() {&#x000A;    return &lt;h1&gt;Hello {this.props.name}&lt;/h1&gt;;&#x000A;  }&#x000A;}&#x000A;&#x000A;Welcome.defaultProps = {&#x000A;  name: "world",&#x000A;};</pre>
-        <p>If <code>Welcome</code> is called without a name it will simply render <code>&lt;h1&gt; Hello world&lt;/h1&gt;</code>.</p>
-        
-        <p>So <code>props</code> can come from the parent, or can be set by the component itself.</p>
-        
-        <h3><code>props</code> should not change</h3>
-        
-        <p><em>What?! I’ve totally done that!</em></p>
-        
-        <p>You used to be able to change <code>props</code> with <code>setProps</code> and <code>replaceProps</code> but these have been <a href="https://facebook.github.io/react/blog/2015/10/07/react-v0.14.html#new-deprecations-introduced-with-a-warning">deprecated</a>. During a component’s life cycle <code>props</code> should not change (consider them immutable).</p>
-        
-        <p><em>Fine, I won’t change props any more.</em></p>
-        
-        <p>Since <code>props</code> are passed in, and they cannot change, you can think of any React component that only uses <code>props</code> (and not <code>state</code>) as “pure,” that is, it will always render the same output given the same input. This makes them really easy to test - win!</p>
-        
-        <h2>State</h2>
-        
-        <p>Like <code>props</code>, <code>state</code> holds information about the component. However, the kind of information and how it is handled is different.</p>
-        
-        <p>By default, a component has no state. The <code>Welcome</code> component from above is stateless:</p>
-        <pre class="highlight plaintext">function Welcome(props) {&#x000A;  return &lt;h1&gt;Hello {props.name}&lt;/h1&gt;;&#x000A;}</pre>
-        <p><em>So when would you use state?</em></p>
-        
-        <p>When a component needs to keep track of information between renderings the component <em>itself</em> can create, update, and use state.</p>
-        
-        <p>We’ll be working with a fairly simple component to see <code>state</code> working in action. We’ve got a button that keeps track of how many times you’ve clicked it.</p>
-        
-        <p><em>Yawn...</em></p>
-        
-        <p>I know, but here’s the code:</p>
-        <pre class="highlight plaintext">class Button extends React.Component {&#x000A;  constructor() {&#x000A;    super();&#x000A;    this.state = {&#x000A;      count: 0,&#x000A;    };&#x000A;  }&#x000A;&#x000A;  updateCount() {&#x000A;    const newCount = this.state.count + 1;&#x000A;    this.setState({&#x000A;      count: newCount&#x000A;    });&#x000A;  }&#x000A;&#x000A;  render() {&#x000A;    return (&lt;button&#x000A;              onClick={this.updateCount.bind(this)}&#x000A;            &gt;&#x000A;              Clicked {this.state.count} times&#x000A;            &lt;/button&gt;);&#x000A;  }&#x000A;}</pre>
-        <p>You can play with this code on <a href="https://codepen.io/anon/pen/WoEdNx?editors=1011">CodePen</a>.</p>
-        
-        <p><em>Gah! There’s so much there! What’s going on?</em></p>
-        
-        <p>So now we’re working with <code>state</code> things are a bit more complicated. But we’ll break it down to make it more understandable.</p>
-        
-        <p>Our first real difference between <code>props</code> and <code>state</code> is that...</p>
-        
-        <h3><code>state</code> is created in the component</h3>
-        
-        <p>Let’s look at the <code>constructor</code> method:</p>
-        <pre class="highlight plaintext">constructor() {&#x000A;  super();&#x000A;  this.state = {&#x000A;    count: 0,&#x000A;  };&#x000A;}</pre>
-        <p>This is where <code>state</code> gets it’s initial data. The inital data can be hard coded (as above), but it can also come from <code>props</code>.</p>
-        
-        <p><em>Well that’s just confusing.</em></p>
-        
-        <p>It is, I know. But it makes sense - you can’t change <code>props</code>, but it’s pretty reasonable to want to do stuff to the data that a component receives. That’s where state comes in.</p>
-        
-        <p>Moving on brings us to our second difference...</p>
-        
-        <h3><code>state</code> is changeable</h3>
-        
-        <p>Here’s <code>updateCount</code> again:</p>
-        <pre class="highlight plaintext">updateCount() {&#x000A;  const newCount = this.state.count + 1;&#x000A;  this.setState({&#x000A;    count: newCount&#x000A;  });&#x000A;}</pre>
-        <p>We change the state to keep track of the total number of clicks. The important bit is <code>setState</code> - this updates the state object <strong>and</strong> re-renders the component.</p>
-        
-        <p><em>Boom!</em></p>
-        
-        <p>Yeah, this is pretty great of React to do, no need for us to explicitly re-render or worry about anything. React will take care of it all!</p>
-        
-        <p><strong>Warning!</strong></p>
-        
-        <p>It is tempting to write <code>this.state.count = newCount</code>. <em>Do not do this!</em> React cannot listen to the state getting updated in this way, so your component will not re-render. Always use <code>setState</code>.</p>
-        
-        <p>And finally, <code>render</code></p>
-        <pre class="highlight plaintext">render() {&#x000A;  return (&lt;button&#x000A;            onClick={this.updateCount.bind(this)}&#x000A;          &gt;&#x000A;            Clicked {this.state.count} times&#x000A;          &lt;/button&gt;);&#x000A;}</pre>
-        <p><code>onClick={this.updateCount.bind(this)}</code> means that when the button is clicked the <code>updateCount</code> method will be called. We need to use <a href="/blog/2014/function-prototype-bind/">bind</a> so <code>updateCount</code> will have access to this instance’s <code>state</code>.</p>
-        
-        <p>The text rendered in the button is <code>Clicked {this.state.count} times</code>, which will use whatever <code>this.state.count</code> is at the time of rendering.</p>
-        
-        <p><em>Phew! That was a lot! Can I have it one more time?</em></p>
-        
-        <p>Sure thing, let’s look at the whole flow:</p>
-        
-        <ol>
-        <li><p>The component is initialised and <code>state.count</code> is set to 0</p>
-        <pre class="highlight plaintext">this.state = {&#x000A;  count: 0,&#x000A;};</pre></li>
-        <li><p>The component renders, with “Clicked 0 times” as the button text</p>
-        <pre class="highlight plaintext">Clicked {this.state.count} times</pre></li>
-        <li><p>The user clicks the button</p>
-        
-        <p><em>click!</em></p></li>
-        <li><p><code>updateCount</code> is called, bound to this instance of the component</p>
-        <pre class="highlight plaintext">onClick={this.updateCount.bind(this)}</pre></li>
-        <li><p><code>updateCount</code> calls <code>setState</code> with <code>{count: 1}</code> as the argument</p>
-        <pre class="highlight plaintext">this.setState({&#x000A;count: newCount&#x000A;});</pre></li>
-        <li><p><code>setState</code> triggers a call to <code>render</code></p>
-        
-        <p><em>React magic!</em></p></li>
-        <li><p>The component renders, with “Clicked 1 times” as the button text</p>
-        <pre class="highlight plaintext">Clicked {this.state.count} times</pre></li>
-        </ol>
-        
-        <h2>Review</h2>
-        
-        <p>While <code>props</code> and <code>state</code> both hold information relating to the component, they are used differently and should be kept separate.</p>
-        
-        <p><code>props</code> contains information set by the parent component (although defaults can be set) and should not be changed.</p>
-        
-        <p><code>state</code> contains “private” information for the component to initialise, change, and use on it’s own.</p>
-        
-        <blockquote>
-        <p>... props are a way of passing data from parent to child. ... State is reserved only for interactivity, that is, data that changes over time. </p>
-        </blockquote>
-        
-        <p>– Facebook&#39;s <a href="https://facebook.github.io/react/docs/thinking-in-react.html">React Guide</a>.</p>
-        
-        <h2>Resources</h2>
-        
-        <ul>
-        <li>Amazing guide on <a href="https://github.com/uberVU/react-guide/blob/master/props-vs-state.md">state vs. props</a></li>
-        <li>Stackoverflow <a href="http://stackoverflow.com/questions/23481061/reactjs-state-vs-prop">question</a></li>
-        <li>Docs on <a href="https://facebook.github.io/react/docs/components-and-props.html">Components and Props</a></li>
-        <li>Docs on <a href="https://facebook.github.io/react/docs/state-and-lifecycle.html">State and Lifecycle</a></li>
-        </ul>
-        <div class='recommended-reading'>
-          <h2>Recommended reading</h2>
-          <p>You might also like <a href="/blog/2014/null-undefined-undeclared/">JS: null, undefined, and undeclared</a></p>
-        </div>
-        <div id='disqus_thread'>
-          <hr>
-          <script>
-            var disqus_shortname = 'lucybain';
-            (function() {
-                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-                dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-            })();
-          </script>
-          <noscript>
-            Please enable JavaScript to view the
-            <a href='http://disqus.com/?ref_noscript'>comments powered by Disqus.</a>
-          </noscript>
-          <a class='dsq-brlink' href='http://disqus.com'>
-            comments powered by
-            <span class='logo-disqus'>Disqus</span>
-          </a>
-          <script>
-            var disqus_shortname = 'lucybain';
-            (function () {
-                var s = document.createElement('script'); s.async = true;
-                s.type = 'text/javascript';
-                s.src = '//' + disqus_shortname + '.disqus.com/count.js';
-                (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
-            }());
-          </script>
-        </div>
-      </div>
+  </div>
+
     </div>
   </body>
   <script>
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-    
-    ga('create', 'UA-45866381-1', 'lucybain.com');
-    ga('send', 'pageview');
-  </script>
-</html>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  
+  ga('create', 'UA-45866381-1', 'lucybain.com');
+  ga('send', 'pageview');
+</script>
 
+</html>

@@ -1,132 +1,178 @@
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
   <head>
     <meta content='width=device-width, initial-scale=1' name='viewport'>
-    <meta charset='utf-8'>
-    <meta content='IE=edge,chrome=1' http-equiv='X-UA-Compatible'>
-    <meta content='js, interview-questions' name='keywords'>
-    <link href='/images/favicon.ico' rel='icon' type='image/ico'>
-    <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700|Source+Code+Pro' rel='stylesheet' type='text/css'>
-    <title>JS: Describe event bubbling</title>
-    <link href="/stylesheets/application.css" media="all" rel="stylesheet" type="text/css" />
-    <script src='//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js'></script>
-    <script src='//cdn.optimizely.com/js/4606022905.js'></script>
+<meta charset='utf-8'>
+<meta content='IE=edge,chrome=1' http-equiv='X-UA-Compatible'>
+<meta content='js, interview-questions' name='keywords'>
+<link href='/images/favicon.ico' rel='icon' type='image/ico'>
+<link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700|Source+Code+Pro' rel='stylesheet' type='text/css'>
+<title>JS: Describe event bubbling</title>
+<link href="/stylesheets/application.css" rel="stylesheet" media="all" />
+<script src='//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js'></script>
+<script src='//cdn.optimizely.com/js/4606022905.js'></script>
+
   </head>
-  <body>
+  <body class="">
     <nav>
-      <div class='nav-open-btn'>
-        <ul>
-          <li></li>
-          <li></li>
-          <li></li>
-        </ul>
+  <div class='nav-open-btn'>
+    <ul>
+      <li></li>
+      <li></li>
+      <li></li>
+    </ul>
+  </div>
+  <ul class='nav-display'>
+    <li>
+      <a href="/" class="nav-link">Me</a>
+    </li>
+    <li>
+      <a href="/resume/" class="nav-link">Resume</a>
+    </li>
+    <li>
+      <a href="/contact-me/" class="nav-link">Contact</a>
+    </li>
+    <li>
+      <a href="/resources/" class="nav-link">Resources</a>
+    </li>
+    <li>
+      <a href="/blog/" class="nav-link active">Blog</a>
+    </li>
+  </ul>
+</nav>
+<script>
+  $('nav .nav-open-btn').on('click', function(){
+    $('nav .nav-display').toggleClass('open');
+  })
+</script>
+
+    <div class="content">
+        <div class=" blog-listing">
+    <div class="meta">
+      <h1>
+        JS: Describe event bubbling
+      </h1>
+      <p>Published on: November 20, 2014</p>
+        <p>Tags: <a href="/blog/tags/js/">js</a> and <a href="/blog/tags/interview-questions/">interview-questions</a></p>
+    </div>
+    <h2>Describe event bubbling</h2>
+
+<p>Event bubbling occurs when a user interacts with a nested element and the event propagates up (“bubbles”) through all of the ancestor elements.</p>
+
+<p><strong>HTML</strong></p>
+
+<pre><code>&lt;div class=&quot;ancestor&quot;&gt;
+  &lt;div class=&quot;parent&quot;&gt;
+    &lt;button&gt; Click me! &lt;/button&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+
+<p>When a user clicks the button the event first fires on the button itself, then bubbles up to the parent div, and then up to the ancestor div. The event would continue to bubble up through all the ancestors, until it finally reaches the <code>document</code>.</p>
+
+<p><strong>Javascript</strong></p>
+
+<pre><code>$( &quot;button&quot; ).click(function(event) {
+  console.log( &quot;button was clicked!&quot; );
+});
+
+$( &quot;.parent&quot; ).click(function(event) {
+  console.log( &quot;child element was clicked!&quot; );
+});
+
+$( &quot;.ancestor&quot; ).click(function(event) {
+  console.log( &quot;descendant element was clicked!&quot; );
+});
+</code></pre>
+
+<p>When the user clicks the button the events starts at the button element, so <code>button was clicked!</code> is logged to the console. Then <code>child element was clicked!</code> and finally <code>descendant element was clicked!</code> are logged as well.</p>
+
+<p><strong>Stopping event bubbling</strong></p>
+
+<p><em>What if you don’t want the event to bubble up?</em></p>
+
+<p>A fair question. Often you only want the event to trigger on the element itself, without bothering all its ancestors. Consider the following JS (with the same HTML as above):</p>
+
+<pre><code>$( &quot;button&quot; ).click(function(event) {
+  console.log( &quot;button was clicked!&quot; );
+});
+
+$( &quot;.parent, .ancestor&quot; ).click(function(event) {
+  console.log( &quot;don&#39;t click me!&quot; );
+});
+</code></pre>
+
+<p>As it stands, the <code>don&#39;t click me!</code> will get logged when the user clicks on the button, even though they haven’t actually clicked on the parent or ancestor element.</p>
+
+<p>You have to explicitly stop event propagation (bubbling) if you don’t want it.</p>
+
+<pre><code>$( &quot;button&quot; ).click(function(event) {
+  event.stopPropagation(); // &lt;-- this line here!
+  console.log( &quot;button was clicked!&quot; );
+});
+
+$( &quot;.parent, .ancestor&quot; ).click(function(event) {
+  console.log( &quot;don&#39;t click me!&quot; );
+});
+</code></pre>
+
+<p>Now the event propagation stops on the first element of the bubbling sequence. You can also stop the bubbling later on if you&#39;d like, it doesn’t have to be on the first element.</p>
+
+<p><strong>Related</strong></p>
+
+<p>The reverse of events that bubble up are events that trickle down. Originally some browsers thought events should trickle down from the ancestors to the element that was interacted with. Now all browsers implenet bubble up events, and some support trickle down.</p>
+
+<p><strong>References</strong></p>
+
+<ul>
+<li><a href="http://www.quirksmode.org/js/events_order.html">Quirks Mode</a></li>
+</ul>
+
+
+      <div id="disqus_thread">
+        <hr/>
+        <script>
+
+          var disqus_shortname = 'lucybain';
+          (function() {
+              var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+              dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+              (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+          })();
+
+        </script>
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+        <a class="dsq-brlink" href="http://disqus.com">
+          comments powered by
+          <span class="logo-disqus">Disqus</span>
+        </a>
+        <script>
+
+          var disqus_shortname = 'lucybain';
+          (function () {
+              var s = document.createElement('script'); s.async = true;
+              s.type = 'text/javascript';
+              s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+              (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+          }());
+
+        </script>
       </div>
-      <ul class='nav-display'>
-        <li>
-          <a class="nav-link" href="/">Me</a>
-        </li>
-        <li>
-          <a class="nav-link" href="/resume/">Resume</a>
-        </li>
-        <li>
-          <a class="nav-link" href="/contact-me/">Contact</a>
-        </li>
-        <li>
-          <a class="nav-link" href="/resources/">Resources</a>
-        </li>
-        <li>
-          <a class="nav-link active" href="/blog/">Blog</a>
-        </li>
-      </ul>
-    </nav>
-    <script>
-      $('nav .nav-open-btn').on('click', function(){
-        $('nav .nav-display').toggleClass('open');
-      })
-    </script>
-    <div class='content'>
-      <div class=' blog-listing'>
-        <div class='meta'>
-          <h1>JS: Describe event bubbling</h1>
-          <p>Published on: November 20, 2014</p>
-          <p>Tags: <a href="/blog/tags/js/">js</a> and <a href="/blog/tags/interview-questions/">interview-questions</a></p>
-        </div>
-        <h2>Describe event bubbling</h2>
-        
-        <p>Event bubbling occurs when a user interacts with a nested element and the event propagates up (“bubbles”) through all of the ancestor elements.</p>
-        
-        <p><strong>HTML</strong></p>
-        <pre class="highlight plaintext">&lt;div class="ancestor"&gt;&#x000A;  &lt;div class="parent"&gt;&#x000A;    &lt;button&gt; Click me! &lt;/button&gt;&#x000A;  &lt;/div&gt;&#x000A;&lt;/div&gt;</pre>
-        <p>When a user clicks the button the event first fires on the button itself, then bubbles up to the parent div, and then up to the ancestor div. The event would continue to bubble up through all the ancestors, until it finally reaches the <code>document</code>.</p>
-        
-        <p><strong>Javascript</strong></p>
-        <pre class="highlight plaintext">$( "button" ).click(function(event) {&#x000A;  console.log( "button was clicked!" );&#x000A;});&#x000A;&#x000A;$( ".parent" ).click(function(event) {&#x000A;  console.log( "child element was clicked!" );&#x000A;});&#x000A;&#x000A;$( ".ancestor" ).click(function(event) {&#x000A;  console.log( "descendant element was clicked!" );&#x000A;});</pre>
-        <p>When the user clicks the button the events starts at the button element, so <code>button was clicked!</code> is logged to the console. Then <code>child element was clicked!</code> and finally <code>descendant element was clicked!</code> are logged as well.</p>
-        
-        <p><strong>Stopping event bubbling</strong></p>
-        
-        <p><em>What if you don’t want the event to bubble up?</em></p>
-        
-        <p>A fair question. Often you only want the event to trigger on the element itself, without bothering all its ancestors. Consider the following JS (with the same HTML as above):</p>
-        <pre class="highlight plaintext">$( "button" ).click(function(event) {&#x000A;  console.log( "button was clicked!" );&#x000A;});&#x000A;&#x000A;$( ".parent, .ancestor" ).click(function(event) {&#x000A;  console.log( "don't click me!" );&#x000A;});</pre>
-        <p>As it stands, the <code>don&#39;t click me!</code> will get logged when the user clicks on the button, even though they haven’t actually clicked on the parent or ancestor element.</p>
-        
-        <p>You have to explicitly stop event propagation (bubbling) if you don’t want it.</p>
-        <pre class="highlight plaintext">$( "button" ).click(function(event) {&#x000A;  event.stopPropagation(); // &lt;-- this line here!&#x000A;  console.log( "button was clicked!" );&#x000A;});&#x000A;&#x000A;$( ".parent, .ancestor" ).click(function(event) {&#x000A;  console.log( "don't click me!" );&#x000A;});</pre>
-        <p>Now the event propagation stops on the first element of the bubbling sequence. You can also stop the bubbling later on if you&#39;d like, it doesn’t have to be on the first element.</p>
-        
-        <p><strong>Related</strong></p>
-        
-        <p>The reverse of events that bubble up are events that trickle down. Originally some browsers thought events should trickle down from the ancestors to the element that was interacted with. Now all browsers implenet bubble up events, and some support trickle down.</p>
-        
-        <p><strong>References</strong></p>
-        
-        <ul>
-        <li><a href="http://www.quirksmode.org/js/events_order.html">Quirks Mode</a></li>
-        </ul>
-        <div class='recommended-reading'>
-          <h2>Recommended reading</h2>
-          <p>You might also like <a href="/blog/2014/google-adwords-async/">JS: Async Google Adwords conversion</a></p>
-        </div>
-        <div id='disqus_thread'>
-          <hr>
-          <script>
-            var disqus_shortname = 'lucybain';
-            (function() {
-                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-                dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-            })();
-          </script>
-          <noscript>
-            Please enable JavaScript to view the
-            <a href='http://disqus.com/?ref_noscript'>comments powered by Disqus.</a>
-          </noscript>
-          <a class='dsq-brlink' href='http://disqus.com'>
-            comments powered by
-            <span class='logo-disqus'>Disqus</span>
-          </a>
-          <script>
-            var disqus_shortname = 'lucybain';
-            (function () {
-                var s = document.createElement('script'); s.async = true;
-                s.type = 'text/javascript';
-                s.src = '//' + disqus_shortname + '.disqus.com/count.js';
-                (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
-            }());
-          </script>
-        </div>
-      </div>
+  </div>
+
     </div>
   </body>
   <script>
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-    
-    ga('create', 'UA-45866381-1', 'lucybain.com');
-    ga('send', 'pageview');
-  </script>
-</html>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  
+  ga('create', 'UA-45866381-1', 'lucybain.com');
+  ga('send', 'pageview');
+</script>
 
+</html>

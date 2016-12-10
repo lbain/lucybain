@@ -1,82 +1,86 @@
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
   <head>
     <meta content='width=device-width, initial-scale=1' name='viewport'>
-    <meta charset='utf-8'>
-    <meta content='IE=edge,chrome=1' http-equiv='X-UA-Compatible'>
-    <meta content='My site about all things programming. Topics include JS, CSS, Rails, and community.' name='description'>
-    <meta content='Lucy Bain, JS, CSS, Rails, Rails Girls' name='keywords'>
-    <link href='/images/favicon.ico' rel='icon' type='image/ico'>
-    <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700|Source+Code+Pro' rel='stylesheet' type='text/css'>
-    <title>Lucy Bain</title>
-    <link href="/stylesheets/application.css" media="all" rel="stylesheet" type="text/css" />
-    <script src='//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js'></script>
-    <script src='//cdn.optimizely.com/js/4606022905.js'></script>
+<meta charset='utf-8'>
+<meta content='IE=edge,chrome=1' http-equiv='X-UA-Compatible'>
+<meta content='My site about all things programming. Topics include JS, CSS, Rails, and community.' name='description'>
+<meta content='Lucy Bain, JS, CSS, Rails, Rails Girls' name='keywords'>
+<link href='/images/favicon.ico' rel='icon' type='image/ico'>
+<link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700|Source+Code+Pro' rel='stylesheet' type='text/css'>
+<title>Lucy Bain</title>
+<link href="/stylesheets/application.css" rel="stylesheet" media="all" />
+<script src='//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js'></script>
+<script src='//cdn.optimizely.com/js/4606022905.js'></script>
+
   </head>
-  <body class='home-page'>
+  <body class="home-page">
     <nav>
-      <div class='nav-open-btn'>
-        <ul>
-          <li></li>
-          <li></li>
-          <li></li>
-        </ul>
-      </div>
-      <ul class='nav-display'>
-        <li>
-          <a class="nav-link active" href="/">Me</a>
-        </li>
-        <li>
-          <a class="nav-link" href="/resume/">Resume</a>
-        </li>
-        <li>
-          <a class="nav-link" href="/contact-me/">Contact</a>
-        </li>
-        <li>
-          <a class="nav-link" href="/resources/">Resources</a>
-        </li>
-        <li>
-          <a class="nav-link" href="/blog/">Blog</a>
-        </li>
-      </ul>
-    </nav>
-    <script>
-      $('nav .nav-open-btn').on('click', function(){
-        $('nav .nav-display').toggleClass('open');
-      })
-    </script>
-    <div class='content'>
+  <div class='nav-open-btn'>
+    <ul>
+      <li></li>
+      <li></li>
+      <li></li>
+    </ul>
+  </div>
+  <ul class='nav-display'>
+    <li>
+      <a href="/" class="nav-link active">Me</a>
+    </li>
+    <li>
+      <a href="/resume/" class="nav-link">Resume</a>
+    </li>
+    <li>
+      <a href="/contact-me/" class="nav-link">Contact</a>
+    </li>
+    <li>
+      <a href="/resources/" class="nav-link">Resources</a>
+    </li>
+    <li>
+      <a href="/blog/" class="nav-link">Blog</a>
+    </li>
+  </ul>
+</nav>
+<script>
+  $('nav .nav-open-btn').on('click', function(){
+    $('nav .nav-display').toggleClass('open');
+  })
+</script>
+
+    <div class="content">
       <div class='personal-info'>
-        <div class='photo'>
-          <img class="profile-pic" alt="Lucy Bain" src="/images/profile_pic.jpg" />
-        </div>
-        <h1 class='blurb'>
-          Hello, I’m Lucy!
-        </h1>
-        <ul class='connections'>
-          <li>
-            <a alt="Twitter" class="icon-twitter" target="_blank" href="https://twitter.com/lucykbain"></a>
-          </li>
-          <li>
-            <a alt="GitHub" class="icon-github" target="_blank" href="https://github.com/lbain"></a>
-          </li>
-          <li>
-            <a alt="Stackoverflow" class="icon-stack-overflow" target="_blank" href="http://stackoverflow.com/users/863846/lucy-bain"></a>
-          </li>
-          <li>
-            <a alt="LinkedIn" class="icon-linkedin-square" target="_blank" href="https://au.linkedin.com/in/lucybain"></a>
-          </li>
-        </ul>
-      </div>
+  <div class='photo'>
+    <img src="/images/profile_pic.jpg" class="profile-pic" alt="Lucy Bain" />
+  </div>
+  <h1 class='blurb'>
+    Hello, I’m Lucy!
+  </h1>
+  <ul class='connections'>
+    <li>
+      <a href="https://twitter.com/lucykbain" alt="Twitter" class="icon-twitter" target="_blank"></a>
+    </li>
+    <li>
+      <a href="https://github.com/lbain" alt="GitHub" class="icon-github" target="_blank"></a>
+    </li>
+    <li>
+      <a href="http://stackoverflow.com/users/863846/lucy-bain" alt="Stackoverflow" class="icon-stack-overflow" target="_blank"></a>
+    </li>
+    <li>
+      <a href="https://au.linkedin.com/in/lucybain" alt="LinkedIn" class="icon-linkedin-square" target="_blank"></a>
+    </li>
+  </ul>
+</div>
+
     </div>
   </body>
   <script>
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-    
-    ga('create', 'UA-45866381-1', 'lucybain.com');
-    ga('send', 'pageview');
-  </script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  
+  ga('create', 'UA-45866381-1', 'lucybain.com');
+  ga('send', 'pageview');
+</script>
+
 </html>

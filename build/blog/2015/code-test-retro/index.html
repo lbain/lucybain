@@ -1,149 +1,156 @@
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
   <head>
     <meta content='width=device-width, initial-scale=1' name='viewport'>
-    <meta charset='utf-8'>
-    <meta content='IE=edge,chrome=1' http-equiv='X-UA-Compatible'>
-    <meta content='js, interview-questions' name='keywords'>
-    <link href='/images/favicon.ico' rel='icon' type='image/ico'>
-    <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700|Source+Code+Pro' rel='stylesheet' type='text/css'>
-    <title>Retro from my coding test</title>
-    <link href="/stylesheets/application.css" media="all" rel="stylesheet" type="text/css" />
-    <script src='//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js'></script>
-    <script src='//cdn.optimizely.com/js/4606022905.js'></script>
+<meta charset='utf-8'>
+<meta content='IE=edge,chrome=1' http-equiv='X-UA-Compatible'>
+<meta content='js, interview-questions' name='keywords'>
+<link href='/images/favicon.ico' rel='icon' type='image/ico'>
+<link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700|Source+Code+Pro' rel='stylesheet' type='text/css'>
+<title>Retro from my coding test</title>
+<link href="/stylesheets/application.css" rel="stylesheet" media="all" />
+<script src='//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js'></script>
+<script src='//cdn.optimizely.com/js/4606022905.js'></script>
+
   </head>
-  <body>
+  <body class="">
     <nav>
-      <div class='nav-open-btn'>
-        <ul>
-          <li></li>
-          <li></li>
-          <li></li>
-        </ul>
+  <div class='nav-open-btn'>
+    <ul>
+      <li></li>
+      <li></li>
+      <li></li>
+    </ul>
+  </div>
+  <ul class='nav-display'>
+    <li>
+      <a href="/" class="nav-link">Me</a>
+    </li>
+    <li>
+      <a href="/resume/" class="nav-link">Resume</a>
+    </li>
+    <li>
+      <a href="/contact-me/" class="nav-link">Contact</a>
+    </li>
+    <li>
+      <a href="/resources/" class="nav-link">Resources</a>
+    </li>
+    <li>
+      <a href="/blog/" class="nav-link active">Blog</a>
+    </li>
+  </ul>
+</nav>
+<script>
+  $('nav .nav-open-btn').on('click', function(){
+    $('nav .nav-display').toggleClass('open');
+  })
+</script>
+
+    <div class="content">
+        <div class=" blog-listing">
+    <div class="meta">
+      <h1>
+        Retro from my coding test
+      </h1>
+      <p>Published on: January  2, 2015</p>
+        <p>Tags: <a href="/blog/tags/js/">js</a> and <a href="/blog/tags/interview-questions/">interview-questions</a></p>
+    </div>
+    <p>I&#39;ve been looking for a new job over the past month. As part of my interview process I had to do an at home coding exercise. The directions were simple, but disconcertingly vague:</p>
+
+<ul>
+<li>The application should run successfully in modern browsers.
+Your app should retrieve a data set from a persistence layer or data service of your choice.</li>
+<li>The data set should contain a minimum of 4 columns and 5 rows.</li>
+<li>Create a README file with instructions, a brief description of your app with reasons for your approach and technology as well as any future enhancements you would make given more time</li>
+<li>Bundle your app in a zip file and email to [the company]</li>
+<li>Allow up to 3 hours for this task. Please be honest with your allocation of time.</li>
+</ul>
+
+<p>Ok, so three hours is way too long for a simple AJAX call and display of four columns and five rows. So I figured they wanted something a little more interesting than a table of data. I also didn’t want to waste any of my precious three hours working on a back-end - I applied for a front-end role and that’s what I wanted to work on. I decided to work with data from Facebook.</p>
+
+<p><strong>Tip:</strong> It turns out there’s a TON of very interesting <a href="https://www.reddit.com/r/datasets">data available</a>. If you have to do anything like this in the future look into these rather than using FB!</p>
+
+<p>I wanted to work with something real that users might care about. I also wanted to get more experience with working with Facebook since it’s often used on sites. These were great reasons to choose Facebook, but, as it turns out, probably not a good decision for a coding test. Working with FB requires OAuth and a bunch of setup.</p>
+
+<p><strong>Tip:</strong> Don’t try to work with anything particularly complex for your coding test. It’s better that you do a simple thing well than that you don’t finish a complex thing.</p>
+
+<p>Thankfully I used a library called <a href="http://adodson.com/hello.js/">hello.js</a> that took care of most of the setup. However I had never worked with hello.js before and getting up to speed with it took time - which I was rapidly running out of. I ended up wasting an hour trying to debug <a href="http://stackoverflow.com/questions/27729186/how-can-i-get-share-data-with-hello-js">something</a> which I never really got an answer to - I ended up going a different direction and resetting the clock for that hour.</p>
+
+<p><strong>Tip:</strong> Don’t work with new technologies / libraries / languages for your coding test. Focus on what you&#39;re already good at and do that thing well.</p>
+
+<p>I got all my interaction working as expected and then got moving on the styling. I grabbed a generated colour pallet from <a href="http://coolors.co/">coolors.co</a> and set up some base styles. It wasn’t anything fancy, it was kinda mobile friendly, but only in the roughest sense, and things looked sorta ok. But it worked, and it no longer looked like simple HTML. This was a success, I’m pleased with the amount of time I spent on styling.</p>
+
+<p><strong>Tip:</strong> Styling matters. It’s the first thing your users (read graders) will see. Don’t just gloss over it because it’s not your main love. That said, your users will know that you only had a set amount of time to work on something. This does not need to be pixel perfect. Make it nice, but don’t waste your time.</p>
+
+<p>Finally it was time to run some full tests. I grabbed my partner and asked him to try logging in with my app so I could get his user details (photos). No dice. Errors. Panic.</p>
+
+<p><strong>Tip:</strong> When you&#39;re developing your code test, try to test it in the same environment the user will have as early as possible. Identify possible rough patches and take note. Even if you can’t fix them you can at least know you&#39;ll need to include something about them in the readme.</p>
+
+<p>As I found out in my increasingly stressed out state - FB requires you to officially publish your app before you&#39;re allowed to get the public to use it (fair enough, but I had hours before my test was due). I also learned that the process would take around seven days, but that it’s possible my app could be rejected and take longer. I was full on freaking out.</p>
+
+<p><strong>Tip:</strong> Much like in school, you should start your coding test as soon as you get your assignment.</p>
+
+<p>I finally worked out that if I made my partner a developer for the app he would have access to it, and thus be able to see all the hard work I&#39;d done. I calmed down a bit and made sure everything was working as it should from then it. (It was; that was the bit I was able to easily test using my own account.)</p>
+
+<p>That was the end of my three hours.</p>
+
+<p><strong>Tip:</strong> Make sure you write down the start and end times of any work sections you do. I thought I&#39;d remember, and I’m pretty sure I was fairly accurate, but I’m sure I wasn’t perfect. Guesstimating exactly how many minutes you&#39;ve spent on a coding test is stress you don’t need.</p>
+
+<p>I moved on to the readme. I was actually pretty pleased how this turned out. In their directions they included what they expected from a readme (“a brief description of your app with reasons for your approach and technology as well as any future enhancements you would make given more time”), which was my guide. I also included a section about how to use my app, since they had to request permission to be a developer in order to get it working.</p>
+
+<p><strong>Tip:</strong> Try to make it as easy as possible for your reviewers to grade your code. Keep the install process as short, and your explanation of the install process as clear, as possible.</p>
+
+<p>I spent the most time on the “future enhancements” which included a lot about refactoring. I wasn’t able to do everything I wanted to have beautiful code given the time constraints. I wanted them to know that I knew things weren’t perfect. This was a good tactic - the couple of things they asked me about in my next interview were a the things I hadn’t mentioned in my readme.</p>
+
+<p><strong>Tip:</strong> The more questions you can answer in your readme (in the comfort of your own home), the fewer you have to answer in the interview (with someone staring at you).</p>
+
+<p>And that was it! It was pretty stressful, so I hope the next time I need to do a coding test I&#39;ll have learned a little and can stay a bit more calm!</p>
+
+
+      <div id="disqus_thread">
+        <hr/>
+        <script>
+
+          var disqus_shortname = 'lucybain';
+          (function() {
+              var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+              dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+              (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+          })();
+
+        </script>
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+        <a class="dsq-brlink" href="http://disqus.com">
+          comments powered by
+          <span class="logo-disqus">Disqus</span>
+        </a>
+        <script>
+
+          var disqus_shortname = 'lucybain';
+          (function () {
+              var s = document.createElement('script'); s.async = true;
+              s.type = 'text/javascript';
+              s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+              (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+          }());
+
+        </script>
       </div>
-      <ul class='nav-display'>
-        <li>
-          <a class="nav-link" href="/">Me</a>
-        </li>
-        <li>
-          <a class="nav-link" href="/resume/">Resume</a>
-        </li>
-        <li>
-          <a class="nav-link" href="/contact-me/">Contact</a>
-        </li>
-        <li>
-          <a class="nav-link" href="/resources/">Resources</a>
-        </li>
-        <li>
-          <a class="nav-link active" href="/blog/">Blog</a>
-        </li>
-      </ul>
-    </nav>
-    <script>
-      $('nav .nav-open-btn').on('click', function(){
-        $('nav .nav-display').toggleClass('open');
-      })
-    </script>
-    <div class='content'>
-      <div class=' blog-listing'>
-        <div class='meta'>
-          <h1>Retro from my coding test</h1>
-          <p>Published on: January  2, 2015</p>
-          <p>Tags: <a href="/blog/tags/js/">js</a> and <a href="/blog/tags/interview-questions/">interview-questions</a></p>
-        </div>
-        <p>I&#39;ve been looking for a new job over the past month. As part of my interview process I had to do an at home coding exercise. The directions were simple, but disconcertingly vague:</p>
-        
-        <ul>
-        <li>The application should run successfully in modern browsers.
-        Your app should retrieve a data set from a persistence layer or data service of your choice.</li>
-        <li>The data set should contain a minimum of 4 columns and 5 rows.</li>
-        <li>Create a README file with instructions, a brief description of your app with reasons for your approach and technology as well as any future enhancements you would make given more time</li>
-        <li>Bundle your app in a zip file and email to [the company]</li>
-        <li>Allow up to 3 hours for this task. Please be honest with your allocation of time.</li>
-        </ul>
-        
-        <p>Ok, so three hours is way too long for a simple AJAX call and display of four columns and five rows. So I figured they wanted something a little more interesting than a table of data. I also didn’t want to waste any of my precious three hours working on a back-end - I applied for a front-end role and that’s what I wanted to work on. I decided to work with data from Facebook.</p>
-        
-        <p><strong>Tip:</strong> It turns out there’s a TON of very interesting <a href="https://www.reddit.com/r/datasets">data available</a>. If you have to do anything like this in the future look into these rather than using FB!</p>
-        
-        <p>I wanted to work with something real that users might care about. I also wanted to get more experience with working with Facebook since it’s often used on sites. These were great reasons to choose Facebook, but, as it turns out, probably not a good decision for a coding test. Working with FB requires OAuth and a bunch of setup.</p>
-        
-        <p><strong>Tip:</strong> Don’t try to work with anything particularly complex for your coding test. It’s better that you do a simple thing well than that you don’t finish a complex thing.</p>
-        
-        <p>Thankfully I used a library called <a href="http://adodson.com/hello.js/">hello.js</a> that took care of most of the setup. However I had never worked with hello.js before and getting up to speed with it took time - which I was rapidly running out of. I ended up wasting an hour trying to debug <a href="http://stackoverflow.com/questions/27729186/how-can-i-get-share-data-with-hello-js">something</a> which I never really got an answer to - I ended up going a different direction and resetting the clock for that hour.</p>
-        
-        <p><strong>Tip:</strong> Don’t work with new technologies / libraries / languages for your coding test. Focus on what you&#39;re already good at and do that thing well.</p>
-        
-        <p>I got all my interaction working as expected and then got moving on the styling. I grabbed a generated colour pallet from <a href="http://coolors.co/">coolors.co</a> and set up some base styles. It wasn’t anything fancy, it was kinda mobile friendly, but only in the roughest sense, and things looked sorta ok. But it worked, and it no longer looked like simple HTML. This was a success, I’m pleased with the amount of time I spent on styling.</p>
-        
-        <p><strong>Tip:</strong> Styling matters. It’s the first thing your users (read graders) will see. Don’t just gloss over it because it’s not your main love. That said, your users will know that you only had a set amount of time to work on something. This does not need to be pixel perfect. Make it nice, but don’t waste your time.</p>
-        
-        <p>Finally it was time to run some full tests. I grabbed my partner and asked him to try logging in with my app so I could get his user details (photos). No dice. Errors. Panic.</p>
-        
-        <p><strong>Tip:</strong> When you&#39;re developing your code test, try to test it in the same environment the user will have as early as possible. Identify possible rough patches and take note. Even if you can’t fix them you can at least know you&#39;ll need to include something about them in the readme.</p>
-        
-        <p>As I found out in my increasingly stressed out state - FB requires you to officially publish your app before you&#39;re allowed to get the public to use it (fair enough, but I had hours before my test was due). I also learned that the process would take around seven days, but that it’s possible my app could be rejected and take longer. I was full on freaking out.</p>
-        
-        <p><strong>Tip:</strong> Much like in school, you should start your coding test as soon as you get your assignment.</p>
-        
-        <p>I finally worked out that if I made my partner a developer for the app he would have access to it, and thus be able to see all the hard work I&#39;d done. I calmed down a bit and made sure everything was working as it should from then it. (It was; that was the bit I was able to easily test using my own account.)</p>
-        
-        <p>That was the end of my three hours.</p>
-        
-        <p><strong>Tip:</strong> Make sure you write down the start and end times of any work sections you do. I thought I&#39;d remember, and I’m pretty sure I was fairly accurate, but I’m sure I wasn’t perfect. Guesstimating exactly how many minutes you&#39;ve spent on a coding test is stress you don’t need.</p>
-        
-        <p>I moved on to the readme. I was actually pretty pleased how this turned out. In their directions they included what they expected from a readme (“a brief description of your app with reasons for your approach and technology as well as any future enhancements you would make given more time”), which was my guide. I also included a section about how to use my app, since they had to request permission to be a developer in order to get it working.</p>
-        
-        <p><strong>Tip:</strong> Try to make it as easy as possible for your reviewers to grade your code. Keep the install process as short, and your explanation of the install process as clear, as possible.</p>
-        
-        <p>I spent the most time on the “future enhancements” which included a lot about refactoring. I wasn’t able to do everything I wanted to have beautiful code given the time constraints. I wanted them to know that I knew things weren’t perfect. This was a good tactic - the couple of things they asked me about in my next interview were a the things I hadn’t mentioned in my readme.</p>
-        
-        <p><strong>Tip:</strong> The more questions you can answer in your readme (in the comfort of your own home), the fewer you have to answer in the interview (with someone staring at you).</p>
-        
-        <p>And that was it! It was pretty stressful, so I hope the next time I need to do a coding test I&#39;ll have learned a little and can stay a bit more calm!</p>
-        <div class='recommended-reading'>
-          <h2>Recommended reading</h2>
-          <p>You might also like <a href="/blog/2014/google-adwords-async/">JS: Async Google Adwords conversion</a></p>
-        </div>
-        <div id='disqus_thread'>
-          <hr>
-          <script>
-            var disqus_shortname = 'lucybain';
-            (function() {
-                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-                dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-            })();
-          </script>
-          <noscript>
-            Please enable JavaScript to view the
-            <a href='http://disqus.com/?ref_noscript'>comments powered by Disqus.</a>
-          </noscript>
-          <a class='dsq-brlink' href='http://disqus.com'>
-            comments powered by
-            <span class='logo-disqus'>Disqus</span>
-          </a>
-          <script>
-            var disqus_shortname = 'lucybain';
-            (function () {
-                var s = document.createElement('script'); s.async = true;
-                s.type = 'text/javascript';
-                s.src = '//' + disqus_shortname + '.disqus.com/count.js';
-                (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
-            }());
-          </script>
-        </div>
-      </div>
+  </div>
+
     </div>
   </body>
   <script>
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-    
-    ga('create', 'UA-45866381-1', 'lucybain.com');
-    ga('send', 'pageview');
-  </script>
-</html>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  
+  ga('create', 'UA-45866381-1', 'lucybain.com');
+  ga('send', 'pageview');
+</script>
 
+</html>

@@ -1,175 +1,268 @@
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
   <head>
     <meta content='width=device-width, initial-scale=1' name='viewport'>
-    <meta charset='utf-8'>
-    <meta content='IE=edge,chrome=1' http-equiv='X-UA-Compatible'>
-    <meta content='js, interview-questions' name='keywords'>
-    <link href='/images/favicon.ico' rel='icon' type='image/ico'>
-    <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700|Source+Code+Pro' rel='stylesheet' type='text/css'>
-    <title>JS: AMD and CommonJS</title>
-    <link href="/stylesheets/application.css" media="all" rel="stylesheet" type="text/css" />
-    <script src='//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js'></script>
-    <script src='//cdn.optimizely.com/js/4606022905.js'></script>
+<meta charset='utf-8'>
+<meta content='IE=edge,chrome=1' http-equiv='X-UA-Compatible'>
+<meta content='js, interview-questions' name='keywords'>
+<link href='/images/favicon.ico' rel='icon' type='image/ico'>
+<link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700|Source+Code+Pro' rel='stylesheet' type='text/css'>
+<title>JS: AMD and CommonJS</title>
+<link href="/stylesheets/application.css" rel="stylesheet" media="all" />
+<script src='//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js'></script>
+<script src='//cdn.optimizely.com/js/4606022905.js'></script>
+
   </head>
-  <body>
+  <body class="">
     <nav>
-      <div class='nav-open-btn'>
-        <ul>
-          <li></li>
-          <li></li>
-          <li></li>
-        </ul>
+  <div class='nav-open-btn'>
+    <ul>
+      <li></li>
+      <li></li>
+      <li></li>
+    </ul>
+  </div>
+  <ul class='nav-display'>
+    <li>
+      <a href="/" class="nav-link">Me</a>
+    </li>
+    <li>
+      <a href="/resume/" class="nav-link">Resume</a>
+    </li>
+    <li>
+      <a href="/contact-me/" class="nav-link">Contact</a>
+    </li>
+    <li>
+      <a href="/resources/" class="nav-link">Resources</a>
+    </li>
+    <li>
+      <a href="/blog/" class="nav-link active">Blog</a>
+    </li>
+  </ul>
+</nav>
+<script>
+  $('nav .nav-open-btn').on('click', function(){
+    $('nav .nav-display').toggleClass('open');
+  })
+</script>
+
+    <div class="content">
+        <div class=" blog-listing">
+    <div class="meta">
+      <h1>
+        JS: AMD and CommonJS
+      </h1>
+      <p>Published on: April 23, 2015</p>
+        <p>Tags: <a href="/blog/tags/js/">js</a> and <a href="/blog/tags/interview-questions/">interview-questions</a></p>
+    </div>
+    <h2>What’s the difference between AMD and CommonJS?</h2>
+
+<p><strong>Disclaimer:</strong> I’m only going to talk about how this impacts the browser. I will not talk about Node.js, although I know it’s relevant to this discussion. I don’t know enough about Node.js to cover it properly. Ok, let’s get to it!</p>
+
+<p>To start off, let’s talk about their similarities.</p>
+
+<p><em>What problem are they trying to solve?</em></p>
+
+<p>Typcially JS relies on having <code>&lt;script&gt;</code> tags in the right order in the HTML. This can often lead to confusion and ordering mistakes. Beyond that, some people prefer to have all their JS compiled into one massive file. This is convenient since they have complete control on ordering and don’t need to rely on <code>&lt;script&gt;</code> tags. However it means all JS gets loaded on each page, which isn’t very performant.</p>
+
+<p>Both AMD and CommonJS are a way of linking JS bits of code, called modules, together. They are a way of defining which modules rely on which other modules so a computer can decide the best way to link everything together, rather than relying on error-prone coders.</p>
+
+<p><em>How do they solve that?</em></p>
+
+<p>Both AMD and CommonJS provide standards for other libraries to implement. There are quite a few libraries that have done just that (<a href="http://requirejs.org/">RequireJS</a> and <a href="https://github.com/jrburke/almond">Almond</a> are two that implement AMD). But you “use” AMD or CommonJS code any more than you can “use” object oriented code.</p>
+
+<p><em>Ok, so that’s how they&#39;re similar. How are they different?</em></p>
+
+<p>Let’s look at each one individually. We&#39;ll start with AMD:</p>
+
+<p><em>What does “AMD” stand for?</em></p>
+
+<p>AMD stands for <strong>A</strong>synchronous <strong>M</strong>odule <strong>D</strong>efinition.</p>
+
+<p><em>And what makes it special?</em></p>
+
+<p>The “module” part should be clear enough since both CommonJS and AMD focus on linking modules together. And the “definition” part is about how it’s a standard, rather than a library. However a key difference for AMD is the “asynchronous” bit. AMD loads each distinct module asynchronously for web performance. Instead of having one <em>giant</em> file with everything in it which causes a slow load time, you can load only the files you need, only when you need them, all asynchronously. Slick, huh?</p>
+
+<p><em>So then what’s special about CommonJS?</em></p>
+
+<p>CommonJS loads modules synchronously. My understanding is that this is better for server-side (Node.js) development. Again, CommonJS is a standard but it focuses more on JS out of the browser than AMD.</p>
+
+<p><em>That’s it? Async vs. Sync?</em></p>
+
+<p>Sort of. Of course the syntax for both is different too. Let’s look at how to use each.</p>
+
+<h2>Syntax</h2>
+
+<p><strong>CommonJS</strong></p>
+
+<p>We&#39;ll start with CommonJS since it’s a bit easier to read.</p>
+
+<p><em>Part 1: math module</em></p>
+
+<pre><code>// math.js
+var module = {
+  add: function(x, y) {
+    return x + y;
+  },
+  subtract: function(x, y) {
+    return x - y;
+  },
+  multiply: function(x, y) {
+    return x * y;
+  },
+  divide: function(x, y) {
+    return x / y;
+  }
+};
+export.math = module; // export is a commonJS specific method
+                      // export returns what’s publicly available
+                      // the &quot;math&quot; gives the name of the module
+</code></pre>
+
+<p>This code doesn’t output anything, but when we require the <code>math</code> module we&#39;ll have access to everything in the returned <code>module</code> object (namely <code>add</code>, <code>subtract</code>, <code>multiply</code>, and <code>divide</code>).</p>
+
+<p><em>Part 2: stats module</em></p>
+
+<p>Alright, now we&#39;ve created a module, we can require it in another module.</p>
+
+<pre><code>// stats.js
+var math = require(&#39;math&#39;);
+
+var module = {
+  average: function(x, y) {
+    var sum = math.add(x, y);
+    return math.divide(sum, 2);
+  }
+};
+export.stats = module; // export is a commonJS specific method
+                       // export returns what’s publicly available
+                       // the &quot;stats&quot; gives the name of the module
+</code></pre>
+
+<p><em>Part 3: get output</em></p>
+
+<p>Now we&#39;ve got two modules, we can use them to get output.</p>
+
+<pre><code>var math = require(&#39;math&#39;);
+var stats = require(’stats&#39;);
+console.log(math.add(1, 2)) // logs &quot;3&quot;
+console.log(stats.average(0, 4)) // logs &quot;2&quot;
+</code></pre>
+
+<p><strong>AMD</strong></p>
+
+<p>We&#39;ll go through exactly the same example, but this time implement it with AMD.</p>
+
+<p><em>Part 1: math module</em></p>
+
+<pre><code>define( // AMD specific method used to define a module
+  &#39;math&#39;, // name of the module (this is optional)
+  // Note: no dependencies (they&#39;re optional)
+  function() {
+    var module = {
+      add: function(x, y) {
+        return x + y;
+      },
+      subtract: function(x, y) {
+        return x - y;
+      },
+      multiply: function(x, y) {
+        return x * y;
+      },
+      divide: function(x, y) {
+        return x / y;
+      }
+    };
+    return module; // returns what’s publicly available
+});
+</code></pre>
+
+<p>As with CommonJS, this code doesn’t output anything.</p>
+
+<p><em>Part 2: stats module</em></p>
+
+<pre><code>define( // AMD specific method used to define a module
+  ’stats&#39;, // name of the module (this is optional)
+  [&#39;math&#39;], // dependency, same name as module above
+            // it’s an array since there can be more than one
+  function() {
+    var module = {
+      average: function(x, y) {
+        var sum = math.add(x, y);
+        return math.divide(sum, 2);
+      }
+    };
+    return module; // returns what’s publicly available
+});
+</code></pre>
+
+<p><em>Part 3: get output</em></p>
+
+<pre><code>require( // AMD specific method to run code
+  // Note: no name, require doesn&#39;t support names
+  [&#39;math&#39;, ’stats&#39;], // dependencies
+  function(math, stats) {
+    console.log(math.add(1, 2)) // logs &quot;3&quot;
+    console.log(stats.average(0, 4)) // logs &quot;2&quot;
+});
+</code></pre>
+
+<p><strong>Resources</strong></p>
+
+<ul>
+<li><a href="http://stackoverflow.com/questions/16521471/relation-between-commonjs-amd-and-requirejs">Relation between CommonJS, AMD and RequireJS?</a></li>
+<li>RequireJS on <a href="http://requirejs.org/docs/whyamd.html">AMD</a></li>
+<li><a href="http://0fps.net/2013/01/22/commonjs-why-and-how/">About CommonJS</a> and using it on the browser</li>
+<li><a href="http://addyosmani.com/writing-modular-js/">About AMD</a></li>
+<li>A bit about <a href="http://blog.millermedeiros.com/amd-is-better-for-the-web-than-commonjs-modules/">CommonJS vs. AMD</a></li>
+<li>A little history about the <a href="http://www.cubrid.org/blog/dev-platform/toward-javascript-standards-commonjs-and-amd/">development of both</a></li>
+</ul>
+
+
+      <div id="disqus_thread">
+        <hr/>
+        <script>
+
+          var disqus_shortname = 'lucybain';
+          (function() {
+              var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+              dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+              (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+          })();
+
+        </script>
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+        <a class="dsq-brlink" href="http://disqus.com">
+          comments powered by
+          <span class="logo-disqus">Disqus</span>
+        </a>
+        <script>
+
+          var disqus_shortname = 'lucybain';
+          (function () {
+              var s = document.createElement('script'); s.async = true;
+              s.type = 'text/javascript';
+              s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+              (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+          }());
+
+        </script>
       </div>
-      <ul class='nav-display'>
-        <li>
-          <a class="nav-link" href="/">Me</a>
-        </li>
-        <li>
-          <a class="nav-link" href="/resume/">Resume</a>
-        </li>
-        <li>
-          <a class="nav-link" href="/contact-me/">Contact</a>
-        </li>
-        <li>
-          <a class="nav-link" href="/resources/">Resources</a>
-        </li>
-        <li>
-          <a class="nav-link active" href="/blog/">Blog</a>
-        </li>
-      </ul>
-    </nav>
-    <script>
-      $('nav .nav-open-btn').on('click', function(){
-        $('nav .nav-display').toggleClass('open');
-      })
-    </script>
-    <div class='content'>
-      <div class=' blog-listing'>
-        <div class='meta'>
-          <h1>JS: AMD and CommonJS</h1>
-          <p>Published on: April 23, 2015</p>
-          <p>Tags: <a href="/blog/tags/js/">js</a> and <a href="/blog/tags/interview-questions/">interview-questions</a></p>
-        </div>
-        <h2>What’s the difference between AMD and CommonJS?</h2>
-        
-        <p><strong>Disclaimer:</strong> I’m only going to talk about how this impacts the browser. I will not talk about Node.js, although I know it’s relevant to this discussion. I don’t know enough about Node.js to cover it properly. Ok, let’s get to it!</p>
-        
-        <p>To start off, let’s talk about their similarities.</p>
-        
-        <p><em>What problem are they trying to solve?</em></p>
-        
-        <p>Typcially JS relies on having <code>&lt;script&gt;</code> tags in the right order in the HTML. This can often lead to confusion and ordering mistakes. Beyond that, some people prefer to have all their JS compiled into one massive file. This is convenient since they have complete control on ordering and don’t need to rely on <code>&lt;script&gt;</code> tags. However it means all JS gets loaded on each page, which isn’t very performant.</p>
-        
-        <p>Both AMD and CommonJS are a way of linking JS bits of code, called modules, together. They are a way of defining which modules rely on which other modules so a computer can decide the best way to link everything together, rather than relying on error-prone coders.</p>
-        
-        <p><em>How do they solve that?</em></p>
-        
-        <p>Both AMD and CommonJS provide standards for other libraries to implement. There are quite a few libraries that have done just that (<a href="http://requirejs.org/">RequireJS</a> and <a href="https://github.com/jrburke/almond">Almond</a> are two that implement AMD). But you “use” AMD or CommonJS code any more than you can “use” object oriented code.</p>
-        
-        <p><em>Ok, so that’s how they&#39;re similar. How are they different?</em></p>
-        
-        <p>Let’s look at each one individually. We&#39;ll start with AMD:</p>
-        
-        <p><em>What does “AMD” stand for?</em></p>
-        
-        <p>AMD stands for <strong>A</strong>synchronous <strong>M</strong>odule <strong>D</strong>efinition.</p>
-        
-        <p><em>And what makes it special?</em></p>
-        
-        <p>The “module” part should be clear enough since both CommonJS and AMD focus on linking modules together. And the “definition” part is about how it’s a standard, rather than a library. However a key difference for AMD is the “asynchronous” bit. AMD loads each distinct module asynchronously for web performance. Instead of having one <em>giant</em> file with everything in it which causes a slow load time, you can load only the files you need, only when you need them, all asynchronously. Slick, huh?</p>
-        
-        <p><em>So then what’s special about CommonJS?</em></p>
-        
-        <p>CommonJS loads modules synchronously. My understanding is that this is better for server-side (Node.js) development. Again, CommonJS is a standard but it focuses more on JS out of the browser than AMD.</p>
-        
-        <p><em>That’s it? Async vs. Sync?</em></p>
-        
-        <p>Sort of. Of course the syntax for both is different too. Let’s look at how to use each.</p>
-        
-        <h2>Syntax</h2>
-        
-        <p><strong>CommonJS</strong></p>
-        
-        <p>We&#39;ll start with CommonJS since it’s a bit easier to read.</p>
-        
-        <p><em>Part 1: math module</em></p>
-        <pre class="highlight plaintext">// math.js&#x000A;var module = {&#x000A;  add: function(x, y) {&#x000A;    return x + y;&#x000A;  },&#x000A;  subtract: function(x, y) {&#x000A;    return x - y;&#x000A;  },&#x000A;  multiply: function(x, y) {&#x000A;    return x * y;&#x000A;  },&#x000A;  divide: function(x, y) {&#x000A;    return x / y;&#x000A;  }&#x000A;};&#x000A;export.math = module; // export is a commonJS specific method&#x000A;                      // export returns what’s publicly available&#x000A;                      // the "math" gives the name of the module</pre>
-        <p>This code doesn’t output anything, but when we require the <code>math</code> module we&#39;ll have access to everything in the returned <code>module</code> object (namely <code>add</code>, <code>subtract</code>, <code>multiply</code>, and <code>divide</code>).</p>
-        
-        <p><em>Part 2: stats module</em></p>
-        
-        <p>Alright, now we&#39;ve created a module, we can require it in another module.</p>
-        <pre class="highlight plaintext">// stats.js&#x000A;var math = require('math');&#x000A;&#x000A;var module = {&#x000A;  average: function(x, y) {&#x000A;    var sum = math.add(x, y);&#x000A;    return math.divide(sum, 2);&#x000A;  }&#x000A;};&#x000A;export.stats = module; // export is a commonJS specific method&#x000A;                       // export returns what’s publicly available&#x000A;                       // the "stats" gives the name of the module</pre>
-        <p><em>Part 3: get output</em></p>
-        
-        <p>Now we&#39;ve got two modules, we can use them to get output.</p>
-        <pre class="highlight plaintext">var math = require('math');&#x000A;var stats = require(’stats');&#x000A;console.log(math.add(1, 2)) // logs "3"&#x000A;console.log(stats.average(0, 4)) // logs "2"</pre>
-        <p><strong>AMD</strong></p>
-        
-        <p>We&#39;ll go through exactly the same example, but this time implement it with AMD.</p>
-        
-        <p><em>Part 1: math module</em></p>
-        <pre class="highlight plaintext">define( // AMD specific method used to define a module&#x000A;  'math', // name of the module (this is optional)&#x000A;  // Note: no dependencies (they're optional)&#x000A;  function() {&#x000A;    var module = {&#x000A;      add: function(x, y) {&#x000A;        return x + y;&#x000A;      },&#x000A;      subtract: function(x, y) {&#x000A;        return x - y;&#x000A;      },&#x000A;      multiply: function(x, y) {&#x000A;        return x * y;&#x000A;      },&#x000A;      divide: function(x, y) {&#x000A;        return x / y;&#x000A;      }&#x000A;    };&#x000A;    return module; // returns what’s publicly available&#x000A;});</pre>
-        <p>As with CommonJS, this code doesn’t output anything.</p>
-        
-        <p><em>Part 2: stats module</em></p>
-        <pre class="highlight plaintext">define( // AMD specific method used to define a module&#x000A;  ’stats', // name of the module (this is optional)&#x000A;  ['math'], // dependency, same name as module above&#x000A;            // it’s an array since there can be more than one&#x000A;  function() {&#x000A;    var module = {&#x000A;      average: function(x, y) {&#x000A;        var sum = math.add(x, y);&#x000A;        return math.divide(sum, 2);&#x000A;      }&#x000A;    };&#x000A;    return module; // returns what’s publicly available&#x000A;});</pre>
-        <p><em>Part 3: get output</em></p>
-        <pre class="highlight plaintext">require( // AMD specific method to run code&#x000A;  // Note: no name, require doesn't support names&#x000A;  ['math', ’stats'], // dependencies&#x000A;  function(math, stats) {&#x000A;    console.log(math.add(1, 2)) // logs "3"&#x000A;    console.log(stats.average(0, 4)) // logs "2"&#x000A;});</pre>
-        <p><strong>Resources</strong></p>
-        
-        <ul>
-        <li><a href="http://stackoverflow.com/questions/16521471/relation-between-commonjs-amd-and-requirejs">Relation between CommonJS, AMD and RequireJS?</a></li>
-        <li>RequireJS on <a href="http://requirejs.org/docs/whyamd.html">AMD</a></li>
-        <li><a href="http://0fps.net/2013/01/22/commonjs-why-and-how/">About CommonJS</a> and using it on the browser</li>
-        <li><a href="http://addyosmani.com/writing-modular-js/">About AMD</a></li>
-        <li>A bit about <a href="http://blog.millermedeiros.com/amd-is-better-for-the-web-than-commonjs-modules/">CommonJS vs. AMD</a></li>
-        <li>A little history about the <a href="http://www.cubrid.org/blog/dev-platform/toward-javascript-standards-commonjs-and-amd/">development of both</a></li>
-        </ul>
-        <div class='recommended-reading'>
-          <h2>Recommended reading</h2>
-          <p>You might also like <a href="/blog/2014/google-adwords-async/">JS: Async Google Adwords conversion</a></p>
-        </div>
-        <div id='disqus_thread'>
-          <hr>
-          <script>
-            var disqus_shortname = 'lucybain';
-            (function() {
-                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-                dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-            })();
-          </script>
-          <noscript>
-            Please enable JavaScript to view the
-            <a href='http://disqus.com/?ref_noscript'>comments powered by Disqus.</a>
-          </noscript>
-          <a class='dsq-brlink' href='http://disqus.com'>
-            comments powered by
-            <span class='logo-disqus'>Disqus</span>
-          </a>
-          <script>
-            var disqus_shortname = 'lucybain';
-            (function () {
-                var s = document.createElement('script'); s.async = true;
-                s.type = 'text/javascript';
-                s.src = '//' + disqus_shortname + '.disqus.com/count.js';
-                (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
-            }());
-          </script>
-        </div>
-      </div>
+  </div>
+
     </div>
   </body>
   <script>
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-    
-    ga('create', 'UA-45866381-1', 'lucybain.com');
-    ga('send', 'pageview');
-  </script>
-</html>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  
+  ga('create', 'UA-45866381-1', 'lucybain.com');
+  ga('send', 'pageview');
+</script>
 
+</html>

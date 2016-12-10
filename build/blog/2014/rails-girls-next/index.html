@@ -1,0 +1,146 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+  <head>
+    <meta content='width=device-width, initial-scale=1' name='viewport'>
+<meta charset='utf-8'>
+<meta content='IE=edge,chrome=1' http-equiv='X-UA-Compatible'>
+<link href='/images/favicon.ico' rel='icon' type='image/ico'>
+<link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700|Source+Code+Pro' rel='stylesheet' type='text/css'>
+<title>Rails Girls Next</title>
+<link href="/stylesheets/application.css" rel="stylesheet" media="all" />
+<script src='//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js'></script>
+<script src='//cdn.optimizely.com/js/4606022905.js'></script>
+
+  </head>
+  <body class="">
+    <nav>
+  <div class='nav-open-btn'>
+    <ul>
+      <li></li>
+      <li></li>
+      <li></li>
+    </ul>
+  </div>
+  <ul class='nav-display'>
+    <li>
+      <a href="/" class="nav-link">Me</a>
+    </li>
+    <li>
+      <a href="/resume/" class="nav-link">Resume</a>
+    </li>
+    <li>
+      <a href="/contact-me/" class="nav-link">Contact</a>
+    </li>
+    <li>
+      <a href="/resources/" class="nav-link">Resources</a>
+    </li>
+    <li>
+      <a href="/blog/" class="nav-link active">Blog</a>
+    </li>
+  </ul>
+</nav>
+<script>
+  $('nav .nav-open-btn').on('click', function(){
+    $('nav .nav-display').toggleClass('open');
+  })
+</script>
+
+    <div class="content">
+        <div class=" blog-listing">
+    <div class="meta">
+      <h1>
+        Rails Girls Next
+      </h1>
+      <p>Published on: February 19, 2014</p>
+    </div>
+    <p>
+  Wahoo! Rails Girls Next happened without a (major) hitch today! I am so happy with how it went, and to have helped with these girls' continuing Ruby education.
+</p>
+<h2>
+  The event
+</h2>
+<p>
+  I've shared the <a href="https://docs.google.com/presentation/d/19Jj8I4CVRe8k2sP8m17PMk0PXwbY0646MxWDS6VJ5yo/edit?usp=sharing">slides</a> used for keeping track of time, so you can see the schedule we actually used on the day. We had <a href="http://lbain.github.io/rails-girls-next/">three exercises</a> for the girls to work through - test driven development (TDD), focused work with Ruby, and learning how the web works with Sinatra.
+</p>
+<p>
+  When the girls checked in they sat at one of six tables and tried to connect to the internet. Once it was time to start, each table was assigned one of three exercises (two tables per exercise). The goal was for each girl to do all of the exercises, and for all of the exercises to be running at any given time. Thus everyone would rotate through the exercises, and no single exercise would be overwhelmed with participants. We also strongly encouraged the girls to work in pairs, and to switch pairs after each exercise; the time they got up to switch exercises was a good time to switch pairs.
+</p>
+<p>
+  When the girls started a new exercise they were given a brief overview of the exercise by the mentor at the table and then they got started. We didn’t offer much guidance since we wanted the girls to work in their pairs and rely on each other, but mentors were readily available for struggling groups. After about an hour all the attendees who had been working on the same exercise (about nine) gathered with their mentors (two mentors per exercise). For the next 15 minutes they had a group discussion about the solutions they had come up with, as well as some good practices and tips from the mentors.
+</p>
+<p>
+  After a short break (time to move to another exercise area and find a new pair partner) this process was repeated for each of the remaining exercises. Once the exercises were over the girls were asked to fill out a short survey about how they found the day. Finally, the last part of the day was a discussion with the whole group. This was framed as a retro (although it wasn’t a full agile retrospective), and gave the girls, mentors, and myself a time and place to discuss how the day went and what could have been better. I found it extremely valuable to hear which exercises “worked” for the girls, and which ones needed tweaking, how the mentors felt about the discussions after each exercise, what things everyone would like to see changed before the next event, and others. Much of what was discussed was also in the feedback form, but I wanted to make sure the girls gave their feedback independently, before they could be influenced by listening to other participants.
+</p>
+<h2>
+  Lessons learned
+</h2>
+<p>
+  We had the normal problems with the girls connecting to conference (aka hotel) wifi. I’m not sure if there’s any way to fix this - hotels never seem to believe how much internet programmers use. There was also some concern about power for the attendee’s computers so the conference coordinators and myself went out to buy a few more power strips. In the end it seemed everyone who needed power could get it, or they were pairing on another computer that had enough power. In the future I'd like to check the power situation in advance.
+</p>
+<p>
+  From an organisers point of view, the biggest problem was that I hadn’t asked about food times. I'd assumed we'd be able to eat when we were ready, but since we were getting food from the hotel this was not the case. It caused some problems with the timing for the day, but worked out overall. This is something that’s easily avoidable - I just needed to ask the conference organisers in advance.
+</p>
+<p>
+  The exercises were (mostly) hosted on GitHub pages. This was convenient since GitHub took care of the hosting and coding everything was pretty straight forward. However, I'd never actually written a site in pure HTML, and man, it is annoying! In the future I'd write any sites I need using whatever method I’m used to (this blog is written with <a href="https://middlemanapp.com">Middleman</a>, I recommend checking it out). Writing pure HTML is just time consuming, and there’s no need - we've moved on from then! That said, I’m hoping to move the exercises back to Rails Girls so other groups can use them in the future.
+</p>
+<p>
+  Although I had a clear idea in my head how the discussions after each exercise were supposed to go, I hadn’t communicated that as well as was needed to the mentors. I wanted that time to be for the girls to realise other people were running into the same problems they were and they weren’t “dumb.” I also wanted to end up with a whole stack of happy post-it notes with a list of all the things the girls had learned - what a great thing to look back on! Unfortunately my ideas for this time really only solidified about two days before the event, and I never met up with the mentors to talk about it. I'd like to have a better write up for the mentors for future events.
+</p>
+<p>
+  Overall the feedback was useful and positive, but one response talked about feeling depressed with how far behind they felt when compared to the other participants. Obviously I was very sad about this - Rails Girls is set up to help everyone succeed, and I hated to think something I had poured so much energy into had actually made someone feel worse about themselves. At least with this piece of honest feedback we can do something to make the exercises more approachable and/or make some <em>very</em> beginner friendly exercises.
+</p>
+<p>
+  The most actionable piece of feedback is the ordering of the exercises. All of the girls seemed to find the TDD exercise the most approachable and the Ruby one the most challenging. So in the future I'd like for everyone to work on the same exercise at the same time. I’m not sure how to really encourage the girls to switch pairs between exercises, hopefully if there’s an official “switch” time they'll do it themselves. And speaking of pairing, the other easily actionable feedback was that the Sinatra exercise didn’t need pairing as it provided a clear enough walk through to work on alone.
+</p>
+<p>
+  At the end of the day, I’m really pleased with how the event went. I was blown away with how much the girls got done - massive props to them for sticking with the harder exercises and wanting to really understand it. And of course huge thanks to the mentors who gave up a day to help strangers learn to code. Hopefully the next Rails Girls Next event will run more smoothly and have more approachable exercises, but I think this was a pretty good starting point.
+</p>
+
+
+      <div id="disqus_thread">
+        <hr/>
+        <script>
+
+          var disqus_shortname = 'lucybain';
+          (function() {
+              var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+              dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+              (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+          })();
+
+        </script>
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+        <a class="dsq-brlink" href="http://disqus.com">
+          comments powered by
+          <span class="logo-disqus">Disqus</span>
+        </a>
+        <script>
+
+          var disqus_shortname = 'lucybain';
+          (function () {
+              var s = document.createElement('script'); s.async = true;
+              s.type = 'text/javascript';
+              s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+              (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+          }());
+
+        </script>
+      </div>
+  </div>
+
+    </div>
+  </body>
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  
+  ga('create', 'UA-45866381-1', 'lucybain.com');
+  ga('send', 'pageview');
+</script>
+
+</html>

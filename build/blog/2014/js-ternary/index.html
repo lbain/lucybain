@@ -1,127 +1,149 @@
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
   <head>
     <meta content='width=device-width, initial-scale=1' name='viewport'>
-    <meta charset='utf-8'>
-    <meta content='IE=edge,chrome=1' http-equiv='X-UA-Compatible'>
-    <meta content='js, interview-questions' name='keywords'>
-    <link href='/images/favicon.ico' rel='icon' type='image/ico'>
-    <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700|Source+Code+Pro' rel='stylesheet' type='text/css'>
-    <title>JS: ternary expressions</title>
-    <link href="/stylesheets/application.css" media="all" rel="stylesheet" type="text/css" />
-    <script src='//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js'></script>
-    <script src='//cdn.optimizely.com/js/4606022905.js'></script>
+<meta charset='utf-8'>
+<meta content='IE=edge,chrome=1' http-equiv='X-UA-Compatible'>
+<meta content='js, interview-questions' name='keywords'>
+<link href='/images/favicon.ico' rel='icon' type='image/ico'>
+<link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700|Source+Code+Pro' rel='stylesheet' type='text/css'>
+<title>JS: ternary expressions</title>
+<link href="/stylesheets/application.css" rel="stylesheet" media="all" />
+<script src='//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js'></script>
+<script src='//cdn.optimizely.com/js/4606022905.js'></script>
+
   </head>
-  <body>
+  <body class="">
     <nav>
-      <div class='nav-open-btn'>
-        <ul>
-          <li></li>
-          <li></li>
-          <li></li>
-        </ul>
+  <div class='nav-open-btn'>
+    <ul>
+      <li></li>
+      <li></li>
+      <li></li>
+    </ul>
+  </div>
+  <ul class='nav-display'>
+    <li>
+      <a href="/" class="nav-link">Me</a>
+    </li>
+    <li>
+      <a href="/resume/" class="nav-link">Resume</a>
+    </li>
+    <li>
+      <a href="/contact-me/" class="nav-link">Contact</a>
+    </li>
+    <li>
+      <a href="/resources/" class="nav-link">Resources</a>
+    </li>
+    <li>
+      <a href="/blog/" class="nav-link active">Blog</a>
+    </li>
+  </ul>
+</nav>
+<script>
+  $('nav .nav-open-btn').on('click', function(){
+    $('nav .nav-display').toggleClass('open');
+  })
+</script>
+
+    <div class="content">
+        <div class=" blog-listing">
+    <div class="meta">
+      <h1>
+        JS: ternary expressions
+      </h1>
+      <p>Published on: December 26, 2014</p>
+        <p>Tags: <a href="/blog/tags/js/">js</a> and <a href="/blog/tags/interview-questions/">interview-questions</a></p>
+    </div>
+    <h2>Why is it called a Ternary expression, what does the word “Ternary” indicate?</h2>
+
+<p>Let’s answer the second question first: what does the word “ternary” indicate? According to <a href="http://en.wikipedia.org/wiki/Ternary_operation">Wikipedia</a> the word “ternary” comes from the n-ary word setup. Other examples of n-ary words are u<strong>nary</strong> and bi<strong>nary</strong>. All of these (including ternary) are operands. The prefix section of their name lists how many inputs the operand accepts.</p>
+
+<p>A <strong>unary</strong> operand accepts one parameter, e.g. <code>-1</code>, where <code>-</code> is the operand, and 1 is the parameter.</p>
+
+<p>A <strong>binary</strong> operand accepts two parameters, e.g. <code>2 + 3</code>, where <code>+</code> is the operand, and <code>2</code> and <code>3</code> are the parameters.</p>
+
+<p>So a <strong>ternary</strong> operand accepts three parameters.</p>
+
+<p>In programming the ternary operand we use is a rewrite of an if statement. Before we write an actual ternary, we&#39;ll just take a quick look at an if statement:</p>
+
+<pre><code>if(conditional) { // one
+    truethy_block // two
+} else {
+    falsey_block // three
+}
+</code></pre>
+
+<p>You can see there are three sections to an if statement. Let’s write them as a property ternary expression:</p>
+
+<pre><code>conditional ? truethy_block : falsey_block
+</code></pre>
+
+<p>All the same code is there, but it’s arranged slightly differently. The ternary’s operand looks like <code>?:</code>.</p>
+
+<p>In JS ternarys are often used for assignment:</p>
+
+<pre><code>is_sunny = true;
+var weather = is_sunny ? ’sunny&#39; : &#39;Cloudy&#39;;
+console.log(weather); // logs ’sunny&#39;
+</code></pre>
+
+<p>They can also be used for very short conditional statements. But be wary of using them for long or complex logic as they are harder to read than traditional statements.</p>
+
+<p><strong>Resources</strong></p>
+
+<ul>
+<li><a href="http://en.wikipedia.org/wiki/%3F:"><code>?:</code></a> on Wikipedia</li>
+<li><a href="http://en.wikipedia.org/wiki/Unary_operation">unary operands</a> on Wikipedia</li>
+<li><a href="http://en.wikipedia.org/wiki/Binary_operation">binary operands</a> on Wikipedia</li>
+<li><a href="http://stackoverflow.com/questions/6259982/js-how-to-use-the-ternary-operator">Stackoverflow</a> about using the JS ternary operand specifically</li>
+</ul>
+
+
+      <div id="disqus_thread">
+        <hr/>
+        <script>
+
+          var disqus_shortname = 'lucybain';
+          (function() {
+              var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+              dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+              (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+          })();
+
+        </script>
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+        <a class="dsq-brlink" href="http://disqus.com">
+          comments powered by
+          <span class="logo-disqus">Disqus</span>
+        </a>
+        <script>
+
+          var disqus_shortname = 'lucybain';
+          (function () {
+              var s = document.createElement('script'); s.async = true;
+              s.type = 'text/javascript';
+              s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+              (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+          }());
+
+        </script>
       </div>
-      <ul class='nav-display'>
-        <li>
-          <a class="nav-link" href="/">Me</a>
-        </li>
-        <li>
-          <a class="nav-link" href="/resume/">Resume</a>
-        </li>
-        <li>
-          <a class="nav-link" href="/contact-me/">Contact</a>
-        </li>
-        <li>
-          <a class="nav-link" href="/resources/">Resources</a>
-        </li>
-        <li>
-          <a class="nav-link active" href="/blog/">Blog</a>
-        </li>
-      </ul>
-    </nav>
-    <script>
-      $('nav .nav-open-btn').on('click', function(){
-        $('nav .nav-display').toggleClass('open');
-      })
-    </script>
-    <div class='content'>
-      <div class=' blog-listing'>
-        <div class='meta'>
-          <h1>JS: ternary expressions</h1>
-          <p>Published on: December 26, 2014</p>
-          <p>Tags: <a href="/blog/tags/js/">js</a> and <a href="/blog/tags/interview-questions/">interview-questions</a></p>
-        </div>
-        <h2>Why is it called a Ternary expression, what does the word “Ternary” indicate?</h2>
-        
-        <p>Let’s answer the second question first: what does the word “ternary” indicate? According to <a href="http://en.wikipedia.org/wiki/Ternary_operation">Wikipedia</a> the word “ternary” comes from the n-ary word setup. Other examples of n-ary words are u<strong>nary</strong> and bi<strong>nary</strong>. All of these (including ternary) are operands. The prefix section of their name lists how many inputs the operand accepts.</p>
-        
-        <p>A <strong>unary</strong> operand accepts one parameter, e.g. <code>-1</code>, where <code>-</code> is the operand, and 1 is the parameter.</p>
-        
-        <p>A <strong>binary</strong> operand accepts two parameters, e.g. <code>2 + 3</code>, where <code>+</code> is the operand, and <code>2</code> and <code>3</code> are the parameters.</p>
-        
-        <p>So a <strong>ternary</strong> operand accepts three parameters.</p>
-        
-        <p>In programming the ternary operand we use is a rewrite of an if statement. Before we write an actual ternary, we&#39;ll just take a quick look at an if statement:</p>
-        <pre class="highlight plaintext">if(conditional) { // one&#x000A;    truethy_block // two&#x000A;} else {&#x000A;    falsey_block // three&#x000A;}</pre>
-        <p>You can see there are three sections to an if statement. Let’s write them as a property ternary expression:</p>
-        <pre class="highlight plaintext">conditional ? truethy_block : falsey_block</pre>
-        <p>All the same code is there, but it’s arranged slightly differently. The ternary’s operand looks like <code>?:</code>.</p>
-        
-        <p>In JS ternarys are often used for assignment:</p>
-        <pre class="highlight plaintext">is_sunny = true;&#x000A;var weather = is_sunny ? ’sunny' : 'Cloudy';&#x000A;console.log(weather); // logs ’sunny'</pre>
-        <p>They can also be used for very short conditional statements. But be wary of using them for long or complex logic as they are harder to read than traditional statements.</p>
-        
-        <p><strong>Resources</strong></p>
-        
-        <ul>
-        <li><a href="http://en.wikipedia.org/wiki/%3F:"><code>?:</code></a> on Wikipedia</li>
-        <li><a href="http://en.wikipedia.org/wiki/Unary_operation">unary operands</a> on Wikipedia</li>
-        <li><a href="http://en.wikipedia.org/wiki/Binary_operation">binary operands</a> on Wikipedia</li>
-        <li><a href="http://stackoverflow.com/questions/6259982/js-how-to-use-the-ternary-operator">Stackoverflow</a> about using the JS ternary operand specifically</li>
-        </ul>
-        <div class='recommended-reading'>
-          <h2>Recommended reading</h2>
-          <p>You might also like <a href="/blog/2014/attribute-vs-property/">JS: attribute vs. property</a></p>
-        </div>
-        <div id='disqus_thread'>
-          <hr>
-          <script>
-            var disqus_shortname = 'lucybain';
-            (function() {
-                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-                dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-            })();
-          </script>
-          <noscript>
-            Please enable JavaScript to view the
-            <a href='http://disqus.com/?ref_noscript'>comments powered by Disqus.</a>
-          </noscript>
-          <a class='dsq-brlink' href='http://disqus.com'>
-            comments powered by
-            <span class='logo-disqus'>Disqus</span>
-          </a>
-          <script>
-            var disqus_shortname = 'lucybain';
-            (function () {
-                var s = document.createElement('script'); s.async = true;
-                s.type = 'text/javascript';
-                s.src = '//' + disqus_shortname + '.disqus.com/count.js';
-                (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
-            }());
-          </script>
-        </div>
-      </div>
+  </div>
+
     </div>
   </body>
   <script>
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-    
-    ga('create', 'UA-45866381-1', 'lucybain.com');
-    ga('send', 'pageview');
-  </script>
-</html>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  
+  ga('create', 'UA-45866381-1', 'lucybain.com');
+  ga('send', 'pageview');
+</script>
 
+</html>

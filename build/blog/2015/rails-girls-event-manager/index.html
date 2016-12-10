@@ -1,140 +1,147 @@
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
   <head>
     <meta content='width=device-width, initial-scale=1' name='viewport'>
-    <meta charset='utf-8'>
-    <meta content='IE=edge,chrome=1' http-equiv='X-UA-Compatible'>
-    <meta content='rails-girls' name='keywords'>
-    <link href='/images/favicon.ico' rel='icon' type='image/ico'>
-    <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700|Source+Code+Pro' rel='stylesheet' type='text/css'>
-    <title>Rails Girls event manager</title>
-    <link href="/stylesheets/application.css" media="all" rel="stylesheet" type="text/css" />
-    <script src='//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js'></script>
-    <script src='//cdn.optimizely.com/js/4606022905.js'></script>
+<meta charset='utf-8'>
+<meta content='IE=edge,chrome=1' http-equiv='X-UA-Compatible'>
+<meta content='rails-girls' name='keywords'>
+<link href='/images/favicon.ico' rel='icon' type='image/ico'>
+<link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700|Source+Code+Pro' rel='stylesheet' type='text/css'>
+<title>Rails Girls event manager</title>
+<link href="/stylesheets/application.css" rel="stylesheet" media="all" />
+<script src='//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js'></script>
+<script src='//cdn.optimizely.com/js/4606022905.js'></script>
+
   </head>
-  <body>
+  <body class="">
     <nav>
-      <div class='nav-open-btn'>
-        <ul>
-          <li></li>
-          <li></li>
-          <li></li>
-        </ul>
+  <div class='nav-open-btn'>
+    <ul>
+      <li></li>
+      <li></li>
+      <li></li>
+    </ul>
+  </div>
+  <ul class='nav-display'>
+    <li>
+      <a href="/" class="nav-link">Me</a>
+    </li>
+    <li>
+      <a href="/resume/" class="nav-link">Resume</a>
+    </li>
+    <li>
+      <a href="/contact-me/" class="nav-link">Contact</a>
+    </li>
+    <li>
+      <a href="/resources/" class="nav-link">Resources</a>
+    </li>
+    <li>
+      <a href="/blog/" class="nav-link active">Blog</a>
+    </li>
+  </ul>
+</nav>
+<script>
+  $('nav .nav-open-btn').on('click', function(){
+    $('nav .nav-display').toggleClass('open');
+  })
+</script>
+
+    <div class="content">
+        <div class=" blog-listing">
+    <div class="meta">
+      <h1>
+        Rails Girls event manager
+      </h1>
+      <p>Published on: April  9, 2015</p>
+        <p>Tags: <a href="/blog/tags/rails-girls/">rails-girls</a></p>
+    </div>
+    <p>Hi there!</p>
+
+<p>I’m looking for something that Rails Girls could use to manage our events, particularly user sign ups. In the past we&#39;ve cobbled together something from various sites. Those sites are good on their own, but the whole system is pretty flimsy and I’m afraid someone might fall through the cracks. So I’m asking you for suggestions, but we&#39;ve got some fairly specific requests... Here’s what we&#39;re looking for:</p>
+
+<p>Required:</p>
+
+<ul>
+<li>When people “sign up” it’s really an application to attend - they are not issued a ticket</li>
+<li>We can send custom emails to people when they are accepted, as well as before the event</li>
+<li>Free, or maybe willing to be free for a non-profit (we&#39;re happy to list them as sponsors)</li>
+</ul>
+
+<p>Perfered:</p>
+
+<ul>
+<li>Sign up form allows for custom fields</li>
+<li>There is a “notes” (or similar) section for each applicant/attendee, or we can easily create one</li>
+</ul>
+
+<p>Optional:</p>
+
+<ul>
+<li>Track attendance at the event</li>
+<li>Support for multiple (or at least two) tracks (Rails Girls and Rails Girls Next, ideally mentors as well)</li>
+<li>Keep history on people between events</li>
+</ul>
+
+<p>Bonus:</p>
+
+<ul>
+<li>Anything else that’s used for event management - tracking caterers, receipts, sponsors, to do lists, etc.</li>
+</ul>
+
+<p>I know that’s a fairly long list. I&#39;ve looked around at a few, but haven’t found anything that meets our needs yet, so I’m reaching out to ask if you know of any such product.</p>
+
+<p>Yes, I know we <em>could</em> build it ourselves. I’m sure that&#39;ll have a fair bit of upkeep and I’m keen to keep our involvement to a minimum. (But hey, if you want to build it, you know you&#39;ll have at least one (non-paying) customer!)</p>
+
+<p>Please let us know if you have any suggestions.</p>
+
+<p>Thanks!
+Lucy and the Rails Girls Sydney team</p>
+
+
+      <div id="disqus_thread">
+        <hr/>
+        <script>
+
+          var disqus_shortname = 'lucybain';
+          (function() {
+              var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+              dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+              (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+          })();
+
+        </script>
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+        <a class="dsq-brlink" href="http://disqus.com">
+          comments powered by
+          <span class="logo-disqus">Disqus</span>
+        </a>
+        <script>
+
+          var disqus_shortname = 'lucybain';
+          (function () {
+              var s = document.createElement('script'); s.async = true;
+              s.type = 'text/javascript';
+              s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+              (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+          }());
+
+        </script>
       </div>
-      <ul class='nav-display'>
-        <li>
-          <a class="nav-link" href="/">Me</a>
-        </li>
-        <li>
-          <a class="nav-link" href="/resume/">Resume</a>
-        </li>
-        <li>
-          <a class="nav-link" href="/contact-me/">Contact</a>
-        </li>
-        <li>
-          <a class="nav-link" href="/resources/">Resources</a>
-        </li>
-        <li>
-          <a class="nav-link active" href="/blog/">Blog</a>
-        </li>
-      </ul>
-    </nav>
-    <script>
-      $('nav .nav-open-btn').on('click', function(){
-        $('nav .nav-display').toggleClass('open');
-      })
-    </script>
-    <div class='content'>
-      <div class=' blog-listing'>
-        <div class='meta'>
-          <h1>Rails Girls event manager</h1>
-          <p>Published on: April  9, 2015</p>
-          <p>Tags: <a href="/blog/tags/rails-girls/">rails-girls</a></p>
-        </div>
-        <p>Hi there!</p>
-        
-        <p>I’m looking for something that Rails Girls could use to manage our events, particularly user sign ups. In the past we&#39;ve cobbled together something from various sites. Those sites are good on their own, but the whole system is pretty flimsy and I’m afraid someone might fall through the cracks. So I’m asking you for suggestions, but we&#39;ve got some fairly specific requests... Here’s what we&#39;re looking for:</p>
-        
-        <p>Required:</p>
-        
-        <ul>
-        <li>When people “sign up” it’s really an application to attend - they are not issued a ticket</li>
-        <li>We can send custom emails to people when they are accepted, as well as before the event</li>
-        <li>Free, or maybe willing to be free for a non-profit (we&#39;re happy to list them as sponsors)</li>
-        </ul>
-        
-        <p>Perfered:</p>
-        
-        <ul>
-        <li>Sign up form allows for custom fields</li>
-        <li>There is a “notes” (or similar) section for each applicant/attendee, or we can easily create one</li>
-        </ul>
-        
-        <p>Optional:</p>
-        
-        <ul>
-        <li>Track attendance at the event</li>
-        <li>Support for multiple (or at least two) tracks (Rails Girls and Rails Girls Next, ideally mentors as well)</li>
-        <li>Keep history on people between events</li>
-        </ul>
-        
-        <p>Bonus:</p>
-        
-        <ul>
-        <li>Anything else that’s used for event management - tracking caterers, receipts, sponsors, to do lists, etc.</li>
-        </ul>
-        
-        <p>I know that’s a fairly long list. I&#39;ve looked around at a few, but haven’t found anything that meets our needs yet, so I’m reaching out to ask if you know of any such product.</p>
-        
-        <p>Yes, I know we <em>could</em> build it ourselves. I’m sure that&#39;ll have a fair bit of upkeep and I’m keen to keep our involvement to a minimum. (But hey, if you want to build it, you know you&#39;ll have at least one (non-paying) customer!)</p>
-        
-        <p>Please let us know if you have any suggestions.</p>
-        
-        <p>Thanks!
-        Lucy and the Rails Girls Sydney team</p>
-        <div class='recommended-reading'>
-          <h2>Recommended reading</h2>
-          <p>You might also like <a href="/blog/2014/google-adwords-async/">JS: Async Google Adwords conversion</a></p>
-        </div>
-        <div id='disqus_thread'>
-          <hr>
-          <script>
-            var disqus_shortname = 'lucybain';
-            (function() {
-                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-                dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-            })();
-          </script>
-          <noscript>
-            Please enable JavaScript to view the
-            <a href='http://disqus.com/?ref_noscript'>comments powered by Disqus.</a>
-          </noscript>
-          <a class='dsq-brlink' href='http://disqus.com'>
-            comments powered by
-            <span class='logo-disqus'>Disqus</span>
-          </a>
-          <script>
-            var disqus_shortname = 'lucybain';
-            (function () {
-                var s = document.createElement('script'); s.async = true;
-                s.type = 'text/javascript';
-                s.src = '//' + disqus_shortname + '.disqus.com/count.js';
-                (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
-            }());
-          </script>
-        </div>
-      </div>
+  </div>
+
     </div>
   </body>
   <script>
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-    
-    ga('create', 'UA-45866381-1', 'lucybain.com');
-    ga('send', 'pageview');
-  </script>
-</html>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  
+  ga('create', 'UA-45866381-1', 'lucybain.com');
+  ga('send', 'pageview');
+</script>
 
+</html>

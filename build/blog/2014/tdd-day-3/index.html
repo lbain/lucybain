@@ -1,115 +1,122 @@
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
   <head>
     <meta content='width=device-width, initial-scale=1' name='viewport'>
-    <meta charset='utf-8'>
-    <meta content='IE=edge,chrome=1' http-equiv='X-UA-Compatible'>
-    <link href='/images/favicon.ico' rel='icon' type='image/ico'>
-    <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700|Source+Code+Pro' rel='stylesheet' type='text/css'>
-    <title>TDD Day 3</title>
-    <link href="/stylesheets/application.css" media="all" rel="stylesheet" type="text/css" />
-    <script src='//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js'></script>
-    <script src='//cdn.optimizely.com/js/4606022905.js'></script>
+<meta charset='utf-8'>
+<meta content='IE=edge,chrome=1' http-equiv='X-UA-Compatible'>
+<link href='/images/favicon.ico' rel='icon' type='image/ico'>
+<link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700|Source+Code+Pro' rel='stylesheet' type='text/css'>
+<title>TDD Day 3</title>
+<link href="/stylesheets/application.css" rel="stylesheet" media="all" />
+<script src='//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js'></script>
+<script src='//cdn.optimizely.com/js/4606022905.js'></script>
+
   </head>
-  <body>
+  <body class="">
     <nav>
-      <div class='nav-open-btn'>
-        <ul>
-          <li></li>
-          <li></li>
-          <li></li>
-        </ul>
+  <div class='nav-open-btn'>
+    <ul>
+      <li></li>
+      <li></li>
+      <li></li>
+    </ul>
+  </div>
+  <ul class='nav-display'>
+    <li>
+      <a href="/" class="nav-link">Me</a>
+    </li>
+    <li>
+      <a href="/resume/" class="nav-link">Resume</a>
+    </li>
+    <li>
+      <a href="/contact-me/" class="nav-link">Contact</a>
+    </li>
+    <li>
+      <a href="/resources/" class="nav-link">Resources</a>
+    </li>
+    <li>
+      <a href="/blog/" class="nav-link active">Blog</a>
+    </li>
+  </ul>
+</nav>
+<script>
+  $('nav .nav-open-btn').on('click', function(){
+    $('nav .nav-display').toggleClass('open');
+  })
+</script>
+
+    <div class="content">
+        <div class=" blog-listing">
+    <div class="meta">
+      <h1>
+        TDD Day 3
+      </h1>
+      <p>Published on: January  6, 2014</p>
+    </div>
+    <p>
+  I started the next <a href="http://content.codersdojo.org/code-kata-catalogue/prime-factors/">kata</a> at Coders Dojo. I think you're supposed to do katas over and over again, but I didn’t think I'd gain that much from repeating the FizzBuzz kata from yesterday. Maybe when I've got a better hang of things I can go back to FizzBuzz and learn something from it. Anyways, today’s exercise was new to me - finding all the prime factors for a given number. Of course I've done this in math class, but I haven’t written a program for it before.
+</p>
+<p>
+  I figured I shouldn’t have a list of all the primes ever (also, not possible to do...), and that calculating the primes on the fly would be too slow. (Not that there’s a time constraint, just that I know computers spend their lives computing the next prime number and it seemed a bit in efficient.) Fortunately Ruby has a Prime class, so I borrowed that one. I’m not sure this was in the spirit of the kata, but TDD and Agile are all about writing as little code as possible, and I thought using someone else’s code would further that cause. Looking back I’m not so sure...
+</p>
+<p>
+  I went through the exercise and got it all <a href="https://github.com/lbain/tdd-practice/tree/master/day-3">sorted.</a> I'll admit I'd forgotten 1 isn’t a prime number, but a bit of Googling set me straight. In the end the Prime class wasn’t as helpful as I'd thought since it didn’t come in the “correct” form as described in Coders Dojo. So I had to write a converting function to deal with this.
+</p>
+<h3>
+  Reflections
+</h3>
+<p>
+  When I was done I found a <a href="http://www.codersdojo.com/statistics/aa3d8500266d4b5bcf6fe18d0fce77dc1a7b7c0e">“solution”</a> posted by the Dojo. It was... much better than mine. :( Well, I guess that’s what learning is all about. I ended up putting similar tests together (a few primes and a few composite numbers all in one “it” block). I’m pretty sure you're not supposed to do this, but I really haven’t found a good reason why not. But I only had a few test cases, the solution had many more. The solution also rolled its own factorization rather than relying on Prime. I had assumed this would be too slow, but of course that was premature optimization. No one else is going to use this function, just me and my tests. Time is unimportant. Also, I have no idea how the Prime class works, it might compute the primes on the fly itself.
+</p>
+<p>
+  All in all, I think I did better sticking with the TDD mindset, but I'd like to come back to this one in a little while (once I've forgotten it a bit), and write my own factorization without leaning on Prime.
+</p>
+
+
+      <div id="disqus_thread">
+        <hr/>
+        <script>
+
+          var disqus_shortname = 'lucybain';
+          (function() {
+              var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+              dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+              (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+          })();
+
+        </script>
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+        <a class="dsq-brlink" href="http://disqus.com">
+          comments powered by
+          <span class="logo-disqus">Disqus</span>
+        </a>
+        <script>
+
+          var disqus_shortname = 'lucybain';
+          (function () {
+              var s = document.createElement('script'); s.async = true;
+              s.type = 'text/javascript';
+              s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+              (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+          }());
+
+        </script>
       </div>
-      <ul class='nav-display'>
-        <li>
-          <a class="nav-link" href="/">Me</a>
-        </li>
-        <li>
-          <a class="nav-link" href="/resume/">Resume</a>
-        </li>
-        <li>
-          <a class="nav-link" href="/contact-me/">Contact</a>
-        </li>
-        <li>
-          <a class="nav-link" href="/resources/">Resources</a>
-        </li>
-        <li>
-          <a class="nav-link active" href="/blog/">Blog</a>
-        </li>
-      </ul>
-    </nav>
-    <script>
-      $('nav .nav-open-btn').on('click', function(){
-        $('nav .nav-display').toggleClass('open');
-      })
-    </script>
-    <div class='content'>
-      <div class=' blog-listing'>
-        <div class='meta'>
-          <h1>TDD Day 3</h1>
-          <p>Published on: January  6, 2014</p>
-        </div>
-        <p>
-          I started the next <a href="http://content.codersdojo.org/code-kata-catalogue/prime-factors/">kata</a> at Coders Dojo. I think you're supposed to do katas over and over again, but I didn’t think I'd gain that much from repeating the FizzBuzz kata from yesterday. Maybe when I've got a better hang of things I can go back to FizzBuzz and learn something from it. Anyways, today’s exercise was new to me - finding all the prime factors for a given number. Of course I've done this in math class, but I haven’t written a program for it before.
-        </p>
-        <p>
-          I figured I shouldn’t have a list of all the primes ever (also, not possible to do...), and that calculating the primes on the fly would be too slow. (Not that there’s a time constraint, just that I know computers spend their lives computing the next prime number and it seemed a bit in efficient.) Fortunately Ruby has a Prime class, so I borrowed that one. I’m not sure this was in the spirit of the kata, but TDD and Agile are all about writing as little code as possible, and I thought using someone else’s code would further that cause. Looking back I’m not so sure...
-        </p>
-        <p>
-          I went through the exercise and got it all <a href="https://github.com/lbain/tdd-practice/tree/master/day-3">sorted.</a> I'll admit I'd forgotten 1 isn’t a prime number, but a bit of Googling set me straight. In the end the Prime class wasn’t as helpful as I'd thought since it didn’t come in the “correct” form as described in Coders Dojo. So I had to write a converting function to deal with this.
-        </p>
-        <h3>
-          Reflections
-        </h3>
-        <p>
-          When I was done I found a <a href="http://www.codersdojo.com/statistics/aa3d8500266d4b5bcf6fe18d0fce77dc1a7b7c0e">“solution”</a> posted by the Dojo. It was... much better than mine. :( Well, I guess that’s what learning is all about. I ended up putting similar tests together (a few primes and a few composite numbers all in one “it” block). I’m pretty sure you're not supposed to do this, but I really haven’t found a good reason why not. But I only had a few test cases, the solution had many more. The solution also rolled its own factorization rather than relying on Prime. I had assumed this would be too slow, but of course that was premature optimization. No one else is going to use this function, just me and my tests. Time is unimportant. Also, I have no idea how the Prime class works, it might compute the primes on the fly itself.
-        </p>
-        <p>
-          All in all, I think I did better sticking with the TDD mindset, but I'd like to come back to this one in a little while (once I've forgotten it a bit), and write my own factorization without leaning on Prime.
-        </p>
-        <div class='recommended-reading'>
-          <h2>Recommended reading</h2>
-          <p>You might also like <a href="/blog/2014/google-adwords-async/">JS: Async Google Adwords conversion</a></p>
-        </div>
-        <div id='disqus_thread'>
-          <hr>
-          <script>
-            var disqus_shortname = 'lucybain';
-            (function() {
-                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-                dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-            })();
-          </script>
-          <noscript>
-            Please enable JavaScript to view the
-            <a href='http://disqus.com/?ref_noscript'>comments powered by Disqus.</a>
-          </noscript>
-          <a class='dsq-brlink' href='http://disqus.com'>
-            comments powered by
-            <span class='logo-disqus'>Disqus</span>
-          </a>
-          <script>
-            var disqus_shortname = 'lucybain';
-            (function () {
-                var s = document.createElement('script'); s.async = true;
-                s.type = 'text/javascript';
-                s.src = '//' + disqus_shortname + '.disqus.com/count.js';
-                (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
-            }());
-          </script>
-        </div>
-      </div>
+  </div>
+
     </div>
   </body>
   <script>
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-    
-    ga('create', 'UA-45866381-1', 'lucybain.com');
-    ga('send', 'pageview');
-  </script>
-</html>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  
+  ga('create', 'UA-45866381-1', 'lucybain.com');
+  ga('send', 'pageview');
+</script>
 
+</html>

@@ -1,138 +1,197 @@
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
   <head>
     <meta content='width=device-width, initial-scale=1' name='viewport'>
-    <meta charset='utf-8'>
-    <meta content='IE=edge,chrome=1' http-equiv='X-UA-Compatible'>
-    <meta content='js, interview-questions' name='keywords'>
-    <link href='/images/favicon.ico' rel='icon' type='image/ico'>
-    <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700|Source+Code+Pro' rel='stylesheet' type='text/css'>
-    <title>JS: explain Function.prototype.bind</title>
-    <link href="/stylesheets/application.css" media="all" rel="stylesheet" type="text/css" />
-    <script src='//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js'></script>
-    <script src='//cdn.optimizely.com/js/4606022905.js'></script>
+<meta charset='utf-8'>
+<meta content='IE=edge,chrome=1' http-equiv='X-UA-Compatible'>
+<meta content='js, interview-questions' name='keywords'>
+<link href='/images/favicon.ico' rel='icon' type='image/ico'>
+<link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700|Source+Code+Pro' rel='stylesheet' type='text/css'>
+<title>JS: explain Function.prototype.bind</title>
+<link href="/stylesheets/application.css" rel="stylesheet" media="all" />
+<script src='//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js'></script>
+<script src='//cdn.optimizely.com/js/4606022905.js'></script>
+
   </head>
-  <body>
+  <body class="">
     <nav>
-      <div class='nav-open-btn'>
-        <ul>
-          <li></li>
-          <li></li>
-          <li></li>
-        </ul>
+  <div class='nav-open-btn'>
+    <ul>
+      <li></li>
+      <li></li>
+      <li></li>
+    </ul>
+  </div>
+  <ul class='nav-display'>
+    <li>
+      <a href="/" class="nav-link">Me</a>
+    </li>
+    <li>
+      <a href="/resume/" class="nav-link">Resume</a>
+    </li>
+    <li>
+      <a href="/contact-me/" class="nav-link">Contact</a>
+    </li>
+    <li>
+      <a href="/resources/" class="nav-link">Resources</a>
+    </li>
+    <li>
+      <a href="/blog/" class="nav-link active">Blog</a>
+    </li>
+  </ul>
+</nav>
+<script>
+  $('nav .nav-open-btn').on('click', function(){
+    $('nav .nav-display').toggleClass('open');
+  })
+</script>
+
+    <div class="content">
+        <div class=" blog-listing">
+    <div class="meta">
+      <h1>
+        JS: explain Function.prototype.bind
+      </h1>
+      <p>Published on: October 10, 2014</p>
+        <p>Tags: <a href="/blog/tags/js/">js</a> and <a href="/blog/tags/interview-questions/">interview-questions</a></p>
+    </div>
+    <h2>Explain Function.prototype.bind</h2>
+
+<p>I hadn’t heard of <code>bind</code> before, so I&#39;ve just been reading up on this one. Woah. It’s pretty cool! Why hasn’t anyone mentioned it before?!</p>
+
+<p><strong>Official answer</strong></p>
+
+<p><code>bind</code> allows you to set which object is treated as <code>this</code> within the function call.</p>
+
+<p>Ok, I know that sounds a lot like <a href="/blog/2014/call-vs-apply/"><code>call</code> or <code>apply</code></a>, but it’s not. It’s better!</p>
+
+<p><strong>Longer answer</strong></p>
+
+<p>You know how you sometimes write code like this:</p>
+
+<pre><code>function Person(name){
+  this.name = name;
+  this.distractedGreeting = function() {
+    var self = this; // &lt;-- this line!
+    setTimeout(function(){
+      console.log(&quot;Hello, my name is &quot; + self.name); // &lt;-- and here!
+    }, 500);
+  }
+}
+
+var alice = new Person(&#39;Alice&#39;);
+alice.distractedGreeting();
+// after 500ms logs &quot;Hello, my name is Alice&quot;
+</code></pre>
+
+<p>See that line <code>var self = this;</code>? That’s called “caching <code>this</code>”. (<em>Cache</em> as in save it away, not as in for optimisation purposes.)</p>
+
+<p>That’s pretty handy, since it gives you access to the <code>Person</code> context within the <code>setTimeout</code> function. The “inside” <code>this</code> refers to the <code>setTimeout</code> context, which doesn’t have a <code>name</code> method.</p>
+
+<p>But, it turns out, there is a better way! You can use <code>bind</code>. The example above is updated to:</p>
+
+<pre><code>function Person(name){
+  this.name = name;
+  this.distractedGreeting = function() {
+    setTimeout(function(){
+      console.log(&quot;Hello, my name is &quot; + this.name);
+    }.bind(this), 500); // &lt;-- this line!
+  }
+}
+
+var alice = new Person(&#39;Alice&#39;);
+alice.distractedGreeting();
+// after 500ms logs &quot;Hello, my name is Alice&quot;
+</code></pre>
+
+<p>Notice that <code>.bind(this)</code> at the end of the function definition? That means that the <code>this</code> within the <code>setTimeout</code> is bound to the same <code>this</code> within the <code>Person</code>. I think that’s pretty cool.</p>
+
+<p><strong>Warning</strong></p>
+
+<p>So for one shining second I thought I&#39;d solved a lot of my JS headaches. I could just always bind <code>this</code> and all my context troubles would be so far away. Unfortunately that’s not the case. There are times that you want access to the “inner” context (<code>setTimeout</code> in our example). If you <code>.bind(this)</code> you&#39;ll lose access to the inner <code>this</code>.</p>
+
+<p>How about an example to clear this up?</p>
+
+<pre><code>function Person(name){
+  this.name = name;
+  this.distractedGreeting = function() {
+    setTimeout(function(){
+      console.log(&quot;Hello, my name is &quot; + this.name);
+      console.log(this.location.origin); // error!
+    }.bind(this), 500);
+  }
+}
+</code></pre>
+
+<p>Ok, so using <code>setTimeout</code> doesn’t lead to the most exciting example, but go with me here. We get an error on the <code>this.location.origin</code> because the newly bound <code>this</code> refers to the <code>Person</code> object, not the context of <code>setTimeout</code>. To get the outcome we&#39;re looking for, we have to cache <code>this</code>:</p>
+
+<pre><code>function Person(name){
+  this.name = name;
+  this.distractedGreeting = function() {
+    var self = this; // caching
+    setTimeout(function(){
+      console.log(&quot;Hello, my name is &quot; + self.name);
+      console.log(this.location.origin);
+    }, 500); // no binding
+  }
+}
+</code></pre>
+
+<p>Now when we call <code>distractedGreeting</code> we have access to both the <code>Person</code> context (<code>self</code>) and the <code>setTimeout</code> context (<code>this</code>).</p>
+
+<p><strong>Resources</strong></p>
+
+<ul>
+<li><a href="http://www.smashingmagazine.com/2014/01/23/understanding-javascript-function-prototype-bind/">Smashing Magazine</a> (I found this one more readable)</li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/bind">Mozilla</a></li>
+<li><a href="http://javascriptissexy.com/javascript-apply-call-and-bind-methods-are-essential-for-javascript-professionals/?WPACFallback=1&amp;WPACRandom=1417428763444">JS is sexy</a> - super long and AMAZING post. It really goes into the details. I’m planning on reading it a second (and probably third) time.</li>
+</ul>
+
+
+      <div id="disqus_thread">
+        <hr/>
+        <script>
+
+          var disqus_shortname = 'lucybain';
+          (function() {
+              var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+              dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+              (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+          })();
+
+        </script>
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+        <a class="dsq-brlink" href="http://disqus.com">
+          comments powered by
+          <span class="logo-disqus">Disqus</span>
+        </a>
+        <script>
+
+          var disqus_shortname = 'lucybain';
+          (function () {
+              var s = document.createElement('script'); s.async = true;
+              s.type = 'text/javascript';
+              s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+              (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+          }());
+
+        </script>
       </div>
-      <ul class='nav-display'>
-        <li>
-          <a class="nav-link" href="/">Me</a>
-        </li>
-        <li>
-          <a class="nav-link" href="/resume/">Resume</a>
-        </li>
-        <li>
-          <a class="nav-link" href="/contact-me/">Contact</a>
-        </li>
-        <li>
-          <a class="nav-link" href="/resources/">Resources</a>
-        </li>
-        <li>
-          <a class="nav-link active" href="/blog/">Blog</a>
-        </li>
-      </ul>
-    </nav>
-    <script>
-      $('nav .nav-open-btn').on('click', function(){
-        $('nav .nav-display').toggleClass('open');
-      })
-    </script>
-    <div class='content'>
-      <div class=' blog-listing'>
-        <div class='meta'>
-          <h1>JS: explain Function.prototype.bind</h1>
-          <p>Published on: October 10, 2014</p>
-          <p>Tags: <a href="/blog/tags/js/">js</a> and <a href="/blog/tags/interview-questions/">interview-questions</a></p>
-        </div>
-        <h2>Explain Function.prototype.bind</h2>
-        
-        <p>I hadn’t heard of <code>bind</code> before, so I&#39;ve just been reading up on this one. Woah. It’s pretty cool! Why hasn’t anyone mentioned it before?!</p>
-        
-        <p><strong>Official answer</strong></p>
-        
-        <p><code>bind</code> allows you to set which object is treated as <code>this</code> within the function call.</p>
-        
-        <p>Ok, I know that sounds a lot like <a href="/blog/2014/call-vs-apply/"><code>call</code> or <code>apply</code></a>, but it’s not. It’s better!</p>
-        
-        <p><strong>Longer answer</strong></p>
-        
-        <p>You know how you sometimes write code like this:</p>
-        <pre class="highlight plaintext">function Person(name){&#x000A;  this.name = name;&#x000A;  this.distractedGreeting = function() {&#x000A;    var self = this; // &lt;-- this line!&#x000A;    setTimeout(function(){&#x000A;      console.log("Hello, my name is " + self.name); // &lt;-- and here!&#x000A;    }, 500);&#x000A;  }&#x000A;}&#x000A;&#x000A;var alice = new Person('Alice');&#x000A;alice.distractedGreeting();&#x000A;// after 500ms logs "Hello, my name is Alice"</pre>
-        <p>See that line <code>var self = this;</code>? That’s called “caching <code>this</code>”. (<em>Cache</em> as in save it away, not as in for optimisation purposes.)</p>
-        
-        <p>That’s pretty handy, since it gives you access to the <code>Person</code> context within the <code>setTimeout</code> function. The “inside” <code>this</code> refers to the <code>setTimeout</code> context, which doesn’t have a <code>name</code> method.</p>
-        
-        <p>But, it turns out, there is a better way! You can use <code>bind</code>. The example above is updated to:</p>
-        <pre class="highlight plaintext">function Person(name){&#x000A;  this.name = name;&#x000A;  this.distractedGreeting = function() {&#x000A;    setTimeout(function(){&#x000A;      console.log("Hello, my name is " + this.name);&#x000A;    }.bind(this), 500); // &lt;-- this line!&#x000A;  }&#x000A;}&#x000A;&#x000A;var alice = new Person('Alice');&#x000A;alice.distractedGreeting();&#x000A;// after 500ms logs "Hello, my name is Alice"</pre>
-        <p>Notice that <code>.bind(this)</code> at the end of the function definition? That means that the <code>this</code> within the <code>setTimeout</code> is bound to the same <code>this</code> within the <code>Person</code>. I think that’s pretty cool.</p>
-        
-        <p><strong>Warning</strong></p>
-        
-        <p>So for one shining second I thought I&#39;d solved a lot of my JS headaches. I could just always bind <code>this</code> and all my context troubles would be so far away. Unfortunately that’s not the case. There are times that you want access to the “inner” context (<code>setTimeout</code> in our example). If you <code>.bind(this)</code> you&#39;ll lose access to the inner <code>this</code>.</p>
-        
-        <p>How about an example to clear this up?</p>
-        <pre class="highlight plaintext">function Person(name){&#x000A;  this.name = name;&#x000A;  this.distractedGreeting = function() {&#x000A;    setTimeout(function(){&#x000A;      console.log("Hello, my name is " + this.name);&#x000A;      console.log(this.location.origin); // error!&#x000A;    }.bind(this), 500);&#x000A;  }&#x000A;}</pre>
-        <p>Ok, so using <code>setTimeout</code> doesn’t lead to the most exciting example, but go with me here. We get an error on the <code>this.location.origin</code> because the newly bound <code>this</code> refers to the <code>Person</code> object, not the context of <code>setTimeout</code>. To get the outcome we&#39;re looking for, we have to cache <code>this</code>:</p>
-        <pre class="highlight plaintext">function Person(name){&#x000A;  this.name = name;&#x000A;  this.distractedGreeting = function() {&#x000A;    var self = this; // caching&#x000A;    setTimeout(function(){&#x000A;      console.log("Hello, my name is " + self.name);&#x000A;      console.log(this.location.origin);&#x000A;    }, 500); // no binding&#x000A;  }&#x000A;}</pre>
-        <p>Now when we call <code>distractedGreeting</code> we have access to both the <code>Person</code> context (<code>self</code>) and the <code>setTimeout</code> context (<code>this</code>).</p>
-        
-        <p><strong>Resources</strong></p>
-        
-        <ul>
-        <li><a href="http://www.smashingmagazine.com/2014/01/23/understanding-javascript-function-prototype-bind/">Smashing Magazine</a> (I found this one more readable)</li>
-        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/bind">Mozilla</a></li>
-        <li><a href="http://javascriptissexy.com/javascript-apply-call-and-bind-methods-are-essential-for-javascript-professionals/?WPACFallback=1&amp;amp;WPACRandom=1417428763444">JS is sexy</a> - super long and AMAZING post. It really goes into the details. I’m planning on reading it a second (and probably third) time.</li>
-        </ul>
-        <div class='recommended-reading'>
-          <h2>Recommended reading</h2>
-          <p>You might also like <a href="/blog/2014/attribute-vs-property/">JS: attribute vs. property</a></p>
-        </div>
-        <div id='disqus_thread'>
-          <hr>
-          <script>
-            var disqus_shortname = 'lucybain';
-            (function() {
-                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-                dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-            })();
-          </script>
-          <noscript>
-            Please enable JavaScript to view the
-            <a href='http://disqus.com/?ref_noscript'>comments powered by Disqus.</a>
-          </noscript>
-          <a class='dsq-brlink' href='http://disqus.com'>
-            comments powered by
-            <span class='logo-disqus'>Disqus</span>
-          </a>
-          <script>
-            var disqus_shortname = 'lucybain';
-            (function () {
-                var s = document.createElement('script'); s.async = true;
-                s.type = 'text/javascript';
-                s.src = '//' + disqus_shortname + '.disqus.com/count.js';
-                (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
-            }());
-          </script>
-        </div>
-      </div>
+  </div>
+
     </div>
   </body>
   <script>
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-    
-    ga('create', 'UA-45866381-1', 'lucybain.com');
-    ga('send', 'pageview');
-  </script>
-</html>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  
+  ga('create', 'UA-45866381-1', 'lucybain.com');
+  ga('send', 'pageview');
+</script>
 
+</html>

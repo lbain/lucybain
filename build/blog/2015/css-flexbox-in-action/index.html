@@ -1,206 +1,328 @@
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
   <head>
     <meta content='width=device-width, initial-scale=1' name='viewport'>
-    <meta charset='utf-8'>
-    <meta content='IE=edge,chrome=1' http-equiv='X-UA-Compatible'>
-    <meta content='css, hands-on, flexbox' name='keywords'>
-    <link href='/images/favicon.ico' rel='icon' type='image/ico'>
-    <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700|Source+Code+Pro' rel='stylesheet' type='text/css'>
-    <title>CSS: Flexbox in action - Bitbucket Server pull request header</title>
-    <link href="/stylesheets/application.css" media="all" rel="stylesheet" type="text/css" />
-    <script src='//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js'></script>
-    <script src='//cdn.optimizely.com/js/4606022905.js'></script>
+<meta charset='utf-8'>
+<meta content='IE=edge,chrome=1' http-equiv='X-UA-Compatible'>
+<meta content='css, hands-on, flexbox' name='keywords'>
+<link href='/images/favicon.ico' rel='icon' type='image/ico'>
+<link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700|Source+Code+Pro' rel='stylesheet' type='text/css'>
+<title>CSS: Flexbox in action - Bitbucket Server pull request header</title>
+<link href="/stylesheets/application.css" rel="stylesheet" media="all" />
+<script src='//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js'></script>
+<script src='//cdn.optimizely.com/js/4606022905.js'></script>
+
   </head>
-  <body>
+  <body class="">
     <nav>
-      <div class='nav-open-btn'>
-        <ul>
-          <li></li>
-          <li></li>
-          <li></li>
-        </ul>
+  <div class='nav-open-btn'>
+    <ul>
+      <li></li>
+      <li></li>
+      <li></li>
+    </ul>
+  </div>
+  <ul class='nav-display'>
+    <li>
+      <a href="/" class="nav-link">Me</a>
+    </li>
+    <li>
+      <a href="/resume/" class="nav-link">Resume</a>
+    </li>
+    <li>
+      <a href="/contact-me/" class="nav-link">Contact</a>
+    </li>
+    <li>
+      <a href="/resources/" class="nav-link">Resources</a>
+    </li>
+    <li>
+      <a href="/blog/" class="nav-link active">Blog</a>
+    </li>
+  </ul>
+</nav>
+<script>
+  $('nav .nav-open-btn').on('click', function(){
+    $('nav .nav-display').toggleClass('open');
+  })
+</script>
+
+    <div class="content">
+        <div class=" blog-listing">
+    <div class="meta">
+      <h1>
+        CSS: Flexbox in action - Bitbucket Server pull request header
+      </h1>
+      <p>Published on: October 20, 2015</p>
+        <p>Tags: <a href="/blog/tags/css/">css</a>, <a href="/blog/tags/hands-on/">hands-on</a>, and <a href="/blog/tags/flexbox/">flexbox</a></p>
+    </div>
+    <p>I <a href="/blog/2015/css-flexbox/">recently wrote</a> about using the <code>flex-box</code> rule in CSS. That was a practice round because I knew I needed to use flexbox at work in the future. Well, the time has come!</p>
+
+<p>As you might know, I work for Atlassian on the <a href="https://www.atlassian.com/software/bitbucket/download">Bitbucket Server</a> product. Today I spent some time implementing flexbox on our pull request page, specifically in the header. Let’s take a look at what it’s currently like:</p>
+
+<p><img src="/images/blog/pr-header/current.png" alt="current pull request header" /></p>
+
+<p>Adding flexbox is part of a much larger chunk of work, so my “finished product” looks like this:</p>
+
+<p><img src="/images/blog/pr-header/rough-draft.png" alt="current pull request header" /></p>
+
+<p>Obviously it’s got a ways to go, but this little bit is done! The main point is that we utilise all of the space available to us. Previously we were’t able to expand a branch name fully even though there was enough space for it.</p>
+
+<h2>Description</h2>
+
+<p>I was fortunate enough to be able to throw away all existing HTML and CSS. Nothing else relies on this piece of code and I had full control of how to implement this part of the feature (with lots of feedback from my fantastic colleagues!). So we don’t need to talk about what <em>was</em> there, we’re starting from scratch.</p>
+
+<h3>Desired outcome</h3>
+
+<p>The pull request header (known as PRH from now on) has X main sections:</p>
+
+<ol>
+<li>author (avatar and name)</li>
+<li>branch details (source, destination and an arrow between them)</li>
+<li>PR status</li>
+<li>reviewers (avatars only)</li>
+<li>approve button</li>
+<li>indication of merge issues</li>
+<li>merge button</li>
+<li>menu for other options</li>
+</ol>
+
+<p>Ultimately only the author and branches should be “flexible.” Everything else should always be completely visible. After a little thought and discussion we decided that the branches should be more flexible than the author (i.e. branches should shrink faster than the author).</p>
+
+<h2>Code</h2>
+
+<p>Ok, so now we understand the problem, let’s start coding!</p>
+
+<p><strong>NOTE: to keep the CSS easy to read, the demo pages only work in Chrome.</strong></p>
+
+<h3>Getting started</h3>
+
+<p>When I first got into it I figured I’d just work with everything all together. I already had the HTML set up from another bit of work, so I’d <em>just</em> add the CSS. This wasn’t successful. There were too many moving parts and I didn’t have a good enough understanding of how flexbox worked to hold all the parts in my head.</p>
+
+<p>I followed the (very good) advice I give to people new to programming:</p>
+
+<blockquote>
+<p>It’s easier to get a small thing right.</p>
+</blockquote>
+
+<p>Rather than think about the whole thing at once I focused on just the branch details section.</p>
+
+<h3>Branch details</h3>
+
+<p>The branch details looks like this:</p>
+
+<p>your-awesome-branch --&gt; the-destination-branch</p>
+
+<p>So I set up my HTML like this:</p>
+
+<pre><code>&lt;div class=&quot;branch-details&quot;&gt;
+    &lt;div class=&quot;source&quot;&gt;
+        your-awesome-branch
+    &lt;/div&gt;
+
+    &lt;div class=&quot;arrow&quot;&gt;
+        --&gt;
+    &lt;/div&gt;
+
+    &lt;div class=&quot;destination&quot;&gt;
+        the-destination-branch
+    &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+
+<p>(Obviously we use a better arrow really, but we’ll ignore that for this post.)</p>
+
+<p>Alright, now we’re getting somewhere!</p>
+
+<p>So <code>source</code> and <code>destination</code> ultimately need to be shrinkable. In order to allow them to shrink we need to make their container, <code>branch-details</code>, flexible.</p>
+
+<pre><code>.branch-details {
+    display: flex;
+}
+</code></pre>
+
+<p>At this point everything is flexible. So if you <a href="/blog/2015/pr-header/simple-flexbox">play with it</a> you can see everything shrinks equally and the branch names wrap across lines. This wrapping makes sense for “normal” uses of flexbox (i.e. columns of text) but it isn’t what we want for the branch names.</p>
+
+<p>We can stop words from wrapping with a quick <code>white-space: nowrap</code> rule. <a href="/blog/2015/pr-header/no-wrap">This works</a> in that the words don’t wrap, but it has the unfortunate side effect of stopping things from shrinking. Let‘s put that back by hiding overflowing text: <code>overflow: hidden;</code>. While we’re at it, we can style the ending with an ellipsis using <code>text-overflow: ellipsis;</code>. Ok, we’re <a href="/blog/2015/pr-header/ellipsis">back in business</a> now!</p>
+
+<p>And that’s it for the branch details! The source and destination branches shrink equally while the arrow remains full width.</p>
+
+<h3>Add the author</h3>
+
+<p>The other element that can shrink is the author. From the designs the author, branch details and PR status are all to the left, so I’ll group these all together in my HTML. We’ll add this next layer of wrapping to make sure the author can shrink, the PR status cannot shrink, and the branches continue to shrink as expected.</p>
+
+<p><a href="/blog/2015/pr-header/author-branches-status">New HTML:</a></p>
+
+<pre><code>&lt;div class=&quot;pr-info&quot;&gt;
+    &lt;div class=&quot;author&quot;&gt;
+        Author name
+    &lt;/div&gt;
+    &lt;div class=&quot;branch-details&quot;&gt;
+        &lt;div class=&quot;source&quot;&gt;
+            your-awesome-branch
+        &lt;/div&gt;
+
+        &lt;div class=&quot;arrow&quot;&gt;
+            --&gt;
+        &lt;/div&gt;
+
+        &lt;div class=&quot;destination&quot;&gt;
+            the-destination-branch
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;status&quot;&gt;
+        PR status
+    &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+
+<p>Again, the author name needs to be flexible, so we’ll apply most of the same styles we did for the branch details to the <code>pr-info</code> section.</p>
+
+<pre><code>.pr-info, .branch-details {
+    display: flex;
+    white-space: nowrap;
+}
+
+.author, .source, .destination {
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+</code></pre>
+
+<p>So we’re left with quite a good <a href="http://localhost:4567/blog/2015/pr-header/author-branches-status-basic-flexible">base</a> of what we want. However, you’ll notice that if you start to shrink the screen too much the author gets complete hidden. We need a better way to keep the author at least somewhat visible, and actually we want to shrink the author slower than the branches (something like: for every 5px the branches shrink the author only shrinks 1px).</p>
+
+<p>Well, keeping the author always somewhat visible is easy enough: we can just chuck a <code>min-width: 5em</code> on there so we don&#39;t accidentally hide the author completely. But now the branch details section doesn’t flex at all. WHY NOT??? Since the branches can flex down to nothing we’ll give the branch details a <code>min-width: 0</code>. (In real life the PRH has the same min-width as the page and won’t be able to shrink down to completely hide the branch details. For this post I’m not going to worry about the page shrinking too small.)</p>
+
+<p>Ok, now we have both the author and the branch details shrinking, time to make that happen at different rates. Flexbox items have a <code>flex-grow</code> property which says how fast the items should grow; there’s also a <code>flex-shrink</code> property that, surprise, surprise, deals with how fast items should shrink. So we’ll make the branches shrink faster than the author by adding:</p>
+
+<pre><code>.author {
+    flex-shrink: 1;
+}
+
+.branch-details {
+    flex-shrink: 5;
+}
+</code></pre>
+
+<p>The rates are fairly arbitrary, but easily changed if needed.</p>
+
+<p>Here’s the <a href="/blog/2015/pr-header/author-branches-status-flexible">working version</a> for you to play with.</p>
+
+<h3>Put it in context</h3>
+
+<p>Finally we can add the rest of the PRH code in. As a reminder, that’s the: 
+reviewers, approve button, indication of merge issues, merge button, and menu for other options. Thankfully all of these will be full width (no shrinking) and most will be a consistent size.</p>
+
+<p>New HTML:</p>
+
+<pre><code>&lt;div class=&quot;pr-header&quot;&gt;
+    &lt;div class=&quot;pr-info&quot;&gt;
+        &lt;div class=&quot;author&quot;&gt;
+            Author name that’s really long, like super duper long
+        &lt;/div&gt;
+        &lt;div class=&quot;branch-details&quot;&gt;
+            &lt;div class=&quot;source&quot;&gt;
+                your-awesome-branch-with-a-reall-really-really-long-and-annoying-name
+            &lt;/div&gt;
+
+            &lt;div class=&quot;arrow&quot;&gt;
+                --&gt;
+            &lt;/div&gt;
+
+            &lt;div class=&quot;destination&quot;&gt;
+                the-destination-branch-with-a-reall-really-really-long-and-annoying-name
+            &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;status&quot;&gt;
+            PR status
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;pr-actions&quot;&gt;
+        &lt;div&gt;reviewers&lt;/div&gt;
+        &lt;div&gt;approve button&lt;/div&gt;
+        &lt;div&gt;merge issues&lt;/div&gt;
+        &lt;div&gt;merge button&lt;/div&gt;
+        &lt;div&gt;menu&lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+
+<p>Since we know we want the header to be flexible I’ll go ahead and add the basics in. Right now the <code>div</code>s in the <code>.pr-actions</code> are all displayed as block elements, so let’s line them up nicely. Here are the changes:</p>
+
+<pre><code>.pr-header, .pr-info, .branch-details {
+    display: flex;
+    white-space: nowrap;
+}
+
+.pr-info, .author, .source, .destination {
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.pr-actions div {
+    display: inline-block;
+}
+</code></pre>
+
+<p>And <a href="/blog/2015/pr-header/in-context">that’s it!</a></p>
+
+<h3>Safari</h3>
+
+<p>Except for Safari. Once I had the proper vendor prefixing in, everything worked as expected in all browsers (even IE!) but not Safari. This <a href="LINK%20HERE">bug</a> might be the culprit, but I’m really not sure. If you have any knowledge about what’s causing this, I’m interested! Anyways, for whatever reason you need to add <code>flex-shrink: 0</code> to the things you don’t want to shrink. So for this we’ll add:</p>
+
+<pre><code>.arrow, .status, .pr-actions {
+    flex-shrink: 0;
+}
+</code></pre>
+
+<p>And with that it’s <a href="/blog/2015/pr-header/in-context-safari">Safari compliant!</a></p>
+
+<h2>Done</h2>
+
+
+      <div id="disqus_thread">
+        <hr/>
+        <script>
+
+          var disqus_shortname = 'lucybain';
+          (function() {
+              var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+              dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+              (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+          })();
+
+        </script>
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+        <a class="dsq-brlink" href="http://disqus.com">
+          comments powered by
+          <span class="logo-disqus">Disqus</span>
+        </a>
+        <script>
+
+          var disqus_shortname = 'lucybain';
+          (function () {
+              var s = document.createElement('script'); s.async = true;
+              s.type = 'text/javascript';
+              s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+              (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+          }());
+
+        </script>
       </div>
-      <ul class='nav-display'>
-        <li>
-          <a class="nav-link" href="/">Me</a>
-        </li>
-        <li>
-          <a class="nav-link" href="/resume/">Resume</a>
-        </li>
-        <li>
-          <a class="nav-link" href="/contact-me/">Contact</a>
-        </li>
-        <li>
-          <a class="nav-link" href="/resources/">Resources</a>
-        </li>
-        <li>
-          <a class="nav-link active" href="/blog/">Blog</a>
-        </li>
-      </ul>
-    </nav>
-    <script>
-      $('nav .nav-open-btn').on('click', function(){
-        $('nav .nav-display').toggleClass('open');
-      })
-    </script>
-    <div class='content'>
-      <div class=' blog-listing'>
-        <div class='meta'>
-          <h1>CSS: Flexbox in action - Bitbucket Server pull request header</h1>
-          <p>Published on: October 20, 2015</p>
-          <p>Tags: <a href="/blog/tags/css/">css</a>, <a href="/blog/tags/hands-on/">hands-on</a>, and <a href="/blog/tags/flexbox/">flexbox</a></p>
-        </div>
-        <p>I <a href="/blog/2015/css-flexbox/">recently wrote</a> about using the <code>flex-box</code> rule in CSS. That was a practice round because I knew I needed to use flexbox at work in the future. Well, the time has come!</p>
-        
-        <p>As you might know, I work for Atlassian on the <a href="https://www.atlassian.com/software/bitbucket/download">Bitbucket Server</a> product. Today I spent some time implementing flexbox on our pull request page, specifically in the header. Let’s take a look at what it’s currently like:</p>
-        
-        <p><img alt="current pull request header" src="/images/blog/pr-header/current.png" /></p>
-        
-        <p>Adding flexbox is part of a much larger chunk of work, so my “finished product” looks like this:</p>
-        
-        <p><img alt="current pull request header" src="/images/blog/pr-header/rough-draft.png" /></p>
-        
-        <p>Obviously it’s got a ways to go, but this little bit is done! The main point is that we utilise all of the space available to us. Previously we were’t able to expand a branch name fully even though there was enough space for it.</p>
-        
-        <h2>Description</h2>
-        
-        <p>I was fortunate enough to be able to throw away all existing HTML and CSS. Nothing else relies on this piece of code and I had full control of how to implement this part of the feature (with lots of feedback from my fantastic colleagues!). So we don’t need to talk about what <em>was</em> there, we’re starting from scratch.</p>
-        
-        <h3>Desired outcome</h3>
-        
-        <p>The pull request header (known as PRH from now on) has X main sections:</p>
-        
-        <ol>
-        <li>author (avatar and name)</li>
-        <li>branch details (source, destination and an arrow between them)</li>
-        <li>PR status</li>
-        <li>reviewers (avatars only)</li>
-        <li>approve button</li>
-        <li>indication of merge issues</li>
-        <li>merge button</li>
-        <li>menu for other options</li>
-        </ol>
-        
-        <p>Ultimately only the author and branches should be “flexible.” Everything else should always be completely visible. After a little thought and discussion we decided that the branches should be more flexible than the author (i.e. branches should shrink faster than the author).</p>
-        
-        <h2>Code</h2>
-        
-        <p>Ok, so now we understand the problem, let’s start coding!</p>
-        
-        <p><strong>NOTE: to keep the CSS easy to read, the demo pages only work in Chrome.</strong></p>
-        
-        <h3>Getting started</h3>
-        
-        <p>When I first got into it I figured I’d just work with everything all together. I already had the HTML set up from another bit of work, so I’d <em>just</em> add the CSS. This wasn’t successful. There were too many moving parts and I didn’t have a good enough understanding of how flexbox worked to hold all the parts in my head.</p>
-        
-        <p>I followed the (very good) advice I give to people new to programming:</p>
-        
-        <blockquote>
-        <p>It’s easier to get a small thing right.</p>
-        </blockquote>
-        
-        <p>Rather than think about the whole thing at once I focused on just the branch details section.</p>
-        
-        <h3>Branch details</h3>
-        
-        <p>The branch details looks like this:</p>
-        
-        <p>your-awesome-branch --&gt; the-destination-branch</p>
-        
-        <p>So I set up my HTML like this:</p>
-        <pre class="highlight plaintext">&lt;div class="branch-details"&gt;&#x000A;    &lt;div class="source"&gt;&#x000A;        your-awesome-branch&#x000A;    &lt;/div&gt;&#x000A;&#x000A;    &lt;div class="arrow"&gt;&#x000A;        --&gt;&#x000A;    &lt;/div&gt;&#x000A;&#x000A;    &lt;div class="destination"&gt;&#x000A;        the-destination-branch&#x000A;    &lt;/div&gt;&#x000A;&lt;/div&gt;</pre>
-        <p>(Obviously we use a better arrow really, but we’ll ignore that for this post.)</p>
-        
-        <p>Alright, now we’re getting somewhere!</p>
-        
-        <p>So <code>source</code> and <code>destination</code> ultimately need to be shrinkable. In order to allow them to shrink we need to make their container, <code>branch-details</code>, flexible.</p>
-        <pre class="highlight plaintext">.branch-details {&#x000A;    display: flex;&#x000A;}</pre>
-        <p>At this point everything is flexible. So if you <a href="/blog/2015/pr-header/simple-flexbox">play with it</a> you can see everything shrinks equally and the branch names wrap across lines. This wrapping makes sense for “normal” uses of flexbox (i.e. columns of text) but it isn’t what we want for the branch names.</p>
-        
-        <p>We can stop words from wrapping with a quick <code>white-space: nowrap</code> rule. <a href="/blog/2015/pr-header/no-wrap">This works</a> in that the words don’t wrap, but it has the unfortunate side effect of stopping things from shrinking. Let‘s put that back by hiding overflowing text: <code>overflow: hidden;</code>. While we’re at it, we can style the ending with an ellipsis using <code>text-overflow: ellipsis;</code>. Ok, we’re <a href="/blog/2015/pr-header/ellipsis">back in business</a> now!</p>
-        
-        <p>And that’s it for the branch details! The source and destination branches shrink equally while the arrow remains full width.</p>
-        
-        <h3>Add the author</h3>
-        
-        <p>The other element that can shrink is the author. From the designs the author, branch details and PR status are all to the left, so I’ll group these all together in my HTML. We’ll add this next layer of wrapping to make sure the author can shrink, the PR status cannot shrink, and the branches continue to shrink as expected.</p>
-        
-        <p><a href="/blog/2015/pr-header/author-branches-status">New HTML:</a></p>
-        <pre class="highlight plaintext">&lt;div class="pr-info"&gt;&#x000A;    &lt;div class="author"&gt;&#x000A;        Author name&#x000A;    &lt;/div&gt;&#x000A;    &lt;div class="branch-details"&gt;&#x000A;        &lt;div class="source"&gt;&#x000A;            your-awesome-branch&#x000A;        &lt;/div&gt;&#x000A;&#x000A;        &lt;div class="arrow"&gt;&#x000A;            --&gt;&#x000A;        &lt;/div&gt;&#x000A;&#x000A;        &lt;div class="destination"&gt;&#x000A;            the-destination-branch&#x000A;        &lt;/div&gt;&#x000A;    &lt;/div&gt;&#x000A;    &lt;div class="status"&gt;&#x000A;        PR status&#x000A;    &lt;/div&gt;&#x000A;&lt;/div&gt;</pre>
-        <p>Again, the author name needs to be flexible, so we’ll apply most of the same styles we did for the branch details to the <code>pr-info</code> section.</p>
-        <pre class="highlight plaintext">.pr-info, .branch-details {&#x000A;    display: flex;&#x000A;    white-space: nowrap;&#x000A;}&#x000A;&#x000A;.author, .source, .destination {&#x000A;    overflow: hidden;&#x000A;    text-overflow: ellipsis;&#x000A;}</pre>
-        <p>So we’re left with quite a good <a href="http://localhost:4567/blog/2015/pr-header/author-branches-status-basic-flexible">base</a> of what we want. However, you’ll notice that if you start to shrink the screen too much the author gets complete hidden. We need a better way to keep the author at least somewhat visible, and actually we want to shrink the author slower than the branches (something like: for every 5px the branches shrink the author only shrinks 1px).</p>
-        
-        <p>Well, keeping the author always somewhat visible is easy enough: we can just chuck a <code>min-width: 5em</code> on there so we don&#39;t accidentally hide the author completely. But now the branch details section doesn’t flex at all. WHY NOT??? Since the branches can flex down to nothing we’ll give the branch details a <code>min-width: 0</code>. (In real life the PRH has the same min-width as the page and won’t be able to shrink down to completely hide the branch details. For this post I’m not going to worry about the page shrinking too small.)</p>
-        
-        <p>Ok, now we have both the author and the branch details shrinking, time to make that happen at different rates. Flexbox items have a <code>flex-grow</code> property which says how fast the items should grow; there’s also a <code>flex-shrink</code> property that, surprise, surprise, deals with how fast items should shrink. So we’ll make the branches shrink faster than the author by adding:</p>
-        <pre class="highlight plaintext">.author {&#x000A;    flex-shrink: 1;&#x000A;}&#x000A;&#x000A;.branch-details {&#x000A;    flex-shrink: 5;&#x000A;}</pre>
-        <p>The rates are fairly arbitrary, but easily changed if needed.</p>
-        
-        <p>Here’s the <a href="/blog/2015/pr-header/author-branches-status-flexible">working version</a> for you to play with.</p>
-        
-        <h3>Put it in context</h3>
-        
-        <p>Finally we can add the rest of the PRH code in. As a reminder, that’s the: 
-        reviewers, approve button, indication of merge issues, merge button, and menu for other options. Thankfully all of these will be full width (no shrinking) and most will be a consistent size.</p>
-        
-        <p>New HTML:</p>
-        <pre class="highlight plaintext">&lt;div class="pr-header"&gt;&#x000A;    &lt;div class="pr-info"&gt;&#x000A;        &lt;div class="author"&gt;&#x000A;            Author name that’s really long, like super duper long&#x000A;        &lt;/div&gt;&#x000A;        &lt;div class="branch-details"&gt;&#x000A;            &lt;div class="source"&gt;&#x000A;                your-awesome-branch-with-a-reall-really-really-long-and-annoying-name&#x000A;            &lt;/div&gt;&#x000A;&#x000A;            &lt;div class="arrow"&gt;&#x000A;                --&gt;&#x000A;            &lt;/div&gt;&#x000A;&#x000A;            &lt;div class="destination"&gt;&#x000A;                the-destination-branch-with-a-reall-really-really-long-and-annoying-name&#x000A;            &lt;/div&gt;&#x000A;        &lt;/div&gt;&#x000A;        &lt;div class="status"&gt;&#x000A;            PR status&#x000A;        &lt;/div&gt;&#x000A;    &lt;/div&gt;&#x000A;    &lt;div class="pr-actions"&gt;&#x000A;        &lt;div&gt;reviewers&lt;/div&gt;&#x000A;        &lt;div&gt;approve button&lt;/div&gt;&#x000A;        &lt;div&gt;merge issues&lt;/div&gt;&#x000A;        &lt;div&gt;merge button&lt;/div&gt;&#x000A;        &lt;div&gt;menu&lt;/div&gt;&#x000A;    &lt;/div&gt;&#x000A;&lt;/div&gt;</pre>
-        <p>Since we know we want the header to be flexible I’ll go ahead and add the basics in. Right now the <code>div</code>s in the <code>.pr-actions</code> are all displayed as block elements, so let’s line them up nicely. Here are the changes:</p>
-        <pre class="highlight plaintext">.pr-header, .pr-info, .branch-details {&#x000A;    display: flex;&#x000A;    white-space: nowrap;&#x000A;}&#x000A;&#x000A;.pr-info, .author, .source, .destination {&#x000A;    overflow: hidden;&#x000A;    text-overflow: ellipsis;&#x000A;}&#x000A;&#x000A;.pr-actions div {&#x000A;    display: inline-block;&#x000A;}</pre>
-        <p>And <a href="/blog/2015/pr-header/in-context">that’s it!</a></p>
-        
-        <h3>Safari</h3>
-        
-        <p>Except for Safari. Once I had the proper vendor prefixing in, everything worked as expected in all browsers (even IE!) but not Safari. This <a href="LINK%20HERE">bug</a> might be the culprit, but I’m really not sure. If you have any knowledge about what’s causing this, I’m interested! Anyways, for whatever reason you need to add <code>flex-shrink: 0</code> to the things you don’t want to shrink. So for this we’ll add:</p>
-        <pre class="highlight plaintext">.arrow, .status, .pr-actions {&#x000A;    flex-shrink: 0;&#x000A;}</pre>
-        <p>And with that it’s <a href="/blog/2015/pr-header/in-context-safari">Safari compliant!</a></p>
-        
-        <h2>Done</h2>
-        <div class='recommended-reading'>
-          <h2>Recommended reading</h2>
-          <p>You might also like <a href="/blog/2014/null-undefined-undeclared/">JS: null, undefined, and undeclared</a></p>
-        </div>
-        <div id='disqus_thread'>
-          <hr>
-          <script>
-            var disqus_shortname = 'lucybain';
-            (function() {
-                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-                dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-            })();
-          </script>
-          <noscript>
-            Please enable JavaScript to view the
-            <a href='http://disqus.com/?ref_noscript'>comments powered by Disqus.</a>
-          </noscript>
-          <a class='dsq-brlink' href='http://disqus.com'>
-            comments powered by
-            <span class='logo-disqus'>Disqus</span>
-          </a>
-          <script>
-            var disqus_shortname = 'lucybain';
-            (function () {
-                var s = document.createElement('script'); s.async = true;
-                s.type = 'text/javascript';
-                s.src = '//' + disqus_shortname + '.disqus.com/count.js';
-                (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
-            }());
-          </script>
-        </div>
-      </div>
+  </div>
+
     </div>
   </body>
   <script>
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-    
-    ga('create', 'UA-45866381-1', 'lucybain.com');
-    ga('send', 'pageview');
-  </script>
-</html>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  
+  ga('create', 'UA-45866381-1', 'lucybain.com');
+  ga('send', 'pageview');
+</script>
 
+</html>

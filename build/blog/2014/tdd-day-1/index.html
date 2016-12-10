@@ -1,132 +1,139 @@
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
   <head>
     <meta content='width=device-width, initial-scale=1' name='viewport'>
-    <meta charset='utf-8'>
-    <meta content='IE=edge,chrome=1' http-equiv='X-UA-Compatible'>
-    <link href='/images/favicon.ico' rel='icon' type='image/ico'>
-    <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700|Source+Code+Pro' rel='stylesheet' type='text/css'>
-    <title>TDD Day 1</title>
-    <link href="/stylesheets/application.css" media="all" rel="stylesheet" type="text/css" />
-    <script src='//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js'></script>
-    <script src='//cdn.optimizely.com/js/4606022905.js'></script>
+<meta charset='utf-8'>
+<meta content='IE=edge,chrome=1' http-equiv='X-UA-Compatible'>
+<link href='/images/favicon.ico' rel='icon' type='image/ico'>
+<link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700|Source+Code+Pro' rel='stylesheet' type='text/css'>
+<title>TDD Day 1</title>
+<link href="/stylesheets/application.css" rel="stylesheet" media="all" />
+<script src='//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js'></script>
+<script src='//cdn.optimizely.com/js/4606022905.js'></script>
+
   </head>
-  <body>
+  <body class="">
     <nav>
-      <div class='nav-open-btn'>
-        <ul>
-          <li></li>
-          <li></li>
-          <li></li>
-        </ul>
+  <div class='nav-open-btn'>
+    <ul>
+      <li></li>
+      <li></li>
+      <li></li>
+    </ul>
+  </div>
+  <ul class='nav-display'>
+    <li>
+      <a href="/" class="nav-link">Me</a>
+    </li>
+    <li>
+      <a href="/resume/" class="nav-link">Resume</a>
+    </li>
+    <li>
+      <a href="/contact-me/" class="nav-link">Contact</a>
+    </li>
+    <li>
+      <a href="/resources/" class="nav-link">Resources</a>
+    </li>
+    <li>
+      <a href="/blog/" class="nav-link active">Blog</a>
+    </li>
+  </ul>
+</nav>
+<script>
+  $('nav .nav-open-btn').on('click', function(){
+    $('nav .nav-display').toggleClass('open');
+  })
+</script>
+
+    <div class="content">
+        <div class=" blog-listing">
+    <div class="meta">
+      <h1>
+        TDD Day 1
+      </h1>
+      <p>Published on: January  4, 2014</p>
+    </div>
+    <h3>
+  Background
+</h3>
+<p>
+  I've been feeling for a while now that I'd like to be a better programmer. Right now I can make stuff happen, but I usually don’t think it’s particularly well designed. Since it’s a new year, full of possibilities, I thought I'd spend some time working on my programming skills. With that in mind I asked my boss what he thought I needed to work on most. His answer: TDD. So here I am, trying to do 30 days of thoughtful practice of TDD.
+</p>
+<h3>
+  What did I do today?
+</h3>
+<p>
+  Today I didn’t really get anything done. I spent some time reading about TDD, mostly looking for some resources that I can work with for the next 29 days. In case it’s helpful to anyone else, here’s what I've found so far:
+</p>
+<ul>
+  <li><a href="https://www.youtube.com/playlist?list=PLVBFw0Pn9e9IduDzgOx7Yoh0ur7SZa7hu">TDD video lessons</a></li>
+  <li><a href="http://www.amazon.com/dp/0321146530/?tag=stackoverfl08-20">TDD by example,</a> book</li>
+  <li><a href="http://www.amazon.com/Ruby-Best-Practices-Gregory-Brown/dp/0596523009">Ruby Best Practices</a></li>
+  <li>how to set up <a href="http://nubyonrails.com/articles/autotest-rails">autotest-rails</a></li>
+  <li><a href="https://peepcode.com/products/rspec-i">RSpec 2</a> on Peepcode (paid)</li>
+  <li><a href="http://www.rubyinside.com/screencast-coding-conways-game-of-life-in-ruby-the-tdd-way-with-rspec-5564.html">Game of life in TDD</a></li>
+  <li>lots of <a href="http://railscasts.com/?page=1&amp;tag_id=7">RailsCasts</a> (mostly paid)</li>
+  <li>a couple of <a href="http://osherove.com/tdd-kata-1/">katas</a></li>
+  <li>and a few more <a href="http://content.codersdojo.org/code-kata-catalogue/">katas</a></li>
+</ul>
+<p>
+  Hopefully that list helps someone else out there. If you have any suggestions please let me know - I’m sure it'll take me plenty of time to get through all that, but if there’s something better or particularly helpful, I’m all ears!
+</p>
+<p>
+  The last one looked pretty promising so I tried getting set up with that gem. Unfortunately I hit a snag on installing that today, so I'll give it another go tomorrow.
+</p>
+<h3>
+  Reflections
+</h3>
+<p>
+  I’m not really completely convinced about TDD or testing in general. We didn’t test at all in my last job, and one of my requirements for my current job was that they test so I could learn how to test properly. But in reality, I’m not sure how often I've had a test really save me from pushing bad code. Overall it seems like I just go back to update the test, which, as far as I can tell, is just making more work for me without really helping the codebase in general. Perhaps I’m doing it wrong and I shouldn’t be updating the tests as often. Perhaps that is the price you pay for “peace of mind.” I probably haven’t written (good) enough tests for them to be able to stop me from pushing bad code. I’m hoping this next month will help me better understand what testing is all about.
+</p>
+
+
+      <div id="disqus_thread">
+        <hr/>
+        <script>
+
+          var disqus_shortname = 'lucybain';
+          (function() {
+              var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+              dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+              (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+          })();
+
+        </script>
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+        <a class="dsq-brlink" href="http://disqus.com">
+          comments powered by
+          <span class="logo-disqus">Disqus</span>
+        </a>
+        <script>
+
+          var disqus_shortname = 'lucybain';
+          (function () {
+              var s = document.createElement('script'); s.async = true;
+              s.type = 'text/javascript';
+              s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+              (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+          }());
+
+        </script>
       </div>
-      <ul class='nav-display'>
-        <li>
-          <a class="nav-link" href="/">Me</a>
-        </li>
-        <li>
-          <a class="nav-link" href="/resume/">Resume</a>
-        </li>
-        <li>
-          <a class="nav-link" href="/contact-me/">Contact</a>
-        </li>
-        <li>
-          <a class="nav-link" href="/resources/">Resources</a>
-        </li>
-        <li>
-          <a class="nav-link active" href="/blog/">Blog</a>
-        </li>
-      </ul>
-    </nav>
-    <script>
-      $('nav .nav-open-btn').on('click', function(){
-        $('nav .nav-display').toggleClass('open');
-      })
-    </script>
-    <div class='content'>
-      <div class=' blog-listing'>
-        <div class='meta'>
-          <h1>TDD Day 1</h1>
-          <p>Published on: January  4, 2014</p>
-        </div>
-        <h3>
-          Background
-        </h3>
-        <p>
-          I've been feeling for a while now that I'd like to be a better programmer. Right now I can make stuff happen, but I usually don’t think it’s particularly well designed. Since it’s a new year, full of possibilities, I thought I'd spend some time working on my programming skills. With that in mind I asked my boss what he thought I needed to work on most. His answer: TDD. So here I am, trying to do 30 days of thoughtful practice of TDD.
-        </p>
-        <h3>
-          What did I do today?
-        </h3>
-        <p>
-          Today I didn’t really get anything done. I spent some time reading about TDD, mostly looking for some resources that I can work with for the next 29 days. In case it’s helpful to anyone else, here’s what I've found so far:
-        </p>
-        <ul>
-          <li><a href="https://www.youtube.com/playlist?list=PLVBFw0Pn9e9IduDzgOx7Yoh0ur7SZa7hu">TDD video lessons</a></li>
-          <li><a href="http://www.amazon.com/dp/0321146530/?tag=stackoverfl08-20">TDD by example,</a> book</li>
-          <li><a href="http://www.amazon.com/Ruby-Best-Practices-Gregory-Brown/dp/0596523009">Ruby Best Practices</a></li>
-          <li>how to set up <a href="http://nubyonrails.com/articles/autotest-rails">autotest-rails</a></li>
-          <li><a href="https://peepcode.com/products/rspec-i">RSpec 2</a> on Peepcode (paid)</li>
-          <li><a href="http://www.rubyinside.com/screencast-coding-conways-game-of-life-in-ruby-the-tdd-way-with-rspec-5564.html">Game of life in TDD</a></li>
-          <li>lots of <a href="http://railscasts.com/?page=1&amp;amp;tag_id=7">RailsCasts</a> (mostly paid)</li>
-          <li>a couple of <a href="http://osherove.com/tdd-kata-1/">katas</a></li>
-          <li>and a few more <a href="http://content.codersdojo.org/code-kata-catalogue/">katas</a></li>
-        </ul>
-        <p>
-          Hopefully that list helps someone else out there. If you have any suggestions please let me know - I’m sure it'll take me plenty of time to get through all that, but if there’s something better or particularly helpful, I’m all ears!
-        </p>
-        <p>
-          The last one looked pretty promising so I tried getting set up with that gem. Unfortunately I hit a snag on installing that today, so I'll give it another go tomorrow.
-        </p>
-        <h3>
-          Reflections
-        </h3>
-        <p>
-          I’m not really completely convinced about TDD or testing in general. We didn’t test at all in my last job, and one of my requirements for my current job was that they test so I could learn how to test properly. But in reality, I’m not sure how often I've had a test really save me from pushing bad code. Overall it seems like I just go back to update the test, which, as far as I can tell, is just making more work for me without really helping the codebase in general. Perhaps I’m doing it wrong and I shouldn’t be updating the tests as often. Perhaps that is the price you pay for “peace of mind.” I probably haven’t written (good) enough tests for them to be able to stop me from pushing bad code. I’m hoping this next month will help me better understand what testing is all about.
-        </p>
-        <div class='recommended-reading'>
-          <h2>Recommended reading</h2>
-          <p>You might also like <a href="/blog/2014/immediately-invoked-function-expression/">JS Immediately Invoked Function Expressions</a></p>
-        </div>
-        <div id='disqus_thread'>
-          <hr>
-          <script>
-            var disqus_shortname = 'lucybain';
-            (function() {
-                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-                dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-            })();
-          </script>
-          <noscript>
-            Please enable JavaScript to view the
-            <a href='http://disqus.com/?ref_noscript'>comments powered by Disqus.</a>
-          </noscript>
-          <a class='dsq-brlink' href='http://disqus.com'>
-            comments powered by
-            <span class='logo-disqus'>Disqus</span>
-          </a>
-          <script>
-            var disqus_shortname = 'lucybain';
-            (function () {
-                var s = document.createElement('script'); s.async = true;
-                s.type = 'text/javascript';
-                s.src = '//' + disqus_shortname + '.disqus.com/count.js';
-                (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
-            }());
-          </script>
-        </div>
-      </div>
+  </div>
+
     </div>
   </body>
   <script>
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-    
-    ga('create', 'UA-45866381-1', 'lucybain.com');
-    ga('send', 'pageview');
-  </script>
-</html>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  
+  ga('create', 'UA-45866381-1', 'lucybain.com');
+  ga('send', 'pageview');
+</script>
 
+</html>

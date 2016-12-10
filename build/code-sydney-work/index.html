@@ -1,178 +1,182 @@
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
   <head>
     <meta content='width=device-width, initial-scale=1' name='viewport'>
-    <meta charset='utf-8'>
-    <meta content='IE=edge,chrome=1' http-equiv='X-UA-Compatible'>
-    <link href='/images/favicon.ico' rel='icon' type='image/ico'>
-    <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700|Source+Code+Pro' rel='stylesheet' type='text/css'>
-    <title>Lucy Bain</title>
-    <link href="/stylesheets/application.css" media="all" rel="stylesheet" type="text/css" />
-    <script src='//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js'></script>
-    <script src='//cdn.optimizely.com/js/4606022905.js'></script>
+<meta charset='utf-8'>
+<meta content='IE=edge,chrome=1' http-equiv='X-UA-Compatible'>
+<link href='/images/favicon.ico' rel='icon' type='image/ico'>
+<link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700|Source+Code+Pro' rel='stylesheet' type='text/css'>
+<title>Lucy Bain</title>
+<link href="/stylesheets/application.css" rel="stylesheet" media="all" />
+<script src='//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js'></script>
+<script src='//cdn.optimizely.com/js/4606022905.js'></script>
+
   </head>
-  <body>
+  <body class="">
     <nav>
-      <div class='nav-open-btn'>
-        <ul>
-          <li></li>
-          <li></li>
-          <li></li>
-        </ul>
-      </div>
-      <ul class='nav-display'>
-        <li>
-          <a class="nav-link" href="/">Me</a>
-        </li>
-        <li>
-          <a class="nav-link" href="/resume/">Resume</a>
-        </li>
-        <li>
-          <a class="nav-link" href="/contact-me/">Contact</a>
-        </li>
-        <li>
-          <a class="nav-link" href="/resources/">Resources</a>
-        </li>
-        <li>
-          <a class="nav-link" href="/blog/">Blog</a>
-        </li>
-      </ul>
-    </nav>
-    <script>
-      $('nav .nav-open-btn').on('click', function(){
-        $('nav .nav-display').toggleClass('open');
-      })
-    </script>
-    <div class='content'>
+  <div class='nav-open-btn'>
+    <ul>
+      <li></li>
+      <li></li>
+      <li></li>
+    </ul>
+  </div>
+  <ul class='nav-display'>
+    <li>
+      <a href="/" class="nav-link">Me</a>
+    </li>
+    <li>
+      <a href="/resume/" class="nav-link">Resume</a>
+    </li>
+    <li>
+      <a href="/contact-me/" class="nav-link">Contact</a>
+    </li>
+    <li>
+      <a href="/resources/" class="nav-link">Resources</a>
+    </li>
+    <li>
+      <a href="/blog/" class="nav-link">Blog</a>
+    </li>
+  </ul>
+</nav>
+<script>
+  $('nav .nav-open-btn').on('click', function(){
+    $('nav .nav-display').toggleClass('open');
+  })
+</script>
+
+    <div class="content">
       <p>I'm writing some JS for my <a href="http://codesydney.com/">Code Sydney</a> study group. You can see my answers to the homework problems here.</p>
-      <div id='all-projects'>
-        <div class='project'>
-          <div class='title'>Calculator</div>
-          <div class='image-wrap'>
-            <div class='project-image' id='calculator-demo'>
-              <div class='overlay'></div>
-            </div>
-            <div class='links'>
-              <a href="/code-sydney-work/calculator/">Demo</a>
-              <a href="https://github.com/lbain/code-sydney-work/tree/master/calculator">Code</a>
-              <a href="http://www.theodinproject.com/javascript-and-jquery/on-screen-calculator">Directions</a>
-            </div>
-          </div>
-        </div>
-        <div class='project'>
-          <div class='title'>Tabs</div>
-          <div class='image-wrap'>
-            <div class='project-image' id='tabs-demo'>
-              <div class='overlay'></div>
-            </div>
-            <div class='links'>
-              <a href="/code-sydney-work/tabs/">Demo</a>
-              <a href="https://github.com/lbain/code-sydney-work/tree/master/tabs">Code</a>
-              <a href="http://www.theodinproject.com/javascript-and-jquery/manipulating-the-dom-with-jquery">Directions</a>
-            </div>
-          </div>
-        </div>
-        <div class='project'>
-          <div class='title'>Snake</div>
-          <div class='image-wrap'>
-            <div class='project-image' id='snake-demo'>
-              <div class='overlay'></div>
-            </div>
-            <div class='links'>
-              <a href="/code-sydney-work/snake/">Demo</a>
-              <a href="https://github.com/lbain/code-sydney-work/tree/master/snake">Code</a>
-              <a href="http://www.theodinproject.com/javascript-and-jquery/jquery-and-the-dom">Directions</a>
-            </div>
-          </div>
-        </div>
-        <div class='project'>
-          <div class='title'>Tic Tac Toe</div>
-          <div class='image-wrap'>
-            <div class='project-image' id='tic-tac-toe-demo'>
-              <div class='overlay'></div>
-            </div>
-            <div class='links'>
-              <a href="/code-sydney-work/tic-tac-toe/">Demo</a>
-              <a href="https://github.com/lbain/code-sydney-work/tree/master/tic-tac-toe">Code</a>
-              <a href="http://www.theodinproject.com/web-development-101#section-the-front-end">Directions</a>
-            </div>
-          </div>
-        </div>
-        <div class='project'>
-          <div class='title'>Minesweeper</div>
-          <div class='image-wrap'>
-            <div class='project-image' id='minesweeper-demo'>
-              <div class='overlay'></div>
-            </div>
-            <div class='links'>
-              <a href="/code-sydney-work/minesweeper/">Demo</a>
-              <a href="https://github.com/lbain/code-sydney-work/tree/master/minesweeper">Code</a>
-              <a href="http://www.theodinproject.com/javascript-and-jquery/minesweeper">Directions</a>
-            </div>
-          </div>
-        </div>
-        <div class='project'>
-          <div class='title'>Missile Command</div>
-          <div class='image-wrap'>
-            <div class='project-image' id='missile-command-demo'>
-              <div class='overlay'></div>
-            </div>
-            <div class='links'>
-              <a href="/code-sydney-work/missile-command/">Demo</a>
-              <a href="https://github.com/lbain/code-sydney-work/tree/master/missile-command">Code</a>
-              <a href="http://www.theodinproject.com/javascript-and-jquery/building-games-with-canvas">Directions</a>
-            </div>
-          </div>
-        </div>
-        <div class='project'>
-          <div class='title'>Form Validation</div>
-          <div class='image-wrap'>
-            <div class='project-image' id='form-validation-demo'>
-              <div class='overlay'></div>
-            </div>
-            <div class='links'>
-              <a href="/code-sydney-work/form-validation/">Demo</a>
-              <a href="https://github.com/lbain/code-sydney-work/tree/master/form-validation">Code</a>
-              <a href="http://www.theodinproject.com/javascript-and-jquery/validating-a-form-with-jquery">Directions</a>
-            </div>
-          </div>
-        </div>
-        <div class='project'>
-          <div class='title'>Google Maps</div>
-          <div class='image-wrap'>
-            <div class='project-image' id='google-maps-demo'>
-              <div class='overlay'></div>
-            </div>
-            <div class='links'>
-              <a href="/code-sydney-work/google-maps/">Demo</a>
-              <a href="https://github.com/lbain/code-sydney-work/tree/master/google-maps">Code</a>
-              <a href="http://www.theodinproject.com/javascript-and-jquery/putting-google-maps-onto-your-site">Directions</a>
-            </div>
-          </div>
-        </div>
-        <div class='project'>
-          <div class='title'>Backbone Todo List</div>
-          <div class='image-wrap'>
-            <div class='project-image' id='backbone-demo'>
-              <div class='overlay'></div>
-            </div>
-            <div class='links'>
-              <a href="/code-sydney-work/backbone/">Demo</a>
-              <a href="https://github.com/lbain/code-sydney-work/tree/master/backbone">Code</a>
-              <a href="http://adrianmejia.com/blog/2012/09/11/backbone-dot-js-for-absolute-beginners-getting-started/">Directions</a>
-            </div>
-          </div>
-        </div>
+<div id='all-projects'>
+  <div class='project'>
+    <div class='title'>Calculator</div>
+    <div class='image-wrap'>
+      <div class='project-image' id='calculator-demo'>
+        <div class='overlay'></div>
       </div>
+      <div class='links'>
+        <a href="/code-sydney-work/calculator/">Demo</a>
+        <a href="https://github.com/lbain/code-sydney-work/tree/master/calculator">Code</a>
+        <a href="http://www.theodinproject.com/javascript-and-jquery/on-screen-calculator">Directions</a>
+      </div>
+    </div>
+  </div>
+  <div class='project'>
+    <div class='title'>Tabs</div>
+    <div class='image-wrap'>
+      <div class='project-image' id='tabs-demo'>
+        <div class='overlay'></div>
+      </div>
+      <div class='links'>
+        <a href="/code-sydney-work/tabs/">Demo</a>
+        <a href="https://github.com/lbain/code-sydney-work/tree/master/tabs">Code</a>
+        <a href="http://www.theodinproject.com/javascript-and-jquery/manipulating-the-dom-with-jquery">Directions</a>
+      </div>
+    </div>
+  </div>
+  <div class='project'>
+    <div class='title'>Snake</div>
+    <div class='image-wrap'>
+      <div class='project-image' id='snake-demo'>
+        <div class='overlay'></div>
+      </div>
+      <div class='links'>
+        <a href="/code-sydney-work/snake/">Demo</a>
+        <a href="https://github.com/lbain/code-sydney-work/tree/master/snake">Code</a>
+        <a href="http://www.theodinproject.com/javascript-and-jquery/jquery-and-the-dom">Directions</a>
+      </div>
+    </div>
+  </div>
+  <div class='project'>
+    <div class='title'>Tic Tac Toe</div>
+    <div class='image-wrap'>
+      <div class='project-image' id='tic-tac-toe-demo'>
+        <div class='overlay'></div>
+      </div>
+      <div class='links'>
+        <a href="/code-sydney-work/tic-tac-toe/">Demo</a>
+        <a href="https://github.com/lbain/code-sydney-work/tree/master/tic-tac-toe">Code</a>
+        <a href="http://www.theodinproject.com/web-development-101#section-the-front-end">Directions</a>
+      </div>
+    </div>
+  </div>
+  <div class='project'>
+    <div class='title'>Minesweeper</div>
+    <div class='image-wrap'>
+      <div class='project-image' id='minesweeper-demo'>
+        <div class='overlay'></div>
+      </div>
+      <div class='links'>
+        <a href="/code-sydney-work/minesweeper/">Demo</a>
+        <a href="https://github.com/lbain/code-sydney-work/tree/master/minesweeper">Code</a>
+        <a href="http://www.theodinproject.com/javascript-and-jquery/minesweeper">Directions</a>
+      </div>
+    </div>
+  </div>
+  <div class='project'>
+    <div class='title'>Missile Command</div>
+    <div class='image-wrap'>
+      <div class='project-image' id='missile-command-demo'>
+        <div class='overlay'></div>
+      </div>
+      <div class='links'>
+        <a href="/code-sydney-work/missile-command/">Demo</a>
+        <a href="https://github.com/lbain/code-sydney-work/tree/master/missile-command">Code</a>
+        <a href="http://www.theodinproject.com/javascript-and-jquery/building-games-with-canvas">Directions</a>
+      </div>
+    </div>
+  </div>
+  <div class='project'>
+    <div class='title'>Form Validation</div>
+    <div class='image-wrap'>
+      <div class='project-image' id='form-validation-demo'>
+        <div class='overlay'></div>
+      </div>
+      <div class='links'>
+        <a href="/code-sydney-work/form-validation/">Demo</a>
+        <a href="https://github.com/lbain/code-sydney-work/tree/master/form-validation">Code</a>
+        <a href="http://www.theodinproject.com/javascript-and-jquery/validating-a-form-with-jquery">Directions</a>
+      </div>
+    </div>
+  </div>
+  <div class='project'>
+    <div class='title'>Google Maps</div>
+    <div class='image-wrap'>
+      <div class='project-image' id='google-maps-demo'>
+        <div class='overlay'></div>
+      </div>
+      <div class='links'>
+        <a href="/code-sydney-work/google-maps/">Demo</a>
+        <a href="https://github.com/lbain/code-sydney-work/tree/master/google-maps">Code</a>
+        <a href="http://www.theodinproject.com/javascript-and-jquery/putting-google-maps-onto-your-site">Directions</a>
+      </div>
+    </div>
+  </div>
+  <div class='project'>
+    <div class='title'>Backbone Todo List</div>
+    <div class='image-wrap'>
+      <div class='project-image' id='backbone-demo'>
+        <div class='overlay'></div>
+      </div>
+      <div class='links'>
+        <a href="/code-sydney-work/backbone/">Demo</a>
+        <a href="https://github.com/lbain/code-sydney-work/tree/master/backbone">Code</a>
+        <a href="http://adrianmejia.com/blog/2012/09/11/backbone-dot-js-for-absolute-beginners-getting-started/">Directions</a>
+      </div>
+    </div>
+  </div>
+</div>
+
     </div>
   </body>
   <script>
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-    
-    ga('create', 'UA-45866381-1', 'lucybain.com');
-    ga('send', 'pageview');
-  </script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  
+  ga('create', 'UA-45866381-1', 'lucybain.com');
+  ga('send', 'pageview');
+</script>
+
 </html>
