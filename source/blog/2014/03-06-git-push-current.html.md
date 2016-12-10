@@ -3,8 +3,8 @@ title: Git only push current branch
 published: false
 ---
 
-:code
+```
   [push]
     default = current
-
+```
 Via Jude
