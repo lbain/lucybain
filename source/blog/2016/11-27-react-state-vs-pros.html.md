@@ -118,7 +118,7 @@ class Button extends React.Component {
 
   render() {
     return (<button
-              onClick={this.updateCount.bind(this)}
+              onClick={() => this.updateCount()}
             >
               Clicked {this.state.count} times
             </button>);
@@ -198,14 +198,14 @@ And finally, `render`
 ```
 render() {
   return (<button
-            onClick={this.updateCount.bind(this)}
+            onClick={() => this.updateCount()}
           >
             Clicked {this.state.count} times
           </button>);
 }
 ```
 
-`onClick={this.updateCount.bind(this)}` means that when the button is clicked the `updateCount` method will be called. We need to use [bind](/blog/2014/function-prototype-bind/) so `updateCount` will have access to this instance’s `state`.
+`onClick={() => this.updateCount()}` means that when the button is clicked the `updateCount` method will be called. We need to use [ES6’s arrow function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions) so `updateCount` will have access to this instance’s `state`.
 
 The text rendered in the button is `Clicked {this.state.count} times`, which will use whatever `this.state.count` is at the time of rendering.
 
@@ -234,7 +234,7 @@ Sure thing, let’s look at the whole flow:
 4. `updateCount` is called, bound to this instance of the component
   
   ```
-  onClick={this.updateCount.bind(this)}
+  onClick={() => this.updateCount()}
   ```
 
 5. `updateCount` calls `setState` with a call back to increase the counter from the previous state’s counter value

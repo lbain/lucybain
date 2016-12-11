@@ -164,7 +164,7 @@ Welcome.defaultProps = {
 
   render() {
     return (&lt;button
-              onClick={this.updateCount.bind(this)}
+              onClick={() =&gt; this.updateCount()}
             &gt;
               Clicked {this.state.count} times
             &lt;/button&gt;);
@@ -241,14 +241,14 @@ this.setState({
 
 <pre><code>render() {
   return (&lt;button
-            onClick={this.updateCount.bind(this)}
+            onClick={() =&gt; this.updateCount()}
           &gt;
             Clicked {this.state.count} times
           &lt;/button&gt;);
 }
 </code></pre>
 
-<p><code>onClick={this.updateCount.bind(this)}</code> means that when the button is clicked the <code>updateCount</code> method will be called. We need to use <a href="/blog/2014/function-prototype-bind/">bind</a> so <code>updateCount</code> will have access to this instance’s <code>state</code>.</p>
+<p><code>onClick={() =&gt; this.updateCount()}</code> means that when the button is clicked the <code>updateCount</code> method will be called. We need to use <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions">ES6’s arrow function</a> so <code>updateCount</code> will have access to this instance’s <code>state</code>.</p>
 
 <p>The text rendered in the button is <code>Clicked {this.state.count} times</code>, which will use whatever <code>this.state.count</code> is at the time of rendering.</p>
 
@@ -272,7 +272,7 @@ this.setState({
 <p><em>click!</em></p></li>
 <li><p><code>updateCount</code> is called, bound to this instance of the component</p>
 
-<pre><code>onClick={this.updateCount.bind(this)}
+<pre><code>onClick={() =&gt; this.updateCount()}
 </code></pre></li>
 <li><p><code>updateCount</code> calls <code>setState</code> with a call back to increase the counter from the previous state’s counter value</p>
 

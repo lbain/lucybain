@@ -545,7 +545,7 @@ const checkReady = setInterval(() =&amp;gt; {
     <link rel="alternate" href="http://lucybain.com/blog/2016/react-state-vs-pros/"/>
     <id>http://lucybain.com/blog/2016/react-state-vs-pros/</id>
     <published>2016-11-27T11:00:00+11:00</published>
-    <updated>2016-12-11T20:53:19+11:00</updated>
+    <updated>2016-12-11T21:36:02+11:00</updated>
     <author>
       <name>Article Author</name>
     </author>
@@ -657,7 +657,7 @@ Welcome.defaultProps = {
 
   render() {
     return (&amp;lt;button
-              onClick={this.updateCount.bind(this)}
+              onClick={() =&amp;gt; this.updateCount()}
             &amp;gt;
               Clicked {this.state.count} times
             &amp;lt;/button&amp;gt;);
@@ -734,14 +734,14 @@ this.setState({
 
 &lt;pre&gt;&lt;code&gt;render() {
   return (&amp;lt;button
-            onClick={this.updateCount.bind(this)}
+            onClick={() =&amp;gt; this.updateCount()}
           &amp;gt;
             Clicked {this.state.count} times
           &amp;lt;/button&amp;gt;);
 }
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;code&gt;onClick={this.updateCount.bind(this)}&lt;/code&gt; means that when the button is clicked the &lt;code&gt;updateCount&lt;/code&gt; method will be called. We need to use &lt;a href="/blog/2014/function-prototype-bind/"&gt;bind&lt;/a&gt; so &lt;code&gt;updateCount&lt;/code&gt; will have access to this instance’s &lt;code&gt;state&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;onClick={() =&amp;gt; this.updateCount()}&lt;/code&gt; means that when the button is clicked the &lt;code&gt;updateCount&lt;/code&gt; method will be called. We need to use &lt;a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions"&gt;ES6’s arrow function&lt;/a&gt; so &lt;code&gt;updateCount&lt;/code&gt; will have access to this instance’s &lt;code&gt;state&lt;/code&gt;.&lt;/p&gt;
 
 &lt;p&gt;The text rendered in the button is &lt;code&gt;Clicked {this.state.count} times&lt;/code&gt;, which will use whatever &lt;code&gt;this.state.count&lt;/code&gt; is at the time of rendering.&lt;/p&gt;
 
@@ -765,7 +765,7 @@ this.setState({
 &lt;p&gt;&lt;em&gt;click!&lt;/em&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;&lt;code&gt;updateCount&lt;/code&gt; is called, bound to this instance of the component&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;onClick={this.updateCount.bind(this)}
+&lt;pre&gt;&lt;code&gt;onClick={() =&amp;gt; this.updateCount()}
 &lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;&lt;code&gt;updateCount&lt;/code&gt; calls &lt;code&gt;setState&lt;/code&gt; with a call back to increase the counter from the previous state’s counter value&lt;/p&gt;
 
