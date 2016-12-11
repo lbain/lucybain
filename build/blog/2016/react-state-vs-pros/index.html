@@ -157,9 +157,8 @@ Welcome.defaultProps = {
   }
 
   updateCount() {
-    const newCount = this.state.count + 1;
-    this.setState({
-      count: newCount
+    this.setState((prevState, props) =&gt; {
+      return { count: prevState.count + 1 }
     });
   }
 
@@ -173,7 +172,7 @@ Welcome.defaultProps = {
 }
 </code></pre>
 
-<p>You can play with this code on <a href="https://codepen.io/anon/pen/WoEdNx?editors=1011">CodePen</a>.</p>
+<p>You can play with this code on <a href="https://codepen.io/lbain/pen/ENpzBZ">CodePen</a>.</p>
 
 <p><em>Gah! There’s so much there! What’s going on?</em></p>
 
@@ -206,22 +205,37 @@ Welcome.defaultProps = {
 <p>Here’s <code>updateCount</code> again:</p>
 
 <pre><code>updateCount() {
-  const newCount = this.state.count + 1;
-  this.setState({
-    count: newCount
+  this.setState((prevState, props) =&gt; {
+    return { count: prevState.count + 1 }
   });
 }
 </code></pre>
 
-<p>We change the state to keep track of the total number of clicks. The important bit is <code>setState</code> - this updates the state object <strong>and</strong> re-renders the component.</p>
+<p>We change the state to keep track of the total number of clicks. The important bit is <code>setState</code>. First off, notice that <code>setState</code> takes a function, that’s becuase <code>setState</code> can run asynchronously. It needs to take a callback function rather than updating the state directly. You can see we have access to <code>prevState</code> within the callback, this will contain the previous state, even if the state has already been updated somewhere else. Pretty slick, huh?</p>
+
+<p>But React goes one step better, <code>setState</code> updates the state object <strong>and</strong> re-renders the component automagically.</p>
 
 <p><em>Boom!</em></p>
 
 <p>Yeah, this is pretty great of React to do, no need for us to explicitly re-render or worry about anything. React will take care of it all!</p>
 
-<p><strong>Warning!</strong></p>
+<p><strong><code>setState</code> warning one!</strong></p>
 
-<p>It is tempting to write <code>this.state.count = newCount</code>. <em>Do not do this!</em> React cannot listen to the state getting updated in this way, so your component will not re-render. Always use <code>setState</code>.</p>
+<p>It is tempting to write <code>this.state.count = this.state.count + 1</code>. <em>Do not do this!</em> React cannot listen to the state getting updated in this way, so your component will not re-render. Always use <code>setState</code>.</p>
+
+<p><strong><code>setState</code> warning two!</strong></p>
+
+<p>It might also be tempting to write something like this:</p>
+
+<pre><code>// DO NOT USE
+this.setState({
+  count: this.state.count + 1
+});
+</code></pre>
+
+<p>Although this might look reasonable, doesn’t throw errors, and you might find examples that use this syntax online, it is <em>wrong</em>. This does not take into account the asychronous nature that <code>setState</code> can use and might cause errors with out of sync state data.</p>
+
+<p><strong>Program as usual</strong></p>
 
 <p>And finally, <code>render</code></p>
 
@@ -260,10 +274,10 @@ Welcome.defaultProps = {
 
 <pre><code>onClick={this.updateCount.bind(this)}
 </code></pre></li>
-<li><p><code>updateCount</code> calls <code>setState</code> with <code>{count: 1}</code> as the argument</p>
+<li><p><code>updateCount</code> calls <code>setState</code> with a call back to increase the counter from the previous state’s counter value</p>
 
-<pre><code>this.setState({
-count: newCount
+<pre><code>this.setState((prevState, props) =&gt; {
+return { count: prevState.count + 1 }
 });
 </code></pre></li>
 <li><p><code>setState</code> triggers a call to <code>render</code></p>

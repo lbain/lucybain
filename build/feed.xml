@@ -545,7 +545,7 @@ const checkReady = setInterval(() =&amp;gt; {
     <link rel="alternate" href="http://lucybain.com/blog/2016/react-state-vs-pros/"/>
     <id>http://lucybain.com/blog/2016/react-state-vs-pros/</id>
     <published>2016-11-27T11:00:00+11:00</published>
-    <updated>2016-12-10T22:10:54+11:00</updated>
+    <updated>2016-12-11T20:53:19+11:00</updated>
     <author>
       <name>Article Author</name>
     </author>
@@ -650,9 +650,8 @@ Welcome.defaultProps = {
   }
 
   updateCount() {
-    const newCount = this.state.count + 1;
-    this.setState({
-      count: newCount
+    this.setState((prevState, props) =&amp;gt; {
+      return { count: prevState.count + 1 }
     });
   }
 
@@ -666,7 +665,7 @@ Welcome.defaultProps = {
 }
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;You can play with this code on &lt;a href="https://codepen.io/anon/pen/WoEdNx?editors=1011"&gt;CodePen&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;You can play with this code on &lt;a href="https://codepen.io/lbain/pen/ENpzBZ"&gt;CodePen&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;&lt;em&gt;Gah! There’s so much there! What’s going on?&lt;/em&gt;&lt;/p&gt;
 
@@ -699,22 +698,37 @@ Welcome.defaultProps = {
 &lt;p&gt;Here’s &lt;code&gt;updateCount&lt;/code&gt; again:&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;updateCount() {
-  const newCount = this.state.count + 1;
-  this.setState({
-    count: newCount
+  this.setState((prevState, props) =&amp;gt; {
+    return { count: prevState.count + 1 }
   });
 }
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;We change the state to keep track of the total number of clicks. The important bit is &lt;code&gt;setState&lt;/code&gt; - this updates the state object &lt;strong&gt;and&lt;/strong&gt; re-renders the component.&lt;/p&gt;
+&lt;p&gt;We change the state to keep track of the total number of clicks. The important bit is &lt;code&gt;setState&lt;/code&gt;. First off, notice that &lt;code&gt;setState&lt;/code&gt; takes a function, that’s becuase &lt;code&gt;setState&lt;/code&gt; can run asynchronously. It needs to take a callback function rather than updating the state directly. You can see we have access to &lt;code&gt;prevState&lt;/code&gt; within the callback, this will contain the previous state, even if the state has already been updated somewhere else. Pretty slick, huh?&lt;/p&gt;
+
+&lt;p&gt;But React goes one step better, &lt;code&gt;setState&lt;/code&gt; updates the state object &lt;strong&gt;and&lt;/strong&gt; re-renders the component automagically.&lt;/p&gt;
 
 &lt;p&gt;&lt;em&gt;Boom!&lt;/em&gt;&lt;/p&gt;
 
 &lt;p&gt;Yeah, this is pretty great of React to do, no need for us to explicitly re-render or worry about anything. React will take care of it all!&lt;/p&gt;
 
-&lt;p&gt;&lt;strong&gt;Warning!&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;&lt;code&gt;setState&lt;/code&gt; warning one!&lt;/strong&gt;&lt;/p&gt;
 
-&lt;p&gt;It is tempting to write &lt;code&gt;this.state.count = newCount&lt;/code&gt;. &lt;em&gt;Do not do this!&lt;/em&gt; React cannot listen to the state getting updated in this way, so your component will not re-render. Always use &lt;code&gt;setState&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;It is tempting to write &lt;code&gt;this.state.count = this.state.count + 1&lt;/code&gt;. &lt;em&gt;Do not do this!&lt;/em&gt; React cannot listen to the state getting updated in this way, so your component will not re-render. Always use &lt;code&gt;setState&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;code&gt;setState&lt;/code&gt; warning two!&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;It might also be tempting to write something like this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;// DO NOT USE
+this.setState({
+  count: this.state.count + 1
+});
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Although this might look reasonable, doesn’t throw errors, and you might find examples that use this syntax online, it is &lt;em&gt;wrong&lt;/em&gt;. This does not take into account the asychronous nature that &lt;code&gt;setState&lt;/code&gt; can use and might cause errors with out of sync state data.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Program as usual&lt;/strong&gt;&lt;/p&gt;
 
 &lt;p&gt;And finally, &lt;code&gt;render&lt;/code&gt;&lt;/p&gt;
 
@@ -753,10 +767,10 @@ Welcome.defaultProps = {
 
 &lt;pre&gt;&lt;code&gt;onClick={this.updateCount.bind(this)}
 &lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;code&gt;updateCount&lt;/code&gt; calls &lt;code&gt;setState&lt;/code&gt; with &lt;code&gt;{count: 1}&lt;/code&gt; as the argument&lt;/p&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;updateCount&lt;/code&gt; calls &lt;code&gt;setState&lt;/code&gt; with a call back to increase the counter from the previous state’s counter value&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;this.setState({
-count: newCount
+&lt;pre&gt;&lt;code&gt;this.setState((prevState, props) =&amp;gt; {
+return { count: prevState.count + 1 }
 });
 &lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;&lt;code&gt;setState&lt;/code&gt; triggers a call to &lt;code&gt;render&lt;/code&gt;&lt;/p&gt;

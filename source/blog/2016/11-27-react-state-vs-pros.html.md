@@ -111,9 +111,8 @@ class Button extends React.Component {
   }
 
   updateCount() {
-    const newCount = this.state.count + 1;
-    this.setState({
-      count: newCount
+    this.setState((prevState, props) => {
+      return { count: prevState.count + 1 }
     });
   }
 
@@ -127,7 +126,7 @@ class Button extends React.Component {
 }
 ```
 
-You can play with this code on [CodePen](https://codepen.io/anon/pen/WoEdNx?editors=1011).
+You can play with this code on [CodePen](https://codepen.io/lbain/pen/ENpzBZ).
 
 *Gah! There’s so much there! What’s going on?*
 
@@ -162,21 +161,37 @@ Here’s `updateCount` again:
 
 ```
 updateCount() {
-  const newCount = this.state.count + 1;
-  this.setState({
-    count: newCount
+  this.setState((prevState, props) => {
+    return { count: prevState.count + 1 }
   });
 }
 ```
-We change the state to keep track of the total number of clicks. The important bit is `setState` - this updates the state object **and** re-renders the component.
+We change the state to keep track of the total number of clicks. The important bit is `setState`. First off, notice that `setState` takes a function, that’s becuase `setState` can run asynchronously. It needs to take a callback function rather than updating the state directly. You can see we have access to `prevState` within the callback, this will contain the previous state, even if the state has already been updated somewhere else. Pretty slick, huh?
+
+But React goes one step better, `setState` updates the state object **and** re-renders the component automagically.
 
 *Boom!*
 
 Yeah, this is pretty great of React to do, no need for us to explicitly re-render or worry about anything. React will take care of it all!
 
-**Warning!**
+**`setState` warning one!**
 
-It is tempting to write `this.state.count = newCount`. *Do not do this!* React cannot listen to the state getting updated in this way, so your component will not re-render. Always use `setState`.
+It is tempting to write `this.state.count = this.state.count + 1`. *Do not do this!* React cannot listen to the state getting updated in this way, so your component will not re-render. Always use `setState`.
+
+**`setState` warning two!**
+
+It might also be tempting to write something like this:
+
+```
+// DO NOT USE
+this.setState({
+  count: this.state.count + 1
+});
+```
+
+Although this might look reasonable, doesn’t throw errors, and you might find examples that use this syntax online, it is *wrong*. This does not take into account the asychronous nature that `setState` can use and might cause errors with out of sync state data.
+
+**Program as usual**
 
 And finally, `render`
 
@@ -222,11 +237,11 @@ Sure thing, let’s look at the whole flow:
   onClick={this.updateCount.bind(this)}
   ```
 
-5. `updateCount` calls `setState` with `{count: 1}` as the argument
+5. `updateCount` calls `setState` with a call back to increase the counter from the previous state’s counter value
   
   ```
-  this.setState({
-    count: newCount
+  this.setState((prevState, props) => {
+    return { count: prevState.count + 1 }
   });
   ```
 
