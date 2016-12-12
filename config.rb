@@ -37,8 +37,10 @@ page "/feed.xml", layout: false
   "cv/index.html" => "/resume/",
   "odin/index.html" => "/resources/js-jquery-study-group/",
   "js/index.html" => "/resources/js-jquery-study-group/",
-  'blog/2014/anonymous-functions/index.html' => '/blog/2014/js-anonymous-referenced-declared-functions/',
-  'blog/2015/js-ways-to-call-functions/' => '/blog/2015/js-new-keyword-and-functions/'
+  "blog/2014/anonymous-functions/index.html" => "/blog/2014/js-anonymous-referenced-declared-functions/",
+  "blog/2015/js-ways-to-call-functions/" => "/blog/2015/js-new-keyword-and-functions/",
+  "feed/index.html" => "feed.xml",
+  "rss/index.html" => "feed.xml"
 }.each do |from, to|
   redirect from, to: to
 end
