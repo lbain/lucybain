@@ -9,8 +9,21 @@ a
   text-decoration: none
   color: $accent
   text-decoration: none
+  background-color: rgba($accent, .1)
+  border-radius: 3px
+  box-shadow: 5px 0 0 rgba($accent, .1), -5px 0 0 rgba($accent, .1)
+  margin: 0 5px
   &:hover
-    text-decoration: underline
+    background-color: rgba($accent, .2)
+    box-shadow: 5px 0 0 rgba($accent, .2), -5px 0 0 rgba($accent, .2)
+
+  h1 &
+    background-color: transparent
+    padding: 0
+    border-radius: 0
+    &:hover
+      text-decoration: underline
+      background-color: transparent
 
 b, strong, bold
   font-weight: $bold
@@ -18,14 +31,6 @@ b, strong, bold
 p
   margin-bottom: 0.8em
   line-height: 1.6em
-
-  a
-    background-color: rgba($accent, .1)
-    padding: 0 5px
-    border-radius: 3px
-    &:hover
-      text-decoration: none
-      background-color: rgba($accent, .2)
 
 
 h1, h2, h3, h4
