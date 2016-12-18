@@ -1,0 +1,107 @@
+---
+title: YOW! Day Two
+tags: conference
+
+description: Notes from the YOW! 2016 conference, including topics such as Elm, evolutionary architecture, and knitting
+keywords: conference, yow, australia, tech conference
+---
+
+The other volunteers and I got to sleep in a bit this morning and only had an 8:15 start time. *Yawn!* At least there’s free tea and coffee! After setting up a few odds and ends it was time to start shepherding people into the main room for the third, and last, keynote.
+
+### The Past and Future of Evolutionary Architecture, [Rebecca Parsons](https://twitter.com/rebeccaparsons)
+
+- We’ve been singing praises to Agile for a long time, but how do you apply these methods to architecture? *Evolutionary* architecture
+- Start by building a good test suite (I’m sensing a theme here...). Changing large design decisions doesn’t need to be as scary when you’ve got a good test suite to be sure the change won’t break things.
+- Recommended Reading: [Refactoring Databases](https://www.amazon.com/Refactoring-Databases-Evolutionary-paperback-Addison-Wesley/dp/0321774515)
+- Be aware of your team: it’s irresponsible to do evolutionary architecture (and generally make risky decisions) without having good tests, CI, and CD. Otherwise it puts too much pressure on the ops team.
+- Delay decisions until the last responsible moment. The longer you delay the more information you’ll have available. But you still need to be responsible about it; others shouldn’t suffer for your lack of decision.
+- Develop a [fitness function](https://en.wikipedia.org/wiki/Fitness_function) early on in a project. The fitness function should define “good” for this particular project by making boundaries and requirements explicit.
+
+Quote about thinking bigger picture:
+> Good code has a more consistent definition across projects than good architecture design.
+
+### Adventures in Elm Questioning your principles, [Jessica Kerr](https://twitter.com/jessitron)
+
+- Jessica’s talk was built around a live coding demo. Not only was this amazingly gutsy, but it was a fantastic way to show off the complier, as well as allowing for “human” moments. She made a few mistakes (although at least some of them were on purpose!) and kept going. It was quite an inspiring talk, and I’d certainly recommend it to newer devs.
+- She also was really explicit about what tools she used and how her system was set up. This was really helpful as you often have questions about a cool thing you saw them use.
+- Elm:
+    + Explicit types are optional, all items in a list must be of the same type
+    + The language is aimed at people doing work and their experience. It’s not about building the “right” language.
+- Elm compiler:
+    + A major part of the talk focused on how useful the compiler is. I mostly work in interpreted languages (JS, Ruby); I learned to fear and hate the compiler in my Java days at university. But her explanation of how the Elm compiler fits into her process was pretty persuasive.
+    + My favourite quote was:
+
+        > Elm considers every compile error as a teachable moment
+
+    + After a quick look, I found [this blog post](http://elm-lang.org/blog/compiler-errors-for-humans) about the reasoning behind these error messages. It’s really lovely and human-centric. I love this way of a language doing it’s best to help the user (programmer).
+
+Adorable quote:
+
+> The compiler is my friend and it helps me get it *right*.
+
+![Live coding with Elm](/images/blog/yow-2016/elm-live-coding.jpg)
+
+Her dress matched the colours and styles of the slides, nice touch!
+
+### If you are Synchronous you are not Resilient, [Gregor Hohpe](https://twitter.com/ghohpe)
+
+Gregor started his talk by defining three types of systems:
+
+- Resilient: acknowledge things will fail, your system needs to be able to handle it and react to return to the normal state
+- Fail-operational: the system has to continue working (perhaps with a degraded service) and cannot be restarted or crash out (think of an plane)
+- Antifragile: something that becomes *stronger* with disturbances (think of a rumour, or the [Hydra](https://en.wikipedia.org/wiki/Lernaean_Hydra)).
+
+The rest of the talk covered how to move your code, team and organisation towards each of these states:
+
+- Resilient: as other talks had mentioned, programmers usually aren't great at handling error cases. In order to reach this first state a system needs to deal with errors that come out, not just leave a `// todo` comment.
+- Fail-operational: everything must be built in an isolated way, and the most important systems (like the plane engine) need backups
+- Antifragile: adding something like the [Chaos Monkey](https://github.com/Netflix/chaosmonkey), when the monkey finds a failure your can improve your system.
+
+
+### Communities of Practice: The Missing Piece of your Agile Organisation, [Emily Webber](https://twitter.com/ewebber)
+
+Given my experience with various user groups, study groups, and my own continuing education I was quite excited to go to this talk. Unfortunately for me, it was aimed more for beginner community organisers. I did like her ideas around bringing these kinds of communities into the office, both how to do that from a practical stand point, and why learning with your co-workers can be a good thing.
+
+I enjoyed Emily’s discussion about the Kolb’s learning styles because it’s particularly relevant to my own learning efforts.
+
+![Kolb’s learning styles](/images/blog/yow-2016/kolbs-learning-styles.jpg)
+
+In general, I try to follow these steps, although I’d never thought of them so concretely. My typical flow is:
+
+1. Concrete experience: encounter something difficult at work, or a new idea from a technical article.
+2. Reflection observation: think about what was difficult and do some research into that topic.
+3. Abstract conceptualisation: write a blog post in my own words about the topic.
+4. Active experimentation: I’ll admit, this is where I don’t do as well. I generally have real examples in my blog posts, and of course I try to apply what I’ve learned to what I do at work. But there’s certainly room for improvement here.
+
+Learning quote:
+> As all architects know, there’s something to be learned from everything.
+
+<%= link_to(image_tag("/images/blog/yow-2016/communities-of-practice.jpg"), "https://twitter.com/RMcKergow/status/810062288770076672", class: 'image-link') %>
+
+
+### Knit One, Compute One, [Kris Howard](https://twitter.com/web_goddess)
+
+The last talk of the day was given by my friend Kris. Kris programs and knits, this talk was about the intersection of the two. It was extra satisfying to watch because I was one of the people who encouraged her to submit the talk to YOW! way back in August.
+
+Kris’s talk went into the similarities of programming and knitting:
+
+- knitting can be thought of as binary (knit and purl vs. 1 and 0)
+- knitting patterns are programs for the knitter to follow
+- patterns use many programming concepts, such as loops, if statements, go to statements, and more
+- the final bombshell was that knitting can be Turing complete!
+
+I particularly enjoyed the discussion about using a [standard markup language](https://launchpad.net/knitml) to store patterns. This way a program could easy use one of many ways to display a knitting pattern, and the implementation would result in the same thing. I love the idea of having One Pattern to Rule Them All, but allowing each person to use their favourite way of consuming the patterns. *I want this for recipes!*
+
+### General notes
+- “Uncle Bob” started his talk with a call to gender diversity by asking the programmers to stand and then asking the men to sit down. As a person left standing I found it pretty disappointing, it looked like quite a bit less than 10-15% were women. I followed up with one of the conference organisers after the event and they estimated that ~20% of registrants were women. So perhaps I had some implicit bias to see the number of female attendees as low; perhaps the women didn’t make it in time for the first keynote; perhaps the wording of the request wasn’t clear (“will people with a Y chromosome please sit down.”); or perhaps the women there didn’t identify as programmers, and so weren’t standing in the first place. No matter the reason, I appreciated that the conference opened with a note about wanting more women attendees, and I am thrilled that so many women registered.
+- There was a fair amount of discussion about having standards and living up to others’ expectations for what being a programmer means. Maybe we’re moving away from “hackers” and “ninjas” and towards ... “professional” programmers.
+- We’re reinventing wheels:
+    + TDD was thought of in 1967. 
+    + There’s a discussion of agile development in 1968
+    + Research into distributed systems happened in the 1980s
+    + Perhaps we’re so busy disrupting we don’t take the time to look for lessons from the past.
+- A few speakers mentioned [Conway's law](https://en.wikipedia.org/wiki/Conway's_law), and it’s reverse — first decide how you want your *code* structure look and then make your organisation look like that.
+
+
+
+

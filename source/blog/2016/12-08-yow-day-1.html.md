@@ -113,12 +113,6 @@ A deep dive into introversion vs. extroversion. This is a topic I’m particular
 <!-- -->
 > Psychology is about finding ways we are like all others, some others, and no others.
 
-### General notes
-- “Uncle Bob” started his talk with a call to gender diversity by asking the programmers to stand and then asking the men to sit down. As a person left standing I found it pretty disappointing, it looked like quite a bit less than 10-15% were women. I followed up with one of the conference organisers after the event and they estimated that ~20% of registrants were women. So perhaps I had some implicit bias to see the number of female attendees as low; perhaps the women didn’t make it in time for the first keynote; perhaps the wording of the request wasn’t clear (“will people with a Y chromosome please sit down.”); or perhaps the women there didn’t identify as programmers, and so weren’t standing in the first place. No matter the reason, I appreciated that the conference opened with a note about wanting more women attendees, and I am thrilled that so many women registered.
-- There was a fair amount of discussion about having standards and living up to others’ expectations for what being a programmer means. Maybe we’re moving away from “hackers” and “ninjas” and towards ... “professional” programmers.
-- We’re reinventing wheels:
-    + TDD was thought of in 1967. 
-    + There’s a discussion of agile development in 1968
-    + Research into distributed systems happened in the 1980s
-    + Perhaps we’re so busy disrupting we don’t take the time to look for lessons from the past.
-- A few speakers mentioned [Conway's law](https://en.wikipedia.org/wiki/Conway's_law), and it’s reverse — first decide how you want your *code* structure look and then make your organisation look like that.
+- - -
+
+That’s a wrap on day one! It’s been pretty full on, and I’m looking forward to tomorrow!
