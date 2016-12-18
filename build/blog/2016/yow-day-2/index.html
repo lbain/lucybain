@@ -1,0 +1,233 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+  <head>
+    <meta content='width=device-width, initial-scale=1' name='viewport'>
+<meta charset='utf-8'>
+<meta content='IE=edge,chrome=1' http-equiv='X-UA-Compatible'>
+<meta content='Notes from the YOW! 2016 conference, including topics such as Elm, evolutionary architecture, and knitting' name='description'>
+<meta content='conference, yow, australia, tech conference' name='keywords'>
+<link href='/images/favicon.ico' rel='icon' type='image/ico'>
+<link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700|Source+Code+Pro' rel='stylesheet' type='text/css'>
+<title>YOW! Day Two</title>
+<link href="/stylesheets/application.css" rel="stylesheet" media="all" />
+<script src='//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js'></script>
+<script src='//cdn.optimizely.com/js/4606022905.js'></script>
+
+  </head>
+  <body class="">
+    <nav>
+  <div class='nav-open-btn'>
+    <ul>
+      <li></li>
+      <li></li>
+      <li></li>
+    </ul>
+  </div>
+  <ul class='nav-display'>
+    <li>
+      <a href="/" class="nav-link">Me</a>
+    </li>
+    <li>
+      <a href="/resume/" class="nav-link">Resume</a>
+    </li>
+    <li>
+      <a href="/contact-me/" class="nav-link">Contact</a>
+    </li>
+    <li>
+      <a href="/resources/" class="nav-link">Resources</a>
+    </li>
+    <li>
+      <a href="/blog/" class="nav-link active">Blog</a>
+    </li>
+  </ul>
+</nav>
+<script>
+  $('nav .nav-open-btn').on('click', function(){
+    $('nav .nav-display').toggleClass('open');
+  })
+</script>
+
+    <div class="content">
+        <div class=" blog-listing">
+    <div class="meta">
+      <h1>
+        YOW! Day Two
+      </h1>
+      <p>Published on: December  9, 2016</p>
+        <p>Tags: <a href="/blog/tags/conference/">conference</a></p>
+    </div>
+    <p>The other volunteers and I got to sleep in a bit this morning and only had an 8:15 start time. <em>Yawn!</em> At least there’s free tea and coffee! After setting up a few odds and ends it was time to start shepherding people into the main room for the third, and last, keynote.</p>
+
+<h3>The Past and Future of Evolutionary Architecture, <a href="https://twitter.com/rebeccaparsons">Rebecca Parsons</a></h3>
+
+<ul>
+<li>We’ve been singing praises to Agile for a long time, but how do you apply these methods to architecture? <em>Evolutionary</em> architecture</li>
+<li>Start by building a good test suite (I’m sensing a theme here...). Changing large design decisions doesn’t need to be as scary when you’ve got a good test suite to be sure the change won’t break things.</li>
+<li>Recommended Reading: <a href="https://www.amazon.com/Refactoring-Databases-Evolutionary-paperback-Addison-Wesley/dp/0321774515">Refactoring Databases</a></li>
+<li>Be aware of your team: it’s irresponsible to do evolutionary architecture (and generally make risky decisions) without having good tests, CI, and CD. Otherwise it puts too much pressure on the ops team.</li>
+<li>Delay decisions until the last responsible moment. The longer you delay the more information you’ll have available. But you still need to be responsible about it; others shouldn’t suffer for your lack of decision.</li>
+<li>Develop a <a href="https://en.wikipedia.org/wiki/Fitness_function">fitness function</a> early on in a project. The fitness function should define “good” for this particular project by making boundaries and requirements explicit.</li>
+</ul>
+
+<p>Quote about thinking bigger picture:</p>
+
+<blockquote>
+<p>Good code has a more consistent definition across projects than good architecture design.</p>
+</blockquote>
+
+<h3>Adventures in Elm Questioning your principles, <a href="https://twitter.com/jessitron">Jessica Kerr</a></h3>
+
+<ul>
+<li>Jessica’s talk was built around a live coding demo. Not only was this amazingly gutsy, but it was a fantastic way to show off the complier, as well as allowing for “human” moments. She made a few mistakes (although at least some of them were on purpose!) and kept going. It was quite an inspiring talk, and I’d certainly recommend it to newer devs.</li>
+<li>She also was really explicit about what tools she used and how her system was set up. This was really helpful as you often have questions about a cool thing you saw them use.</li>
+<li>Elm:
+
+<ul>
+<li>Explicit types are optional, all items in a list must be of the same type</li>
+<li>The language is aimed at people doing work and their experience. It’s not about building the “right” language.</li>
+</ul></li>
+<li><p>Elm compiler:</p>
+
+<ul>
+<li>A major part of the talk focused on how useful the compiler is. I mostly work in interpreted languages (JS, Ruby); I learned to fear and hate the compiler in my Java days at university. But her explanation of how the Elm compiler fits into her process was pretty persuasive.</li>
+<li><p>My favourite quote was:</p>
+
+<blockquote>
+<p>Elm considers every compile error as a teachable moment</p>
+</blockquote></li>
+<li><p>After a quick look, I found <a href="http://elm-lang.org/blog/compiler-errors-for-humans">this blog post</a> about the reasoning behind these error messages. It’s really lovely and human-centric. I love this way of a language doing it’s best to help the user (programmer).</p></li>
+</ul></li>
+</ul>
+
+<p>Adorable quote:</p>
+
+<blockquote>
+<p>The compiler is my friend and it helps me get it <em>right</em>.</p>
+</blockquote>
+
+<p><img src="/images/blog/yow-2016/elm-live-coding.jpg" alt="Live coding with Elm" /></p>
+
+<p>Her dress matched the colours and styles of the slides, nice touch!</p>
+
+<h3>If you are Synchronous you are not Resilient, <a href="https://twitter.com/ghohpe">Gregor Hohpe</a></h3>
+
+<p>Gregor started his talk by defining three types of systems:</p>
+
+<ul>
+<li>Resilient: acknowledge things will fail, your system needs to be able to handle it and react to return to the normal state</li>
+<li>Fail-operational: the system has to continue working (perhaps with a degraded service) and cannot be restarted or crash out (think of an plane)</li>
+<li>Antifragile: something that becomes <em>stronger</em> with disturbances (think of a rumour, or the <a href="https://en.wikipedia.org/wiki/Lernaean_Hydra">Hydra</a>).</li>
+</ul>
+
+<p>The rest of the talk covered how to move your code, team and organisation towards each of these states:</p>
+
+<ul>
+<li>Resilient: as other talks had mentioned, programmers usually aren&#39;t great at handling error cases. In order to reach this first state a system needs to deal with errors that come out, not just leave a <code>// todo</code> comment.</li>
+<li>Fail-operational: everything must be built in an isolated way, and the most important systems (like the plane engine) need backups</li>
+<li>Antifragile: adding something like the <a href="https://github.com/Netflix/chaosmonkey">Chaos Monkey</a>, when the monkey finds a failure your can improve your system.</li>
+</ul>
+
+<h3>Communities of Practice: The Missing Piece of your Agile Organisation, <a href="https://twitter.com/ewebber">Emily Webber</a></h3>
+
+<p>Given my experience with various user groups, study groups, and my own continuing education I was quite excited to go to this talk. Unfortunately for me, it was aimed more for beginner community organisers. I did like her ideas around bringing these kinds of communities into the office, both how to do that from a practical stand point, and why learning with your co-workers can be a good thing.</p>
+
+<p>I enjoyed Emily’s discussion about the Kolb’s learning styles because it’s particularly relevant to my own learning efforts.</p>
+
+<p><img src="/images/blog/yow-2016/kolbs-learning-styles.jpg" alt="Kolb’s learning styles" /></p>
+
+<p>In general, I try to follow these steps, although I’d never thought of them so concretely. My typical flow is:</p>
+
+<ol>
+<li>Concrete experience: encounter something difficult at work, or a new idea from a technical article.</li>
+<li>Reflection observation: think about what was difficult and do some research into that topic.</li>
+<li>Abstract conceptualisation: write a blog post in my own words about the topic.</li>
+<li>Active experimentation: I’ll admit, this is where I don’t do as well. I generally have real examples in my blog posts, and of course I try to apply what I’ve learned to what I do at work. But there’s certainly room for improvement here.</li>
+</ol>
+
+<p>Learning quote:</p>
+
+<blockquote>
+<p>As all architects know, there’s something to be learned from everything.</p>
+</blockquote>
+
+<p><a href="https://twitter.com/RMcKergow/status/810062288770076672" class="image-link"><img src="/images/blog/yow-2016/communities-of-practice.jpg" alt="Communities of practice" /></a></p>
+
+<h3>Knit One, Compute One, <a href="https://twitter.com/web_goddess">Kris Howard</a></h3>
+
+<p>The last talk of the day was given by my friend Kris. Kris programs and knits, this talk was about the intersection of the two. It was extra satisfying to watch because I was one of the people who encouraged her to submit the talk to YOW! way back in August.</p>
+
+<p>Kris’s talk went into the similarities of programming and knitting:</p>
+
+<ul>
+<li>knitting can be thought of as binary (knit and purl vs. 1 and 0)</li>
+<li>knitting patterns are programs for the knitter to follow</li>
+<li>patterns use many programming concepts, such as loops, if statements, go to statements, and more</li>
+<li>the final bombshell was that knitting can be Turing complete!</li>
+</ul>
+
+<p>I particularly enjoyed the discussion about using a <a href="https://launchpad.net/knitml">standard markup language</a> to store patterns. This way a program could easy use one of many ways to display a knitting pattern, and the implementation would result in the same thing. I love the idea of having One Pattern to Rule Them All, but allowing each person to use their favourite way of consuming the patterns. <em>I want this for recipes!</em></p>
+
+<h3>General notes</h3>
+
+<ul>
+<li>“Uncle Bob” started his talk with a call to gender diversity by asking the programmers to stand and then asking the men to sit down. As a person left standing I found it pretty disappointing, it looked like quite a bit less than 10-15% were women. I followed up with one of the conference organisers after the event and they estimated that ~20% of registrants were women. So perhaps I had some implicit bias to see the number of female attendees as low; perhaps the women didn’t make it in time for the first keynote; perhaps the wording of the request wasn’t clear (“will people with a Y chromosome please sit down.”); or perhaps the women there didn’t identify as programmers, and so weren’t standing in the first place. No matter the reason, I appreciated that the conference opened with a note about wanting more women attendees, and I am thrilled that so many women registered.</li>
+<li>There was a fair amount of discussion about having standards and living up to others’ expectations for what being a programmer means. Maybe we’re moving away from “hackers” and “ninjas” and towards ... “professional” programmers.</li>
+<li>We’re reinventing wheels:
+
+<ul>
+<li>TDD was thought of in 1967. </li>
+<li>There’s a discussion of agile development in 1968</li>
+<li>Research into distributed systems happened in the 1980s</li>
+<li>Perhaps we’re so busy disrupting we don’t take the time to look for lessons from the past.</li>
+</ul></li>
+<li>A few speakers mentioned <a href="https://en.wikipedia.org/wiki/Conway's_law">Conway&#39;s law</a>, and it’s reverse — first decide how you want your <em>code</em> structure look and then make your organisation look like that.</li>
+</ul>
+
+
+      <div id="disqus_thread">
+        <hr/>
+        <script>
+
+          var disqus_shortname = 'lucybain';
+          (function() {
+              var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+              dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+              (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+          })();
+
+        </script>
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+        <a class="dsq-brlink" href="http://disqus.com">
+          comments powered by
+          <span class="logo-disqus">Disqus</span>
+        </a>
+        <script>
+
+          var disqus_shortname = 'lucybain';
+          (function () {
+              var s = document.createElement('script'); s.async = true;
+              s.type = 'text/javascript';
+              s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+              (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+          }());
+
+        </script>
+      </div>
+  </div>
+
+    </div>
+  </body>
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  
+  ga('create', 'UA-45866381-1', 'lucybain.com');
+  ga('send', 'pageview');
+</script>
+
+</html>
