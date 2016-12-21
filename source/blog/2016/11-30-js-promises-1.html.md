@@ -1,8 +1,9 @@
 ---
 title: "Javascript: pre-Promises"
-tags: js
+tags: js, promises
 
-description: This post sets the scene for the promises work coming in the next blog post.
+description: We'll sets the scene for the promises work coming in future blog posts.
+keywords: js, javascript, promises, timeouts
 ---
 
 Promises have confused me for quite a while, so I decided I should spend some time thinking about them. Turns out they’re really powerful, and there’s a fair bit going on with promises. This first post has no promises code, but instead gives some general information about promises and then sets up the problem that promises are meant to solve. I’ll reference this problem in my next blog post which will have plenty of promise code!
