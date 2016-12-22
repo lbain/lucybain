@@ -1,0 +1,166 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+  <head>
+    <meta content='width=device-width, initial-scale=1' name='viewport'>
+<meta charset='utf-8'>
+<meta content='IE=edge,chrome=1' http-equiv='X-UA-Compatible'>
+<meta content='A breakdown of what Javascript’s promise and deferred represent with examples to clarify.' name='description'>
+<meta content='javascript, promise, deferred' name='keywords'>
+<link href='/images/favicon.ico' rel='icon' type='image/ico'>
+<link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700|Source+Code+Pro' rel='stylesheet' type='text/css'>
+<title>JS: promise and deferred</title>
+<link href="/stylesheets/application.css" rel="stylesheet" media="all" />
+<script src='//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js'></script>
+<script src='//cdn.optimizely.com/js/4606022905.js'></script>
+
+  </head>
+  <body class="">
+    <nav>
+  <div class='nav-open-btn'>
+    <ul>
+      <li></li>
+      <li></li>
+      <li></li>
+    </ul>
+  </div>
+  <ul class='nav-display'>
+    <li>
+      <a href="/" class="nav-link">Me</a>
+    </li>
+    <li>
+      <a href="/resume/" class="nav-link">Resume</a>
+    </li>
+    <li>
+      <a href="/contact-me/" class="nav-link">Contact</a>
+    </li>
+    <li>
+      <a href="/resources/" class="nav-link">Resources</a>
+    </li>
+    <li>
+      <a href="/blog/" class="nav-link active">Blog</a>
+    </li>
+  </ul>
+</nav>
+<script>
+  $('nav .nav-open-btn').on('click', function(){
+    $('nav .nav-display').toggleClass('open');
+  })
+</script>
+
+    <div class="content">
+        <div class=" blog-listing">
+    <div class="meta">
+      <h1>
+        JS: promise and deferred
+      </h1>
+      <p>Published on: December 22, 2016</p>
+        <p>Tags: <a href="/blog/tags/js/">js</a> and <a href="/blog/tags/promise/">promise</a></p>
+    </div>
+    <p>I’m struggling with promises. A lot.</p>
+
+<p>One of the things that’s super confusing about promises is the jargon associated. We’ve got all kinds of things: promise, deferred, Promises/A+, jQuery promise, fulfil, settle, reject, resolve, fail, catch, then, done, and probably others I don’t know yet. It was only <em>today</em> that I realised promises and deferreds aren’t the same thing. And that <strong>p</strong>romise and <strong>P</strong>romise aren’t the same thing. Programming is hard.</p>
+
+<h3>promise vs. deferred</h3>
+
+<p>Anywhoo, I found this really great article <a href="http://blog.mediumequalsmessage.com/promise-deferred-objects-in-javascript-pt1-theory-and-semantics">Promise &amp; Deferred objects in JavaScript</a>. Chris’s approach of taking some time out to think about promises and deferreds <em>without</em> code samples helped clarify things. He was also was very careful about which words he used when, so the post is far more consistent than others I’ve read (and I’ve been reading a lot recently...).</p>
+
+<p>In that article is one paragraph in particular that helped me</p>
+
+<blockquote>
+<p>A promise is a placeholder for a result which is initially unknown while a deferred represents the computation that results in the value. Every deferred has a promise which functions as a proxy for the future result. While a promise is a value returned by an asynchronous function, a deferred can be resolved or rejected by it’s caller which separates the promise from the resolver. The promise itself can be given to any number of consumers and each will observe the resolution independently meanwhile the resolver / deferred can be given to any number of producers and the promise will be resolved by the one that first resolves it. From a semantic perspective this means that instead of calling a function ( callback ), we are able to return a value ( promise ).</p>
+</blockquote>
+
+<p>I’ll be honest, I’ve read that paragraph 15-20 times by now, trying to tease out meaning from each line. So I rewrote it in my own words, and threw in some examples for good measure.</p>
+
+<p>Here’s my breakdown:</p>
+
+<blockquote>
+<p>A promise is a placeholder for a result which is initially unknown while a deferred represents the computation that results in the value.</p>
+</blockquote>
+
+<p>Promises represent a future value. At the moment of its creation, a promise doesn’t know what its ultimate value will be. Kind of like how the judges didn’t know what the artist’s final picture will be <a href="https://www.youtube.com/watch?v=OetrSxmFZSI">when she started painting</a>.</p>
+
+<p>A deferred is the work that must take place in order for a promise to “settle” (that is, for the promise’s ultimate value to be available). Like the action of painting that the artist needs to do before the judges could see the final product.</p>
+
+<blockquote>
+<p>Every deferred has a promise which functions as a proxy for the future result.</p>
+</blockquote>
+
+<p>When the deferred’s work kicks off it immediately returns a promise which represents the final value of the deferred’s work. This is similar to accepting a job (initialising a deferred) agreeing on a wage (the unsettled promise that is immediately returned by the deferred), doing the work (resolving the deferred), and then getting paid (resolving the promise).</p>
+
+<blockquote>
+<p>While a promise is a value returned by an asynchronous function, a deferred can be resolved or rejected by it’s caller which separates the promise from the resolver.</p>
+</blockquote>
+
+<p>Deferreds must be explicitly “fulfilled” by other parts of the code (that is, the deferreds’ work must be completed), or they will remain in an “unfulfilled” state forever (incomplete). If this happens, the deferred’s associated promise will never settle. A deferred can fulfil in a section of the code that is unrelated to how and when its promise is referenced and used.</p>
+
+<blockquote>
+<p>The promise itself can be given to any number of consumers and each will observe the resolution independently.</p>
+</blockquote>
+
+<p>A promise can have many listeners that are all updated with the final value of the promise when the promise settles. (Ready for this example? It’s my favourite!) Hermione’s <a href="http://harrypotter.wikia.com/wiki/Dumbledore's_Army_coin">coins</a> for Dumbledore’s Army: Harry set his one coin (settled the promise) and all the other coins updated accordingly (many listeners for the same promise). Boom.</p>
+
+<blockquote>
+<p>Meanwhile the resolver / deferred can be given to any number of producers and the promise will be resolved by the one that first resolves it.</p>
+</blockquote>
+
+<p>The same deferred can be passed to multiple functions (producers). Since it’s all the same deferred any one of these producers can fulfil the deferred. Once this happens the deferred is fulfilled for all the producers (and the single associated promise is settled as well).</p>
+
+<blockquote>
+<p>From a semantic perspective this means that instead of calling a function ( callback ), we are able to return a value ( promise ).</p>
+</blockquote>
+
+<p>Promises can be returned and treated like a value, even though the value is not yet know.</p>
+
+<hr>
+
+<p>That’s all for now, but I’m planning to write more posts about the rest of those words from the beginning. At least promises are giving me plenty of content!</p>
+
+
+      <div id="disqus_thread">
+        <hr/>
+        <script>
+
+          var disqus_shortname = 'lucybain';
+          (function() {
+              var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+              dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+              (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+          })();
+
+        </script>
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+        <a class="dsq-brlink" href="http://disqus.com">
+          comments powered by
+          <span class="logo-disqus">Disqus</span>
+        </a>
+        <script>
+
+          var disqus_shortname = 'lucybain';
+          (function () {
+              var s = document.createElement('script'); s.async = true;
+              s.type = 'text/javascript';
+              s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+              (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+          }());
+
+        </script>
+      </div>
+  </div>
+
+    </div>
+  </body>
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  
+  ga('create', 'UA-45866381-1', 'lucybain.com');
+  ga('send', 'pageview');
+</script>
+
+</html>
