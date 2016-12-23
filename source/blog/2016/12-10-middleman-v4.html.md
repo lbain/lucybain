@@ -23,7 +23,7 @@ Good question, it wasn’t obvious to me either. The “full file name” is the
 
 Updating all your files to add a `.html` before the previous extension is more than a little annoying. So I wrote a little script to help me out:
 
-```
+```ruby
 path_to_project = "" # FILL ME IN
 
 # Step 1: get a list of all the extensions you use
@@ -107,7 +107,7 @@ Usually the lesson from this kind of thing is “update earlier!” but I’m ho
 
 I did hugely underestimate the amount of time involved with doing the upgrade. Often solving the issue wasn’t too difficult, but finding it was hard. And, in the case of the Haml layouts, I never solved it but had to call it quits and move on to the next thing.
 
-I also got really frustrated with the whole thing and nearly called it off at least twice. It’s hard to keep going when you don’t know how close to the end you are. 
+I also got really frustrated with the whole thing and nearly called it off at least twice. It’s hard to keep going when you don’t know how close to the end you are.
 
 
 

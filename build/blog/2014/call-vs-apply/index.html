@@ -9,6 +9,7 @@
 <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700|Source+Code+Pro' rel='stylesheet' type='text/css'>
 <title>JS: .call vs. .apply</title>
 <link href="/stylesheets/application.css" rel="stylesheet" media="all" />
+<link href="/stylesheets/syntax_highlighting.css" rel="stylesheet" media="all" />
 <script src='//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js'></script>
 <script src='//cdn.optimizely.com/js/4606022905.js'></script>
 
@@ -62,37 +63,33 @@
 <p><strong>What are <code>.call</code> and <code>.apply</code>?</strong></p>
 
 <p>Both methods allow you to invoke a function and pass parameters through.</p>
-
-<pre><code>function printer(message) {
+<pre class="highlight plaintext"><code>function printer(message) {
     console.log(message)
 }
 
-printer.call({}, &quot;hello&quot;) // logs &quot;hello&quot;
-printer.apply({}, &quot;world!&quot;) // logs &quot;world!&quot;
+printer.call({}, "hello") // logs "hello"
+printer.apply({}, "world!") // logs "world!"
 </code></pre>
-
 <p><em>Wow. Awesome. A more verbose way to invoke functions. Fantastic. Why not just use <code>printer(&quot;hello&quot;)</code>?</em></p>
 
 <p>Well actually, <code>.call</code> and <code>.apply</code> can do more than simply invoke a method, they can also pass through <strong>context</strong>. Here’s an example:</p>
-
-<pre><code>function Person(name){
+<pre class="highlight plaintext"><code>function Person(name){
     this.name = name;
     this.introduceSelf = function() {
-        console.log(&quot;Hello, my name is &quot; + this.name);
+        console.log("Hello, my name is " + this.name);
     }
 }
 
-var alice = new Person(&#39;Alice&#39;);
+var alice = new Person('Alice');
 alice.introduceSelf();
-// logs &quot;Hello, my name is Alice&quot;, as expected
+// logs "Hello, my name is Alice", as expected
 
-alice.introduceSelf.call({name: &quot;Bob&quot;});
-// logs &quot;Hello, my name is Bob&quot;
+alice.introduceSelf.call({name: "Bob"});
+// logs "Hello, my name is Bob"
 
-alice.introduceSelf.apply({name: &quot;Casey&quot;});
-// logs &quot;Hello, my name is Casey&quot;
+alice.introduceSelf.apply({name: "Casey"});
+// logs "Hello, my name is Casey"
 </code></pre>
-
 <p>So <code>.call</code> and <code>.apply</code> allow you to manipulate the <code>this</code> keyword for the invoked function.</p>
 
 <p>On to the main question...</p>
@@ -100,25 +97,23 @@ alice.introduceSelf.apply({name: &quot;Casey&quot;});
 <p><strong>What’s the difference between <code>.call</code> and <code>.apply</code>?</strong></p>
 
 <p>It’s all about the way you pass parameters. That’s it. Let’s make our previous example more complex:</p>
-
-<pre><code>function Person(name){
+<pre class="highlight plaintext"><code>function Person(name){
     this.name = name;
     this.introduceSelf = function(greeting) {
-        console.log(greeting + &quot;, my name is &quot; + this.name);
+        console.log(greeting + ", my name is " + this.name);
     }
 }
 
-var alice = new Person(&#39;Alice&#39;);
-alice.introduceSelf(&#39;Hello&#39;);
-// logs &quot;Hello, my name is Alice&quot;, as expected
+var alice = new Person('Alice');
+alice.introduceSelf('Hello');
+// logs "Hello, my name is Alice", as expected
 
-alice.introduceSelf.call({name: &quot;Bob&quot;}, &#39;Bonjour&#39;);
-// logs &quot;Bonjour, my name is Bob&quot;
+alice.introduceSelf.call({name: "Bob"}, 'Bonjour');
+// logs "Bonjour, my name is Bob"
 
-alice.introduceSelf.apply({name: &quot;Casey&quot;}, [&#39;Hola&#39;]);
-// logs &quot;Hola, my name is Casey&quot;
+alice.introduceSelf.apply({name: "Casey"}, ['Hola']);
+// logs "Hola, my name is Casey"
 </code></pre>
-
 <p>For <code>.call</code> you pass the parameters comma separated (like normal). For <code>.apply</code> you pass the parameters in an array.</p>
 
 <p><em>Why would you even bother having these two ways? Why not standardise?</em></p>

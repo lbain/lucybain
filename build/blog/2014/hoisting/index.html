@@ -9,6 +9,7 @@
 <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700|Source+Code+Pro' rel='stylesheet' type='text/css'>
 <title>JS: Explain “hoisting”</title>
 <link href="/stylesheets/application.css" rel="stylesheet" media="all" />
+<link href="/stylesheets/syntax_highlighting.css" rel="stylesheet" media="all" />
 <script src='//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js'></script>
 <script src='//cdn.optimizely.com/js/4606022905.js'></script>
 
@@ -64,35 +65,30 @@
 <h2>Hoisting variables</h2>
 
 <p>We&#39;ll start with an example:</p>
-
-<pre><code>// Code saved in file:
+<pre class="highlight plaintext"><code>// Code saved in file:
 
 function containsHoisting() {
     console.log(hoistedVariable);
-    var hoistedVariable = &quot;I was hoisted!&quot;;
+    var hoistedVariable = "I was hoisted!";
 }
 
 containsHoisting(); // logs undefined
 </code></pre>
-
 <p><em>Wait, how did <code>hoistedVariable</code> get to be undefined? Surely it should be undeclared since we haven’t hit <code>var hoistedVariable</code> yet.</em></p>
 
 <p>It’s because of hoisting! You see, although I wrote the code in the example above, the JS interpreter changes it to this:</p>
-
-<pre><code>// What the interpreter changed it to:
+<pre class="highlight plaintext"><code>// What the interpreter changed it to:
 
 function containsHoisting() {
     var hoistedVariable; // &lt;-- this line here!
     console.log(hoistedVariable);
-    hoistedVariable = &quot;I was hoisted!&quot;;
+    hoistedVariable = "I was hoisted!";
 }
 </code></pre>
-
 <p>That new line is <code>hoistedVariable</code> getting hoisted up to the top of it’s scope. So it’s now declared, but not defined.</p>
 
 <p>Here’s a more complex example (inspired by <a href="http://www.adequatelygood.com/JavaScript-Scoping-and-Hoisting.html">Adequately Good</a>)</p>
-
-<pre><code>var hoistedVariable = 1;
+<pre class="highlight plaintext"><code>var hoistedVariable = 1;
 
 function scopingFunction() {
     if (!hoistedVariable) {
@@ -103,7 +99,6 @@ function scopingFunction() {
 
 scopingFunction(); // returns 10
 </code></pre>
-
 <p><em>What?! How can it return 10?</em></p>
 
 <h3 id="scopes"> Tangent about scopes </h3>
@@ -119,8 +114,7 @@ scopingFunction(); // returns 10
 <h3>Back to the main event</h3>
 
 <p>The code above gets rewritten in the JS interpreter to look like this:</p>
-
-<pre><code>var hoistedVariable = 1;
+<pre class="highlight plaintext"><code>var hoistedVariable = 1;
 
 function scopingFunction() {
     var hoistedVariable; // &lt;-- this line here!
@@ -132,7 +126,6 @@ function scopingFunction() {
 
 scopingFunction(); // returns 10
 </code></pre>
-
 <p>Note that the <em>global</em> <code>hoistedVariable</code> gets completely overwritten by the <em>local</em> <code>hoistedVariable</code> as declared in <code>scopingFunction</code>. So at the point of the <code>if</code> conditional <code>hoistedVariable</code> is <code>undefined</code> and not 1.</p>
 
 <h2>Function hoisting</h2>
@@ -140,8 +133,7 @@ scopingFunction(); // returns 10
 <p>Hoisting functions works differently than variables. Since a function is declared and defined at the same time the function definition is hoisted along with the function name.</p>
 
 <p>Since examples make things clearer:</p>
-
-<pre><code>function containingFunction() {
+<pre class="highlight plaintext"><code>function containingFunction() {
     var hoistedVariable = 2 + 2;
     function hoistedFunction() {
         return hoistedVariable;
@@ -150,55 +142,48 @@ scopingFunction(); // returns 10
 }
 containingFunction() // returns 4
 </code></pre>
-
 <p>Hopefully that example wasn’t surprising. But just to better understand what’s going on, here’s how the JS interpreter rewrote things:</p>
-
-<pre><code>function containingFunction() {
+<pre class="highlight plaintext"><code>function containingFunction() {
     // this is the hoisted section
     var hoistedVariable;
     function hoistedFunction() {
         return hoistedVariable;
     }
 
-    // here&#39;s the rest of the code
+    // here's the rest of the code
     hoistedVariable = 2 + 2;
     return hoistedFunction();
 }
 containingFunction() // returns 4
 </code></pre>
-
 <p>Notice that the entire <code>hoistedFunction</code> gets moved up, while only the declaration for the <code>hoistedVariable</code> is hoisted.</p>
 
 <p>Let’s try with a more complicated example:</p>
-
-<pre><code>function containingFunction() {
-    var hoisted = &quot;I&#39;m the variable&quot;;
+<pre class="highlight plaintext"><code>function containingFunction() {
+    var hoisted = "I'm the variable";
     function hoisted() {
-        return &quot;I&#39;m the function&quot;;
+        return "I'm the function";
     }
     return hoisted(); // results in a TypeError
 }
 containingFunction()
 </code></pre>
-
 <p><em>But wait, the <code>hoisted</code> function is defined right there, what gives?</em></p>
 
 <p>Because functions are hoisted after variables, naming conflicts can happen. Again, let’s look at what the JS interpreter wrote for this code</p>
-
-<pre><code>function containingFunction() {
+<pre class="highlight plaintext"><code>function containingFunction() {
     // hoisted section
     var hoisted;
     function hoisted() {
-        return &quot;I&#39;m the function&quot;;
+        return "I'm the function";
     }
 
     // rest of the code
-    hoisted = &quot;I&#39;m the variable&quot;;
+    hoisted = "I'm the variable";
     return hoisted();
 }
 containingFunction() // results in a TypeError
 </code></pre>
-
 <p>As you can see, the function definition for <code>hoisted</code> is overwritten by the variable definition (<code>&quot;I&#39;m the variable&quot;</code>) which appears lower down in the interpreter’s version of the code. Yet another reason why good names are important!</p>
 
 <h2>Resources</h2>

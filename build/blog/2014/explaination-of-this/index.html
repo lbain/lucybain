@@ -9,6 +9,7 @@
 <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700|Source+Code+Pro' rel='stylesheet' type='text/css'>
 <title>JS "this"</title>
 <link href="/stylesheets/application.css" rel="stylesheet" media="all" />
+<link href="/stylesheets/syntax_highlighting.css" rel="stylesheet" media="all" />
 <script src='//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js'></script>
 <script src='//cdn.optimizely.com/js/4606022905.js'></script>
 
@@ -72,30 +73,26 @@
 <ul>
 <li><code>this</code> refers to the object it’s being called from</li>
 </ul>
-
-<pre><code class="js">function currentYear() {
-  return 2014;
-}
-var person = { birthYear: 1977,
-               getAge: function() {
-                 return currentYear() - this.birthYear;
-               }
-             };
-person.getAge();
-// returns 37
+<pre class="highlight javascript"><code><span class="kd">function</span> <span class="nx">currentYear</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="mi">2014</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="kd">var</span> <span class="nx">person</span> <span class="o">=</span> <span class="p">{</span> <span class="na">birthYear</span><span class="p">:</span> <span class="mi">1977</span><span class="p">,</span>
+               <span class="na">getAge</span><span class="p">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+                 <span class="k">return</span> <span class="nx">currentYear</span><span class="p">()</span> <span class="o">-</span> <span class="k">this</span><span class="p">.</span><span class="nx">birthYear</span><span class="p">;</span>
+               <span class="p">}</span>
+             <span class="p">};</span>
+<span class="nx">person</span><span class="p">.</span><span class="nx">getAge</span><span class="p">();</span>
+<span class="c1">// returns 37</span>
 </code></pre>
-
 <p>You can see the call to <code>this.birthYear</code> in the <code>getAge</code> function references the <code>person</code>’s <code>birthYear</code>. That is the <code>this</code> refers to its parent object. As a Ruby developer <code>this</code> is similar to <code>self</code>.</p>
 
 <ul>
 <li><code>this</code> refers to the element the event is bound to</li>
 </ul>
-
-<pre><code class="js">$(&#39;a&#39;).on(&#39;click&#39;, function(event) {
-  console.log(event.target === this); // logs true
-});
+<pre class="highlight javascript"><code><span class="nx">$</span><span class="p">(</span><span class="s1">'a'</span><span class="p">).</span><span class="nx">on</span><span class="p">(</span><span class="s1">'click'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">target</span> <span class="o">===</span> <span class="k">this</span><span class="p">);</span> <span class="c1">// logs true</span>
+<span class="p">});</span>
 </code></pre>
-
 <p>Here the <code>this</code> refers to the link the user clicked on, just like <code>event.target</code></p>
 
 <ul>
@@ -103,16 +100,14 @@ person.getAge();
 </ul>
 
 <p>Apparently you can use <a href="/blog/2014/call-vs-apply/"><code>call</code> or <code>apply</code></a> and pass a context explicitly. In that case <code>this</code> refers to the passed context.</p>
+<pre class="highlight javascript"><code><span class="kd">function</span> <span class="nx">greeter</span><span class="p">(){</span>
+  <span class="k">return</span> <span class="s1">'Hello '</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">+</span> <span class="s1">'!'</span><span class="p">;</span>
+<span class="p">}</span>
 
-<pre><code class="js">function greeter(){
-  return &#39;Hello &#39; + this.name + &#39;!&#39;;
-}
-
-var passableContext = { name: &#39;world&#39; };
-greeter.call(passableContext)
-// returns &#39;Hello world!&#39;
+<span class="kd">var</span> <span class="nx">passableContext</span> <span class="o">=</span> <span class="p">{</span> <span class="na">name</span><span class="p">:</span> <span class="s1">'world'</span> <span class="p">};</span>
+<span class="nx">greeter</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">passableContext</span><span class="p">)</span>
+<span class="c1">// returns 'Hello world!'</span>
 </code></pre>
-
 
       <div id="disqus_thread">
         <hr/>

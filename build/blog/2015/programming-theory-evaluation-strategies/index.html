@@ -10,6 +10,7 @@
 <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700|Source+Code+Pro' rel='stylesheet' type='text/css'>
 <title>Programming theory: Evaluation strategies</title>
 <link href="/stylesheets/application.css" rel="stylesheet" media="all" />
+<link href="/stylesheets/syntax_highlighting.css" rel="stylesheet" media="all" />
 <script src='//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js'></script>
 <script src='//cdn.optimizely.com/js/4606022905.js'></script>
 
@@ -65,8 +66,7 @@
 <p>To be honest, I hadn’t either until I did some research for this post. The title for this group of concepts isn’t widely used, so knowing “evaluation strategy” probably won’t be super useful. However, the question all evaluation strategies are trying to answer is “how do parameters work in this particular language?” And it is <em>very</em> useful to know the answer to that question for your language.</p>
 
 <p>For example, this non-language below (which is purposefully a mismatch of ruby, python, and JS so it doesn’t look real):</p>
-
-<pre><code>a = 1
+<pre class="highlight plaintext"><code>a = 1
 
 function passBySomething(param):
     param = 2
@@ -75,7 +75,6 @@ end
 passBySomething(a)
 log(a) // what happens here?
 </code></pre>
-
 <p>There are a few options that could happen, which is what today’s post is all about.</p>
 
 <p>Since I love metaphors and because we haven’t talked about how computer memory works yet (although it might show up soon!) we won’t cover “under the hood” details. Instead we will work with a story:</p>
@@ -97,8 +96,7 @@ log(a) // what happens here?
 <p>This is probably the easiest one to get our heads around, since it’s pretty much what happens in real life.</p>
 
 <p>Here’s what pass by reference would be in our pretend language:</p>
-
-<pre><code>canvas = [] // (this is a blank canvas)
+<pre class="highlight plaintext"><code>canvas = [] // (this is a blank canvas)
 
 function artistFred(item):
     paint(item) // notice the lack of return keyword
@@ -108,7 +106,6 @@ log(canvas) // [] (blank canvas)
 artistFred(canvas)
 log(canvas) // [*&amp;] (painted canvas)
 </code></pre>
-
 <p>Seems straight forward enough, but what if Fred decides to do something different?</p>
 
 <blockquote>
@@ -116,8 +113,7 @@ log(canvas) // [*&amp;] (painted canvas)
 </blockquote>
 
 <p>Again, this translates to the following “code”:</p>
-
-<pre><code>canvas = [] // (blank canvas)
+<pre class="highlight plaintext"><code>canvas = [] // (blank canvas)
 
 function artistFred(item):
     item = new Sculpture()
@@ -127,7 +123,6 @@ log(canvas) // [] (blank canvas)
 artistFred(canvas)
 log(canvas) // V (new sculpture)
 </code></pre>
-
 <p>Now you don’t have your original canvas (Fred replaced it entirely), you only have the sculpture Fred gave you.</p>
 
 <p>Pass by reference is incredibly trusting. You like Fred, and he’s a really good artist. If he says a sculpture would be better for your space you’re cool to go with that. If he paints the whole canvas one colour and tells you it’s art, you’ll believe him and put it up with pride. After all, Fred’s a good guy and you trust him.</p>
@@ -143,8 +138,7 @@ log(canvas) // V (new sculpture)
 </blockquote>
 
 <p>In our pretend coding language it would look something like this:</p>
-
-<pre><code>canvas = [] // (blank canvas)
+<pre class="highlight plaintext"><code>canvas = [] // (blank canvas)
 
 function artistFred(item):
     return paint(item) // notice the new return keyword
@@ -161,7 +155,6 @@ log(newCanvas) // [*&amp;] (painted canvas)
 canvas = artistFred(canvas) // replace blank canvas with the painted one
 log(canvas) // [*&amp;] (painted canvas)
 </code></pre>
-
 <p>Of course, Fred might decide to do something else entirely. Let’s look at another possibility:</p>
 
 <blockquote>
@@ -169,8 +162,7 @@ log(canvas) // [*&amp;] (painted canvas)
 </blockquote>
 
 <p>Again, in our fake language would be:</p>
-
-<pre><code>canvas = [] // (blank canvas)
+<pre class="highlight plaintext"><code>canvas = [] // (blank canvas)
 
 function artistFred(item):
     item = new Sculpture()
@@ -188,7 +180,6 @@ log(newSculpture) // V (sculpture)
 canvas = artistFred(canvas) // replace blank canvas with the sculpture
 log(canvas) // V (sculpture)
 </code></pre>
-
 <p>I think of pass by value as slightly paranoid. Because really, you don’t trust Fred very much. You think he might make an ugly painting and you want to keep your piece of canvas safe in case that happens. Or you know he doesn’t follow directions well and you didn’t want that sculpture anyway...</p>
 
 <h3>More formal definition</h3>
@@ -204,8 +195,7 @@ log(canvas) // V (sculpture)
 </blockquote>
 
 <p>So far this is exactly the same as pass by reference.</p>
-
-<pre><code>canvas = [] // (blank canvas)
+<pre class="highlight plaintext"><code>canvas = [] // (blank canvas)
 
 function artistFred(item):
     paint(item)
@@ -215,14 +205,12 @@ log(canvas) // [] (blank canvas)
 artistFred(canvas)
 log(canvas) // [*&amp;] (painted canvas)
 </code></pre>
-
 <p>But again, Fred might decide to do something different:</p>
 
 <blockquote>
 <p>You give your (only) canvas to Fred. He sets the untouched canvas aside and <strong>makes a sculpture instead</strong>. Then he gives you the sculpture back, and you can choose to replace your blank canvas with the sculpture, keep both, or just look at Fred’s work and decide not to keep it.</p>
 </blockquote>
-
-<pre><code>canvas = [] // (blank canvas)
+<pre class="highlight plaintext"><code>canvas = [] // (blank canvas)
 
 function artistFred(item):
     item = new Sculpture()
@@ -240,7 +228,6 @@ log(newSculpture) // V (sculpture)
 canvas = artistFred(canvas) // replace blank canvas with the painted one
 log(canvas) // V (sculpture)
 </code></pre>
-
 <p>This version is exactly the same as pass by value.</p>
 
 <p>This is probably the most reasonable level of trust. You asked for a painting and a sculpture just won’t do. You trust Fred enough to paint a blank canvas, but you want your canvas to be usable if he decided to go off an make a sculpture instead. After all, you asked for a painting, not a sculpture.</p>
@@ -264,8 +251,7 @@ log(canvas) // V (sculpture)
 <p>However, most people don’t say a particular language is “pass by sharing.” Unfortuantely “pass by reference” and “pass by value” are much more famous phrases than “pass by sharing” (probably because it’s what we’re taught at universities), and so people often use one of those terms even when it’s incorrect.</p>
 
 <p>This semantic mixing caused me a fair amount of confusion because JS shows some pass by reference qualities:</p>
-
-<pre><code>var obj = {a: 1};
+<pre class="highlight plaintext"><code>var obj = {a: 1};
 
 function referenceTest(input) {
     input.a = 2;
@@ -275,10 +261,8 @@ console.log(obj); // logs {a: 1}
 referenceTest(obj);
 console.log(obj); // logs {a: 2}
 </code></pre>
-
 <p>and some pass by value qualities:</p>
-
-<pre><code>var num = 1;
+<pre class="highlight plaintext"><code>var num = 1;
 
 function valueTest(input) {
     input = 1;
@@ -288,7 +272,6 @@ console.log(num); // logs 1
 valueTest(num);
 console.log(num); // logs 1
 </code></pre>
-
 <p>It took me a long time to realise that JS was pass by reference <em>sometimes</em> and pass by value <em>other times</em>. And I only learned today that this mix of of the two, which many common languages use, is called pass by sharing.</p>
 
 <h2>Resources</h2>

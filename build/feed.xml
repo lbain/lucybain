@@ -4,16 +4,86 @@
   <id>http://lucybain.com/blog</id>
   <link href="http://lucybain.com/blog"/>
   <link href="http://lucybain.com/feed.xml" rel="self"/>
-  <updated>2016-12-10T11:00:00+11:00</updated>
+  <updated>2016-12-22T11:00:00+11:00</updated>
   <author>
     <name>Lucy Bain</name>
   </author>
+  <entry>
+    <title>JS: promise and deferred</title>
+    <link rel="alternate" href="http://lucybain.com/blog/2016/js-promises-vs-deferred/"/>
+    <id>http://lucybain.com/blog/2016/js-promises-vs-deferred/</id>
+    <published>2016-12-22T11:00:00+11:00</published>
+    <updated>2016-12-23T11:25:08+11:00</updated>
+    <author>
+      <name>Article Author</name>
+    </author>
+    <content type="html">&lt;p&gt;I’m struggling with promises. A lot.&lt;/p&gt;
+
+&lt;p&gt;One of the things that’s super confusing about promises is the jargon associated. We’ve got all kinds of things: promise, deferred, Promises/A+, jQuery promise, fulfil, settle, reject, resolve, fail, catch, then, done, and probably others I don’t know yet. It was only &lt;em&gt;today&lt;/em&gt; that I realised promises and deferreds aren’t the same thing. And that &lt;strong&gt;p&lt;/strong&gt;romise and &lt;strong&gt;P&lt;/strong&gt;romise aren’t the same thing. Programming is hard.&lt;/p&gt;
+
+&lt;h3&gt;promise vs. deferred&lt;/h3&gt;
+
+&lt;p&gt;Anywhoo, I found this really great article &lt;a href="http://blog.mediumequalsmessage.com/promise-deferred-objects-in-javascript-pt1-theory-and-semantics"&gt;Promise &amp;amp; Deferred objects in JavaScript&lt;/a&gt;. Chris’s approach of taking some time out to think about promises and deferreds &lt;em&gt;without&lt;/em&gt; code samples helped clarify things. He was also was very careful about which words he used when, so the post is far more consistent than others I’ve read (and I’ve been reading a lot recently...).&lt;/p&gt;
+
+&lt;p&gt;In that article is one paragraph in particular that helped me&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;A promise is a placeholder for a result which is initially unknown while a deferred represents the computation that results in the value. Every deferred has a promise which functions as a proxy for the future result. While a promise is a value returned by an asynchronous function, a deferred can be resolved or rejected by it’s caller which separates the promise from the resolver. The promise itself can be given to any number of consumers and each will observe the resolution independently meanwhile the resolver / deferred can be given to any number of producers and the promise will be resolved by the one that first resolves it. From a semantic perspective this means that instead of calling a function ( callback ), we are able to return a value ( promise ).&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;I’ll be honest, I’ve read that paragraph 15-20 times by now, trying to tease out meaning from each line. So I rewrote it in my own words, and threw in some examples for good measure.&lt;/p&gt;
+
+&lt;p&gt;Here’s my breakdown:&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;A promise is a placeholder for a result which is initially unknown while a deferred represents the computation that results in the value.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Promises represent a future value. At the moment of its creation, a promise doesn’t know what its ultimate value will be. Kind of like how the judges didn’t know what the artist’s final picture will be &lt;a href="https://www.youtube.com/watch?v=OetrSxmFZSI"&gt;when she started painting&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;A deferred is the work that must take place in order for a promise to “settle” (that is, for the promise’s ultimate value to be available). Like the action of painting that the artist needs to do before the judges could see the final product.&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;Every deferred has a promise which functions as a proxy for the future result.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;When the deferred’s work kicks off it immediately returns a promise which represents the final value of the deferred’s work. This is similar to accepting a job (initialising a deferred) agreeing on a wage (the unsettled promise that is immediately returned by the deferred), doing the work (resolving the deferred), and then getting paid (resolving the promise).&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;While a promise is a value returned by an asynchronous function, a deferred can be resolved or rejected by it’s caller which separates the promise from the resolver.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Deferreds must be explicitly “fulfilled” by other parts of the code (that is, the deferreds’ work must be completed), or they will remain in an “unfulfilled” state forever (incomplete). If this happens, the deferred’s associated promise will never settle. A deferred can fulfil in a section of the code that is unrelated to how and when its promise is referenced and used.&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;The promise itself can be given to any number of consumers and each will observe the resolution independently.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;A promise can have many listeners that are all updated with the final value of the promise when the promise settles. (Ready for this example? It’s my favourite!) Hermione’s &lt;a href="http://harrypotter.wikia.com/wiki/Dumbledore's_Army_coin"&gt;coins&lt;/a&gt; for Dumbledore’s Army: Harry set his one coin (settled the promise) and all the other coins updated accordingly (many listeners for the same promise). Boom.&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;Meanwhile the resolver / deferred can be given to any number of producers and the promise will be resolved by the one that first resolves it.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;The same deferred can be passed to multiple functions (producers). Since it’s all the same deferred any one of these producers can fulfil the deferred. Once this happens the deferred is fulfilled for all the producers (and the single associated promise is settled as well).&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;From a semantic perspective this means that instead of calling a function ( callback ), we are able to return a value ( promise ).&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Promises can be returned and treated like a value, even though the value is not yet know.&lt;/p&gt;
+
+&lt;hr&gt;
+
+&lt;p&gt;That’s all for now, but I’m planning to write more posts about the rest of those words from the beginning. At least promises are giving me plenty of content!&lt;/p&gt;
+</content>
+  </entry>
   <entry>
     <title>Upgrading to Middleman v4</title>
     <link rel="alternate" href="http://lucybain.com/blog/2016/middleman-v4/"/>
     <id>http://lucybain.com/blog/2016/middleman-v4/</id>
     <published>2016-12-10T11:00:00+11:00</published>
-    <updated>2016-12-10T23:17:37+11:00</updated>
+    <updated>2016-12-23T13:32:34+11:00</updated>
     <author>
       <name>Article Author</name>
     </author>
@@ -36,42 +106,40 @@
 &lt;p&gt;Good question, it wasn’t obvious to me either. The “full file name” is the normal name of the file (this file’s name is &lt;code&gt;12-10-middleman-v4&lt;/code&gt;) which is simple enough. But the “list of desired templating extensions” needs to include the ultimate format you want your page to end up in (in this case, &lt;code&gt;.html&lt;/code&gt;). This is new, you used to be able to just have &lt;code&gt;12-10-middleman-v4.md&lt;/code&gt;, but now you need the full &lt;code&gt;12-10-middleman-v4.html.md&lt;/code&gt;.&lt;/p&gt;
 
 &lt;p&gt;Updating all your files to add a &lt;code&gt;.html&lt;/code&gt; before the previous extension is more than a little annoying. So I wrote a little script to help me out:&lt;/p&gt;
+&lt;pre class="highlight ruby"&gt;&lt;code&gt;&lt;span class="n"&gt;path_to_project&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;""&lt;/span&gt; &lt;span class="c1"&gt;# FILL ME IN&lt;/span&gt;
 
-&lt;pre&gt;&lt;code&gt;path_to_project = &amp;quot;&amp;quot; # FILL ME IN
+&lt;span class="c1"&gt;# Step 1: get a list of all the extensions you use&lt;/span&gt;
 
-# Step 1: get a list of all the extensions you use
+&lt;span class="nb"&gt;require&lt;/span&gt; &lt;span class="s1"&gt;'set'&lt;/span&gt;
+&lt;span class="n"&gt;extensions&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="no"&gt;Set&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;new&lt;/span&gt; &lt;span class="p"&gt;[]&lt;/span&gt;
 
-require &amp;#39;set&amp;#39;
-extensions = Set.new []
+&lt;span class="no"&gt;Dir&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;glob&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;path_to_project&lt;/span&gt;&lt;span class="p"&gt;).&lt;/span&gt;&lt;span class="nf"&gt;each&lt;/span&gt; &lt;span class="k"&gt;do&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt;&lt;span class="n"&gt;file&lt;/span&gt;&lt;span class="o"&gt;|&lt;/span&gt;
+  &lt;span class="n"&gt;parts&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;file&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;split&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'.'&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+  &lt;span class="n"&gt;extensions&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;merge&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;parts&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;.&lt;/span&gt; &lt;span class="n"&gt;parts&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;length&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+&lt;span class="k"&gt;end&lt;/span&gt;
 
-Dir.glob(path_to_project).each do |file|
-  parts = file.split(&amp;#39;.&amp;#39;)
-  extensions.merge(parts[1.. parts.length])
-end
+&lt;span class="n"&gt;extensions&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;each&lt;/span&gt; &lt;span class="k"&gt;do&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt;&lt;span class="n"&gt;extension&lt;/span&gt;&lt;span class="o"&gt;|&lt;/span&gt;
+  &lt;span class="nb"&gt;puts&lt;/span&gt; &lt;span class="n"&gt;extension&lt;/span&gt;
+&lt;span class="k"&gt;end&lt;/span&gt;
 
-extensions.each do |extension|
-  puts extension
-end
+&lt;span class="c1"&gt;# Step 2: convert the extensions you want converted&lt;/span&gt;
 
-# Step 2: convert the extensions you want converted
+&lt;span class="n"&gt;extensions_to_convert&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[]&lt;/span&gt; &lt;span class="c1"&gt;# FILL ME IN&lt;/span&gt;
 
-extensions_to_convert = [] # FILL ME IN
+&lt;span class="no"&gt;Dir&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;glob&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;path_to_project&lt;/span&gt;&lt;span class="p"&gt;).&lt;/span&gt;&lt;span class="nf"&gt;each&lt;/span&gt; &lt;span class="k"&gt;do&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt;&lt;span class="n"&gt;file&lt;/span&gt;&lt;span class="o"&gt;|&lt;/span&gt;
+  &lt;span class="n"&gt;parts&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;file&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;split&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'.'&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+  &lt;span class="n"&gt;should_convert_extension?&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;parts&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&lt;/span&gt; &lt;span class="n"&gt;extensions_to_convert&lt;/span&gt;&lt;span class="p"&gt;).&lt;/span&gt;&lt;span class="nf"&gt;any?&lt;/span&gt;
+  &lt;span class="n"&gt;already_converted?&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;parts&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;include?&lt;/span&gt; &lt;span class="s1"&gt;'html'&lt;/span&gt;
+  &lt;span class="k"&gt;next&lt;/span&gt; &lt;span class="k"&gt;unless&lt;/span&gt; &lt;span class="n"&gt;should_convert_extension?&lt;/span&gt; &lt;span class="n"&gt;and&lt;/span&gt; &lt;span class="n"&gt;not&lt;/span&gt; &lt;span class="n"&gt;already_converted?&lt;/span&gt;
+  &lt;span class="n"&gt;new_name&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;parts&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="s1"&gt;'.html.'&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;parts&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;.&lt;/span&gt;&lt;span class="n"&gt;parts&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;length&lt;/span&gt;&lt;span class="p"&gt;].&lt;/span&gt;&lt;span class="nf"&gt;join&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'.'&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 
-Dir.glob(path_to_project).each do |file|
-  parts = file.split(&amp;#39;.&amp;#39;)
-  should_convert_extension? = (parts &amp;amp; extensions_to_convert).any?
-  already_converted? = parts.include? &amp;#39;html&amp;#39;
-  next unless should_convert_extension? and not already_converted?
-  new_name = parts[0] + &amp;#39;.html.&amp;#39; + parts[1..parts.length].join(&amp;#39;.&amp;#39;)
+  &lt;span class="c1"&gt;# verify file conversion&lt;/span&gt;
+  &lt;span class="nb"&gt;puts&lt;/span&gt; &lt;span class="s2"&gt;"&lt;/span&gt;&lt;span class="si"&gt;#{&lt;/span&gt;&lt;span class="n"&gt;file&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt; &amp;gt; &lt;/span&gt;&lt;span class="si"&gt;#{&lt;/span&gt;&lt;span class="n"&gt;new_name&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;"&lt;/span&gt;
 
-  # verify file conversion
-  puts &amp;quot;#{file} &amp;gt; #{new_name}&amp;quot;
-
-  # uncomment to make actual changes
-  # File.rename(file, new_name)
-end
+  &lt;span class="c1"&gt;# uncomment to make actual changes&lt;/span&gt;
+  &lt;span class="c1"&gt;# File.rename(file, new_name)&lt;/span&gt;
+&lt;span class="k"&gt;end&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;
-
 &lt;p&gt;You can find it &lt;a href="https://gist.github.com/lbain/5ce9ef81f6a3ce6f3b4b84774f9a63d8"&gt;here&lt;/a&gt;.&lt;/p&gt;
 
 &lt;h2&gt;Filter errors with &lt;code&gt;&amp;lt;code&amp;gt;&lt;/code&gt; and &lt;code&gt;:code&lt;/code&gt;&lt;/h2&gt;
@@ -97,8 +165,7 @@ end
 &lt;h2&gt;&lt;code&gt;&amp;lt;pre&amp;gt;&amp;lt;code&amp;gt;&lt;/code&gt; wrapping&lt;/h2&gt;
 
 &lt;p&gt;Last of all I found the updated &lt;a href="https://github.com/vmg/redcarpet"&gt;Redcarpet gem&lt;/a&gt; now wraps all code in &lt;code&gt;&amp;lt;code&amp;gt;&lt;/code&gt; tags. Now you’d think this wasn’t a big deal, but it really messed with my head. What used to happen was...&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;`single ticks`
+&lt;pre class="highlight plaintext"&gt;&lt;code&gt;`single ticks`
 &amp;lt;code&amp;gt;single ticks&amp;lt;/code&amp;gt;
 
 
@@ -107,15 +174,12 @@ triple ticks
 ```
 &amp;lt;pre&amp;gt;triple ticks&amp;lt;/pre&amp;gt;
 &lt;/code&gt;&lt;/pre&gt;
-
 &lt;p&gt;But now the ``` is different:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;```
+&lt;pre class="highlight plaintext"&gt;&lt;code&gt;```
 triple ticks
 ```
 &amp;lt;pre&amp;gt;&amp;lt;code&amp;gt;triple ticks&amp;lt;/code&amp;gt;&amp;lt;/pre&amp;gt;
 &lt;/code&gt;&lt;/pre&gt;
-
 &lt;p&gt;Unfortunately all my styling relied on the &lt;code&gt;&amp;lt;code&amp;gt;&lt;/code&gt; only being used inline and the &lt;code&gt;&amp;lt;pre&amp;gt;&lt;/code&gt; only being used for code blocks. It &lt;a href="https://github.com/lbain/lucybain/commit/945fd5c249731572e1c9ebeb2a3a7e97351de2cd"&gt;wasn’t hard to fix&lt;/a&gt;, but it make my blog posts look weird and caused a good deal of despair.&lt;/p&gt;
 
 &lt;h2&gt;Lessons learned&lt;/h2&gt;
@@ -124,7 +188,7 @@ triple ticks
 
 &lt;p&gt;I did hugely underestimate the amount of time involved with doing the upgrade. Often solving the issue wasn’t too difficult, but finding it was hard. And, in the case of the Haml layouts, I never solved it but had to call it quits and move on to the next thing.&lt;/p&gt;
 
-&lt;p&gt;I also got really frustrated with the whole thing and nearly called it off at least twice. It’s hard to keep going when you don’t know how close to the end you are. &lt;/p&gt;
+&lt;p&gt;I also got really frustrated with the whole thing and nearly called it off at least twice. It’s hard to keep going when you don’t know how close to the end you are.&lt;/p&gt;
 </content>
   </entry>
   <entry>
@@ -132,7 +196,7 @@ triple ticks
     <link rel="alternate" href="http://lucybain.com/blog/2016/yow-day-2/"/>
     <id>http://lucybain.com/blog/2016/yow-day-2/</id>
     <published>2016-12-09T11:00:00+11:00</published>
-    <updated>2016-12-19T08:55:30+11:00</updated>
+    <updated>2016-12-22T09:53:48+11:00</updated>
     <author>
       <name>Article Author</name>
     </author>
@@ -269,7 +333,7 @@ triple ticks
     <link rel="alternate" href="http://lucybain.com/blog/2016/yow-day-1/"/>
     <id>http://lucybain.com/blog/2016/yow-day-1/</id>
     <published>2016-12-08T11:00:00+11:00</published>
-    <updated>2016-12-19T08:50:35+11:00</updated>
+    <updated>2016-12-22T09:53:48+11:00</updated>
     <author>
       <name>Article Author</name>
     </author>
@@ -445,7 +509,7 @@ triple ticks
     <link rel="alternate" href="http://lucybain.com/blog/2016/js-promises-1/"/>
     <id>http://lucybain.com/blog/2016/js-promises-1/</id>
     <published>2016-11-30T11:00:00+11:00</published>
-    <updated>2016-12-10T22:10:54+11:00</updated>
+    <updated>2016-12-23T13:05:53+11:00</updated>
     <author>
       <name>Article Author</name>
     </author>
@@ -498,17 +562,15 @@ triple ticks
 &lt;p&gt;Let’s start with our timer example. It was recently Thanksgiving, so we’re going put on a Thanksgiving feast!&lt;/p&gt;
 
 &lt;p&gt;First we need to roast the turkey:&lt;/p&gt;
+&lt;pre class="highlight javascript"&gt;&lt;code&gt;&lt;span class="kd"&gt;function&lt;/span&gt; &lt;span class="nx"&gt;makeTurkey&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="nx"&gt;console&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;log&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'Making turkey'&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+  &lt;span class="nx"&gt;setTimeout&lt;/span&gt;&lt;span class="p"&gt;(()&lt;/span&gt; &lt;span class="o"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="nx"&gt;console&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;log&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'turkey - done!'&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+  &lt;span class="p"&gt;},&lt;/span&gt; &lt;span class="mi"&gt;1000&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
 
-&lt;pre&gt;&lt;code&gt;function makeTurkey() {
-  console.log(&amp;#39;Making turkey&amp;#39;);
-  setTimeout(() =&amp;gt; {
-    console.log(&amp;#39;turkey - done!&amp;#39;);
-  }, 1000);
-}
-
-makeTurkey();
+&lt;span class="nx"&gt;makeTurkey&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;
-
 &lt;p&gt;&lt;em&gt;1 second to roast a turkey...?&lt;/em&gt;&lt;/p&gt;
 
 &lt;p&gt;Just go with it, no need for the examples to run in real time!&lt;/p&gt;
@@ -518,109 +580,95 @@ makeTurkey();
 &lt;p&gt;So far so good. We’re running asynchronous code without promises and not hitting any problems.&lt;/p&gt;
 
 &lt;p&gt;But our Thanksgiving feast is pretty sad. Just a turkey. It needs some sides!&lt;/p&gt;
+&lt;pre class="highlight javascript"&gt;&lt;code&gt;&lt;span class="kd"&gt;function&lt;/span&gt; &lt;span class="nx"&gt;roastVeggies&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="nx"&gt;console&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;log&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'Roasting veggies'&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+  &lt;span class="nx"&gt;setTimeout&lt;/span&gt;&lt;span class="p"&gt;(()&lt;/span&gt; &lt;span class="o"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="nx"&gt;console&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;log&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'veggies - done!'&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+  &lt;span class="p"&gt;},&lt;/span&gt; &lt;span class="mi"&gt;1000&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
 
-&lt;pre&gt;&lt;code&gt;function roastVeggies() {
-  console.log(&amp;#39;Roasting veggies&amp;#39;);
-  setTimeout(() =&amp;gt; {
-    console.log(&amp;#39;veggies - done!&amp;#39;);
-  }, 1000);
-}
-
-roastVeggies();
+&lt;span class="nx"&gt;roastVeggies&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;
-
 &lt;p&gt;Fantastic, now we can have a side of roast veggies. But we only have a small oven! We can’t roast the veggies and the turkey at the same time, so we’ll have to modify our code a little.&lt;/p&gt;
+&lt;pre class="highlight javascript"&gt;&lt;code&gt;&lt;span class="kd"&gt;function&lt;/span&gt; &lt;span class="nx"&gt;makeTurkey&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="nx"&gt;console&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;log&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'Making turkey'&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+  &lt;span class="nx"&gt;setTimeout&lt;/span&gt;&lt;span class="p"&gt;(()&lt;/span&gt; &lt;span class="o"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="nx"&gt;console&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;log&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'turkey - done!'&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+    &lt;span class="nx"&gt;roastVeggies&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt; &lt;span class="c1"&gt;// &amp;lt;-- New line here!&lt;/span&gt;
+  &lt;span class="p"&gt;},&lt;/span&gt; &lt;span class="mi"&gt;1000&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
 
-&lt;pre&gt;&lt;code&gt;function makeTurkey() {
-  console.log(&amp;#39;Making turkey&amp;#39;);
-  setTimeout(() =&amp;gt; {
-    console.log(&amp;#39;turkey - done!&amp;#39;);
-    roastVeggies(); // &amp;lt;-- New line here!
-  }, 1000);
-}
-
-makeTurkey();
+&lt;span class="nx"&gt;makeTurkey&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;
-
 &lt;p&gt;Ok, we’re back on track for our feast! Except we don’t have any plates to eat off of - oops!&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;function setTable() {
-  console.log(&amp;#39;Setting table&amp;#39;);
-  setTimeout(() =&amp;gt; {
-    console.log(&amp;#39;table - done!&amp;#39;);
-  }, 1000);
-}
+&lt;pre class="highlight javascript"&gt;&lt;code&gt;&lt;span class="kd"&gt;function&lt;/span&gt; &lt;span class="nx"&gt;setTable&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="nx"&gt;console&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;log&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'Setting table'&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+  &lt;span class="nx"&gt;setTimeout&lt;/span&gt;&lt;span class="p"&gt;(()&lt;/span&gt; &lt;span class="o"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="nx"&gt;console&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;log&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'table - done!'&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+  &lt;span class="p"&gt;},&lt;/span&gt; &lt;span class="mi"&gt;1000&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;
-
 &lt;p&gt;Of course, we only want to set the table when the turkey and veggies are done (we’re using the table as a work surface for dessert until we’re ready to eat). So again, we need to modify the code a bit:&lt;/p&gt;
+&lt;pre class="highlight javascript"&gt;&lt;code&gt;&lt;span class="kd"&gt;function&lt;/span&gt; &lt;span class="nx"&gt;makeTurkey&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="nx"&gt;console&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;log&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'Making turkey'&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+  &lt;span class="nx"&gt;setTimeout&lt;/span&gt;&lt;span class="p"&gt;(()&lt;/span&gt; &lt;span class="o"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="nx"&gt;console&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;log&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'turkey - done!'&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+    &lt;span class="nx"&gt;roastVeggies&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+    &lt;span class="nx"&gt;setTable&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt; &lt;span class="c1"&gt;// &amp;lt;-- New line here!&lt;/span&gt;
+  &lt;span class="p"&gt;},&lt;/span&gt; &lt;span class="mi"&gt;1000&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
 
-&lt;pre&gt;&lt;code&gt;function makeTurkey() {
-  console.log(&amp;#39;Making turkey&amp;#39;);
-  setTimeout(() =&amp;gt; {
-    console.log(&amp;#39;turkey - done!&amp;#39;);
-    roastVeggies();
-    setTable(); // &amp;lt;-- New line here!
-  }, 1000);
-}
-
-makeTurkey();
+&lt;span class="nx"&gt;makeTurkey&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;
-
 &lt;p&gt;&lt;em&gt;But that won&amp;#39;t work, we need to wait for the veggies to finish roasting first&lt;/em&gt;&lt;/p&gt;
 
 &lt;p&gt;Right you are, let’s fix that:&lt;/p&gt;
+&lt;pre class="highlight javascript"&gt;&lt;code&gt;&lt;span class="kd"&gt;function&lt;/span&gt; &lt;span class="nx"&gt;roastVeggies&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="nx"&gt;console&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;log&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'Roasting veggies'&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+  &lt;span class="nx"&gt;setTimeout&lt;/span&gt;&lt;span class="p"&gt;(()&lt;/span&gt; &lt;span class="o"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="nx"&gt;console&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;log&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'veggies - done!'&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+    &lt;span class="nx"&gt;setTable&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt; &lt;span class="c1"&gt;// &amp;lt;-- New line here!&lt;/span&gt;
+  &lt;span class="p"&gt;},&lt;/span&gt; &lt;span class="mi"&gt;1000&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
 
-&lt;pre&gt;&lt;code&gt;function roastVeggies() {
-  console.log(&amp;#39;Roasting veggies&amp;#39;);
-  setTimeout(() =&amp;gt; {
-    console.log(&amp;#39;veggies - done!&amp;#39;);
-    setTable(); // &amp;lt;-- New line here!
-  }, 1000);
-}
-
-roastVeggies();
+&lt;span class="nx"&gt;roastVeggies&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;
-
 &lt;p&gt;Let’s write out the full code in all it’s glory:&lt;/p&gt;
+&lt;pre class="highlight javascript"&gt;&lt;code&gt;&lt;span class="kd"&gt;function&lt;/span&gt; &lt;span class="nx"&gt;makeTurkey&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="nx"&gt;console&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;log&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'Making turkey'&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+  &lt;span class="nx"&gt;setTimeout&lt;/span&gt;&lt;span class="p"&gt;(()&lt;/span&gt; &lt;span class="o"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="nx"&gt;console&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;log&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'turkey - done!'&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+    &lt;span class="nx"&gt;roastVeggies&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+  &lt;span class="p"&gt;},&lt;/span&gt; &lt;span class="mi"&gt;1000&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
 
-&lt;pre&gt;&lt;code&gt;function makeTurkey() {
-  console.log(&amp;#39;Making turkey&amp;#39;);
-  setTimeout(() =&amp;gt; {
-    console.log(&amp;#39;turkey - done!&amp;#39;);
-    roastVeggies();
-  }, 1000);
-}
+&lt;span class="kd"&gt;function&lt;/span&gt; &lt;span class="nx"&gt;roastVeggies&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="nx"&gt;console&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;log&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'Roasting veggies'&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+  &lt;span class="nx"&gt;setTimeout&lt;/span&gt;&lt;span class="p"&gt;(()&lt;/span&gt; &lt;span class="o"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="nx"&gt;console&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;log&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'veggies - done!'&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+    &lt;span class="nx"&gt;setTable&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+  &lt;span class="p"&gt;},&lt;/span&gt; &lt;span class="mi"&gt;1000&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
 
-function roastVeggies() {
-  console.log(&amp;#39;Roasting veggies&amp;#39;);
-  setTimeout(() =&amp;gt; {
-    console.log(&amp;#39;veggies - done!&amp;#39;);
-    setTable();
-  }, 1000);
-}
+&lt;span class="kd"&gt;function&lt;/span&gt; &lt;span class="nx"&gt;setTable&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="nx"&gt;console&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;log&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'Setting table'&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+  &lt;span class="nx"&gt;setTimeout&lt;/span&gt;&lt;span class="p"&gt;(()&lt;/span&gt; &lt;span class="o"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="nx"&gt;console&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;log&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'table - done!'&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+  &lt;span class="p"&gt;},&lt;/span&gt; &lt;span class="mi"&gt;1000&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
 
-function setTable() {
-  console.log(&amp;#39;Setting table&amp;#39;);
-  setTimeout(() =&amp;gt; {
-    console.log(&amp;#39;table - done!&amp;#39;);
-  }, 1000);
-}
-
-makeTurkey();
+&lt;span class="nx"&gt;makeTurkey&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;
-
 &lt;p&gt;Code on &lt;a href="https://codepen.io/lbain/pen/QGaJXo"&gt;CodePen&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;Excellent! We get the output:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;Making turkey
+&lt;pre class="highlight plaintext"&gt;&lt;code&gt;Making turkey
 turkey - done!
 Roasting veggies
 veggies - done!
 Setting table
 table - done!
 &lt;/code&gt;&lt;/pre&gt;
-
 &lt;p&gt;So everything works as expected.&lt;/p&gt;
 
 &lt;p&gt;&lt;em&gt;The code isn’t too bad...&lt;/em&gt;&lt;/p&gt;
@@ -632,66 +680,58 @@ table - done!
 &lt;p&gt;Let’s make our requirements a bit more complicated. Now we can roast our veggies and the turkey at the same time (we got a bigger oven), but we still only want to set the table when all the cooking is finished.&lt;/p&gt;
 
 &lt;p&gt;First we’ll update the &lt;code&gt;makeTurkey&lt;/code&gt; code so it doesn’t call &lt;code&gt;roastVeggies&lt;/code&gt;&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;function makeTurkey() {
-  console.log(&amp;#39;Making turkey&amp;#39;);
-  setTimeout(() =&amp;gt; {
-    console.log(&amp;#39;turkey - done!&amp;#39;);
-    // roastVeggies(); &amp;lt;-- This line no longer needed
-  }, 1000);
-}
+&lt;pre class="highlight javascript"&gt;&lt;code&gt;&lt;span class="kd"&gt;function&lt;/span&gt; &lt;span class="nx"&gt;makeTurkey&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="nx"&gt;console&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;log&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'Making turkey'&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+  &lt;span class="nx"&gt;setTimeout&lt;/span&gt;&lt;span class="p"&gt;(()&lt;/span&gt; &lt;span class="o"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="nx"&gt;console&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;log&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'turkey - done!'&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+    &lt;span class="c1"&gt;// roastVeggies(); &amp;lt;-- This line no longer needed&lt;/span&gt;
+  &lt;span class="p"&gt;},&lt;/span&gt; &lt;span class="mi"&gt;1000&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;
-
 &lt;p&gt;Next we’ll update the main project execution to call &lt;code&gt;roastVeggies&lt;/code&gt; at the same time as &lt;code&gt;makeTurkey&lt;/code&gt;.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;makeTurkey();
-roastVeggies();
+&lt;pre class="highlight javascript"&gt;&lt;code&gt;&lt;span class="nx"&gt;makeTurkey&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+&lt;span class="nx"&gt;roastVeggies&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;
-
 &lt;p&gt;&lt;em&gt;But how do we know when to set the table?&lt;/em&gt;&lt;/p&gt;
 
 &lt;p&gt;Well, for now we can leave &lt;code&gt;setTable&lt;/code&gt; where it is in the &lt;code&gt;roastVeggies&lt;/code&gt; call. Since &lt;code&gt;roastVeggies&lt;/code&gt; and &lt;code&gt;makeTurkey&lt;/code&gt; both take &lt;code&gt;1000ms&lt;/code&gt; to complete it doesn’t much matter where the set table is called from. (Note: this isn’t entirely accurate as one must finish before the other, but we’ll ignore that race condition. For now!)&lt;/p&gt;
 
 &lt;p&gt;Ok, so here’s our final code:&lt;/p&gt;
+&lt;pre class="highlight javascript"&gt;&lt;code&gt;&lt;span class="kd"&gt;function&lt;/span&gt; &lt;span class="nx"&gt;makeTurkey&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="nx"&gt;console&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;log&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'Making turkey'&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+  &lt;span class="nx"&gt;setTimeout&lt;/span&gt;&lt;span class="p"&gt;(()&lt;/span&gt; &lt;span class="o"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="nx"&gt;console&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;log&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'turkey - done!'&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+  &lt;span class="p"&gt;},&lt;/span&gt; &lt;span class="mi"&gt;1000&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
 
-&lt;pre&gt;&lt;code&gt;function makeTurkey() {
-  console.log(&amp;#39;Making turkey&amp;#39;);
-  setTimeout(() =&amp;gt; {
-    console.log(&amp;#39;turkey - done!&amp;#39;);
-  }, 1000);
-}
+&lt;span class="kd"&gt;function&lt;/span&gt; &lt;span class="nx"&gt;roastVeggies&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="nx"&gt;console&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;log&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'Roasting veggies'&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+  &lt;span class="nx"&gt;setTimeout&lt;/span&gt;&lt;span class="p"&gt;(()&lt;/span&gt; &lt;span class="o"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="nx"&gt;console&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;log&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'veggies - done!'&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+    &lt;span class="nx"&gt;setTable&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+  &lt;span class="p"&gt;},&lt;/span&gt; &lt;span class="mi"&gt;1000&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
 
-function roastVeggies() {
-  console.log(&amp;#39;Roasting veggies&amp;#39;);
-  setTimeout(() =&amp;gt; {
-    console.log(&amp;#39;veggies - done!&amp;#39;);
-    setTable();
-  }, 1000);
-}
+&lt;span class="kd"&gt;function&lt;/span&gt; &lt;span class="nx"&gt;setTable&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="nx"&gt;console&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;log&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'Setting table'&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+  &lt;span class="nx"&gt;setTimeout&lt;/span&gt;&lt;span class="p"&gt;(()&lt;/span&gt; &lt;span class="o"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="nx"&gt;console&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;log&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'table - done!'&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+  &lt;span class="p"&gt;},&lt;/span&gt; &lt;span class="mi"&gt;1000&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
 
-function setTable() {
-  console.log(&amp;#39;Setting table&amp;#39;);
-  setTimeout(() =&amp;gt; {
-    console.log(&amp;#39;table - done!&amp;#39;);
-  }, 1000);
-}
-
-makeTurkey();
-roastVeggies();
+&lt;span class="nx"&gt;makeTurkey&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+&lt;span class="nx"&gt;roastVeggies&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;
-
 &lt;p&gt;Code on &lt;a href="https://codepen.io/lbain/pen/rWpoax"&gt;CodePen&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;And our output is:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;Making turkey
+&lt;pre class="highlight plaintext"&gt;&lt;code&gt;Making turkey
 Roasting veggies
 turkey - done!
 veggies - done!
 Setting table
 table - done!
 &lt;/code&gt;&lt;/pre&gt;
-
 &lt;p&gt;Which is exactly what we want! The turkey and veggies start roasting at the same time, finish some time later, and then we set the table.&lt;/p&gt;
 
 &lt;p&gt;&lt;em&gt;I get the feeling there’s a catch...&lt;/em&gt;&lt;/p&gt;
@@ -705,40 +745,34 @@ table - done!
 &lt;h3&gt;Round three&lt;/h3&gt;
 
 &lt;p&gt;First we’ll write a quick random number generator:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;function random(min, max) {
-    return Math.random() * (max - min) + min;
-}
+&lt;pre class="highlight javascript"&gt;&lt;code&gt;&lt;span class="kd"&gt;function&lt;/span&gt; &lt;span class="nx"&gt;random&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;min&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;max&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="nb"&gt;Math&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;random&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;max&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="nx"&gt;min&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="nx"&gt;min&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;
-
 &lt;p&gt;Next, we’ll set &lt;code&gt;roastTurkey&lt;/code&gt; and &lt;code&gt;roastVeggies&lt;/code&gt; to take a random amount of time between 100 and 2000 ms.&lt;/p&gt;
+&lt;pre class="highlight javascript"&gt;&lt;code&gt;&lt;span class="kd"&gt;function&lt;/span&gt; &lt;span class="nx"&gt;makeTurkey&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="nx"&gt;console&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;log&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'Making turkey'&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+  &lt;span class="nx"&gt;setTimeout&lt;/span&gt;&lt;span class="p"&gt;(()&lt;/span&gt; &lt;span class="o"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="nx"&gt;console&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;log&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'turkey - done!'&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+  &lt;span class="p"&gt;},&lt;/span&gt; &lt;span class="nx"&gt;random&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;100&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;2000&lt;/span&gt;&lt;span class="p"&gt;));&lt;/span&gt; &lt;span class="c1"&gt;// &amp;lt;-- line updated!&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
 
-&lt;pre&gt;&lt;code&gt;function makeTurkey() {
-  console.log(&amp;#39;Making turkey&amp;#39;);
-  setTimeout(() =&amp;gt; {
-    console.log(&amp;#39;turkey - done!&amp;#39;);
-  }, random(100, 2000)); // &amp;lt;-- line updated!
-}
-
-function roastVeggies() {
-  console.log(&amp;#39;Roasting veggies&amp;#39;);
-  setTimeout(() =&amp;gt; {
-    console.log(&amp;#39;veggies - done!&amp;#39;);
-    setTable();
-  }, random(100, 2000)); // &amp;lt;-- line updated!
-}
+&lt;span class="kd"&gt;function&lt;/span&gt; &lt;span class="nx"&gt;roastVeggies&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="nx"&gt;console&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;log&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'Roasting veggies'&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+  &lt;span class="nx"&gt;setTimeout&lt;/span&gt;&lt;span class="p"&gt;(()&lt;/span&gt; &lt;span class="o"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="nx"&gt;console&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;log&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'veggies - done!'&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+    &lt;span class="nx"&gt;setTable&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+  &lt;span class="p"&gt;},&lt;/span&gt; &lt;span class="nx"&gt;random&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;100&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;2000&lt;/span&gt;&lt;span class="p"&gt;));&lt;/span&gt; &lt;span class="c1"&gt;// &amp;lt;-- line updated!&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;
-
 &lt;p&gt;Then we’ll run the code and see what happens! (It might take a few attempts to get result below.)&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;Making turkey
+&lt;pre class="highlight plaintext"&gt;&lt;code&gt;Making turkey
 Roasting veggies
 veggies - done!
 Setting table
 turkey - done!
 table - done!
 &lt;/code&gt;&lt;/pre&gt;
-
 &lt;p&gt;&lt;em&gt;Oh no! We’ve started on the table before the turkey was done!&lt;/em&gt;&lt;/p&gt;
 
 &lt;p&gt;Oh no indeed! Now that the turkey and veggies take a variable time to cook (a much more realistic example of async code) we don’t know when to set the table.&lt;/p&gt;
@@ -759,27 +793,25 @@ table - done!
 &lt;p&gt;&lt;strong&gt;Warning!&lt;/strong&gt; This is not good code! The whole point of this exercise is to find an example where promises would be a better solution. Do not try this at home!&lt;/p&gt;
 
 &lt;p&gt;We’ll start by keeping track of the two timers and clearing them out when the timers have expired:&lt;/p&gt;
+&lt;pre class="highlight javascript"&gt;&lt;code&gt;&lt;span class="kd"&gt;let&lt;/span&gt; &lt;span class="nx"&gt;turkeyTimer&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="kd"&gt;let&lt;/span&gt; &lt;span class="nx"&gt;veggieTimer&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
 
-&lt;pre&gt;&lt;code&gt;let turkeyTimer;
-let veggieTimer;
+&lt;span class="kd"&gt;function&lt;/span&gt; &lt;span class="nx"&gt;makeTurkey&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="nx"&gt;console&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;log&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'Making turkey'&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+  &lt;span class="nx"&gt;turkeyTimer&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;setTimeout&lt;/span&gt;&lt;span class="p"&gt;(()&lt;/span&gt; &lt;span class="o"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="c1"&gt;// &amp;lt;-- line updated&lt;/span&gt;
+    &lt;span class="nx"&gt;console&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;log&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'turkey - done!'&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+    &lt;span class="nx"&gt;turkeyTimer&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="kc"&gt;false&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;  &lt;span class="c1"&gt;// &amp;lt;-- new line&lt;/span&gt;
+  &lt;span class="p"&gt;},&lt;/span&gt; &lt;span class="nx"&gt;random&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;100&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;2000&lt;/span&gt;&lt;span class="p"&gt;));&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
 
-function makeTurkey() {
-  console.log(&amp;#39;Making turkey&amp;#39;);
-  turkeyTimer = setTimeout(() =&amp;gt; { // &amp;lt;-- line updated
-    console.log(&amp;#39;turkey - done!&amp;#39;);
-    turkeyTimer = false;  // &amp;lt;-- new line
-  }, random(100, 2000));
-}
-
-function roastVeggies() {
-  console.log(&amp;#39;Roasting veggies&amp;#39;);
-  veggieTimer = setTimeout(() =&amp;gt; { // &amp;lt;-- line updated
-    console.log(&amp;#39;veggies - done!&amp;#39;);
-    veggieTimer = false;  // &amp;lt;-- new line
-  }, random(100, 2000));
-}
+&lt;span class="kd"&gt;function&lt;/span&gt; &lt;span class="nx"&gt;roastVeggies&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="nx"&gt;console&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;log&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'Roasting veggies'&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+  &lt;span class="nx"&gt;veggieTimer&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;setTimeout&lt;/span&gt;&lt;span class="p"&gt;(()&lt;/span&gt; &lt;span class="o"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="c1"&gt;// &amp;lt;-- line updated&lt;/span&gt;
+    &lt;span class="nx"&gt;console&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;log&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'veggies - done!'&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+    &lt;span class="nx"&gt;veggieTimer&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="kc"&gt;false&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;  &lt;span class="c1"&gt;// &amp;lt;-- new line&lt;/span&gt;
+  &lt;span class="p"&gt;},&lt;/span&gt; &lt;span class="nx"&gt;random&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;100&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;2000&lt;/span&gt;&lt;span class="p"&gt;));&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;
-
 &lt;p&gt;You’ll notice these are global variables.&lt;/p&gt;
 
 &lt;p&gt;&lt;em&gt;boo, hiss&lt;/em&gt;&lt;/p&gt;
@@ -787,59 +819,54 @@ function roastVeggies() {
 &lt;p&gt;That’s right, but we’ll need to access them in just a moment.&lt;/p&gt;
 
 &lt;p&gt;Alright, now we’ve got our timers all set up we need to check for when they’ve completed. Again, we don’t know when this will happen so we have to check the timers every millisecond to find when they’ve finished. Once they’ve finished we’ll set the table and clear out the check method.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;const checkReady = setInterval(() =&amp;gt; {
-  if (!turkeyTimer &amp;amp;&amp;amp; !veggieTimer) {
-    setTable();
-    clearInterval(checkReady);
-  }
-}, 1);
+&lt;pre class="highlight javascript"&gt;&lt;code&gt;&lt;span class="kr"&gt;const&lt;/span&gt; &lt;span class="nx"&gt;checkReady&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;setInterval&lt;/span&gt;&lt;span class="p"&gt;(()&lt;/span&gt; &lt;span class="o"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;!&lt;/span&gt;&lt;span class="nx"&gt;turkeyTimer&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class="o"&gt;!&lt;/span&gt;&lt;span class="nx"&gt;veggieTimer&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="nx"&gt;setTable&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+    &lt;span class="nx"&gt;clearInterval&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;checkReady&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+  &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="p"&gt;},&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;
-
 &lt;p&gt;So the final version of this round looks like:&lt;/p&gt;
+&lt;pre class="highlight javascript"&gt;&lt;code&gt;&lt;span class="kd"&gt;let&lt;/span&gt; &lt;span class="nx"&gt;turkeyTimer&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="kd"&gt;let&lt;/span&gt; &lt;span class="nx"&gt;veggieTimer&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
 
-&lt;pre&gt;&lt;code&gt;let turkeyTimer;
-let veggieTimer;
+&lt;span class="kd"&gt;function&lt;/span&gt; &lt;span class="nx"&gt;random&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;min&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;max&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="nb"&gt;Math&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;random&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;max&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="nx"&gt;min&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="nx"&gt;min&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
 
-function random(min, max) {
-    return Math.random() * (max - min) + min;
-}
+&lt;span class="kd"&gt;function&lt;/span&gt; &lt;span class="nx"&gt;makeTurkey&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="nx"&gt;console&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;log&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'Making turkey'&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+  &lt;span class="nx"&gt;turkeyTimer&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;setTimeout&lt;/span&gt;&lt;span class="p"&gt;(()&lt;/span&gt; &lt;span class="o"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="nx"&gt;console&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;log&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'turkey - done!'&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+    &lt;span class="nx"&gt;turkeyTimer&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="kc"&gt;false&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+  &lt;span class="p"&gt;},&lt;/span&gt; &lt;span class="nx"&gt;random&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;100&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;2000&lt;/span&gt;&lt;span class="p"&gt;));&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
 
-function makeTurkey() {
-  console.log(&amp;#39;Making turkey&amp;#39;);
-  turkeyTimer = setTimeout(() =&amp;gt; {
-    console.log(&amp;#39;turkey - done!&amp;#39;);
-    turkeyTimer = false;
-  }, random(100, 2000));
-}
+&lt;span class="kd"&gt;function&lt;/span&gt; &lt;span class="nx"&gt;roastVeggies&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="nx"&gt;console&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;log&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'Roasting veggies'&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+  &lt;span class="nx"&gt;veggieTimer&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;setTimeout&lt;/span&gt;&lt;span class="p"&gt;(()&lt;/span&gt; &lt;span class="o"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="nx"&gt;console&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;log&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'veggies - done!'&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+    &lt;span class="nx"&gt;veggieTimer&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="kc"&gt;false&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+  &lt;span class="p"&gt;},&lt;/span&gt; &lt;span class="nx"&gt;random&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;100&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;2000&lt;/span&gt;&lt;span class="p"&gt;));&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
 
-function roastVeggies() {
-  console.log(&amp;#39;Roasting veggies&amp;#39;);
-  veggieTimer = setTimeout(() =&amp;gt; {
-    console.log(&amp;#39;veggies - done!&amp;#39;);
-    veggieTimer = false;
-  }, random(100, 2000));
-}
+&lt;span class="kd"&gt;function&lt;/span&gt; &lt;span class="nx"&gt;setTable&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="nx"&gt;console&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;log&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'Setting table'&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+  &lt;span class="nx"&gt;setTimeout&lt;/span&gt;&lt;span class="p"&gt;(()&lt;/span&gt; &lt;span class="o"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="nx"&gt;console&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;log&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'table - done!'&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+  &lt;span class="p"&gt;},&lt;/span&gt; &lt;span class="mi"&gt;1000&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
 
-function setTable() {
-  console.log(&amp;#39;Setting table&amp;#39;);
-  setTimeout(() =&amp;gt; {
-    console.log(&amp;#39;table - done!&amp;#39;);
-  }, 1000);
-}
+&lt;span class="nx"&gt;makeTurkey&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+&lt;span class="nx"&gt;roastVeggies&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
 
-makeTurkey();
-roastVeggies();
-
-const checkReady = setInterval(() =&amp;gt; {
-  if (!turkeyTimer &amp;amp;&amp;amp; !veggieTimer) {
-    setTable();
-    clearInterval(checkReady);
-  }
-}, 1);
-
+&lt;span class="kr"&gt;const&lt;/span&gt; &lt;span class="nx"&gt;checkReady&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;setInterval&lt;/span&gt;&lt;span class="p"&gt;(()&lt;/span&gt; &lt;span class="o"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;!&lt;/span&gt;&lt;span class="nx"&gt;turkeyTimer&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class="o"&gt;!&lt;/span&gt;&lt;span class="nx"&gt;veggieTimer&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="nx"&gt;setTable&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+    &lt;span class="nx"&gt;clearInterval&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;checkReady&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+  &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="p"&gt;},&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;
-
 &lt;p&gt;Code on &lt;a href="https://codepen.io/lbain/pen/ObzrPB"&gt;CodePen&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;em&gt;Yikes!&lt;/em&gt;&lt;/p&gt;
@@ -858,7 +885,7 @@ const checkReady = setInterval(() =&amp;gt; {
     <link rel="alternate" href="http://lucybain.com/blog/2016/react-state-vs-pros/"/>
     <id>http://lucybain.com/blog/2016/react-state-vs-pros/</id>
     <published>2016-11-27T11:00:00+11:00</published>
-    <updated>2016-12-12T11:51:42+11:00</updated>
+    <updated>2016-12-22T09:53:48+11:00</updated>
     <author>
       <name>Article Author</name>
     </author>
@@ -877,16 +904,14 @@ const checkReady = setInterval(() =&amp;gt; {
 &lt;h3&gt;&lt;code&gt;props&lt;/code&gt; are passed into the component&lt;/h3&gt;
 
 &lt;p&gt;Here’s an example (code from the &lt;a href="https://facebook.github.io/react/docs/components-and-props.html"&gt;React Guide&lt;/a&gt;):&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;class Welcome extends React.Component {
+&lt;pre class="highlight plaintext"&gt;&lt;code&gt;class Welcome extends React.Component {
   render() {
     return &amp;lt;h1&amp;gt;Hello {this.props.name}&amp;lt;/h1&amp;gt;;
   }
 }
 
-const element = &amp;lt;Welcome name=&amp;quot;Sara&amp;quot; /&amp;gt;;
+const element = &amp;lt;Welcome name="Sara" /&amp;gt;;
 &lt;/code&gt;&lt;/pre&gt;
-
 &lt;p&gt;You can play with this on &lt;a href="https://codepen.io/anon/pen/aByERM?editors=1011"&gt;CodePen&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;The line &lt;code&gt;&amp;lt;Welcome name=&amp;quot;Sara&amp;quot; /&amp;gt;&lt;/code&gt; creates a property &lt;code&gt;name&lt;/code&gt; with value &lt;code&gt;&amp;quot;Sara&amp;quot;&lt;/code&gt;. &lt;/p&gt;
@@ -894,12 +919,10 @@ const element = &amp;lt;Welcome name=&amp;quot;Sara&amp;quot; /&amp;gt;;
 &lt;p&gt;&lt;em&gt;That sounds kinda like a function call...&lt;/em&gt;&lt;/p&gt;
 
 &lt;p&gt;Yep, the property is passed to the component, similar to how an argument is passed to a function. In fact, we could even rewrite the component to be simpler:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;function Welcome(props) {
+&lt;pre class="highlight plaintext"&gt;&lt;code&gt;function Welcome(props) {
   return &amp;lt;h1&amp;gt;Hello {props.name}&amp;lt;/h1&amp;gt;;
 }
 &lt;/code&gt;&lt;/pre&gt;
-
 &lt;p&gt;Now the “props as arguments” comparison is even clearer.&lt;/p&gt;
 
 &lt;p&gt;&lt;em&gt;OK, so props “come from above.”&lt;/em&gt;&lt;/p&gt;
@@ -907,18 +930,16 @@ const element = &amp;lt;Welcome name=&amp;quot;Sara&amp;quot; /&amp;gt;;
 &lt;p&gt;Often, but not always. A component can also have default props, so if a prop isn’t passed through it can still be set.&lt;/p&gt;
 
 &lt;p&gt;We can make the &lt;code&gt;name&lt;/code&gt; property optional by adding &lt;code&gt;defaultProps&lt;/code&gt; to the &lt;code&gt;Welcome&lt;/code&gt; class:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;class Welcome extends React.Component {
+&lt;pre class="highlight plaintext"&gt;&lt;code&gt;class Welcome extends React.Component {
   render() {
     return &amp;lt;h1&amp;gt;Hello {this.props.name}&amp;lt;/h1&amp;gt;;
   }
 }
 
 Welcome.defaultProps = {
-  name: &amp;quot;world&amp;quot;,
+  name: "world",
 };
 &lt;/code&gt;&lt;/pre&gt;
-
 &lt;p&gt;If &lt;code&gt;Welcome&lt;/code&gt; is called without a name it will simply render &lt;code&gt;&amp;lt;h1&amp;gt; Hello world&amp;lt;/h1&amp;gt;&lt;/code&gt;.&lt;/p&gt;
 
 &lt;p&gt;So &lt;code&gt;props&lt;/code&gt; can come from the parent, or can be set by the component itself.&lt;/p&gt;
@@ -938,12 +959,10 @@ Welcome.defaultProps = {
 &lt;p&gt;Like &lt;code&gt;props&lt;/code&gt;, &lt;code&gt;state&lt;/code&gt; holds information about the component. However, the kind of information and how it is handled is different.&lt;/p&gt;
 
 &lt;p&gt;By default, a component has no state. The &lt;code&gt;Welcome&lt;/code&gt; component from above is stateless:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;function Welcome(props) {
+&lt;pre class="highlight plaintext"&gt;&lt;code&gt;function Welcome(props) {
   return &amp;lt;h1&amp;gt;Hello {props.name}&amp;lt;/h1&amp;gt;;
 }
 &lt;/code&gt;&lt;/pre&gt;
-
 &lt;p&gt;&lt;em&gt;So when would you use state?&lt;/em&gt;&lt;/p&gt;
 
 &lt;p&gt;When a component needs to keep track of information between renderings the component &lt;em&gt;itself&lt;/em&gt; can create, update, and use state.&lt;/p&gt;
@@ -953,8 +972,7 @@ Welcome.defaultProps = {
 &lt;p&gt;&lt;em&gt;Yawn...&lt;/em&gt;&lt;/p&gt;
 
 &lt;p&gt;I know, but here’s the code:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;class Button extends React.Component {
+&lt;pre class="highlight plaintext"&gt;&lt;code&gt;class Button extends React.Component {
   constructor() {
     super();
     this.state = {
@@ -977,7 +995,6 @@ Welcome.defaultProps = {
   }
 }
 &lt;/code&gt;&lt;/pre&gt;
-
 &lt;p&gt;You can play with this code on &lt;a href="https://codepen.io/lbain/pen/ENpzBZ"&gt;CodePen&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;&lt;em&gt;Gah! There’s so much there! What’s going on?&lt;/em&gt;&lt;/p&gt;
@@ -989,15 +1006,13 @@ Welcome.defaultProps = {
 &lt;h3&gt;&lt;code&gt;state&lt;/code&gt; is created in the component&lt;/h3&gt;
 
 &lt;p&gt;Let’s look at the &lt;code&gt;constructor&lt;/code&gt; method:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;constructor() {
+&lt;pre class="highlight plaintext"&gt;&lt;code&gt;constructor() {
   super();
   this.state = {
     count: 0,
   };
 }
 &lt;/code&gt;&lt;/pre&gt;
-
 &lt;p&gt;This is where &lt;code&gt;state&lt;/code&gt; gets it’s initial data. The inital data can be hard coded (as above), but it can also come from &lt;code&gt;props&lt;/code&gt;.&lt;/p&gt;
 
 &lt;p&gt;&lt;em&gt;Well that’s just confusing.&lt;/em&gt;&lt;/p&gt;
@@ -1009,14 +1024,12 @@ Welcome.defaultProps = {
 &lt;h3&gt;&lt;code&gt;state&lt;/code&gt; is changeable&lt;/h3&gt;
 
 &lt;p&gt;Here’s &lt;code&gt;updateCount&lt;/code&gt; again:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;updateCount() {
+&lt;pre class="highlight plaintext"&gt;&lt;code&gt;updateCount() {
   this.setState((prevState, props) =&amp;gt; {
     return { count: prevState.count + 1 }
   });
 }
 &lt;/code&gt;&lt;/pre&gt;
-
 &lt;p&gt;We change the state to keep track of the total number of clicks. The important bit is &lt;code&gt;setState&lt;/code&gt;. First off, notice that &lt;code&gt;setState&lt;/code&gt; takes a function, that’s becuase &lt;code&gt;setState&lt;/code&gt; can run asynchronously. It needs to take a callback function rather than updating the state directly. You can see we have access to &lt;code&gt;prevState&lt;/code&gt; within the callback, this will contain the previous state, even if the state has already been updated somewhere else. Pretty slick, huh?&lt;/p&gt;
 
 &lt;p&gt;But React goes one step better, &lt;code&gt;setState&lt;/code&gt; updates the state object &lt;strong&gt;and&lt;/strong&gt; re-renders the component automagically.&lt;/p&gt;
@@ -1032,20 +1045,17 @@ Welcome.defaultProps = {
 &lt;p&gt;&lt;strong&gt;&lt;code&gt;setState&lt;/code&gt; warning two!&lt;/strong&gt;&lt;/p&gt;
 
 &lt;p&gt;It might also be tempting to write something like this:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;// DO NOT USE
+&lt;pre class="highlight plaintext"&gt;&lt;code&gt;// DO NOT USE
 this.setState({
   count: this.state.count + 1
 });
 &lt;/code&gt;&lt;/pre&gt;
-
 &lt;p&gt;Although this might look reasonable, doesn’t throw errors, and you might find examples that use this syntax online, it is &lt;em&gt;wrong&lt;/em&gt;. This does not take into account the asychronous nature that &lt;code&gt;setState&lt;/code&gt; can use and might cause errors with out of sync state data.&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;Program as usual&lt;/strong&gt;&lt;/p&gt;
 
 &lt;p&gt;And finally, &lt;code&gt;render&lt;/code&gt;&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;render() {
+&lt;pre class="highlight plaintext"&gt;&lt;code&gt;render() {
   return (&amp;lt;button
             onClick={() =&amp;gt; this.updateCount()}
           &amp;gt;
@@ -1053,7 +1063,6 @@ this.setState({
           &amp;lt;/button&amp;gt;);
 }
 &lt;/code&gt;&lt;/pre&gt;
-
 &lt;p&gt;&lt;code&gt;onClick={() =&amp;gt; this.updateCount()}&lt;/code&gt; means that when the button is clicked the &lt;code&gt;updateCount&lt;/code&gt; method will be called. We need to use &lt;a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions"&gt;ES6’s arrow function&lt;/a&gt; so &lt;code&gt;updateCount&lt;/code&gt; will have access to this instance’s &lt;code&gt;state&lt;/code&gt;.&lt;/p&gt;
 
 &lt;p&gt;The text rendered in the button is &lt;code&gt;Clicked {this.state.count} times&lt;/code&gt;, which will use whatever &lt;code&gt;this.state.count&lt;/code&gt; is at the time of rendering.&lt;/p&gt;
@@ -1064,25 +1073,21 @@ this.setState({
 
 &lt;ol&gt;
 &lt;li&gt;&lt;p&gt;The component is initialised and &lt;code&gt;state.count&lt;/code&gt; is set to 0&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;this.state = {
+&lt;pre class="highlight plaintext"&gt;&lt;code&gt;this.state = {
   count: 0,
 };
 &lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;The component renders, with “Clicked 0 times” as the button text&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;Clicked {this.state.count} times
+&lt;pre class="highlight plaintext"&gt;&lt;code&gt;Clicked {this.state.count} times
 &lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;The user clicks the button&lt;/p&gt;
 
 &lt;p&gt;&lt;em&gt;click!&lt;/em&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;&lt;code&gt;updateCount&lt;/code&gt; is called, bound to this instance of the component&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;onClick={() =&amp;gt; this.updateCount()}
+&lt;pre class="highlight plaintext"&gt;&lt;code&gt;onClick={() =&amp;gt; this.updateCount()}
 &lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;&lt;code&gt;updateCount&lt;/code&gt; calls &lt;code&gt;setState&lt;/code&gt; with a call back to increase the counter from the previous state’s counter value&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;this.setState((prevState, props) =&amp;gt; {
+&lt;pre class="highlight plaintext"&gt;&lt;code&gt;this.setState((prevState, props) =&amp;gt; {
 return { count: prevState.count + 1 }
 });
 &lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
@@ -1090,8 +1095,7 @@ return { count: prevState.count + 1 }
 
 &lt;p&gt;&lt;em&gt;React magic!&lt;/em&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;The component renders, with “Clicked 1 times” as the button text&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;Clicked {this.state.count} times
+&lt;pre class="highlight plaintext"&gt;&lt;code&gt;Clicked {this.state.count} times
 &lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
 &lt;/ol&gt;
 
@@ -1117,50 +1121,6 @@ return { count: prevState.count + 1 }
 &lt;li&gt;Docs on &lt;a href="https://facebook.github.io/react/docs/components-and-props.html"&gt;Components and Props&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;Docs on &lt;a href="https://facebook.github.io/react/docs/state-and-lifecycle.html"&gt;State and Lifecycle&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
-</content>
-  </entry>
-  <entry>
-    <title>Ela Conf - closing thoughts</title>
-    <link rel="alternate" href="http://lucybain.com/blog/2016/ela-conf-closing-thoughts/"/>
-    <id>http://lucybain.com/blog/2016/ela-conf-closing-thoughts/</id>
-    <published>2016-11-14T11:00:00+11:00</published>
-    <updated>2016-12-10T22:10:54+11:00</updated>
-    <author>
-      <name>Article Author</name>
-    </author>
-    <content type="html">&lt;p&gt;Well, Ela Conf 2016 is over and done. It’s been just over a week since I attended - time to write up some musings from the event!&lt;/p&gt;
-
-&lt;h2&gt;Topics&lt;/h2&gt;
-
-&lt;p&gt;Ela Conf is very much about non-technical topics for technical women. Their tag line is “Empowering more women to be leaders in tech.” But the topics are fairly generic - accepting negative feedback is something everyone has to deal with. The lessons on leadership would apply to any company. That’s not to say the talks were too generic to be useful, but I think it’s an interesting question if this kind of conference should continue to market itself as “for technical women” or if they should be for any woman wanting a leadership role or perhaps for anyone wanting to be a leader.&lt;/p&gt;
-
-&lt;p&gt;Personally, I valued the shared language and community that this conference offered. A speaker could reference making a commit, fixing a bug, or the head-baning frustration of feeling completely stuck on a problem. We could all relate. When I introduced myself I could say that I’m a frontender at Atlassian, rather than I’m a programmer at a tech company.&lt;/p&gt;
-
-&lt;p&gt;On the flip side, I was surprisingly disappointed by the lack of technical topics. I knew none of the talks were going to be technical going in, but somehow with so many technical people around I felt something was missing without the technical talks. Uncomfortably, having so many technical &lt;em&gt;women&lt;/em&gt; and not having &lt;em&gt;any&lt;/em&gt; technical talks felt as though we were admitting that we weren’t technical enough, that women are more interested in feelings and “soft topics” than Real Programming. Of course, I know this isn’t the case, and that the goals of this conference aren’t around Real Programming.&lt;/p&gt;
-
-&lt;h2&gt;Attendees&lt;/h2&gt;
-
-&lt;p&gt;I’m making massive assumptions in this section because I don’t know the demographic details of the attendees.&lt;/p&gt;
-
-&lt;p&gt;Attendees’s average age seemed to be around my own, but there was a reasonably sized spread. We had mom’s with teen-aged kids, and students from uni. I’m sure it tended towards younger, but it made me happy to see so many moms and long-time programmers there.&lt;/p&gt;
-
-&lt;p&gt;Many people had switched careers, so there was a lot of diversity in experience. It was great to hear about people’s past in their talks, and to get some history about how they got into programming.&lt;/p&gt;
-
-&lt;p&gt;A &lt;em&gt;lot&lt;/em&gt; of people came from bootcamps or were self taught. I’m pretty sure I was in the minority of people who did uni degrees in CS. I don’t see that as a bad thing, but it was unusual for a tech conference. I’m curious why more women with CS degrees didn’t attend. Is it because there aren’t as many of them or they don’t feel they would benefit as much? Something else?&lt;/p&gt;
-
-&lt;h2&gt;Feels&lt;/h2&gt;
-
-&lt;p&gt;Oh man, so many feels! Certainly a great conference to go to if you need some girl power in your life. But more than that, I loved how the speakers nomalised the “woman experience.” Typical tech talks don’t mention musicals or baking, but these both came up at Ela Conf. Women generally don’t say “babies are really boring,” but this came up too. It felt like everyone had agreed to “this is a safe place to say things you wouldn’t normally - don’t hold back” and &lt;em&gt;massive&lt;/em&gt; props to the organisers for creating and encouraging that vibe.&lt;/p&gt;
-
-&lt;h2&gt;Networking&lt;/h2&gt;
-
-&lt;p&gt;I’m not a great networker. I put a lot of things into place so I don’t need to talk about the weather with strangers. Being at Ela Conf was a bit isolating, and I didn’t do anything to stop that. I knew I was only in Philadelphia for the weekend, and that I was incredibly unlikely to bump into any of the attendees again. So I didn’t bother to connect with many of them. For their part, they didn’t do much to welcome me. Many of the attendees know each other from other Philly meetups and were excited to spend time together. I’m not grudging them that time - I certainly do it at my Sydney meetings.&lt;/p&gt;
-
-&lt;h2&gt;Sum it up&lt;/h2&gt;
-
-&lt;p&gt;All in all, I‘m really glad I attended and I’m grateful Atlassian made it possible for me to go. Would I do it again? Well, I won’t fly from Sydney to Philly to attend next year, but if there was one at home I’d certainly join in. Would I change anything? For what the organisers wanted, I believe they made exactly the right event. If I ran an event for technical women, I’d want something a little difference and I‘d make some changes.&lt;/p&gt;
-
-&lt;p&gt;Big props to the organisers for all of the hard work they’ve done over the past year - it was a beautiful event!&lt;/p&gt;
 </content>
   </entry>
 </feed>

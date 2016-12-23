@@ -9,6 +9,7 @@
 <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700|Source+Code+Pro' rel='stylesheet' type='text/css'>
 <title>JS: attribute vs. property</title>
 <link href="/stylesheets/application.css" rel="stylesheet" media="all" />
+<link href="/stylesheets/syntax_highlighting.css" rel="stylesheet" media="all" />
 <script src='//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js'></script>
 <script src='//cdn.optimizely.com/js/4606022905.js'></script>
 
@@ -64,64 +65,52 @@
 <p>JS DOM objects have properties. These properties are kind of like instance variables for the particular element. As such, a property can be different types (boolean, string, etc.). Properties can be accessed using jQuery’s <code>prop</code> method (as seen below) and also by interacting with the object in vanilla JS.</p>
 
 <p>Let’s take a look:</p>
+<pre class="highlight plaintext"><code>&lt;a href='page2.html' class='link classes' name='linkName' id='linkID'&gt;Hi&lt;/a&gt;
 
-<pre><code>&lt;a href=&#39;page2.html&#39; class=&#39;link classes&#39; name=&#39;linkName&#39; id=&#39;linkID&#39;&gt;Hi&lt;/a&gt;
-
-$(&#39;#linkID&#39;).prop(&#39;href&#39;); // returns &quot;http://example.com/page2.html&quot;
-$(&#39;#linkID&#39;).prop(&#39;name&#39;); // returns &quot;linkName&quot;
-$(&#39;#linkID&#39;).prop(&#39;id&#39;); // returns &quot;linkID&quot;
-$(&#39;#linkID&#39;).prop(&#39;className&#39;); // returns &quot;link classes&quot;
+$('#linkID').prop('href'); // returns "http://example.com/page2.html"
+$('#linkID').prop('name'); // returns "linkName"
+$('#linkID').prop('id'); // returns "linkID"
+$('#linkID').prop('className'); // returns "link classes"
 </code></pre>
-
 <p>As you can see, all of the properties we set in the HTML are available through <code>prop</code>. Other properties are available too, such as <code>style</code>, even though we didn’t explicitly set them.</p>
 
 <p>Properties can also be updated through the <code>prop</code> method:</p>
+<pre class="highlight plaintext"><code>&lt;a href='page2.html'&gt;Hi&lt;/a&gt;
 
-<pre><code>&lt;a href=&#39;page2.html&#39;&gt;Hi&lt;/a&gt;
-
-$(&#39;#linkID&#39;).prop(&#39;href&#39;, &#39;page1.html&#39;);
-$(&#39;#linkID&#39;).prop(&#39;href&#39;); // returns &quot;http://example.com/page1.html&quot;
+$('#linkID').prop('href', 'page1.html');
+$('#linkID').prop('href'); // returns "http://example.com/page1.html"
 </code></pre>
-
 <p><strong>What is an attribute?</strong></p>
 
 <p>Attributes are in the HTML itself, rather than in the DOM. They are very similar to properties, but not quite as good. When a property is available it’s recommended that you work with properties rather than attributes.</p>
 
 <p>An attribute is only ever a string, no other type.</p>
+<pre class="highlight plaintext"><code>&lt;input type="checkbox" checked=true/&gt;
 
-<pre><code>&lt;input type=&quot;checkbox&quot; checked=true/&gt;
-
-$(&#39;input&#39;).prop(&#39;checked&#39;); // returns true
-$(&#39;input&#39;).attr(&#39;checked&#39;); // returns &quot;checked&quot;
+$('input').prop('checked'); // returns true
+$('input').attr('checked'); // returns "checked"
 </code></pre>
-
 <p>If an element has a default value, the attribute shows the default value even if the value has changed.</p>
+<pre class="highlight plaintext"><code>&lt;input type="text" name="username" value="user123"&gt;
 
-<pre><code>&lt;input type=&quot;text&quot; name=&quot;username&quot; value=&quot;user123&quot;&gt;
-
-$(&#39;input&#39;).prop(&#39;value&#39;, &#39;456user&#39;);
-$(&#39;input&#39;).prop(&#39;value&#39;); // returns &quot;456user&quot;
-$(&#39;input&#39;).attr(&#39;value&#39;); // returns &quot;user123&quot;
+$('input').prop('value', '456user');
+$('input').prop('value'); // returns "456user"
+$('input').attr('value'); // returns "user123"
 </code></pre>
-
 <p>Attributes can be useful when you want to set a custom attribute, that is, when there is no property associated.</p>
+<pre class="highlight plaintext"><code>&lt;input type="text"&gt;
 
-<pre><code>&lt;input type=&quot;text&quot;&gt;
-
-$(&#39;input&#39;).attr(&#39;customAttribute&#39;, &#39;something custom&#39;);
-$(&#39;input&#39;).attr(&#39;customAttribute&#39;); // returns &quot;something custom&quot;
-$(&#39;input&#39;).prop(&#39;customAttribute&#39;); // returns undefined
+$('input').attr('customAttribute', 'something custom');
+$('input').attr('customAttribute'); // returns "something custom"
+$('input').prop('customAttribute'); // returns undefined
 </code></pre>
-
 <p>But, to be fair, you can also use custom properties (although this might be bad practice).</p>
+<pre class="highlight plaintext"><code>&lt;input type="text"&gt;
 
-<pre><code>&lt;input type=&quot;text&quot;&gt;
-
-$(&#39;input&#39;).prop(&#39;customAttribute&#39;, &#39;something custom&#39;);
-$(&#39;input&#39;).prop(&#39;customAttribute&#39;); // returns &quot;something custom&quot;
-$(&#39;input&#39;).attr(&#39;customAttribute&#39;); // returns undefined
+$('input').prop('customAttribute', 'something custom');
+$('input').prop('customAttribute'); // returns "something custom"
+$('input').attr('customAttribute'); // returns undefined
 </code></pre>
-
 <p><strong>References</strong></p>
 
 <ul>

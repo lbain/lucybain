@@ -9,6 +9,7 @@
 <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700|Source+Code+Pro' rel='stylesheet' type='text/css'>
 <title>JS: explain Function.prototype.bind</title>
 <link href="/stylesheets/application.css" rel="stylesheet" media="all" />
+<link href="/stylesheets/syntax_highlighting.css" rel="stylesheet" media="all" />
 <script src='//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js'></script>
 <script src='//cdn.optimizely.com/js/4606022905.js'></script>
 
@@ -68,42 +69,38 @@
 <p><strong>Longer answer</strong></p>
 
 <p>You know how you sometimes write code like this:</p>
-
-<pre><code>function Person(name){
+<pre class="highlight plaintext"><code>function Person(name){
   this.name = name;
   this.distractedGreeting = function() {
     var self = this; // &lt;-- this line!
     setTimeout(function(){
-      console.log(&quot;Hello, my name is &quot; + self.name); // &lt;-- and here!
+      console.log("Hello, my name is " + self.name); // &lt;-- and here!
     }, 500);
   }
 }
 
-var alice = new Person(&#39;Alice&#39;);
+var alice = new Person('Alice');
 alice.distractedGreeting();
-// after 500ms logs &quot;Hello, my name is Alice&quot;
+// after 500ms logs "Hello, my name is Alice"
 </code></pre>
-
 <p>See that line <code>var self = this;</code>? That’s called “caching <code>this</code>”. (<em>Cache</em> as in save it away, not as in for optimisation purposes.)</p>
 
 <p>That’s pretty handy, since it gives you access to the <code>Person</code> context within the <code>setTimeout</code> function. The “inside” <code>this</code> refers to the <code>setTimeout</code> context, which doesn’t have a <code>name</code> method.</p>
 
 <p>But, it turns out, there is a better way! You can use <code>bind</code>. The example above is updated to:</p>
-
-<pre><code>function Person(name){
+<pre class="highlight plaintext"><code>function Person(name){
   this.name = name;
   this.distractedGreeting = function() {
     setTimeout(function(){
-      console.log(&quot;Hello, my name is &quot; + this.name);
+      console.log("Hello, my name is " + this.name);
     }.bind(this), 500); // &lt;-- this line!
   }
 }
 
-var alice = new Person(&#39;Alice&#39;);
+var alice = new Person('Alice');
 alice.distractedGreeting();
-// after 500ms logs &quot;Hello, my name is Alice&quot;
+// after 500ms logs "Hello, my name is Alice"
 </code></pre>
-
 <p>Notice that <code>.bind(this)</code> at the end of the function definition? That means that the <code>this</code> within the <code>setTimeout</code> is bound to the same <code>this</code> within the <code>Person</code>. I think that’s pretty cool.</p>
 
 <p><strong>Warning</strong></p>
@@ -111,32 +108,28 @@ alice.distractedGreeting();
 <p>So for one shining second I thought I&#39;d solved a lot of my JS headaches. I could just always bind <code>this</code> and all my context troubles would be so far away. Unfortunately that’s not the case. There are times that you want access to the “inner” context (<code>setTimeout</code> in our example). If you <code>.bind(this)</code> you&#39;ll lose access to the inner <code>this</code>.</p>
 
 <p>How about an example to clear this up?</p>
-
-<pre><code>function Person(name){
+<pre class="highlight plaintext"><code>function Person(name){
   this.name = name;
   this.distractedGreeting = function() {
     setTimeout(function(){
-      console.log(&quot;Hello, my name is &quot; + this.name);
+      console.log("Hello, my name is " + this.name);
       console.log(this.location.origin); // error!
     }.bind(this), 500);
   }
 }
 </code></pre>
-
 <p>Ok, so using <code>setTimeout</code> doesn’t lead to the most exciting example, but go with me here. We get an error on the <code>this.location.origin</code> because the newly bound <code>this</code> refers to the <code>Person</code> object, not the context of <code>setTimeout</code>. To get the outcome we&#39;re looking for, we have to cache <code>this</code>:</p>
-
-<pre><code>function Person(name){
+<pre class="highlight plaintext"><code>function Person(name){
   this.name = name;
   this.distractedGreeting = function() {
     var self = this; // caching
     setTimeout(function(){
-      console.log(&quot;Hello, my name is &quot; + self.name);
+      console.log("Hello, my name is " + self.name);
       console.log(this.location.origin);
     }, 500); // no binding
   }
 }
 </code></pre>
-
 <p>Now when we call <code>distractedGreeting</code> we have access to both the <code>Person</code> context (<code>self</code>) and the <code>setTimeout</code> context (<code>this</code>).</p>
 
 <p><strong>Resources</strong></p>

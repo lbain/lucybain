@@ -10,6 +10,7 @@
 <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700|Source+Code+Pro' rel='stylesheet' type='text/css'>
 <title>JS: ES6’s string templates</title>
 <link href="/stylesheets/application.css" rel="stylesheet" media="all" />
+<link href="/stylesheets/syntax_highlighting.css" rel="stylesheet" media="all" />
 <script src='//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js'></script>
 <script src='//cdn.optimizely.com/js/4606022905.js'></script>
 
@@ -63,30 +64,24 @@
 <h3>variables</h3>
 
 <p>It’s not easy to read...</p>
-
-<pre><code>var someVar = &quot;world&quot;;
-console.log(&quot;Hello&quot; + someVar + &quot;!&quot;);
+<pre class="highlight plaintext"><code>var someVar = "world";
+console.log("Hello" + someVar + "!");
 </code></pre>
-
 <h3>newlines</h3>
 
 <p>It doesn’t handle new lines well...</p>
-
-<pre><code>console.log(&quot;Add a break\nhere&quot;);
-console.log(&quot;Add a break&quot; + 
-&quot;here&quot;);
-console.log(&quot;Add a break\
-here&quot;);
+<pre class="highlight plaintext"><code>console.log("Add a break\nhere");
+console.log("Add a break" + 
+"here");
+console.log("Add a break\
+here");
 </code></pre>
-
 <h3>standardisation with other languages</h3>
 
 <p>And it looks longingly at Ruby’s string interpolation...</p>
-
-<pre><code>someVar = &quot;world&quot;
-puts &quot;Hello #{someVar}&quot;
+<pre class="highlight plaintext"><code>someVar = "world"
+puts "Hello #{someVar}"
 </code></pre>
-
 <h2>How can I use them?</h2>
 
 <p><em>Ok, you sold me on that Ruby example... Tell me about ES6!</em></p>
@@ -96,58 +91,46 @@ puts &quot;Hello #{someVar}&quot;
 <h3>variables</h3>
 
 <p>Wrap up variables, or any other JS code in <code>${}</code>. The JS code will be evaluated first and then put into the rest of the string.</p>
+<pre class="highlight plaintext"><code>var someVar = "world";
+console.log(`Hello ${someVar}!`); // "Hello world!"
 
-<pre><code>var someVar = &quot;world&quot;;
-console.log(`Hello ${someVar}!`); // &quot;Hello world!&quot;
-
-console.log(`bonus example ${2 - 1}`) // &quot;bonus example 1&quot;
+console.log(`bonus example ${2 - 1}`) // "bonus example 1"
 </code></pre>
-
 <h3>newlines</h3>
 
 <p>You can add a real newline to your code when you want a newline in your string. Of course the <code>\n</code> still works.</p>
-
-<pre><code>console.log(`Add a break
+<pre class="highlight plaintext"><code>console.log(`Add a break
     here`);
 console.log(`Add a break\nhere`);
 </code></pre>
-
 <h3>standardisation with other languages</h3>
 
 <p>Now ES6’s strings work much like other languages.</p>
 
 <p>Ruby:</p>
-
-<pre><code>someVar = &quot;world&quot;
-puts &quot;Hello #{someVar}&quot;
+<pre class="highlight plaintext"><code>someVar = "world"
+puts "Hello #{someVar}"
 </code></pre>
-
 <p>JS:</p>
-
-<pre><code>var someVar = &quot;world&quot;;
+<pre class="highlight plaintext"><code>var someVar = "world";
 console.log(`Hello ${someVar}`);
 </code></pre>
-
 <p><strong>Note:</strong> you can also use “tagged” template strings. I haven’t fully figured this out or found clear use cases for it, so I’m skipping it for now. But you can do more with templates than I’ve talked about.</p>
 
 <h2>Warning!</h2>
 
 <p>The <code>${}</code> in ES6 evaluates <em>all</em> JS. It’s very important that you trust anything that goes in there. For example, don’t do something like:</p>
-
-<pre><code>// imagine this pulled from a DB and is user supplied
-var user = {name: &#39;lucy&#39;};
+<pre class="highlight plaintext"><code>// imagine this pulled from a DB and is user supplied
+var user = {name: 'lucy'};
 console.log(`Your name is: ${user.name}`)
 </code></pre>
-
 <p><em>Why not?</em></p>
 
 <p>Because the JS in the string interpolation executes in the same context of the rest of your JS.</p>
-
-<pre><code>// here the user entered their name as: &#39; + alert(&#39;test&#39;) + &#39;
-var user = {name: &#39;&#39; + alert(window) + &#39;&#39;};
+<pre class="highlight plaintext"><code>// here the user entered their name as: ' + alert('test') + '
+var user = {name: '' + alert(window) + ''};
 console.log(`Your name is: ${user.name}`)
 </code></pre>
-
 <p>This will trigger an alert. Don’t believe me? Enter the code above in <a href="http://www.es6fiddle.net/">ES6 fiddle</a>. If you’re not careful people can gain access to your “hidden” variables.</p>
 
 <h2>Resources</h2>

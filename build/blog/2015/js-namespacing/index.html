@@ -9,6 +9,7 @@
 <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700|Source+Code+Pro' rel='stylesheet' type='text/css'>
 <title>JS: What is Javascript namespacing? How and where is it used?</title>
 <link href="/stylesheets/application.css" rel="stylesheet" media="all" />
+<link href="/stylesheets/syntax_highlighting.css" rel="stylesheet" media="all" />
 <script src='//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js'></script>
 <script src='//cdn.optimizely.com/js/4606022905.js'></script>
 
@@ -62,18 +63,15 @@
 <p>Namespacing is a way of organising your code. It organises concepts and ideas into a group and gives the group a <strong>name.</strong></p>
 
 <p>So rather than having everything dumped in together...</p>
-
-<pre><code>function bark() { /* ... */ }
+<pre class="highlight plaintext"><code>function bark() { /* ... */ }
 function meow() { /* ... */ }
 function wagTail() { /* ... */ }
 function sleepAllDay() { /* ... */ }
 function beHyper() { /* ... */ }
 function purr() { /* ... */ }
 </code></pre>
-
 <p>...you group similar things together...</p>
-
-<pre><code>// Dog’s can...
+<pre class="highlight plaintext"><code>// Dog’s can...
 function bark() { /* ... */ }
 function wagTail() { /* ... */ }
 function beHyper() { /* ... */ }
@@ -83,10 +81,8 @@ function meow() { /* ... */ }
 function sleepAllDay() { /* ... */ }
 function purr() { /* ... */ }
 </code></pre>
-
 <p>...and then give the groups a name!</p>
-
-<pre><code>var dog = {
+<pre class="highlight plaintext"><code>var dog = {
   bark: function() { /* ... */ },
   wagTail: function() { /* ... */ },
   beHyper: function() { /* ... */ }
@@ -98,34 +94,29 @@ var cat = {
   purr: function() { /* ... */ }
 };
 </code></pre>
-
 <p>Partly this is for ease of programming - it’s simpler to keep track of many things if they&#39;re grouped into smaller numbers. But it’s also really important for avoiding naming collisions.</p>
 
 <p><em>What are naming collisions?</em></p>
 
 <p>Let’s say I’m working on a big project and I get a little lost in the code sometimes. At some point I defined a <code>warningAlert</code> function. Then, a few weeks later, I forget that I had a <code>warningAlert</code> function defined already, and I define a new one lower down.</p>
-
-<pre><code>function warningAlert(text) {
-  alert(&#39;Warning: &#39; + text);
+<pre class="highlight plaintext"><code>function warningAlert(text) {
+  alert('Warning: ' + text);
 }
 
 /* ... */
 
 function warningAlert(text) {
-  alert(&#39;ALERT: &#39; + text);
+  alert('ALERT: ' + text);
 }
 </code></pre>
-
 <p>Now calls to <code>warningAlert</code> will use the second definition since it overwrote (collided with) the first definition.</p>
 
 <p>If I&#39;d had a namespace for my <code>warningAlert</code> method I probably would have known where to look for the function definition. Something like:</p>
-
-<pre><code>var alerts = {}
+<pre class="highlight plaintext"><code>var alerts = {}
 alerts.warning = function(text) {
-  alert(&#39;Warning: &#39; + text);
+  alert('Warning: ' + text);
 };
 </code></pre>
-
 <p>Namespaces aren’t only for you (because I’m sure <em>you&#39;d</em> never make a mistake like this... just for demonstration purposes, right?). They&#39;re also important when you start including code by a third party.</p>
 
 <p>Since everything gets dumped into the global namespace there’s no way to know what you wrote and what was written by someone else. It’s generally a good idea to have a namespace for everything you wrote so you don’t get naming conflicts with anyone else. Actually, jQuery does just that. All the jQuery functions are namespaced to <code>$</code>.</p>

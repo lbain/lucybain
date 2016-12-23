@@ -9,6 +9,7 @@
 <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700|Source+Code+Pro' rel='stylesheet' type='text/css'>
 <title>JS: don’t touch the global scope</title>
 <link href="/stylesheets/application.css" rel="stylesheet" media="all" />
+<link href="/stylesheets/syntax_highlighting.css" rel="stylesheet" media="all" />
 <script src='//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js'></script>
 <script src='//cdn.optimizely.com/js/4606022905.js'></script>
 
@@ -73,25 +74,21 @@
 <p><strong>Global variables are particularly bad for JS.</strong></p>
 
 <p>Not only are all of those points above true (and a few others I didn’t include), but for JS specifically global variables can be particularly problematic. This is because JS defaults all variables to the global scope unless they are explicitly defined elsewhere. Here’s an example:</p>
-
-<pre><code>function badlyScoped() {
-    globalVariable = &quot;I&#39;m a global variable&quot;;
+<pre class="highlight plaintext"><code>function badlyScoped() {
+    globalVariable = "I'm a global variable";
 }
 
 badlyScoped();
-console.log(globalVariable); // logs &quot;I&#39;m a global variable&quot;
+console.log(globalVariable); // logs "I'm a global variable"
 </code></pre>
-
 <p>Well isn’t that terrifying! We thought we were creating a local variable, since it was defined within a function, but nope! We forgot the <code>var</code> keyword, which would make the variable local. Here’s a corrected version:</p>
-
-<pre><code>function wellScoped() {
-    var localVariable = &quot;I&#39;m a local variable&quot;;
+<pre class="highlight plaintext"><code>function wellScoped() {
+    var localVariable = "I'm a local variable";
 }
 
 wellScoped();
-console.log(localVariable); // throws: &quot;localVariable is not defined&quot;
+console.log(localVariable); // throws: "localVariable is not defined"
 </code></pre>
-
 <p>This is a quirk (<a href="http://www.amazon.com/JavaScript-Good-Parts-Douglas-Crockford/dp/0596517742">some say</a> a mistake) of JS. It makes global variables particularly dangerous since you might not even know you were creating one. So watch your back and don’t forget to use <code>var</code>!</p>
 
 <p><strong>Resources:</strong></p>

@@ -9,6 +9,7 @@
 <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700|Source+Code+Pro' rel='stylesheet' type='text/css'>
 <title>JS: what is a closure?</title>
 <link href="/stylesheets/application.css" rel="stylesheet" media="all" />
+<link href="/stylesheets/syntax_highlighting.css" rel="stylesheet" media="all" />
 <script src='//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js'></script>
 <script src='//cdn.optimizely.com/js/4606022905.js'></script>
 
@@ -62,41 +63,35 @@
 <p><em>Fantastic, now again, not as a dictionary.</em></p>
 
 <p>Usually you lose access to variables when a function returns:</p>
-
-<pre><code>function notAClosure() {
-    var shortLivedVariable = &quot;I&#39;m only here for a little while&quot;;
+<pre class="highlight plaintext"><code>function notAClosure() {
+    var shortLivedVariable = "I'm only here for a little while";
     return shortLivedVariable;
 }
-notAClosure(); // returns &quot;I&#39;m only here for a little while&quot;
+notAClosure(); // returns "I'm only here for a little while"
 </code></pre>
-
 <p>Notice that nothing has access to <code>shortLivedVariable</code> now that <code>notAClosure</code> has run. Sure, you can call <code>notAClosure</code> again (and again and again), but each call will create a whole new <code>shortLivedVariable</code>. But hey, it’s hard to tell that each <code>shortLivedVariable</code> is brand new, so let’s clear that up a bit.</p>
-
-<pre><code>function stillNotAClosure(anotherShortLivedVariable) {
+<pre class="highlight plaintext"><code>function stillNotAClosure(anotherShortLivedVariable) {
     return anotherShortLivedVariable;
 }
-stillNotAClosure(&quot;brand&quot;); // returns &quot;brand&quot;
-stillNotAClosure(&quot;new&quot;); // returns &quot;new&quot;
-stillNotAClosure(&quot;string&quot;); // returns &quot;string&quot;
+stillNotAClosure("brand"); // returns "brand"
+stillNotAClosure("new"); // returns "new"
+stillNotAClosure("string"); // returns "string"
 </code></pre>
-
 <p>Thus, you can see <code>stillNotAClosure</code> doesn’t retain any reference to previous calls.</p>
 
 <p><em>Ok, so that’s what a closure isn’t, but what <strong>is</strong> a closure?</em></p>
 
 <p>In a closure those variables stick around for a while longer since there is a reference to the variables after the function returns.</p>
-
-<pre><code>function aClosure() {
-    var longLivedVariable = &quot;I&#39;m here for a long time&quot;;
+<pre class="highlight plaintext"><code>function aClosure() {
+    var longLivedVariable = "I'm here for a long time";
     var innerFunction = function inner() {
         return longLivedVariable;
     }
     return innerFunction;
 }
 var closure = aClosure(); // returns a reference to innerFunction
-closure(); // returns &quot;I&#39;m here for a long time&quot;
+closure(); // returns "I'm here for a long time"
 </code></pre>
-
 <p>Notice that <code>aClosure</code> doesn’t return <code>longLivedVariable</code>, but rather <code>innerFunction</code>. This means there’s a reference hanging around to <code>innerFunction</code>, and because <code>innerFunction</code> has a reference to <code>longLivedVariable</code>, that variable continues to exist.</p>
 
 <p>Finally, when we call <code>closure()</code>, we&#39;re really calling <code>innerFunction()</code> (the returned value of <code>aClosure()</code>), which in turn returns <code>longLivedVariable</code>.</p>
@@ -104,40 +99,35 @@ closure(); // returns &quot;I&#39;m here for a long time&quot;
 <p><em>Prove it, call the closure multiple times.</em></p>
 
 <p>You got it.</p>
-
-<pre><code>function stillAClosure(anotherLongLivedVariable) {
+<pre class="highlight plaintext"><code>function stillAClosure(anotherLongLivedVariable) {
     var innerFunction = function inner() {
         return anotherLongLivedVariable;
     }
     return innerFunction;
 }
-var closure = stillAClosure(&quot;The same string&quot;);
-closure(); // returns &quot;The same string&quot;
-closure(); // returns &quot;The same string&quot;
-closure(); // returns &quot;The same string&quot;
+var closure = stillAClosure("The same string");
+closure(); // returns "The same string"
+closure(); // returns "The same string"
+closure(); // returns "The same string"
 </code></pre>
-
 <p>And here’s even more proof:</p>
+<pre class="highlight plaintext"><code>var closure1 = stillAClosure("String 1");
+closure1(); // returns "String 1"
+closure1(); // returns "String 1"
 
-<pre><code>var closure1 = stillAClosure(&quot;String 1&quot;);
-closure1(); // returns &quot;String 1&quot;
-closure1(); // returns &quot;String 1&quot;
+var closure2 = stillAClosure("String 2");
+closure2(); // returns "String 2"
+closure2(); // returns "String 2"
 
-var closure2 = stillAClosure(&quot;String 2&quot;);
-closure2(); // returns &quot;String 2&quot;
-closure2(); // returns &quot;String 2&quot;
-
-// And here&#39;s the kicker
-closure1(); // returns &quot;String 1&quot;
+// And here's the kicker
+closure1(); // returns "String 1"
 </code></pre>
-
 <p>Bam! Did you see that! <code>closure1</code> kept a reference to <code>&quot;String 1&quot;</code> even though <code>stillAClosure</code> had been called with a whole other parameter (namely <code>&quot;String 2&quot;</code>). That’s some pretty cool stuff!</p>
 
 <p><em>OK, I’m convinced. But now <strong>why</strong> would I ever want to use a closure?</em></p>
 
 <p>Well, since closures keep access to the variables they can be used to save state. And things that save state look a whole lot like objects. (Before I get any haters, I know you can use closures for a bunch of other things, but this is a reasonable example.)</p>
-
-<pre><code>function cat(name) {
+<pre class="highlight plaintext"><code>function cat(name) {
     return {
         sayName: function() {
             return name;
@@ -145,14 +135,13 @@ closure1(); // returns &quot;String 1&quot;
     }
 }
 
-var fluffy = cat(&#39;Mr. Fluffy&#39;);
+var fluffy = cat('Mr. Fluffy');
 fluffy.name // returns undefined
-fluffy.sayName() // returns &#39;Mr. Fluffy&#39;
+fluffy.sayName() // returns 'Mr. Fluffy'
 
-var whiskers = cat(&#39;Whiskers&#39;);
-whiskers.sayName() // returns &#39;Whiskers&#39;
+var whiskers = cat('Whiskers');
+whiskers.sayName() // returns 'Whiskers'
 </code></pre>
-
 <p>So this way you can create a whole bunch of <code>cat</code> objects that have a private <code>name</code> variable, which you can access via the <code>sayName</code> method.</p>
 
 

@@ -3,7 +3,7 @@
 source 'http://rubygems.org'
 
 gem "middleman", "~>4.0.0"
-# gem "middleman-syntax", :git => 'git://github.com/middleman/middleman-syntax.git'
+gem "middleman-syntax"
 gem "middleman-blog"
 # gem "middleman-alias"
 # gem "middleman-livereload"

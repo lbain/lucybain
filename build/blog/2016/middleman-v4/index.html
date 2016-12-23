@@ -10,6 +10,7 @@
 <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700|Source+Code+Pro' rel='stylesheet' type='text/css'>
 <title>Upgrading to Middleman v4</title>
 <link href="/stylesheets/application.css" rel="stylesheet" media="all" />
+<link href="/stylesheets/syntax_highlighting.css" rel="stylesheet" media="all" />
 <script src='//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js'></script>
 <script src='//cdn.optimizely.com/js/4606022905.js'></script>
 
@@ -74,42 +75,40 @@
 <p>Good question, it wasn’t obvious to me either. The “full file name” is the normal name of the file (this file’s name is <code>12-10-middleman-v4</code>) which is simple enough. But the “list of desired templating extensions” needs to include the ultimate format you want your page to end up in (in this case, <code>.html</code>). This is new, you used to be able to just have <code>12-10-middleman-v4.md</code>, but now you need the full <code>12-10-middleman-v4.html.md</code>.</p>
 
 <p>Updating all your files to add a <code>.html</code> before the previous extension is more than a little annoying. So I wrote a little script to help me out:</p>
+<pre class="highlight ruby"><code><span class="n">path_to_project</span> <span class="o">=</span> <span class="s2">""</span> <span class="c1"># FILL ME IN</span>
 
-<pre><code>path_to_project = &quot;&quot; # FILL ME IN
+<span class="c1"># Step 1: get a list of all the extensions you use</span>
 
-# Step 1: get a list of all the extensions you use
+<span class="nb">require</span> <span class="s1">'set'</span>
+<span class="n">extensions</span> <span class="o">=</span> <span class="no">Set</span><span class="p">.</span><span class="nf">new</span> <span class="p">[]</span>
 
-require &#39;set&#39;
-extensions = Set.new []
+<span class="no">Dir</span><span class="p">.</span><span class="nf">glob</span><span class="p">(</span><span class="n">path_to_project</span><span class="p">).</span><span class="nf">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">file</span><span class="o">|</span>
+  <span class="n">parts</span> <span class="o">=</span> <span class="n">file</span><span class="p">.</span><span class="nf">split</span><span class="p">(</span><span class="s1">'.'</span><span class="p">)</span>
+  <span class="n">extensions</span><span class="p">.</span><span class="nf">merge</span><span class="p">(</span><span class="n">parts</span><span class="p">[</span><span class="mi">1</span><span class="p">.</span><span class="nf">.</span> <span class="n">parts</span><span class="p">.</span><span class="nf">length</span><span class="p">])</span>
+<span class="k">end</span>
 
-Dir.glob(path_to_project).each do |file|
-  parts = file.split(&#39;.&#39;)
-  extensions.merge(parts[1.. parts.length])
-end
+<span class="n">extensions</span><span class="p">.</span><span class="nf">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">extension</span><span class="o">|</span>
+  <span class="nb">puts</span> <span class="n">extension</span>
+<span class="k">end</span>
 
-extensions.each do |extension|
-  puts extension
-end
+<span class="c1"># Step 2: convert the extensions you want converted</span>
 
-# Step 2: convert the extensions you want converted
+<span class="n">extensions_to_convert</span> <span class="o">=</span> <span class="p">[]</span> <span class="c1"># FILL ME IN</span>
 
-extensions_to_convert = [] # FILL ME IN
+<span class="no">Dir</span><span class="p">.</span><span class="nf">glob</span><span class="p">(</span><span class="n">path_to_project</span><span class="p">).</span><span class="nf">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">file</span><span class="o">|</span>
+  <span class="n">parts</span> <span class="o">=</span> <span class="n">file</span><span class="p">.</span><span class="nf">split</span><span class="p">(</span><span class="s1">'.'</span><span class="p">)</span>
+  <span class="n">should_convert_extension?</span> <span class="o">=</span> <span class="p">(</span><span class="n">parts</span> <span class="o">&amp;</span> <span class="n">extensions_to_convert</span><span class="p">).</span><span class="nf">any?</span>
+  <span class="n">already_converted?</span> <span class="o">=</span> <span class="n">parts</span><span class="p">.</span><span class="nf">include?</span> <span class="s1">'html'</span>
+  <span class="k">next</span> <span class="k">unless</span> <span class="n">should_convert_extension?</span> <span class="n">and</span> <span class="n">not</span> <span class="n">already_converted?</span>
+  <span class="n">new_name</span> <span class="o">=</span> <span class="n">parts</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="s1">'.html.'</span> <span class="o">+</span> <span class="n">parts</span><span class="p">[</span><span class="mi">1</span><span class="p">.</span><span class="nf">.</span><span class="n">parts</span><span class="p">.</span><span class="nf">length</span><span class="p">].</span><span class="nf">join</span><span class="p">(</span><span class="s1">'.'</span><span class="p">)</span>
 
-Dir.glob(path_to_project).each do |file|
-  parts = file.split(&#39;.&#39;)
-  should_convert_extension? = (parts &amp; extensions_to_convert).any?
-  already_converted? = parts.include? &#39;html&#39;
-  next unless should_convert_extension? and not already_converted?
-  new_name = parts[0] + &#39;.html.&#39; + parts[1..parts.length].join(&#39;.&#39;)
+  <span class="c1"># verify file conversion</span>
+  <span class="nb">puts</span> <span class="s2">"</span><span class="si">#{</span><span class="n">file</span><span class="si">}</span><span class="s2"> &gt; </span><span class="si">#{</span><span class="n">new_name</span><span class="si">}</span><span class="s2">"</span>
 
-  # verify file conversion
-  puts &quot;#{file} &gt; #{new_name}&quot;
-
-  # uncomment to make actual changes
-  # File.rename(file, new_name)
-end
+  <span class="c1"># uncomment to make actual changes</span>
+  <span class="c1"># File.rename(file, new_name)</span>
+<span class="k">end</span>
 </code></pre>
-
 <p>You can find it <a href="https://gist.github.com/lbain/5ce9ef81f6a3ce6f3b4b84774f9a63d8">here</a>.</p>
 
 <h2>Filter errors with <code>&lt;code&gt;</code> and <code>:code</code></h2>
@@ -135,8 +134,7 @@ end
 <h2><code>&lt;pre&gt;&lt;code&gt;</code> wrapping</h2>
 
 <p>Last of all I found the updated <a href="https://github.com/vmg/redcarpet">Redcarpet gem</a> now wraps all code in <code>&lt;code&gt;</code> tags. Now you’d think this wasn’t a big deal, but it really messed with my head. What used to happen was...</p>
-
-<pre><code>`single ticks`
+<pre class="highlight plaintext"><code>`single ticks`
 &lt;code&gt;single ticks&lt;/code&gt;
 
 
@@ -145,15 +143,12 @@ triple ticks
 ```
 &lt;pre&gt;triple ticks&lt;/pre&gt;
 </code></pre>
-
 <p>But now the ``` is different:</p>
-
-<pre><code>```
+<pre class="highlight plaintext"><code>```
 triple ticks
 ```
 &lt;pre&gt;&lt;code&gt;triple ticks&lt;/code&gt;&lt;/pre&gt;
 </code></pre>
-
 <p>Unfortunately all my styling relied on the <code>&lt;code&gt;</code> only being used inline and the <code>&lt;pre&gt;</code> only being used for code blocks. It <a href="https://github.com/lbain/lucybain/commit/945fd5c249731572e1c9ebeb2a3a7e97351de2cd">wasn’t hard to fix</a>, but it make my blog posts look weird and caused a good deal of despair.</p>
 
 <h2>Lessons learned</h2>
@@ -162,7 +157,7 @@ triple ticks
 
 <p>I did hugely underestimate the amount of time involved with doing the upgrade. Often solving the issue wasn’t too difficult, but finding it was hard. And, in the case of the Haml layouts, I never solved it but had to call it quits and move on to the next thing.</p>
 
-<p>I also got really frustrated with the whole thing and nearly called it off at least twice. It’s hard to keep going when you don’t know how close to the end you are. </p>
+<p>I also got really frustrated with the whole thing and nearly called it off at least twice. It’s hard to keep going when you don’t know how close to the end you are.</p>
 
 
       <div id="disqus_thread">

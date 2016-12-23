@@ -9,6 +9,7 @@
 <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700|Source+Code+Pro' rel='stylesheet' type='text/css'>
 <title>JS: same-origin policy</title>
 <link href="/stylesheets/application.css" rel="stylesheet" media="all" />
+<link href="/stylesheets/syntax_highlighting.css" rel="stylesheet" media="all" />
 <script src='//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js'></script>
 <script src='//cdn.optimizely.com/js/4606022905.js'></script>
 
@@ -66,11 +67,9 @@
 <p><em>Hmmm, if I own “subdomain.yoursite.com” and “yoursite.com” I might want to share resources. This same-origin policy could be really annoying!</em></p>
 
 <p>It’s possible to work around the subdomain problem. You can change the domain of a page, so it can access it’s parent’s resources:</p>
-
-<pre><code>// in the code on subdomain.yoursite.com
-document.domain = &quot;yoursite.com&quot;;
+<pre class="highlight plaintext"><code>// in the code on subdomain.yoursite.com
+document.domain = "yoursite.com";
 </code></pre>
-
 <p>There are a couple other pieces to remember about changing the domain (mostly about the port). You can read about them <a href="https://developer.mozilla.org/en-US/docs/Web/Security/Same-origin_policy#Changing_origin">here</a>.</p>
 
 <p><strong>Resources</strong></p>

@@ -9,6 +9,7 @@
 <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700|Source+Code+Pro' rel='stylesheet' type='text/css'>
 <title>JS prototypal inheritance</title>
 <link href="/stylesheets/application.css" rel="stylesheet" media="all" />
+<link href="/stylesheets/syntax_highlighting.css" rel="stylesheet" media="all" />
 <script src='//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js'></script>
 <script src='//cdn.optimizely.com/js/4606022905.js'></script>
 
@@ -60,8 +61,7 @@
 <p>JS objects each have a “hook” to its parent object, or prototype. Obviously everything the child object defines it has access to, but it also can climb up the prototype tree to access its parent’s (or ancestor’s) methods and properties.</p>
 
 <p><strong>(the obligatory animal) Example:</strong></p>
-
-<pre><code>function Animal(){
+<pre class="highlight plaintext"><code>function Animal(){
   this.alive = true;
 }
 
@@ -70,46 +70,45 @@ function Mammal() {
   this.hasTail = false;
   this.move = function(){
     if(this.hasTail){
-      return &quot;Moving with tail&quot;;
+      return "Moving with tail";
     } else {
-      return &quot;Moving with tail&quot;;
+      return "Moving with tail";
     }
   };
 }
 Mammal.prototype = new Animal();
 
 function Cat(name) {
-  this.sound = &#39;Meow&#39;;
+  this.sound = 'Meow';
   this.hasTail = true;
   this.name = name;
   this.greet = function() {
-    return &quot;Hello, I&#39;m &quot; + this.name;
+    return "Hello, I'm " + this.name;
   };
 }
 Cat.prototype = new Mammal();
 
-var mittens = new Cat(&#39;Mittens&#39;);
+var mittens = new Cat('Mittens');
 
-mittens.sound; // returns &#39;Meow&#39; (as defined on Cat)
+mittens.sound; // returns 'Meow' (as defined on Cat)
 
 mittens.hasTail; // returns true (as defined on Cat)
-  // Although Mammal also defines hasTail, the Cat&#39;s
+  // Although Mammal also defines hasTail, the Cat's
   // definition takes precidence
 
 mittens.warmBlooded; // returns true (as defined on Mammal)
 
 mittens.alive; // returns true (as defined on Animal)
 
-mittens.greet() // returns &quot;Hello, I&#39;m Mittens&quot;
-  // greet() accesses the &quot;name&quot; attribute defined on Cat
+mittens.greet() // returns "Hello, I'm Mittens"
+  // greet() accesses the "name" attribute defined on Cat
 
-mittens.move() // returns &quot;Moving with tail&quot;
-  // move() accesses the &quot;hasTail&quot; attribute which is defined
+mittens.move() // returns "Moving with tail"
+  // move() accesses the "hasTail" attribute which is defined
   // on Cat and Mammal. Although Mammal defines the move function
-  // &quot;this&quot; refers to mittens, so move() uses mitten&#39;s &quot;hasTail&quot;
+  // "this" refers to mittens, so move() uses mitten's "hasTail"
   // attribute, which is set to true
 </code></pre>
-
 <p>There’s a longer explaination from <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Inheritance_and_the_prototype_chain">Mozilla</a>.</p>
 
 

@@ -8,6 +8,7 @@
 <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700|Source+Code+Pro' rel='stylesheet' type='text/css'>
 <title>Lucy Bain</title>
 <link href="/stylesheets/application.css" rel="stylesheet" media="all" />
+<link href="/stylesheets/syntax_highlighting.css" rel="stylesheet" media="all" />
 <script src='//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js'></script>
 <script src='//cdn.optimizely.com/js/4606022905.js'></script>
 
@@ -46,35 +47,32 @@
 </script>
 
     <div class="content">
-      <pre><code>function makeTurkey() {
+      <pre class="highlight plaintext"><code>function makeTurkey() {
   return new Promise((resolve, reject) =&gt; {
-    console.log(&#39;Making turkey&#39;);
+    console.log('Making turkey');
     if (true) {
-      console.log(&#39;turkey - done!&#39;);
+      console.log('turkey - done!');
       resolve();
     } else {
-      console.log(&#39;turkey - burnt!&#39;)
+      console.log('turkey - burnt!')
       reject();
     }
   });
 }
 </code></pre>
-
 <p>function makeTurkey() {
   return new Promise((resolve, reject) =&gt; {
     console.log(&#39;Making turkey&#39;);</p>
-
-<pre><code>setTimeout(() =&gt; {
+<pre class="highlight plaintext"><code>setTimeout(() =&gt; {
   if (true) {
-    console.log(&#39;turkey - done!&#39;);
-    resolve(&#39;resolved turkey&#39;);
+    console.log('turkey - done!');
+    resolve('resolved turkey');
   } else {
-    console.log(&#39;turkey - burnt!&#39;)
-    reject(&#39;rejected turkey&#39;);
+    console.log('turkey - burnt!')
+    reject('rejected turkey');
   }
 }, 1000);
 </code></pre>
-
 <p>});
 }</p>
 

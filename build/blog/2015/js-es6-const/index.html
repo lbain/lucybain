@@ -10,6 +10,7 @@
 <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700|Source+Code+Pro' rel='stylesheet' type='text/css'>
 <title>JS: ES6 Const keyword</title>
 <link href="/stylesheets/application.css" rel="stylesheet" media="all" />
+<link href="/stylesheets/syntax_highlighting.css" rel="stylesheet" media="all" />
 <script src='//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js'></script>
 <script src='//cdn.optimizely.com/js/4606022905.js'></script>
 
@@ -71,14 +72,12 @@
 <p>Constants are like variables in that a value can be assigned to them. They are unlike variables in that their value cannot be changed after the a value has been assigned to them. (There’s a lot more that could be said about this, but I’ll leave it there since it’s enough to get through this post.)</p>
 
 <p>In sudo code it would look kinda like this:</p>
-
-<pre><code>variable = 1
+<pre class="highlight plaintext"><code>variable = 1
 constant = 2
 
 variable = 3 // All good since variables can change
-constant = 4 // Error since constants can&#39;t change
+constant = 4 // Error since constants can't change
 </code></pre>
-
 <h2>Let’s talk about JS</h2>
 
 <p><em>So that’s how other languages do it - but what about JS?</em></p>
@@ -90,55 +89,43 @@ constant = 4 // Error since constants can&#39;t change
 <h3>Basic usage</h3>
 
 <p>ES6 introduced a new <code>const</code> keyword to behave like a constant. Something that is defined <code>const</code> can only be assigned once.</p>
-
-<pre><code>const cat = &#39;meow&#39;;
-cat = &#39;woof&#39;;
-console.log(cat); // logs &#39;meow&#39;
+<pre class="highlight plaintext"><code>const cat = 'meow';
+cat = 'woof';
+console.log(cat); // logs 'meow'
 </code></pre>
-
 <p><em>But what if I try something tricky?</em></p>
 
 <p>There’re are a couple of ways you could try to beat the system, but ES6 has covered them.</p>
 
 <p>Reuse the <code>const</code> keyword:</p>
-
-<pre><code>const cat = &#39;meow&#39;;
-const cat = &#39;woof&#39;;
-console.log(cat); // logs &#39;meow&#39;
+<pre class="highlight plaintext"><code>const cat = 'meow';
+const cat = 'woof';
+console.log(cat); // logs 'meow'
 </code></pre>
-
 <p>Change a constant to a variable:</p>
-
-<pre><code>const cat = &#39;meow&#39;;
-var cat = &#39;woof&#39;;
-console.log(cat); // logs &#39;meow&#39;
+<pre class="highlight plaintext"><code>const cat = 'meow';
+var cat = 'woof';
+console.log(cat); // logs 'meow'
 </code></pre>
-
 <p>Declare a constant without defining it:</p>
-
-<pre><code>const cat; // SyntaxError
+<pre class="highlight plaintext"><code>const cat; // SyntaxError
 </code></pre>
-
 <p>Use block scope:</p>
-
-<pre><code>const cat = &#39;meow&#39;;
+<pre class="highlight plaintext"><code>const cat = 'meow';
 if (true) {
-  const cat = &#39;woof&#39;;
+  const cat = 'woof';
 }
 console.log(cat); // logs meow
 </code></pre>
-
 <p>Use function scope:</p>
-
-<pre><code>const cat = &#39;meow&#39;;
+<pre class="highlight plaintext"><code>const cat = 'meow';
 function testConsts () {
-  const cat = &#39;woof&#39;;
+  const cat = 'woof';
   console.log(cat)
 }
 testConsts(); // logs woof
 console.log(cat); // logs meow
 </code></pre>
-
 <p>(Hopefully those last couple weren’t a surprise because JS uses <a href="http://lucybain.com/blog/2015/js-es6-let-vs-var/">function scoping</a>.)</p>
 
 <p>Ideally you should use constants in their intended way without getting too tricky!</p>
@@ -152,19 +139,15 @@ console.log(cat); // logs meow
 <p>Some object types can be changed without assigning again. Let’s look at a couple.</p>
 
 <p>Arrays:</p>
-
-<pre><code>const animals = [];
-animals.push(&#39;cat&#39;, &#39;dog&#39;);
-console.log(animals); // [&#39;cat&#39;, &#39;dog&#39;]
+<pre class="highlight plaintext"><code>const animals = [];
+animals.push('cat', 'dog');
+console.log(animals); // ['cat', 'dog']
 </code></pre>
-
 <p>Objects:</p>
-
-<pre><code>const cat = {&#39;sound&#39;: &#39;meow&#39;};
-cat.sound = &#39;woof&#39;
-console.log(cat.sound); // &#39;meow&#39;
+<pre class="highlight plaintext"><code>const cat = {'sound': 'meow'};
+cat.sound = 'woof'
+console.log(cat.sound); // 'meow'
 </code></pre>
-
 <p>Any mutable object type will have this problem. The immutable types are: Boolean, Null, Undefined, Number, String, Symbol (the primitive types).</p>
 
 <h2>Resources</h2>

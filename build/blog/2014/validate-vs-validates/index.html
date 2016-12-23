@@ -8,6 +8,7 @@
 <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700|Source+Code+Pro' rel='stylesheet' type='text/css'>
 <title>validate vs. validateS</title>
 <link href="/stylesheets/application.css" rel="stylesheet" media="all" />
+<link href="/stylesheets/syntax_highlighting.css" rel="stylesheet" media="all" />
 <script src='//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js'></script>
 <script src='//cdn.optimizely.com/js/4606022905.js'></script>
 
@@ -58,9 +59,8 @@
 <p><code>::ActiveModel::Validations</code> treats <code>validates</code> and <code>validate</code> differently. <code>validates</code> is used for normal validations <code>presence</code>, <code>length</code>, and the like. <code>validate</code> is used for custom validation methods <code>validate_name_starts_with_a</code>, or whatever crazy method you come up with. These methods are clearly useful and help keep data clean.</p>
 
 <p>That’s all well and good, except for one tiny thing:</p>
-
-<pre><code>  #lang: ruby
-  require &#39;active_record&#39;
+<pre class="highlight plaintext"><code>  #lang: ruby
+  require 'active_record'
 
   class Foo
     include ::ActiveModel::Validations
@@ -71,17 +71,16 @@
   end
 
 
-  require &#39;rspec&#39;
-  require &#39;rspec/autorun&#39;
+  require 'rspec'
+  require 'rspec/autorun'
 
-  describe &#39;Foo&#39; do
-    it &#39;fails to actually validate&#39; do
+  describe 'Foo' do
+    it 'fails to actually validate' do
       foo = Foo.new
       foo.valid?.should be_false
     end
   end
 </code></pre>
-
 <p>That test <em>fails</em>.</p>
 
 <p>Go ahead, copy that into a new file and run it for yourself. I&#39;ll wait. Yep, it fails. There’s no value set for <code>bar</code> and yet <code>foo.valid?</code> still returns <code>true</code>. This is a problem.</p>

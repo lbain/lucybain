@@ -10,6 +10,7 @@
 <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700|Source+Code+Pro' rel='stylesheet' type='text/css'>
 <title>JS: new keyword and functions</title>
 <link href="/stylesheets/application.css" rel="stylesheet" media="all" />
+<link href="/stylesheets/syntax_highlighting.css" rel="stylesheet" media="all" />
 <script src='//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js'></script>
 <script src='//cdn.optimizely.com/js/4606022905.js'></script>
 
@@ -103,18 +104,16 @@
 <p><strong>Step 1</strong> (the plain old empty JS object) means that you get a unique “deep copy” (other languages would say “instance”) of the constructor each time it’s run. If <code>new</code> didn’t create a new object then you’d constantly be overwriting things in seemingly different objects.</p>
 
 <p><strong>Step 2</strong> (setting the prototype) means that you can set methods on the constructor’s prototype and they’ll be available on your new object. Something like this:</p>
-
-<pre><code>function Person(name) {
+<pre class="highlight plaintext"><code>function Person(name) {
     this.name = name;
 }
 Person.prototype.introduce = function() {
-    console.log(&quot;Hi, my name is &quot; + this.name);
+    console.log("Hi, my name is " + this.name);
 }
 
-var lucy = new Person(&#39;Lucy&#39;);
-lucy.introduce(); // logs out: &quot;Hi, my name is Lucy&quot;
+var lucy = new Person('Lucy');
+lucy.introduce(); // logs out: "Hi, my name is Lucy"
 </code></pre>
-
 <p>If <code>lucy</code>’s prototype hadn’t been set to <code>Person</code>’s prototype then the <code>introduce</code> method wouldn’t have been available.</p>
 
 <p><strong>Step 3</strong> (constructor with <code>this</code> set) means that each object’s <code>this</code> points to the object, rather than the window or something else. Without the third step <code>this</code> from the <code>Person</code> constructor wouldn’t work correctly and <code>lucy</code> wouldn’t be able to introduce herself.</p>
@@ -132,17 +131,15 @@ lucy.introduce(); // logs out: &quot;Hi, my name is Lucy&quot;
 <p><code>Person</code> is a constructor that was written to work with the <code>new</code> keyword, such as the <code>Person</code> in my example above. In this case things will break, hopefully in an expected way given the three steps above.</p>
 
 <p>So, without the <code>new</code> keyword from above those three steps won’t happen. Let’s look at what that means step by step. We’re going to use the same example as above, but without the <code>new</code> keyword:</p>
-
-<pre><code>function Person(name) {
+<pre class="highlight plaintext"><code>function Person(name) {
     this.name = name;
 }
 Person.prototype.introduce = function() {
-    console.log(&quot;Hi, my name is &quot; + this.name);
+    console.log("Hi, my name is " + this.name);
 }
 
-var lucy = Person(&#39;Lucy&#39;); // &lt;-- NO NEW KEYWORD
+var lucy = Person('Lucy'); // &lt;-- NO NEW KEYWORD
 </code></pre>
-
 <p><strong>Step 1</strong> (the plain old empty JS object) doesn’t happen. Now instead of getting a new object for <code>lucy</code> all we get is the return value of <code>Person</code>. Which is nothing (a.k.a <code>undefined</code>). Bummer.</p>
 
 <p><strong>Step 2</strong> (setting the prototype) doesn&#39;t happen. Well that’s kind of a given. Since there’s no new object (see step 1 that didn’t happen) there can’t be a prototype set on it.</p>
@@ -160,8 +157,7 @@ var lucy = Person(&#39;Lucy&#39;); // &lt;-- NO NEW KEYWORD
 <h4>Scenario 2 - nobody cares</h4>
 
 <p>It’s possible that the <code>Person</code> constructor was written to avoid just this pitfall. It would look something like this:</p>
-
-<pre><code>function Person(name) {
+<pre class="highlight plaintext"><code>function Person(name) {
     if (this instanceof Person) {
         this.name = name;
       } else {
@@ -169,16 +165,15 @@ var lucy = Person(&#39;Lucy&#39;); // &lt;-- NO NEW KEYWORD
       }
 }
 Person.prototype.introduce = function() {
-    console.log(&quot;Hi, my name is &quot; + this.name);
+    console.log("Hi, my name is " + this.name);
 }
 
-var lucy = new Person(&#39;Lucy&#39;); // &lt;-- NEW KEYWORD IS PRESENT
-lucy.introduce(); // logs out: &quot;Hi, my name is Lucy&quot;
+var lucy = new Person('Lucy'); // &lt;-- NEW KEYWORD IS PRESENT
+lucy.introduce(); // logs out: "Hi, my name is Lucy"
 
-var bob = Person(&#39;Bob&#39;); // &lt;-- NO NEW KEYWORD
-bob.introduce(); // logs out: &quot;Hi, my name is Bob&quot;
+var bob = Person('Bob'); // &lt;-- NO NEW KEYWORD
+bob.introduce(); // logs out: "Hi, my name is Bob"
 </code></pre>
-
 <p>This takes advantage of the three steps that <code>new</code> goes through as discussed above. By the time the constructor is actually run there <em>should</em> be an object assigned to <code>this</code> with it’s prototype set correctly so <code>this instanceof Person</code> is <code>true</code>. <em>However</em> if someone happened to forget the <code>new</code> keyword then the constructor would go straight to the <code>else</code> section and create a new object, using the <code>new</code> keyword correctly.</p>
 
 <p>This means using the constructor with and without the <code>new</code> keyword works correctly (as shown by <code>bob</code> and <code>lucy</code> above).</p>
@@ -192,23 +187,21 @@ bob.introduce(); // logs out: &quot;Hi, my name is Bob&quot;
 <p>Finally we reach a happy middle ground. Scenario 1 failed quietly. Scenario 2 didn’t fail at all, but also allowed incorrect code to work correctly. But scenario 3 will just give a warning, and it’s quite a simple fix.</p>
 
 <p>A while ago I wrote about <a href="/blog/2014/js-use-strict/">strict mode</a>, which is exactly what we’ll use now. Here’s an example:</p>
-
-<pre><code>&quot;use strict&quot;; // &lt;-- THIS LINE HERE
+<pre class="highlight plaintext"><code>"use strict"; // &lt;-- THIS LINE HERE
 
 function Person(name) {
     this.name = name;
 }
 Person.prototype.introduce = function() {
-    console.log(&quot;Hi, my name is &quot; + this.name);
+    console.log("Hi, my name is " + this.name);
 }
 
-var lucy = new Person(&#39;Lucy&#39;); // &lt;-- NEW KEYWORD IS PRESENT
-lucy.introduce(); // logs out: &quot;Hi, my name is Lucy&quot;
+var lucy = new Person('Lucy'); // &lt;-- NEW KEYWORD IS PRESENT
+lucy.introduce(); // logs out: "Hi, my name is Lucy"
 
-var bob = Person(&#39;Bob&#39;); // &lt;-- NO NEW KEYWORD
-// throws &quot;Uncaught TypeError: Cannot set property &#39;name&#39; of undefined&quot;
+var bob = Person('Bob'); // &lt;-- NO NEW KEYWORD
+// throws "Uncaught TypeError: Cannot set property 'name' of undefined"
 </code></pre>
-
 <p>As you can see, using the <code>new</code> keyword works exactly as expected. However, if you forget to use <code>new</code> an error will be thrown, alerting you to your mistake.</p>
 
 <p><em>What’s happening behind the scenes?</em></p>

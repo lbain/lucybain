@@ -9,6 +9,7 @@
 <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700|Source+Code+Pro' rel='stylesheet' type='text/css'>
 <title>JS: When would you use document.write()?</title>
 <link href="/stylesheets/application.css" rel="stylesheet" media="all" />
+<link href="/stylesheets/syntax_highlighting.css" rel="stylesheet" media="all" />
 <script src='//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js'></script>
 <script src='//cdn.optimizely.com/js/4606022905.js'></script>
 
@@ -60,10 +61,8 @@
 <p>First, what is <code>document.write()</code>?</p>
 
 <p>As you might have guessed, <code>document.write()</code> writes to the document (a.k.a web page). It takes the content you want to write as a parameter. An invocation could look like this:</p>
-
-<pre><code>document.write(&quot;&lt;h1&gt;JS is awesome!&lt;/h1&gt;&quot;);
+<pre class="highlight plaintext"><code>document.write("&lt;h1&gt;JS is awesome!&lt;/h1&gt;");
 </code></pre>
-
 <p><strong>Problems with <code>document.write()</code></strong></p>
 
 <p>Try running the code above in the console of a web page (not this one!), go ahead, I&#39;ll wait.</p>

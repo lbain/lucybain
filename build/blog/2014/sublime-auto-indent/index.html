@@ -8,6 +8,7 @@
 <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700|Source+Code+Pro' rel='stylesheet' type='text/css'>
 <title>Sublime Auto Indent</title>
 <link href="/stylesheets/application.css" rel="stylesheet" media="all" />
+<link href="/stylesheets/syntax_highlighting.css" rel="stylesheet" media="all" />
 <script src='//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js'></script>
 <script src='//cdn.optimizely.com/js/4606022905.js'></script>
 
@@ -56,13 +57,11 @@
     <p>I recently discovered how to get Sublime to fix indentations for you! Since I spend a certain amount of time each day pushing characters left and right this was pretty exciting. Hope you find it useful!</p>
 
 <p>In Sublime, under <code>Preference</code> select <code>Key Bindings - User</code>. If you&#39;ve got anything in there already, just add the <code>{ &quot;keys&quot;... }</code> section below. Otherwise you can replace the <code>[]</code> with:</p>
-
-<pre><code>[
-  { &quot;keys&quot;: [&quot;super+i&quot;],
-    &quot;command&quot;: &quot;reindent&quot;}
+<pre class="highlight plaintext"><code>[
+  { "keys": ["super+i"],
+    "command": "reindent"}
 ]
 </code></pre>
-
 <p>Now you can use <code>cmd + i</code> (mac), or <code>ctrl + i</code> (windows) to auto indent your code. It’s not always perfect, but it’s helped me with my rails code.</p>
 
 <h2>What’s happening here?</h2>

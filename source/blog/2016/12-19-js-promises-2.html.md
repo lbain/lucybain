@@ -1,6 +1,7 @@
 ---
 title: "Javascript: Promises part one"
 tags: js, promises
+published: false
 
 description: Let’s take a brief overview of what promises are typically used for.
 keywords: js, javascript, promises, timeouts
@@ -167,6 +168,6 @@ new Promise((resolve, reject) => {
 
 This will print `'resolved the promise'` since we only go down the `true` happy path.
 
-- - - 
+- - -
 
 Phew! We’ll wrap up here for now, turns out there’s a lot to say about Promises! I’ll continue on next time to talk about what `resolve` and `reject` actually *do*. Hopefully taking this time to discuss the layout and the foundation helps you read the examples in future posts.

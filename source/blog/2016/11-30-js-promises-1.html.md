@@ -27,7 +27,7 @@ Ok, we know promises are objects, and since they wrote **P**romise with a capita
 Well, “asynchronous computations” are ones that don’t block the main execution thread, typically because they are long running. A common example is an [ajax](/blog/2015/js-how-does-ajax-work/) request for data from the server. We can fire off the request, but we don’t want to stop the rest of the page from working while we wait for that request to return. Another example (which we’ll work with later) is timeouts - the whole page shouldn’t get locked while we wait for the timer to expire!
 
 > A Promise represents a value
- 
+
 Hmmm, now things are getting a bit weird. It “represents” a value, but isn’t the value itself. It’s not that the promise *is* `5`, but that it represents something else. Let’s keep reading...
 
 > a value which may be available now, or in the future, or never.
@@ -46,7 +46,7 @@ Let’s start with our timer example. It was recently Thanksgiving, so we’re g
 
 First we need to roast the turkey:
 
-```
+```js
 function makeTurkey() {
   console.log('Making turkey');
   setTimeout(() => {
@@ -67,7 +67,7 @@ So far so good. We’re running asynchronous code without promises and not hitti
 
 But our Thanksgiving feast is pretty sad. Just a turkey. It needs some sides!
 
-```
+```js
 function roastVeggies() {
   console.log('Roasting veggies');
   setTimeout(() => {
@@ -80,7 +80,7 @@ roastVeggies();
 
 Fantastic, now we can have a side of roast veggies. But we only have a small oven! We can’t roast the veggies and the turkey at the same time, so we’ll have to modify our code a little.
 
-```
+```js
 function makeTurkey() {
   console.log('Making turkey');
   setTimeout(() => {
@@ -94,7 +94,7 @@ makeTurkey();
 
 Ok, we’re back on track for our feast! Except we don’t have any plates to eat off of - oops!
 
-```
+```js
 function setTable() {
   console.log('Setting table');
   setTimeout(() => {
@@ -105,7 +105,7 @@ function setTable() {
 
 Of course, we only want to set the table when the turkey and veggies are done (we’re using the table as a work surface for dessert until we’re ready to eat). So again, we need to modify the code a bit:
 
-```
+```js
 function makeTurkey() {
   console.log('Making turkey');
   setTimeout(() => {
@@ -122,7 +122,7 @@ makeTurkey();
 
 Right you are, let’s fix that:
 
-```
+```js
 function roastVeggies() {
   console.log('Roasting veggies');
   setTimeout(() => {
@@ -136,7 +136,7 @@ roastVeggies();
 
 Let’s write out the full code in all it’s glory:
 
-```
+```js
 function makeTurkey() {
   console.log('Making turkey');
   setTimeout(() => {
@@ -188,7 +188,7 @@ Let’s make our requirements a bit more complicated. Now we can roast our veggi
 
 First we’ll update the `makeTurkey` code so it doesn’t call `roastVeggies`
 
-```
+```js
 function makeTurkey() {
   console.log('Making turkey');
   setTimeout(() => {
@@ -200,7 +200,7 @@ function makeTurkey() {
 
 Next we’ll update the main project execution to call `roastVeggies` at the same time as `makeTurkey`.
 
-```
+```js
 makeTurkey();
 roastVeggies();
 ```
@@ -211,7 +211,7 @@ Well, for now we can leave `setTable` where it is in the `roastVeggies` call. Si
 
 Ok, so here’s our final code:
 
-```
+```js
 function makeTurkey() {
   console.log('Making turkey');
   setTimeout(() => {
@@ -265,7 +265,7 @@ So let’s look at a more realistic example:
 
 First we’ll write a quick random number generator:
 
-```
+```js
 function random(min, max) {
     return Math.random() * (max - min) + min;
 }
@@ -273,7 +273,7 @@ function random(min, max) {
 
 Next, we’ll set `roastTurkey` and `roastVeggies` to take a random amount of time between 100 and 2000 ms.
 
-```
+```js
 function makeTurkey() {
   console.log('Making turkey');
   setTimeout(() => {
@@ -320,7 +320,7 @@ Now we need a way to know when the timers have finished.
 
 We’ll start by keeping track of the two timers and clearing them out when the timers have expired:
 
-```
+```js
 let turkeyTimer;
 let veggieTimer;
 
@@ -349,7 +349,7 @@ That’s right, but we’ll need to access them in just a moment.
 
 Alright, now we’ve got our timers all set up we need to check for when they’ve completed. Again, we don’t know when this will happen so we have to check the timers every millisecond to find when they’ve finished. Once they’ve finished we’ll set the table and clear out the check method.
 
-```
+```js
 const checkReady = setInterval(() => {
   if (!turkeyTimer && !veggieTimer) {
     setTable();
@@ -360,7 +360,7 @@ const checkReady = setInterval(() => {
 
 So the final version of this round looks like:
 
-```
+```js
 let turkeyTimer;
 let veggieTimer;
 
@@ -400,7 +400,6 @@ const checkReady = setInterval(() => {
     clearInterval(checkReady);
   }
 }, 1);
-
 ```
 
 Code on [CodePen](https://codepen.io/lbain/pen/ObzrPB)

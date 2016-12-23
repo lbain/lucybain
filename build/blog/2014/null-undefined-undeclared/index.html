@@ -9,6 +9,7 @@
 <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700|Source+Code+Pro' rel='stylesheet' type='text/css'>
 <title>JS: null, undefined, and undeclared</title>
 <link href="/stylesheets/application.css" rel="stylesheet" media="all" />
+<link href="/stylesheets/syntax_highlighting.css" rel="stylesheet" media="all" />
 <script src='//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js'></script>
 <script src='//cdn.optimizely.com/js/4606022905.js'></script>
 
@@ -66,8 +67,7 @@
 <p>A variable is undeclared when it does not use the <code>var</code> keyword. It gets created on the global object (that is, the window), thus it operates in a different space as the declared variables.</p>
 
 <p>Example:</p>
-
-<pre><code>var declaredVariable = 1;
+<pre class="highlight plaintext"><code>var declaredVariable = 1;
 
 function scoppedVariables() {
   undeclaredVariable = 1;
@@ -79,7 +79,6 @@ scoppedVariables();
 undeclaredVariable; // 1
 declaredVariable; // 1
 </code></pre>
-
 <p>For more discussion on undeclared variables, checkout <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/var">Mozilla’s documentation</a>.</p>
 
 <p>Note: this will not work in <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Strict_mode">strict mode</a>. It will throw an error when it gets to the <code>undeclaredVariable</code> - see this <a href="https://jsfiddle.net/glenselle/9czx6dLg/2/">example</a>. Thanks to Glen Selle for his comment with this update.</p>
@@ -91,57 +90,47 @@ declaredVariable; // 1
 <p>Something is <code>undefined</code> when it hasn’t been defined yet. If you call a variable or function without having actually created it yet the parser will give you an <code>not defined</code> error.</p>
 
 <p>Example:</p>
-
-<pre><code>var undefinedVariable; // undefined
-typeof undefinedVariable; // &quot;undefined&quot;
+<pre class="highlight plaintext"><code>var undefinedVariable; // undefined
+typeof undefinedVariable; // "undefined"
 
 undefinedFunction(); // undefined
-typeof undefinedFunction; // &quot;undefined&quot;
+typeof undefinedFunction; // "undefined"
 </code></pre>
-
 <p>Note that the <code>typeof</code> returns <code>&quot;undefined&quot;</code>, therefore <code>undefined</code> is a primitive type.</p>
 
 <p>The fix for an undefined variable or function is easy, simply define it:</p>
-
-<pre><code>var definedVariable = &#39;test&#39;;
-typeof definedVariable; // &quot;string&quot;
+<pre class="highlight plaintext"><code>var definedVariable = 'test';
+typeof definedVariable; // "string"
 
 function definedFunction(){
-  return &quot;I&#39;m defined!&quot;
+  return "I'm defined!"
 }
-typeof definedFunction // &quot;function&quot;
+typeof definedFunction // "function"
 </code></pre>
-
 <p>You can know if a variable is undefined with the following:</p>
-
-<pre><code>if (typeof(variable) !== &quot;undefined&quot;) {
-  console.log(&#39;variable is not undefined&#39;);
+<pre class="highlight plaintext"><code>if (typeof(variable) !== "undefined") {
+  console.log('variable is not undefined');
 } else {
-  console.log(&#39;variable is undefined&#39;);
+  console.log('variable is undefined');
 }
 </code></pre>
-
 <p><br/></p>
 
 <p>Finally we&#39;ll finish up with <strong><code>null</code></strong>.</p>
 
 <p><code>null</code> is a variable that is defined to have a null value.</p>
-
-<pre><code>var nullVariable = null; // null
-typeof nullVariable // &quot;object&quot;
+<pre class="highlight plaintext"><code>var nullVariable = null; // null
+typeof nullVariable // "object"
 </code></pre>
-
 <p>You probably don’t often purposefully define a variable to <code>null</code>, but it may be the return value of a function. Often you&#39;ll need to gaurd against <code>null</code> values in your code.</p>
 
 <p>You can know if a variable is null with the following:</p>
-
-<pre><code>if( variable === null ) {
-  console.log(&#39;variable is null&#39;);
+<pre class="highlight plaintext"><code>if( variable === null ) {
+  console.log('variable is null');
 } else {
-  console.log(&#39;variable is not null&#39;);
+  console.log('variable is not null');
 }
 </code></pre>
-
 <p><br/>
 I think the order “undeclared, undefined, and null” makes sense since it’s increasing order of certainty.</p>
 

@@ -9,6 +9,7 @@
 <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700|Source+Code+Pro' rel='stylesheet' type='text/css'>
 <title>JS: How can you accept optional parameters?</title>
 <link href="/stylesheets/application.css" rel="stylesheet" media="all" />
+<link href="/stylesheets/syntax_highlighting.css" rel="stylesheet" media="all" />
 <script src='//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js'></script>
 <script src='//cdn.optimizely.com/js/4606022905.js'></script>
 
@@ -60,23 +61,21 @@
 <h2>Object</h2>
 
 <p>Coming from a Ruby background, I find this option the most intuitive. You can create an object of your optional parameters, it&#39;d look something like this:</p>
-
-<pre><code>var params = {
-    size: &#39;small&#39;,
-    color: &#39;red&#39;
+<pre class="highlight plaintext"><code>var params = {
+    size: 'small',
+    color: 'red'
 };
 
 function carSentence(optionalParams) {
     var size = optionalParams.size;
     var color = optionalParams.color;
     var speed = optionalParams.speed;
-    console.log(&quot;My favourite car is a &quot; + size +
-                &quot; sized &quot; + color + &quot; one that goes &quot; + speed);
+    console.log("My favourite car is a " + size +
+                " sized " + color + " one that goes " + speed);
 }
 carSentence(params);
-// logs &quot;My favourite car is a small sized red one that goes undefined&quot;
+// logs "My favourite car is a small sized red one that goes undefined"
 </code></pre>
-
 <p>As you can see I didn’t supply the <code>speed</code> parameter in my <code>params</code> object, but the <code>carSentence</code> function still worked. So <code>speed</code> was an optional parameter.</p>
 
 <p><strong>But <code>optionalParams</code> was still required</strong></p>
@@ -86,65 +85,54 @@ carSentence(params);
 <p><strong>What if I wanted a default speed?</strong></p>
 
 <p><code>optionalParams</code> didn’t define a value for <code>speed</code>, but the sentence expected <code>speed</code> to be defined. In this case you can give a default value for the variable (such as <code>&quot;fast&quot;</code>). It’s tempting to do this:</p>
-
-<pre><code>var speed = optionalParams.speed || &quot;fast&quot;;
+<pre class="highlight plaintext"><code>var speed = optionalParams.speed || "fast";
 </code></pre>
-
 <p>but this won’t work when <code>optionalParams.speed</code> is <code>false</code>. The better way to handle it is:</p>
-
-<pre><code>var speed;
-if (typeof optionalParams.speed === &#39;undefined&#39;) {
-    speed = &quot;fast&quot;;
+<pre class="highlight plaintext"><code>var speed;
+if (typeof optionalParams.speed === 'undefined') {
+    speed = "fast";
 }
 </code></pre>
-
 <p>however that’s quite wordy. You can cut it down with a <a href="/blog/2014/js-ternary/">ternary</a>, or make a <code>givenOrDefault</code> method (hopefully with a better name!).</p>
-
-<pre><code>function givenOrDefault(given, default) {
-    if (typeof given !== &#39;undefined&#39;) {
+<pre class="highlight plaintext"><code>function givenOrDefault(given, default) {
+    if (typeof given !== 'undefined') {
         return given;
     } else {
         return default;
     }
 }
 </code></pre>
-
 <p>Thus our example becomes:</p>
-
-<pre><code>var params = {
-    size: ’small&#39;,
-    color: &#39;red&#39;
+<pre class="highlight plaintext"><code>var params = {
+    size: ’small',
+    color: 'red'
 };
 
 function carSentence(optionalParams) {
-    var size = givenOrDefault(optionalParams.size, &quot;medium&quot;);
-    var color = givenOrDefault(optionalParams.color, &quot;blue&quot;);
-    var speed = givenOrDefault(optionalParams.speed, &quot;fast&quot;);
-    console.log(&quot;My favourite car is a &quot; + size +
-                &quot; sized &quot; + color + &quot; one that goes &quot; + speed);
+    var size = givenOrDefault(optionalParams.size, "medium");
+    var color = givenOrDefault(optionalParams.color, "blue");
+    var speed = givenOrDefault(optionalParams.speed, "fast");
+    console.log("My favourite car is a " + size +
+                " sized " + color + " one that goes " + speed);
 }
 carSentence(params);
-// logs &quot;My favourite car is a small sized red one that goes fast&quot;
+// logs "My favourite car is a small sized red one that goes fast"
 </code></pre>
-
 <h2>Missing parameters</h2>
 
 <p>Another method of dealing with optional parameters is to simply allow them to be missing.</p>
-
-<pre><code>function carSentence(size, color, speed) {
-    size = givenOrDefault(size, &quot;medium&quot;);
-    color = givenOrDefault(color, &quot;blue&quot;);
-    speed = givenOrDefault(speed, &quot;fast&quot;);
-    console.log(&quot;My favourite car is a &quot; + size +
-                &quot; sized &quot; + color + &quot; one that goes &quot; + speed);
+<pre class="highlight plaintext"><code>function carSentence(size, color, speed) {
+    size = givenOrDefault(size, "medium");
+    color = givenOrDefault(color, "blue");
+    speed = givenOrDefault(speed, "fast");
+    console.log("My favourite car is a " + size +
+                " sized " + color + " one that goes " + speed);
 }
-carSentence(&quot;medium&quot;, &quot;blue&quot;);
-// logs &quot;My favourite car is a medium sized blue one that goes fast&quot;
+carSentence("medium", "blue");
+// logs "My favourite car is a medium sized blue one that goes fast"
 </code></pre>
-
 <p>This way of dealing with optional parameters works well if people won’t bother trying to extend it past the limit. However, not all functions meet this requirement, consider the following:</p>
-
-<pre><code>function add(a, b, c) {
+<pre class="highlight plaintext"><code>function add(a, b, c) {
     a = a || 0;
     b = b || 0;
     c = c || 0;
@@ -155,32 +143,28 @@ add(1, 2); // returns 3
 add(1, 2, 3); // returns 6
 add(1, undefined, 3); // returns 4
 </code></pre>
-
 <p>It kinda works. It&#39;ll fall over if you try <code>add(1, 2, 3, 4)</code> which returns 6 rather than 10.</p>
 
 <h2>arguments</h2>
 
 <p>Finally we come to the <code>arguments</code> keyword. it looks like this:</p>
-
-<pre><code>function carSentence() {
-    size = givenOrDefault(arguments[0], &quot;medium&quot;);
-    color = givenOrDefault(arguments[1], &quot;blue&quot;);
-    speed = givenOrDefault(arguments[2], &quot;fast&quot;);
-    console.log(&quot;My favourite car is a &quot; + size +
-                &quot; sized &quot; + color + &quot; one that goes &quot; + speed);
+<pre class="highlight plaintext"><code>function carSentence() {
+    size = givenOrDefault(arguments[0], "medium");
+    color = givenOrDefault(arguments[1], "blue");
+    speed = givenOrDefault(arguments[2], "fast");
+    console.log("My favourite car is a " + size +
+                " sized " + color + " one that goes " + speed);
 }
-carSentence(&quot;medium&quot;, &quot;blue&quot;);
-// logs &quot;My favourite car is a medium sized blue one that goes fast&quot;
+carSentence("medium", "blue");
+// logs "My favourite car is a medium sized blue one that goes fast"
 </code></pre>
-
 <p>or like this:</p>
-
-<pre><code>function add() {
+<pre class="highlight plaintext"><code>function add() {
     var sum = 0;
     var index = 0;
 
     while(index &lt; arguments.length) {
-        if(typeof arguments[index] !== &#39;undefined&#39;) {
+        if(typeof arguments[index] !== 'undefined') {
             sum = sum + arguments[index];
         }
         index++;
@@ -193,7 +177,6 @@ add(1, 2, 3); // returns 6
 add(1, undefined, 3); // returns 4
 add(1, 2, 3, 4); // returns 10
 </code></pre>
-
 <p><strong>What is this black magic?!</strong></p>
 
 <p>Well it turns out <code>arguments</code> is a secret variable available in all functions that gives a list of the parameters passed to that function. It’s a little bonus JS throws in free of charge.</p>
@@ -201,10 +184,8 @@ add(1, 2, 3, 4); // returns 10
 <p><strong>So it’s an array of all the params</strong></p>
 
 <p>Almost. It’s not quite an array. It’s like a kiddy array - hasn’t got all the functionality just yet. If you want to use it for access only (as in the example above), then you&#39;re all good. But if you want to do interesting manipulations, <code>pop</code> things off, or reorder items, then you need to convert <code>arguments</code> to a full array:</p>
-
-<pre><code>var temp = Array.slice(arguments);
+<pre class="highlight plaintext"><code>var temp = Array.slice(arguments);
 </code></pre>
-
 <p>I assume the reason for this is to make <code>arguments</code> read only, although I haven’t researched that.</p>
 
 <p>And there you have it - three ways to handle optional parameters in JavaScript.</p>

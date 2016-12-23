@@ -9,6 +9,7 @@
 <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700|Source+Code+Pro' rel='stylesheet' type='text/css'>
 <title>JS: Split vs. Splice</title>
 <link href="/stylesheets/application.css" rel="stylesheet" media="all" />
+<link href="/stylesheets/syntax_highlighting.css" rel="stylesheet" media="all" />
 <script src='//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js'></script>
 <script src='//cdn.optimizely.com/js/4606022905.js'></script>
 
@@ -60,30 +61,24 @@
 <p><em>Well, what does <code>split</code> do?</em></p>
 
 <p>Much like the name implies <code>split</code> breaks something into pieces. The <code>split</code> method is used for strings in JS. It has a few optional parameters, so let’s see what the simplest call does:</p>
-
-<pre><code>var myString = &#39;My test string&#39;;
-console.log(myString.split()); // [&#39;My test string&#39;]
-console.log(myString); // &#39;My test string&#39;
+<pre class="highlight plaintext"><code>var myString = 'My test string';
+console.log(myString.split()); // ['My test string']
+console.log(myString); // 'My test string'
 </code></pre>
-
 <p>Hmmm, that’s not super useful - <code>split</code> called without a parameter simply creates an array with one element, the string. But note that calling <code>split</code> on <code>myString</code> doesn’t change <code>myString</code>.</p>
 
 <p>Ok, let’s try something a little more interesting. I want to break <code>myString</code> up into whole words. We can split <code>myString</code> on spaces like this:</p>
-
-<pre><code>var myString = &#39;My test string&#39;;
-console.log(myString.split(&#39; &#39;)); // [&#39;My&#39;, &#39;test&#39;, ’string&#39;]
-console.log(myString); // &#39;My test string&#39;
+<pre class="highlight plaintext"><code>var myString = 'My test string';
+console.log(myString.split(' ')); // ['My', 'test', ’string']
+console.log(myString); // 'My test string'
 </code></pre>
-
 <p>Much more useful! When you call <code>split</code> with a parameter the string is <em>split</em> on every occurrence of that parameter. Note that the parameter itself is removed from the array (there are no spaces in <code>[&#39;My&#39;, &#39;test&#39;, ’string&#39;]</code>). Now we can know how many words are in a sentence, or find people’s first and last names (sometimes, names can get tricky...). Again, note that <code>myString</code> wasn’t changed.</p>
 
 <p>But what if <code>myString</code> was really long? Maybe you don’t want an array with hundreds of items in it. Or perhaps you only want to find the first nonoccurence of something. Let’s look for the first two word in <code>myString</code>:</p>
-
-<pre><code>var myString = &#39;My test string&#39;;
-console.log(myString.split(&#39; &#39;, 2)); // [&#39;My&#39;, &#39;test&#39;]
-console.log(myString); // &#39;My test string&#39;
+<pre class="highlight plaintext"><code>var myString = 'My test string';
+console.log(myString.split(' ', 2)); // ['My', 'test']
+console.log(myString); // 'My test string'
 </code></pre>
-
 <p>Again, we split on spaces because we were looking for full words. The second parameter we sent to <code>split</code> was the number of elements to go in the array. We wanted the first two words, so we sent through 2.</p>
 
 <p>Overall <code>split</code> can be used to:</p>
@@ -101,23 +96,19 @@ console.log(myString); // &#39;My test string&#39;
 <p>The name isn’t great, but it’s related to <strong>splicing</strong> things together. Like you can take the end of one rope and splice it together with another. It’s a <a href="https://www.google.com.au/search?q=splice+rope">real thing</a>.</p>
 
 <p>Anyways... in JS <code>splice</code> is an array method. Let’s look at a few sample calls:</p>
-
-<pre><code>var myArray = [&#39;this&#39;, &#39;is&#39;, &#39;an&#39;, &#39;array&#39;];
-myArray.splice(0, 2); // [&#39;this&#39;, &#39;is&#39;]
-console.log(myArray); // [&#39;an&#39;, &#39;array&#39;]
+<pre class="highlight plaintext"><code>var myArray = ['this', 'is', 'an', 'array'];
+myArray.splice(0, 2); // ['this', 'is']
+console.log(myArray); // ['an', 'array']
 </code></pre>
-
 <p>Ok, a really important thing to note is that <code>myArray</code> was changed during the call to <code>splice</code>. So if you ever want to use the original array you&#39;ll need to keep a backup somewhere. Another thing to note is that <code>splice</code> returns a value (in fact, it returns the elements that are missing from the array).</p>
 
 <p>Also, <code>splice</code> requires at least two parameters. The first parameter is an index in the array. I think of it as where the cursor is. The second parameter is how many elements to delete. So what we&#39;re really saying is “from position <strong>0</strong> please remove <strong>2</strong> elements and return them to me.”</p>
 
 <p>Let’s look at a similar example:</p>
-
-<pre><code>var countingArray = [5, 6, 7, 8];
+<pre class="highlight plaintext"><code>var countingArray = [5, 6, 7, 8];
 countingArray.splice(1, 1); // [6]
 console.log(countingArray); // [5, 7, 8]
 </code></pre>
-
 <p>What we said was “from position <strong>1</strong> please remove <strong>1</strong> element and return it to me.”</p>
 
 <blockquote>
@@ -125,30 +116,24 @@ console.log(countingArray); // [5, 7, 8]
 </blockquote>
 
 <p>Alright, on to the optional parameter(s)!</p>
-
-<pre><code>var myArray = [&#39;this&#39;, &#39;is&#39;, &#39;an&#39;, &#39;array&#39;];
-myArray.splice(3, 0, &#39;awesome&#39;); // []
-console.log(myArray); // [&#39;this&#39;, &#39;is&#39;, &#39;an&#39;, &#39;awesome&#39;, &#39;array&#39;]
+<pre class="highlight plaintext"><code>var myArray = ['this', 'is', 'an', 'array'];
+myArray.splice(3, 0, 'awesome'); // []
+console.log(myArray); // ['this', 'is', 'an', 'awesome', 'array']
 </code></pre>
-
 <p>Hopefully you&#39;ve got a good idea of what happened here. The first parameter is still an index. The second parameter is still how many elements to remove. And finally the third element is what to add <strong>after</strong> the index given in the first parameter. Again, what we&#39;re really saying is “from position <strong>3</strong> please remove <strong>0</strong> elements, then <strong>after</strong> position <strong>3</strong> please add <strong>&#39;awesome&#39;</strong>.”</p>
 
 <p>Another example:</p>
-
-<pre><code>var myArray = [&#39;this&#39;, &#39;is&#39;, &#39;an&#39;, &#39;array&#39;];
-myArray.splice(3, 0, &#39;amazingly&#39;, &#39;awesome&#39;); // []
-console.log(myArray); // [&#39;this&#39;, &#39;is&#39;, &#39;an&#39;, &#39;amazingly&#39;, &#39;awesome&#39;, &#39;array&#39;]
+<pre class="highlight plaintext"><code>var myArray = ['this', 'is', 'an', 'array'];
+myArray.splice(3, 0, 'amazingly', 'awesome'); // []
+console.log(myArray); // ['this', 'is', 'an', 'amazingly', 'awesome', 'array']
 </code></pre>
-
 <p>What we said was “from position <strong>3</strong> please remove <strong>0</strong> elements, then <strong>after</strong> position <strong>3</strong> please add <strong>&#39;amazing&#39;</strong> and <strong>&#39;awesome&#39;</strong>.” The third parameter can keep on going. If you wanted to add 100 elements to <code>myArray</code> you could do it with <code>splice</code>.</p>
 
 <p>Finally, you can also switch words in place:</p>
-
-<pre><code>var myArray = [&#39;this&#39;, &#39;is&#39;, &#39;an&#39;, &#39;array&#39;];
-myArray.splice(2, 1, &#39;the&#39;); // [&#39;an&#39;]
-console.log(myArray); // [&#39;this&#39;, &#39;is&#39;, &#39;the&#39;, &#39;array&#39;]
+<pre class="highlight plaintext"><code>var myArray = ['this', 'is', 'an', 'array'];
+myArray.splice(2, 1, 'the'); // ['an']
+console.log(myArray); // ['this', 'is', 'the', 'array']
 </code></pre>
-
 <p>What we said was “from position <strong>2</strong> please remove <strong>1</strong> element and return it to me, then <strong>after</strong> position <strong>2</strong> please add <strong>&#39;the&#39;</strong>.”</p>
 
 <p>Overall <code>splice</code> can be used to:</p>

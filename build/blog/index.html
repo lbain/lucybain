@@ -8,6 +8,7 @@
 <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700|Source+Code+Pro' rel='stylesheet' type='text/css'>
 <title>Lucy Bain</title>
 <link href="/stylesheets/application.css" rel="stylesheet" media="all" />
+<link href="/stylesheets/syntax_highlighting.css" rel="stylesheet" media="all" />
 <script src='//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js'></script>
 <script src='//cdn.optimizely.com/js/4606022905.js'></script>
 
@@ -239,11 +240,9 @@
     <h3>variables</h3>
     
     <p>It’s not easy to read...</p>
-    
-    <pre><code>var someVar = "world";
+    <pre class="highlight plaintext"><code>var someVar = "world";
     console.log("Hello" + someVar + "!");
     </code></pre>
-    
     <h3>newlines</h3>
     
     <p>It doesn’t handle new...</p>
@@ -629,8 +628,7 @@
     <p><strong>What are <code>.call</code> and <code>.apply</code>?</strong></p>
     
     <p>Both methods allow you to invoke a function and pass parameters through.</p>
-    
-    <pre><code>function printer(message) {
+    <pre class="highlight plaintext"><code>function printer(message) {
         console.log(message)
     }
     
@@ -671,8 +669,7 @@
     <p>Event bubbling occurs when a user interacts with a nested element and the event propagates up (“bubbles”) through all of the ancestor elements.</p>
     
     <p><strong>HTML</strong></p>
-    
-    <pre><code>&lt;div class="ancestor"&gt;
+    <pre class="highlight plaintext"><code>&lt;div class="ancestor"&gt;
       &lt;div class="parent"&gt;
         &lt;button&gt; Click me! &lt;/button...</code></pre>
   </div>
@@ -713,8 +710,7 @@
     <p><em>So what’s a callback?</em></p>
     
     <p>I’m glad you asked!</p>
-    
-    <pre><code>function takesACallback(callback) {
+    <pre class="highlight plaintext"><code>function takesACallback(callback) {
         // do some interesting things here
         return "The callback says: " + callback();
     }

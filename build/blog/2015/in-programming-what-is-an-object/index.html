@@ -9,6 +9,7 @@
 <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700|Source+Code+Pro' rel='stylesheet' type='text/css'>
 <title>In programming, what is an object?</title>
 <link href="/stylesheets/application.css" rel="stylesheet" media="all" />
+<link href="/stylesheets/syntax_highlighting.css" rel="stylesheet" media="all" />
 <script src='//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js'></script>
 <script src='//cdn.optimizely.com/js/4606022905.js'></script>
 
@@ -62,43 +63,35 @@
 <p>Many languages have the concept of an “object.” It’s a way of organising code based around objects (things) with similar characteristics. As in, most dogs have four legs, most cars can drive forward, most houses have doors. Templates (often called Classes) are used to create objects. These templates come with empty fields (like a form), and sometimes with default values as well (such as four legs). So it could look something like this:</p>
 
 <p><strong>Human</strong></p>
-
-<pre><code>Name: ________
+<pre class="highlight plaintext"><code>Name: ________
 Gender: ________
 Arms: _2_
 Legs: _2_
 </code></pre>
-
 <p>As you can see some fields (name and gender) are left blank, and some (arms and legs) have a default value associated. Again, this is a template, these values are assigned for each object (often called “instance of the class”). Mine would look like this:</p>
-
-<pre><code>Name: _Lucy_
+<pre class="highlight plaintext"><code>Name: _Lucy_
 Gender: _Female_
 Arms: _2_
 Legs: _2_
 </code></pre>
-
 <p>But objects hold more than just fields of information; they can also hold actions! Let’s build on our Human class.</p>
 
 <p><strong>Human</strong></p>
-
-<pre><code>Name: ________
+<pre class="highlight plaintext"><code>Name: ________
 Gender: ________
 Arms: _2_
 Legs: _2_
-Laugh: say &quot;hahaha!&quot;
+Laugh: say "hahaha!"
 Run: move your legs quickly
 </code></pre>
-
 <p>So you can see the Human template now has two actions associated with it (laugh and run). Here’s the great part about objects: those actions are shared! I only have to write the method <em>once</em> and all humans can now laugh and run. Pretty slick, huh?</p>
 
 <p>So a <strong>class</strong> is a template of fields (variables) and actions (methods). Each <strong>object</strong> fills out the template with it’s particular information. This is how you can write code like <code>me.name</code> - the <code>me</code> object has a <code>name</code> field that keeps track of <code>me</code>’s name. It’s also how you can write:</p>
-
-<pre><code>fido.bark();
+<pre class="highlight plaintext"><code>fido.bark();
 buddy.bark();
 buster.bark();
 princess.bark();
 </code></pre>
-
 <p>but only need to implement the <code>bark</code> action on the <code>Dog</code> template.</p>
 
 <p><strong>Object Oriented Programming</strong> is a way of organising your code into these objects for ease of use, readability, and understanding. It’s not the only <a href="http://upload.wikimedia.org/wikipedia/commons/f/f7/Programming_paradigms.svg">programming paradigm</a>, but it’s been popular over the years.</p>

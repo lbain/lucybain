@@ -9,6 +9,7 @@
 <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700|Source+Code+Pro' rel='stylesheet' type='text/css'>
 <title>JS: == vs. ===</title>
 <link href="/stylesheets/application.css" rel="stylesheet" media="all" />
+<link href="/stylesheets/syntax_highlighting.css" rel="stylesheet" media="all" />
 <script src='//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js'></script>
 <script src='//cdn.optimizely.com/js/4606022905.js'></script>
 
@@ -64,20 +65,16 @@
 <p><em>What? How can you check for equality without checking type?</em></p>
 
 <p>JS uses <strong>type coercion</strong> to check for equality without checking type. Here’s an example:</p>
+<pre class="highlight plaintext"><code>1 == "1" // returns true
 
-<pre><code>1 == &quot;1&quot; // returns true
-
-// what&#39;s really happening is:
-1 === Number(&quot;1&quot;) // returns true
+// what's really happening is:
+1 === Number("1") // returns true
 </code></pre>
-
 <p>So when we do <code>1 == &quot;1&quot;</code> JS does type coercion to check for equality. That means it makes both sides of the same type (in this case <code>Number</code>). From there it checks for equality with type.</p>
 
 <p>I had <a href="http://stackoverflow.com/questions/27523765/how-does-js-type-coercion-work">problems</a> with another example, so we&#39;ll walk through that one too.</p>
-
-<pre><code>&#39;0&#39; == false //returns true
+<pre class="highlight plaintext"><code>'0' == false //returns true
 </code></pre>
-
 <p>Here’s how the logic goes (from <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Comparison_Operators#Using_the_Equality_Operators">Mozilla</a> via <a href="http://stackoverflow.com/a/7615326/863846">stackoverflow</a>):</p>
 
 <blockquote>
@@ -87,12 +84,10 @@
 <p>Note: you can read the full spec <a href="http://www.ecma-international.org/ecma-262/5.1/#sec-11.9.3">here</a>, it’s smaller than I expected.</p>
 
 <p>So, in our example, one of the operands is a boolean. So then we convert both operands to numbers:</p>
-
-<pre><code>Number(&#39;0&#39;) == Number(false)
+<pre class="highlight plaintext"><code>Number('0') == Number(false)
 // goes to...
 0 == 0
 </code></pre>
-
 <p>From here we can test for equality with type since both operands are numbers.</p>
 
 <p><strong>TL;DR</strong></p>

@@ -10,6 +10,7 @@
 <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700|Source+Code+Pro' rel='stylesheet' type='text/css'>
 <title>JS: Destructuring assignment with ES6</title>
 <link href="/stylesheets/application.css" rel="stylesheet" media="all" />
+<link href="/stylesheets/syntax_highlighting.css" rel="stylesheet" media="all" />
 <script src='//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js'></script>
 <script src='//cdn.optimizely.com/js/4606022905.js'></script>
 
@@ -63,8 +64,7 @@
 <p>Since this is syntatic sugar, it’s possible to do everything with vanilla JS. We’re not introducing anything new here, just making existing things easier to do.</p>
 
 <p>In vanilla JS we can assign array values to variables like this:</p>
-
-<pre><code>var a, b, c;
+<pre class="highlight plaintext"><code>var a, b, c;
 var arr = [1, 2, 3];
 
 a = arr[0];
@@ -75,10 +75,8 @@ console.log(a); // logs 1
 console.log(b); // logs 2
 console.log(c); // logs 3
 </code></pre>
-
 <p>There’s nothing wrong with this, but it’s cumbersome and not quite as nice as...</p>
-
-<pre><code>let a, b, c;
+<pre class="highlight plaintext"><code>let a, b, c;
 let arr = [1, 2, 3];
 
 [a, b, c] = arr;
@@ -87,19 +85,15 @@ console.log(a); // logs 1
 console.log(b); // logs 2
 console.log(c); // logs 3
 </code></pre>
-
 <p>Here you can see that <code>a</code>, <code>b</code>, and <code>c</code> were assigned based on the content of <code>arr</code>. It’s even easier to read when it’s written like this:</p>
-
-<pre><code>[a, b, c] = [1, 2, 3];
+<pre class="highlight plaintext"><code>[a, b, c] = [1, 2, 3];
 </code></pre>
-
 <p><em>That’s great, but what’s the <strong>real</strong> code?</em></p>
 
 <p>You caught me, we can’t run the sugary code above directly in browsers yet. Since we need to put the code through a compiler it’s a good idea to see what actually gets run in the browser.</p>
+<pre class="highlight plaintext"><code>"use strict";
 
-<pre><code>&quot;use strict&quot;;
-
-var _slicedToArray = (function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i &amp;&amp; _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n &amp;&amp; _i[&quot;return&quot;]) _i[&quot;return&quot;](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError(&quot;Invalid attempt to destructure non-iterable instance&quot;); } }; })();
+var _slicedToArray = (function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i &amp;&amp; _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n &amp;&amp; _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; })();
 
 var a = undefined,
     b = undefined,
@@ -115,7 +109,6 @@ b = _arr2[1];
 c = _arr2[2];
 _arr;
 </code></pre>
-
 <p><em>Hmmm, not super readable... what’s with the <code>_slicedToArray</code> function?</em></p>
 
 <p>Well, it turns out you can do more complicated things with destructuring assignment, let’s look at some of those to better understand the compiled code. But keep in mind the line <code>_slicedToArray(_arr, 3);</code> - the <code>3</code> in particular will be important!</p>
@@ -123,8 +116,7 @@ _arr;
 <h2>Ignore the ends of an array</h2>
 
 <p>It’s also possible to ignore the last items of an array:</p>
-
-<pre><code>let a, b, c;
+<pre class="highlight plaintext"><code>let a, b, c;
 let arr = [1, 2, 3, 4, 5];
 
 [a, b, c] = arr;
@@ -133,12 +125,10 @@ console.log(a); // logs 1
 console.log(b); // logs 2
 console.log(c); // logs 3
 </code></pre>
-
 <p>Here we didn’t care what the fourth or fifth items in the array were, only the first three items were of interest. With the longer array the compiled code now looks like:</p>
+<pre class="highlight plaintext"><code>"use strict";
 
-<pre><code>&quot;use strict&quot;;
-
-var _slicedToArray = (function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i &amp;&amp; _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n &amp;&amp; _i[&quot;return&quot;]) _i[&quot;return&quot;](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError(&quot;Invalid attempt to destructure non-iterable instance&quot;); } }; })();
+var _slicedToArray = (function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i &amp;&amp; _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n &amp;&amp; _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; })();
 
 var a = undefined,
     b = undefined,
@@ -154,7 +144,6 @@ b = _arr2[1];
 c = _arr2[2];
 _arr;
 </code></pre>
-
 <p>Again, the line of interest is <code>_slicedToArray(_arr, 3);</code> and again the number of interest is <code>3</code>. Notice that although the array now contains five items the compiled JS knows we&#39;re only interested in the first three for assignment. That’s why the second parameter to <code>_slicedToArray</code> is still <code>3</code> rather than five.</p>
 
 <h2>Ignore particular items</h2>
@@ -162,8 +151,7 @@ _arr;
 <p><em>OK, so far we can assign all the items in an array and just the first <strong>n</strong>. What else can this do?</em></p>
 
 <p>Let’s look at assigning only certain items.</p>
-
-<pre><code>let a, b, c;
+<pre class="highlight plaintext"><code>let a, b, c;
 let arr = [1, 2, 3, 4, 5];
 
 [a,,b,,c] = arr;
@@ -172,10 +160,8 @@ console.log(a); // logs 1
 console.log(b); // logs 3
 console.log(c); // logs 5
 </code></pre>
-
 <p>Here we ignored items <code>2</code> and <code>4</code> from the array, but assigned the other elements. Again, nothing we couldn’t do with vanilla JS:</p>
-
-<pre><code>var a, b, c;
+<pre class="highlight plaintext"><code>var a, b, c;
 var arr = [1, 2, 3, 4, 5, 6];
 
 a = arr[0];
@@ -186,14 +172,12 @@ console.log(a); // logs 1
 console.log(b); // logs 3
 console.log(c); // logs 5
 </code></pre>
-
 <p>But the ES6 way is a little bit shorter (and sweeter!).</p>
 
 <h2>Assign “the rest”</h2>
 
 <p>A handy feature of ES6 is <code>...</code> which says “everything else.” We can use this for destructing assignment as well:</p>
-
-<pre><code>let a, b, c;
+<pre class="highlight plaintext"><code>let a, b, c;
 let arr = [1, 2, 3];
 
 [a,...b] = arr;
@@ -201,10 +185,8 @@ let arr = [1, 2, 3];
 console.log(a); // logs 1
 console.log(b); // logs [2, 3]
 </code></pre>
-
 <p>And of course you can use it along with the other features:</p>
-
-<pre><code>let a, b, c;
+<pre class="highlight plaintext"><code>let a, b, c;
 let arr = [1, 2, 3, 4, 5, 6];
 
 [a,,b,...c] = arr;
@@ -213,19 +195,16 @@ console.log(a); // logs 1
 console.log(b); // logs 3
 console.log(c); // logs [4, 5, 6]
 </code></pre>
-
 <h2>With objects</h2>
 
 <p>I’ve seen this feature used more with arrays than objects, but it is possible to use destructuring assignment with objects as well. Let’s take a look:</p>
-
-<pre><code>let obj = {cat: &#39;meow&#39;, dog: &#39;woof&#39;, mouse: &#39;squeak&#39;};
+<pre class="highlight plaintext"><code>let obj = {cat: 'meow', dog: 'woof', mouse: 'squeak'};
 
 let {cat, dog, mouse} = obj;
-console.log(a); // logs &#39;meow&#39;
-console.log(b); // logs &#39;woof&#39;
-console.log(c); // logs &#39;squeak&#39;
+console.log(a); // logs 'meow'
+console.log(b); // logs 'woof'
+console.log(c); // logs 'squeak'
 </code></pre>
-
 <p><em>Weird, I tried a version in the REPL and it didn’t work...</em></p>
 
 <p>I found the syntax for objects much less intuitive and picky than expected. Here are a couple of examples that <strong>don’t</strong> work.</p>
@@ -233,61 +212,49 @@ console.log(c); // logs &#39;squeak&#39;
 <h3>Need the key names</h3>
 
 <p>This doesn&#39;t work:</p>
-
-<pre><code>let obj = {cat: &#39;meow&#39;, dog: &#39;woof&#39;, mouse: &#39;squeak&#39;};
+<pre class="highlight plaintext"><code>let obj = {cat: 'meow', dog: 'woof', mouse: 'squeak'};
 
 let {a, b, c} = obj;
 </code></pre>
-
 <p>This doesn’t work because object keys aren’t ordered. There’s no way for JS to know that you want <code>cat</code> to be first because there is no concept of “first” for objects.</p>
 
 <p>This does work:</p>
-
-<pre><code>let obj = {cat: &#39;meow&#39;, dog: &#39;woof&#39;, mouse: &#39;squeak&#39;};
+<pre class="highlight plaintext"><code>let obj = {cat: 'meow', dog: 'woof', mouse: 'squeak'};
 
 let {cat: a, dog: b, mouse: c} = obj;
 </code></pre>
-
 <h3>Special syntax for pre-declare variables</h3>
 
 <p>This doesn’t work:</p>
-
-<pre><code>let a, b, c
-let obj = {cat: &#39;meow&#39;, dog: &#39;woof&#39;, mouse: &#39;squeak&#39;};
+<pre class="highlight plaintext"><code>let a, b, c
+let obj = {cat: 'meow', dog: 'woof', mouse: 'squeak'};
 
 {cat: a, dog: b, mouse: c} = obj;
 </code></pre>
-
 <p>I was particularly confused about this. So I asked a <a href="http://stackoverflow.com/questions/34836126/can-i-pre-declare-variables-for-destructuring-assignment-of-objects">question</a> about it and got an answer in no time (thank you Stackoverflow!).</p>
 
 <p>Since there’s no keyword before the first <code>{</code> in the line <code>{cat: a, dog: b, mouse: c} = obj;</code> the <code>{</code> is interpreted as opening a new block, rather than being part of an assignment operation. To overcome this we need to tell JS to interpret the <code>{</code> as part of the assignment by giving more syntax. This does work:</p>
-
-<pre><code>let a, b, c
-let obj = {cat: &#39;meow&#39;, dog: &#39;woof&#39;, mouse: &#39;squeak&#39;};
+<pre class="highlight plaintext"><code>let a, b, c
+let obj = {cat: 'meow', dog: 'woof', mouse: 'squeak'};
 
 ({cat: a, dog: b, mouse: c} = obj);
 </code></pre>
-
 <h2>Usage: Function returns</h2>
 
 <p>A really cool use for this feature is to easily process multiple results returned from a function. (Python typically uses tuples for this.)</p>
 
 <p>For example, a function can return multiple values:</p>
-
-<pre><code>function counting() {
+<pre class="highlight plaintext"><code>function counting() {
     return [1, 2, 3];
 }
 </code></pre>
-
 <p>And when it get’s called the return values can be quickly assigned:</p>
-
-<pre><code>[a, b, c] = counting();
+<pre class="highlight plaintext"><code>[a, b, c] = counting();
 
 console.log(a); // logs 1
 console.log(b); // logs 2
 console.log(c); // logs 3
 </code></pre>
-
 <p><em>Well that’s pretty handy!</em></p>
 
 <h2>Resources</h2>
