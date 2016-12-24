@@ -132,7 +132,7 @@ helpers do
   end
 
   def keywords(page_data)
-    page_data.keywords || page_data.tags || false
+    @words = page_data.keywords || page_data.tags || false
   end
 
   def popular_blog_posts
@@ -146,6 +146,24 @@ helpers do
       item == current_page
     end
     resonable_posts.sample
+  end
+
+  def page_title
+    if current_page.data.title
+      "Lucy | #{current_page.data.title}"
+    else
+      "Lucy Bain"
+    end
+  end
+
+  def page_description
+    description = current_page.data.description
+    if description
+      raise "description must be less than 160 characters" if description.length > 160
+      description
+    else
+      "Blog posts about programming, mostly JS and frontend, but a few other topics as well."
+    end
   end
 end
 
