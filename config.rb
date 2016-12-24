@@ -148,7 +148,7 @@ helpers do
     resonable_posts.sample
   end
 
-  def page_title
+  def web_page_title
     if current_page.data.title
       "Lucy | #{current_page.data.title}"
     else
