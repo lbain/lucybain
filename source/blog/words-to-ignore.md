@@ -1,3 +1,7 @@
+---
+published: false
+---
+
 Use http://www.internetmarketingninjas.com/online-spell-checker.php to check spelling but ignore the following words
 
 accessor
