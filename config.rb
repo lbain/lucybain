@@ -30,6 +30,7 @@ activate :blog do |blog|
 end
 
 page "/feed.xml", layout: false
+ignore 'blog/reference/*'
 
 {
   "udacity/index.html" => "/resources/udacity-python-study-group/",
