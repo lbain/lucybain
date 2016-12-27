@@ -62,7 +62,24 @@
 </script>
 
     <div class="content">
-        <div class=" blog-listing">
+      <script>window.twttr = (function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0],
+    t = window.twttr || {};
+  if (d.getElementById(id)) return t;
+  js = d.createElement(s);
+  js.id = id;
+  js.src = "https://platform.twitter.com/widgets.js";
+  fjs.parentNode.insertBefore(js, fjs);
+
+  t._e = [];
+  t.ready = function(f) {
+    t._e.push(f);
+  };
+
+  return t;
+}(document, "script", "twitter-wjs"));</script>
+
+  <div class=" blog-listing">
     <div class="meta">
       <h1>
         Rails Girls - March 2015
@@ -85,8 +102,17 @@
 <p>I’m going to meet with another organiser to talk about what we did well, and what could have been better. There were a lot of things I didn’t know since it was the first time I organised it. Hopefully we can get most of those written down for next time!</p>
 
 
+    <hr/>
+
+    <p class="social-share"> Did you find this post helpful? Please share it!
+      <a class="twitter-share-button"
+          href="https://twitter.com/intent/tweet?text=Rails%20Girls%20-%20March%202015"
+          data-hashtags="community,rails"
+          data-via="lucykbain"
+          data-size="large">
+        Tweet</a>
+    </p>
       <div id="disqus_thread">
-        <hr/>
         <script>
 
           var disqus_shortname = 'lucybain';

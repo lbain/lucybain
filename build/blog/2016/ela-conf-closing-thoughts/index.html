@@ -62,7 +62,24 @@
 </script>
 
     <div class="content">
-        <div class=" blog-listing">
+      <script>window.twttr = (function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0],
+    t = window.twttr || {};
+  if (d.getElementById(id)) return t;
+  js = d.createElement(s);
+  js.id = id;
+  js.src = "https://platform.twitter.com/widgets.js";
+  fjs.parentNode.insertBefore(js, fjs);
+
+  t._e = [];
+  t.ready = function(f) {
+    t._e.push(f);
+  };
+
+  return t;
+}(document, "script", "twitter-wjs"));</script>
+
+  <div class=" blog-listing">
     <div class="meta">
       <h1>
         Ela Conf - closing thoughts
@@ -105,8 +122,17 @@
 <p>Big props to the organisers for all of the hard work they’ve done over the past year - it was a beautiful event!</p>
 
 
+    <hr/>
+
+    <p class="social-share"> Did you find this post helpful? Please share it!
+      <a class="twitter-share-button"
+          href="https://twitter.com/intent/tweet?text=Ela%20Conf%20-%20closing%20thoughts"
+          data-hashtags="conference,women in tech"
+          data-via="lucykbain"
+          data-size="large">
+        Tweet</a>
+    </p>
       <div id="disqus_thread">
-        <hr/>
         <script>
 
           var disqus_shortname = 'lucybain';

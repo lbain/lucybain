@@ -60,7 +60,24 @@
 </script>
 
     <div class="content">
-        <div class="timeline-post blog-listing">
+      <script>window.twttr = (function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0],
+    t = window.twttr || {};
+  if (d.getElementById(id)) return t;
+  js = d.createElement(s);
+  js.id = id;
+  js.src = "https://platform.twitter.com/widgets.js";
+  fjs.parentNode.insertBefore(js, fjs);
+
+  t._e = [];
+  t.ready = function(f) {
+    t._e.push(f);
+  };
+
+  return t;
+}(document, "script", "twitter-wjs"));</script>
+
+  <div class="timeline-post blog-listing">
     <div class="meta">
       <h1>
         A display of Scott Aaronson’s Timeline of computer science
@@ -86,8 +103,17 @@
 </div>
 
 
+    <hr/>
+
+    <p class="social-share"> Did you find this post helpful? Please share it!
+      <a class="twitter-share-button"
+          href="https://twitter.com/intent/tweet?text=A%20display%20of%20Scott%20Aaronson%E2%80%99s%20Timeline%20of%20computer%20science"
+          data-hashtags=""
+          data-via="lucykbain"
+          data-size="large">
+        Tweet</a>
+    </p>
       <div id="disqus_thread">
-        <hr/>
         <script>
 
           var disqus_shortname = 'lucybain';

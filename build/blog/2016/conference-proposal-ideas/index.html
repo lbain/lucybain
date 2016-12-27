@@ -62,7 +62,24 @@
 </script>
 
     <div class="content">
-        <div class="proposal-worksheet blog-listing">
+      <script>window.twttr = (function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0],
+    t = window.twttr || {};
+  if (d.getElementById(id)) return t;
+  js = d.createElement(s);
+  js.id = id;
+  js.src = "https://platform.twitter.com/widgets.js";
+  fjs.parentNode.insertBefore(js, fjs);
+
+  t._e = [];
+  t.ready = function(f) {
+    t._e.push(f);
+  };
+
+  return t;
+}(document, "script", "twitter-wjs"));</script>
+
+  <div class="proposal-worksheet blog-listing">
     <div class="meta">
       <h1>
         How to come up with conference proposal ideas
@@ -194,8 +211,17 @@
 </div>
 
 
+    <hr/>
+
+    <p class="social-share"> Did you find this post helpful? Please share it!
+      <a class="twitter-share-button"
+          href="https://twitter.com/intent/tweet?text=How%20to%20come%20up%20with%20conference%20proposal%20ideas"
+          data-hashtags="conference proposals,ideas,how to,resources"
+          data-via="lucykbain"
+          data-size="large">
+        Tweet</a>
+    </p>
       <div id="disqus_thread">
-        <hr/>
         <script>
 
           var disqus_shortname = 'lucybain';

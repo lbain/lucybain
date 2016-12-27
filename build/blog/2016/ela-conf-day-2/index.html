@@ -62,7 +62,24 @@
 </script>
 
     <div class="content">
-        <div class="small-images blog-listing">
+      <script>window.twttr = (function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0],
+    t = window.twttr || {};
+  if (d.getElementById(id)) return t;
+  js = d.createElement(s);
+  js.id = id;
+  js.src = "https://platform.twitter.com/widgets.js";
+  fjs.parentNode.insertBefore(js, fjs);
+
+  t._e = [];
+  t.ready = function(f) {
+    t._e.push(f);
+  };
+
+  return t;
+}(document, "script", "twitter-wjs"));</script>
+
+  <div class="small-images blog-listing">
     <div class="meta">
       <h1>
         Ela Conf - day two
@@ -174,8 +191,17 @@
 <p><a href="https://twitter.com/Naomi_Donna/status/794998786301063168" class="image-link"><img src="/images/blog/ela-conf/take-up-space.jpg" alt="Take up space" /></a></p>
 
 
+    <hr/>
+
+    <p class="social-share"> Did you find this post helpful? Please share it!
+      <a class="twitter-share-button"
+          href="https://twitter.com/intent/tweet?text=Ela%20Conf%20-%20day%20two"
+          data-hashtags="conference,women in tech"
+          data-via="lucykbain"
+          data-size="large">
+        Tweet</a>
+    </p>
       <div id="disqus_thread">
-        <hr/>
         <script>
 
           var disqus_shortname = 'lucybain';
