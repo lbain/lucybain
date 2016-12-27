@@ -99,6 +99,8 @@ activate :syntax
 # Use middleman-alias gem to keep trak of renames
 # activate :alias
 
+require 'uri'
+
 # Methods defined in the helpers block are available in templates
 helpers do
   def nav_link(link_text, url, options = {})
@@ -165,6 +167,10 @@ helpers do
     else
       "Blog posts about programming, mostly JS and frontend, but a few other topics as well."
     end
+  end
+
+  def url_friendly(string)
+    URI.escape(string)
   end
 end
 
