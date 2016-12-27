@@ -116,7 +116,7 @@ $technical-color: #f78a4f
   .target-dot
     background: $color
   a
-    color: $color
+    @include link_color($color)
 
 .overview
   @include category_colors($overview-color)

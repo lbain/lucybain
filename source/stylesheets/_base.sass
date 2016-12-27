@@ -6,16 +6,10 @@ body
   -webkit-font-smoothing:  antialiased
 
 a
+  @include link_color($accent)
   text-decoration: none
-  color: $accent
-  text-decoration: none
-  background-color: rgba($accent, .1)
   border-radius: 3px
-  box-shadow: 5px 0 0 rgba($accent, .1), -5px 0 0 rgba($accent, .1)
   margin: 0 5px
-  &:hover
-    background-color: rgba($accent, .2)
-    box-shadow: 5px 0 0 rgba($accent, .2), -5px 0 0 rgba($accent, .2)
 
   h1 &,
   &.image-link
