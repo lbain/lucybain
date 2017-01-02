@@ -1,0 +1,192 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+  <head>
+    <title>
+  Lucy | JS: Promises/A+ and. jQuery history
+</title>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta charset="utf-8"/>
+<meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible"/>
+
+<!-- SEO meta tags -->
+<meta name="description" content="A look into why we have two promise definitions."/>
+<meta name="twitter:card" content="summary">
+<meta property="og:title" content="Lucy | JS: Promises/A+ and. jQuery history"/>
+<meta name="og:description" content="A look into why we have two promise definitions."/>
+<meta property="og:image" content="http://lucybain.com/images/social-share.png" />
+<meta property="og:url" content="http://lucybain.com/" />
+
+  <meta property="og:type" content="article" />
+  <meta property="article:author" content="https://twitter.com/lucykbain" />
+    <meta property="article:tag" content="javascript, promises/A+, jquery, promise, history"/>
+
+  <meta name="keywords" content="javascript, promises/A+, jquery, promise, history"/>
+
+<link href="/images/favicon.ico" rel="icon" type="image/ico"></link>
+<link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700|Source+Code+Pro" rel="stylesheet" type="text/css"></link>
+<link href="/stylesheets/application.css" rel="stylesheet" media="all" />
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script src="//cdn.optimizely.com/js/4606022905.js"></script>
+  </head>
+  <body class="">
+    <nav>
+  <div class='nav-open-btn'>
+    <ul>
+      <li></li>
+      <li></li>
+      <li></li>
+    </ul>
+  </div>
+  <ul class='nav-display'>
+    <li>
+      <a href="/" class="nav-link">Me</a>
+    </li>
+    <li>
+      <a href="/resume/" class="nav-link">Resume</a>
+    </li>
+    <li>
+      <a href="/contact-me/" class="nav-link">Contact</a>
+    </li>
+    <li>
+      <a href="/resources/" class="nav-link">Resources</a>
+    </li>
+    <li>
+      <a href="/blog/" class="nav-link active">Blog</a>
+    </li>
+  </ul>
+</nav>
+<script>
+  $('nav .nav-open-btn').on('click', function(){
+    $('nav .nav-display').toggleClass('open');
+  })
+</script>
+
+    <div class="content">
+      <script>window.twttr = (function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0],
+    t = window.twttr || {};
+  if (d.getElementById(id)) return t;
+  js = d.createElement(s);
+  js.id = id;
+  js.src = "https://platform.twitter.com/widgets.js";
+  fjs.parentNode.insertBefore(js, fjs);
+
+  t._e = [];
+  t.ready = function(f) {
+    t._e.push(f);
+  };
+
+  return t;
+}(document, "script", "twitter-wjs"));</script>
+
+  <div class=" blog-listing">
+    <div class="meta">
+      <h1>
+        JS: Promises/A+ and. jQuery history
+      </h1>
+      <p>Published on: January  1, 2017</p>
+        <p>Tags: <a href="/blog/tags/js/">js</a> and <a href="/blog/tags/promise/">promise</a></p>
+    </div>
+    <p>In my <a href="/blog/2016/js-promises-vs-deferred/">last post</a> I listed a bunch of confusing things about promises. That time I clarified “deferred” and “promise” and this time I’ll start writing about Promises/A+ and jQuery’s promises.</p>
+
+<h2>Promise or promise?</h2>
+
+<p>The concept of a promise has been around for a long time (<a href="https://en.wikipedia.org/wiki/Futures_and_promises">1976</a> in fact). Promises/A+ and jQuery’s promises are both implementations of the promise concept. They both represent future values and both simplify programming with async operations.</p>
+
+<p><em>So how’d we get two of the same thing?</em></p>
+
+<p>Well, they’re not actually the same thing, but we’ll briefly talk about the history first.</p>
+
+<h2>Why do we have two?</h2>
+
+<p>JS got <a href="http://www.ecma-international.org/ecma-262/6.0/#sec-promise-objects">promises</a> with ECMAScript 6, which is slowly making it’s way into <a href="http://caniuse.com/#feat=promises">browsers</a>. But before the spec was settled (see what I did there?) jQuery got to work on an implementation. jQuery knew browsers weren’t going to support promises right away, and, as with other shiny new JS, developers would have to rely on a library or polyfill to use the new features. (Other libraries knew this as well and did similar things to jQuery, but jQuery is the most common, so we’re talking about it.)</p>
+
+<p>I like to think it went something like this:</p>
+
+<p><strong>Developers:</strong> We’d like to use promises in JS</p>
+
+<p><strong>JS spec:</strong> Hmmm, interesting idea... yeah, let’s do that</p>
+
+<p><strong>jQuery:</strong> <em>typing, developing, debugging</em></p>
+
+<p><strong>JS spec:</strong> But <em>how?</em> Let’s really think about what should happen.</p>
+
+<p><strong>jQuery:</strong> <em>typing, developing, debugging</em></p>
+
+<p><strong>JS spec:</strong> <em>Debating, email threads, thinking</em></p>
+
+<p><strong>jQuery:</strong> Here you go!</p>
+
+<p><strong>JS spec:</strong> <em>Debating, email threads, thinking</em></p>
+
+<p><strong>Developers:</strong> Thanks jQuery, we’ll get right on it!</p>
+
+<p><strong>JS spec:</strong> Here’s the theoretical description of what should happen.</p>
+
+<p><strong>jQuery, developers, and JS spec:</strong> Well this is awkward.</p>
+
+<p>So before the official JS specification for promises (eventually called Promises/A+) had landed we had an implementation for promises in jQuery. This was super handy for developers then since it meant they could have all the advantages of promises as soon as jQuery allowed it. The problem is that jQuery’s implementation and Promises/A+ differ. And it’s not likely that either will change any time soon.</p>
+
+<p>With a bit of effort jQuery’s promises and Promises/A+ can play nicely together, but that effort wasn’t made in the past since the Promises/A+ weren’t even available at the time. There’s also the mental effort involved in knowing both ways of working with the promises and knowing what type of promise you’re working with at any given time.</p>
+
+<p>It’s not ideal, but it’s the world we live in.</p>
+
+<p>Next time we’ll talk about the differences between the Promises/A+ spec and jQuery’s implementation of promises so you know what to watch out for.</p>
+
+
+    <hr/>
+
+    <p class="social-share"> Did you find this post helpful? Please share it!
+      <a class="twitter-share-button"
+          href="https://twitter.com/intent/tweet?text=JS:%20Promises/A+%20and.%20jQuery%20history"
+          data-hashtags="js,promise"
+          data-via="lucykbain"
+          data-size="large">
+        Tweet</a>
+    </p>
+      <div id="disqus_thread">
+        <script>
+
+          var disqus_shortname = 'lucybain';
+          (function() {
+              var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+              dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+              (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+          })();
+
+        </script>
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+        <a class="dsq-brlink" href="http://disqus.com">
+          comments powered by
+          <span class="logo-disqus">Disqus</span>
+        </a>
+        <script>
+
+          var disqus_shortname = 'lucybain';
+          (function () {
+              var s = document.createElement('script'); s.async = true;
+              s.type = 'text/javascript';
+              s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+              (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+          }());
+
+        </script>
+      </div>
+  </div>
+
+    </div>
+  </body>
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  
+  ga('create', 'UA-45866381-1', 'lucybain.com');
+  ga('send', 'pageview');
+</script>
+
+</html>

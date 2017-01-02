@@ -4,10 +4,65 @@
   <id>http://lucybain.com/blog</id>
   <link href="http://lucybain.com/blog"/>
   <link href="http://lucybain.com/feed.xml" rel="self"/>
-  <updated>2016-12-22T11:00:00+11:00</updated>
+  <updated>2017-01-01T11:00:00+11:00</updated>
   <author>
     <name>Lucy Bain</name>
   </author>
+  <entry>
+    <title>JS: Promises/A+ and. jQuery history</title>
+    <link rel="alternate" href="http://lucybain.com/blog/2017/js-promises-a-plus-jquery-history/"/>
+    <id>http://lucybain.com/blog/2017/js-promises-a-plus-jquery-history/</id>
+    <published>2017-01-01T11:00:00+11:00</published>
+    <author>
+      <name>Article Author</name>
+    </author>
+    <content type="html">&lt;p&gt;In my &lt;a href="/blog/2016/js-promises-vs-deferred/"&gt;last post&lt;/a&gt; I listed a bunch of confusing things about promises. That time I clarified “deferred” and “promise” and this time I’ll start writing about Promises/A+ and jQuery’s promises.&lt;/p&gt;
+
+&lt;h2&gt;Promise or promise?&lt;/h2&gt;
+
+&lt;p&gt;The concept of a promise has been around for a long time (&lt;a href="https://en.wikipedia.org/wiki/Futures_and_promises"&gt;1976&lt;/a&gt; in fact). Promises/A+ and jQuery’s promises are both implementations of the promise concept. They both represent future values and both simplify programming with async operations.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;So how’d we get two of the same thing?&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;Well, they’re not actually the same thing, but we’ll briefly talk about the history first.&lt;/p&gt;
+
+&lt;h2&gt;Why do we have two?&lt;/h2&gt;
+
+&lt;p&gt;JS got &lt;a href="http://www.ecma-international.org/ecma-262/6.0/#sec-promise-objects"&gt;promises&lt;/a&gt; with ECMAScript 6, which is slowly making it’s way into &lt;a href="http://caniuse.com/#feat=promises"&gt;browsers&lt;/a&gt;. But before the spec was settled (see what I did there?) jQuery got to work on an implementation. jQuery knew browsers weren’t going to support promises right away, and, as with other shiny new JS, developers would have to rely on a library or polyfill to use the new features. (Other libraries knew this as well and did similar things to jQuery, but jQuery is the most common, so we’re talking about it.)&lt;/p&gt;
+
+&lt;p&gt;I like to think it went something like this:&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Developers:&lt;/strong&gt; We’d like to use promises in JS&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;JS spec:&lt;/strong&gt; Hmmm, interesting idea... yeah, let’s do that&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;jQuery:&lt;/strong&gt; &lt;em&gt;typing, developing, debugging&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;JS spec:&lt;/strong&gt; But &lt;em&gt;how?&lt;/em&gt; Let’s really think about what should happen.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;jQuery:&lt;/strong&gt; &lt;em&gt;typing, developing, debugging&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;JS spec:&lt;/strong&gt; &lt;em&gt;Debating, email threads, thinking&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;jQuery:&lt;/strong&gt; Here you go!&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;JS spec:&lt;/strong&gt; &lt;em&gt;Debating, email threads, thinking&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Developers:&lt;/strong&gt; Thanks jQuery, we’ll get right on it!&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;JS spec:&lt;/strong&gt; Here’s the theoretical description of what should happen.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;jQuery, developers, and JS spec:&lt;/strong&gt; Well this is awkward.&lt;/p&gt;
+
+&lt;p&gt;So before the official JS specification for promises (eventually called Promises/A+) had landed we had an implementation for promises in jQuery. This was super handy for developers then since it meant they could have all the advantages of promises as soon as jQuery allowed it. The problem is that jQuery’s implementation and Promises/A+ differ. And it’s not likely that either will change any time soon.&lt;/p&gt;
+
+&lt;p&gt;With a bit of effort jQuery’s promises and Promises/A+ can play nicely together, but that effort wasn’t made in the past since the Promises/A+ weren’t even available at the time. There’s also the mental effort involved in knowing both ways of working with the promises and knowing what type of promise you’re working with at any given time.&lt;/p&gt;
+
+&lt;p&gt;It’s not ideal, but it’s the world we live in.&lt;/p&gt;
+
+&lt;p&gt;Next time we’ll talk about the differences between the Promises/A+ spec and jQuery’s implementation of promises so you know what to watch out for.&lt;/p&gt;
+</content>
+  </entry>
   <entry>
     <title>JS: promise and deferred</title>
     <link rel="alternate" href="http://lucybain.com/blog/2016/js-promises-vs-deferred/"/>
@@ -873,248 +928,6 @@ table - done!
 &lt;p&gt;There is! We’ll be looking at promises next time to do just that.&lt;/p&gt;
 
 &lt;p&gt;Check in again soon to see how all this can be so much better!&lt;/p&gt;
-</content>
-  </entry>
-  <entry>
-    <title>ReactJS: Props vs. State</title>
-    <link rel="alternate" href="http://lucybain.com/blog/2016/react-state-vs-pros/"/>
-    <id>http://lucybain.com/blog/2016/react-state-vs-pros/</id>
-    <published>2016-11-27T11:00:00+11:00</published>
-    <author>
-      <name>Article Author</name>
-    </author>
-    <content type="html">&lt;p&gt;I’ve been using ReactJS with Redux at work recently, and I have quite a few questions about how it all fits together. I figured I’d start small, with just some React questions and see how it goes.&lt;/p&gt;
-
-&lt;p&gt;This “props vs. state” question is &lt;a href="http://stackoverflow.com/search?q=%5Breactjs%5D+state+props"&gt;pretty common&lt;/a&gt; for new React devs - they look so similar, but are used differently. So what’s going on there?&lt;/p&gt;
-
-&lt;h2&gt;Props&lt;/h2&gt;
-
-&lt;p&gt;&lt;em&gt;What does “props” even mean?&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;To get the jargon out of the way, “props” is short for “properties” so nothing particularly fancy there.&lt;/p&gt;
-
-&lt;p&gt;&lt;em&gt;Well, all right then. What makes props special?&lt;/em&gt;&lt;/p&gt;
-
-&lt;h3&gt;&lt;code&gt;props&lt;/code&gt; are passed into the component&lt;/h3&gt;
-
-&lt;p&gt;Here’s an example (code from the &lt;a href="https://facebook.github.io/react/docs/components-and-props.html"&gt;React Guide&lt;/a&gt;):&lt;/p&gt;
-&lt;pre class="highlight plaintext"&gt;&lt;code&gt;class Welcome extends React.Component {
-  render() {
-    return &amp;lt;h1&amp;gt;Hello {this.props.name}&amp;lt;/h1&amp;gt;;
-  }
-}
-
-const element = &amp;lt;Welcome name="Sara" /&amp;gt;;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;You can play with this on &lt;a href="https://codepen.io/anon/pen/aByERM?editors=1011"&gt;CodePen&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;The line &lt;code&gt;&amp;lt;Welcome name=&amp;quot;Sara&amp;quot; /&amp;gt;&lt;/code&gt; creates a property &lt;code&gt;name&lt;/code&gt; with value &lt;code&gt;&amp;quot;Sara&amp;quot;&lt;/code&gt;. &lt;/p&gt;
-
-&lt;p&gt;&lt;em&gt;That sounds kinda like a function call...&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;Yep, the property is passed to the component, similar to how an argument is passed to a function. In fact, we could even rewrite the component to be simpler:&lt;/p&gt;
-&lt;pre class="highlight plaintext"&gt;&lt;code&gt;function Welcome(props) {
-  return &amp;lt;h1&amp;gt;Hello {props.name}&amp;lt;/h1&amp;gt;;
-}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Now the “props as arguments” comparison is even clearer.&lt;/p&gt;
-
-&lt;p&gt;&lt;em&gt;OK, so props “come from above.”&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;Often, but not always. A component can also have default props, so if a prop isn’t passed through it can still be set.&lt;/p&gt;
-
-&lt;p&gt;We can make the &lt;code&gt;name&lt;/code&gt; property optional by adding &lt;code&gt;defaultProps&lt;/code&gt; to the &lt;code&gt;Welcome&lt;/code&gt; class:&lt;/p&gt;
-&lt;pre class="highlight plaintext"&gt;&lt;code&gt;class Welcome extends React.Component {
-  render() {
-    return &amp;lt;h1&amp;gt;Hello {this.props.name}&amp;lt;/h1&amp;gt;;
-  }
-}
-
-Welcome.defaultProps = {
-  name: "world",
-};
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;If &lt;code&gt;Welcome&lt;/code&gt; is called without a name it will simply render &lt;code&gt;&amp;lt;h1&amp;gt; Hello world&amp;lt;/h1&amp;gt;&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;So &lt;code&gt;props&lt;/code&gt; can come from the parent, or can be set by the component itself.&lt;/p&gt;
-
-&lt;h3&gt;&lt;code&gt;props&lt;/code&gt; should not change&lt;/h3&gt;
-
-&lt;p&gt;&lt;em&gt;What?! I’ve totally done that!&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;You used to be able to change &lt;code&gt;props&lt;/code&gt; with &lt;code&gt;setProps&lt;/code&gt; and &lt;code&gt;replaceProps&lt;/code&gt; but these have been &lt;a href="https://facebook.github.io/react/blog/2015/10/07/react-v0.14.html#new-deprecations-introduced-with-a-warning"&gt;deprecated&lt;/a&gt;. During a component’s life cycle &lt;code&gt;props&lt;/code&gt; should not change (consider them immutable).&lt;/p&gt;
-
-&lt;p&gt;&lt;em&gt;Fine, I won’t change props any more.&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;Since &lt;code&gt;props&lt;/code&gt; are passed in, and they cannot change, you can think of any React component that only uses &lt;code&gt;props&lt;/code&gt; (and not &lt;code&gt;state&lt;/code&gt;) as “pure,” that is, it will always render the same output given the same input. This makes them really easy to test - win!&lt;/p&gt;
-
-&lt;h2&gt;State&lt;/h2&gt;
-
-&lt;p&gt;Like &lt;code&gt;props&lt;/code&gt;, &lt;code&gt;state&lt;/code&gt; holds information about the component. However, the kind of information and how it is handled is different.&lt;/p&gt;
-
-&lt;p&gt;By default, a component has no state. The &lt;code&gt;Welcome&lt;/code&gt; component from above is stateless:&lt;/p&gt;
-&lt;pre class="highlight plaintext"&gt;&lt;code&gt;function Welcome(props) {
-  return &amp;lt;h1&amp;gt;Hello {props.name}&amp;lt;/h1&amp;gt;;
-}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;em&gt;So when would you use state?&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;When a component needs to keep track of information between renderings the component &lt;em&gt;itself&lt;/em&gt; can create, update, and use state.&lt;/p&gt;
-
-&lt;p&gt;We’ll be working with a fairly simple component to see &lt;code&gt;state&lt;/code&gt; working in action. We’ve got a button that keeps track of how many times you’ve clicked it.&lt;/p&gt;
-
-&lt;p&gt;&lt;em&gt;Yawn...&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;I know, but here’s the code:&lt;/p&gt;
-&lt;pre class="highlight plaintext"&gt;&lt;code&gt;class Button extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      count: 0,
-    };
-  }
-
-  updateCount() {
-    this.setState((prevState, props) =&amp;gt; {
-      return { count: prevState.count + 1 }
-    });
-  }
-
-  render() {
-    return (&amp;lt;button
-              onClick={() =&amp;gt; this.updateCount()}
-            &amp;gt;
-              Clicked {this.state.count} times
-            &amp;lt;/button&amp;gt;);
-  }
-}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;You can play with this code on &lt;a href="https://codepen.io/lbain/pen/ENpzBZ"&gt;CodePen&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;&lt;em&gt;Gah! There’s so much there! What’s going on?&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;So now we’re working with &lt;code&gt;state&lt;/code&gt; things are a bit more complicated. But we’ll break it down to make it more understandable.&lt;/p&gt;
-
-&lt;p&gt;Our first real difference between &lt;code&gt;props&lt;/code&gt; and &lt;code&gt;state&lt;/code&gt; is that...&lt;/p&gt;
-
-&lt;h3&gt;&lt;code&gt;state&lt;/code&gt; is created in the component&lt;/h3&gt;
-
-&lt;p&gt;Let’s look at the &lt;code&gt;constructor&lt;/code&gt; method:&lt;/p&gt;
-&lt;pre class="highlight plaintext"&gt;&lt;code&gt;constructor() {
-  super();
-  this.state = {
-    count: 0,
-  };
-}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;This is where &lt;code&gt;state&lt;/code&gt; gets it’s initial data. The inital data can be hard coded (as above), but it can also come from &lt;code&gt;props&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;&lt;em&gt;Well that’s just confusing.&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;It is, I know. But it makes sense - you can’t change &lt;code&gt;props&lt;/code&gt;, but it’s pretty reasonable to want to do stuff to the data that a component receives. That’s where state comes in.&lt;/p&gt;
-
-&lt;p&gt;Moving on brings us to our second difference...&lt;/p&gt;
-
-&lt;h3&gt;&lt;code&gt;state&lt;/code&gt; is changeable&lt;/h3&gt;
-
-&lt;p&gt;Here’s &lt;code&gt;updateCount&lt;/code&gt; again:&lt;/p&gt;
-&lt;pre class="highlight plaintext"&gt;&lt;code&gt;updateCount() {
-  this.setState((prevState, props) =&amp;gt; {
-    return { count: prevState.count + 1 }
-  });
-}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;We change the state to keep track of the total number of clicks. The important bit is &lt;code&gt;setState&lt;/code&gt;. First off, notice that &lt;code&gt;setState&lt;/code&gt; takes a function, that’s becuase &lt;code&gt;setState&lt;/code&gt; can run asynchronously. It needs to take a callback function rather than updating the state directly. You can see we have access to &lt;code&gt;prevState&lt;/code&gt; within the callback, this will contain the previous state, even if the state has already been updated somewhere else. Pretty slick, huh?&lt;/p&gt;
-
-&lt;p&gt;But React goes one step better, &lt;code&gt;setState&lt;/code&gt; updates the state object &lt;strong&gt;and&lt;/strong&gt; re-renders the component automagically.&lt;/p&gt;
-
-&lt;p&gt;&lt;em&gt;Boom!&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;Yeah, this is pretty great of React to do, no need for us to explicitly re-render or worry about anything. React will take care of it all!&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;&lt;code&gt;setState&lt;/code&gt; warning one!&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;It is tempting to write &lt;code&gt;this.state.count = this.state.count + 1&lt;/code&gt;. &lt;em&gt;Do not do this!&lt;/em&gt; React cannot listen to the state getting updated in this way, so your component will not re-render. Always use &lt;code&gt;setState&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;&lt;code&gt;setState&lt;/code&gt; warning two!&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;It might also be tempting to write something like this:&lt;/p&gt;
-&lt;pre class="highlight plaintext"&gt;&lt;code&gt;// DO NOT USE
-this.setState({
-  count: this.state.count + 1
-});
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Although this might look reasonable, doesn’t throw errors, and you might find examples that use this syntax online, it is &lt;em&gt;wrong&lt;/em&gt;. This does not take into account the asychronous nature that &lt;code&gt;setState&lt;/code&gt; can use and might cause errors with out of sync state data.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Program as usual&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;And finally, &lt;code&gt;render&lt;/code&gt;&lt;/p&gt;
-&lt;pre class="highlight plaintext"&gt;&lt;code&gt;render() {
-  return (&amp;lt;button
-            onClick={() =&amp;gt; this.updateCount()}
-          &amp;gt;
-            Clicked {this.state.count} times
-          &amp;lt;/button&amp;gt;);
-}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;code&gt;onClick={() =&amp;gt; this.updateCount()}&lt;/code&gt; means that when the button is clicked the &lt;code&gt;updateCount&lt;/code&gt; method will be called. We need to use &lt;a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions"&gt;ES6’s arrow function&lt;/a&gt; so &lt;code&gt;updateCount&lt;/code&gt; will have access to this instance’s &lt;code&gt;state&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;The text rendered in the button is &lt;code&gt;Clicked {this.state.count} times&lt;/code&gt;, which will use whatever &lt;code&gt;this.state.count&lt;/code&gt; is at the time of rendering.&lt;/p&gt;
-
-&lt;p&gt;&lt;em&gt;Phew! That was a lot! Can I have it one more time?&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;Sure thing, let’s look at the whole flow:&lt;/p&gt;
-
-&lt;ol&gt;
-&lt;li&gt;&lt;p&gt;The component is initialised and &lt;code&gt;state.count&lt;/code&gt; is set to 0&lt;/p&gt;
-&lt;pre class="highlight plaintext"&gt;&lt;code&gt;this.state = {
-  count: 0,
-};
-&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;The component renders, with “Clicked 0 times” as the button text&lt;/p&gt;
-&lt;pre class="highlight plaintext"&gt;&lt;code&gt;Clicked {this.state.count} times
-&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;The user clicks the button&lt;/p&gt;
-
-&lt;p&gt;&lt;em&gt;click!&lt;/em&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;code&gt;updateCount&lt;/code&gt; is called, bound to this instance of the component&lt;/p&gt;
-&lt;pre class="highlight plaintext"&gt;&lt;code&gt;onClick={() =&amp;gt; this.updateCount()}
-&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;code&gt;updateCount&lt;/code&gt; calls &lt;code&gt;setState&lt;/code&gt; with a call back to increase the counter from the previous state’s counter value&lt;/p&gt;
-&lt;pre class="highlight plaintext"&gt;&lt;code&gt;this.setState((prevState, props) =&amp;gt; {
-return { count: prevState.count + 1 }
-});
-&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;code&gt;setState&lt;/code&gt; triggers a call to &lt;code&gt;render&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;em&gt;React magic!&lt;/em&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;The component renders, with “Clicked 1 times” as the button text&lt;/p&gt;
-&lt;pre class="highlight plaintext"&gt;&lt;code&gt;Clicked {this.state.count} times
-&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h2&gt;Review&lt;/h2&gt;
-
-&lt;p&gt;While &lt;code&gt;props&lt;/code&gt; and &lt;code&gt;state&lt;/code&gt; both hold information relating to the component, they are used differently and should be kept separate.&lt;/p&gt;
-
-&lt;p&gt;&lt;code&gt;props&lt;/code&gt; contains information set by the parent component (although defaults can be set) and should not be changed.&lt;/p&gt;
-
-&lt;p&gt;&lt;code&gt;state&lt;/code&gt; contains “private” information for the component to initialise, change, and use on it’s own.&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;... props are a way of passing data from parent to child. ... State is reserved only for interactivity, that is, data that changes over time. &lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;– Facebook&amp;#39;s &lt;a href="https://facebook.github.io/react/docs/thinking-in-react.html"&gt;React Guide&lt;/a&gt;.&lt;/p&gt;
-
-&lt;h2&gt;Resources&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Amazing guide on &lt;a href="https://github.com/uberVU/react-guide/blob/master/props-vs-state.md"&gt;state vs. props&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Stackoverflow &lt;a href="http://stackoverflow.com/questions/23481061/reactjs-state-vs-prop"&gt;question&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Docs on &lt;a href="https://facebook.github.io/react/docs/components-and-props.html"&gt;Components and Props&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Docs on &lt;a href="https://facebook.github.io/react/docs/state-and-lifecycle.html"&gt;State and Lifecycle&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
 </content>
   </entry>
 </feed>
