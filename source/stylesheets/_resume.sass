@@ -102,9 +102,15 @@ $technical-color: #f78a4f
   padding-left: 1em
 
 .overview
+  margin-top: 0
   .item
     padding-left: 0
     border: none
+
+.two-part-title
+  display: flex
+  justify-content: space-between
+  align-items: baseline
 
 @mixin category_colors($color)
   .category-title
@@ -120,6 +126,13 @@ $technical-color: #f78a4f
 
 .overview
   @include category_colors($overview-color)
+
+  a.download-link
+    color: $white
+    background-color: $accent
+    box-shadow: none
+    &:hover
+      box-shadow: none
 
 .experience
   @include category_colors($experience-color)
@@ -167,6 +180,16 @@ $technical-color: #f78a4f
       display: none
     li, p
       margin-bottom: 0.2em
-    .overview .item
-      padding-left: 0
-      margin-left: 0
+    .overview
+      .item
+        padding-left: 0
+        margin-left: 0
+      .download-link
+        display: none
+
+    a
+      background-color: transparent
+      padding: 0
+      margin: 1px
+      border-radius: 0
+      box-shadow: 5px 0 0 transparent
