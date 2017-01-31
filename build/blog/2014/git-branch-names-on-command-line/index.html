@@ -88,10 +88,15 @@
     <p>I often forget which branch I’m on. Sure, I have <code>git branch</code> aliased (it’s probably one of my most frequently used commands) but sometimes I’m convinced I’m on another branch. A few commits and merges later I find out I was wrong, and it’s time for some branch cleaning.</p>
 
 <p>Recently my coworker <a href="https://plus.google.com/+SimonHildebrandt/">Simon</a> gave me the following code:</p>
-<pre class="highlight plaintext"><code>parse_git_branch() {
+<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+</pre></td><td class="rouge-code"><pre>parse_git_branch() {
    git branch 2&gt; /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
 }
 export PS1="\W\[\033[32m\]\$(parse_git_branch)\[\033[00m\] $ "
+</pre></td></tr></tbody></table>
 </code></pre>
 <p>This code should go in your <code>~/.bash_profile</code>. Once you&#39;ve added it, you&#39;ll need to source with <code>$ source ~/.bash_profile</code> (or <code>$ . ~/.bash_profile</code> if you want to save a few key strokes!).</p>
 

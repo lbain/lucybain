@@ -99,8 +99,11 @@
 <p><em>Hmmm, if I own “subdomain.yoursite.com” and “yoursite.com” I might want to share resources. This same-origin policy could be really annoying!</em></p>
 
 <p>It’s possible to work around the subdomain problem. You can change the domain of a page, so it can access it’s parent’s resources:</p>
-<pre class="highlight plaintext"><code>// in the code on subdomain.yoursite.com
+<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+</pre></td><td class="rouge-code"><pre>// in the code on subdomain.yoursite.com
 document.domain = "yoursite.com";
+</pre></td></tr></tbody></table>
 </code></pre>
 <p>There are a couple other pieces to remember about changing the domain (mostly about the port). You can read about them <a href="https://developer.mozilla.org/en-US/docs/Web/Security/Same-origin_policy#Changing_origin">here</a>.</p>
 

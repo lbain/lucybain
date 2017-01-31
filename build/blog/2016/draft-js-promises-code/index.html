@@ -59,7 +59,19 @@
 </script>
 
     <div class="content">
-      <pre class="highlight plaintext"><code>function makeTurkey() {
+      <pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+</pre></td><td class="rouge-code"><pre>function makeTurkey() {
   return new Promise((resolve, reject) =&gt; {
     console.log('Making turkey');
     if (true) {
@@ -71,11 +83,21 @@
     }
   });
 }
+</pre></td></tr></tbody></table>
 </code></pre>
 <p>function makeTurkey() {
   return new Promise((resolve, reject) =&gt; {
     console.log(&#39;Making turkey&#39;);</p>
-<pre class="highlight plaintext"><code>setTimeout(() =&gt; {
+<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+</pre></td><td class="rouge-code"><pre>setTimeout(() =&gt; {
   if (true) {
     console.log('turkey - done!');
     resolve('resolved turkey');
@@ -84,6 +106,7 @@
     reject('rejected turkey');
   }
 }, 1000);
+</pre></td></tr></tbody></table>
 </code></pre>
 <p>});
 }</p>

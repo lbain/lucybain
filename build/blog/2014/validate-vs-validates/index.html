@@ -90,7 +90,28 @@
 <p><code>::ActiveModel::Validations</code> treats <code>validates</code> and <code>validate</code> differently. <code>validates</code> is used for normal validations <code>presence</code>, <code>length</code>, and the like. <code>validate</code> is used for custom validation methods <code>validate_name_starts_with_a</code>, or whatever crazy method you come up with. These methods are clearly useful and help keep data clean.</p>
 
 <p>That’s all well and good, except for one tiny thing:</p>
-<pre class="highlight plaintext"><code>  #lang: ruby
+<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+</pre></td><td class="rouge-code"><pre>  #lang: ruby
   require 'active_record'
 
   class Foo
@@ -111,6 +132,7 @@
       foo.valid?.should be_false
     end
   end
+</pre></td></tr></tbody></table>
 </code></pre>
 <p>That test <em>fails</em>.</p>
 

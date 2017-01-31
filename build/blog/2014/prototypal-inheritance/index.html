@@ -93,7 +93,54 @@
 <p>JS objects each have a “hook” to its parent object, or prototype. Obviously everything the child object defines it has access to, but it also can climb up the prototype tree to access its parent’s (or ancestor’s) methods and properties.</p>
 
 <p><strong>(the obligatory animal) Example:</strong></p>
-<pre class="highlight plaintext"><code>function Animal(){
+<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+</pre></td><td class="rouge-code"><pre>function Animal(){
   this.alive = true;
 }
 
@@ -140,6 +187,7 @@ mittens.move() // returns "Moving with tail"
   // on Cat and Mammal. Although Mammal defines the move function
   // "this" refers to mittens, so move() uses mitten's "hasTail"
   // attribute, which is set to true
+</pre></td></tr></tbody></table>
 </code></pre>
 <p>There’s a longer explaination from <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Inheritance_and_the_prototype_chain">Mozilla</a>.</p>
 

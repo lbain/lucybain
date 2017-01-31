@@ -97,51 +97,86 @@
 <p>JS DOM objects have properties. These properties are kind of like instance variables for the particular element. As such, a property can be different types (boolean, string, etc.). Properties can be accessed using jQuery’s <code>prop</code> method (as seen below) and also by interacting with the object in vanilla JS.</p>
 
 <p>Let’s take a look:</p>
-<pre class="highlight plaintext"><code>&lt;a href='page2.html' class='link classes' name='linkName' id='linkID'&gt;Hi&lt;/a&gt;
+<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+</pre></td><td class="rouge-code"><pre>&lt;a href='page2.html' class='link classes' name='linkName' id='linkID'&gt;Hi&lt;/a&gt;
 
 $('#linkID').prop('href'); // returns "http://example.com/page2.html"
 $('#linkID').prop('name'); // returns "linkName"
 $('#linkID').prop('id'); // returns "linkID"
 $('#linkID').prop('className'); // returns "link classes"
+</pre></td></tr></tbody></table>
 </code></pre>
 <p>As you can see, all of the properties we set in the HTML are available through <code>prop</code>. Other properties are available too, such as <code>style</code>, even though we didn’t explicitly set them.</p>
 
 <p>Properties can also be updated through the <code>prop</code> method:</p>
-<pre class="highlight plaintext"><code>&lt;a href='page2.html'&gt;Hi&lt;/a&gt;
+<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+</pre></td><td class="rouge-code"><pre>&lt;a href='page2.html'&gt;Hi&lt;/a&gt;
 
 $('#linkID').prop('href', 'page1.html');
 $('#linkID').prop('href'); // returns "http://example.com/page1.html"
+</pre></td></tr></tbody></table>
 </code></pre>
 <p><strong>What is an attribute?</strong></p>
 
 <p>Attributes are in the HTML itself, rather than in the DOM. They are very similar to properties, but not quite as good. When a property is available it’s recommended that you work with properties rather than attributes.</p>
 
 <p>An attribute is only ever a string, no other type.</p>
-<pre class="highlight plaintext"><code>&lt;input type="checkbox" checked=true/&gt;
+<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+</pre></td><td class="rouge-code"><pre>&lt;input type="checkbox" checked=true/&gt;
 
 $('input').prop('checked'); // returns true
 $('input').attr('checked'); // returns "checked"
+</pre></td></tr></tbody></table>
 </code></pre>
 <p>If an element has a default value, the attribute shows the default value even if the value has changed.</p>
-<pre class="highlight plaintext"><code>&lt;input type="text" name="username" value="user123"&gt;
+<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+</pre></td><td class="rouge-code"><pre>&lt;input type="text" name="username" value="user123"&gt;
 
 $('input').prop('value', '456user');
 $('input').prop('value'); // returns "456user"
 $('input').attr('value'); // returns "user123"
+</pre></td></tr></tbody></table>
 </code></pre>
 <p>Attributes can be useful when you want to set a custom attribute, that is, when there is no property associated.</p>
-<pre class="highlight plaintext"><code>&lt;input type="text"&gt;
+<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+</pre></td><td class="rouge-code"><pre>&lt;input type="text"&gt;
 
 $('input').attr('customAttribute', 'something custom');
 $('input').attr('customAttribute'); // returns "something custom"
 $('input').prop('customAttribute'); // returns undefined
+</pre></td></tr></tbody></table>
 </code></pre>
 <p>But, to be fair, you can also use custom properties (although this might be bad practice).</p>
-<pre class="highlight plaintext"><code>&lt;input type="text"&gt;
+<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+</pre></td><td class="rouge-code"><pre>&lt;input type="text"&gt;
 
 $('input').prop('customAttribute', 'something custom');
 $('input').prop('customAttribute'); // returns "something custom"
 $('input').attr('customAttribute'); // returns undefined
+</pre></td></tr></tbody></table>
 </code></pre>
 <p><strong>References</strong></p>
 

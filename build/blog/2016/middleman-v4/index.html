@@ -106,7 +106,40 @@
 <p>Good question, it wasn’t obvious to me either. The “full file name” is the normal name of the file (this file’s name is <code>12-10-middleman-v4</code>) which is simple enough. But the “list of desired templating extensions” needs to include the ultimate format you want your page to end up in (in this case, <code>.html</code>). This is new, you used to be able to just have <code>12-10-middleman-v4.md</code>, but now you need the full <code>12-10-middleman-v4.html.md</code>.</p>
 
 <p>Updating all your files to add a <code>.html</code> before the previous extension is more than a little annoying. So I wrote a little script to help me out:</p>
-<pre class="highlight ruby"><code><span class="n">path_to_project</span> <span class="o">=</span> <span class="s2">""</span> <span class="c1"># FILL ME IN</span>
+<pre class="highlight ruby"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+</pre></td><td class="rouge-code"><pre><span class="n">path_to_project</span> <span class="o">=</span> <span class="s2">""</span> <span class="c1"># FILL ME IN</span>
 
 <span class="c1"># Step 1: get a list of all the extensions you use</span>
 
@@ -139,6 +172,7 @@
   <span class="c1"># uncomment to make actual changes</span>
   <span class="c1"># File.rename(file, new_name)</span>
 <span class="k">end</span>
+</pre></td></tr></tbody></table>
 </code></pre>
 <p>You can find it <a href="https://gist.github.com/lbain/5ce9ef81f6a3ce6f3b4b84774f9a63d8">here</a>.</p>
 
@@ -165,7 +199,15 @@
 <h2><code>&lt;pre&gt;&lt;code&gt;</code> wrapping</h2>
 
 <p>Last of all I found the updated <a href="https://github.com/vmg/redcarpet">Redcarpet gem</a> now wraps all code in <code>&lt;code&gt;</code> tags. Now you’d think this wasn’t a big deal, but it really messed with my head. What used to happen was...</p>
-<pre class="highlight plaintext"><code>`single ticks`
+<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+</pre></td><td class="rouge-code"><pre>`single ticks`
 &lt;code&gt;single ticks&lt;/code&gt;
 
 
@@ -173,12 +215,18 @@
 triple ticks
 ```
 &lt;pre&gt;triple ticks&lt;/pre&gt;
+</pre></td></tr></tbody></table>
 </code></pre>
 <p>But now the ``` is different:</p>
-<pre class="highlight plaintext"><code>```
+<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+</pre></td><td class="rouge-code"><pre>```
 triple ticks
 ```
 &lt;pre&gt;&lt;code&gt;triple ticks&lt;/code&gt;&lt;/pre&gt;
+</pre></td></tr></tbody></table>
 </code></pre>
 <p>Unfortunately all my styling relied on the <code>&lt;code&gt;</code> only being used inline and the <code>&lt;pre&gt;</code> only being used for code blocks. It <a href="https://github.com/lbain/lucybain/commit/945fd5c249731572e1c9ebeb2a3a7e97351de2cd">wasn’t hard to fix</a>, but it make my blog posts look weird and caused a good deal of despair.</p>
 

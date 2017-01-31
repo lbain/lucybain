@@ -97,11 +97,17 @@
 <p>Event delegation is when you bind an event listener to a parent (or ancestor) element rather than the element(s) you are particularly interested in. When the event is triggered you can check the event target to make sure it was actually the triggered on the element of interest. In general this would be inefficient as you’re now listening to events on the parent, and have to filter out any that aren’t on the particular element of interest. However, event delegation is particularly useful when you have many siblings (or decedents of the ancestor) that you’re interested in.</p>
 
 <p>A simple example is as follows:</p>
-<pre class="highlight plaintext"><code>&lt;ul&gt;
+<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+</pre></td><td class="rouge-code"><pre>&lt;ul&gt;
   &lt;li&gt; First list element &lt;/li&gt;
   &lt;li&gt; Second list element &lt;/li&gt;
   &lt;li&gt; Third list element &lt;/li&gt;
 &lt;/ul&gt;
+</pre></td></tr></tbody></table>
 </code></pre>
 <p>While it would be possible to bind to the individual <code>li</code> elements it would require 3 listeners. Using event delegation it is possible to bind one event listener to the <code>ul</code> element and just check if the event’s target is an li element (very likely in this case...).</p>
 

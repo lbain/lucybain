@@ -97,12 +97,19 @@
 <p>When you check if a certain feature exists, that’s feature detection.</p>
 
 <p>We need to write code that checks if features exist in JS since different browsers have different implementations, something like this:</p>
-<pre class="highlight plaintext"><code>var text;
+<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+</pre></td><td class="rouge-code"><pre>var text;
 if(typeof(Text) === "function"){
     text = new Text('Oh, how quick that fox was!');
 } else {
     text = 'Oh, how quick that fox was!';
 }
+</pre></td></tr></tbody></table>
 </code></pre>
 <p>That means you can be confident you&#39;ve covered all of your bases with different browser implementations.</p>
 
@@ -113,10 +120,15 @@ if(typeof(Text) === "function"){
 <p>The general thought process goes like this:</p>
 
 <p><em>Chrome implements the <code>Text</code> function. I also know Chrome doesn’t have <code>applyElement</code> like IE does. So I&#39;ll write code like...</em></p>
-<pre class="highlight plaintext"><code>if(typeof applyElement != 'undefined') {
+<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+</pre></td><td class="rouge-code"><pre>if(typeof applyElement != 'undefined') {
     // now I know I'm not in IE, I'll just assume Text is available
     text = new Text('Oh, how quick that fox was!');
 }
+</pre></td></tr></tbody></table>
 </code></pre>
 <p>But oops! Someone looked at that code in Firefox which doesn’t implement <code>applyElement</code> or <code>Text</code>! They got an error :(</p>
 
@@ -127,7 +139,9 @@ if(typeof(Text) === "function"){
 <p><strong>What is the UA string?</strong></p>
 
 <p>“UA” stands for user agent, which means the browser (and a whole lot of other stuff). Mine looks like this:</p>
-<pre class="highlight plaintext"><code>Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.71
+<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre>Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.71
+</pre></td></tr></tbody></table>
 </code></pre>
 <p>(You can find your user string at <a href="http://whatsmyuseragent.com/">whatsmyuseragent.com</a>.)</p>
 

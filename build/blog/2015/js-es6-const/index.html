@@ -103,11 +103,17 @@
 <p>Constants are like variables in that a value can be assigned to them. They are unlike variables in that their value cannot be changed after the a value has been assigned to them. (There’s a lot more that could be said about this, but I’ll leave it there since it’s enough to get through this post.)</p>
 
 <p>In sudo code it would look kinda like this:</p>
-<pre class="highlight plaintext"><code>variable = 1
+<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+</pre></td><td class="rouge-code"><pre>variable = 1
 constant = 2
 
 variable = 3 // All good since variables can change
 constant = 4 // Error since constants can't change
+</pre></td></tr></tbody></table>
 </code></pre>
 <h2>Let’s talk about JS</h2>
 
@@ -120,42 +126,70 @@ constant = 4 // Error since constants can't change
 <h3>Basic usage</h3>
 
 <p>ES6 introduced a new <code>const</code> keyword to behave like a constant. Something that is defined <code>const</code> can only be assigned once.</p>
-<pre class="highlight plaintext"><code>const cat = 'meow';
+<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+</pre></td><td class="rouge-code"><pre>const cat = 'meow';
 cat = 'woof';
 console.log(cat); // logs 'meow'
+</pre></td></tr></tbody></table>
 </code></pre>
 <p><em>But what if I try something tricky?</em></p>
 
 <p>There’re are a couple of ways you could try to beat the system, but ES6 has covered them.</p>
 
 <p>Reuse the <code>const</code> keyword:</p>
-<pre class="highlight plaintext"><code>const cat = 'meow';
+<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+</pre></td><td class="rouge-code"><pre>const cat = 'meow';
 const cat = 'woof';
 console.log(cat); // logs 'meow'
+</pre></td></tr></tbody></table>
 </code></pre>
 <p>Change a constant to a variable:</p>
-<pre class="highlight plaintext"><code>const cat = 'meow';
+<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+</pre></td><td class="rouge-code"><pre>const cat = 'meow';
 var cat = 'woof';
 console.log(cat); // logs 'meow'
+</pre></td></tr></tbody></table>
 </code></pre>
 <p>Declare a constant without defining it:</p>
-<pre class="highlight plaintext"><code>const cat; // SyntaxError
+<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre>const cat; // SyntaxError
+</pre></td></tr></tbody></table>
 </code></pre>
 <p>Use block scope:</p>
-<pre class="highlight plaintext"><code>const cat = 'meow';
+<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+</pre></td><td class="rouge-code"><pre>const cat = 'meow';
 if (true) {
   const cat = 'woof';
 }
 console.log(cat); // logs meow
+</pre></td></tr></tbody></table>
 </code></pre>
 <p>Use function scope:</p>
-<pre class="highlight plaintext"><code>const cat = 'meow';
+<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+</pre></td><td class="rouge-code"><pre>const cat = 'meow';
 function testConsts () {
   const cat = 'woof';
   console.log(cat)
 }
 testConsts(); // logs woof
 console.log(cat); // logs meow
+</pre></td></tr></tbody></table>
 </code></pre>
 <p>(Hopefully those last couple weren’t a surprise because JS uses <a href="http://lucybain.com/blog/2015/js-es6-let-vs-var/">function scoping</a>.)</p>
 
@@ -170,14 +204,22 @@ console.log(cat); // logs meow
 <p>Some object types can be changed without assigning again. Let’s look at a couple.</p>
 
 <p>Arrays:</p>
-<pre class="highlight plaintext"><code>const animals = [];
+<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+</pre></td><td class="rouge-code"><pre>const animals = [];
 animals.push('cat', 'dog');
 console.log(animals); // ['cat', 'dog']
+</pre></td></tr></tbody></table>
 </code></pre>
 <p>Objects:</p>
-<pre class="highlight plaintext"><code>const cat = {'sound': 'meow'};
+<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+</pre></td><td class="rouge-code"><pre>const cat = {'sound': 'meow'};
 cat.sound = 'woof'
 console.log(cat.sound); // 'meow'
+</pre></td></tr></tbody></table>
 </code></pre>
 <p>Any mutable object type will have this problem. The immutable types are: Boolean, Null, Undefined, Number, String, Symbol (the primitive types).</p>
 

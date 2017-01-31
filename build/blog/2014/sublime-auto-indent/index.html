@@ -88,10 +88,15 @@
     <p>I recently discovered how to get Sublime to fix indentations for you! Since I spend a certain amount of time each day pushing characters left and right this was pretty exciting. Hope you find it useful!</p>
 
 <p>In Sublime, under <code>Preference</code> select <code>Key Bindings - User</code>. If you&#39;ve got anything in there already, just add the <code>{ &quot;keys&quot;... }</code> section below. Otherwise you can replace the <code>[]</code> with:</p>
-<pre class="highlight plaintext"><code>[
+<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+</pre></td><td class="rouge-code"><pre>[
   { "keys": ["super+i"],
     "command": "reindent"}
 ]
+</pre></td></tr></tbody></table>
 </code></pre>
 <p>Now you can use <code>cmd + i</code> (mac), or <code>ctrl + i</code> (windows) to auto indent your code. It’s not always perfect, but it’s helped me with my rails code.</p>
 

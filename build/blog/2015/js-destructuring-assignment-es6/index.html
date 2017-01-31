@@ -95,7 +95,17 @@
 <p>Since this is syntatic sugar, it’s possible to do everything with vanilla JS. We’re not introducing anything new here, just making existing things easier to do.</p>
 
 <p>In vanilla JS we can assign array values to variables like this:</p>
-<pre class="highlight plaintext"><code>var a, b, c;
+<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+</pre></td><td class="rouge-code"><pre>var a, b, c;
 var arr = [1, 2, 3];
 
 a = arr[0];
@@ -105,9 +115,18 @@ c = arr[2];
 console.log(a); // logs 1
 console.log(b); // logs 2
 console.log(c); // logs 3
+</pre></td></tr></tbody></table>
 </code></pre>
 <p>There’s nothing wrong with this, but it’s cumbersome and not quite as nice as...</p>
-<pre class="highlight plaintext"><code>let a, b, c;
+<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+</pre></td><td class="rouge-code"><pre>let a, b, c;
 let arr = [1, 2, 3];
 
 [a, b, c] = arr;
@@ -115,14 +134,34 @@ let arr = [1, 2, 3];
 console.log(a); // logs 1
 console.log(b); // logs 2
 console.log(c); // logs 3
+</pre></td></tr></tbody></table>
 </code></pre>
 <p>Here you can see that <code>a</code>, <code>b</code>, and <code>c</code> were assigned based on the content of <code>arr</code>. It’s even easier to read when it’s written like this:</p>
-<pre class="highlight plaintext"><code>[a, b, c] = [1, 2, 3];
+<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre>[a, b, c] = [1, 2, 3];
+</pre></td></tr></tbody></table>
 </code></pre>
 <p><em>That’s great, but what’s the <strong>real</strong> code?</em></p>
 
 <p>You caught me, we can’t run the sugary code above directly in browsers yet. Since we need to put the code through a compiler it’s a good idea to see what actually gets run in the browser.</p>
-<pre class="highlight plaintext"><code>"use strict";
+<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+</pre></td><td class="rouge-code"><pre>"use strict";
 
 var _slicedToArray = (function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i &amp;&amp; _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n &amp;&amp; _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; })();
 
@@ -139,6 +178,7 @@ a = _arr2[0];
 b = _arr2[1];
 c = _arr2[2];
 _arr;
+</pre></td></tr></tbody></table>
 </code></pre>
 <p><em>Hmmm, not super readable... what’s with the <code>_slicedToArray</code> function?</em></p>
 
@@ -147,7 +187,15 @@ _arr;
 <h2>Ignore the ends of an array</h2>
 
 <p>It’s also possible to ignore the last items of an array:</p>
-<pre class="highlight plaintext"><code>let a, b, c;
+<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+</pre></td><td class="rouge-code"><pre>let a, b, c;
 let arr = [1, 2, 3, 4, 5];
 
 [a, b, c] = arr;
@@ -155,9 +203,27 @@ let arr = [1, 2, 3, 4, 5];
 console.log(a); // logs 1
 console.log(b); // logs 2
 console.log(c); // logs 3
+</pre></td></tr></tbody></table>
 </code></pre>
 <p>Here we didn’t care what the fourth or fifth items in the array were, only the first three items were of interest. With the longer array the compiled code now looks like:</p>
-<pre class="highlight plaintext"><code>"use strict";
+<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+</pre></td><td class="rouge-code"><pre>"use strict";
 
 var _slicedToArray = (function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i &amp;&amp; _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n &amp;&amp; _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; })();
 
@@ -174,6 +240,7 @@ a = _arr2[0];
 b = _arr2[1];
 c = _arr2[2];
 _arr;
+</pre></td></tr></tbody></table>
 </code></pre>
 <p>Again, the line of interest is <code>_slicedToArray(_arr, 3);</code> and again the number of interest is <code>3</code>. Notice that although the array now contains five items the compiled JS knows we&#39;re only interested in the first three for assignment. That’s why the second parameter to <code>_slicedToArray</code> is still <code>3</code> rather than five.</p>
 
@@ -182,7 +249,15 @@ _arr;
 <p><em>OK, so far we can assign all the items in an array and just the first <strong>n</strong>. What else can this do?</em></p>
 
 <p>Let’s look at assigning only certain items.</p>
-<pre class="highlight plaintext"><code>let a, b, c;
+<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+</pre></td><td class="rouge-code"><pre>let a, b, c;
 let arr = [1, 2, 3, 4, 5];
 
 [a,,b,,c] = arr;
@@ -190,9 +265,20 @@ let arr = [1, 2, 3, 4, 5];
 console.log(a); // logs 1
 console.log(b); // logs 3
 console.log(c); // logs 5
+</pre></td></tr></tbody></table>
 </code></pre>
 <p>Here we ignored items <code>2</code> and <code>4</code> from the array, but assigned the other elements. Again, nothing we couldn’t do with vanilla JS:</p>
-<pre class="highlight plaintext"><code>var a, b, c;
+<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+</pre></td><td class="rouge-code"><pre>var a, b, c;
 var arr = [1, 2, 3, 4, 5, 6];
 
 a = arr[0];
@@ -202,22 +288,39 @@ c = arr[4];
 console.log(a); // logs 1
 console.log(b); // logs 3
 console.log(c); // logs 5
+</pre></td></tr></tbody></table>
 </code></pre>
 <p>But the ES6 way is a little bit shorter (and sweeter!).</p>
 
 <h2>Assign “the rest”</h2>
 
 <p>A handy feature of ES6 is <code>...</code> which says “everything else.” We can use this for destructing assignment as well:</p>
-<pre class="highlight plaintext"><code>let a, b, c;
+<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+</pre></td><td class="rouge-code"><pre>let a, b, c;
 let arr = [1, 2, 3];
 
 [a,...b] = arr;
 
 console.log(a); // logs 1
 console.log(b); // logs [2, 3]
+</pre></td></tr></tbody></table>
 </code></pre>
 <p>And of course you can use it along with the other features:</p>
-<pre class="highlight plaintext"><code>let a, b, c;
+<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+</pre></td><td class="rouge-code"><pre>let a, b, c;
 let arr = [1, 2, 3, 4, 5, 6];
 
 [a,,b,...c] = arr;
@@ -225,16 +328,24 @@ let arr = [1, 2, 3, 4, 5, 6];
 console.log(a); // logs 1
 console.log(b); // logs 3
 console.log(c); // logs [4, 5, 6]
+</pre></td></tr></tbody></table>
 </code></pre>
 <h2>With objects</h2>
 
 <p>I’ve seen this feature used more with arrays than objects, but it is possible to use destructuring assignment with objects as well. Let’s take a look:</p>
-<pre class="highlight plaintext"><code>let obj = {cat: 'meow', dog: 'woof', mouse: 'squeak'};
+<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+</pre></td><td class="rouge-code"><pre>let obj = {cat: 'meow', dog: 'woof', mouse: 'squeak'};
 
 let {cat, dog, mouse} = obj;
 console.log(a); // logs 'meow'
 console.log(b); // logs 'woof'
 console.log(c); // logs 'squeak'
+</pre></td></tr></tbody></table>
 </code></pre>
 <p><em>Weird, I tried a version in the REPL and it didn’t work...</em></p>
 
@@ -243,48 +354,76 @@ console.log(c); // logs 'squeak'
 <h3>Need the key names</h3>
 
 <p>This doesn&#39;t work:</p>
-<pre class="highlight plaintext"><code>let obj = {cat: 'meow', dog: 'woof', mouse: 'squeak'};
+<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+</pre></td><td class="rouge-code"><pre>let obj = {cat: 'meow', dog: 'woof', mouse: 'squeak'};
 
 let {a, b, c} = obj;
+</pre></td></tr></tbody></table>
 </code></pre>
 <p>This doesn’t work because object keys aren’t ordered. There’s no way for JS to know that you want <code>cat</code> to be first because there is no concept of “first” for objects.</p>
 
 <p>This does work:</p>
-<pre class="highlight plaintext"><code>let obj = {cat: 'meow', dog: 'woof', mouse: 'squeak'};
+<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+</pre></td><td class="rouge-code"><pre>let obj = {cat: 'meow', dog: 'woof', mouse: 'squeak'};
 
 let {cat: a, dog: b, mouse: c} = obj;
+</pre></td></tr></tbody></table>
 </code></pre>
 <h3>Special syntax for pre-declare variables</h3>
 
 <p>This doesn’t work:</p>
-<pre class="highlight plaintext"><code>let a, b, c
+<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+</pre></td><td class="rouge-code"><pre>let a, b, c
 let obj = {cat: 'meow', dog: 'woof', mouse: 'squeak'};
 
 {cat: a, dog: b, mouse: c} = obj;
+</pre></td></tr></tbody></table>
 </code></pre>
 <p>I was particularly confused about this. So I asked a <a href="http://stackoverflow.com/questions/34836126/can-i-pre-declare-variables-for-destructuring-assignment-of-objects">question</a> about it and got an answer in no time (thank you Stackoverflow!).</p>
 
 <p>Since there’s no keyword before the first <code>{</code> in the line <code>{cat: a, dog: b, mouse: c} = obj;</code> the <code>{</code> is interpreted as opening a new block, rather than being part of an assignment operation. To overcome this we need to tell JS to interpret the <code>{</code> as part of the assignment by giving more syntax. This does work:</p>
-<pre class="highlight plaintext"><code>let a, b, c
+<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+</pre></td><td class="rouge-code"><pre>let a, b, c
 let obj = {cat: 'meow', dog: 'woof', mouse: 'squeak'};
 
 ({cat: a, dog: b, mouse: c} = obj);
+</pre></td></tr></tbody></table>
 </code></pre>
 <h2>Usage: Function returns</h2>
 
 <p>A really cool use for this feature is to easily process multiple results returned from a function. (Python typically uses tuples for this.)</p>
 
 <p>For example, a function can return multiple values:</p>
-<pre class="highlight plaintext"><code>function counting() {
+<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+</pre></td><td class="rouge-code"><pre>function counting() {
     return [1, 2, 3];
 }
+</pre></td></tr></tbody></table>
 </code></pre>
 <p>And when it get’s called the return values can be quickly assigned:</p>
-<pre class="highlight plaintext"><code>[a, b, c] = counting();
+<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+</pre></td><td class="rouge-code"><pre>[a, b, c] = counting();
 
 console.log(a); // logs 1
 console.log(b); // logs 2
 console.log(c); // logs 3
+</pre></td></tr></tbody></table>
 </code></pre>
 <p><em>Well that’s pretty handy!</em></p>
 

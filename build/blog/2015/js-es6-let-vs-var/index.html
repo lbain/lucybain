@@ -101,18 +101,37 @@
 <p><em>What does that mean?</em></p>
 
 <p>Well, here‘s an example of <strong>block</strong> level scoping in Ruby.</p>
-<pre class="highlight plaintext"><code>def testScope
+<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+</pre></td><td class="rouge-code"><pre>def testScope
     if true
         scope_tester = 1
         puts scope_tester # 1
     end
     puts scope_tester # nil
 end
+</pre></td></tr></tbody></table>
 </code></pre>
 <p>As you can see, the <code>scope_tester</code> in the if <strong>block</strong> only lived in the if block. It didn’t set the value of <code>scope_tester</code> outside the block. That’s because Ruby uses block level scoping which means the <code>scope_tester</code> in the block only lives in the block. It could have been called <code>inside_scope</code> for all it matters.</p>
 
 <p>Note that you can declare a variable out of the block level scope, use it in the block level scope, and those changes will be persisted. Here’s an example of that:</p>
-<pre class="highlight plaintext"><code>def test_scope
+<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+</pre></td><td class="rouge-code"><pre>def test_scope
     scope_tester = 0
     puts scope_tester # 0
 
@@ -123,24 +142,43 @@ end
 
     puts scope_tester # 1
 end
+</pre></td></tr></tbody></table>
 </code></pre>
 <p>That’s because variables are available through the block they are defined in. In this case the <code>test_scope</code> function’s block defines the boundaries for <code>scope_tester</code>.</p>
 
 <h2>Traditional JS’s <code>var</code></h2>
 
 <p>Now we’ll look at the <strong>function</strong> level scoping that JS uses:</p>
-<pre class="highlight plaintext"><code>function testScope() {
+<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+</pre></td><td class="rouge-code"><pre>function testScope() {
     if (true) {
         var scopeTester = 1;
         console.log(scopeTester); // 1
     }
     console.log(scopeTester); // 1 &lt;-- surprise!
 }
+</pre></td></tr></tbody></table>
 </code></pre>
 <p>Here the value of <code>scopeTester</code> is persisted through out of the if block. In fact, the single <code>scopeTester</code> variable is available throughout the entire <code>testScope</code> method. That’s because <a href="/blog/2014/hoisting/">JS uses hoisting</a> to define the variables.</p>
 
 <p>Note that this isn’t surprising when you use a variable that was defined out of the if block in the function:</p>
-<pre class="highlight plaintext"><code>function testScope() {
+<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+</pre></td><td class="rouge-code"><pre>function testScope() {
     var scopeTester = 0;
     console.log(scopeTester); // 0
 
@@ -150,6 +188,7 @@ end
     }
     console.log(scopeTester); // 1 &lt;-- not surprise!
 }
+</pre></td></tr></tbody></table>
 </code></pre>
 <p>For people who aren’t used to JS this use of scoping looks in consistent. Sometimes, like in the second example, you expect the change to persist outside of the if block, and sometimes, as in the first example, you don&#39;t.</p>
 
@@ -160,16 +199,33 @@ end
 <p>Let’s run through those examples again! Unfortunately ES6 isn’t properly implemented in browsers yet, so we can’t just chuck the ES6 code into the console like we normally would. However we can use <a href="https://babeljs.io/">Babel</a> to convert the ES6 code to normal JS code and see what would happen.</p>
 
 <p>ES6 code:</p>
-<pre class="highlight plaintext"><code>function testScope() {
+<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+</pre></td><td class="rouge-code"><pre>function testScope() {
     if (true) {
         let scopeTester = 1; // &lt;-- using let here!
         console.log(scopeTester); // 1
     }
     console.log(scopeTester); // undefined &lt;-- awesome!
 }
+</pre></td></tr></tbody></table>
 </code></pre>
 <p>Translates to:</p>
-<pre class="highlight plaintext"><code>"use strict";
+<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+</pre></td><td class="rouge-code"><pre>"use strict";
 
 function testScope() {
     if (true) {
@@ -178,11 +234,22 @@ function testScope() {
     }
     console.log(scopeTester); // undefined &lt;-- awesome!
 }
+</pre></td></tr></tbody></table>
 </code></pre>
 <p>As you can see, using <code>let</code> creates a whole new variable to make sure there is no naming conflict. Sweet - now the <code>scopeTester</code> variable is only available in the if block where it’s defined. This gives JS the consistent block level scoping that we’ve come to expect from other languages.</p>
 
 <p>Now we’ll look at the second example:</p>
-<pre class="highlight plaintext"><code>function testScope() {
+<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+</pre></td><td class="rouge-code"><pre>function testScope() {
     var scopeTester = 0;
     console.log(scopeTester); // 0
 
@@ -192,9 +259,22 @@ function testScope() {
     }
     console.log(scopeTester);
 }
+</pre></td></tr></tbody></table>
 </code></pre>
 <p>Translates to:</p>
-<pre class="highlight plaintext"><code>"use strict";
+<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+</pre></td><td class="rouge-code"><pre>"use strict";
 
 function testScope() {
     var scopeTester = 0;
@@ -206,6 +286,7 @@ function testScope() {
     }
     console.log(scopeTester); // 0
 }
+</pre></td></tr></tbody></table>
 </code></pre>
 <p>Again, we got a whole new variable inside the if block, so no need to worry about the unexpected function scope of <code>var</code>.</p>
 

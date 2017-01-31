@@ -106,20 +106,34 @@
 <p><strong>Global variables are particularly bad for JS.</strong></p>
 
 <p>Not only are all of those points above true (and a few others I didn’t include), but for JS specifically global variables can be particularly problematic. This is because JS defaults all variables to the global scope unless they are explicitly defined elsewhere. Here’s an example:</p>
-<pre class="highlight plaintext"><code>function badlyScoped() {
+<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+</pre></td><td class="rouge-code"><pre>function badlyScoped() {
     globalVariable = "I'm a global variable";
 }
 
 badlyScoped();
 console.log(globalVariable); // logs "I'm a global variable"
+</pre></td></tr></tbody></table>
 </code></pre>
 <p>Well isn’t that terrifying! We thought we were creating a local variable, since it was defined within a function, but nope! We forgot the <code>var</code> keyword, which would make the variable local. Here’s a corrected version:</p>
-<pre class="highlight plaintext"><code>function wellScoped() {
+<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+</pre></td><td class="rouge-code"><pre>function wellScoped() {
     var localVariable = "I'm a local variable";
 }
 
 wellScoped();
 console.log(localVariable); // throws: "localVariable is not defined"
+</pre></td></tr></tbody></table>
 </code></pre>
 <p>This is a quirk (<a href="http://www.amazon.com/JavaScript-Good-Parts-Douglas-Crockford/dp/0596517742">some say</a> a mistake) of JS. It makes global variables particularly dangerous since you might not even know you were creating one. So watch your back and don’t forget to use <code>var</code>!</p>
 

@@ -137,7 +137,15 @@
 <p>Let’s start with our timer example. It was recently Thanksgiving, so we’re going put on a Thanksgiving feast!</p>
 
 <p>First we need to roast the turkey:</p>
-<pre class="highlight javascript"><code><span class="kd">function</span> <span class="nx">makeTurkey</span><span class="p">()</span> <span class="p">{</span>
+<pre class="highlight javascript"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+</pre></td><td class="rouge-code"><pre><span class="kd">function</span> <span class="nx">makeTurkey</span><span class="p">()</span> <span class="p">{</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'Making turkey'</span><span class="p">);</span>
   <span class="nx">setTimeout</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
     <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'turkey - done!'</span><span class="p">);</span>
@@ -145,6 +153,7 @@
 <span class="p">}</span>
 
 <span class="nx">makeTurkey</span><span class="p">();</span>
+</pre></td></tr></tbody></table>
 </code></pre>
 <p><em>1 second to roast a turkey...?</em></p>
 
@@ -155,7 +164,15 @@
 <p>So far so good. We’re running asynchronous code without promises and not hitting any problems.</p>
 
 <p>But our Thanksgiving feast is pretty sad. Just a turkey. It needs some sides!</p>
-<pre class="highlight javascript"><code><span class="kd">function</span> <span class="nx">roastVeggies</span><span class="p">()</span> <span class="p">{</span>
+<pre class="highlight javascript"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+</pre></td><td class="rouge-code"><pre><span class="kd">function</span> <span class="nx">roastVeggies</span><span class="p">()</span> <span class="p">{</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'Roasting veggies'</span><span class="p">);</span>
   <span class="nx">setTimeout</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
     <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'veggies - done!'</span><span class="p">);</span>
@@ -163,9 +180,19 @@
 <span class="p">}</span>
 
 <span class="nx">roastVeggies</span><span class="p">();</span>
+</pre></td></tr></tbody></table>
 </code></pre>
 <p>Fantastic, now we can have a side of roast veggies. But we only have a small oven! We can’t roast the veggies and the turkey at the same time, so we’ll have to modify our code a little.</p>
-<pre class="highlight javascript"><code><span class="kd">function</span> <span class="nx">makeTurkey</span><span class="p">()</span> <span class="p">{</span>
+<pre class="highlight javascript"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+</pre></td><td class="rouge-code"><pre><span class="kd">function</span> <span class="nx">makeTurkey</span><span class="p">()</span> <span class="p">{</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'Making turkey'</span><span class="p">);</span>
   <span class="nx">setTimeout</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
     <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'turkey - done!'</span><span class="p">);</span>
@@ -174,17 +201,35 @@
 <span class="p">}</span>
 
 <span class="nx">makeTurkey</span><span class="p">();</span>
+</pre></td></tr></tbody></table>
 </code></pre>
 <p>Ok, we’re back on track for our feast! Except we don’t have any plates to eat off of - oops!</p>
-<pre class="highlight javascript"><code><span class="kd">function</span> <span class="nx">setTable</span><span class="p">()</span> <span class="p">{</span>
+<pre class="highlight javascript"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+</pre></td><td class="rouge-code"><pre><span class="kd">function</span> <span class="nx">setTable</span><span class="p">()</span> <span class="p">{</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'Setting table'</span><span class="p">);</span>
   <span class="nx">setTimeout</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
     <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'table - done!'</span><span class="p">);</span>
   <span class="p">},</span> <span class="mi">1000</span><span class="p">);</span>
 <span class="p">}</span>
+</pre></td></tr></tbody></table>
 </code></pre>
 <p>Of course, we only want to set the table when the turkey and veggies are done (we’re using the table as a work surface for dessert until we’re ready to eat). So again, we need to modify the code a bit:</p>
-<pre class="highlight javascript"><code><span class="kd">function</span> <span class="nx">makeTurkey</span><span class="p">()</span> <span class="p">{</span>
+<pre class="highlight javascript"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+</pre></td><td class="rouge-code"><pre><span class="kd">function</span> <span class="nx">makeTurkey</span><span class="p">()</span> <span class="p">{</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'Making turkey'</span><span class="p">);</span>
   <span class="nx">setTimeout</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
     <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'turkey - done!'</span><span class="p">);</span>
@@ -194,11 +239,21 @@
 <span class="p">}</span>
 
 <span class="nx">makeTurkey</span><span class="p">();</span>
+</pre></td></tr></tbody></table>
 </code></pre>
 <p><em>But that won&#39;t work, we need to wait for the veggies to finish roasting first</em></p>
 
 <p>Right you are, let’s fix that:</p>
-<pre class="highlight javascript"><code><span class="kd">function</span> <span class="nx">roastVeggies</span><span class="p">()</span> <span class="p">{</span>
+<pre class="highlight javascript"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+</pre></td><td class="rouge-code"><pre><span class="kd">function</span> <span class="nx">roastVeggies</span><span class="p">()</span> <span class="p">{</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'Roasting veggies'</span><span class="p">);</span>
   <span class="nx">setTimeout</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
     <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'veggies - done!'</span><span class="p">);</span>
@@ -207,9 +262,34 @@
 <span class="p">}</span>
 
 <span class="nx">roastVeggies</span><span class="p">();</span>
+</pre></td></tr></tbody></table>
 </code></pre>
 <p>Let’s write out the full code in all it’s glory:</p>
-<pre class="highlight javascript"><code><span class="kd">function</span> <span class="nx">makeTurkey</span><span class="p">()</span> <span class="p">{</span>
+<pre class="highlight javascript"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+</pre></td><td class="rouge-code"><pre><span class="kd">function</span> <span class="nx">makeTurkey</span><span class="p">()</span> <span class="p">{</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'Making turkey'</span><span class="p">);</span>
   <span class="nx">setTimeout</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
     <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'turkey - done!'</span><span class="p">);</span>
@@ -233,16 +313,24 @@
 <span class="p">}</span>
 
 <span class="nx">makeTurkey</span><span class="p">();</span>
+</pre></td></tr></tbody></table>
 </code></pre>
 <p>Code on <a href="https://codepen.io/lbain/pen/QGaJXo">CodePen</a></p>
 
 <p>Excellent! We get the output:</p>
-<pre class="highlight plaintext"><code>Making turkey
+<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+</pre></td><td class="rouge-code"><pre>Making turkey
 turkey - done!
 Roasting veggies
 veggies - done!
 Setting table
 table - done!
+</pre></td></tr></tbody></table>
 </code></pre>
 <p>So everything works as expected.</p>
 
@@ -255,24 +343,59 @@ table - done!
 <p>Let’s make our requirements a bit more complicated. Now we can roast our veggies and the turkey at the same time (we got a bigger oven), but we still only want to set the table when all the cooking is finished.</p>
 
 <p>First we’ll update the <code>makeTurkey</code> code so it doesn’t call <code>roastVeggies</code></p>
-<pre class="highlight javascript"><code><span class="kd">function</span> <span class="nx">makeTurkey</span><span class="p">()</span> <span class="p">{</span>
+<pre class="highlight javascript"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+</pre></td><td class="rouge-code"><pre><span class="kd">function</span> <span class="nx">makeTurkey</span><span class="p">()</span> <span class="p">{</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'Making turkey'</span><span class="p">);</span>
   <span class="nx">setTimeout</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
     <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'turkey - done!'</span><span class="p">);</span>
     <span class="c1">// roastVeggies(); &lt;-- This line no longer needed</span>
   <span class="p">},</span> <span class="mi">1000</span><span class="p">);</span>
 <span class="p">}</span>
+</pre></td></tr></tbody></table>
 </code></pre>
 <p>Next we’ll update the main project execution to call <code>roastVeggies</code> at the same time as <code>makeTurkey</code>.</p>
-<pre class="highlight javascript"><code><span class="nx">makeTurkey</span><span class="p">();</span>
+<pre class="highlight javascript"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+</pre></td><td class="rouge-code"><pre><span class="nx">makeTurkey</span><span class="p">();</span>
 <span class="nx">roastVeggies</span><span class="p">();</span>
+</pre></td></tr></tbody></table>
 </code></pre>
 <p><em>But how do we know when to set the table?</em></p>
 
 <p>Well, for now we can leave <code>setTable</code> where it is in the <code>roastVeggies</code> call. Since <code>roastVeggies</code> and <code>makeTurkey</code> both take <code>1000ms</code> to complete it doesn’t much matter where the set table is called from. (Note: this isn’t entirely accurate as one must finish before the other, but we’ll ignore that race condition. For now!)</p>
 
 <p>Ok, so here’s our final code:</p>
-<pre class="highlight javascript"><code><span class="kd">function</span> <span class="nx">makeTurkey</span><span class="p">()</span> <span class="p">{</span>
+<pre class="highlight javascript"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+</pre></td><td class="rouge-code"><pre><span class="kd">function</span> <span class="nx">makeTurkey</span><span class="p">()</span> <span class="p">{</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'Making turkey'</span><span class="p">);</span>
   <span class="nx">setTimeout</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
     <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'turkey - done!'</span><span class="p">);</span>
@@ -296,16 +419,24 @@ table - done!
 
 <span class="nx">makeTurkey</span><span class="p">();</span>
 <span class="nx">roastVeggies</span><span class="p">();</span>
+</pre></td></tr></tbody></table>
 </code></pre>
 <p>Code on <a href="https://codepen.io/lbain/pen/rWpoax">CodePen</a></p>
 
 <p>And our output is:</p>
-<pre class="highlight plaintext"><code>Making turkey
+<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+</pre></td><td class="rouge-code"><pre>Making turkey
 Roasting veggies
 turkey - done!
 veggies - done!
 Setting table
 table - done!
+</pre></td></tr></tbody></table>
 </code></pre>
 <p>Which is exactly what we want! The turkey and veggies start roasting at the same time, finish some time later, and then we set the table.</p>
 
@@ -320,12 +451,30 @@ table - done!
 <h3>Round three</h3>
 
 <p>First we’ll write a quick random number generator:</p>
-<pre class="highlight javascript"><code><span class="kd">function</span> <span class="nx">random</span><span class="p">(</span><span class="nx">min</span><span class="p">,</span> <span class="nx">max</span><span class="p">)</span> <span class="p">{</span>
+<pre class="highlight javascript"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+</pre></td><td class="rouge-code"><pre><span class="kd">function</span> <span class="nx">random</span><span class="p">(</span><span class="nx">min</span><span class="p">,</span> <span class="nx">max</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">return</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">random</span><span class="p">()</span> <span class="o">*</span> <span class="p">(</span><span class="nx">max</span> <span class="o">-</span> <span class="nx">min</span><span class="p">)</span> <span class="o">+</span> <span class="nx">min</span><span class="p">;</span>
 <span class="p">}</span>
+</pre></td></tr></tbody></table>
 </code></pre>
 <p>Next, we’ll set <code>roastTurkey</code> and <code>roastVeggies</code> to take a random amount of time between 100 and 2000 ms.</p>
-<pre class="highlight javascript"><code><span class="kd">function</span> <span class="nx">makeTurkey</span><span class="p">()</span> <span class="p">{</span>
+<pre class="highlight javascript"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+</pre></td><td class="rouge-code"><pre><span class="kd">function</span> <span class="nx">makeTurkey</span><span class="p">()</span> <span class="p">{</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'Making turkey'</span><span class="p">);</span>
   <span class="nx">setTimeout</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
     <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'turkey - done!'</span><span class="p">);</span>
@@ -339,14 +488,22 @@ table - done!
     <span class="nx">setTable</span><span class="p">();</span>
   <span class="p">},</span> <span class="nx">random</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">2000</span><span class="p">));</span> <span class="c1">// &lt;-- line updated!</span>
 <span class="p">}</span>
+</pre></td></tr></tbody></table>
 </code></pre>
 <p>Then we’ll run the code and see what happens! (It might take a few attempts to get result below.)</p>
-<pre class="highlight plaintext"><code>Making turkey
+<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+</pre></td><td class="rouge-code"><pre>Making turkey
 Roasting veggies
 veggies - done!
 Setting table
 turkey - done!
 table - done!
+</pre></td></tr></tbody></table>
 </code></pre>
 <p><em>Oh no! We’ve started on the table before the turkey was done!</em></p>
 
@@ -368,7 +525,25 @@ table - done!
 <p><strong>Warning!</strong> This is not good code! The whole point of this exercise is to find an example where promises would be a better solution. Do not try this at home!</p>
 
 <p>We’ll start by keeping track of the two timers and clearing them out when the timers have expired:</p>
-<pre class="highlight javascript"><code><span class="kd">let</span> <span class="nx">turkeyTimer</span><span class="p">;</span>
+<pre class="highlight javascript"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+</pre></td><td class="rouge-code"><pre><span class="kd">let</span> <span class="nx">turkeyTimer</span><span class="p">;</span>
 <span class="kd">let</span> <span class="nx">veggieTimer</span><span class="p">;</span>
 
 <span class="kd">function</span> <span class="nx">makeTurkey</span><span class="p">()</span> <span class="p">{</span>
@@ -386,6 +561,7 @@ table - done!
     <span class="nx">veggieTimer</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>  <span class="c1">// &lt;-- new line</span>
   <span class="p">},</span> <span class="nx">random</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">2000</span><span class="p">));</span>
 <span class="p">}</span>
+</pre></td></tr></tbody></table>
 </code></pre>
 <p>You’ll notice these are global variables.</p>
 
@@ -394,15 +570,61 @@ table - done!
 <p>That’s right, but we’ll need to access them in just a moment.</p>
 
 <p>Alright, now we’ve got our timers all set up we need to check for when they’ve completed. Again, we don’t know when this will happen so we have to check the timers every millisecond to find when they’ve finished. Once they’ve finished we’ll set the table and clear out the check method.</p>
-<pre class="highlight javascript"><code><span class="kr">const</span> <span class="nx">checkReady</span> <span class="o">=</span> <span class="nx">setInterval</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+<pre class="highlight javascript"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+</pre></td><td class="rouge-code"><pre><span class="kr">const</span> <span class="nx">checkReady</span> <span class="o">=</span> <span class="nx">setInterval</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
   <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">turkeyTimer</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="nx">veggieTimer</span><span class="p">)</span> <span class="p">{</span>
     <span class="nx">setTable</span><span class="p">();</span>
     <span class="nx">clearInterval</span><span class="p">(</span><span class="nx">checkReady</span><span class="p">);</span>
   <span class="p">}</span>
 <span class="p">},</span> <span class="mi">1</span><span class="p">);</span>
+</pre></td></tr></tbody></table>
 </code></pre>
 <p>So the final version of this round looks like:</p>
-<pre class="highlight javascript"><code><span class="kd">let</span> <span class="nx">turkeyTimer</span><span class="p">;</span>
+<pre class="highlight javascript"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+</pre></td><td class="rouge-code"><pre><span class="kd">let</span> <span class="nx">turkeyTimer</span><span class="p">;</span>
 <span class="kd">let</span> <span class="nx">veggieTimer</span><span class="p">;</span>
 
 <span class="kd">function</span> <span class="nx">random</span><span class="p">(</span><span class="nx">min</span><span class="p">,</span> <span class="nx">max</span><span class="p">)</span> <span class="p">{</span>
@@ -441,6 +663,7 @@ table - done!
     <span class="nx">clearInterval</span><span class="p">(</span><span class="nx">checkReady</span><span class="p">);</span>
   <span class="p">}</span>
 <span class="p">},</span> <span class="mi">1</span><span class="p">);</span>
+</pre></td></tr></tbody></table>
 </code></pre>
 <p>Code on <a href="https://codepen.io/lbain/pen/ObzrPB">CodePen</a></p>
 

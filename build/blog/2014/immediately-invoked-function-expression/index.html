@@ -99,26 +99,51 @@
 <p>An IIFE is an anonymous function that is created and then immediately invoked. It’s not called from anywhere else (hence why it’s anonymous), but runs just after being created.</p>
 
 <p>Example:</p>
-<pre class="highlight plaintext"><code>(function () {
+<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+</pre></td><td class="rouge-code"><pre>(function () {
   return 5;
 } ());
 // returns 5 right away
+</pre></td></tr></tbody></table>
 </code></pre>
 <p>They can be used to guard against <strong>unintended effects of hoisting:</strong></p>
 
 <p>The following code snip-it is from <a href="https://en.wikipedia.org/wiki/Immediately-invoked_function_expression#Evaluation_context">Wikipedia</a>. I didn’t understand how it worked right away, but I wrote the explanation following the snip-it to clear up my confusion.</p>
-<pre class="highlight plaintext"><code>var v = 1;
+<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+</pre></td><td class="rouge-code"><pre>var v = 1;
 var getValue = (function(x) {
   return function() { return x; };
 }(v));
 v = 2;
 
 getValue(); // returns 1
+</pre></td></tr></tbody></table>
 </code></pre>
 <p><em>I can’t even read that, what do all the nested functions mean?</em></p>
 
 <p>Let’s investigate the IIFE assigned to <code>getValue</code> by rewriting it with a helper function:</p>
-<pre class="highlight plaintext"><code>var v = 1;
+<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+</pre></td><td class="rouge-code"><pre>var v = 1;
 
 function helperFunction(x) {
   return function() {
@@ -130,6 +155,7 @@ var getValue = helperFunction(v); // returns an anonymous function
 v = 2;
 
 getValue(); // invokes that function
+</pre></td></tr></tbody></table>
 </code></pre>
 <p><em>What happens when the <code>var getValue = helperFunction(v)</code> line is called?</em></p>
 
@@ -138,38 +164,75 @@ getValue(); // invokes that function
 <li><code>helperFunction</code> gets executed, with the param <code>x</code> set to 1</li>
 <li>The anonymous function returned by <code>helperFunction</code> gets created, still with <code>x</code> set to 1</li>
 <li><p><code>getValue</code> is set to the result of <code>helperFunction</code>, which is</p>
-<pre class="highlight plaintext"><code>function() {
+<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+</pre></td><td class="rouge-code"><pre>function() {
   return 1;
 };
+</pre></td></tr></tbody></table>
 </code></pre></li>
 </ol>
 
 <p>So now things look like this:</p>
-<pre class="highlight plaintext"><code>var v = 1;
+<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+</pre></td><td class="rouge-code"><pre>var v = 1;
 var getValue = function() {
                  return 1;
                };
 v = 2;
 
 getValue();
+</pre></td></tr></tbody></table>
 </code></pre>
 <p>And from here it is hardly surprising that <code>getValue()</code> returns 1.</p>
 
 <p><em>What would have happened without the IIFE?</em></p>
-<pre class="highlight plaintext"><code>var v = 1;
+<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+</pre></td><td class="rouge-code"><pre>var v = 1;
 var getValue = function() {
                   return v;
                };
 v = 2;
 
 getValue(); // returns 2
+</pre></td></tr></tbody></table>
 </code></pre>
 <p>Although the <code>return v</code> is written when <code>v</code> is 1, by the time <code>getValue</code> is called <code>v</code> has been set to 2. Thus <code>getValue()</code> actually returns 2.</p>
 
 <p>IIFEs can also be used to enforce <strong>private variables and methods:</strong></p>
 
 <p>Again, the example is taken by <a href="https://en.wikipedia.org/wiki/Immediately-invoked_function_expression#Establishing_private_variables_and_accessors">Wikipedia</a> (slightly simplified), and the explanation is my own.</p>
-<pre class="highlight plaintext"><code>var counter = (function(){
+<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+</pre></td><td class="rouge-code"><pre>var counter = (function(){
   var i = 0;
 
   return {
@@ -186,9 +249,29 @@ counter.get(); // returns 0
 counter.set( 3 );
 counter.get(); // returns 3
 counter.i; // returns undefined
+</pre></td></tr></tbody></table>
 </code></pre>
 <p><em>Again with the confusing nested functions! Can I have a rewrite?</em></p>
-<pre class="highlight plaintext"><code>function helperFunction(){
+<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+</pre></td><td class="rouge-code"><pre>function helperFunction(){
   var i = 0;
 
   return {
@@ -207,11 +290,20 @@ counter.get(); // returns 0
 counter.set( 3 );
 counter.get(); // returns 3
 counter.i; // returns undefined
+</pre></td></tr></tbody></table>
 </code></pre>
 <p><em>Ok, that’s a bit clearer, but what is <code>counter</code> actually set to?</em></p>
 
 <p><code>counter</code> is set to the return value of <code>helperFunction</code>, that is just this bit:</p>
-<pre class="highlight plaintext"><code>{
+<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+</pre></td><td class="rouge-code"><pre>{
   get: function(){
     return i;
   },
@@ -219,6 +311,7 @@ counter.i; // returns undefined
     i = val;
   }
 };
+</pre></td></tr></tbody></table>
 </code></pre>
 <p>You&#39;ll notice <code>var i</code> doesn’t appear anywhere in there. <code>i</code> is defined elsewhere in the <code>helperFunction</code> / IIFE. Since the return value of <code>helperFunction</code> doesn’t give explicit access to <code>i</code>, <code>counter</code> doesn’t have access.</p>
 
@@ -228,12 +321,28 @@ counter.i; // returns undefined
 
 <ol>
 <li><p>Call to <code>counter.get()</code> goes and looks at the <code>get</code> function defined in <code>helperFunction</code>...</p>
-<pre class="highlight plaintext"><code>get: function(){
+<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+</pre></td><td class="rouge-code"><pre>get: function(){
     return i;
    }
+</pre></td></tr></tbody></table>
 </code></pre></li>
 <li><p>The <code>get</code> function looks for its local scope, which is <code>helperFunction</code> ...</p>
-<pre class="highlight plaintext"><code>function helperFunction(){
+<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+</pre></td><td class="rouge-code"><pre>function helperFunction(){
 var i = 0;
 
 return {
@@ -245,9 +354,12 @@ return {
   }
 };
 };
+</pre></td></tr></tbody></table>
 </code></pre></li>
 <li><p>In <code>helperFunction</code> is a definition for <code>i</code>...</p>
-<pre class="highlight plaintext"><code>var i = 0;
+<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre>var i = 0;
+</pre></td></tr></tbody></table>
 </code></pre></li>
 <li><p>So <code>get</code> can return 0!</p></li>
 </ol>
@@ -259,35 +371,59 @@ return {
 <p><strong>Explain why the following doesn’t work as an IIFE: <code>function foo(){ }();</code></strong></p>
 
 <p>Because <code>foo</code> isn’t being called! Here’s a rewrite:</p>
-<pre class="highlight plaintext"><code>function foo(){
+<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+</pre></td><td class="rouge-code"><pre>function foo(){
 }();
+</pre></td></tr></tbody></table>
 </code></pre>
 <p>This is a function <strong>definition</strong>, it defines <code>foo</code>. But it’s not a function <strong>expression</strong> - that is, it’s not understood by the JS parser to actually call a function.</p>
 
 <p>For the parser, things look like this:</p>
-<pre class="highlight plaintext"><code>function foo(){
+<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+</pre></td><td class="rouge-code"><pre>function foo(){
 } // ok, done with that function definition
   // (silly human left off the semicolon, how embarrassing!)
 
 (); // Are they trying to call something? What’s the function’s name?
     // PARSE ERROR
+</pre></td></tr></tbody></table>
 </code></pre>
 <p>In order to prep the parser that we&#39;re actually dealing with a function <strong>expression</strong> we have to wrap things up in <code>()</code> like so:</p>
-<pre class="highlight plaintext"><code>(
+<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+</pre></td><td class="rouge-code"><pre>(
   function foo(){
   }()
 );
+</pre></td></tr></tbody></table>
 </code></pre>
 <p>Now the parser reads this as:</p>
-<pre class="highlight plaintext"><code>( // oh goody, we're going to call some function expressions!
+<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+</pre></td><td class="rouge-code"><pre>( // oh goody, we're going to call some function expressions!
   function foo(){ // here's the function definition
   }() // and here's where the function is actually called
 );
+</pre></td></tr></tbody></table>
 </code></pre>
 <p>And to finish it all off with a return statement and everything:</p>
-<pre class="highlight plaintext"><code>(function foo(){
+<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+</pre></td><td class="rouge-code"><pre>(function foo(){
   return 'bar';
 }());
+</pre></td></tr></tbody></table>
 </code></pre>
 <p>For more information read Ben Alman’s post <a href="http://benalman.com/news/2010/11/immediately-invoked-function-expression/">introducing IIFEs</a>.</p>
 

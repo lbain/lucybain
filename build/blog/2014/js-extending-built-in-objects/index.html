@@ -95,12 +95,19 @@
 <p><strong>What is “extending an object”?</strong></p>
 
 <p>When you add functionality to an object using the <code>prototype</code>. An example looks like this:</p>
-<pre class="highlight plaintext"><code>Array.prototype.first = function(){
+<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+</pre></td><td class="rouge-code"><pre>Array.prototype.first = function(){
     return this[0];
 }
 
 var temp = [1, 2, 3];
 temp.first(); // returns 1
+</pre></td></tr></tbody></table>
 </code></pre>
 <p>At first glance, this seems like such an awesome feature. Want the third element from an array? Extend Array! Want strings to have a <code>titleize</code> method? Extend String! Want <code>alphabetisedProperties</code> available for objects? Extend Object!</p>
 

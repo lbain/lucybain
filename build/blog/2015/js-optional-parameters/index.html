@@ -93,7 +93,21 @@
 <h2>Object</h2>
 
 <p>Coming from a Ruby background, I find this option the most intuitive. You can create an object of your optional parameters, it&#39;d look something like this:</p>
-<pre class="highlight plaintext"><code>var params = {
+<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+</pre></td><td class="rouge-code"><pre>var params = {
     size: 'small',
     color: 'red'
 };
@@ -107,6 +121,7 @@ function carSentence(optionalParams) {
 }
 carSentence(params);
 // logs "My favourite car is a small sized red one that goes undefined"
+</pre></td></tr></tbody></table>
 </code></pre>
 <p>As you can see I didn’t supply the <code>speed</code> parameter in my <code>params</code> object, but the <code>carSentence</code> function still worked. So <code>speed</code> was an optional parameter.</p>
 
@@ -117,25 +132,54 @@ carSentence(params);
 <p><strong>What if I wanted a default speed?</strong></p>
 
 <p><code>optionalParams</code> didn’t define a value for <code>speed</code>, but the sentence expected <code>speed</code> to be defined. In this case you can give a default value for the variable (such as <code>&quot;fast&quot;</code>). It’s tempting to do this:</p>
-<pre class="highlight plaintext"><code>var speed = optionalParams.speed || "fast";
+<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre>var speed = optionalParams.speed || "fast";
+</pre></td></tr></tbody></table>
 </code></pre>
 <p>but this won’t work when <code>optionalParams.speed</code> is <code>false</code>. The better way to handle it is:</p>
-<pre class="highlight plaintext"><code>var speed;
+<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+</pre></td><td class="rouge-code"><pre>var speed;
 if (typeof optionalParams.speed === 'undefined') {
     speed = "fast";
 }
+</pre></td></tr></tbody></table>
 </code></pre>
 <p>however that’s quite wordy. You can cut it down with a <a href="/blog/2014/js-ternary/">ternary</a>, or make a <code>givenOrDefault</code> method (hopefully with a better name!).</p>
-<pre class="highlight plaintext"><code>function givenOrDefault(given, default) {
+<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+</pre></td><td class="rouge-code"><pre>function givenOrDefault(given, default) {
     if (typeof given !== 'undefined') {
         return given;
     } else {
         return default;
     }
 }
+</pre></td></tr></tbody></table>
 </code></pre>
 <p>Thus our example becomes:</p>
-<pre class="highlight plaintext"><code>var params = {
+<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+</pre></td><td class="rouge-code"><pre>var params = {
     size: ’small',
     color: 'red'
 };
@@ -149,11 +193,21 @@ function carSentence(optionalParams) {
 }
 carSentence(params);
 // logs "My favourite car is a small sized red one that goes fast"
+</pre></td></tr></tbody></table>
 </code></pre>
 <h2>Missing parameters</h2>
 
 <p>Another method of dealing with optional parameters is to simply allow them to be missing.</p>
-<pre class="highlight plaintext"><code>function carSentence(size, color, speed) {
+<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+</pre></td><td class="rouge-code"><pre>function carSentence(size, color, speed) {
     size = givenOrDefault(size, "medium");
     color = givenOrDefault(color, "blue");
     speed = givenOrDefault(speed, "fast");
@@ -162,9 +216,20 @@ carSentence(params);
 }
 carSentence("medium", "blue");
 // logs "My favourite car is a medium sized blue one that goes fast"
+</pre></td></tr></tbody></table>
 </code></pre>
 <p>This way of dealing with optional parameters works well if people won’t bother trying to extend it past the limit. However, not all functions meet this requirement, consider the following:</p>
-<pre class="highlight plaintext"><code>function add(a, b, c) {
+<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+</pre></td><td class="rouge-code"><pre>function add(a, b, c) {
     a = a || 0;
     b = b || 0;
     c = c || 0;
@@ -174,13 +239,23 @@ carSentence("medium", "blue");
 add(1, 2); // returns 3
 add(1, 2, 3); // returns 6
 add(1, undefined, 3); // returns 4
+</pre></td></tr></tbody></table>
 </code></pre>
 <p>It kinda works. It&#39;ll fall over if you try <code>add(1, 2, 3, 4)</code> which returns 6 rather than 10.</p>
 
 <h2>arguments</h2>
 
 <p>Finally we come to the <code>arguments</code> keyword. it looks like this:</p>
-<pre class="highlight plaintext"><code>function carSentence() {
+<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+</pre></td><td class="rouge-code"><pre>function carSentence() {
     size = givenOrDefault(arguments[0], "medium");
     color = givenOrDefault(arguments[1], "blue");
     speed = givenOrDefault(arguments[2], "fast");
@@ -189,9 +264,27 @@ add(1, undefined, 3); // returns 4
 }
 carSentence("medium", "blue");
 // logs "My favourite car is a medium sized blue one that goes fast"
+</pre></td></tr></tbody></table>
 </code></pre>
 <p>or like this:</p>
-<pre class="highlight plaintext"><code>function add() {
+<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+</pre></td><td class="rouge-code"><pre>function add() {
     var sum = 0;
     var index = 0;
 
@@ -208,6 +301,7 @@ add(1, 2); // returns 3
 add(1, 2, 3); // returns 6
 add(1, undefined, 3); // returns 4
 add(1, 2, 3, 4); // returns 10
+</pre></td></tr></tbody></table>
 </code></pre>
 <p><strong>What is this black magic?!</strong></p>
 
@@ -216,7 +310,9 @@ add(1, 2, 3, 4); // returns 10
 <p><strong>So it’s an array of all the params</strong></p>
 
 <p>Almost. It’s not quite an array. It’s like a kiddy array - hasn’t got all the functionality just yet. If you want to use it for access only (as in the example above), then you&#39;re all good. But if you want to do interesting manipulations, <code>pop</code> things off, or reorder items, then you need to convert <code>arguments</code> to a full array:</p>
-<pre class="highlight plaintext"><code>var temp = Array.slice(arguments);
+<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre>var temp = Array.slice(arguments);
+</pre></td></tr></tbody></table>
 </code></pre>
 <p>I assume the reason for this is to make <code>arguments</code> read only, although I haven’t researched that.</p>
 

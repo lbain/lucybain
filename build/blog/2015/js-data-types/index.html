@@ -105,10 +105,15 @@
 <h3>Boolean</h3>
 
 <p>Pretty standard across all languages, booleans are <code>true</code> and <code>false</code>. They&#39;re often used for conditional statements.</p>
-<pre class="highlight plaintext"><code>var raining = false;
+<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+</pre></td><td class="rouge-code"><pre>var raining = false;
 if(raining) {
   bringUmbrella();
 }
+</pre></td></tr></tbody></table>
 </code></pre>
 <h3>Null and Undefined</h3>
 
@@ -117,7 +122,15 @@ if(raining) {
 <h3>Number</h3>
 
 <p>Things start to get more interesting here. The number data type covers integers and floats. That is, the <code>number</code> type can handle normal numbers (1, 2, 3, 4), but also negative numbers and decimal places. This is different from many languages that have multiple data types to support different numbers.</p>
-<pre class="highlight plaintext"><code>var num = 1;
+<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+</pre></td><td class="rouge-code"><pre>var num = 1;
 typeof num; // number
 
 var num = -2;
@@ -125,13 +138,18 @@ typeof num; // number
 
 var num = 0.3;
 typeof num; // number
+</pre></td></tr></tbody></table>
 </code></pre>
 <h3>String</h3>
 
 <p>As in most languages, JS strings are groupings of characters.</p>
-<pre class="highlight plaintext"><code>"hello world";
+<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+</pre></td><td class="rouge-code"><pre>"hello world";
 "I like cats";
 'Testing "quotes';
+</pre></td></tr></tbody></table>
 </code></pre>
 <p>I don’t think they&#39;re particularly interesting, but they are remarkably powerful. The main way we communicate with our users is the written word and <code>string</code> makes this possible.</p>
 
@@ -140,16 +158,34 @@ typeof num; // number
 <p>This is new in ECMAScript 6; check the <a href="https://kangax.github.io/compat-table/es6/#Symbol">browser support</a> before you use it.</p>
 
 <p>Symbols allow for private(ish) properties on objects. Before ECMAScript 6 all properties for an object could be accessed through <code>for in</code>, like this:</p>
-<pre class="highlight plaintext"><code>var dog = { bark: true }
+<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+</pre></td><td class="rouge-code"><pre>var dog = { bark: true }
 
 for (var property in dog) {
   if (dog.hasOwnProperty(property)) {
     console.log(property); // logs "bark"
   }
 }
+</pre></td></tr></tbody></table>
 </code></pre>
 <p>Since symbols are not enumerable they cannot be accessed in this way. However, the symbolised properties are not truly private since they can be accessed directly.</p>
-<pre class="highlight plaintext"><code>var breed = Symbol("breed");
+<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+</pre></td><td class="rouge-code"><pre>var breed = Symbol("breed");
 var dog = { bark: true };
 dog[breed] = "Corgi";
 
@@ -159,17 +195,26 @@ for (var property in dog) {
   }
 }
 console.log(dog[breed]); // logs "Corgi"
+</pre></td></tr></tbody></table>
 </code></pre>
 <h3>Object</h3>
 
 <p>Everything in JS that we didn’t discuss above is an Object. So objects are the most complex data type; I&#39;ll dedicate a future post to them since it’s a lot to cover here. But you&#39;ve probably worked with objects in the past. They typically look like this:</p>
-<pre class="highlight plaintext"><code>var cat = { sound: "meow" };
+<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+</pre></td><td class="rouge-code"><pre>var cat = { sound: "meow" };
 
 var fluffy = new Cat();
 
 var whiskers = new function() {
     this.sound = "meow";
 }
+</pre></td></tr></tbody></table>
 </code></pre>
 <p>But notice that we haven’t mentioned <code>Array</code>, <code>Date</code>, or even <code>function</code> that’s because, <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#.22Normal.22_objects.2C_and_functions">officially</a>, they&#39;re all of type <code>object</code>. Pretty crazy, huh?</p>
 

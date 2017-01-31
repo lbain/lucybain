@@ -99,6 +99,8 @@
 
 <p>The differences are fairly subtle (I didn’t notice them until a co-worker told me about them), but important to note and interesting to play with for a blog post!</p>
 
+<p><strong>Note:</strong> I’m not using asynchronous code in my because it make the examples more complicated and the logic harder to see. The examples below wouldn’t work the same way with async code (for example, <code>console.log</code>), but they clarify the intent.</p>
+
 <h2>Promise’s state after an error</h2>
 
 <h3>Promises/A+</h3>
@@ -119,8 +121,24 @@
 
 <p><em>Seems simple enough</em></p>
 
-<p>Yes, nothing complicated (so far). Let’s look at an example:</p>
-<pre class="highlight javascript"><code><span class="kr">const</span> <span class="nx">resolvedPromise</span> <span class="o">=</span>  <span class="nx">Promise</span><span class="p">.</span><span class="nx">resolve</span><span class="p">();</span>
+<p>Yes, nothing complicated (so far). Let’s look at a simple example:</p>
+<pre class="highlight javascript"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+</pre></td><td class="rouge-code"><pre><span class="kr">const</span> <span class="nx">resolvedPromise</span> <span class="o">=</span>  <span class="nx">Promise</span><span class="p">.</span><span class="nx">resolve</span><span class="p">();</span>
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">resolvedPromise</span><span class="p">);</span>
 <span class="c1">// [[PromiseStatus]] : "resolved"</span>
 
@@ -136,6 +154,7 @@
   <span class="c1">// before getting to this code</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'Never run'</span><span class="p">);</span> 
 <span class="p">});</span>
+</pre></td></tr></tbody></table>
 </code></pre>
 <p>As you can see, <code>resolvedPromise</code> settled to a “resolved” state and never threw an error. However <code>errorPromise</code> did throw an error so it settled to a “rejected” state. Because of rules like this one, it is not possible for a Promises/A+ promise to settle in a “pending” state. <strong>If the promise has settled, the Promises/A+ spec guarantees that it has been resolved or rejected.</strong></p>
 
@@ -148,7 +167,15 @@
 <p>jQuery’s Deferred (their implementation of promises) is quite relaxed. It was written before the rules settled down, so it isn’t as picky.</p>
 
 <p>Again, let’s look at an example:</p>
-<pre class="highlight javascript"><code><span class="kr">const</span> <span class="nx">resolvedDeferred</span> <span class="o">=</span> <span class="nx">$</span><span class="p">.</span><span class="nx">Deferred</span><span class="p">().</span><span class="nx">resolve</span><span class="p">();</span>
+<pre class="highlight javascript"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+</pre></td><td class="rouge-code"><pre><span class="kr">const</span> <span class="nx">resolvedDeferred</span> <span class="o">=</span> <span class="nx">$</span><span class="p">.</span><span class="nx">Deferred</span><span class="p">().</span><span class="nx">resolve</span><span class="p">();</span>
 <span class="nx">resolvedDeferred</span><span class="p">.</span><span class="nx">state</span><span class="p">();</span> <span class="c1">// "resolved"</span>
 
 <span class="kr">const</span> <span class="nx">errorDeferred</span> <span class="o">=</span> <span class="nx">resolvedDeferred</span><span class="p">.</span><span class="nx">then</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
@@ -156,6 +183,7 @@
 <span class="p">})</span>
 
 <span class="nx">errorDeferred</span><span class="p">.</span><span class="nx">state</span><span class="p">();</span> <span class="c1">// "pending"</span>
+</pre></td></tr></tbody></table>
 </code></pre>
 <p><em>What’s the difference?</em></p>
 
@@ -198,7 +226,18 @@
 <p><em>Ok, so, practically speaking, how should I handle errors?</em></p>
 
 <p>What all this means is that you cannot use a normal try/catch for errors thrown by Promises. Let’s try it anyways to see what happens:</p>
-<pre class="highlight javascript"><code><span class="k">try</span> <span class="p">{</span>
+<pre class="highlight javascript"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+</pre></td><td class="rouge-code"><pre><span class="k">try</span> <span class="p">{</span>
   <span class="kr">const</span> <span class="nx">resolvedPromise</span> <span class="o">=</span>  <span class="nx">Promise</span><span class="p">.</span><span class="nx">resolve</span><span class="p">();</span>
 
   <span class="kr">const</span> <span class="nx">errorPromise</span> <span class="o">=</span> <span class="nx">resolvedPromise</span><span class="p">.</span><span class="nx">then</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
@@ -209,42 +248,70 @@
   <span class="c1">// isn't bubbled up this far</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'Does not run'</span><span class="p">);</span>
 <span class="p">}</span>
+</pre></td></tr></tbody></table>
 </code></pre>
 <p><em>Alright, now we know what doesn’t work...</em></p>
 
 <p>To actually handle the error we need to use a <code>catch</code> on <code>errorPromise</code>, so we’re explicitly handling the error directly on the promise.</p>
 
 <p>Let’s rewrite the previous example to correctly catch the <code>Promise error</code>:</p>
-<pre class="highlight javascript"><code><span class="kr">const</span> <span class="nx">resolvedPromise</span> <span class="o">=</span>  <span class="nx">Promise</span><span class="p">.</span><span class="nx">resolve</span><span class="p">();</span>
+<pre class="highlight javascript"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+</pre></td><td class="rouge-code"><pre><span class="kr">const</span> <span class="nx">resolvedPromise</span> <span class="o">=</span>  <span class="nx">Promise</span><span class="p">.</span><span class="nx">resolve</span><span class="p">();</span>
 
 <span class="kr">const</span> <span class="nx">errorPromise</span> <span class="o">=</span> <span class="nx">resolvedPromise</span><span class="p">.</span><span class="nx">then</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
   <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="s1">'Promise error'</span><span class="p">);</span>
 <span class="p">}).</span><span class="k">catch</span><span class="p">(</span><span class="nx">error</span> <span class="o">=&gt;</span> <span class="p">{</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span> <span class="c1">// [Error: Promise error]</span>
 <span class="p">});</span>
+</pre></td></tr></tbody></table>
 </code></pre>
 <p><em>Well that was easy!</em></p>
 
 <p>Yes, I like the syntax too. It makes it really clear what error we’re catching, and looking back over the chain you can check where it might have come from.</p>
 
+<p>However, since errors thrown in a Promise don’t bubble up to the window you have to <code>catch</code> errors everywhere. You aren’t guaranteed that an error like <code>undefined is not a function</code>. As my co-worker put it, with Promises you “have to expect the unexpected everywhere.” All these <code>catch</code>es can also get messy and complicated.</p>
+
 <h3>jQuery’s Deferred</h3>
 
 <p>On the other hand, an error thrown in a Deferred <em>will</em> bubble up to the window and can be caught along the way. Which means we can rewrite our previous example to catch the error:</p>
-<pre class="highlight javascript"><code><span class="k">try</span> <span class="p">{</span>
+<pre class="highlight javascript"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+</pre></td><td class="rouge-code"><pre><span class="k">try</span> <span class="p">{</span>
   <span class="kr">const</span> <span class="nx">resolvedDeferred</span> <span class="o">=</span> <span class="nx">$</span><span class="p">.</span><span class="nx">Deferred</span><span class="p">().</span><span class="nx">resolve</span><span class="p">();</span>
   <span class="kr">const</span> <span class="nx">errorDeferred</span> <span class="o">=</span> <span class="nx">resolvedDeferred</span><span class="p">.</span><span class="nx">then</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
     <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="s1">'Deferred error'</span><span class="p">);</span>
   <span class="p">});</span>
 <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
-   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span> <span class="c1">// [Error: Deferred error]</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span> <span class="c1">// [Error: Deferred error]</span>
 <span class="p">}</span>
+</pre></td></tr></tbody></table>
 </code></pre>
-<p><em>Ok, so using a normal try/catch works for Deferreds</em></p>
-
-<p>Yes, that’s right. Some people get upset about the mixing of inherently asynchronous promise code (the Deferred) and traditionally synchronous try/catch code. It’s a style and readability decision to make for your code.</p>
-
-<p>Once more, to reinforce the previous topic, let’s write it one more way so we can see the settled state of each promise:</p>
-<pre class="highlight javascript"><code><span class="kr">const</span> <span class="nx">resolvedDeferred</span> <span class="o">=</span> <span class="nx">$</span><span class="p">.</span><span class="nx">Deferred</span><span class="p">();</span>
+<p>I’ll write it another way to reinforce the previous topic. Now we can see the settled state of each promise:</p>
+<pre class="highlight javascript"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+</pre></td><td class="rouge-code"><pre><span class="kr">const</span> <span class="nx">resolvedDeferred</span> <span class="o">=</span> <span class="nx">$</span><span class="p">.</span><span class="nx">Deferred</span><span class="p">();</span>
 <span class="kr">const</span> <span class="nx">errorDeferred</span> <span class="o">=</span> <span class="nx">resolvedDeferred</span><span class="p">.</span><span class="nx">then</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
   <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="s1">'Deferred error'</span><span class="p">);</span>
 <span class="p">})</span>
@@ -256,18 +323,144 @@
 <span class="p">}</span>
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">resolvedDeferred</span><span class="p">.</span><span class="nx">state</span><span class="p">());</span> <span class="c1">// "resolved"</span>
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">errorDeferred</span><span class="p">.</span><span class="nx">state</span><span class="p">());</span> <span class="c1">// "pending"</span>
+</pre></td></tr></tbody></table>
 </code></pre>
 <p>Here you can see that <code>errorDeferred</code> still has the “pending” state, even though the error has been caught and handled.</p>
+
+<p><em>Ok, so using a normal try/catch works for Deferreds</em></p>
+
+<p>Not really.</p>
+
+<p><em>What?! You tricked me!</em></p>
+
+<p>I’m afraid I did. Remember at the beginning when I said my examples would use synchronous code to make things clearer? That’s what is making this example work. Since the <code>Deferred error</code> is thrown right away (without waiting for any aysnc code to execute) the <code>catch</code> happens right away too. It’s useful to prove the point that the <code>Deferred error</code> bubbled up, but not so good for showing how to handle Deferred errors. Let’s write another example:</p>
+<pre class="highlight javascript"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+</pre></td><td class="rouge-code"><pre><span class="k">try</span> <span class="p">{</span>
+  <span class="kr">const</span> <span class="nx">resolvedDeferred</span> <span class="o">=</span> <span class="nx">$</span><span class="p">.</span><span class="nx">Deferred</span><span class="p">().</span><span class="nx">resolve</span><span class="p">();</span>
+  <span class="kr">const</span> <span class="nx">errorDeferred</span> <span class="o">=</span> <span class="nx">resolvedDeferred</span><span class="p">.</span><span class="nx">then</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">setTimeout</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'throw error'</span><span class="p">);</span> <span class="c1">// "throw error"</span>
+      <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="s1">'Deferred error'</span><span class="p">);</span>  
+    <span class="p">},</span> <span class="mi">20</span><span class="p">);</span>
+  <span class="p">});</span>
+<span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+  <span class="c1">// this never runs because the catch won’t be triggered</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'Does not run'</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table>
+</code></pre>
+<p>As you can see, now that we’re using async code the try/catch doesn’t work any more.</p>
+
+<p><em>Great, another way not to do it.</em></p>
+
+<p>Unfortunately, yes. The thing is, jQuery doesn’t give us a way to catch errors thrown from Deferreds. It’s just not possible.</p>
+
+<p><em>Not possible! But this is programming, there must be a way!</em></p>
+
+<p>Unfortunately not. There’s one more syntax we’ll look at (but it still won’t work):</p>
+<pre class="highlight javascript"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+</pre></td><td class="rouge-code"><pre><span class="kr">const</span> <span class="nx">resolvedDeferred</span> <span class="o">=</span> <span class="nx">$</span><span class="p">.</span><span class="nx">Deferred</span><span class="p">().</span><span class="nx">resolve</span><span class="p">();</span>
+<span class="kr">const</span> <span class="nx">errorDeferred</span> <span class="o">=</span> <span class="nx">resolvedDeferred</span><span class="p">.</span><span class="nx">then</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nx">setTimeout</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'throw error'</span><span class="p">);</span> <span class="c1">// "throw error"</span>
+    <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="s1">'Deferred error'</span><span class="p">);</span>  
+  <span class="p">},</span> <span class="mi">20</span><span class="p">);</span>
+<span class="p">}).</span><span class="nx">fail</span><span class="p">(</span><span class="nx">error</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="c1">// this never runs because the deferred doesn’t settle</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'Does not run'</span><span class="p">);</span>
+<span class="p">});</span>
+</pre></td></tr></tbody></table>
+</code></pre>
+<p>We use <a href="https://api.jquery.com/deferred.fail/"><code>fail</code></a> here which feels like it <em>should</em> work (after all, the promise didn’t happen). However the description <code>fail</code> is:</p>
+
+<blockquote>
+<p>Add handlers to be called when the Deferred object is rejected.</p>
+</blockquote>
+
+<p>And remember, when a Deferred throws an error it is left in a permanent “pending” state and will never settle to “rejected”. Thus the <code>fail</code> is never called.</p>
+
+<p><em>But I heard about <code>catch</code> being added to jQuery 3 — why don’t we use that?</em></p>
+
+<p>Oh yes, jQuery 3 added <code>catch</code>. That totally wasn’t news to me. I definitely knew about it before today...</p>
+
+<p>While most of jQuery Deferred’s methods were defined by 1.12, one method was recently added when jQuery 3.0 came out (which happened on June 9, 2016). There are two downsides to <code>catch</code>: first <a href="https://w3techs.com/technologies/details/js-jquery/all/all">very few</a> websites are using jQuery 3, and second <code>catch</code> still doesn’t work. In fact, <code>catch</code> has exactly the same description as <code>fail</code> has:</p>
+
+<blockquote>
+<p>Add handlers to be called when the Deferred object is rejected.</p>
+</blockquote>
+
+<p>So <code>catch</code> has the same issue that the Deferred doesn’t settle if an error is thrown.</p>
 
 <p><em>How can we move <code>errorDeferred</code> to be resolved?</em></p>
 
 <p>Unfortunately, we can’t; <code>errorDeferred</code> is doomed to be “pending” forever. If you try to call <code>errorDeferred.resolve()</code> you’ll get an error that <code>errorDeferred.resolve is not a function</code>.</p>
+
+<p><em>This all sounds like bad news. Are there any upsides?</em></p>
+
+<p>Remember earlier when we talked about Promises needing to explicitly <code>catch</code> all their errors, and how that can be annoying? Well, since Deferreds do bubble up errors to the window we can handle any error with one function: <code>window.onerror</code>.</p>
+
+<p>Let’s rewrite it one more time to see how this would work:</p>
+<pre class="highlight javascript"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+</pre></td><td class="rouge-code"><pre><span class="nb">window</span><span class="p">.</span><span class="nx">onerror</span> <span class="o">=</span> <span class="nx">error</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kr">const</span> <span class="nx">resolvedDeferred</span> <span class="o">=</span> <span class="nx">$</span><span class="p">.</span><span class="nx">Deferred</span><span class="p">().</span><span class="nx">resolve</span><span class="p">();</span>
+<span class="kr">const</span> <span class="nx">errorDeferred</span> <span class="o">=</span> <span class="nx">resolvedDeferred</span><span class="p">.</span><span class="nx">then</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nx">setTimeout</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'throw error'</span><span class="p">);</span>
+    <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="s1">'Deferred error'</span><span class="p">);</span>  
+  <span class="p">},</span> <span class="mi">20</span><span class="p">);</span>
+<span class="p">});</span>
+
+<span class="c1">// Logs out:</span>
+<span class="c1">// "throw error" (from line 8)</span>
+<span class="c1">// "Uncaught Error: Deferred error" (from line 2)</span>
+</pre></td></tr></tbody></table>
+</code></pre>
+<p>Now any uncaught error will bubble up until it reaches the <code>onerror</code> directly on the <code>window</code>. From there our new function will log out the error. With one very small method we can see all the uncaught errors from every Deferred, rather than needing a <code>catch</code> on each one of them. <strong>Warning:</strong> the <code>onerror</code> works for every uncaught error anywhere in your code, not only for errors in Deferreds; you might find more than you bargained for!</p>
 
 <hr>
 
 <p>And there you have it! Fairly small differences, but important ones. It might impact which promise implementation you decide on, and it will probably come up as you work with various libraries. It’s important to know if what you’re getting back is a Promise or a Deferred.</p>
 
 <h2>Resources</h2>
+
+<p>Many thanks to my co-worker <a href="https://twitter.com/typesthings">Adam</a> for initially pointing out the differences and then also reviewing my post and correcting my mistakes!</p>
 
 <ul>
 <li><a href="https://abdulapopoola.com/2014/12/12/the-differences-between-jquery-deferreds-and-the-promisesa-spec/">The Differences between jQuery Deferreds and the Promises/A+ spec</a></li>

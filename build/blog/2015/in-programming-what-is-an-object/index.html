@@ -95,34 +95,56 @@
 <p>Many languages have the concept of an “object.” It’s a way of organising code based around objects (things) with similar characteristics. As in, most dogs have four legs, most cars can drive forward, most houses have doors. Templates (often called Classes) are used to create objects. These templates come with empty fields (like a form), and sometimes with default values as well (such as four legs). So it could look something like this:</p>
 
 <p><strong>Human</strong></p>
-<pre class="highlight plaintext"><code>Name: ________
+<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+</pre></td><td class="rouge-code"><pre>Name: ________
 Gender: ________
 Arms: _2_
 Legs: _2_
+</pre></td></tr></tbody></table>
 </code></pre>
 <p>As you can see some fields (name and gender) are left blank, and some (arms and legs) have a default value associated. Again, this is a template, these values are assigned for each object (often called “instance of the class”). Mine would look like this:</p>
-<pre class="highlight plaintext"><code>Name: _Lucy_
+<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+</pre></td><td class="rouge-code"><pre>Name: _Lucy_
 Gender: _Female_
 Arms: _2_
 Legs: _2_
+</pre></td></tr></tbody></table>
 </code></pre>
 <p>But objects hold more than just fields of information; they can also hold actions! Let’s build on our Human class.</p>
 
 <p><strong>Human</strong></p>
-<pre class="highlight plaintext"><code>Name: ________
+<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+</pre></td><td class="rouge-code"><pre>Name: ________
 Gender: ________
 Arms: _2_
 Legs: _2_
 Laugh: say "hahaha!"
 Run: move your legs quickly
+</pre></td></tr></tbody></table>
 </code></pre>
 <p>So you can see the Human template now has two actions associated with it (laugh and run). Here’s the great part about objects: those actions are shared! I only have to write the method <em>once</em> and all humans can now laugh and run. Pretty slick, huh?</p>
 
 <p>So a <strong>class</strong> is a template of fields (variables) and actions (methods). Each <strong>object</strong> fills out the template with it’s particular information. This is how you can write code like <code>me.name</code> - the <code>me</code> object has a <code>name</code> field that keeps track of <code>me</code>’s name. It’s also how you can write:</p>
-<pre class="highlight plaintext"><code>fido.bark();
+<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+</pre></td><td class="rouge-code"><pre>fido.bark();
 buddy.bark();
 buster.bark();
 princess.bark();
+</pre></td></tr></tbody></table>
 </code></pre>
 <p>but only need to implement the <code>bark</code> action on the <code>Dog</code> template.</p>
 

@@ -131,7 +131,25 @@
 <p>We&#39;ll start with CommonJS since it’s a bit easier to read.</p>
 
 <p><em>Part 1: math module</em></p>
-<pre class="highlight plaintext"><code>// math.js
+<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+</pre></td><td class="rouge-code"><pre>// math.js
 var module = {
   add: function(x, y) {
     return x + y;
@@ -149,13 +167,26 @@ var module = {
 export.math = module; // export is a commonJS specific method
                       // export returns what’s publicly available
                       // the "math" gives the name of the module
+</pre></td></tr></tbody></table>
 </code></pre>
 <p>This code doesn’t output anything, but when we require the <code>math</code> module we&#39;ll have access to everything in the returned <code>module</code> object (namely <code>add</code>, <code>subtract</code>, <code>multiply</code>, and <code>divide</code>).</p>
 
 <p><em>Part 2: stats module</em></p>
 
 <p>Alright, now we&#39;ve created a module, we can require it in another module.</p>
-<pre class="highlight plaintext"><code>// stats.js
+<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+</pre></td><td class="rouge-code"><pre>// stats.js
 var math = require('math');
 
 var module = {
@@ -167,21 +198,47 @@ var module = {
 export.stats = module; // export is a commonJS specific method
                        // export returns what’s publicly available
                        // the "stats" gives the name of the module
+</pre></td></tr></tbody></table>
 </code></pre>
 <p><em>Part 3: get output</em></p>
 
 <p>Now we&#39;ve got two modules, we can use them to get output.</p>
-<pre class="highlight plaintext"><code>var math = require('math');
+<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+</pre></td><td class="rouge-code"><pre>var math = require('math');
 var stats = require(’stats');
 console.log(math.add(1, 2)) // logs "3"
 console.log(stats.average(0, 4)) // logs "2"
+</pre></td></tr></tbody></table>
 </code></pre>
 <p><strong>AMD</strong></p>
 
 <p>We&#39;ll go through exactly the same example, but this time implement it with AMD.</p>
 
 <p><em>Part 1: math module</em></p>
-<pre class="highlight plaintext"><code>define( // AMD specific method used to define a module
+<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+</pre></td><td class="rouge-code"><pre>define( // AMD specific method used to define a module
   'math', // name of the module (this is optional)
   // Note: no dependencies (they're optional)
   function() {
@@ -201,11 +258,25 @@ console.log(stats.average(0, 4)) // logs "2"
     };
     return module; // returns what’s publicly available
 });
+</pre></td></tr></tbody></table>
 </code></pre>
 <p>As with CommonJS, this code doesn’t output anything.</p>
 
 <p><em>Part 2: stats module</em></p>
-<pre class="highlight plaintext"><code>define( // AMD specific method used to define a module
+<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+</pre></td><td class="rouge-code"><pre>define( // AMD specific method used to define a module
   ’stats', // name of the module (this is optional)
   ['math'], // dependency, same name as module above
             // it’s an array since there can be more than one
@@ -218,15 +289,24 @@ console.log(stats.average(0, 4)) // logs "2"
     };
     return module; // returns what’s publicly available
 });
+</pre></td></tr></tbody></table>
 </code></pre>
 <p><em>Part 3: get output</em></p>
-<pre class="highlight plaintext"><code>require( // AMD specific method to run code
+<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+</pre></td><td class="rouge-code"><pre>require( // AMD specific method to run code
   // Note: no name, require doesn't support names
   ['math', ’stats'], // dependencies
   function(math, stats) {
     console.log(math.add(1, 2)) // logs "3"
     console.log(stats.average(0, 4)) // logs "2"
 });
+</pre></td></tr></tbody></table>
 </code></pre>
 <p><strong>Resources</strong></p>
 

@@ -95,23 +95,35 @@
 <h3>variables</h3>
 
 <p>It’s not easy to read...</p>
-<pre class="highlight plaintext"><code>var someVar = "world";
+<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+</pre></td><td class="rouge-code"><pre>var someVar = "world";
 console.log("Hello" + someVar + "!");
+</pre></td></tr></tbody></table>
 </code></pre>
 <h3>newlines</h3>
 
 <p>It doesn’t handle new lines well...</p>
-<pre class="highlight plaintext"><code>console.log("Add a break\nhere");
+<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+</pre></td><td class="rouge-code"><pre>console.log("Add a break\nhere");
 console.log("Add a break" + 
 "here");
 console.log("Add a break\
 here");
+</pre></td></tr></tbody></table>
 </code></pre>
 <h3>standardisation with other languages</h3>
 
 <p>And it looks longingly at Ruby’s string interpolation...</p>
-<pre class="highlight plaintext"><code>someVar = "world"
+<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+</pre></td><td class="rouge-code"><pre>someVar = "world"
 puts "Hello #{someVar}"
+</pre></td></tr></tbody></table>
 </code></pre>
 <h2>How can I use them?</h2>
 
@@ -122,45 +134,68 @@ puts "Hello #{someVar}"
 <h3>variables</h3>
 
 <p>Wrap up variables, or any other JS code in <code>${}</code>. The JS code will be evaluated first and then put into the rest of the string.</p>
-<pre class="highlight plaintext"><code>var someVar = "world";
+<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+</pre></td><td class="rouge-code"><pre>var someVar = "world";
 console.log(`Hello ${someVar}!`); // "Hello world!"
 
 console.log(`bonus example ${2 - 1}`) // "bonus example 1"
+</pre></td></tr></tbody></table>
 </code></pre>
 <h3>newlines</h3>
 
 <p>You can add a real newline to your code when you want a newline in your string. Of course the <code>\n</code> still works.</p>
-<pre class="highlight plaintext"><code>console.log(`Add a break
+<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+</pre></td><td class="rouge-code"><pre>console.log(`Add a break
     here`);
 console.log(`Add a break\nhere`);
+</pre></td></tr></tbody></table>
 </code></pre>
 <h3>standardisation with other languages</h3>
 
 <p>Now ES6’s strings work much like other languages.</p>
 
 <p>Ruby:</p>
-<pre class="highlight plaintext"><code>someVar = "world"
+<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+</pre></td><td class="rouge-code"><pre>someVar = "world"
 puts "Hello #{someVar}"
+</pre></td></tr></tbody></table>
 </code></pre>
 <p>JS:</p>
-<pre class="highlight plaintext"><code>var someVar = "world";
+<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+</pre></td><td class="rouge-code"><pre>var someVar = "world";
 console.log(`Hello ${someVar}`);
+</pre></td></tr></tbody></table>
 </code></pre>
 <p><strong>Note:</strong> you can also use “tagged” template strings. I haven’t fully figured this out or found clear use cases for it, so I’m skipping it for now. But you can do more with templates than I’ve talked about.</p>
 
 <h2>Warning!</h2>
 
 <p>The <code>${}</code> in ES6 evaluates <em>all</em> JS. It’s very important that you trust anything that goes in there. For example, don’t do something like:</p>
-<pre class="highlight plaintext"><code>// imagine this pulled from a DB and is user supplied
+<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+</pre></td><td class="rouge-code"><pre>// imagine this pulled from a DB and is user supplied
 var user = {name: 'lucy'};
 console.log(`Your name is: ${user.name}`)
+</pre></td></tr></tbody></table>
 </code></pre>
 <p><em>Why not?</em></p>
 
 <p>Because the JS in the string interpolation executes in the same context of the rest of your JS.</p>
-<pre class="highlight plaintext"><code>// here the user entered their name as: ' + alert('test') + '
+<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+</pre></td><td class="rouge-code"><pre>// here the user entered their name as: ' + alert('test') + '
 var user = {name: '' + alert(window) + ''};
 console.log(`Your name is: ${user.name}`)
+</pre></td></tr></tbody></table>
 </code></pre>
 <p>This will trigger an alert. Don’t believe me? Enter the code above in <a href="http://www.es6fiddle.net/">ES6 fiddle</a>. If you’re not careful people can gain access to your “hidden” variables.</p>
 

@@ -95,17 +95,40 @@
 <p><strong>What are <code>.call</code> and <code>.apply</code>?</strong></p>
 
 <p>Both methods allow you to invoke a function and pass parameters through.</p>
-<pre class="highlight plaintext"><code>function printer(message) {
+<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+</pre></td><td class="rouge-code"><pre>function printer(message) {
     console.log(message)
 }
 
 printer.call({}, "hello") // logs "hello"
 printer.apply({}, "world!") // logs "world!"
+</pre></td></tr></tbody></table>
 </code></pre>
 <p><em>Wow. Awesome. A more verbose way to invoke functions. Fantastic. Why not just use <code>printer(&quot;hello&quot;)</code>?</em></p>
 
 <p>Well actually, <code>.call</code> and <code>.apply</code> can do more than simply invoke a method, they can also pass through <strong>context</strong>. Here’s an example:</p>
-<pre class="highlight plaintext"><code>function Person(name){
+<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+</pre></td><td class="rouge-code"><pre>function Person(name){
     this.name = name;
     this.introduceSelf = function() {
         console.log("Hello, my name is " + this.name);
@@ -121,6 +144,7 @@ alice.introduceSelf.call({name: "Bob"});
 
 alice.introduceSelf.apply({name: "Casey"});
 // logs "Hello, my name is Casey"
+</pre></td></tr></tbody></table>
 </code></pre>
 <p>So <code>.call</code> and <code>.apply</code> allow you to manipulate the <code>this</code> keyword for the invoked function.</p>
 
@@ -129,7 +153,23 @@ alice.introduceSelf.apply({name: "Casey"});
 <p><strong>What’s the difference between <code>.call</code> and <code>.apply</code>?</strong></p>
 
 <p>It’s all about the way you pass parameters. That’s it. Let’s make our previous example more complex:</p>
-<pre class="highlight plaintext"><code>function Person(name){
+<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+</pre></td><td class="rouge-code"><pre>function Person(name){
     this.name = name;
     this.introduceSelf = function(greeting) {
         console.log(greeting + ", my name is " + this.name);
@@ -145,6 +185,7 @@ alice.introduceSelf.call({name: "Bob"}, 'Bonjour');
 
 alice.introduceSelf.apply({name: "Casey"}, ['Hola']);
 // logs "Hola, my name is Casey"
+</pre></td></tr></tbody></table>
 </code></pre>
 <p>For <code>.call</code> you pass the parameters comma separated (like normal). For <code>.apply</code> you pass the parameters in an array.</p>
 

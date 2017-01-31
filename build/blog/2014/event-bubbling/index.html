@@ -93,16 +93,33 @@
 <p>Event bubbling occurs when a user interacts with a nested element and the event propagates up (“bubbles”) through all of the ancestor elements.</p>
 
 <p><strong>HTML</strong></p>
-<pre class="highlight plaintext"><code>&lt;div class="ancestor"&gt;
+<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+</pre></td><td class="rouge-code"><pre>&lt;div class="ancestor"&gt;
   &lt;div class="parent"&gt;
     &lt;button&gt; Click me! &lt;/button&gt;
   &lt;/div&gt;
 &lt;/div&gt;
+</pre></td></tr></tbody></table>
 </code></pre>
 <p>When a user clicks the button the event first fires on the button itself, then bubbles up to the parent div, and then up to the ancestor div. The event would continue to bubble up through all the ancestors, until it finally reaches the <code>document</code>.</p>
 
 <p><strong>Javascript</strong></p>
-<pre class="highlight plaintext"><code>$( "button" ).click(function(event) {
+<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+</pre></td><td class="rouge-code"><pre>$( "button" ).click(function(event) {
   console.log( "button was clicked!" );
 });
 
@@ -113,6 +130,7 @@ $( ".parent" ).click(function(event) {
 $( ".ancestor" ).click(function(event) {
   console.log( "descendant element was clicked!" );
 });
+</pre></td></tr></tbody></table>
 </code></pre>
 <p>When the user clicks the button the events starts at the button element, so <code>button was clicked!</code> is logged to the console. Then <code>child element was clicked!</code> and finally <code>descendant element was clicked!</code> are logged as well.</p>
 
@@ -121,18 +139,34 @@ $( ".ancestor" ).click(function(event) {
 <p><em>What if you don’t want the event to bubble up?</em></p>
 
 <p>A fair question. Often you only want the event to trigger on the element itself, without bothering all its ancestors. Consider the following JS (with the same HTML as above):</p>
-<pre class="highlight plaintext"><code>$( "button" ).click(function(event) {
+<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+</pre></td><td class="rouge-code"><pre>$( "button" ).click(function(event) {
   console.log( "button was clicked!" );
 });
 
 $( ".parent, .ancestor" ).click(function(event) {
   console.log( "don't click me!" );
 });
+</pre></td></tr></tbody></table>
 </code></pre>
 <p>As it stands, the <code>don&#39;t click me!</code> will get logged when the user clicks on the button, even though they haven’t actually clicked on the parent or ancestor element.</p>
 
 <p>You have to explicitly stop event propagation (bubbling) if you don’t want it.</p>
-<pre class="highlight plaintext"><code>$( "button" ).click(function(event) {
+<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+</pre></td><td class="rouge-code"><pre>$( "button" ).click(function(event) {
   event.stopPropagation(); // &lt;-- this line here!
   console.log( "button was clicked!" );
 });
@@ -140,6 +174,7 @@ $( ".parent, .ancestor" ).click(function(event) {
 $( ".parent, .ancestor" ).click(function(event) {
   console.log( "don't click me!" );
 });
+</pre></td></tr></tbody></table>
 </code></pre>
 <p>Now the event propagation stops on the first element of the bubbling sequence. You can also stop the bubbling later on if you&#39;d like, it doesn’t have to be on the first element.</p>
 

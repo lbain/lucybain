@@ -95,7 +95,15 @@
 <p><em>So what’s a callback?</em></p>
 
 <p>I’m glad you asked!</p>
-<pre class="highlight plaintext"><code>function takesACallback(callback) {
+<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+</pre></td><td class="rouge-code"><pre>function takesACallback(callback) {
     // do some interesting things here
     return "The callback says: " + callback();
 }
@@ -103,28 +111,41 @@
 takesACallback(function() {
     return "I'm the callback!";
 }); // returns "The callback says: I'm the callback!"
+</pre></td></tr></tbody></table>
 </code></pre>
 <p>See the function that’s a parameter to the <code>takesACallback</code> call? Notice that it doesn’t have a name? That’s an anonymous function.</p>
 
 <h2>Referenced</h2>
 
 <p>However, you can still have a <strong>reference</strong> to an anonymous function, just because it is unnamed it doesn’t mean it’s unreferenced.</p>
-<pre class="highlight plaintext"><code>var reference = function() {
+<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+</pre></td><td class="rouge-code"><pre>var reference = function() {
     return "I'm still an anonymous function";
 }
 
 reference(); // returns "I'm still an anonymous function"
+</pre></td></tr></tbody></table>
 </code></pre>
 <p>The function itself is still anonymous (it doesn’t have a name directly attached to it), but you can call the function by the named reference.</p>
 
 <h2>Declared</h2>
 
 <p>Declared functions are not anonymous. They have a name directly attached to the function, with no need for a named reference.</p>
-<pre class="highlight plaintext"><code>function declared() {
+<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+</pre></td><td class="rouge-code"><pre>function declared() {
     return "I'm not anonymous function";
 }
 
 declared(); // returns "I'm not anonymous function"
+</pre></td></tr></tbody></table>
 </code></pre>
 <p>Writing a named function like this results in a <strong>function declaration.</strong></p>
 
@@ -137,7 +158,23 @@ declared(); // returns "I'm not anonymous function"
 </blockquote>
 
 <p>Here’s an example of the referenced anonymous function and a declared function in action:</p>
-<pre class="highlight plaintext"><code>function tester() {
+<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+</pre></td><td class="rouge-code"><pre>function tester() {
   declaredFunction();
   referencedFunction();
 
@@ -153,13 +190,28 @@ declared(); // returns "I'm not anonymous function"
 tester();
 // logs "I'm a declared function"
 // Uncaught TypeError: referencedFunction is not a function
+</pre></td></tr></tbody></table>
 </code></pre>
 <p><em>Huh? Why did only one of those work?</em></p>
 
 <p>This is directly related to <a href="#">hoisting</a> - if you’re not familiar with that term you should read up about it. Go ahead, I’ll wait. All caught up? Good!</p>
 
 <p>Hopefully after reading about hoisting you’ve got an idea of what’s going on. Let’s look in a bit more detail. Although you wrote the code above the JS interpreter converts it to:</p>
-<pre class="highlight plaintext"><code>function tester() {
+<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+</pre></td><td class="rouge-code"><pre>function tester() {
   function declaredFunction() {
     console.log("I'm a declared function");
   }
@@ -173,6 +225,7 @@ tester();
     console.log("I'm an anonymous function called by a reference");
   };
 }
+</pre></td></tr></tbody></table>
 </code></pre>
 <p>Now Helen’s quote should make more sense. The anonymous function (which is referenced by <code>referencedFunction</code>) isn’t created until it’s position in the code (at runtime). However the declared function is hoisted to the top of the scope and is immediately available for use.</p>
 

@@ -93,7 +93,18 @@
 <h2>Ordinary object literals</h2>
 
 <p>In vanilla JS we create object literals like this:</p>
-<pre class="highlight plaintext"><code>var a = 1,
+<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+</pre></td><td class="rouge-code"><pre>var a = 1,
     b = 2,
     c = 3;
 
@@ -104,19 +115,28 @@ var obj = {
 };
 
 console.log(obj); // logs { "a" : 1, "b" : 2, "c" : 3 }
+</pre></td></tr></tbody></table>
 </code></pre>
 <p><em>What’s wrong with this way?</em></p>
 
 <p>This works, but is quite repetitive and fairly heavy. You have to give the name of the key, even though it’s the same as the name of the variable.</p>
 
 <p>Let’s rewrite it with ES6 object literals:</p>
-<pre class="highlight plaintext"><code>let a = 1,
+<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+</pre></td><td class="rouge-code"><pre>let a = 1,
     b = 2,
     c = 3;
 
 let obj = { a, b, c };
 
 console.log(obj); // logs { "a" : 1, "b" : 2, "c" : 3 }
+</pre></td></tr></tbody></table>
 </code></pre>
 <p><em>Gah! What’s happening here??</em></p>
 
@@ -125,7 +145,16 @@ console.log(obj); // logs { "a" : 1, "b" : 2, "c" : 3 }
 <p><em>Yeah, but what’s the code <strong>really</strong>?</em></p>
 
 <p>To ease concerns... If you put the above ES6 code into the <a href="https://babeljs.io/repl/">Babel REPL</a> it will produce the following vanilla JS code:</p>
-<pre class="highlight plaintext"><code>"use strict";
+<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+</pre></td><td class="rouge-code"><pre>"use strict";
 
 var a = 1,
     b = 2,
@@ -134,13 +163,26 @@ var a = 1,
 var obj = { a: a, b: b, c: c };
 
 console.log(obj);
+</pre></td></tr></tbody></table>
 </code></pre>
 <p>No funny business here - promise!</p>
 
 <p><em>I&#39;m not convinced - what’s an example of this being useful?</em></p>
 
 <p>What happens if you change the name of a variable to be something more meaningful, but forget to change the object key? In vanilla JS we have something like this:</p>
-<pre class="highlight plaintext"><code>var firstPlace = 1,
+<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+</pre></td><td class="rouge-code"><pre>var firstPlace = 1,
     secondPlace = 2,
     thirdPlace = 3;
 
@@ -152,11 +194,20 @@ var obj = {
 
 console.log(obj); // logs { "a" : 1, "b" : 2, "c" : 3 }
 console.log(obj.thirdPlace); // undefined
+</pre></td></tr></tbody></table>
 </code></pre>
 <p>We had all the best intentions of using better names, but they didn’t come through after you created the object. (I’m sure you’re a perfect dev who would never do something like this. But I have, and it was super annoying to debug.)</p>
 
 <p>Here’s the same example with ES6 helping us out:</p>
-<pre class="highlight plaintext"><code>let firstPlace = 1,
+<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+</pre></td><td class="rouge-code"><pre>let firstPlace = 1,
     secondPlace = 2,
     thirdPlace = 3;
 
@@ -164,6 +215,7 @@ let obj = { firstPlace, secondPlace, thirdPlace };
 
 console.log(obj); // logs { "firstPlace" : 1, "secondPlace" : 2, "thirdPlace" : 3 }
 console.log(obj.thirdPlace); // logs 3
+</pre></td></tr></tbody></table>
 </code></pre>
 <p>You can see that it’s a bit easier to keep track of everything with the enhanced object literals.</p>
 
@@ -174,7 +226,18 @@ console.log(obj.thirdPlace); // logs 3
 <h2>Dynamic keys</h2>
 
 <p>The new syntax also allows dynamic keys to be created more easily. Here’s an example of the ES6 version:</p>
-<pre class="highlight plaintext"><code>let a = 1,
+<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+</pre></td><td class="rouge-code"><pre>let a = 1,
     b = 2,
     c = 3;
 
@@ -185,11 +248,20 @@ let obj = {
 }
 
 console.log(obj); // logs { "2" : 1, "3" : 2, "4" : 3 }
+</pre></td></tr></tbody></table>
 </code></pre>
 <p><em>But you can have dynamic keys in vanilla JS!</em></p>
 
 <p>True, we could use [] notation to remove this problem:</p>
-<pre class="highlight plaintext"><code>var numbers = [1, 2, 3];
+<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+</pre></td><td class="rouge-code"><pre>var numbers = [1, 2, 3];
 var obj = {};
 
 for (var i = 0; i &lt; numbers.length; i++) {
@@ -197,6 +269,7 @@ for (var i = 0; i &lt; numbers.length; i++) {
 }
 
 console.log(obj); // logs { "2" : 1, "3" : 2, "4" : 3 }
+</pre></td></tr></tbody></table>
 </code></pre>
 <p>Now the keys and values can be dynamic, but look at that code! The new way is certainly easier to read and write.</p>
 
@@ -205,20 +278,34 @@ console.log(obj); // logs { "2" : 1, "3" : 2, "4" : 3 }
 <h2>Methods</h2>
 
 <p>It’s easy enough to put methods on objects in vanilla JS:</p>
-<pre class="highlight plaintext"><code>var obj = {
+<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+</pre></td><td class="rouge-code"><pre>var obj = {
     hello: function(name) {
         console.log('hello ' + name);
     }
 }
 obj.hello('world'); // logs "hello world"
+</pre></td></tr></tbody></table>
 </code></pre>
 <p>But with enhanced object literals we can get rid of some of the boiler plate code to tighten things up a bit:</p>
-<pre class="highlight plaintext"><code>let obj = {
+<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+</pre></td><td class="rouge-code"><pre>let obj = {
   hello(name) {
     console.log('hello ' + name);
   }
 };
 obj.hello('world'); // logs "hello world"
+</pre></td></tr></tbody></table>
 </code></pre>
 <p><em>That’s crazy! Where’s the function keyword?</em></p>
 

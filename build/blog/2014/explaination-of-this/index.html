@@ -105,7 +105,17 @@
 <ul>
 <li><code>this</code> refers to the object it’s being called from</li>
 </ul>
-<pre class="highlight javascript"><code><span class="kd">function</span> <span class="nx">currentYear</span><span class="p">()</span> <span class="p">{</span>
+<pre class="highlight javascript"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+</pre></td><td class="rouge-code"><pre><span class="kd">function</span> <span class="nx">currentYear</span><span class="p">()</span> <span class="p">{</span>
   <span class="k">return</span> <span class="mi">2014</span><span class="p">;</span>
 <span class="p">}</span>
 <span class="kd">var</span> <span class="nx">person</span> <span class="o">=</span> <span class="p">{</span> <span class="na">birthYear</span><span class="p">:</span> <span class="mi">1977</span><span class="p">,</span>
@@ -115,15 +125,20 @@
              <span class="p">};</span>
 <span class="nx">person</span><span class="p">.</span><span class="nx">getAge</span><span class="p">();</span>
 <span class="c1">// returns 37</span>
+</pre></td></tr></tbody></table>
 </code></pre>
 <p>You can see the call to <code>this.birthYear</code> in the <code>getAge</code> function references the <code>person</code>’s <code>birthYear</code>. That is the <code>this</code> refers to its parent object. As a Ruby developer <code>this</code> is similar to <code>self</code>.</p>
 
 <ul>
 <li><code>this</code> refers to the element the event is bound to</li>
 </ul>
-<pre class="highlight javascript"><code><span class="nx">$</span><span class="p">(</span><span class="s1">'a'</span><span class="p">).</span><span class="nx">on</span><span class="p">(</span><span class="s1">'click'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+<pre class="highlight javascript"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+</pre></td><td class="rouge-code"><pre><span class="nx">$</span><span class="p">(</span><span class="s1">'a'</span><span class="p">).</span><span class="nx">on</span><span class="p">(</span><span class="s1">'click'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">target</span> <span class="o">===</span> <span class="k">this</span><span class="p">);</span> <span class="c1">// logs true</span>
 <span class="p">});</span>
+</pre></td></tr></tbody></table>
 </code></pre>
 <p>Here the <code>this</code> refers to the link the user clicked on, just like <code>event.target</code></p>
 
@@ -132,13 +147,21 @@
 </ul>
 
 <p>Apparently you can use <a href="/blog/2014/call-vs-apply/"><code>call</code> or <code>apply</code></a> and pass a context explicitly. In that case <code>this</code> refers to the passed context.</p>
-<pre class="highlight javascript"><code><span class="kd">function</span> <span class="nx">greeter</span><span class="p">(){</span>
+<pre class="highlight javascript"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+</pre></td><td class="rouge-code"><pre><span class="kd">function</span> <span class="nx">greeter</span><span class="p">(){</span>
   <span class="k">return</span> <span class="s1">'Hello '</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">+</span> <span class="s1">'!'</span><span class="p">;</span>
 <span class="p">}</span>
 
 <span class="kd">var</span> <span class="nx">passableContext</span> <span class="o">=</span> <span class="p">{</span> <span class="na">name</span><span class="p">:</span> <span class="s1">'world'</span> <span class="p">};</span>
 <span class="nx">greeter</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">passableContext</span><span class="p">)</span>
 <span class="c1">// returns 'Hello world!'</span>
+</pre></td></tr></tbody></table>
 </code></pre>
 
     <hr/>

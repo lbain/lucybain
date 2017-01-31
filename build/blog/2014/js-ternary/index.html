@@ -99,21 +99,33 @@
 <p>So a <strong>ternary</strong> operand accepts three parameters.</p>
 
 <p>In programming the ternary operand we use is a rewrite of an if statement. Before we write an actual ternary, we&#39;ll just take a quick look at an if statement:</p>
-<pre class="highlight plaintext"><code>if(conditional) { // one
+<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+</pre></td><td class="rouge-code"><pre>if(conditional) { // one
     truethy_block // two
 } else {
     falsey_block // three
 }
+</pre></td></tr></tbody></table>
 </code></pre>
 <p>You can see there are three sections to an if statement. Let’s write them as a property ternary expression:</p>
-<pre class="highlight plaintext"><code>conditional ? truethy_block : falsey_block
+<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre>conditional ? truethy_block : falsey_block
+</pre></td></tr></tbody></table>
 </code></pre>
 <p>All the same code is there, but it’s arranged slightly differently. The ternary’s operand looks like <code>?:</code>.</p>
 
 <p>In JS ternarys are often used for assignment:</p>
-<pre class="highlight plaintext"><code>is_sunny = true;
+<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+</pre></td><td class="rouge-code"><pre>is_sunny = true;
 var weather = is_sunny ? ’sunny' : 'Cloudy';
 console.log(weather); // logs ’sunny'
+</pre></td></tr></tbody></table>
 </code></pre>
 <p>They can also be used for very short conditional statements. But be wary of using them for long or complex logic as they are harder to read than traditional statements.</p>
 
