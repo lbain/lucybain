@@ -15,6 +15,8 @@ As a quick reminder:
 
 The differences are fairly subtle (I didn’t notice them until a co-worker told me about them), but important to note and interesting to play with for a blog post!
 
+**Note:** I’m not using asynchronous code in my because it make the examples more complicated and the logic harder to see. The examples below wouldn’t work the same way with async code (for example, `console.log`), but they clarify the intent.
+
 ## Promise’s state after an error
 
 ### Promises/A+
@@ -32,7 +34,7 @@ The bit we’re interested in reads like this:
 
 *Seems simple enough*
 
-Yes, nothing complicated (so far). Let’s look at an example:
+Yes, nothing complicated (so far). Let’s look at a simple example:
 
 ```js
 const resolvedPromise =  Promise.resolve();
@@ -152,6 +154,8 @@ const errorPromise = resolvedPromise.then(() => {
 
 Yes, I like the syntax too. It makes it really clear what error we’re catching, and looking back over the chain you can check where it might have come from.
 
+However, since errors thrown in a Promise don’t bubble up to the window you have to `catch` errors everywhere. You aren’t guaranteed that an error like `undefined is not a function`. As my co-worker put it, with Promises you “have to expect the unexpected everywhere.” All these `catch`es can also get messy and complicated.
+
 ### jQuery’s Deferred
 
 On the other hand, an error thrown in a Deferred *will* bubble up to the window and can be caught along the way. Which means we can rewrite our previous example to catch the error:
@@ -163,15 +167,11 @@ try {
     throw new Error('Deferred error');
   });
 } catch (error) {
-   console.log(error); // [Error: Deferred error]
+  console.log(error); // [Error: Deferred error]
 }
 ```
 
-*Ok, so using a normal try/catch works for Deferreds*
-
-Yes, that’s right. Some people get upset about the mixing of inherently asynchronous promise code (the Deferred) and traditionally synchronous try/catch code. It’s a style and readability decision to make for your code.
-
-Once more, to reinforce the previous topic, let’s write it one more way so we can see the settled state of each promise:
+I’ll write it another way to reinforce the previous topic. Now we can see the settled state of each promise:
 
 ```js
 const resolvedDeferred = $.Deferred();
@@ -190,15 +190,105 @@ console.log(errorDeferred.state()); // "pending"
 
 Here you can see that `errorDeferred` still has the “pending” state, even though the error has been caught and handled.
 
+*Ok, so using a normal try/catch works for Deferreds*
+
+Not really.
+
+*What?! You tricked me!*
+
+I’m afraid I did. Remember at the beginning when I said my examples would use synchronous code to make things clearer? That’s what is making this example work. Since the `Deferred error` is thrown right away (without waiting for any aysnc code to execute) the `catch` happens right away too. It’s useful to prove the point that the `Deferred error` bubbled up, but not so good for showing how to handle Deferred errors. Let’s write another example:
+
+```js
+try {
+  const resolvedDeferred = $.Deferred().resolve();
+  const errorDeferred = resolvedDeferred.then(() => {
+    setTimeout(() => {
+      console.log('throw error'); // "throw error"
+      throw new Error('Deferred error');  
+    }, 20);
+  });
+} catch (error) {
+  // this never runs because the catch won’t be triggered
+  console.log('Does not run');
+}
+```
+
+As you can see, now that we’re using async code the try/catch doesn’t work any more.
+
+*Great, another way not to do it.*
+
+Unfortunately, yes. The thing is, jQuery doesn’t give us a way to catch errors thrown from Deferreds. It’s just not possible.
+
+*Not possible! But this is programming, there must be a way!*
+
+Unfortunately not. There’s one more syntax we’ll look at (but it still won’t work):
+
+```js
+const resolvedDeferred = $.Deferred().resolve();
+const errorDeferred = resolvedDeferred.then(() => {
+  setTimeout(() => {
+    console.log('throw error'); // "throw error"
+    throw new Error('Deferred error');  
+  }, 20);
+}).fail(error => {
+  // this never runs because the deferred doesn’t settle
+  console.log('Does not run');
+});
+```
+
+We use [`fail`](https://api.jquery.com/deferred.fail/) here which feels like it *should* work (after all, the promise didn’t happen). However the description `fail` is:
+
+>  Add handlers to be called when the Deferred object is rejected.
+
+And remember, when a Deferred throws an error it is left in a permanent “pending” state and will never settle to “rejected”. Thus the `fail` is never called.
+
+*But I heard about `catch` being added to jQuery 3 — why don’t we use that?*
+
+Oh yes, jQuery 3 added `catch`. That totally wasn’t news to me. I definitely knew about it before today...
+
+While most of jQuery Deferred’s methods were defined by 1.12, one method was recently added when jQuery 3.0 came out (which happened on June 9, 2016). There are two downsides to `catch`: first [very few](https://w3techs.com/technologies/details/js-jquery/all/all) websites are using jQuery 3, and second `catch` still doesn’t work. In fact, `catch` has exactly the same description as `fail` has:
+
+> Add handlers to be called when the Deferred object is rejected.
+
+So `catch` has the same issue that the Deferred doesn’t settle if an error is thrown.
+
 *How can we move `errorDeferred` to be resolved?*
 
 Unfortunately, we can’t; `errorDeferred` is doomed to be “pending” forever. If you try to call `errorDeferred.resolve()` you’ll get an error that `errorDeferred.resolve is not a function`.
+
+*This all sounds like bad news. Are there any upsides?*
+
+Remember earlier when we talked about Promises needing to explicitly `catch` all their errors, and how that can be annoying? Well, since Deferreds do bubble up errors to the window we can handle any error with one function: `window.onerror`.
+
+Let’s rewrite it one more time to see how this would work:
+
+```js
+window.onerror = error => {
+  console.log(error);
+}
+
+const resolvedDeferred = $.Deferred().resolve();
+const errorDeferred = resolvedDeferred.then(() => {
+  setTimeout(() => {
+    console.log('throw error');
+    throw new Error('Deferred error');  
+  }, 20);
+});
+
+// Logs out:
+// "throw error" (from line 8)
+// "Uncaught Error: Deferred error" (from line 2)
+```
+
+Now any uncaught error will bubble up until it reaches the `onerror` directly on the `window`. From there our new function will log out the error. With one very small method we can see all the uncaught errors from every Deferred, rather than needing a `catch` on each one of them. **Warning:** the `onerror` works for every uncaught error anywhere in your code, not only for errors in Deferreds; you might find more than you bargained for!
 
 ---
 
 And there you have it! Fairly small differences, but important ones. It might impact which promise implementation you decide on, and it will probably come up as you work with various libraries. It’s important to know if what you’re getting back is a Promise or a Deferred.
 
 ## Resources
+
+Many thanks to my co-worker [Adam](https://twitter.com/typesthings) for initially pointing out the differences and then also reviewing my post and correcting my mistakes!
 
 * [The Differences between jQuery Deferreds and the Promises/A+ spec](https://abdulapopoola.com/2014/12/12/the-differences-between-jquery-deferreds-and-the-promisesa-spec/)
 * [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)
