@@ -94,7 +94,7 @@ set :markdown_engine, :redcarpet
 activate :directory_indexes
 
 # Use middleman-syntax gem to color syntax
-activate :syntax
+activate :syntax, line_numbers: true
 
 # Use middleman-alias gem to keep trak of renames
 # activate :alias

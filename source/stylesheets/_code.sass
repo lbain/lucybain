@@ -1,12 +1,10 @@
 pre, code
   font-family: 'Source Code Pro', monospace, serif
-  border: 1px solid #e5e5e5
   background: #f8f8f8
 
 pre
-  padding: 8px 15px
+  padding: 8px 10px
   border-radius: 5px
-  border: 1px solid #e5e5e5
   line-height: normal
   overflow-x: auto
   white-space: pre
@@ -17,8 +15,15 @@ pre
     padding: 0
     white-space: pre
 
+  &.lineno
+    color: lighten(#586e75, 30%)
+    text-align: right
+
 code
   font-size: 0.8em
   border-radius: 5px
   padding: 1px 5px
   white-space: nowrap
+
+.highlight table td
+  padding: 0
