@@ -368,7 +368,9 @@
 
 <p><em>Not possible! But this is programming, there must be a way!</em></p>
 
-<p>Unfortunately not. There’s one more syntax we’ll look at (but it still won’t work):</p>
+<p>Well, there is, upgrade to jQuery 3. While most of jQuery Deferred’s methods were defined by 1.12, one method, <code>catch</code>, was recently added when jQuery 3.0 came out (which happened on June 9, 2016). This new <code>catch</code> method means you can do the same kind of <code>catch</code> as we did with the Promise earlier. Unfortunately <a href="https://w3techs.com/technologies/details/js-jquery/all/all">very few</a> websites are using jQuery 3 at the moment. Hopefully your site is one of them!</p>
+
+<p>Ok, let’s look at the example for using jQuery’s catch:</p>
 <pre class="highlight javascript"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
 3
@@ -378,38 +380,18 @@
 7
 8
 9
-10
 </pre></td><td class="rouge-code"><pre><span class="kr">const</span> <span class="nx">resolvedDeferred</span> <span class="o">=</span> <span class="nx">$</span><span class="p">.</span><span class="nx">Deferred</span><span class="p">().</span><span class="nx">resolve</span><span class="p">();</span>
 <span class="kr">const</span> <span class="nx">errorDeferred</span> <span class="o">=</span> <span class="nx">resolvedDeferred</span><span class="p">.</span><span class="nx">then</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
-  <span class="nx">setTimeout</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'throw error'</span><span class="p">);</span> <span class="c1">// "throw error"</span>
-    <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="s1">'Deferred error'</span><span class="p">);</span>  
-  <span class="p">},</span> <span class="mi">20</span><span class="p">);</span>
-<span class="p">}).</span><span class="nx">fail</span><span class="p">(</span><span class="nx">error</span> <span class="o">=&gt;</span> <span class="p">{</span>
-  <span class="c1">// this never runs because the deferred doesn’t settle</span>
-  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'Does not run'</span><span class="p">);</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'throw error'</span><span class="p">);</span> <span class="c1">// "throw error"</span>
+  <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="s1">'Deferred error'</span><span class="p">);</span>  
+<span class="p">}).</span><span class="k">catch</span><span class="p">(</span><span class="nx">error</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span> <span class="c1">// [object Error] {}</span>
 <span class="p">});</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">errorDeferred</span><span class="p">.</span><span class="nx">state</span><span class="p">());</span> <span class="c1">// "pending"</span>
 </pre></td></tr></tbody></table>
 </code></pre>
-<p>We use <a href="https://api.jquery.com/deferred.fail/"><code>fail</code></a> here which feels like it <em>should</em> work (after all, the promise didn’t happen). However the description <code>fail</code> is:</p>
-
-<blockquote>
-<p>Add handlers to be called when the Deferred object is rejected.</p>
-</blockquote>
-
-<p>And remember, when a Deferred throws an error it is left in a permanent “pending” state and will never settle to “rejected”. Thus the <code>fail</code> is never called.</p>
-
-<p><em>But I heard about <code>catch</code> being added to jQuery 3 — why don’t we use that?</em></p>
-
-<p>Oh yes, jQuery 3 added <code>catch</code>. That totally wasn’t news to me. I definitely knew about it before today...</p>
-
-<p>While most of jQuery Deferred’s methods were defined by 1.12, one method was recently added when jQuery 3.0 came out (which happened on June 9, 2016). There are two downsides to <code>catch</code>: first <a href="https://w3techs.com/technologies/details/js-jquery/all/all">very few</a> websites are using jQuery 3, and second <code>catch</code> still doesn’t work. In fact, <code>catch</code> has exactly the same description as <code>fail</code> has:</p>
-
-<blockquote>
-<p>Add handlers to be called when the Deferred object is rejected.</p>
-</blockquote>
-
-<p>So <code>catch</code> has the same issue that the Deferred doesn’t settle if an error is thrown.</p>
+<p>As you can see, we were able to <code>catch</code> the error from the Deferred in the same way we caught the error from the Promise. However, after throwing the error <code>errorDeferred</code> is left in a permanent “pending” state and will never settle to “rejected”.</p>
 
 <p><em>How can we move <code>errorDeferred</code> to be resolved?</em></p>
 

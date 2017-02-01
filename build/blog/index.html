@@ -62,6 +62,14 @@
       <div class='blog-listing'>
   <div>
     <h1>
+      <a href="/blog/2017/js-promises-errors-a-plus-vs-deferreds/">JS: Promises/A+, jQuery Deferreds, and errors</a>
+    </h1>
+    <p>Jan 29, 2017</p>
+    <p>As I said, I’m having difficulty understanding all the jargon associated with promises. This post is a continuation from <a href="/blog/2016/js-promises-vs-deferred/">JS: promise and deferred</a> and we’ll take a deeper look into how Promises and Deferreds handle errors. You can read about the <a href="/blog/2017/js-promises-a-plus-jquery-history/">history</a></p>
+  </div>
+  <hr>
+  <div>
+    <h1>
       <a href="/blog/2017/public-speaking-notes/">Presentation notes</a>
     </h1>
     <p>Jan 12, 2017</p>
@@ -272,12 +280,18 @@
     <h3>variables</h3>
     
     <p>It’s not easy to read...</p>
-    <pre class="highlight plaintext"><code>var someVar = "world";
+    <pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr>
+    <td class="rouge-gutter gl"><pre class="lineno">1
+    2
+    </pre></td>
+    <td class="rouge-code"><pre>var someVar = "world";
     console.log("Hello" + someVar + "!");
+    </pre></td>
+    </tr></tbody></table>
     </code></pre>
     <h3>newlines</h3>
     
-    <p>It doesn’t handle new...</p>
+    <p>It doesn’t handle...</p>
   </div>
   <hr>
   <div>
@@ -660,11 +674,17 @@
     <p><strong>What are <code>.call</code> and <code>.apply</code>?</strong></p>
     
     <p>Both methods allow you to invoke a function and pass parameters through.</p>
-    <pre class="highlight plaintext"><code>function printer(message) {
-        console.log(message)
-    }
-    
-    printer...</code></pre>
+    <pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr>
+    <td class="rouge-gutter gl"><pre class="lineno">1
+    2
+    3
+    4
+    5
+    6
+    </pre></td>
+    <td class="rouge-code"><pre>function printer(message) {
+        console.log(message...</pre></td>
+    </tr></tbody></table></code></pre>
   </div>
   <hr>
   <div>
@@ -701,9 +721,17 @@
     <p>Event bubbling occurs when a user interacts with a nested element and the event propagates up (“bubbles”) through all of the ancestor elements.</p>
     
     <p><strong>HTML</strong></p>
-    <pre class="highlight plaintext"><code>&lt;div class="ancestor"&gt;
+    <pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr>
+    <td class="rouge-gutter gl"><pre class="lineno">1
+    2
+    3
+    4
+    5
+    </pre></td>
+    <td class="rouge-code"><pre>&lt;div class="ancestor"&gt;
       &lt;div class="parent"&gt;
-        &lt;button&gt; Click me! &lt;/button...</code></pre>
+        &lt;button&gt; Click...</pre></td>
+    </tr></tbody></table></code></pre>
   </div>
   <hr>
   <div>
@@ -742,12 +770,21 @@
     <p><em>So what’s a callback?</em></p>
     
     <p>I’m glad you asked!</p>
-    <pre class="highlight plaintext"><code>function takesACallback(callback) {
+    <pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr>
+    <td class="rouge-gutter gl"><pre class="lineno">1
+    2
+    3
+    4
+    5
+    6
+    7
+    8
+    </pre></td>
+    <td class="rouge-code"><pre>function takesACallback(callback) {
         // do some interesting things here
         return "The callback says: " + callback();
-    }
-    
-    takesACallback...</code></pre>
+    }...</pre></td>
+    </tr></tbody></table></code></pre>
   </div>
   <hr>
   <div>

@@ -4,10 +4,382 @@
   <id>http://lucybain.com/blog</id>
   <link href="http://lucybain.com/blog"/>
   <link href="http://lucybain.com/feed.xml" rel="self"/>
-  <updated>2017-01-12T11:00:00+11:00</updated>
+  <updated>2017-01-29T11:00:00+11:00</updated>
   <author>
     <name>Lucy Bain</name>
   </author>
+  <entry>
+    <title>JS: Promises/A+, jQuery Deferreds, and errors</title>
+    <link rel="alternate" href="http://lucybain.com/blog/2017/js-promises-errors-a-plus-vs-deferreds/"/>
+    <id>http://lucybain.com/blog/2017/js-promises-errors-a-plus-vs-deferreds/</id>
+    <published>2017-01-29T11:00:00+11:00</published>
+    <author>
+      <name>Article Author</name>
+    </author>
+    <content type="html">&lt;p&gt;As I said, I’m having difficulty understanding all the jargon associated with promises. This post is a continuation from &lt;a href="/blog/2016/js-promises-vs-deferred/"&gt;JS: promise and deferred&lt;/a&gt; and we’ll take a deeper look into how Promises and Deferreds handle errors. You can read about the &lt;a href="/blog/2017/js-promises-a-plus-jquery-history/"&gt;history&lt;/a&gt; of why these two exist, but we’re going to focus on the practical differences today.&lt;/p&gt;
+
+&lt;p&gt;As a quick reminder:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Promises/A+ is a &lt;a href="https://promisesaplus.com/"&gt;specification&lt;/a&gt; for how promises should work. Many &lt;a href="https://github.com/promises-aplus/promises-spec/blob/master/implementations.md"&gt;libraries&lt;/a&gt; implement this specification, but not all. You can test a library with the &lt;a href="https://github.com/promises-aplus/promises-tests"&gt;test suite&lt;/a&gt; to find if it is compliant.&lt;/li&gt;
+&lt;li&gt;Deferred is jQuery’s implementation of the concept of promises. Deferreds are not Promises/A+ compliant (the specification came after Deferreds).&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;The differences are fairly subtle (I didn’t notice them until a co-worker told me about them), but important to note and interesting to play with for a blog post!&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; I’m not using asynchronous code in my because it make the examples more complicated and the logic harder to see. The examples below wouldn’t work the same way with async code (for example, &lt;code&gt;console.log&lt;/code&gt;), but they clarify the intent.&lt;/p&gt;
+
+&lt;h2&gt;Promise’s state after an error&lt;/h2&gt;
+
+&lt;h3&gt;Promises/A+&lt;/h3&gt;
+
+&lt;p&gt;The specific rule from the specification we’ll look into is &lt;a href="https://promisesaplus.com/#point-55"&gt;2.3.3.2&lt;/a&gt;:&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;If retrieving the property x.then results in a thrown exception e, reject promise with e as the reason.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;em&gt;Yawn, in human please...&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;The bit we’re interested in reads like this:&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;If code from a promise results in an error, the promise &lt;em&gt;must&lt;/em&gt; be rejected. &lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;em&gt;Seems simple enough&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;Yes, nothing complicated (so far). Let’s look at a simple example:&lt;/p&gt;
+&lt;pre class="highlight javascript"&gt;&lt;code&gt;&lt;table class="rouge-table"&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class="rouge-gutter gl"&gt;&lt;pre class="lineno"&gt;1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+&lt;/pre&gt;&lt;/td&gt;&lt;td class="rouge-code"&gt;&lt;pre&gt;&lt;span class="kr"&gt;const&lt;/span&gt; &lt;span class="nx"&gt;resolvedPromise&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt;  &lt;span class="nx"&gt;Promise&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;resolve&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+&lt;span class="nx"&gt;console&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;log&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;resolvedPromise&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="c1"&gt;// [[PromiseStatus]] : "resolved"&lt;/span&gt;
+
+&lt;span class="kr"&gt;const&lt;/span&gt; &lt;span class="nx"&gt;errorPromise&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;resolvedPromise&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;then&lt;/span&gt;&lt;span class="p"&gt;(()&lt;/span&gt; &lt;span class="o"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="k"&gt;throw&lt;/span&gt; &lt;span class="k"&gt;new&lt;/span&gt; &lt;span class="nb"&gt;Error&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'Promise error'&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="p"&gt;});&lt;/span&gt;
+
+&lt;span class="nx"&gt;console&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;log&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;errorPromise&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="c1"&gt;// [[PromiseStatus]] : "rejected"&lt;/span&gt;
+
+&lt;span class="nx"&gt;errorPromise&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;then&lt;/span&gt;&lt;span class="p"&gt;(()&lt;/span&gt; &lt;span class="o"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="c1"&gt;// this never runs because the promise was rejected&lt;/span&gt;
+  &lt;span class="c1"&gt;// before getting to this code&lt;/span&gt;
+  &lt;span class="nx"&gt;console&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;log&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'Never run'&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt; 
+&lt;span class="p"&gt;});&lt;/span&gt;
+&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;As you can see, &lt;code&gt;resolvedPromise&lt;/code&gt; settled to a “resolved” state and never threw an error. However &lt;code&gt;errorPromise&lt;/code&gt; did throw an error so it settled to a “rejected” state. Because of rules like this one, it is not possible for a Promises/A+ promise to settle in a “pending” state. &lt;strong&gt;If the promise has settled, the Promises/A+ spec guarantees that it has been resolved or rejected.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Hmmm, that last sentence is in bold, seems like it’s important.&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;Yep, that’s the main thing we’re going to look into today.&lt;/p&gt;
+
+&lt;h3&gt;jQuery’s Deferred&lt;/h3&gt;
+
+&lt;p&gt;jQuery’s Deferred (their implementation of promises) is quite relaxed. It was written before the rules settled down, so it isn’t as picky.&lt;/p&gt;
+
+&lt;p&gt;Again, let’s look at an example:&lt;/p&gt;
+&lt;pre class="highlight javascript"&gt;&lt;code&gt;&lt;table class="rouge-table"&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class="rouge-gutter gl"&gt;&lt;pre class="lineno"&gt;1
+2
+3
+4
+5
+6
+7
+8
+&lt;/pre&gt;&lt;/td&gt;&lt;td class="rouge-code"&gt;&lt;pre&gt;&lt;span class="kr"&gt;const&lt;/span&gt; &lt;span class="nx"&gt;resolvedDeferred&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;$&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;Deferred&lt;/span&gt;&lt;span class="p"&gt;().&lt;/span&gt;&lt;span class="nx"&gt;resolve&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+&lt;span class="nx"&gt;resolvedDeferred&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;state&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt; &lt;span class="c1"&gt;// "resolved"&lt;/span&gt;
+
+&lt;span class="kr"&gt;const&lt;/span&gt; &lt;span class="nx"&gt;errorDeferred&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;resolvedDeferred&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;then&lt;/span&gt;&lt;span class="p"&gt;(()&lt;/span&gt; &lt;span class="o"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="k"&gt;throw&lt;/span&gt; &lt;span class="k"&gt;new&lt;/span&gt; &lt;span class="nb"&gt;Error&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'Deferred error'&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="p"&gt;})&lt;/span&gt;
+
+&lt;span class="nx"&gt;errorDeferred&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;state&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt; &lt;span class="c1"&gt;// "pending"&lt;/span&gt;
+&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;em&gt;What’s the difference?&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;Although &lt;code&gt;errorDeferred&lt;/code&gt; threw an error, it has not settled, instead it’s state is still “pending”. There’s no way to know if &lt;code&gt;errorDeferred&lt;/code&gt; is pending because of an error, or because the promise is taking a long time to settle (e.g. an ajax request).&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;If the promise has settled, a Deferred can be pending, resolved, or rejected.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;So the difference is that a Deferred will stay pending and a Promises/A+ compliant promise won’t?&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;Yep, that’s what we’re looking at right now.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;That doesn’t seem like a big difference...&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;Like I said, I didn’t notice the difference until someone pointed it out to me. But the way the errors are handled is different as well. We’ll look at that next.&lt;/p&gt;
+
+&lt;h2&gt;Handling errors from promises&lt;/h2&gt;
+
+&lt;p&gt;Ok, so now we know what happens to these two types of promises when they encounter an error. But how do we handle the errors themselves?&lt;/p&gt;
+
+&lt;h3&gt;Promises/A+&lt;/h3&gt;
+
+&lt;p&gt;Errors thrown in a Promise need to be explicitly handled by the promise chain. They do not bubble up to the window. In fact, not all browsers will show you the error.&lt;/p&gt;
+
+&lt;p&gt;Google Chrome (version 55.0.2883.95) does:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="/images/blog/promises-vs-deferreds/chrome-with-error.png" alt="Google Chrome displays an error for exceptions thrown in promises" /&gt;&lt;/p&gt;
+
+&lt;p&gt;But Firefox (version 47.0) does not:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="/images/blog/promises-vs-deferreds/firefox-no-error.png" alt="Firefox (version 47.0) does not display an error for exceptions thrown in promises" /&gt;&lt;/p&gt;
+
+&lt;p&gt;Although it seems browsers are moving towards supporting showing the error. Firefox (version 51.0.1) does show the error:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="/images/blog/promises-vs-deferreds/firefox-with-error.png" alt="Firefox (version 51.0.1) displays an error for exceptions thrown in promises" /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Well, and should they display the error?&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;Technically not showing the error message is correct as the Promise doesn’t bubble the error out to the browser. (That said, being able to see the errors is very helpful for debugging.)&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Ok, so, practically speaking, how should I handle errors?&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;What all this means is that you cannot use a normal try/catch for errors thrown by Promises. Let’s try it anyways to see what happens:&lt;/p&gt;
+&lt;pre class="highlight javascript"&gt;&lt;code&gt;&lt;table class="rouge-table"&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class="rouge-gutter gl"&gt;&lt;pre class="lineno"&gt;1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+&lt;/pre&gt;&lt;/td&gt;&lt;td class="rouge-code"&gt;&lt;pre&gt;&lt;span class="k"&gt;try&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="kr"&gt;const&lt;/span&gt; &lt;span class="nx"&gt;resolvedPromise&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt;  &lt;span class="nx"&gt;Promise&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;resolve&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+
+  &lt;span class="kr"&gt;const&lt;/span&gt; &lt;span class="nx"&gt;errorPromise&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;resolvedPromise&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;then&lt;/span&gt;&lt;span class="p"&gt;(()&lt;/span&gt; &lt;span class="o"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="k"&gt;throw&lt;/span&gt; &lt;span class="k"&gt;new&lt;/span&gt; &lt;span class="nb"&gt;Error&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'Promise error'&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+  &lt;span class="p"&gt;});&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt; &lt;span class="k"&gt;catch&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;error&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="c1"&gt;// This catch never gets triggered because the "Promise error"&lt;/span&gt;
+  &lt;span class="c1"&gt;// isn't bubbled up this far&lt;/span&gt;
+  &lt;span class="nx"&gt;console&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;log&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'Does not run'&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;em&gt;Alright, now we know what doesn’t work...&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;To actually handle the error we need to use a &lt;code&gt;catch&lt;/code&gt; on &lt;code&gt;errorPromise&lt;/code&gt;, so we’re explicitly handling the error directly on the promise.&lt;/p&gt;
+
+&lt;p&gt;Let’s rewrite the previous example to correctly catch the &lt;code&gt;Promise error&lt;/code&gt;:&lt;/p&gt;
+&lt;pre class="highlight javascript"&gt;&lt;code&gt;&lt;table class="rouge-table"&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class="rouge-gutter gl"&gt;&lt;pre class="lineno"&gt;1
+2
+3
+4
+5
+6
+7
+&lt;/pre&gt;&lt;/td&gt;&lt;td class="rouge-code"&gt;&lt;pre&gt;&lt;span class="kr"&gt;const&lt;/span&gt; &lt;span class="nx"&gt;resolvedPromise&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt;  &lt;span class="nx"&gt;Promise&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;resolve&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+
+&lt;span class="kr"&gt;const&lt;/span&gt; &lt;span class="nx"&gt;errorPromise&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;resolvedPromise&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;then&lt;/span&gt;&lt;span class="p"&gt;(()&lt;/span&gt; &lt;span class="o"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="k"&gt;throw&lt;/span&gt; &lt;span class="k"&gt;new&lt;/span&gt; &lt;span class="nb"&gt;Error&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'Promise error'&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="p"&gt;}).&lt;/span&gt;&lt;span class="k"&gt;catch&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;error&lt;/span&gt; &lt;span class="o"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="nx"&gt;console&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;log&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;error&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt; &lt;span class="c1"&gt;// [Error: Promise error]&lt;/span&gt;
+&lt;span class="p"&gt;});&lt;/span&gt;
+&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;em&gt;Well that was easy!&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;Yes, I like the syntax too. It makes it really clear what error we’re catching, and looking back over the chain you can check where it might have come from.&lt;/p&gt;
+
+&lt;p&gt;However, since errors thrown in a Promise don’t bubble up to the window you have to &lt;code&gt;catch&lt;/code&gt; errors everywhere. You aren’t guaranteed that an error like &lt;code&gt;undefined is not a function&lt;/code&gt;. As my co-worker put it, with Promises you “have to expect the unexpected everywhere.” All these &lt;code&gt;catch&lt;/code&gt;es can also get messy and complicated.&lt;/p&gt;
+
+&lt;h3&gt;jQuery’s Deferred&lt;/h3&gt;
+
+&lt;p&gt;On the other hand, an error thrown in a Deferred &lt;em&gt;will&lt;/em&gt; bubble up to the window and can be caught along the way. Which means we can rewrite our previous example to catch the error:&lt;/p&gt;
+&lt;pre class="highlight javascript"&gt;&lt;code&gt;&lt;table class="rouge-table"&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class="rouge-gutter gl"&gt;&lt;pre class="lineno"&gt;1
+2
+3
+4
+5
+6
+7
+8
+&lt;/pre&gt;&lt;/td&gt;&lt;td class="rouge-code"&gt;&lt;pre&gt;&lt;span class="k"&gt;try&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="kr"&gt;const&lt;/span&gt; &lt;span class="nx"&gt;resolvedDeferred&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;$&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;Deferred&lt;/span&gt;&lt;span class="p"&gt;().&lt;/span&gt;&lt;span class="nx"&gt;resolve&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+  &lt;span class="kr"&gt;const&lt;/span&gt; &lt;span class="nx"&gt;errorDeferred&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;resolvedDeferred&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;then&lt;/span&gt;&lt;span class="p"&gt;(()&lt;/span&gt; &lt;span class="o"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="k"&gt;throw&lt;/span&gt; &lt;span class="k"&gt;new&lt;/span&gt; &lt;span class="nb"&gt;Error&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'Deferred error'&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+  &lt;span class="p"&gt;});&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt; &lt;span class="k"&gt;catch&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;error&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="nx"&gt;console&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;log&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;error&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt; &lt;span class="c1"&gt;// [Error: Deferred error]&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;I’ll write it another way to reinforce the previous topic. Now we can see the settled state of each promise:&lt;/p&gt;
+&lt;pre class="highlight javascript"&gt;&lt;code&gt;&lt;table class="rouge-table"&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class="rouge-gutter gl"&gt;&lt;pre class="lineno"&gt;1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+&lt;/pre&gt;&lt;/td&gt;&lt;td class="rouge-code"&gt;&lt;pre&gt;&lt;span class="kr"&gt;const&lt;/span&gt; &lt;span class="nx"&gt;resolvedDeferred&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;$&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;Deferred&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+&lt;span class="kr"&gt;const&lt;/span&gt; &lt;span class="nx"&gt;errorDeferred&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;resolvedDeferred&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;then&lt;/span&gt;&lt;span class="p"&gt;(()&lt;/span&gt; &lt;span class="o"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="k"&gt;throw&lt;/span&gt; &lt;span class="k"&gt;new&lt;/span&gt; &lt;span class="nb"&gt;Error&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'Deferred error'&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="p"&gt;})&lt;/span&gt;
+
+&lt;span class="k"&gt;try&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="nx"&gt;resolvedDeferred&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;resolve&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt; &lt;span class="c1"&gt;// triggers both promises to settle&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt; &lt;span class="k"&gt;catch&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;error&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="nx"&gt;console&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;log&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;error&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt; &lt;span class="c1"&gt;// [Error: Deferred error]&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="nx"&gt;console&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;log&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;resolvedDeferred&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;state&lt;/span&gt;&lt;span class="p"&gt;());&lt;/span&gt; &lt;span class="c1"&gt;// "resolved"&lt;/span&gt;
+&lt;span class="nx"&gt;console&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;log&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;errorDeferred&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;state&lt;/span&gt;&lt;span class="p"&gt;());&lt;/span&gt; &lt;span class="c1"&gt;// "pending"&lt;/span&gt;
+&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Here you can see that &lt;code&gt;errorDeferred&lt;/code&gt; still has the “pending” state, even though the error has been caught and handled.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Ok, so using a normal try/catch works for Deferreds&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;Not really.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;What?! You tricked me!&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;I’m afraid I did. Remember at the beginning when I said my examples would use synchronous code to make things clearer? That’s what is making this example work. Since the &lt;code&gt;Deferred error&lt;/code&gt; is thrown right away (without waiting for any aysnc code to execute) the &lt;code&gt;catch&lt;/code&gt; happens right away too. It’s useful to prove the point that the &lt;code&gt;Deferred error&lt;/code&gt; bubbled up, but not so good for showing how to handle Deferred errors. Let’s write another example:&lt;/p&gt;
+&lt;pre class="highlight javascript"&gt;&lt;code&gt;&lt;table class="rouge-table"&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class="rouge-gutter gl"&gt;&lt;pre class="lineno"&gt;1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+&lt;/pre&gt;&lt;/td&gt;&lt;td class="rouge-code"&gt;&lt;pre&gt;&lt;span class="k"&gt;try&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="kr"&gt;const&lt;/span&gt; &lt;span class="nx"&gt;resolvedDeferred&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;$&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;Deferred&lt;/span&gt;&lt;span class="p"&gt;().&lt;/span&gt;&lt;span class="nx"&gt;resolve&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+  &lt;span class="kr"&gt;const&lt;/span&gt; &lt;span class="nx"&gt;errorDeferred&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;resolvedDeferred&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;then&lt;/span&gt;&lt;span class="p"&gt;(()&lt;/span&gt; &lt;span class="o"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="nx"&gt;setTimeout&lt;/span&gt;&lt;span class="p"&gt;(()&lt;/span&gt; &lt;span class="o"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+      &lt;span class="nx"&gt;console&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;log&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'throw error'&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt; &lt;span class="c1"&gt;// "throw error"&lt;/span&gt;
+      &lt;span class="k"&gt;throw&lt;/span&gt; &lt;span class="k"&gt;new&lt;/span&gt; &lt;span class="nb"&gt;Error&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'Deferred error'&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;  
+    &lt;span class="p"&gt;},&lt;/span&gt; &lt;span class="mi"&gt;20&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+  &lt;span class="p"&gt;});&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt; &lt;span class="k"&gt;catch&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;error&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="c1"&gt;// this never runs because the catch won’t be triggered&lt;/span&gt;
+  &lt;span class="nx"&gt;console&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;log&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'Does not run'&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;As you can see, now that we’re using async code the try/catch doesn’t work any more.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Great, another way not to do it.&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;Unfortunately, yes. The thing is, jQuery doesn’t give us a way to catch errors thrown from Deferreds. It’s just not possible.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Not possible! But this is programming, there must be a way!&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;Well, there is, upgrade to jQuery 3. While most of jQuery Deferred’s methods were defined by 1.12, one method, &lt;code&gt;catch&lt;/code&gt;, was recently added when jQuery 3.0 came out (which happened on June 9, 2016). This new &lt;code&gt;catch&lt;/code&gt; method means you can do the same kind of &lt;code&gt;catch&lt;/code&gt; as we did with the Promise earlier. Unfortunately &lt;a href="https://w3techs.com/technologies/details/js-jquery/all/all"&gt;very few&lt;/a&gt; websites are using jQuery 3 at the moment. Hopefully your site is one of them!&lt;/p&gt;
+
+&lt;p&gt;Ok, let’s look at the example for using jQuery’s catch:&lt;/p&gt;
+&lt;pre class="highlight javascript"&gt;&lt;code&gt;&lt;table class="rouge-table"&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class="rouge-gutter gl"&gt;&lt;pre class="lineno"&gt;1
+2
+3
+4
+5
+6
+7
+8
+9
+&lt;/pre&gt;&lt;/td&gt;&lt;td class="rouge-code"&gt;&lt;pre&gt;&lt;span class="kr"&gt;const&lt;/span&gt; &lt;span class="nx"&gt;resolvedDeferred&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;$&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;Deferred&lt;/span&gt;&lt;span class="p"&gt;().&lt;/span&gt;&lt;span class="nx"&gt;resolve&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+&lt;span class="kr"&gt;const&lt;/span&gt; &lt;span class="nx"&gt;errorDeferred&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;resolvedDeferred&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;then&lt;/span&gt;&lt;span class="p"&gt;(()&lt;/span&gt; &lt;span class="o"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="nx"&gt;console&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;log&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'throw error'&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt; &lt;span class="c1"&gt;// "throw error"&lt;/span&gt;
+  &lt;span class="k"&gt;throw&lt;/span&gt; &lt;span class="k"&gt;new&lt;/span&gt; &lt;span class="nb"&gt;Error&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'Deferred error'&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;  
+&lt;span class="p"&gt;}).&lt;/span&gt;&lt;span class="k"&gt;catch&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;error&lt;/span&gt; &lt;span class="o"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="nx"&gt;console&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;log&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;error&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt; &lt;span class="c1"&gt;// [object Error] {}&lt;/span&gt;
+&lt;span class="p"&gt;});&lt;/span&gt;
+
+&lt;span class="nx"&gt;console&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;log&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;errorDeferred&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;state&lt;/span&gt;&lt;span class="p"&gt;());&lt;/span&gt; &lt;span class="c1"&gt;// "pending"&lt;/span&gt;
+&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;As you can see, we were able to &lt;code&gt;catch&lt;/code&gt; the error from the Deferred in the same way we caught the error from the Promise. However, after throwing the error &lt;code&gt;errorDeferred&lt;/code&gt; is left in a permanent “pending” state and will never settle to “rejected”.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;How can we move &lt;code&gt;errorDeferred&lt;/code&gt; to be resolved?&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;Unfortunately, we can’t; &lt;code&gt;errorDeferred&lt;/code&gt; is doomed to be “pending” forever. If you try to call &lt;code&gt;errorDeferred.resolve()&lt;/code&gt; you’ll get an error that &lt;code&gt;errorDeferred.resolve is not a function&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;This all sounds like bad news. Are there any upsides?&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;Remember earlier when we talked about Promises needing to explicitly &lt;code&gt;catch&lt;/code&gt; all their errors, and how that can be annoying? Well, since Deferreds do bubble up errors to the window we can handle any error with one function: &lt;code&gt;window.onerror&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Let’s rewrite it one more time to see how this would work:&lt;/p&gt;
+&lt;pre class="highlight javascript"&gt;&lt;code&gt;&lt;table class="rouge-table"&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class="rouge-gutter gl"&gt;&lt;pre class="lineno"&gt;1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+&lt;/pre&gt;&lt;/td&gt;&lt;td class="rouge-code"&gt;&lt;pre&gt;&lt;span class="nb"&gt;window&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;onerror&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;error&lt;/span&gt; &lt;span class="o"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="nx"&gt;console&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;log&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;error&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+
+&lt;span class="kr"&gt;const&lt;/span&gt; &lt;span class="nx"&gt;resolvedDeferred&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;$&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;Deferred&lt;/span&gt;&lt;span class="p"&gt;().&lt;/span&gt;&lt;span class="nx"&gt;resolve&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+&lt;span class="kr"&gt;const&lt;/span&gt; &lt;span class="nx"&gt;errorDeferred&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;resolvedDeferred&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;then&lt;/span&gt;&lt;span class="p"&gt;(()&lt;/span&gt; &lt;span class="o"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="nx"&gt;setTimeout&lt;/span&gt;&lt;span class="p"&gt;(()&lt;/span&gt; &lt;span class="o"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="nx"&gt;console&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;log&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'throw error'&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+    &lt;span class="k"&gt;throw&lt;/span&gt; &lt;span class="k"&gt;new&lt;/span&gt; &lt;span class="nb"&gt;Error&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'Deferred error'&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;  
+  &lt;span class="p"&gt;},&lt;/span&gt; &lt;span class="mi"&gt;20&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="p"&gt;});&lt;/span&gt;
+
+&lt;span class="c1"&gt;// Logs out:&lt;/span&gt;
+&lt;span class="c1"&gt;// "throw error" (from line 8)&lt;/span&gt;
+&lt;span class="c1"&gt;// "Uncaught Error: Deferred error" (from line 2)&lt;/span&gt;
+&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Now any uncaught error will bubble up until it reaches the &lt;code&gt;onerror&lt;/code&gt; directly on the &lt;code&gt;window&lt;/code&gt;. From there our new function will log out the error. With one very small method we can see all the uncaught errors from every Deferred, rather than needing a &lt;code&gt;catch&lt;/code&gt; on each one of them. &lt;strong&gt;Warning:&lt;/strong&gt; the &lt;code&gt;onerror&lt;/code&gt; works for every uncaught error anywhere in your code, not only for errors in Deferreds; you might find more than you bargained for!&lt;/p&gt;
+
+&lt;hr&gt;
+
+&lt;p&gt;And there you have it! Fairly small differences, but important ones. It might impact which promise implementation you decide on, and it will probably come up as you work with various libraries. It’s important to know if what you’re getting back is a Promise or a Deferred.&lt;/p&gt;
+
+&lt;h2&gt;Resources&lt;/h2&gt;
+
+&lt;p&gt;Many thanks to my co-worker &lt;a href="https://twitter.com/typesthings"&gt;Adam&lt;/a&gt; for initially pointing out the differences and then also reviewing my post and correcting my mistakes!&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://abdulapopoola.com/2014/12/12/the-differences-between-jquery-deferreds-and-the-promisesa-spec/"&gt;The Differences between jQuery Deferreds and the Promises/A+ spec&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise"&gt;Promise&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://api.jquery.com/category/deferred-object/"&gt;Deferred object&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://blog.mediumequalsmessage.com/promise-deferred-objects-in-javascript-pt2-practical-use"&gt;Promise &amp;amp; Deferred Objects in JavaScript Pt.2: in Practice&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</content>
+  </entry>
   <entry>
     <title>Presentation notes</title>
     <link rel="alternate" href="http://lucybain.com/blog/2017/public-speaking-notes/"/>
@@ -218,7 +590,40 @@
 &lt;p&gt;Good question, it wasn’t obvious to me either. The “full file name” is the normal name of the file (this file’s name is &lt;code&gt;12-10-middleman-v4&lt;/code&gt;) which is simple enough. But the “list of desired templating extensions” needs to include the ultimate format you want your page to end up in (in this case, &lt;code&gt;.html&lt;/code&gt;). This is new, you used to be able to just have &lt;code&gt;12-10-middleman-v4.md&lt;/code&gt;, but now you need the full &lt;code&gt;12-10-middleman-v4.html.md&lt;/code&gt;.&lt;/p&gt;
 
 &lt;p&gt;Updating all your files to add a &lt;code&gt;.html&lt;/code&gt; before the previous extension is more than a little annoying. So I wrote a little script to help me out:&lt;/p&gt;
-&lt;pre class="highlight ruby"&gt;&lt;code&gt;&lt;span class="n"&gt;path_to_project&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;""&lt;/span&gt; &lt;span class="c1"&gt;# FILL ME IN&lt;/span&gt;
+&lt;pre class="highlight ruby"&gt;&lt;code&gt;&lt;table class="rouge-table"&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class="rouge-gutter gl"&gt;&lt;pre class="lineno"&gt;1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+&lt;/pre&gt;&lt;/td&gt;&lt;td class="rouge-code"&gt;&lt;pre&gt;&lt;span class="n"&gt;path_to_project&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;""&lt;/span&gt; &lt;span class="c1"&gt;# FILL ME IN&lt;/span&gt;
 
 &lt;span class="c1"&gt;# Step 1: get a list of all the extensions you use&lt;/span&gt;
 
@@ -251,6 +656,7 @@
   &lt;span class="c1"&gt;# uncomment to make actual changes&lt;/span&gt;
   &lt;span class="c1"&gt;# File.rename(file, new_name)&lt;/span&gt;
 &lt;span class="k"&gt;end&lt;/span&gt;
+&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;You can find it &lt;a href="https://gist.github.com/lbain/5ce9ef81f6a3ce6f3b4b84774f9a63d8"&gt;here&lt;/a&gt;.&lt;/p&gt;
 
@@ -277,7 +683,15 @@
 &lt;h2&gt;&lt;code&gt;&amp;lt;pre&amp;gt;&amp;lt;code&amp;gt;&lt;/code&gt; wrapping&lt;/h2&gt;
 
 &lt;p&gt;Last of all I found the updated &lt;a href="https://github.com/vmg/redcarpet"&gt;Redcarpet gem&lt;/a&gt; now wraps all code in &lt;code&gt;&amp;lt;code&amp;gt;&lt;/code&gt; tags. Now you’d think this wasn’t a big deal, but it really messed with my head. What used to happen was...&lt;/p&gt;
-&lt;pre class="highlight plaintext"&gt;&lt;code&gt;`single ticks`
+&lt;pre class="highlight plaintext"&gt;&lt;code&gt;&lt;table class="rouge-table"&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class="rouge-gutter gl"&gt;&lt;pre class="lineno"&gt;1
+2
+3
+4
+5
+6
+7
+8
+&lt;/pre&gt;&lt;/td&gt;&lt;td class="rouge-code"&gt;&lt;pre&gt;`single ticks`
 &amp;lt;code&amp;gt;single ticks&amp;lt;/code&amp;gt;
 
 
@@ -285,12 +699,18 @@
 triple ticks
 ```
 &amp;lt;pre&amp;gt;triple ticks&amp;lt;/pre&amp;gt;
+&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;But now the ``` is different:&lt;/p&gt;
-&lt;pre class="highlight plaintext"&gt;&lt;code&gt;```
+&lt;pre class="highlight plaintext"&gt;&lt;code&gt;&lt;table class="rouge-table"&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class="rouge-gutter gl"&gt;&lt;pre class="lineno"&gt;1
+2
+3
+4
+&lt;/pre&gt;&lt;/td&gt;&lt;td class="rouge-code"&gt;&lt;pre&gt;```
 triple ticks
 ```
 &amp;lt;pre&amp;gt;&amp;lt;code&amp;gt;triple ticks&amp;lt;/code&amp;gt;&amp;lt;/pre&amp;gt;
+&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Unfortunately all my styling relied on the &lt;code&gt;&amp;lt;code&amp;gt;&lt;/code&gt; only being used inline and the &lt;code&gt;&amp;lt;pre&amp;gt;&lt;/code&gt; only being used for code blocks. It &lt;a href="https://github.com/lbain/lucybain/commit/945fd5c249731572e1c9ebeb2a3a7e97351de2cd"&gt;wasn’t hard to fix&lt;/a&gt;, but it make my blog posts look weird and caused a good deal of despair.&lt;/p&gt;
 
@@ -437,181 +857,6 @@ triple ticks
 &lt;/ul&gt;&lt;/li&gt;
 &lt;li&gt;A few speakers mentioned &lt;a href="https://en.wikipedia.org/wiki/Conway's_law"&gt;Conway&amp;#39;s law&lt;/a&gt;, and it’s reverse — first decide how you want your &lt;em&gt;code&lt;/em&gt; structure look and then make your organisation look like that.&lt;/li&gt;
 &lt;/ul&gt;
-</content>
-  </entry>
-  <entry>
-    <title>YOW! Day One</title>
-    <link rel="alternate" href="http://lucybain.com/blog/2016/yow-day-1/"/>
-    <id>http://lucybain.com/blog/2016/yow-day-1/</id>
-    <published>2016-12-08T11:00:00+11:00</published>
-    <author>
-      <name>Article Author</name>
-    </author>
-    <content type="html">&lt;p&gt;In Australia we have a well known conference called YOW!. Yes, the name is in all capitals and contains an exclamation point; no it&amp;#39;s not ten times more exciting than any other tech conference. I’d always assumed this conference had more of a Java and enterprise focus, so I hadn’t gone before. But I’m curious about conferences, and they were looking for volunteers so I signed up.&lt;/p&gt;
-
-&lt;p&gt;First of all, you’ll notice it’s a really well run conference. They run it for profit, and people have Real Jobs working for YOW! and the quality comes through. I enjoyed &lt;a href="/blog/2016/ela-conf-day-1/"&gt;Ela Conf&lt;/a&gt;, but it certainly had a home grown, community feel to it in comparison.&lt;/p&gt;
-
-&lt;p&gt;So let’s dive into the talks!&lt;/p&gt;
-
-&lt;h3&gt;The Scribe&amp;#39;s Oath, &lt;a href="https://twitter.com/unclebobmartin"&gt;Robert Martin&lt;/a&gt; (Uncle Bob)&lt;/h3&gt;
-
-&lt;p&gt;Programmers are the scribes of the modern world. Just like the scribes in ancient times, we have special knowledge about how the world works and how to change it. Having this much power means we will, at some point, become a regulated profession (like doctors and lawyers). Let’s jump the gun and regulate ourselves before government gets involved.&lt;/p&gt;
-
-&lt;p&gt;Suggested programmer’s oath:&lt;/p&gt;
-
-&lt;ol&gt;
-&lt;li&gt;I will not produce harmful code. (Both in how it works and what it does. We shouldn’t do things like catching errors without handling them.)&lt;/li&gt;
-&lt;li&gt;The code that I produce will always be my best work. I will not knowingly allow code that is defective either in behaviour or structure to accumulate. (Employers and the world expect we’re doing our best work all the time. Although it’s expected that what we write will “rot” a.k.a. become tech debt, it’s also expected that we will correct these problems.)&lt;/li&gt;
-&lt;li&gt;I will produce, with each release, a quick, sure, and repeatable proof that every element of the code works as it should. (A full coverage test suite.)&lt;/li&gt;
-&lt;li&gt;I will make frequent, small, releases so that I do not impede the process of others. (Your work shouldn’t negatively impact the work of others. You shouldn’t have long running branches that mess up other people.)&lt;/li&gt;
-&lt;li&gt;I will fearlessly and relentlessly improve our work at every opportunity. I will never allow it to degrade. (We need to constantly pay off tech debt and aim for a better codebase.)&lt;/li&gt;
-&lt;li&gt;I will do all that I can to keep the productivity of myself, and others, as high as possible. I will do nothing that decreases that productivity. (Find issues in your process that are slow and work to make them faster.)&lt;/li&gt;
-&lt;li&gt;I will continuously ensure that others can cover for me, and that I can cover for them. (Work as a team, especially when it comes to time away from the team.)&lt;/li&gt;
-&lt;li&gt;I will produce estimates that are honest both in magnitude and precision. I will not make process without certainty. (Try to make estimates that you are comfortable with, but have a reasonable range.)&lt;/li&gt;
-&lt;li&gt;I will never stop learning and improving my craft. (Programming changes all the time, so it’s our responsibility to stay on top of things.)&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;Interesting quote:&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;So far, the number of programmers seems to double about every five years. Which means, &lt;em&gt;half of all programmers have less than five years experience.&lt;/em&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;h3&gt;Mob Programming: A Whole Team Approach, &lt;a href="https://twitter.com/WoodyZuill"&gt;Woody Zuill&lt;/a&gt;&lt;/h3&gt;
-
-&lt;ul&gt;
-&lt;li&gt;The whole team working on the same thing, at the same time, at the same computer. There might be other computers in the room for reference, but only one computer is used for the actual work.&lt;/li&gt;
-&lt;li&gt;The “driver” role is there to translate what the navigators say into code. They should not be coming up with the ideas themselves. “An idea should never originate and be typed by the same person.”&lt;/li&gt;
-&lt;li&gt;Any time someone feels they’re not contributing or learning they should leave the group.&lt;/li&gt;
-&lt;li&gt;Mob programming can only work if the team is allowed to do it - you need a company culture that’s open to the idea of programmers working together so much (often appearing unproductive to the untrained eye).&lt;/li&gt;
-&lt;li&gt;Each person is there “to contribute the right thing, at the right time, in the right way” but no one person needs to contribute all the time.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Adorable quote:&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;I want to call out this animation because if I didn&amp;#39;t you wouldn&amp;#39;t notice and it took me &lt;em&gt;four hours&lt;/em&gt; to do.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;h3&gt;The Verification of a Distributed System, &lt;a href="https://twitter.com/caitie"&gt;Caitie McCaffrey&lt;/a&gt;&lt;/h3&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Formal verification: a way of formally proving a system is correct
-
-&lt;ul&gt;
-&lt;li&gt;The proofs cover every possible input and make sure the outputs are correct&lt;/li&gt;
-&lt;li&gt;Use propositional logic to define which inputs are allowed and how inputs are treated&lt;/li&gt;
-&lt;li&gt;Like testing, you can feel safe making updates because you can prove it won’t break things&lt;/li&gt;
-&lt;li&gt;It’s super slow... most projects won’t use it (but Amazon S3 did, and found a critical bug!)&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;Distributed systems in the wild (see &lt;a href="https://www.usenix.org/system/files/conference/osdi14/osdi14-paper-yuan.pdf"&gt;Simple Testing can Prevent Most Critical Failures&lt;/a&gt; paper)
-
-&lt;ul&gt;
-&lt;li&gt;Unit tests are actually really powerful, use them! &lt;/li&gt;
-&lt;li&gt;Use code coverage tools to double check that error paths are covered. Developers typically write and test the happy path, but errors are where the big crashes often happen.&lt;/li&gt;
-&lt;li&gt;“Three nodes or less can reproduce 98% of failures” — same Simple Testing paper&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;Property based testing: define properties and let the computer figure out if there are error cases
-
-&lt;ul&gt;
-&lt;li&gt;JS has a &lt;a href="http://jsverify.github.io/"&gt;library&lt;/a&gt; for property based testing, inspired by QuickCheck port for property based testing&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;Fault injection: intentionally break things to make sure the system works when that happens. (Example: Netflix’s Chaos Monkey)
-
-&lt;ul&gt;
-&lt;li&gt;Test your dependencies!&lt;/li&gt;
-&lt;li&gt;Test in staging first, don’t make your users part of the testing&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src="/images/blog/yow-2016/distributed-system-verification.jpg" alt="Test more in areas that are more likely to have errors" /&gt;&lt;/p&gt;
-
-&lt;h3&gt;Data Science as Software at Pinterest, &lt;a href="https://twitter.com/arburbank"&gt;Andrea Burbank&lt;/a&gt;&lt;/h3&gt;
-
-&lt;ul&gt;
-&lt;li&gt;To make good data based decisions, you need to have good data.&lt;/li&gt;
-&lt;li&gt;Start with logging
-
-&lt;ul&gt;
-&lt;li&gt;Who’s doing what when?&lt;/li&gt;
-&lt;li&gt;Clean up the logs’ data as much as possible (probably using things like partitioned tables)&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;Opinionated data: the data doesn’t need 100% complete or accurate, it needs to be representative for the data you’re interested in.
-
-&lt;ul&gt;
-&lt;li&gt;Having less &lt;em&gt;opinionated&lt;/em&gt; data is better than having more &lt;em&gt;unopinionated&lt;/em&gt; data since you can be confident in what’s counted and discounted in opinionated data.&lt;/li&gt;
-&lt;li&gt;Example: Find patterns to find badies. Since spam often looks really similar, you can look for patterns in usage and mark users’ data as spam. You don’t need to delete these users or the data, you just need to discount the data from your metrics.&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;Use data to better understand software
-
-&lt;ul&gt;
-&lt;li&gt;Are there any anomalies in the data that can’t be explained? Maybe there’s something unexpected happening in the software.&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;Treat your data as you would treat your software; the same good practices apply.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src="/images/blog/yow-2016/data-as-code.jpg" alt="Data should be treated like code" /&gt;&lt;/p&gt;
-
-&lt;p&gt;Realistic quote:&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;Think back to 2012, Pinterest was growing really fast. Mostly we were just trying to stop the system from falling over.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;h3&gt;Engineering you, &lt;a href="http://mechanical-sympathy.blogspot.com.au/"&gt;Martin Thompson&lt;/a&gt;&lt;/h3&gt;
-
-&lt;ul&gt;
-&lt;li&gt;What should we learn?
-
-&lt;ul&gt;
-&lt;li&gt;Focus on topics that last well over time, rather than specific frameworks or languages.&lt;/li&gt;
-&lt;li&gt;Learn about when to use one method over another; Only dive into the details when it’s time to implement.&lt;/li&gt;
-&lt;li&gt;Suggestions: algorithms and data structures, design fundamentals, programming paradigms, decomposition and abstraction, Mathematics, business domains, communications&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;How can we learn?
-
-&lt;ul&gt;
-&lt;li&gt;Practical practice: be intentional about putting everything you learn into code.&lt;/li&gt;
-&lt;li&gt;Your co-workers have a massive impact on how and how much you learn. Pick teams with a good learning culture.&lt;/li&gt;
-&lt;li&gt;When it comes to work projects, do the hard things first when you have the most time, don’t leave them to the end when you’ll have to rush through.&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;How can we learn?
-
-&lt;ul&gt;
-&lt;li&gt;First of all, give yourself more time by automating tasks where possible.&lt;/li&gt;
-&lt;li&gt;Focus on having a better learning experience. How quickly can you get feedback about what and how you’re learning?&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Down to earth quote:&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;Don’t work with assholes.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;h3&gt;Who are you, Really?, &lt;a href="https://twitter.com/drbrianrlittle"&gt;Dr. Brian Little&lt;/a&gt;&lt;/h3&gt;
-
-&lt;p&gt;A deep dive into introversion vs. extroversion. This is a topic I’m particularly interested in, so I &lt;em&gt;loved&lt;/em&gt; it! Dr. Little was an incredibly engaging speaker, so I forgot to take many notes. I did jot down a few quotes or points of interest:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Caffeine &lt;em&gt;decreases&lt;/em&gt; an introvert’s ability, but &lt;em&gt;increases&lt;/em&gt; an extrovert’s.&lt;/li&gt;
-&lt;li&gt;Introverts tend to better in school, but have the same IQ as extroverts.&lt;/li&gt;
-&lt;li&gt;Ambiverts tend to do well in sales: they use the extrovert’s skill for the pitch, and the introvert’s skill for asking follow up questions.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;Extroverts get more traffic tickets. They need the stimulation.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;!-- --&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;Psychology is about finding ways we are like all others, some others, and no others.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;hr&gt;
-
-&lt;p&gt;That’s a wrap on day one! It’s been pretty full on, and I’m looking forward to tomorrow!&lt;/p&gt;
 </content>
   </entry>
 </feed>

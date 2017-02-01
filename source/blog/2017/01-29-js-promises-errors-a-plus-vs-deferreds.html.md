@@ -221,36 +221,23 @@ Unfortunately, yes. The thing is, jQuery doesn’t give us a way to catch errors
 
 *Not possible! But this is programming, there must be a way!*
 
-Unfortunately not. There’s one more syntax we’ll look at (but it still won’t work):
+Well, there is, upgrade to jQuery 3. While most of jQuery Deferred’s methods were defined by 1.12, one method, `catch`, was recently added when jQuery 3.0 came out (which happened on June 9, 2016). This new `catch` method means you can do the same kind of `catch` as we did with the Promise earlier. Unfortunately [very few](https://w3techs.com/technologies/details/js-jquery/all/all) websites are using jQuery 3 at the moment. Hopefully your site is one of them!
+
+Ok, let’s look at the example for using jQuery’s catch:
 
 ```js
 const resolvedDeferred = $.Deferred().resolve();
 const errorDeferred = resolvedDeferred.then(() => {
-  setTimeout(() => {
-    console.log('throw error'); // "throw error"
-    throw new Error('Deferred error');  
-  }, 20);
-}).fail(error => {
-  // this never runs because the deferred doesn’t settle
-  console.log('Does not run');
+  console.log('throw error'); // "throw error"
+  throw new Error('Deferred error');  
+}).catch(error => {
+  console.log(error); // [object Error] {}
 });
+
+console.log(errorDeferred.state()); // "pending"
 ```
 
-We use [`fail`](https://api.jquery.com/deferred.fail/) here which feels like it *should* work (after all, the promise didn’t happen). However the description `fail` is:
-
->  Add handlers to be called when the Deferred object is rejected.
-
-And remember, when a Deferred throws an error it is left in a permanent “pending” state and will never settle to “rejected”. Thus the `fail` is never called.
-
-*But I heard about `catch` being added to jQuery 3 — why don’t we use that?*
-
-Oh yes, jQuery 3 added `catch`. That totally wasn’t news to me. I definitely knew about it before today...
-
-While most of jQuery Deferred’s methods were defined by 1.12, one method was recently added when jQuery 3.0 came out (which happened on June 9, 2016). There are two downsides to `catch`: first [very few](https://w3techs.com/technologies/details/js-jquery/all/all) websites are using jQuery 3, and second `catch` still doesn’t work. In fact, `catch` has exactly the same description as `fail` has:
-
-> Add handlers to be called when the Deferred object is rejected.
-
-So `catch` has the same issue that the Deferred doesn’t settle if an error is thrown.
+As you can see, we were able to `catch` the error from the Deferred in the same way we caught the error from the Promise. However, after throwing the error `errorDeferred` is left in a permanent “pending” state and will never settle to “rejected”.
 
 *How can we move `errorDeferred` to be resolved?*
 
