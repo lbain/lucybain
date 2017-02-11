@@ -1,6 +1,6 @@
 ---
 title: Presentation notes
-tags: conference
+tags: conference, resources, public speaking
 
 description: Notes about how to pick a talk topic, craft your message, and make it easy for the audience to understand.
 keywords: public speaking, conferences, presentations
