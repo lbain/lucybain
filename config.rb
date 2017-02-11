@@ -88,7 +88,7 @@ set :markdown_engine, :redcarpet
 # activate :automatic_image_sizes
 
 # Reload the browser automatically whenever files change
-# activate :livereload
+activate :livereload
 
 # Tell Middleman to create a folder for each .html file
 activate :directory_indexes

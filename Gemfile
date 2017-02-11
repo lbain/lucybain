@@ -6,7 +6,7 @@ gem "middleman", "~>4.0.0"
 gem "middleman-syntax"
 gem "middleman-blog"
 # gem "middleman-alias"
-# gem "middleman-livereload"
+gem "middleman-livereload"
 gem "nokogiri"
 gem "redcarpet"
 
