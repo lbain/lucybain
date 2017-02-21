@@ -131,9 +131,9 @@
 }
 </pre></td></tr></tbody></table>
 </code></pre>
-<p>In this (massively contrived) example the <code>Todo</code> will re-render every second, even though the <code>render</code> method doesn’t use the <code>unseen</code> attribute at all. <code>unseen</code> doesn’t even change it’s value! You can check out a working version of this on <a href="https://codepen.io/lbain/pen/MJNpwL">CodePen</a>.</p>
+<p>In this (massively contrived) example the <code>Todo</code> will re-render every second, even though the <code>render</code> method doesn’t use <code>unseen</code> at all. In fact, <code>unseen</code> doesn’t even change it’s value! You can check out a working version of this on <a href="https://codepen.io/lbain/pen/MJNpwL">CodePen</a>.</p>
 
-<p><em>Well that’s not helpful...</em></p>
+<p><em>Well, but re-rendering all the time isn’t helpful...</em></p>
 
 <p>I mean, I appreciate that React is being super careful. It would be worse if the state changed and the component <em>didn’t</em> render when it was supposed to. How would I know about that new message my friend sent me?! I’d miss it, so she’d probably assume it was intentional, then she’d stop talking to me, and the whole friendship would be ruined. All for the want of a little green dot not re-rendering. High stakes. Re-rendering is definitely the safe option.</p>
 
@@ -151,7 +151,7 @@
 
 <p>When React comes to render the component it will run <code>shouldComponentUpdate</code> and see if it returns <code>true</code> (the component should update, a.k.a. re-render) or <code>false</code> (React can skip the re-render this time). So you’ll need to overwrite <code>shouldComponentUpdate</code> to return <code>true</code> or <code>false</code> as needed to tell React when to re-render and when to skip.</p>
 
-<p>When you use <code>shouldComponentUpdate</code> you’ll need to decide which bits of data actually mater for the re-render. Let’s go back to our example:</p>
+<p>When you use <code>shouldComponentUpdate</code> you’ll need to decide which bits of data actually matter for the re-render. Let’s go back to our example:</p>
 <pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
 3

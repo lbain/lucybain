@@ -35,9 +35,9 @@ class Todo extends React.Component {
 }
 ```
 
-In this (massively contrived) example the `Todo` will re-render every second, even though the `render` method doesn’t use the `unseen` attribute at all. `unseen` doesn’t even change it’s value! You can check out a working version of this on [CodePen](https://codepen.io/lbain/pen/MJNpwL).
+In this (massively contrived) example the `Todo` will re-render every second, even though the `render` method doesn’t use `unseen` at all. In fact, `unseen` doesn’t even change it’s value! You can check out a working version of this on [CodePen](https://codepen.io/lbain/pen/MJNpwL).
 
-*Well that’s not helpful...*
+*Well, but re-rendering all the time isn’t helpful...*
 
 I mean, I appreciate that React is being super careful. It would be worse if the state changed and the component *didn’t* render when it was supposed to. How would I know about that new message my friend sent me?! I’d miss it, so she’d probably assume it was intentional, then she’d stop talking to me, and the whole friendship would be ruined. All for the want of a little green dot not re-rendering. High stakes. Re-rendering is definitely the safe option.
 
@@ -55,7 +55,7 @@ By default, `shouldComponentUpdate` returns `true`. That’s what causes the “
 
 When React comes to render the component it will run `shouldComponentUpdate` and see if it returns `true` (the component should update, a.k.a. re-render) or `false` (React can skip the re-render this time). So you’ll need to overwrite `shouldComponentUpdate` to return `true` or `false` as needed to tell React when to re-render and when to skip.
 
-When you use `shouldComponentUpdate` you’ll need to decide which bits of data actually mater for the re-render. Let’s go back to our example:
+When you use `shouldComponentUpdate` you’ll need to decide which bits of data actually matter for the re-render. Let’s go back to our example:
 
 ```
 class Todo extends React.Component {

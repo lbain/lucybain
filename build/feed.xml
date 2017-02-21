@@ -164,9 +164,9 @@
 }
 &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;In this (massively contrived) example the &lt;code&gt;Todo&lt;/code&gt; will re-render every second, even though the &lt;code&gt;render&lt;/code&gt; method doesn’t use the &lt;code&gt;unseen&lt;/code&gt; attribute at all. &lt;code&gt;unseen&lt;/code&gt; doesn’t even change it’s value! You can check out a working version of this on &lt;a href="https://codepen.io/lbain/pen/MJNpwL"&gt;CodePen&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;In this (massively contrived) example the &lt;code&gt;Todo&lt;/code&gt; will re-render every second, even though the &lt;code&gt;render&lt;/code&gt; method doesn’t use &lt;code&gt;unseen&lt;/code&gt; at all. In fact, &lt;code&gt;unseen&lt;/code&gt; doesn’t even change it’s value! You can check out a working version of this on &lt;a href="https://codepen.io/lbain/pen/MJNpwL"&gt;CodePen&lt;/a&gt;.&lt;/p&gt;
 
-&lt;p&gt;&lt;em&gt;Well that’s not helpful...&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Well, but re-rendering all the time isn’t helpful...&lt;/em&gt;&lt;/p&gt;
 
 &lt;p&gt;I mean, I appreciate that React is being super careful. It would be worse if the state changed and the component &lt;em&gt;didn’t&lt;/em&gt; render when it was supposed to. How would I know about that new message my friend sent me?! I’d miss it, so she’d probably assume it was intentional, then she’d stop talking to me, and the whole friendship would be ruined. All for the want of a little green dot not re-rendering. High stakes. Re-rendering is definitely the safe option.&lt;/p&gt;
 
@@ -184,7 +184,7 @@
 
 &lt;p&gt;When React comes to render the component it will run &lt;code&gt;shouldComponentUpdate&lt;/code&gt; and see if it returns &lt;code&gt;true&lt;/code&gt; (the component should update, a.k.a. re-render) or &lt;code&gt;false&lt;/code&gt; (React can skip the re-render this time). So you’ll need to overwrite &lt;code&gt;shouldComponentUpdate&lt;/code&gt; to return &lt;code&gt;true&lt;/code&gt; or &lt;code&gt;false&lt;/code&gt; as needed to tell React when to re-render and when to skip.&lt;/p&gt;
 
-&lt;p&gt;When you use &lt;code&gt;shouldComponentUpdate&lt;/code&gt; you’ll need to decide which bits of data actually mater for the re-render. Let’s go back to our example:&lt;/p&gt;
+&lt;p&gt;When you use &lt;code&gt;shouldComponentUpdate&lt;/code&gt; you’ll need to decide which bits of data actually matter for the re-render. Let’s go back to our example:&lt;/p&gt;
 &lt;pre class="highlight plaintext"&gt;&lt;code&gt;&lt;table class="rouge-table"&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class="rouge-gutter gl"&gt;&lt;pre class="lineno"&gt;1
 2
 3
