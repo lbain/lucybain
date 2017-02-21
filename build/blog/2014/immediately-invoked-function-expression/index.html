@@ -163,17 +163,16 @@ getValue(); // invokes that function
 <li><code>helperFunction(v)</code> gets called with the current value of <code>v</code>, which is 1</li>
 <li><code>helperFunction</code> gets executed, with the param <code>x</code> set to 1</li>
 <li>The anonymous function returned by <code>helperFunction</code> gets created, still with <code>x</code> set to 1</li>
-<li><p><code>getValue</code> is set to the result of <code>helperFunction</code>, which is</p>
+<li><code>getValue</code> is set to the result of <code>helperFunction</code>, which is</li>
+</ol>
 <pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
 3
-</pre></td><td class="rouge-code"><pre>function() {
-  return 1;
-};
+</pre></td><td class="rouge-code"><pre>  function() {
+      return 1;
+  };
 </pre></td></tr></tbody></table>
-</code></pre></li>
-</ol>
-
+</code></pre>
 <p>So now things look like this:</p>
 <pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
@@ -320,16 +319,19 @@ counter.i; // returns undefined
 <p>Scopes! The scope from <code>helperFunction</code> has access to <code>i</code>. The object returned by <code>helperFunction</code> (a.k.a <code>counter</code>) has access to all the variables defined in <code>helperFunction</code>. It works like this:</p>
 
 <ol>
-<li><p>Call to <code>counter.get()</code> goes and looks at the <code>get</code> function defined in <code>helperFunction</code>...</p>
+<li>Call to <code>counter.get()</code> goes and looks at the <code>get</code> function defined in <code>helperFunction</code>...</li>
+</ol>
 <pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
 3
-</pre></td><td class="rouge-code"><pre>get: function(){
-    return i;
-   }
+</pre></td><td class="rouge-code"><pre>  get: function(){
+        return i;
+       }
 </pre></td></tr></tbody></table>
-</code></pre></li>
-<li><p>The <code>get</code> function looks for its local scope, which is <code>helperFunction</code> ...</p>
+</code></pre>
+<ol>
+<li>The <code>get</code> function looks for its local scope, which is <code>helperFunction</code> ...</li>
+</ol>
 <pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
 3
@@ -342,26 +344,29 @@ counter.i; // returns undefined
 10
 11
 12
-</pre></td><td class="rouge-code"><pre>function helperFunction(){
-var i = 0;
+</pre></td><td class="rouge-code"><pre>  function helperFunction(){
+    var i = 0;
 
-return {
-  get: function(){
-    return i;
-  },
-  set: function( val ){
-    i = val;
-  }
-};
-};
+    return {
+      get: function(){
+        return i;
+      },
+      set: function( val ){
+        i = val;
+      }
+    };
+  };
 </pre></td></tr></tbody></table>
-</code></pre></li>
-<li><p>In <code>helperFunction</code> is a definition for <code>i</code>...</p>
+</code></pre>
+<ol>
+<li>In <code>helperFunction</code> is a definition for <code>i</code>...</li>
+</ol>
 <pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-</pre></td><td class="rouge-code"><pre>var i = 0;
+</pre></td><td class="rouge-code"><pre>  var i = 0;
 </pre></td></tr></tbody></table>
-</code></pre></li>
-<li><p>So <code>get</code> can return 0!</p></li>
+</code></pre>
+<ol>
+<li>So <code>get</code> can return 0!</li>
 </ol>
 
 <h3>And now back to your scheduled program</h3>
