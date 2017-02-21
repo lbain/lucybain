@@ -123,86 +123,13 @@
     </author>
     <content type="html">&lt;p&gt;React is known for it’s performance. Because it has a virtual DOM and only updates the real DOM when required it can be much faster than updating the DOM all the time, even to display the same information. However, React’s “smarts” only go so far (at the moment!), and it’s our job to know it’s expectations and limitations so we don’t accidentally hurt performance.&lt;/p&gt;
 
-&lt;p&gt;One of the aspects we need to be aware of is how React decides when to re-render a component. Not as in, update the DOM render, but just to call the &lt;code&gt;render&lt;/code&gt; method to change the virtual DOM. We can help React out by knowing when it thinks it should render, and by giving it some more “smarts.” Let’s look at both of those in turn...&lt;/p&gt;
+&lt;p&gt;One of the aspects we need to be aware of is how React decides when to re-render a component. Not as in “update the DOM render,” but just to call the &lt;code&gt;render&lt;/code&gt; method to change the virtual DOM. We can help React out by telling it when it should and shouldn’t render. Let’s look at both of those in turn...&lt;/p&gt;
 
-&lt;h2&gt;1. Data in the store changes&lt;/h2&gt;
+&lt;h2&gt;1. The component’s state changes&lt;/h2&gt;
 
-&lt;p&gt;Most React components get their data from the store (often using Redux or a flux implementation). This data gets passed into the components and tells the components what to render. However, before rendering, React does a check to see if the object is “different” and therefore, if the it’s worth it to go through with the render. React does a simple equality check to decide which components to re-render. Something along the lines of:&lt;/p&gt;
-&lt;pre class="highlight plaintext"&gt;&lt;code&gt;&lt;table class="rouge-table"&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class="rouge-gutter gl"&gt;&lt;pre class="lineno"&gt;1
-2
-3
-&lt;/pre&gt;&lt;/td&gt;&lt;td class="rouge-code"&gt;&lt;pre&gt;shouldBotherRendering(oldStoreObj, newStoreObj) {
-    return oldStoreObj === newStoreObj;
-}
-&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;em&gt;That doesn’t look legit&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;A re-render can only be triggered if a component’s state has changed. The state can change from a &lt;code&gt;props&lt;/code&gt; change, or from a direct &lt;code&gt;setState&lt;/code&gt; change. The component gets the updated state and React decides if it should re-render the component. Unfortunately, by default React is incredibly simplistic and basically re-renders everything all the time.&lt;/p&gt;
 
-&lt;p&gt;It’s not — that’s completely contrived, although I do like the idea of a method called &lt;code&gt;shouldBotherRendering&lt;/code&gt;!&lt;/p&gt;
-
-&lt;p&gt;If React believes the object has changed it will re-render the component. From our example, the rendering happens when &lt;code&gt;oldStoreObj === newStoreObj&lt;/code&gt; is &lt;code&gt;false&lt;/code&gt; .&lt;/p&gt;
-
-&lt;p&gt;The important thing to note in this example is the &lt;code&gt;===&lt;/code&gt; which is used to check equality between the two objects. React doesn’t check the &lt;em&gt;content&lt;/em&gt; of the objects, only if the objects have the same &lt;em&gt;reference&lt;/em&gt;. (If this doesn’t sound familiar or make sense yet please check out this &lt;a href="http://adripofjavascript.com/blog/drips/object-equality-in-javascript.html"&gt;article&lt;/a&gt; which explains object equality checks in JS more fully.)&lt;/p&gt;
-
-&lt;p&gt;So you can have &lt;em&gt;different&lt;/em&gt; objects with all the &lt;em&gt;same&lt;/em&gt; content. That is, two objects that would &lt;em&gt;render&lt;/em&gt; the same thing in React can still register as being different and trigger a re-render. Here’s a quick example:&lt;/p&gt;
-&lt;pre class="highlight plaintext"&gt;&lt;code&gt;&lt;table class="rouge-table"&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class="rouge-gutter gl"&gt;&lt;pre class="lineno"&gt;1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-&lt;/pre&gt;&lt;/td&gt;&lt;td class="rouge-code"&gt;&lt;pre&gt;const oldStoreObj = {
-    title: 'take out the trash',
-    done: false,
-};
-
-const newStoreObj = {
-    title: 'take out the trash',
-    done: false,
-};
-
-console.log('same?', oldStoreObj === newStoreObj); // same? false
-&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;em&gt;huh. How can we know if the two objects are “really” different?&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;To test an object’s properties (and the properties of those properties, remember an object can have objects nested inside it) you can check for &lt;strong&gt;deep equality&lt;/strong&gt;. That is, are the two objects the same all the way down. I’ve worked with &lt;a href="https://lodash.com/"&gt;lodash&lt;/a&gt;’s &lt;a href="https://lodash.com/docs/4.17.4#isEqual"&gt;isEqual&lt;/a&gt; to test objects for deep equality though there are &lt;a href="http://stackoverflow.com/questions/1068834/object-comparison-in-javascript"&gt;loads&lt;/a&gt; of ways to do this test. You can run the following code on lodash’s site so you have access to the the library:&lt;/p&gt;
-&lt;pre class="highlight plaintext"&gt;&lt;code&gt;&lt;table class="rouge-table"&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class="rouge-gutter gl"&gt;&lt;pre class="lineno"&gt;1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-&lt;/pre&gt;&lt;/td&gt;&lt;td class="rouge-code"&gt;&lt;pre&gt;const oldStoreObj = {
-    title: 'take out the trash',
-    done: false,
-};
-
-const newStoreObj = {
-    title: 'take out the trash',
-    done: false,
-};
-
-console.log('same?', _.isEqual(oldStoreObj, newStoreObj));
-// same? true
-&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;em&gt;Ok, but what about React?&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;When developing, it’s important to make the distinction between store objects having a different reference vs. having different content. This way you’ll have more control over when React renders and save some unnecessary rendering.&lt;/p&gt;
-
-&lt;p&gt;Sometimes you’ll know that getting new data to process should trigger a re-render. For example, if a user has clicked a button (perhaps to mark a todo as “done”) then you’ll want to display that change. Here’s some sample code to show changing the store’s object:&lt;/p&gt;
+&lt;p&gt;Component changed? Re-render. Parent changed? Re-render. Section of props that doesn&amp;#39;t actually impact the view changed? Re-render.&lt;/p&gt;
 &lt;pre class="highlight plaintext"&gt;&lt;code&gt;&lt;table class="rouge-table"&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class="rouge-gutter gl"&gt;&lt;pre class="lineno"&gt;1
 2
 3
@@ -219,145 +146,43 @@ console.log('same?', _.isEqual(oldStoreObj, newStoreObj));
 14
 15
 16
-17
-18
-19
-20
-21
-22
-23
-24
-&lt;/pre&gt;&lt;/td&gt;&lt;td class="rouge-code"&gt;&lt;pre&gt;const store = [
-    { title: 'make the bed',
-      done: false },
-    { title: 'take out the trash',
-      done: false },
-]
+&lt;/pre&gt;&lt;/td&gt;&lt;td class="rouge-code"&gt;&lt;pre&gt;class Todo extends React.Component {
 
-function chagneStore(index, changedTodo) {
-    store[index] = changedTodo;
+    componentDidMount() {
+        setInterval(() =&amp;gt; {
+            this.setState(() =&amp;gt; {
+                console.log('setting state');
+                return { unseen: "does not display" }
+            });
+        }, 1000);
+    }
+
+    render() {
+        console.log('render called');
+        return (&amp;lt;div&amp;gt;...&amp;lt;/div&amp;gt;);
+    }
 }
-
-function toggleDone(index) {
-    const oldTodo = store[index];
-    const newTodo = {
-        ...oldTodo,
-        done: !oldTodo.done
-    };
-    chagneStore(index, newTodo);
-}
-
-const oldTodo = store[0];
-toggleDone(0);
-const newTodo = store[0];
-console.log('same?', oldTodo === newTodo); // same? false
 &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Other times you might get duplicate data (perhaps from polling the server for an update) or have data that changes but which doesn’t impact what the user sees.&lt;/p&gt;
+&lt;p&gt;In this (massively contrived) example the &lt;code&gt;Todo&lt;/code&gt; will re-render every second, even though the &lt;code&gt;render&lt;/code&gt; method doesn’t use the &lt;code&gt;unseen&lt;/code&gt; attribute at all. &lt;code&gt;unseen&lt;/code&gt; doesn’t even change it’s value! You can check out a working version of this on &lt;a href="https://codepen.io/lbain/pen/MJNpwL"&gt;CodePen&lt;/a&gt;.&lt;/p&gt;
 
-&lt;p&gt;By default, if we use similar code to above, React will re-render the component even though the change doesn’t impact the final HTML.&lt;/p&gt;
-&lt;pre class="highlight plaintext"&gt;&lt;code&gt;&lt;table class="rouge-table"&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class="rouge-gutter gl"&gt;&lt;pre class="lineno"&gt;1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-&lt;/pre&gt;&lt;/td&gt;&lt;td class="rouge-code"&gt;&lt;pre&gt;const store = [
-    { title: 'make the bed',
-      done: false },
-    { title: 'take out the trash',
-      done: false },
-]
+&lt;p&gt;&lt;em&gt;Well that’s not helpful...&lt;/em&gt;&lt;/p&gt;
 
-function chagneStore(index, changedTodo) {
-    store[index] = changedTodo;
-}
+&lt;p&gt;I mean, I appreciate that React is being super careful. It would be worse if the state changed and the component &lt;em&gt;didn’t&lt;/em&gt; render when it was supposed to. How would I know about that new message my friend sent me?! I’d miss it, so she’d probably assume it was intentional, then she’d stop talking to me, and the whole friendship would be ruined. All for the want of a little green dot not re-rendering. High stakes. Re-rendering is definitely the safe option.&lt;/p&gt;
 
-function updateUnseenText(index, text) {
-    const oldTodo = store[index];
-    const newTodo = {
-        ...oldTodo,
-        unseen: text
-    };
-    chagneStore(index, newTodo);
-}
+&lt;p&gt;&lt;em&gt;But re-rendering seems expensive (and your example is melodramatic)&lt;/em&gt;&lt;/p&gt;
 
-const oldTodo = store[0];
-updateUnseenText(0, "can't see me!");
-const newTodo = store[0];
-console.log('same?', oldTodo === newTodo); // same? false
-&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;This is annoying because we triggered a render that we didn’t need. &lt;code&gt;unseen&lt;/code&gt; doesn’t change the HTML at all, but React doesn’t know this until the render completes. We wasted a whole cycle for useless data!&lt;/p&gt;
+&lt;p&gt;Yes, re-rendering unnecessarily does waste cycles and is generally not a good idea. However, React can’t “just know” when it’s safe to ignore parts of the state. So it plays it safe and re-renders whenever there’s a change to the state, important or not.&lt;/p&gt;
 
-&lt;p&gt;&lt;em&gt;I want a fast site! How can we avoid that?&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;How can we tell React to skip re-rendering?&lt;/em&gt;&lt;/p&gt;
 
-&lt;p&gt;Since we don’t want to trigger a re-render, we need to update the object in the store (change it’s data) without replacing it (leave the reference the same).&lt;/p&gt;
-
-&lt;p&gt;Let’s look at an example:&lt;/p&gt;
-&lt;pre class="highlight plaintext"&gt;&lt;code&gt;&lt;table class="rouge-table"&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class="rouge-gutter gl"&gt;&lt;pre class="lineno"&gt;1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-&lt;/pre&gt;&lt;/td&gt;&lt;td class="rouge-code"&gt;&lt;pre&gt;const store = [
-    { title: 'make the bed',
-      done: false },
-    { title: 'take out the trash',
-      done: false },
-]
-
-function changeUnseen(index, text) {
-    store[index].unseen = text;
-}
-
-const oldTodo = store[0];
-changeUnseen(0, "can't see me!");
-const newTodo = store[0];
-console.log('same?', oldTodo === newTodo); // same? true
-&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;This time we changed the property &lt;code&gt;unseen&lt;/code&gt; directly on the store object without replacing the object. React doesn’t register the change because &lt;code&gt;oldTodo === newTodo&lt;/code&gt; is &lt;code&gt;true&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;Sometimes doing this kind of data update can be really annoying. Imagine having many todo items and that &lt;code&gt;unseen&lt;/code&gt; was deeply nested in the object. It would be difficult to make sure you update the right todo with the right change and do so consistently enough so you never re-render unnecessarily.&lt;/p&gt;
-
-&lt;p&gt;&lt;em&gt;Yeah, that sounds painful... Is there a better way?&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;Well, what do you know? There is!&lt;/p&gt;
+&lt;p&gt;Well that brings us nicely to point two...&lt;/p&gt;
 
 &lt;h2&gt;2. &lt;code&gt;shouldComponentUpdate&lt;/code&gt; method&lt;/h2&gt;
 
-&lt;p&gt;Instead of “tricking” React into thinking a component hasn’t changed you can tell React which bits you actually care about. You can do this in the &lt;code&gt;shouldComponentUpdate&lt;/code&gt; method of your component.&lt;/p&gt;
+&lt;p&gt;By default, &lt;code&gt;shouldComponentUpdate&lt;/code&gt; returns &lt;code&gt;true&lt;/code&gt;. That’s what causes the “update everything all the time” we saw above. However, you can overwrite &lt;code&gt;shouldComponentUpdate&lt;/code&gt; to give it more “smarts” if you need the performance boost. Instead of letting React re-render all the time, you can tell React when you &lt;em&gt;don’t&lt;/em&gt; want to trigger a re-render.&lt;/p&gt;
 
-&lt;p&gt;When React comes to render the component it will first check if &lt;code&gt;shouldComponentUpdate&lt;/code&gt; is defined and, if so, if it returns true (the component should update, a.k.a. re-render) or false (React can skip the re-render this time.)&lt;/p&gt;
+&lt;p&gt;When React comes to render the component it will run &lt;code&gt;shouldComponentUpdate&lt;/code&gt; and see if it returns &lt;code&gt;true&lt;/code&gt; (the component should update, a.k.a. re-render) or &lt;code&gt;false&lt;/code&gt; (React can skip the re-render this time). So you’ll need to overwrite &lt;code&gt;shouldComponentUpdate&lt;/code&gt; to return &lt;code&gt;true&lt;/code&gt; or &lt;code&gt;false&lt;/code&gt; as needed to tell React when to re-render and when to skip.&lt;/p&gt;
 
 &lt;p&gt;When you use &lt;code&gt;shouldComponentUpdate&lt;/code&gt; you’ll need to decide which bits of data actually mater for the re-render. Let’s go back to our example:&lt;/p&gt;
 &lt;pre class="highlight plaintext"&gt;&lt;code&gt;&lt;table class="rouge-table"&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class="rouge-gutter gl"&gt;&lt;pre class="lineno"&gt;1
@@ -371,7 +196,28 @@ console.log('same?', oldTodo === newTodo); // same? true
 9
 10
 11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
 &lt;/pre&gt;&lt;/td&gt;&lt;td class="rouge-code"&gt;&lt;pre&gt;class Todo extends React.Component {
+
+    componentDidMount() {
+        setInterval(() =&amp;gt; {
+            this.setState(() =&amp;gt; {
+                console.log('setting state');
+                return { unseen: "does not display" }
+            });
+        }, 1000);
+    }
+
     shouldComponentUpdate(nextProps) {
         const differentTitle = this.props.title !== nextProps.title;
         const differentDone = this.props.done !== nextProps.done
@@ -379,6 +225,7 @@ console.log('same?', oldTodo === newTodo); // same? true
     }
 
     render() {
+        console.log('render called');
         return (&amp;lt;div&amp;gt;...&amp;lt;/div&amp;gt;);
     }
 }
@@ -386,9 +233,9 @@ console.log('same?', oldTodo === newTodo); // same? true
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;As you can see, we only want to re-render the Todo if the &lt;code&gt;title&lt;/code&gt; or &lt;code&gt;done&lt;/code&gt; attributes have changed. We don’t care if &lt;code&gt;unseen&lt;/code&gt; has changed, so we don’t include it in &lt;code&gt;shouldComponentUpdate&lt;/code&gt;.&lt;/p&gt;
 
-&lt;p&gt;When React comes to render a Todo component it will first check for object equality using &lt;code&gt;===&lt;/code&gt; as discussed above. Assuming the objects are different (as in, a different reference) React will check the &lt;code&gt;shouldComponentUpdate&lt;/code&gt; on the Todo component. React will evaluate if &lt;code&gt;shouldComponentUpdate&lt;/code&gt; is true or false, and decide to render from there.&lt;/p&gt;
+&lt;p&gt;When React comes to render a Todo component (as triggered by the &lt;code&gt;setState&lt;/code&gt;) it will first check if the state has changed (via the &lt;code&gt;props&lt;/code&gt; or &lt;code&gt;state&lt;/code&gt;). Assuming the state is different (which it will be because we made an explicit &lt;code&gt;setState&lt;/code&gt; call) React will check the &lt;code&gt;shouldComponentUpdate&lt;/code&gt; on the Todo component. React will evaluate if &lt;code&gt;shouldComponentUpdate&lt;/code&gt; is true or false, and decide to render from there.&lt;/p&gt;
 
-&lt;p&gt;With this updated code we can use &lt;code&gt;updateUnseenText&lt;/code&gt; from above which replaces the object (thus creating a new reference) and still not trigger a re-render.&lt;/p&gt;
+&lt;p&gt;With this updated code the &lt;code&gt;setState&lt;/code&gt; will still be called every second, but the &lt;code&gt;render&lt;/code&gt; will only happen on the initial load (or when the &lt;code&gt;title&lt;/code&gt; or &lt;code&gt;done&lt;/code&gt; properties change). You can see this happening &lt;a href="https://codepen.io/lbain/pen/qReraZ"&gt;here&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;&lt;em&gt;Seems like a lot of work to define all that...&lt;/em&gt;&lt;/p&gt;
 
@@ -402,9 +249,11 @@ console.log('same?', oldTodo === newTodo); // same? true
 
 &lt;p&gt;– Facebook&amp;#39;s &lt;a href="https://facebook.github.io/react/docs/react-component.html#shouldcomponentupdate"&gt;React docs&lt;/a&gt;.&lt;/p&gt;
 
+&lt;p&gt;This applies to the children’s &lt;code&gt;state&lt;/code&gt; but not their &lt;code&gt;props&lt;/code&gt;. So if a child component is internally managing some aspect of it’s state (with a &lt;code&gt;setState&lt;/code&gt; of it’s own), that will still be updated. But if the parent component returns &lt;code&gt;false&lt;/code&gt; from &lt;code&gt;shouldComponentUpdate&lt;/code&gt; it will not pass the updated &lt;code&gt;props&lt;/code&gt; along to it’s children, and so the children will not re-render, even if their &lt;code&gt;props&lt;/code&gt; had updated.&lt;/p&gt;
+
 &lt;h2&gt;Bonus: simple performance testing&lt;/h2&gt;
 
-&lt;p&gt;Writing and running computations in &lt;code&gt;shouldComponentUpdate&lt;/code&gt; can be expensive so you should to make sure they’re worth the time. Before writing any &lt;code&gt;shouldComponentUpdate&lt;/code&gt;s you can check how many wasted cycles React does by default (using just &lt;code&gt;===&lt;/code&gt; checking). With this information to guide you, you can make informed decisions about which components are re-rendering too often and causing performance problems.&lt;/p&gt;
+&lt;p&gt;Writing and running computations in &lt;code&gt;shouldComponentUpdate&lt;/code&gt; can be expensive so you should to make sure they’re worth the time. Before writing any &lt;code&gt;shouldComponentUpdate&lt;/code&gt;s you can check how many wasted cycles React does by default. With this information to guide you, you can make informed decisions about which components are re-rendering too often and causing performance problems.&lt;/p&gt;
 
 &lt;p&gt;Use React’s &lt;a href="https://facebook.github.io/react/docs/perf.html"&gt;Performance Tools&lt;/a&gt; to find wasted cycles:&lt;/p&gt;
 &lt;pre class="highlight plaintext"&gt;&lt;code&gt;&lt;table class="rouge-table"&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class="rouge-gutter gl"&gt;&lt;pre class="lineno"&gt;1
@@ -421,7 +270,7 @@ Perf.printWasted()
 
 &lt;h2&gt;Resources&lt;/h2&gt;
 
-&lt;p&gt;Many thanks to my co-worker &lt;a href="https://twitter.com/MarcinS"&gt;Marcin&lt;/a&gt; for explaining how the initial &lt;code&gt;===&lt;/code&gt; check works.&lt;/p&gt;
+&lt;p&gt;Many thanks to my co-worker &lt;a href="https://twitter.com/MarcinS"&gt;Marcin&lt;/a&gt; for explaining how React makes these decisions.&lt;/p&gt;
 
 &lt;ul&gt;
 &lt;li&gt;React’s docs on &lt;a href="https://facebook.github.io/react/docs/react-component.html#shouldcomponentupdate"&gt;shouldComponentUpdate&lt;/a&gt;&lt;/li&gt;
