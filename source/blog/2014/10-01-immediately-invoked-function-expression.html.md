@@ -165,33 +165,33 @@ Scopes! The scope from `helperFunction` has access to `i`. The object returned b
 
 1. Call to `counter.get()` goes and looks at the `get` function defined in `helperFunction`...
 
-  ```
-  get: function(){
-        return i;
-       }
-  ```
+    ```
+    get: function(){
+          return i;
+        }
+    ```
 1. The `get` function looks for its local scope, which is `helperFunction` ...
 
-  ```
-  function helperFunction(){
-    var i = 0;
+    ```
+    function helperFunction(){
+      var i = 0;
 
-    return {
-      get: function(){
-        return i;
-      },
-      set: function( val ){
-        i = val;
-      }
+      return {
+        get: function(){
+          return i;
+        },
+        set: function( val ){
+          i = val;
+        }
+      };
     };
-  };
-  ```
+    ```
 
 1. In `helperFunction` is a definition for `i`...
 
-  ```
-  var i = 0;
-  ```
+    ```
+    var i = 0;
+    ```
 
 1. So `get` can return 0!
 

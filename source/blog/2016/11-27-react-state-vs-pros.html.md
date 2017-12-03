@@ -215,45 +215,45 @@ Sure thing, let’s look at the whole flow:
 
 1. The component is initialised and `state.count` is set to 0
 
-  ```
-    this.state = {
-      count: 0,
-    };
-  ```
+    ```
+      this.state = {
+        count: 0,
+      };
+    ```
 
 2. The component renders, with “Clicked 0 times” as the button text
 
-  ```
-    Clicked {this.state.count} times
-  ```
+    ```
+      Clicked {this.state.count} times
+    ```
 
 3. The user clicks the button
   
-  *click!*
+    *click!*
 
 4. `updateCount` is called, bound to this instance of the component
   
-  ```
-  onClick={() => this.updateCount()}
-  ```
+    ```
+    onClick={() => this.updateCount()}
+    ```
 
 5. `updateCount` calls `setState` with a call back to increase the counter from the previous state’s counter value
   
-  ```
-  this.setState((prevState, props) => {
-    return { count: prevState.count + 1 }
-  });
-  ```
+    ```
+    this.setState((prevState, props) => {
+      return { count: prevState.count + 1 }
+    });
+    ```
 
 6. `setState` triggers a call to `render`
   
-  *React magic!*
+    *React magic!*
 
 7. The component renders, with “Clicked 1 times” as the button text
   
-  ```
-  Clicked {this.state.count} times
-  ```
+    ```
+    Clicked {this.state.count} times
+    ```
 
 ## Review
 
