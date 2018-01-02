@@ -24,10 +24,9 @@
 
 <link href="/images/favicon.ico" rel="icon" type="image/ico"></link>
 <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700|Source+Code+Pro" rel="stylesheet" type="text/css"></link>
-<link href="/stylesheets/syntax_highlighting.css" rel="stylesheet" media="all" />
-<link href="/stylesheets/application.css" rel="stylesheet" media="all" />
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-<script src="//cdn.optimizely.com/js/4606022905.js"></script>
+<link href="/stylesheets/application-31b674ae.css" rel="stylesheet" media="all" />
+<link href="/stylesheets/syntax_highlighting-26cdc014.css" rel="stylesheet" media="all" />
+<link href="/stylesheets/application-31b674ae.css" rel="stylesheet" media="all" />
   </head>
   <body class="">
     <nav>
@@ -100,15 +99,15 @@
 
 <p>Large (desktop)</p>
 
-<p><img src="/images/blog/css-flexbox/current-menu-large.png" alt="Image menu on desktop" /></p>
+<p><img src="/images/blog/css-flexbox/current-menu-large-cd478cb3.png" alt="Image menu on desktop" /></p>
 
 <p>Medium (tablet) - this looks almost the same but the fonts are slightly smaller.</p>
 
-<p><img src="/images/blog/css-flexbox/current-menu-medium.png" alt="Image menu on tablet" /></p>
+<p><img src="/images/blog/css-flexbox/current-menu-medium-b247795c.png" alt="Image menu on tablet" /></p>
 
 <p>Small (phone)</p>
 
-<p><img src="/images/blog/css-flexbox/current-menu-small.png" alt="Image menu on phone" /></p>
+<p><img src="/images/blog/css-flexbox/current-menu-small-d7d43f33.png" alt="Image menu on phone" /></p>
 
 <h2>Ok, let’s make it <em>flexible</em>.</h2>
 
@@ -116,19 +115,19 @@
 
 <p>I went through and removed most of the styling. I kept some things I knew I wanted, but most of it went.</p>
 
-<p><img src="/images/blog/css-flexbox/remove-styling.png" alt="remove styling" /></p>
+<p><img src="/images/blog/css-flexbox/remove-styling-ed28338b.png" alt="remove styling" /></p>
 
 <h3>Step 2: add flexbox</h3>
 
 <p>I added <code>display: flex</code> to the containing element. It kinda worked, but looked funny because I’d removed the rest of the styling.</p>
 
-<p><img src="/images/blog/css-flexbox/inital-flexbox.png" alt="inital flexbox" /></p>
+<p><img src="/images/blog/css-flexbox/inital-flexbox-22d0d703.png" alt="inital flexbox" /></p>
 
 <h3>Step 3: layout within the flexbox</h3>
 
 <p>Next I added how I wanted the content to flex within the flexbox by adding <code>justify-content: flex-end</code>. This meant all the <code>&lt;li&gt;</code>s got squished to the right.</p>
 
-<p><img src="/images/blog/css-flexbox/flex-end.png" alt="now with flex-end" /></p>
+<p><img src="/images/blog/css-flexbox/flex-end-b3298e77.png" alt="now with flex-end" /></p>
 
 <p>I played around with a few options for <code>justify-content</code>, particularly <code>space-between</code>. While that would better show off flexbox’s capabilities, I decided I didn’t actually want my nav bar all that flexible. Having too much space between the items looks quite strange - especially true on larger monitors. I probably should have thought of this before I started converting my nav bar to use flexbox, but oh well. For learning!</p>
 
@@ -136,7 +135,7 @@
 
 <p>Most of my previous styles were still required. I&#39;d hoped I could remove some lines, but it doesn’t seem to be the case.</p>
 
-<p><img src="/images/blog/css-flexbox/add-styling-back.png" alt="add styling back" /></p>
+<p><img src="/images/blog/css-flexbox/add-styling-back-f21effa5.png" alt="add styling back" /></p>
 
 <h3>Step 5: mobile - vertical display</h3>
 
@@ -146,7 +145,7 @@
 
 <p>But I want the mobile navigation to go vertically, so I changed the <code>flex-direction</code> from <code>row</code> (the default) to <code>flex-direction: column</code>.</p>
 
-<p><img src="/images/blog/css-flexbox/vertical-display-mobile.png" alt="vertical display mobile" /></p>
+<p><img src="/images/blog/css-flexbox/vertical-display-mobile-3ff3aab6.png" alt="vertical display mobile" /></p>
 
 <p>Woot! Getting pretty close!</p>
 
@@ -154,13 +153,13 @@
 
 <p>Next up was to center the <code>&lt;li&gt;</code>s across the screen. So I used <code>align-items: center</code> to get all my ducks in a row.</p>
 
-<p><img src="/images/blog/css-flexbox/align-center-mobile.png" alt="align center mobile" /></p>
+<p><img src="/images/blog/css-flexbox/align-center-mobile-340dacb0.png" alt="align center mobile" /></p>
 
 <h3>Step 7: mobile - spacing</h3>
 
 <p>Finally the spacing around the <code>&lt;li&gt;</code>s was a bit weird so I used <code>justify-content: space-around</code> to display them evening within the nav dropdown&#39;s space.</p>
 
-<p><img src="/images/blog/css-flexbox/mobile-correct-spacing.png" alt="mobile correct spacing" /></p>
+<p><img src="/images/blog/css-flexbox/mobile-correct-spacing-35ad5267.png" alt="mobile correct spacing" /></p>
 
 <h2>Done!</h2>
 
@@ -222,4 +221,6 @@
   ga('send', 'pageview');
 </script>
 
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script src="//cdn.optimizely.com/js/4606022905.js"></script>
 </html>

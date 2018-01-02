@@ -13,7 +13,7 @@ Over two years ago I wrote about [destructuring assignment](/blog/2015/js-destru
 
 To start with, the spread operator is `...`. So you can write something like:
 
-```
+```js
 const cat = { age: 4 };
 { ...cat }; // this isn't useful (yet), but it is valid
 ```
@@ -26,7 +26,7 @@ Let’s look at some examples.
 
 It’s pretty common to want to base one object off of another, something like this:
 
-```
+```js
 var cat = { age: 4 };
 var kitten = cat;
 kitten.age = 1;
@@ -36,14 +36,14 @@ kitten.age = 1;
 
 Yes! `kitten` and `cat` refer to the same object. We didn’t create a new object for `kitten` to reference, we just pointed `kitten` to the existing `cat` object. You can see that here:
 
-```
+```js
 console.log(kitten.age); // 1
 console.log(cat.age); // 1 <-- problem!
 ```
 
 Using the spread operator we can easily create a new object with all the same properties of an existing object.
 
-```
+```js
 const cat = { age: 4 };
 const kitten = { ...cat }; // <-- changed
 kitten.age = 1;
@@ -61,7 +61,7 @@ Sure thing, the `{` tells Javascript that we want to create a new object. Next, 
 
 It’s fairly common for people to expect `...` to [produce a deep copy](https://stackoverflow.com/questions/38416020/deep-copy-in-es6-using-the-spread-sign). Let’s be cleare The spread operator **does not deep copy**, while the spread operator does create a *new object*, the properties’ *values* are simply references and not new instances. For example:
 
-```
+```js
 const cat = { age: 4, toys: ["mouse", "catnip"] };
 const kitten = { ...cat };
 kitten.toys[1] = "yarn";
@@ -75,7 +75,7 @@ So using the spread operator to create new objects might be fine, it might cause
 
 So far we've only used `...` to create a copy of an existing object, but it’s actually more powerful than that. We’ll use a different example to add a *new property* to an object created with the spread operator:
 
-```
+```js
 const cat = { legs: 4 };
 const dog = {
     ...cat,
@@ -89,7 +89,7 @@ Again, you can see the `cat` object wasn’t changed, but the new `dog` object h
 
 *But cats make sounds too, what happens if you assign the sound property to `cat`?*
 
-```
+```js
 const cat = { legs: 4, sound: "meow" };
 const dog = {
     ...cat,
@@ -103,7 +103,7 @@ Everything works exactly like you’d hope it would! The `cat` object has the ne
 
 Let’s check out those lines more closely:
 
-```
+```js
 const dog = {
     ...cat,
     sound: "woof"
@@ -116,7 +116,7 @@ Just like before, the `{` starts a new object. Then using the spread operator on
 
 The line order maters for this to work. We need `sound: "woof"` to come **after** `...cat` so the overwrite happens. This version does *not* do what we want:
 
-```
+```js
 const cat = { legs: 4, sound: "meow" };
 const dog = {
     sound: "woof",

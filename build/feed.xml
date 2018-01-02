@@ -23,10 +23,10 @@
 &lt;p&gt;&lt;em&gt;You talk about an “operator,” but what is it actually?&lt;/em&gt;&lt;/p&gt;
 
 &lt;p&gt;To start with, the spread operator is &lt;code&gt;...&lt;/code&gt;. So you can write something like:&lt;/p&gt;
-&lt;pre class="highlight plaintext"&gt;&lt;code&gt;&lt;table class="rouge-table"&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class="rouge-gutter gl"&gt;&lt;pre class="lineno"&gt;1
+&lt;pre class="highlight javascript"&gt;&lt;code&gt;&lt;table class="rouge-table"&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class="rouge-gutter gl"&gt;&lt;pre class="lineno"&gt;1
 2
-&lt;/pre&gt;&lt;/td&gt;&lt;td class="rouge-code"&gt;&lt;pre&gt;const cat = { age: 4 };
-{ ...cat }; // this isn't useful (yet), but it is valid
+&lt;/pre&gt;&lt;/td&gt;&lt;td class="rouge-code"&gt;&lt;pre&gt;&lt;span class="kr"&gt;const&lt;/span&gt; &lt;span class="nx"&gt;cat&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="na"&gt;age&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt; &lt;span class="p"&gt;};&lt;/span&gt;
+&lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="p"&gt;...&lt;/span&gt;&lt;span class="nx"&gt;cat&lt;/span&gt; &lt;span class="p"&gt;};&lt;/span&gt; &lt;span class="c1"&gt;// this isn't useful (yet), but it is valid&lt;/span&gt;
 &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;As of ES6, using three dots in a row is valid code and pretty useful code at that! &lt;code&gt;...&lt;/code&gt; &lt;em&gt;spreads&lt;/em&gt; out the content so you can manipulate it more easily.&lt;/p&gt;
@@ -36,34 +36,34 @@
 &lt;h2&gt;&lt;code&gt;...&lt;/code&gt; to copy an object&lt;/h2&gt;
 
 &lt;p&gt;It’s pretty common to want to base one object off of another, something like this:&lt;/p&gt;
-&lt;pre class="highlight plaintext"&gt;&lt;code&gt;&lt;table class="rouge-table"&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class="rouge-gutter gl"&gt;&lt;pre class="lineno"&gt;1
+&lt;pre class="highlight javascript"&gt;&lt;code&gt;&lt;table class="rouge-table"&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class="rouge-gutter gl"&gt;&lt;pre class="lineno"&gt;1
 2
 3
-&lt;/pre&gt;&lt;/td&gt;&lt;td class="rouge-code"&gt;&lt;pre&gt;var cat = { age: 4 };
-var kitten = cat;
-kitten.age = 1;
+&lt;/pre&gt;&lt;/td&gt;&lt;td class="rouge-code"&gt;&lt;pre&gt;&lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;cat&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="na"&gt;age&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt; &lt;span class="p"&gt;};&lt;/span&gt;
+&lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;kitten&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;cat&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="nx"&gt;kitten&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;age&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
 &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;&lt;em&gt;Doesn’t that have a bug?&lt;/em&gt;&lt;/p&gt;
 
 &lt;p&gt;Yes! &lt;code&gt;kitten&lt;/code&gt; and &lt;code&gt;cat&lt;/code&gt; refer to the same object. We didn’t create a new object for &lt;code&gt;kitten&lt;/code&gt; to reference, we just pointed &lt;code&gt;kitten&lt;/code&gt; to the existing &lt;code&gt;cat&lt;/code&gt; object. You can see that here:&lt;/p&gt;
-&lt;pre class="highlight plaintext"&gt;&lt;code&gt;&lt;table class="rouge-table"&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class="rouge-gutter gl"&gt;&lt;pre class="lineno"&gt;1
+&lt;pre class="highlight javascript"&gt;&lt;code&gt;&lt;table class="rouge-table"&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class="rouge-gutter gl"&gt;&lt;pre class="lineno"&gt;1
 2
-&lt;/pre&gt;&lt;/td&gt;&lt;td class="rouge-code"&gt;&lt;pre&gt;console.log(kitten.age); // 1
-console.log(cat.age); // 1 &amp;lt;-- problem!
+&lt;/pre&gt;&lt;/td&gt;&lt;td class="rouge-code"&gt;&lt;pre&gt;&lt;span class="nx"&gt;console&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;log&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;kitten&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;age&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt; &lt;span class="c1"&gt;// 1&lt;/span&gt;
+&lt;span class="nx"&gt;console&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;log&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;cat&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;age&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt; &lt;span class="c1"&gt;// 1 &amp;lt;-- problem!&lt;/span&gt;
 &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Using the spread operator we can easily create a new object with all the same properties of an existing object.&lt;/p&gt;
-&lt;pre class="highlight plaintext"&gt;&lt;code&gt;&lt;table class="rouge-table"&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class="rouge-gutter gl"&gt;&lt;pre class="lineno"&gt;1
+&lt;pre class="highlight javascript"&gt;&lt;code&gt;&lt;table class="rouge-table"&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class="rouge-gutter gl"&gt;&lt;pre class="lineno"&gt;1
 2
 3
 4
 5
-&lt;/pre&gt;&lt;/td&gt;&lt;td class="rouge-code"&gt;&lt;pre&gt;const cat = { age: 4 };
-const kitten = { ...cat }; // &amp;lt;-- changed
-kitten.age = 1;
-console.log(kitten.age); // 1
-console.log(cat.age); // 4 &amp;lt;-- fixed!
+&lt;/pre&gt;&lt;/td&gt;&lt;td class="rouge-code"&gt;&lt;pre&gt;&lt;span class="kr"&gt;const&lt;/span&gt; &lt;span class="nx"&gt;cat&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="na"&gt;age&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt; &lt;span class="p"&gt;};&lt;/span&gt;
+&lt;span class="kr"&gt;const&lt;/span&gt; &lt;span class="nx"&gt;kitten&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="p"&gt;...&lt;/span&gt;&lt;span class="nx"&gt;cat&lt;/span&gt; &lt;span class="p"&gt;};&lt;/span&gt; &lt;span class="c1"&gt;// &amp;lt;-- changed&lt;/span&gt;
+&lt;span class="nx"&gt;kitten&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;age&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="nx"&gt;console&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;log&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;kitten&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;age&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt; &lt;span class="c1"&gt;// 1&lt;/span&gt;
+&lt;span class="nx"&gt;console&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;log&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;cat&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;age&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt; &lt;span class="c1"&gt;// 4 &amp;lt;-- fixed!&lt;/span&gt;
 &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;You can see that we created a new object for &lt;code&gt;kitten&lt;/code&gt; to reference when we used the spread operator.&lt;/p&gt;
@@ -75,16 +75,16 @@ console.log(cat.age); // 4 &amp;lt;-- fixed!
 &lt;p&gt;&lt;strong&gt;Warning!&lt;/strong&gt;&lt;/p&gt;
 
 &lt;p&gt;It’s fairly common for people to expect &lt;code&gt;...&lt;/code&gt; to &lt;a href="https://stackoverflow.com/questions/38416020/deep-copy-in-es6-using-the-spread-sign"&gt;produce a deep copy&lt;/a&gt;. Let’s be cleare The spread operator &lt;strong&gt;does not deep copy&lt;/strong&gt;, while the spread operator does create a &lt;em&gt;new object&lt;/em&gt;, the properties’ &lt;em&gt;values&lt;/em&gt; are simply references and not new instances. For example:&lt;/p&gt;
-&lt;pre class="highlight plaintext"&gt;&lt;code&gt;&lt;table class="rouge-table"&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class="rouge-gutter gl"&gt;&lt;pre class="lineno"&gt;1
+&lt;pre class="highlight javascript"&gt;&lt;code&gt;&lt;table class="rouge-table"&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class="rouge-gutter gl"&gt;&lt;pre class="lineno"&gt;1
 2
 3
 4
 5
-&lt;/pre&gt;&lt;/td&gt;&lt;td class="rouge-code"&gt;&lt;pre&gt;const cat = { age: 4, toys: ["mouse", "catnip"] };
-const kitten = { ...cat };
-kitten.toys[1] = "yarn";
-console.log(kitten.toys); // ["mouse", "yarn"]
-console.log(cat.toys); // ["mouse", "yarn"] &amp;lt;-- problem!
+&lt;/pre&gt;&lt;/td&gt;&lt;td class="rouge-code"&gt;&lt;pre&gt;&lt;span class="kr"&gt;const&lt;/span&gt; &lt;span class="nx"&gt;cat&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="na"&gt;age&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="na"&gt;toys&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;"mouse"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;"catnip"&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="p"&gt;};&lt;/span&gt;
+&lt;span class="kr"&gt;const&lt;/span&gt; &lt;span class="nx"&gt;kitten&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="p"&gt;...&lt;/span&gt;&lt;span class="nx"&gt;cat&lt;/span&gt; &lt;span class="p"&gt;};&lt;/span&gt;
+&lt;span class="nx"&gt;kitten&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;toys&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;"yarn"&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="nx"&gt;console&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;log&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;kitten&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;toys&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt; &lt;span class="c1"&gt;// ["mouse", "yarn"]&lt;/span&gt;
+&lt;span class="nx"&gt;console&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;log&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;cat&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;toys&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt; &lt;span class="c1"&gt;// ["mouse", "yarn"] &amp;lt;-- problem!&lt;/span&gt;
 &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;So using the spread operator to create new objects might be fine, it might cause unintended side effects. Please be careful!&lt;/p&gt;
@@ -92,52 +92,52 @@ console.log(cat.toys); // ["mouse", "yarn"] &amp;lt;-- problem!
 &lt;h2&gt;&lt;code&gt;...&lt;/code&gt; as an object base&lt;/h2&gt;
 
 &lt;p&gt;So far we&amp;#39;ve only used &lt;code&gt;...&lt;/code&gt; to create a copy of an existing object, but it’s actually more powerful than that. We’ll use a different example to add a &lt;em&gt;new property&lt;/em&gt; to an object created with the spread operator:&lt;/p&gt;
-&lt;pre class="highlight plaintext"&gt;&lt;code&gt;&lt;table class="rouge-table"&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class="rouge-gutter gl"&gt;&lt;pre class="lineno"&gt;1
+&lt;pre class="highlight javascript"&gt;&lt;code&gt;&lt;table class="rouge-table"&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class="rouge-gutter gl"&gt;&lt;pre class="lineno"&gt;1
 2
 3
 4
 5
 6
 7
-&lt;/pre&gt;&lt;/td&gt;&lt;td class="rouge-code"&gt;&lt;pre&gt;const cat = { legs: 4 };
-const dog = {
-    ...cat,
-    sound: "woof"
-};
-console.log(cat); // { legs: 4 }
-console.log(dog); // { legs: 4, sound: "woof" }
+&lt;/pre&gt;&lt;/td&gt;&lt;td class="rouge-code"&gt;&lt;pre&gt;&lt;span class="kr"&gt;const&lt;/span&gt; &lt;span class="nx"&gt;cat&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="na"&gt;legs&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt; &lt;span class="p"&gt;};&lt;/span&gt;
+&lt;span class="kr"&gt;const&lt;/span&gt; &lt;span class="nx"&gt;dog&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="p"&gt;...&lt;/span&gt;&lt;span class="nx"&gt;cat&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="na"&gt;sound&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;"woof"&lt;/span&gt;
+&lt;span class="p"&gt;};&lt;/span&gt;
+&lt;span class="nx"&gt;console&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;log&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;cat&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt; &lt;span class="c1"&gt;// { legs: 4 }&lt;/span&gt;
+&lt;span class="nx"&gt;console&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;log&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;dog&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt; &lt;span class="c1"&gt;// { legs: 4, sound: "woof" }&lt;/span&gt;
 &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Again, you can see the &lt;code&gt;cat&lt;/code&gt; object wasn’t changed, but the new &lt;code&gt;dog&lt;/code&gt; object has all the properties from &lt;code&gt;cat&lt;/code&gt; as well as the new &lt;code&gt;sound&lt;/code&gt; property.&lt;/p&gt;
 
 &lt;p&gt;&lt;em&gt;But cats make sounds too, what happens if you assign the sound property to &lt;code&gt;cat&lt;/code&gt;?&lt;/em&gt;&lt;/p&gt;
-&lt;pre class="highlight plaintext"&gt;&lt;code&gt;&lt;table class="rouge-table"&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class="rouge-gutter gl"&gt;&lt;pre class="lineno"&gt;1
+&lt;pre class="highlight javascript"&gt;&lt;code&gt;&lt;table class="rouge-table"&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class="rouge-gutter gl"&gt;&lt;pre class="lineno"&gt;1
 2
 3
 4
 5
 6
 7
-&lt;/pre&gt;&lt;/td&gt;&lt;td class="rouge-code"&gt;&lt;pre&gt;const cat = { legs: 4, sound: "meow" };
-const dog = {
-    ...cat,
-    sound: "woof"
-};
-console.log(cat); // { legs: 4, sound: "meow" }
-console.log(dog); // { legs: 4, sound: "woof" }
+&lt;/pre&gt;&lt;/td&gt;&lt;td class="rouge-code"&gt;&lt;pre&gt;&lt;span class="kr"&gt;const&lt;/span&gt; &lt;span class="nx"&gt;cat&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="na"&gt;legs&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="na"&gt;sound&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;"meow"&lt;/span&gt; &lt;span class="p"&gt;};&lt;/span&gt;
+&lt;span class="kr"&gt;const&lt;/span&gt; &lt;span class="nx"&gt;dog&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="p"&gt;...&lt;/span&gt;&lt;span class="nx"&gt;cat&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="na"&gt;sound&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;"woof"&lt;/span&gt;
+&lt;span class="p"&gt;};&lt;/span&gt;
+&lt;span class="nx"&gt;console&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;log&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;cat&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt; &lt;span class="c1"&gt;// { legs: 4, sound: "meow" }&lt;/span&gt;
+&lt;span class="nx"&gt;console&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;log&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;dog&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt; &lt;span class="c1"&gt;// { legs: 4, sound: "woof" }&lt;/span&gt;
 &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Everything works exactly like you’d hope it would! The &lt;code&gt;cat&lt;/code&gt; object has the new &lt;code&gt;sound&lt;/code&gt; property, with &lt;code&gt;&amp;quot;meow&amp;quot;&lt;/code&gt; correctly assigned. And the &lt;code&gt;dog&lt;/code&gt; object is created with the &lt;code&gt;sound&lt;/code&gt; property set to &lt;code&gt;&amp;quot;woof&amp;quot;&lt;/code&gt;.&lt;/p&gt;
 
 &lt;p&gt;Let’s check out those lines more closely:&lt;/p&gt;
-&lt;pre class="highlight plaintext"&gt;&lt;code&gt;&lt;table class="rouge-table"&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class="rouge-gutter gl"&gt;&lt;pre class="lineno"&gt;1
+&lt;pre class="highlight javascript"&gt;&lt;code&gt;&lt;table class="rouge-table"&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class="rouge-gutter gl"&gt;&lt;pre class="lineno"&gt;1
 2
 3
 4
-&lt;/pre&gt;&lt;/td&gt;&lt;td class="rouge-code"&gt;&lt;pre&gt;const dog = {
-    ...cat,
-    sound: "woof"
-};
+&lt;/pre&gt;&lt;/td&gt;&lt;td class="rouge-code"&gt;&lt;pre&gt;&lt;span class="kr"&gt;const&lt;/span&gt; &lt;span class="nx"&gt;dog&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="p"&gt;...&lt;/span&gt;&lt;span class="nx"&gt;cat&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="na"&gt;sound&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;"woof"&lt;/span&gt;
+&lt;span class="p"&gt;};&lt;/span&gt;
 &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Just like before, the &lt;code&gt;{&lt;/code&gt; starts a new object. Then using the spread operator on &lt;code&gt;cat&lt;/code&gt; adds all the &lt;code&gt;cat&lt;/code&gt; properties to the new object. Our new &lt;code&gt;sound: &amp;quot;woof&amp;quot;&lt;/code&gt; &lt;strong&gt;overwrites&lt;/strong&gt; the existing &lt;code&gt;sound&lt;/code&gt; property from &lt;code&gt;cat&lt;/code&gt;. And finally we have the &lt;code&gt;}&lt;/code&gt; to finish our new object.&lt;/p&gt;
@@ -145,20 +145,20 @@ console.log(dog); // { legs: 4, sound: "woof" }
 &lt;p&gt;&lt;strong&gt;Warning!&lt;/strong&gt;&lt;/p&gt;
 
 &lt;p&gt;The line order maters for this to work. We need &lt;code&gt;sound: &amp;quot;woof&amp;quot;&lt;/code&gt; to come &lt;strong&gt;after&lt;/strong&gt; &lt;code&gt;...cat&lt;/code&gt; so the overwrite happens. This version does &lt;em&gt;not&lt;/em&gt; do what we want:&lt;/p&gt;
-&lt;pre class="highlight plaintext"&gt;&lt;code&gt;&lt;table class="rouge-table"&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class="rouge-gutter gl"&gt;&lt;pre class="lineno"&gt;1
+&lt;pre class="highlight javascript"&gt;&lt;code&gt;&lt;table class="rouge-table"&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class="rouge-gutter gl"&gt;&lt;pre class="lineno"&gt;1
 2
 3
 4
 5
 6
 7
-&lt;/pre&gt;&lt;/td&gt;&lt;td class="rouge-code"&gt;&lt;pre&gt;const cat = { legs: 4, sound: "meow" };
-const dog = {
-    sound: "woof",
-    ...cat
-};
-console.log(cat); // { legs: 4, sound: "meow" }
-console.log(dog); // { legs: 4, sound: "meow" }
+&lt;/pre&gt;&lt;/td&gt;&lt;td class="rouge-code"&gt;&lt;pre&gt;&lt;span class="kr"&gt;const&lt;/span&gt; &lt;span class="nx"&gt;cat&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="na"&gt;legs&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="na"&gt;sound&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;"meow"&lt;/span&gt; &lt;span class="p"&gt;};&lt;/span&gt;
+&lt;span class="kr"&gt;const&lt;/span&gt; &lt;span class="nx"&gt;dog&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="na"&gt;sound&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;"woof"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="p"&gt;...&lt;/span&gt;&lt;span class="nx"&gt;cat&lt;/span&gt;
+&lt;span class="p"&gt;};&lt;/span&gt;
+&lt;span class="nx"&gt;console&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;log&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;cat&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt; &lt;span class="c1"&gt;// { legs: 4, sound: "meow" }&lt;/span&gt;
+&lt;span class="nx"&gt;console&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;log&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;dog&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt; &lt;span class="c1"&gt;// { legs: 4, sound: "meow" }&lt;/span&gt;
 &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Because we put the &lt;code&gt;...cat&lt;/code&gt; after the &lt;code&gt;sound: &amp;quot;woof&amp;quot;&lt;/code&gt; the &lt;code&gt;cat&lt;/code&gt;&amp;#39;s &lt;code&gt;sound&lt;/code&gt; property overwrote the &lt;code&gt;sound: &amp;quot;woof&amp;quot;&lt;/code&gt; property.&lt;/p&gt;
@@ -676,15 +676,15 @@ Perf.printWasted()
 
 &lt;p&gt;Google Chrome (version 55.0.2883.95) does:&lt;/p&gt;
 
-&lt;p&gt;&lt;img src="/images/blog/promises-vs-deferreds/chrome-with-error.png" alt="Google Chrome displays an error for exceptions thrown in promises" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="/images/blog/promises-vs-deferreds/chrome-with-error-2fae9979.png" alt="Google Chrome displays an error for exceptions thrown in promises" /&gt;&lt;/p&gt;
 
 &lt;p&gt;But Firefox (version 47.0) does not:&lt;/p&gt;
 
-&lt;p&gt;&lt;img src="/images/blog/promises-vs-deferreds/firefox-no-error.png" alt="Firefox (version 47.0) does not display an error for exceptions thrown in promises" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="/images/blog/promises-vs-deferreds/firefox-no-error-93867f3d.png" alt="Firefox (version 47.0) does not display an error for exceptions thrown in promises" /&gt;&lt;/p&gt;
 
 &lt;p&gt;Although it seems browsers are moving towards supporting showing the error. Firefox (version 51.0.1) does show the error:&lt;/p&gt;
 
-&lt;p&gt;&lt;img src="/images/blog/promises-vs-deferreds/firefox-with-error.png" alt="Firefox (version 51.0.1) displays an error for exceptions thrown in promises" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="/images/blog/promises-vs-deferreds/firefox-with-error-aa6fab04.png" alt="Firefox (version 51.0.1) displays an error for exceptions thrown in promises" /&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;em&gt;Well, and should they display the error?&lt;/em&gt;&lt;/p&gt;
 
