@@ -346,60 +346,47 @@ this.setState({
 <p>Sure thing, let’s look at the whole flow:</p>
 
 <ol>
-<li>The component is initialised and <code>state.count</code> is set to 0</li>
-</ol>
+<li><p>The component is initialised and <code>state.count</code> is set to 0</p>
 <pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
 3
-</pre></td><td class="rouge-code"><pre>    this.state = {
-      count: 0,
-    };
+</pre></td><td class="rouge-code"><pre>  this.state = {
+    count: 0,
+  };
 </pre></td></tr></tbody></table>
-</code></pre>
-<ol>
-<li>The component renders, with “Clicked 0 times” as the button text</li>
-</ol>
-<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-</pre></td><td class="rouge-code"><pre>    Clicked {this.state.count} times
-</pre></td></tr></tbody></table>
-</code></pre>
-<ol>
-<li>The user clicks the button</li>
-</ol>
-
-<p><em>click!</em></p>
-
-<ol>
-<li><code>updateCount</code> is called, bound to this instance of the component</li>
-</ol>
-<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-</pre></td><td class="rouge-code"><pre>  onClick={() =&gt; this.updateCount()}
-</pre></td></tr></tbody></table>
-</code></pre>
-<ol>
-<li><code>updateCount</code> calls <code>setState</code> with a call back to increase the counter from the previous state’s counter value</li>
-</ol>
-<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-3
-</pre></td><td class="rouge-code"><pre>  this.setState((prevState, props) =&gt; {
-    return { count: prevState.count + 1 }
-  });
-</pre></td></tr></tbody></table>
-</code></pre>
-<ol>
-<li><code>setState</code> triggers a call to <code>render</code></li>
-</ol>
-
-<p><em>React magic!</em></p>
-
-<ol>
-<li>The component renders, with “Clicked 1 times” as the button text</li>
-</ol>
+</code></pre></li>
+<li><p>The component renders, with “Clicked 0 times” as the button text</p>
 <pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 </pre></td><td class="rouge-code"><pre>  Clicked {this.state.count} times
 </pre></td></tr></tbody></table>
-</code></pre>
+</code></pre></li>
+<li><p>The user clicks the button</p>
+
+<p><em>click!</em></p></li>
+<li><p><code>updateCount</code> is called, bound to this instance of the component</p>
+<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre>onClick={() =&gt; this.updateCount()}
+</pre></td></tr></tbody></table>
+</code></pre></li>
+<li><p><code>updateCount</code> calls <code>setState</code> with a call back to increase the counter from the previous state’s counter value</p>
+<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+</pre></td><td class="rouge-code"><pre>this.setState((prevState, props) =&gt; {
+  return { count: prevState.count + 1 }
+});
+</pre></td></tr></tbody></table>
+</code></pre></li>
+<li><p><code>setState</code> triggers a call to <code>render</code></p>
+
+<p><em>React magic!</em></p></li>
+<li><p>The component renders, with “Clicked 1 times” as the button text</p>
+<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre>Clicked {this.state.count} times
+</pre></td></tr></tbody></table>
+</code></pre></li>
+</ol>
+
 <h2>Review</h2>
 
 <p>While <code>props</code> and <code>state</code> both hold information relating to the component, they are used differently and should be kept separate.</p>
