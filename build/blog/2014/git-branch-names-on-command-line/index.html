@@ -53,11 +53,6 @@
     </li>
   </ul>
 </nav>
-<script>
-  $('nav .nav-open-btn').on('click', function(){
-    $('nav .nav-display').toggleClass('open');
-  })
-</script>
 
     <div class="content">
       <script>window.twttr = (function(d, s, id) {
@@ -162,5 +157,9 @@ export PS1="\W\[\033[32m\]\$(parse_git_branch)\[\033[00m\] $ "
 </script>
 
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-<script src="//cdn.optimizely.com/js/4606022905.js"></script>
+<script>
+  $('nav .nav-open-btn').on('click', function(){
+    $('nav .nav-display').toggleClass('open');
+  });
+</script>
 </html>

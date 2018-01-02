@@ -51,11 +51,6 @@
     </li>
   </ul>
 </nav>
-<script>
-  $('nav .nav-open-btn').on('click', function(){
-    $('nav .nav-display').toggleClass('open');
-  })
-</script>
 
     <div class="content">
       <p>I'm writing some JS for my <a href="http://codesydney.com/">Code Sydney</a> study group. You can see my answers to the homework problems here.</p>
@@ -192,5 +187,9 @@
 </script>
 
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-<script src="//cdn.optimizely.com/js/4606022905.js"></script>
+<script>
+  $('nav .nav-open-btn').on('click', function(){
+    $('nav .nav-display').toggleClass('open');
+  });
+</script>
 </html>

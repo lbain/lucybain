@@ -51,11 +51,6 @@
     </li>
   </ul>
 </nav>
-<script>
-  $('nav .nav-open-btn').on('click', function(){
-    $('nav .nav-display').toggleClass('open');
-  })
-</script>
 
     <div class="content">
       <pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
@@ -157,5 +152,9 @@ makeTurkey().then(roastVeggies).then(setTable);</p>
 </script>
 
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-<script src="//cdn.optimizely.com/js/4606022905.js"></script>
+<script>
+  $('nav .nav-open-btn').on('click', function(){
+    $('nav .nav-display').toggleClass('open');
+  });
+</script>
 </html>
