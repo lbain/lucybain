@@ -4,10 +4,177 @@
   <id>http://lucybain.com/blog</id>
   <link href="http://lucybain.com/blog"/>
   <link href="http://lucybain.com/feed.xml" rel="self"/>
-  <updated>2017-10-14T11:00:00+11:00</updated>
+  <updated>2018-01-02T11:00:00+11:00</updated>
   <author>
     <name>Lucy Bain</name>
   </author>
+  <entry>
+    <title>JS: ES6’s spread operator for objects</title>
+    <link rel="alternate" href="http://lucybain.com/blog/2018/js-es6-spread-operator/"/>
+    <id>http://lucybain.com/blog/2018/js-es6-spread-operator/</id>
+    <published>2018-01-02T11:00:00+11:00</published>
+    <author>
+      <name>Article Author</name>
+    </author>
+    <content type="html">&lt;p&gt;Over two years ago I wrote about &lt;a href="/blog/2015/js-destructuring-assignment-es6/"&gt;destructuring assignment&lt;/a&gt;, which has been one of my favourite features of ES6. Since then I’ve also come to value destructuring’s “sibling” feature - the spread operator. Although you can use the spread operator on other things, this post focuses on how to use it with objects.&lt;/p&gt;
+
+&lt;h2&gt;What it does&lt;/h2&gt;
+
+&lt;p&gt;&lt;em&gt;You talk about an “operator,” but what is it actually?&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;To start with, the spread operator is &lt;code&gt;...&lt;/code&gt;. So you can write something like:&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;&lt;code&gt;&lt;table class="rouge-table"&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class="rouge-gutter gl"&gt;&lt;pre class="lineno"&gt;1
+2
+&lt;/pre&gt;&lt;/td&gt;&lt;td class="rouge-code"&gt;&lt;pre&gt;const cat = { age: 4 };
+{ ...cat }; // this isn't useful (yet), but it is valid
+&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;As of ES6, using three dots in a row is valid code and pretty useful code at that! &lt;code&gt;...&lt;/code&gt; &lt;em&gt;spreads&lt;/em&gt; out the content so you can manipulate it more easily.&lt;/p&gt;
+
+&lt;p&gt;Let’s look at some examples.&lt;/p&gt;
+
+&lt;h2&gt;&lt;code&gt;...&lt;/code&gt; to copy an object&lt;/h2&gt;
+
+&lt;p&gt;It’s pretty common to want to base one object off of another, something like this:&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;&lt;code&gt;&lt;table class="rouge-table"&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class="rouge-gutter gl"&gt;&lt;pre class="lineno"&gt;1
+2
+3
+&lt;/pre&gt;&lt;/td&gt;&lt;td class="rouge-code"&gt;&lt;pre&gt;var cat = { age: 4 };
+var kitten = cat;
+kitten.age = 1;
+&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;em&gt;Doesn’t that have a bug?&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;Yes! &lt;code&gt;kitten&lt;/code&gt; and &lt;code&gt;cat&lt;/code&gt; refer to the same object. We didn’t create a new object for &lt;code&gt;kitten&lt;/code&gt; to reference, we just pointed &lt;code&gt;kitten&lt;/code&gt; to the existing &lt;code&gt;cat&lt;/code&gt; object. You can see that here:&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;&lt;code&gt;&lt;table class="rouge-table"&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class="rouge-gutter gl"&gt;&lt;pre class="lineno"&gt;1
+2
+&lt;/pre&gt;&lt;/td&gt;&lt;td class="rouge-code"&gt;&lt;pre&gt;console.log(kitten.age); // 1
+console.log(cat.age); // 1 &amp;lt;-- problem!
+&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Using the spread operator we can easily create a new object with all the same properties of an existing object.&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;&lt;code&gt;&lt;table class="rouge-table"&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class="rouge-gutter gl"&gt;&lt;pre class="lineno"&gt;1
+2
+3
+4
+5
+&lt;/pre&gt;&lt;/td&gt;&lt;td class="rouge-code"&gt;&lt;pre&gt;const cat = { age: 4 };
+const kitten = { ...cat }; // &amp;lt;-- changed
+kitten.age = 1;
+console.log(kitten.age); // 1
+console.log(cat.age); // 4 &amp;lt;-- fixed!
+&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;You can see that we created a new object for &lt;code&gt;kitten&lt;/code&gt; to reference when we used the spread operator.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Can you explain the &lt;code&gt;{ ...cat }&lt;/code&gt; line a bit?&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;Sure thing, the &lt;code&gt;{&lt;/code&gt; tells Javascript that we want to create a new object. Next, the &lt;code&gt;...cat&lt;/code&gt; says that we want that new object to contain all the same contents as the &lt;code&gt;cat&lt;/code&gt; object. And finally, &lt;code&gt;}&lt;/code&gt; means that we’re finished with that object and don’t want to add anything else to the object.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Warning!&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;It’s fairly common for people to expect &lt;code&gt;...&lt;/code&gt; to &lt;a href="https://stackoverflow.com/questions/38416020/deep-copy-in-es6-using-the-spread-sign"&gt;produce a deep copy&lt;/a&gt;. Let’s be cleare The spread operator &lt;strong&gt;does not deep copy&lt;/strong&gt;, while the spread operator does create a &lt;em&gt;new object&lt;/em&gt;, the properties’ &lt;em&gt;values&lt;/em&gt; are simply references and not new instances. For example:&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;&lt;code&gt;&lt;table class="rouge-table"&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class="rouge-gutter gl"&gt;&lt;pre class="lineno"&gt;1
+2
+3
+4
+5
+&lt;/pre&gt;&lt;/td&gt;&lt;td class="rouge-code"&gt;&lt;pre&gt;const cat = { age: 4, toys: ["mouse", "catnip"] };
+const kitten = { ...cat };
+kitten.toys[1] = "yarn";
+console.log(kitten.toys); // ["mouse", "yarn"]
+console.log(cat.toys); // ["mouse", "yarn"] &amp;lt;-- problem!
+&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;So using the spread operator to create new objects might be fine, it might cause unintended side effects. Please be careful!&lt;/p&gt;
+
+&lt;h2&gt;&lt;code&gt;...&lt;/code&gt; as an object base&lt;/h2&gt;
+
+&lt;p&gt;So far we&amp;#39;ve only used &lt;code&gt;...&lt;/code&gt; to create a copy of an existing object, but it’s actually more powerful than that. We’ll use a different example to add a &lt;em&gt;new property&lt;/em&gt; to an object created with the spread operator:&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;&lt;code&gt;&lt;table class="rouge-table"&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class="rouge-gutter gl"&gt;&lt;pre class="lineno"&gt;1
+2
+3
+4
+5
+6
+7
+&lt;/pre&gt;&lt;/td&gt;&lt;td class="rouge-code"&gt;&lt;pre&gt;const cat = { legs: 4 };
+const dog = {
+    ...cat,
+    sound: "woof"
+};
+console.log(cat); // { legs: 4 }
+console.log(dog); // { legs: 4, sound: "woof" }
+&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Again, you can see the &lt;code&gt;cat&lt;/code&gt; object wasn’t changed, but the new &lt;code&gt;dog&lt;/code&gt; object has all the properties from &lt;code&gt;cat&lt;/code&gt; as well as the new &lt;code&gt;sound&lt;/code&gt; property.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;But cats make sounds too, what happens if you assign the sound property to &lt;code&gt;cat&lt;/code&gt;?&lt;/em&gt;&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;&lt;code&gt;&lt;table class="rouge-table"&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class="rouge-gutter gl"&gt;&lt;pre class="lineno"&gt;1
+2
+3
+4
+5
+6
+7
+&lt;/pre&gt;&lt;/td&gt;&lt;td class="rouge-code"&gt;&lt;pre&gt;const cat = { legs: 4, sound: "meow" };
+const dog = {
+    ...cat,
+    sound: "woof"
+};
+console.log(cat); // { legs: 4, sound: "meow" }
+console.log(dog); // { legs: 4, sound: "woof" }
+&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Everything works exactly like you’d hope it would! The &lt;code&gt;cat&lt;/code&gt; object has the new &lt;code&gt;sound&lt;/code&gt; property, with &lt;code&gt;&amp;quot;meow&amp;quot;&lt;/code&gt; correctly assigned. And the &lt;code&gt;dog&lt;/code&gt; object is created with the &lt;code&gt;sound&lt;/code&gt; property set to &lt;code&gt;&amp;quot;woof&amp;quot;&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Let’s check out those lines more closely:&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;&lt;code&gt;&lt;table class="rouge-table"&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class="rouge-gutter gl"&gt;&lt;pre class="lineno"&gt;1
+2
+3
+4
+&lt;/pre&gt;&lt;/td&gt;&lt;td class="rouge-code"&gt;&lt;pre&gt;const dog = {
+    ...cat,
+    sound: "woof"
+};
+&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Just like before, the &lt;code&gt;{&lt;/code&gt; starts a new object. Then using the spread operator on &lt;code&gt;cat&lt;/code&gt; adds all the &lt;code&gt;cat&lt;/code&gt; properties to the new object. Our new &lt;code&gt;sound: &amp;quot;woof&amp;quot;&lt;/code&gt; &lt;strong&gt;overwrites&lt;/strong&gt; the existing &lt;code&gt;sound&lt;/code&gt; property from &lt;code&gt;cat&lt;/code&gt;. And finally we have the &lt;code&gt;}&lt;/code&gt; to finish our new object.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Warning!&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;The line order maters for this to work. We need &lt;code&gt;sound: &amp;quot;woof&amp;quot;&lt;/code&gt; to come &lt;strong&gt;after&lt;/strong&gt; &lt;code&gt;...cat&lt;/code&gt; so the overwrite happens. This version does &lt;em&gt;not&lt;/em&gt; do what we want:&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;&lt;code&gt;&lt;table class="rouge-table"&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class="rouge-gutter gl"&gt;&lt;pre class="lineno"&gt;1
+2
+3
+4
+5
+6
+7
+&lt;/pre&gt;&lt;/td&gt;&lt;td class="rouge-code"&gt;&lt;pre&gt;const cat = { legs: 4, sound: "meow" };
+const dog = {
+    sound: "woof",
+    ...cat
+};
+console.log(cat); // { legs: 4, sound: "meow" }
+console.log(dog); // { legs: 4, sound: "meow" }
+&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Because we put the &lt;code&gt;...cat&lt;/code&gt; after the &lt;code&gt;sound: &amp;quot;woof&amp;quot;&lt;/code&gt; the &lt;code&gt;cat&lt;/code&gt;&amp;#39;s &lt;code&gt;sound&lt;/code&gt; property overwrote the &lt;code&gt;sound: &amp;quot;woof&amp;quot;&lt;/code&gt; property.&lt;/p&gt;
+
+&lt;h2&gt;Wrapping up&lt;/h2&gt;
+
+&lt;p&gt;Well there you have it. The spread operator is super handy for quickly creating and updating objects. It has other uses too (see the Mozilla docs below), but I’ve found I use this version the most. Enjoy!&lt;/p&gt;
+
+&lt;h2&gt;Resources&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_operator"&gt;Mozilla&lt;/a&gt; documentation&lt;/li&gt;
+&lt;li&gt;The &lt;a href="https://github.com/tc39/proposal-object-rest-spread"&gt;proposal&lt;/a&gt; to add the spread operator to JS&lt;/li&gt;
+&lt;/ul&gt;
+</content>
+  </entry>
   <entry>
     <title>New role (same company)</title>
     <link rel="alternate" href="http://lucybain.com/blog/2017/new-role/"/>
@@ -809,61 +976,6 @@ Perf.printWasted()
 &lt;h2&gt;Recap&lt;/h2&gt;
 
 &lt;p&gt;As speakers, our job is to make it as easy as possible for the audience to understand our message. They’re giving us their attention, we need to give them thoughtful preparation and use their time wisely. Hopefully these notes help you better communicate your ideas at your next presentation!&lt;/p&gt;
-</content>
-  </entry>
-  <entry>
-    <title>JS: Promises/A+ and. jQuery history</title>
-    <link rel="alternate" href="http://lucybain.com/blog/2017/js-promises-a-plus-jquery-history/"/>
-    <id>http://lucybain.com/blog/2017/js-promises-a-plus-jquery-history/</id>
-    <published>2017-01-01T11:00:00+11:00</published>
-    <author>
-      <name>Article Author</name>
-    </author>
-    <content type="html">&lt;p&gt;In my &lt;a href="/blog/2016/js-promises-vs-deferred/"&gt;last post&lt;/a&gt; I listed a bunch of confusing things about promises. That time I clarified “deferred” and “promise” and this time I’ll start writing about Promises/A+ and jQuery’s promises.&lt;/p&gt;
-
-&lt;h2&gt;Promise or promise?&lt;/h2&gt;
-
-&lt;p&gt;The concept of a promise has been around for a long time (&lt;a href="https://en.wikipedia.org/wiki/Futures_and_promises"&gt;1976&lt;/a&gt; in fact). Promises/A+ and jQuery’s promises are both implementations of the promise concept. They both represent future values and both simplify programming with async operations.&lt;/p&gt;
-
-&lt;p&gt;&lt;em&gt;So how’d we get two of the same thing?&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;Well, they’re not actually the same thing, but we’ll briefly talk about the history first.&lt;/p&gt;
-
-&lt;h2&gt;Why do we have two?&lt;/h2&gt;
-
-&lt;p&gt;JS got &lt;a href="http://www.ecma-international.org/ecma-262/6.0/#sec-promise-objects"&gt;promises&lt;/a&gt; with ECMAScript 6, which is slowly making it’s way into &lt;a href="http://caniuse.com/#feat=promises"&gt;browsers&lt;/a&gt;. But before the spec was settled (see what I did there?) jQuery got to work on an implementation. jQuery knew browsers weren’t going to support promises right away, and, as with other shiny new JS, developers would have to rely on a library or polyfill to use the new features. (Other libraries knew this as well and did similar things to jQuery, but jQuery is the most common, so we’re talking about it.)&lt;/p&gt;
-
-&lt;p&gt;I like to think it went something like this:&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Developers:&lt;/strong&gt; We’d like to use promises in JS&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;JS spec:&lt;/strong&gt; Hmmm, interesting idea... yeah, let’s do that&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;jQuery:&lt;/strong&gt; &lt;em&gt;typing, developing, debugging&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;JS spec:&lt;/strong&gt; But &lt;em&gt;how?&lt;/em&gt; Let’s really think about what should happen.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;jQuery:&lt;/strong&gt; &lt;em&gt;typing, developing, debugging&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;JS spec:&lt;/strong&gt; &lt;em&gt;Debating, email threads, thinking&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;jQuery:&lt;/strong&gt; Here you go!&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;JS spec:&lt;/strong&gt; &lt;em&gt;Debating, email threads, thinking&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Developers:&lt;/strong&gt; Thanks jQuery, we’ll get right on it!&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;JS spec:&lt;/strong&gt; Here’s the theoretical description of what should happen.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;jQuery, developers, and JS spec:&lt;/strong&gt; Well this is awkward.&lt;/p&gt;
-
-&lt;p&gt;So before the official JS specification for promises (eventually called Promises/A+) had landed we had an implementation for promises in jQuery. This was super handy for developers then since it meant they could have all the advantages of promises as soon as jQuery allowed it. The problem is that jQuery’s implementation and Promises/A+ differ. And it’s not likely that either will change any time soon.&lt;/p&gt;
-
-&lt;p&gt;With a bit of effort jQuery’s promises and Promises/A+ can play nicely together, but that effort wasn’t made in the past since the Promises/A+ weren’t even available at the time. There’s also the mental effort involved in knowing both ways of working with the promises and knowing what type of promise you’re working with at any given time.&lt;/p&gt;
-
-&lt;p&gt;It’s not ideal, but it’s the world we live in.&lt;/p&gt;
-
-&lt;p&gt;Next time we’ll talk about the differences between the Promises/A+ spec and jQuery’s implementation of promises so you know what to watch out for.&lt;/p&gt;
 </content>
   </entry>
 </feed>

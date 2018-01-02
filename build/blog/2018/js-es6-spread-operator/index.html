@@ -1,0 +1,305 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+  <head>
+    <title>
+  Lucy | JS: ES6’s spread operator for objects
+</title>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta charset="utf-8"/>
+<meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible"/>
+
+<!-- SEO meta tags -->
+<meta name="description" content="A description of the new spread operator introduced in ES6."/>
+<meta name="twitter:card" content="summary">
+<meta property="og:title" content="Lucy | JS: ES6’s spread operator for objects"/>
+<meta name="og:description" content="A description of the new spread operator introduced in ES6."/>
+<meta property="og:image" content="http://lucybain.com/images/social-share.png" />
+<meta property="og:url" content="http://lucybain.com/" />
+
+  <meta property="og:type" content="article" />
+  <meta property="article:author" content="https://twitter.com/lucykbain" />
+    <meta property="article:tag" content="js, es6"/>
+
+  <meta name="keywords" content="js, es6"/>
+
+<link href="/images/favicon.ico" rel="icon" type="image/ico"></link>
+<link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700|Source+Code+Pro" rel="stylesheet" type="text/css"></link>
+<link href="/stylesheets/syntax_highlighting.css" rel="stylesheet" media="all" />
+<link href="/stylesheets/application.css" rel="stylesheet" media="all" />
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script src="//cdn.optimizely.com/js/4606022905.js"></script>
+  </head>
+  <body class="">
+    <nav>
+  <div class='nav-open-btn'>
+    <ul>
+      <li></li>
+      <li></li>
+      <li></li>
+    </ul>
+  </div>
+  <ul class='nav-display'>
+    <li>
+      <a href="/" class="link-button">Me</a>
+    </li>
+    <li>
+      <a href="/resume/" class="link-button">Resume</a>
+    </li>
+    <li>
+      <a href="/contact-me/" class="link-button">Contact</a>
+    </li>
+    <li>
+      <a href="/resources/" class="link-button">Resources</a>
+    </li>
+    <li>
+      <a href="/blog/" class="link-button active">Blog</a>
+    </li>
+  </ul>
+</nav>
+<script>
+  $('nav .nav-open-btn').on('click', function(){
+    $('nav .nav-display').toggleClass('open');
+  })
+</script>
+
+    <div class="content">
+      <script>window.twttr = (function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0],
+    t = window.twttr || {};
+  if (d.getElementById(id)) return t;
+  js = d.createElement(s);
+  js.id = id;
+  js.src = "https://platform.twitter.com/widgets.js";
+  fjs.parentNode.insertBefore(js, fjs);
+
+  t._e = [];
+  t.ready = function(f) {
+    t._e.push(f);
+  };
+
+  return t;
+}(document, "script", "twitter-wjs"));</script>
+
+  <div class=" blog-listing">
+    <div class="meta">
+      <h1>
+        JS: ES6’s spread operator for objects
+      </h1>
+      <p>Published on: January  2, 2018</p>
+        <p>Tags: <a href="/blog/tags/js/">js</a> and <a href="/blog/tags/es6/">es6</a></p>
+    </div>
+    <p>Over two years ago I wrote about <a href="/blog/2015/js-destructuring-assignment-es6/">destructuring assignment</a>, which has been one of my favourite features of ES6. Since then I’ve also come to value destructuring’s “sibling” feature - the spread operator. Although you can use the spread operator on other things, this post focuses on how to use it with objects.</p>
+
+<h2>What it does</h2>
+
+<p><em>You talk about an “operator,” but what is it actually?</em></p>
+
+<p>To start with, the spread operator is <code>...</code>. So you can write something like:</p>
+<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+</pre></td><td class="rouge-code"><pre>const cat = { age: 4 };
+{ ...cat }; // this isn't useful (yet), but it is valid
+</pre></td></tr></tbody></table>
+</code></pre>
+<p>As of ES6, using three dots in a row is valid code and pretty useful code at that! <code>...</code> <em>spreads</em> out the content so you can manipulate it more easily.</p>
+
+<p>Let’s look at some examples.</p>
+
+<h2><code>...</code> to copy an object</h2>
+
+<p>It’s pretty common to want to base one object off of another, something like this:</p>
+<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+</pre></td><td class="rouge-code"><pre>var cat = { age: 4 };
+var kitten = cat;
+kitten.age = 1;
+</pre></td></tr></tbody></table>
+</code></pre>
+<p><em>Doesn’t that have a bug?</em></p>
+
+<p>Yes! <code>kitten</code> and <code>cat</code> refer to the same object. We didn’t create a new object for <code>kitten</code> to reference, we just pointed <code>kitten</code> to the existing <code>cat</code> object. You can see that here:</p>
+<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+</pre></td><td class="rouge-code"><pre>console.log(kitten.age); // 1
+console.log(cat.age); // 1 &lt;-- problem!
+</pre></td></tr></tbody></table>
+</code></pre>
+<p>Using the spread operator we can easily create a new object with all the same properties of an existing object.</p>
+<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+</pre></td><td class="rouge-code"><pre>const cat = { age: 4 };
+const kitten = { ...cat }; // &lt;-- changed
+kitten.age = 1;
+console.log(kitten.age); // 1
+console.log(cat.age); // 4 &lt;-- fixed!
+</pre></td></tr></tbody></table>
+</code></pre>
+<p>You can see that we created a new object for <code>kitten</code> to reference when we used the spread operator.</p>
+
+<p><em>Can you explain the <code>{ ...cat }</code> line a bit?</em></p>
+
+<p>Sure thing, the <code>{</code> tells Javascript that we want to create a new object. Next, the <code>...cat</code> says that we want that new object to contain all the same contents as the <code>cat</code> object. And finally, <code>}</code> means that we’re finished with that object and don’t want to add anything else to the object.</p>
+
+<p><strong>Warning!</strong></p>
+
+<p>It’s fairly common for people to expect <code>...</code> to <a href="https://stackoverflow.com/questions/38416020/deep-copy-in-es6-using-the-spread-sign">produce a deep copy</a>. Let’s be cleare The spread operator <strong>does not deep copy</strong>, while the spread operator does create a <em>new object</em>, the properties’ <em>values</em> are simply references and not new instances. For example:</p>
+<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+</pre></td><td class="rouge-code"><pre>const cat = { age: 4, toys: ["mouse", "catnip"] };
+const kitten = { ...cat };
+kitten.toys[1] = "yarn";
+console.log(kitten.toys); // ["mouse", "yarn"]
+console.log(cat.toys); // ["mouse", "yarn"] &lt;-- problem!
+</pre></td></tr></tbody></table>
+</code></pre>
+<p>So using the spread operator to create new objects might be fine, it might cause unintended side effects. Please be careful!</p>
+
+<h2><code>...</code> as an object base</h2>
+
+<p>So far we&#39;ve only used <code>...</code> to create a copy of an existing object, but it’s actually more powerful than that. We’ll use a different example to add a <em>new property</em> to an object created with the spread operator:</p>
+<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+</pre></td><td class="rouge-code"><pre>const cat = { legs: 4 };
+const dog = {
+    ...cat,
+    sound: "woof"
+};
+console.log(cat); // { legs: 4 }
+console.log(dog); // { legs: 4, sound: "woof" }
+</pre></td></tr></tbody></table>
+</code></pre>
+<p>Again, you can see the <code>cat</code> object wasn’t changed, but the new <code>dog</code> object has all the properties from <code>cat</code> as well as the new <code>sound</code> property.</p>
+
+<p><em>But cats make sounds too, what happens if you assign the sound property to <code>cat</code>?</em></p>
+<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+</pre></td><td class="rouge-code"><pre>const cat = { legs: 4, sound: "meow" };
+const dog = {
+    ...cat,
+    sound: "woof"
+};
+console.log(cat); // { legs: 4, sound: "meow" }
+console.log(dog); // { legs: 4, sound: "woof" }
+</pre></td></tr></tbody></table>
+</code></pre>
+<p>Everything works exactly like you’d hope it would! The <code>cat</code> object has the new <code>sound</code> property, with <code>&quot;meow&quot;</code> correctly assigned. And the <code>dog</code> object is created with the <code>sound</code> property set to <code>&quot;woof&quot;</code>.</p>
+
+<p>Let’s check out those lines more closely:</p>
+<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+</pre></td><td class="rouge-code"><pre>const dog = {
+    ...cat,
+    sound: "woof"
+};
+</pre></td></tr></tbody></table>
+</code></pre>
+<p>Just like before, the <code>{</code> starts a new object. Then using the spread operator on <code>cat</code> adds all the <code>cat</code> properties to the new object. Our new <code>sound: &quot;woof&quot;</code> <strong>overwrites</strong> the existing <code>sound</code> property from <code>cat</code>. And finally we have the <code>}</code> to finish our new object.</p>
+
+<p><strong>Warning!</strong></p>
+
+<p>The line order maters for this to work. We need <code>sound: &quot;woof&quot;</code> to come <strong>after</strong> <code>...cat</code> so the overwrite happens. This version does <em>not</em> do what we want:</p>
+<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+</pre></td><td class="rouge-code"><pre>const cat = { legs: 4, sound: "meow" };
+const dog = {
+    sound: "woof",
+    ...cat
+};
+console.log(cat); // { legs: 4, sound: "meow" }
+console.log(dog); // { legs: 4, sound: "meow" }
+</pre></td></tr></tbody></table>
+</code></pre>
+<p>Because we put the <code>...cat</code> after the <code>sound: &quot;woof&quot;</code> the <code>cat</code>&#39;s <code>sound</code> property overwrote the <code>sound: &quot;woof&quot;</code> property.</p>
+
+<h2>Wrapping up</h2>
+
+<p>Well there you have it. The spread operator is super handy for quickly creating and updating objects. It has other uses too (see the Mozilla docs below), but I’ve found I use this version the most. Enjoy!</p>
+
+<h2>Resources</h2>
+
+<ul>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_operator">Mozilla</a> documentation</li>
+<li>The <a href="https://github.com/tc39/proposal-object-rest-spread">proposal</a> to add the spread operator to JS</li>
+</ul>
+
+
+    <hr/>
+
+    <p class="social-share"> Did you find this post helpful? Please share it!
+      <a class="twitter-share-button"
+          href="https://twitter.com/intent/tweet?text=JS:%20ES6%E2%80%99s%20spread%20operator%20for%20objects"
+          data-hashtags="js,es6"
+          data-via="lucykbain"
+          data-size="large">
+        Tweet</a>
+    </p>
+      <div id="disqus_thread">
+        <script>
+
+          var disqus_shortname = 'lucybain';
+          (function() {
+              var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+              dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+              (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+          })();
+
+        </script>
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+        <a class="dsq-brlink" href="http://disqus.com">
+          comments powered by
+          <span class="logo-disqus">Disqus</span>
+        </a>
+        <script>
+
+          var disqus_shortname = 'lucybain';
+          (function () {
+              var s = document.createElement('script'); s.async = true;
+              s.type = 'text/javascript';
+              s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+              (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+          }());
+
+        </script>
+      </div>
+  </div>
+
+    </div>
+  </body>
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  
+  ga('create', 'UA-45866381-1', 'lucybain.com');
+  ga('send', 'pageview');
+</script>
+
+</html>
