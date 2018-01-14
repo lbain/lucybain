@@ -24,7 +24,6 @@
 
 <link href="/images/favicon.ico" rel="icon" type="image/ico"></link>
 <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700|Source+Code+Pro" rel="stylesheet" type="text/css"></link>
-<link href="/stylesheets/application-31b674ae.css" rel="stylesheet" media="all" />
 <link href="/stylesheets/syntax_highlighting-26cdc014.css" rel="stylesheet" media="all" />
 <link href="/stylesheets/application-31b674ae.css" rel="stylesheet" media="all" />
   </head>
@@ -82,7 +81,7 @@
       <p>Published on: February  8, 2017</p>
         <p>Tags: <a href="/blog/tags/react/">react</a>, <a href="/blog/tags/js/">js</a>, and <a href="/blog/tags/performance/">performance</a></p>
     </div>
-    <p>React is known for it’s performance. Because it has a virtual DOM and only updates the real DOM when required it can be much faster than updating the DOM all the time, even to display the same information. However, React’s “smarts” only go so far (at the moment!), and it’s our job to know it’s expectations and limitations so we don’t accidentally hurt performance.</p>
+    <p>React is known for its performance. Because it has a virtual DOM and only updates the real DOM when required it can be much faster than updating the DOM all the time, even to display the same information. However, React’s “smarts” only go so far (at the moment!), and it’s our job to know its expectations and limitations so we don’t accidentally hurt performance.</p>
 
 <p>One of the aspects we need to be aware of is how React decides when to re-render a component. Not as in “update the DOM render,” but just to call the <code>render</code> method to change the virtual DOM. We can help React out by telling it when it should and shouldn’t render. Let’s look at both of those in turn...</p>
 
@@ -125,7 +124,7 @@
 }
 </pre></td></tr></tbody></table>
 </code></pre>
-<p>In this (massively contrived) example the <code>Todo</code> will re-render every second, even though the <code>render</code> method doesn’t use <code>unseen</code> at all. In fact, <code>unseen</code> doesn’t even change it’s value! You can check out a working version of this on <a href="https://codepen.io/lbain/pen/MJNpwL">CodePen</a>.</p>
+<p>In this (massively contrived) example the <code>Todo</code> will re-render every second, even though the <code>render</code> method doesn’t use <code>unseen</code> at all. In fact, <code>unseen</code> doesn’t even change its value! You can check out a working version of this on <a href="https://codepen.io/lbain/pen/MJNpwL">CodePen</a>.</p>
 
 <p><em>Well, but re-rendering all the time isn’t helpful...</em></p>
 
@@ -210,7 +209,7 @@
 
 <p>– Facebook&#39;s <a href="https://facebook.github.io/react/docs/react-component.html#shouldcomponentupdate">React docs</a>.</p>
 
-<p>This applies to the children’s <code>state</code> but not their <code>props</code>. So if a child component is internally managing some aspect of it’s state (with a <code>setState</code> of it’s own), that will still be updated. But if the parent component returns <code>false</code> from <code>shouldComponentUpdate</code> it will not pass the updated <code>props</code> along to it’s children, and so the children will not re-render, even if their <code>props</code> had updated.</p>
+<p>This applies to the children’s <code>state</code> but not their <code>props</code>. So if a child component is internally managing some aspect of its state (with a <code>setState</code> of its own), that will still be updated. But if the parent component returns <code>false</code> from <code>shouldComponentUpdate</code> it will not pass the updated <code>props</code> along to its children, and so the children will not re-render, even if their <code>props</code> had updated.</p>
 
 <h2>Bonus: simple performance testing</h2>
 

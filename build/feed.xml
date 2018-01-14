@@ -389,7 +389,7 @@ I’ve talked to some team leads about how they stay in the loop. A few answers 
     <author>
       <name>Article Author</name>
     </author>
-    <content type="html">&lt;p&gt;React is known for it’s performance. Because it has a virtual DOM and only updates the real DOM when required it can be much faster than updating the DOM all the time, even to display the same information. However, React’s “smarts” only go so far (at the moment!), and it’s our job to know it’s expectations and limitations so we don’t accidentally hurt performance.&lt;/p&gt;
+    <content type="html">&lt;p&gt;React is known for its performance. Because it has a virtual DOM and only updates the real DOM when required it can be much faster than updating the DOM all the time, even to display the same information. However, React’s “smarts” only go so far (at the moment!), and it’s our job to know its expectations and limitations so we don’t accidentally hurt performance.&lt;/p&gt;
 
 &lt;p&gt;One of the aspects we need to be aware of is how React decides when to re-render a component. Not as in “update the DOM render,” but just to call the &lt;code&gt;render&lt;/code&gt; method to change the virtual DOM. We can help React out by telling it when it should and shouldn’t render. Let’s look at both of those in turn...&lt;/p&gt;
 
@@ -432,7 +432,7 @@ I’ve talked to some team leads about how they stay in the loop. A few answers 
 }
 &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;In this (massively contrived) example the &lt;code&gt;Todo&lt;/code&gt; will re-render every second, even though the &lt;code&gt;render&lt;/code&gt; method doesn’t use &lt;code&gt;unseen&lt;/code&gt; at all. In fact, &lt;code&gt;unseen&lt;/code&gt; doesn’t even change it’s value! You can check out a working version of this on &lt;a href="https://codepen.io/lbain/pen/MJNpwL"&gt;CodePen&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;In this (massively contrived) example the &lt;code&gt;Todo&lt;/code&gt; will re-render every second, even though the &lt;code&gt;render&lt;/code&gt; method doesn’t use &lt;code&gt;unseen&lt;/code&gt; at all. In fact, &lt;code&gt;unseen&lt;/code&gt; doesn’t even change its value! You can check out a working version of this on &lt;a href="https://codepen.io/lbain/pen/MJNpwL"&gt;CodePen&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;&lt;em&gt;Well, but re-rendering all the time isn’t helpful...&lt;/em&gt;&lt;/p&gt;
 
@@ -517,7 +517,7 @@ I’ve talked to some team leads about how they stay in the loop. A few answers 
 
 &lt;p&gt;– Facebook&amp;#39;s &lt;a href="https://facebook.github.io/react/docs/react-component.html#shouldcomponentupdate"&gt;React docs&lt;/a&gt;.&lt;/p&gt;
 
-&lt;p&gt;This applies to the children’s &lt;code&gt;state&lt;/code&gt; but not their &lt;code&gt;props&lt;/code&gt;. So if a child component is internally managing some aspect of it’s state (with a &lt;code&gt;setState&lt;/code&gt; of it’s own), that will still be updated. But if the parent component returns &lt;code&gt;false&lt;/code&gt; from &lt;code&gt;shouldComponentUpdate&lt;/code&gt; it will not pass the updated &lt;code&gt;props&lt;/code&gt; along to it’s children, and so the children will not re-render, even if their &lt;code&gt;props&lt;/code&gt; had updated.&lt;/p&gt;
+&lt;p&gt;This applies to the children’s &lt;code&gt;state&lt;/code&gt; but not their &lt;code&gt;props&lt;/code&gt;. So if a child component is internally managing some aspect of its state (with a &lt;code&gt;setState&lt;/code&gt; of its own), that will still be updated. But if the parent component returns &lt;code&gt;false&lt;/code&gt; from &lt;code&gt;shouldComponentUpdate&lt;/code&gt; it will not pass the updated &lt;code&gt;props&lt;/code&gt; along to its children, and so the children will not re-render, even if their &lt;code&gt;props&lt;/code&gt; had updated.&lt;/p&gt;
 
 &lt;h2&gt;Bonus: simple performance testing&lt;/h2&gt;
 
