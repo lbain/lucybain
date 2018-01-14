@@ -6,7 +6,7 @@ description: React re-renders if shouldComponentUpdate returns true for any reas
 keywords: react, js, performance
 ---
 
-React is known for it’s performance. Because it has a virtual DOM and only updates the real DOM when required it can be much faster than updating the DOM all the time, even to display the same information. However, React’s “smarts” only go so far (at the moment!), and it’s our job to know it’s expectations and limitations so we don’t accidentally hurt performance.
+React is known for its performance. Because it has a virtual DOM and only updates the real DOM when required it can be much faster than updating the DOM all the time, even to display the same information. However, React’s “smarts” only go so far (at the moment!), and it’s our job to know its expectations and limitations so we don’t accidentally hurt performance.
 
 One of the aspects we need to be aware of is how React decides when to re-render a component. Not as in “update the DOM render,” but just to call the `render` method to change the virtual DOM. We can help React out by telling it when it should and shouldn’t render. Let’s look at both of those in turn...
 
@@ -35,7 +35,7 @@ class Todo extends React.Component {
 }
 ```
 
-In this (massively contrived) example the `Todo` will re-render every second, even though the `render` method doesn’t use `unseen` at all. In fact, `unseen` doesn’t even change it’s value! You can check out a working version of this on [CodePen](https://codepen.io/lbain/pen/MJNpwL).
+In this (massively contrived) example the `Todo` will re-render every second, even though the `render` method doesn’t use `unseen` at all. In fact, `unseen` doesn’t even change its value! You can check out a working version of this on [CodePen](https://codepen.io/lbain/pen/MJNpwL).
 
 *Well, but re-rendering all the time isn’t helpful...*
 
@@ -98,7 +98,7 @@ It can be. This example is especially verbose because there are two properties w
  
 – Facebook's [React docs](https://facebook.github.io/react/docs/react-component.html#shouldcomponentupdate).
 
-This applies to the children’s `state` but not their `props`. So if a child component is internally managing some aspect of it’s state (with a `setState` of it’s own), that will still be updated. But if the parent component returns `false` from `shouldComponentUpdate` it will not pass the updated `props` along to it’s children, and so the children will not re-render, even if their `props` had updated.
+This applies to the children’s `state` but not their `props`. So if a child component is internally managing some aspect of its state (with a `setState` of its own), that will still be updated. But if the parent component returns `false` from `shouldComponentUpdate` it will not pass the updated `props` along to its children, and so the children will not re-render, even if their `props` had updated.
 
 
 ## Bonus: simple performance testing
