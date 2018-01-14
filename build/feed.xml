@@ -4,10 +4,514 @@
   <id>http://lucybain.com/blog</id>
   <link href="http://lucybain.com/blog"/>
   <link href="http://lucybain.com/feed.xml" rel="self"/>
-  <updated>2018-01-02T11:00:00+11:00</updated>
+  <updated>2018-01-14T11:00:00+11:00</updated>
   <author>
     <name>Lucy Bain</name>
   </author>
+  <entry>
+    <title>React JS: what is a PureComponent?</title>
+    <link rel="alternate" href="http://lucybain.com/blog/2018/react-js-pure-component/"/>
+    <id>http://lucybain.com/blog/2018/react-js-pure-component/</id>
+    <published>2018-01-14T11:00:00+11:00</published>
+    <author>
+      <name>Article Author</name>
+    </author>
+    <content type="html">&lt;p&gt;Early on, React developers had the idea of “pure” components. This concept went by a variety of names (stateful/pure, smart/dumb, container/presentational, etc.) but were all fairly similar. These components still used the &lt;code&gt;React.Component&lt;/code&gt; class, but the idea provided a useful mental model for developers to work with. &lt;/p&gt;
+
+&lt;p&gt;But then on June 29, 2016 React 15.3 was released a new &lt;code&gt;PureComponent&lt;/code&gt; class. The &lt;code&gt;PureComponent&lt;/code&gt; kind of summed up the previous concept of “pure” components, and put a large speed boost in as well. This article is about the &lt;code&gt;PureComponent&lt;/code&gt; class, and only touches on the “pure” component mental model. I’ve added some links in the references section to cover why the idea of “pure” components is useful. Because of &lt;code&gt;PureComponent&lt;/code&gt;’s emphasis on performance, this is also a continuation from my previous article about &lt;a href="/blog/2017/react-js-when-to-rerender/"&gt;when React re-renders&lt;/a&gt; (I recommend reading that one first if you haven’t already).&lt;/p&gt;
+
+&lt;h3&gt;What problem does it solve?&lt;/h3&gt;
+
+&lt;p&gt;By default, a plain &lt;code&gt;React.Component&lt;/code&gt; has &lt;code&gt;shouldComponentUpdate&lt;/code&gt; set to always return &lt;code&gt;true&lt;/code&gt;. This is good because it means React errs on the side of always updating the component in case there’s any new data to show. However, it’s bad because it means React might trigger unnecessary re-renders. One way to deal with these extra re-renders is to change the &lt;code&gt;shouldComponentUpdate&lt;/code&gt; function to check when your component needs to update (see my &lt;a href="/blog/2017/react-js-when-to-rerender/"&gt;previous post&lt;/a&gt; for more information).&lt;/p&gt;
+
+&lt;p&gt;Another way to stop extra re-renders is to use a &lt;code&gt;PureComponent&lt;/code&gt;. Let’s build out the example from the previous performance post...&lt;/p&gt;
+
+&lt;h3&gt;Example setup&lt;/h3&gt;
+
+&lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; I’ve written intentionally bad code in the &lt;code&gt;componentDidMount&lt;/code&gt; methods throughout. This is to keep the examples small and to show some gotchas along the way. Please do not write this kind of code for reals!&lt;/p&gt;
+&lt;pre class="highlight jsx"&gt;&lt;code&gt;&lt;table class="rouge-table"&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class="rouge-gutter gl"&gt;&lt;pre class="lineno"&gt;1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+&lt;/pre&gt;&lt;/td&gt;&lt;td class="rouge-code"&gt;&lt;pre&gt;&lt;span class="kr"&gt;class&lt;/span&gt; &lt;span class="nx"&gt;Todos&lt;/span&gt; &lt;span class="kr"&gt;extends&lt;/span&gt; &lt;span class="nx"&gt;React&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;PureComponent&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+
+    &lt;span class="nx"&gt;constructor&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;props&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="kr"&gt;super&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;props&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+        &lt;span class="k"&gt;this&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;state&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; 
+            &lt;span class="na"&gt;todos&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;
+                &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="na"&gt;title&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;'take out the trash'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="na"&gt;done&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="kc"&gt;false&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="na"&gt;notes&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;'boring'&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="p"&gt;},&lt;/span&gt;
+                &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="na"&gt;title&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;'walk dog'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="na"&gt;done&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="kc"&gt;true&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="na"&gt;notes&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;'exercise'&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="p"&gt;},&lt;/span&gt;
+                &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="na"&gt;title&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;'read about React'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="na"&gt;done&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="kc"&gt;false&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="na"&gt;notes&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;'fun!'&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="p"&gt;},&lt;/span&gt;
+            &lt;span class="p"&gt;]&lt;/span&gt;
+        &lt;span class="p"&gt;};&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+
+    &lt;span class="nx"&gt;componentDidMount&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="nx"&gt;setInterval&lt;/span&gt;&lt;span class="p"&gt;(()&lt;/span&gt; &lt;span class="o"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+            &lt;span class="k"&gt;this&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;setState&lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nx"&gt;oldState&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+                &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="na"&gt;todos&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;[...&lt;/span&gt;&lt;span class="nx"&gt;oldState&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;todos&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="p"&gt;}&lt;/span&gt;
+            &lt;span class="p"&gt;});&lt;/span&gt;
+        &lt;span class="p"&gt;},&lt;/span&gt; &lt;span class="mi"&gt;1000&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+
+    &lt;span class="nx"&gt;render&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="nx"&gt;console&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;log&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'Todos render called'&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="p"&gt;(&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;div&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+            &lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="k"&gt;this&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;state&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;todos&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;map&lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nx"&gt;todo&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;i&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+              &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="p"&gt;(&amp;lt;&lt;/span&gt;&lt;span class="nc"&gt;TodoItem&lt;/span&gt;
+                &lt;span class="na"&gt;key=&lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="nx"&gt;i&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;
+                &lt;span class="na"&gt;title=&lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="nx"&gt;todo&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;title&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;
+                &lt;span class="na"&gt;done=&lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="nx"&gt;todo&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;done&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;
+                &lt;span class="na"&gt;notes=&lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="nx"&gt;todo&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;notes&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;
+              &lt;span class="p"&gt;/&amp;gt;);&lt;/span&gt;
+            &lt;span class="p"&gt;})&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;
+          &lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;div&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;);&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+
+&lt;span class="kr"&gt;class&lt;/span&gt; &lt;span class="nx"&gt;TodoItem&lt;/span&gt; &lt;span class="kr"&gt;extends&lt;/span&gt; &lt;span class="nx"&gt;React&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;Component&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+
+    &lt;span class="nx"&gt;render&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="nx"&gt;console&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;log&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'TodoItem render called'&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="p"&gt;(&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;div&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+                &lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="k"&gt;this&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;props&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;done&lt;/span&gt; &lt;span class="p"&gt;?&lt;/span&gt; &lt;span class="s1"&gt;'✓'&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;'▢'&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt; &lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="k"&gt;this&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;props&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;title&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;
+                (&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="k"&gt;this&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;props&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;notes&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;join&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;', '&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;)
+            &lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;div&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;);&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+
+&lt;span class="nx"&gt;ReactDOM&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;render&lt;/span&gt;&lt;span class="p"&gt;(&amp;lt;&lt;/span&gt;&lt;span class="nc"&gt;Todos&lt;/span&gt; &lt;span class="p"&gt;/&amp;gt;,&lt;/span&gt; &lt;span class="nb"&gt;document&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;getElementById&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'app'&lt;/span&gt;&lt;span class="p"&gt;));&lt;/span&gt;
+&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;It’s bigger than most of the examples I write, but it’s all relevant - promise! We’ll break it down (feel free to skip down to the next section if the above is clear to you already):&lt;/p&gt;
+
+&lt;h4&gt;&lt;code&gt;Todos&lt;/code&gt;&lt;/h4&gt;
+
+&lt;p&gt;First we have a React component, this is the one that &lt;code&gt;ReactDOM&lt;/code&gt; will render (see the last line in the example).&lt;/p&gt;
+
+&lt;p&gt;We have the constructor method so we can set the initial state - in this case an array of &lt;code&gt;todos&lt;/code&gt;, each of which has &lt;code&gt;title&lt;/code&gt;, &lt;code&gt;done&lt;/code&gt;, and &lt;code&gt;notes&lt;/code&gt; attributes. (Typically this kind of state would be passed in through &lt;code&gt;props&lt;/code&gt; but I’ve written it in the &lt;code&gt;state&lt;/code&gt; to keep the example smaller and self contained.)&lt;/p&gt;
+&lt;pre class="highlight jsx"&gt;&lt;code&gt;&lt;table class="rouge-table"&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class="rouge-gutter gl"&gt;&lt;pre class="lineno"&gt;1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+&lt;/pre&gt;&lt;/td&gt;&lt;td class="rouge-code"&gt;&lt;pre&gt;&lt;span class="nx"&gt;constructor&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;props&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="kr"&gt;super&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;props&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+    &lt;span class="k"&gt;this&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;state&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; 
+        &lt;span class="na"&gt;todos&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;
+            &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="na"&gt;title&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;'take out the trash'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="na"&gt;done&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="kc"&gt;false&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="na"&gt;notes&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;'boring'&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="p"&gt;},&lt;/span&gt;
+            &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="na"&gt;title&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;'walk dog'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="na"&gt;done&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="kc"&gt;true&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="na"&gt;notes&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;'exercise'&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="p"&gt;},&lt;/span&gt;
+            &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="na"&gt;title&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;'read about React'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="na"&gt;done&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="kc"&gt;false&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="na"&gt;notes&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;'fun!'&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="p"&gt;},&lt;/span&gt;
+        &lt;span class="p"&gt;]&lt;/span&gt;
+    &lt;span class="p"&gt;};&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Then there’s the &lt;code&gt;componentDidMount&lt;/code&gt; method. Its only purpose is to change the state every second so we can see how React deals with those changes. Right now it updates &lt;code&gt;state.todos&lt;/code&gt; to be the same as the previous &lt;code&gt;state.todos&lt;/code&gt;.&lt;/p&gt;
+&lt;pre class="highlight jsx"&gt;&lt;code&gt;&lt;table class="rouge-table"&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class="rouge-gutter gl"&gt;&lt;pre class="lineno"&gt;1
+2
+3
+4
+5
+6
+7
+&lt;/pre&gt;&lt;/td&gt;&lt;td class="rouge-code"&gt;&lt;pre&gt;&lt;span class="nx"&gt;componentDidMount&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="nx"&gt;setInterval&lt;/span&gt;&lt;span class="p"&gt;(()&lt;/span&gt; &lt;span class="o"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="k"&gt;this&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;setState&lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nx"&gt;oldState&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+            &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="na"&gt;todos&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;[...&lt;/span&gt;&lt;span class="nx"&gt;oldState&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;todos&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="p"&gt;}&lt;/span&gt;
+        &lt;span class="p"&gt;});&lt;/span&gt;
+    &lt;span class="p"&gt;},&lt;/span&gt; &lt;span class="mi"&gt;1000&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Finally &lt;code&gt;Todos&lt;/code&gt; has the render method. It renders a list of the &lt;code&gt;TodoItem&lt;/code&gt; components, and passes in their respective &lt;code&gt;title&lt;/code&gt;, &lt;code&gt;done&lt;/code&gt;, and &lt;code&gt;notes&lt;/code&gt; attributes. The main thing we’re interested in here is seeing when this component is rendered. &lt;/p&gt;
+&lt;pre class="highlight jsx"&gt;&lt;code&gt;&lt;table class="rouge-table"&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class="rouge-gutter gl"&gt;&lt;pre class="lineno"&gt;1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+&lt;/pre&gt;&lt;/td&gt;&lt;td class="rouge-code"&gt;&lt;pre&gt;&lt;span class="nx"&gt;render&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="nx"&gt;console&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;log&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'Todos render called'&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="p"&gt;(&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;div&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+        &lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="k"&gt;this&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;state&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;todos&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;map&lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nx"&gt;todo&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;i&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+            &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="p"&gt;(&amp;lt;&lt;/span&gt;&lt;span class="nc"&gt;TodoItem&lt;/span&gt;
+            &lt;span class="na"&gt;key=&lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="nx"&gt;i&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;
+            &lt;span class="na"&gt;title=&lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="nx"&gt;todo&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;title&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;
+            &lt;span class="na"&gt;done=&lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="nx"&gt;todo&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;done&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;
+            &lt;span class="na"&gt;notes=&lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="nx"&gt;todo&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;notes&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;
+            &lt;span class="p"&gt;/&amp;gt;);&lt;/span&gt;
+        &lt;span class="p"&gt;})&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;
+        &lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;div&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;);&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h4&gt;&lt;code&gt;TodoItem&lt;/code&gt;&lt;/h4&gt;
+
+&lt;p&gt;&lt;em&gt;It’s a lot simpler than &lt;code&gt;Todos&lt;/code&gt;&lt;/em&gt; &lt;/p&gt;
+
+&lt;p&gt;Yes, that’s right &lt;code&gt;TodoItem&lt;/code&gt; inherits from &lt;code&gt;React.Component&lt;/code&gt; just like &lt;code&gt;Todos&lt;/code&gt;, but it only implements the &lt;code&gt;render&lt;/code&gt; function (which is required) to display the &lt;code&gt;title&lt;/code&gt;, &lt;code&gt;done&lt;/code&gt;, and &lt;code&gt;notes&lt;/code&gt; values. Here again we’re mostly interested in knowing &lt;em&gt;when&lt;/em&gt; the &lt;code&gt;render&lt;/code&gt; method is called, not really what is displayed (yet!).&lt;/p&gt;
+&lt;pre class="highlight jsx"&gt;&lt;code&gt;&lt;table class="rouge-table"&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class="rouge-gutter gl"&gt;&lt;pre class="lineno"&gt;1
+2
+3
+4
+5
+6
+7
+&lt;/pre&gt;&lt;/td&gt;&lt;td class="rouge-code"&gt;&lt;pre&gt;&lt;span class="nx"&gt;render&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="nx"&gt;console&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;log&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'TodoItem render called'&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="p"&gt;(&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;div&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+            &lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="k"&gt;this&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;props&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;done&lt;/span&gt; &lt;span class="p"&gt;?&lt;/span&gt; &lt;span class="s1"&gt;'✓'&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;'▢'&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt; &lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="k"&gt;this&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;props&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;title&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;
+            (&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="k"&gt;this&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;props&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;notes&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;join&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;', '&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;)
+        &lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;div&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;);&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3&gt;What’s the problem?&lt;/h3&gt;
+
+&lt;p&gt;Well, if you &lt;a href="https://codepen.io/lbain/pen/GyOXye"&gt;look at it yourself&lt;/a&gt; you’ll see the console spits out:&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;&lt;code&gt;&lt;table class="rouge-table"&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class="rouge-gutter gl"&gt;&lt;pre class="lineno"&gt;1
+2
+3
+4
+5
+6
+7
+8
+&lt;/pre&gt;&lt;/td&gt;&lt;td class="rouge-code"&gt;&lt;pre&gt;Todos render called
+TodoItem render called
+TodoItem render called
+TodoItem render called
+Todos render called
+TodoItem render called
+TodoItem render called
+TodoItem render called
+&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Over and over, every second.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;That seems silly, the data isn’t even changing!&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;You’re right - there’s no need to re-render any of these components because the data doesn’t change. But React doesn’t know this - the &lt;code&gt;setState&lt;/code&gt; method from the &lt;code&gt;onComponentDidmount&lt;/code&gt; triggers a re-render every second for the &lt;code&gt;Todos&lt;/code&gt; component and its children.&lt;/p&gt;
+
+&lt;h3&gt;How do we re-render less?&lt;/h3&gt;
+
+&lt;p&gt;Let’s focus on &lt;code&gt;TodoItem&lt;/code&gt; for now. It’s rendering three times for each &lt;code&gt;Todos&lt;/code&gt; render so we can optimise it first. We’ll talk about &lt;code&gt;Todos&lt;/code&gt; later on.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;How can we fix &lt;code&gt;TodoItem&lt;/code&gt; re-rendering too much?&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;That brings us nicely to the &lt;code&gt;React.PureComponent&lt;/code&gt; this post is supposed to be all about. The &lt;code&gt;TodoItem&lt;/code&gt; doesn’t need to re-render since none of its data changes. The &lt;code&gt;props&lt;/code&gt; coming in each time are the same, and there’s no internal &lt;code&gt;state&lt;/code&gt;. Let’s try converting &lt;code&gt;TodoItem&lt;/code&gt; to a &lt;code&gt;React.PureComponent&lt;/code&gt;:&lt;/p&gt;
+&lt;pre class="highlight jsx"&gt;&lt;code&gt;&lt;table class="rouge-table"&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class="rouge-gutter gl"&gt;&lt;pre class="lineno"&gt;1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+&lt;/pre&gt;&lt;/td&gt;&lt;td class="rouge-code"&gt;&lt;pre&gt;&lt;span class="kr"&gt;class&lt;/span&gt; &lt;span class="nx"&gt;TodoItem&lt;/span&gt; &lt;span class="kr"&gt;extends&lt;/span&gt; &lt;span class="nx"&gt;React&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;PureComponent&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="c1"&gt;// This line changed&lt;/span&gt;
+
+    &lt;span class="nx"&gt;render&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="nx"&gt;console&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;log&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'TodoItem render called'&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="p"&gt;(&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;div&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+                &lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="k"&gt;this&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;props&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;done&lt;/span&gt; &lt;span class="p"&gt;?&lt;/span&gt; &lt;span class="s1"&gt;'✓'&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;'▢'&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt; &lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="k"&gt;this&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;props&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;title&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;
+                (&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="k"&gt;this&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;props&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;notes&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;join&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;', '&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;)
+            &lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;div&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;);&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;If you make that change in the &lt;a href="https://codepen.io/lbain/pen/GyOXye"&gt;CodePen&lt;/a&gt; you’ll see the following in the console:&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;&lt;code&gt;&lt;table class="rouge-table"&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class="rouge-gutter gl"&gt;&lt;pre class="lineno"&gt;1
+2
+3
+4
+5
+6
+7
+8
+9
+&lt;/pre&gt;&lt;/td&gt;&lt;td class="rouge-code"&gt;&lt;pre&gt;Todos render called
+TodoItem render called
+TodoItem render called
+TodoItem render called
+Todos render called
+Todos render called
+Todos render called
+Todos render called
+...
+&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;After the initial &lt;code&gt;TodoItem&lt;/code&gt;s render, they never render again &lt;em&gt;even though their parent renders multiple times.&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Boom.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Did you catch that? We just saved ourselves a &lt;em&gt;bunch&lt;/em&gt; of unnecessary &lt;code&gt;TodoItem&lt;/code&gt; renders simply by converting it to a &lt;code&gt;PureComponent&lt;/code&gt;. Aw yeah.&lt;/p&gt;
+
+&lt;h3&gt;How does &lt;code&gt;PureComponent&lt;/code&gt; work?&lt;/h3&gt;
+
+&lt;p&gt;&lt;em&gt;Ok, you’ve had your big reveal. How does it actually work?&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;You know how we’d normally need to write our own &lt;code&gt;shouldComponentUpdate&lt;/code&gt; to check if the component should re-render or not? Well, React has written that check for us in &lt;code&gt;PureComponent&lt;/code&gt;. The &lt;a href="https://github.com/facebook/react/blob/9d310e0bc7b9d5ce39d82536dfcb67f98462a346/packages/react-test-renderer/src/ReactShallowRenderer.js#L170-L173"&gt;relevant shouldComponentUpdate code&lt;/a&gt; is:&lt;/p&gt;
+&lt;pre class="highlight javascript"&gt;&lt;code&gt;&lt;table class="rouge-table"&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class="rouge-gutter gl"&gt;&lt;pre class="lineno"&gt;1
+2
+3
+4
+&lt;/pre&gt;&lt;/td&gt;&lt;td class="rouge-code"&gt;&lt;pre&gt;&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;type&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;prototype&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class="nx"&gt;type&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;prototype&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;isPureReactComponent&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="nx"&gt;shouldUpdate&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="o"&gt;!&lt;/span&gt;&lt;span class="nx"&gt;shallowEqual&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;oldProps&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;props&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;||&lt;/span&gt;
+                   &lt;span class="o"&gt;!&lt;/span&gt;&lt;span class="nx"&gt;shallowEqual&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;oldState&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;state&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; React checks both &lt;code&gt;props&lt;/code&gt; and &lt;code&gt;state&lt;/code&gt;. Throughout this article I focus on &lt;code&gt;state&lt;/code&gt; because it makes the examples easier and self contained, however it’s important to note that everything we talk about here equally applies to &lt;code&gt;props&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="https://github.com/facebook/fbjs/blob/c69904a511b900266935168223063dd8772dfc40/packages/fbjs/src/core/shallowEqual.js"&gt;Here&lt;/a&gt; is the code for that &lt;code&gt;shallowEqual&lt;/code&gt; function. Of particular interest is the &lt;a href="https://github.com/facebook/fbjs/blob/c69904a511b900266935168223063dd8772dfc40/packages/fbjs/src/core/shallowEqual.js#L35-L37"&gt;method documentation&lt;/a&gt;:&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;Performs equality by iterating through keys on an object and returning false when any key has values which are not strictly equal between the arguments. Returns true when the values of all keys are strictly equal.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;em&gt;But wait, what does “strictly equal” mean?&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;That is a &lt;strong&gt;very&lt;/strong&gt; good question, so we’ll dedicate a whole section to it.&lt;/p&gt;
+
+&lt;h3&gt;Side note: shallow equality&lt;/h3&gt;
+
+&lt;p&gt;Feel free to skip if this isn’t new for you.&lt;/p&gt;
+
+&lt;p&gt;A &lt;em&gt;shallow&lt;/em&gt; equality check means that JS only checks that the value’s object &lt;em&gt;ids&lt;/em&gt; (as in, the memory address for where JS stores the information for that particular object) are the same, not that their &lt;em&gt;content&lt;/em&gt; is the same. So here’s an example where shallow equality is what you and I would usually think of as “equal”:&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;&lt;code&gt;&lt;table class="rouge-table"&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class="rouge-gutter gl"&gt;&lt;pre class="lineno"&gt;1
+2
+3
+4
+5
+6
+&lt;/pre&gt;&lt;/td&gt;&lt;td class="rouge-code"&gt;&lt;pre&gt;const value = 'cat';
+
+const item1 = value;
+const item2 = value;
+
+console.log(item1 === item2); // true
+&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;And here’s an example where JS’s definition of “equal” and our definition might differ:&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;&lt;code&gt;&lt;table class="rouge-table"&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class="rouge-gutter gl"&gt;&lt;pre class="lineno"&gt;1
+2
+3
+4
+5
+6
+&lt;/pre&gt;&lt;/td&gt;&lt;td class="rouge-code"&gt;&lt;pre&gt;const value = 'cat';
+
+const array1 = [value];
+const array2 = [value];
+
+console.log(array1 === array2); // false
+&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Even though we can clearly see the &lt;em&gt;content&lt;/em&gt; of &lt;code&gt;array2&lt;/code&gt; is the same as &lt;code&gt;array1&lt;/code&gt; JS registers them as different since their &lt;em&gt;ids&lt;/em&gt; are different. In this case we created two completely separate arrays, that just happened to have the same data in them.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;What’s the alternative?&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;We can check inside each item and see if all the values are the same - this is called a “deep” equality check. Something like this:&lt;/p&gt;
+&lt;pre class="highlight javascript"&gt;&lt;code&gt;&lt;table class="rouge-table"&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class="rouge-gutter gl"&gt;&lt;pre class="lineno"&gt;1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+&lt;/pre&gt;&lt;/td&gt;&lt;td class="rouge-code"&gt;&lt;pre&gt;&lt;span class="kr"&gt;const&lt;/span&gt; &lt;span class="nx"&gt;value&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;'cat'&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+
+&lt;span class="kr"&gt;const&lt;/span&gt; &lt;span class="nx"&gt;array1&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="nx"&gt;value&lt;/span&gt;&lt;span class="p"&gt;];&lt;/span&gt;
+&lt;span class="kr"&gt;const&lt;/span&gt; &lt;span class="nx"&gt;array2&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="nx"&gt;value&lt;/span&gt;&lt;span class="p"&gt;];&lt;/span&gt;
+
+&lt;span class="kd"&gt;let&lt;/span&gt; &lt;span class="nx"&gt;equal&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="kc"&gt;true&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="nx"&gt;array1&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;forEach&lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nx"&gt;item&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;index&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="nx"&gt;equal&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;equal&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class="nx"&gt;array1&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="nx"&gt;index&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;===&lt;/span&gt; &lt;span class="nx"&gt;array2&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="nx"&gt;index&lt;/span&gt;&lt;span class="p"&gt;];&lt;/span&gt;
+&lt;span class="p"&gt;});&lt;/span&gt;
+
+&lt;span class="nx"&gt;console&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;log&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;equal&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt; &lt;span class="c1"&gt;// true&lt;/span&gt;
+&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;em&gt;Why would shallow equality ever be useful?&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;Well, it’s &lt;em&gt;really&lt;/em&gt; fast. In the previous example we have to loop through every single item in the array to find that the arrays are equal. Assuming you’ve got more than one thing in your array that gets slow quickly.&lt;/p&gt;
+
+&lt;h3&gt;Warning: PureComponent does a shallow equality check&lt;/h3&gt;
+
+&lt;p&gt;React uses a shallow equality check because it is is &lt;em&gt;way&lt;/em&gt; more performant than doing a deep equal. In fact, React doesn’t even offer doing a deep equality check. You can do a shallow check (with &lt;code&gt;PureComponent&lt;/code&gt;), write your own check (with &lt;code&gt;shouldComponentUpdate&lt;/code&gt;), or not check at all and just always re-render (the default). It’s too risky for React to do a deep equality check since you might have really deeply nested data. Instead React errs on the side of not checking and doing the re-render automatically.&lt;/p&gt;
+
+&lt;p&gt;All if this is generally good news if your component is working with shallow-equality-friendly data. If the  &lt;code&gt;state&lt;/code&gt; and &lt;code&gt;prop&lt;/code&gt; value ids change when their content changes then the components re-render when the should - yay! However, if you don’t handle your data properly, then you can accidentally not re-render when you should - boo!&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Could you give an example?&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;As it happens, we already have one ready to go! Let’s leave &lt;code&gt;TodoItem&lt;/code&gt; as a &lt;code&gt;PureComponent&lt;/code&gt;, and change &lt;code&gt;Todo&lt;/code&gt;&amp;#39;s &lt;code&gt;componentDidMount&lt;/code&gt; to mess with some data:&lt;/p&gt;
+&lt;pre class="highlight javascript"&gt;&lt;code&gt;&lt;table class="rouge-table"&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class="rouge-gutter gl"&gt;&lt;pre class="lineno"&gt;1
+2
+3
+4
+5
+6
+7
+8
+&lt;/pre&gt;&lt;/td&gt;&lt;td class="rouge-code"&gt;&lt;pre&gt;&lt;span class="nx"&gt;componentDidMount&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="nx"&gt;setInterval&lt;/span&gt;&lt;span class="p"&gt;(()&lt;/span&gt; &lt;span class="o"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="k"&gt;this&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;setState&lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nx"&gt;oldState&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+            &lt;span class="nx"&gt;oldState&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;todos&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;].&lt;/span&gt;&lt;span class="nx"&gt;done&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="o"&gt;!&lt;/span&gt;&lt;span class="nx"&gt;oldState&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;todos&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;].&lt;/span&gt;&lt;span class="nx"&gt;done&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="c1"&gt;// new line&lt;/span&gt;
+            &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="na"&gt;todos&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;[...&lt;/span&gt;&lt;span class="nx"&gt;oldState&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;todos&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="p"&gt;}&lt;/span&gt;
+        &lt;span class="p"&gt;});&lt;/span&gt;
+    &lt;span class="p"&gt;},&lt;/span&gt; &lt;span class="mi"&gt;1000&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;If you run this you’ll see the “done” state for the first todo item flash on and off every second. This is good news - we’re updating the data and it’s displaying properly.&lt;/p&gt;
+
+&lt;p&gt;But... let’s try this one:&lt;/p&gt;
+&lt;pre class="highlight javascript"&gt;&lt;code&gt;&lt;table class="rouge-table"&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class="rouge-gutter gl"&gt;&lt;pre class="lineno"&gt;1
+2
+3
+4
+5
+6
+7
+8
+&lt;/pre&gt;&lt;/td&gt;&lt;td class="rouge-code"&gt;&lt;pre&gt;&lt;span class="nx"&gt;componentDidMount&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="nx"&gt;setInterval&lt;/span&gt;&lt;span class="p"&gt;(()&lt;/span&gt; &lt;span class="o"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="k"&gt;this&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;setState&lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nx"&gt;oldState&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+            &lt;span class="nx"&gt;oldState&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;todos&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;].&lt;/span&gt;&lt;span class="nx"&gt;notes&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;push&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'smelly'&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt; &lt;span class="c1"&gt;// new line&lt;/span&gt;
+            &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="na"&gt;todos&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;[...&lt;/span&gt;&lt;span class="nx"&gt;oldState&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;todos&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="p"&gt;}&lt;/span&gt;
+        &lt;span class="p"&gt;});&lt;/span&gt;
+    &lt;span class="p"&gt;},&lt;/span&gt; &lt;span class="mi"&gt;1000&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The first todo item &lt;em&gt;should&lt;/em&gt; re-render every second with a new “smelly” note displaying. But it doesn’t, there’s just the initial render (without the “smelly” note), and that’s it.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Why doesn’t React re-render?&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;Because doing a &lt;code&gt;push&lt;/code&gt; on an array &lt;a href="http://gunnariauvinen.com/difference-between-concat-and-push-in-javascript/"&gt;does &lt;em&gt;not&lt;/em&gt; create a &lt;em&gt;new&lt;/em&gt; array.&lt;/a&gt; When React does the shallow equality check for the &lt;code&gt;PureComponent&lt;/code&gt; it only checks &lt;code&gt;oldState.notes === newState.notes&lt;/code&gt;, which is &lt;code&gt;true&lt;/code&gt; &lt;em&gt;even though&lt;/em&gt; the data in &lt;code&gt;notes&lt;/code&gt; has changed. In order to render this properly we need to change &lt;code&gt;TodoItem&lt;/code&gt; back to a &lt;code&gt;React.Component&lt;/code&gt;, &lt;strong&gt;or&lt;/strong&gt; we can use &lt;code&gt;forceUpdate&lt;/code&gt; to tell React that the data actually has changed. However using &lt;code&gt;forceUpdate&lt;/code&gt; is kind of a code smell, so I won’t cover it here.&lt;/p&gt;
+
+&lt;h3&gt;Warning: think of the children!&lt;/h3&gt;
+
+&lt;p&gt;A common pitfall when converting from &lt;code&gt;Component&lt;/code&gt; to &lt;code&gt;PureComponent&lt;/code&gt; is to forget that the children need to re-render too. As with all React - if the parent doesn’t re-render the children won’t either. So if you have a &lt;code&gt;PureComponent&lt;/code&gt; with children, those children can only update if the parent’s &lt;code&gt;state&lt;/code&gt; or &lt;code&gt;props&lt;/code&gt; are shallowly different (causing the parent to re-render).&lt;/p&gt;
+
+&lt;p&gt;You can only have a &lt;code&gt;PureComponent&lt;/code&gt; parent if you know none of the children should re-render if the parent doesn’t re-render. Let’s see an example of this pitfall by converting the &lt;code&gt;Todos&lt;/code&gt; component from a &lt;code&gt;Component&lt;/code&gt; to a &lt;code&gt;PureComponent&lt;/code&gt; :&lt;/p&gt;
+&lt;pre class="highlight javascript"&gt;&lt;code&gt;&lt;table class="rouge-table"&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class="rouge-gutter gl"&gt;&lt;pre class="lineno"&gt;1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+&lt;/pre&gt;&lt;/td&gt;&lt;td class="rouge-code"&gt;&lt;pre&gt;&lt;span class="kr"&gt;class&lt;/span&gt; &lt;span class="nx"&gt;Todos&lt;/span&gt; &lt;span class="kr"&gt;extends&lt;/span&gt; &lt;span class="nx"&gt;React&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;PureComponent&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="c1"&gt;// new line&lt;/span&gt;
+    &lt;span class="c1"&gt;// ...&lt;/span&gt;
+
+    &lt;span class="nx"&gt;componentDidMount&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="nx"&gt;setInterval&lt;/span&gt;&lt;span class="p"&gt;(()&lt;/span&gt; &lt;span class="o"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+            &lt;span class="k"&gt;this&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;setState&lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nx"&gt;oldState&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+                &lt;span class="nx"&gt;oldState&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;todos&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;].&lt;/span&gt;&lt;span class="nx"&gt;done&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="o"&gt;!&lt;/span&gt;&lt;span class="nx"&gt;oldState&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;todos&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;].&lt;/span&gt;&lt;span class="nx"&gt;done&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="c1"&gt;// new line&lt;/span&gt;
+                &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="nx"&gt;oldState&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="c1"&gt;// new line&lt;/span&gt;
+            &lt;span class="p"&gt;});&lt;/span&gt;
+        &lt;span class="p"&gt;},&lt;/span&gt; &lt;span class="mi"&gt;1000&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+
+    &lt;span class="c1"&gt;// ...&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;As you can see, most of the code is the same. We’ve changed &lt;code&gt;Todos&lt;/code&gt; to be a &lt;code&gt;PureComponent&lt;/code&gt; and the &lt;code&gt;componentDidMount&lt;/code&gt; to return the original &lt;code&gt;oldState&lt;/code&gt; object rather than creating a new object (as before).&lt;/p&gt;
+
+&lt;p&gt;Now we &lt;em&gt;should&lt;/em&gt; see the first todo item flashing its &lt;code&gt;done&lt;/code&gt; state on and off. But it doesn’t, again there is only the initial render and that’s it. This happens because &lt;code&gt;Todos&lt;/code&gt; is now a &lt;code&gt;PureComponent&lt;/code&gt;, when the shallow equal check happens with &lt;code&gt;oldState === newState&lt;/code&gt; we find exactly the same object (again, even though the content of that object has changed). So &lt;code&gt;Todos&lt;/code&gt; never re-renders, so its &lt;em&gt;children&lt;/em&gt; also never re-render. We can fix this really easily by simply changing &lt;code&gt;Todos&lt;/code&gt; back to a &lt;code&gt;Component&lt;/code&gt;.&lt;/p&gt;
+
+&lt;hr&gt;
+
+&lt;h3&gt;Wrapping up&lt;/h3&gt;
+
+&lt;p&gt;&lt;code&gt;PureComponent&lt;/code&gt; is very powerful in that it can help you limit the number of unnecessary re-renders that occur. However, it can also cause surprising gotchas. The key thing to keep in mind is that &lt;code&gt;PureComponent&lt;/code&gt; only does a shallow equality check on &lt;code&gt;props&lt;/code&gt; and &lt;code&gt;state&lt;/code&gt; before deciding if it should re-render or not. And that has a cascade effect on if its children re-render or not. So use &lt;code&gt;PureComponent&lt;/code&gt; and love the performance gains, but be sure to check that it is always re-rendering when it should. When in doubt fall back to a &lt;code&gt;Component&lt;/code&gt; instead.&lt;/p&gt;
+
+&lt;h3&gt;Resources&lt;/h3&gt;
+
+&lt;p&gt;I read a &lt;em&gt;lot&lt;/em&gt; of posts and questions about &lt;code&gt;PureComponent&lt;/code&gt;, &lt;code&gt;Component&lt;/code&gt;, and &lt;code&gt;shouldComponentUpdate&lt;/code&gt; for this, so the below is not a complete list of resources. Hopefully they’re the most useful though!&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://reactjs.org/docs/react-api.html#reactpurecomponent"&gt;React docs&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://stackoverflow.com/questions/41340697/react-component-vs-react-purecomponent"&gt;StackOverflow&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://blog.shakacode.com/react-purecomponent-pitfalls-d057882f4b6e"&gt;Rob Wise&lt;/a&gt; lists more pitfalls of using &lt;code&gt;PureComponent&lt;/code&gt; - a good one to check if your &lt;code&gt;PureComponents&lt;/code&gt; are rendering &lt;em&gt;more&lt;/em&gt; than you’d expect (whereas I focused on not triggering re-renders enough)&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://medium.com/modus-create-front-end-development/component-rendering-performance-in-react-df859b474adc"&gt;Grgur Grisogono&lt;/a&gt; did some performance testing on &lt;code&gt;PureComponent&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://medium.com/@dan_abramov/smart-and-dumb-components-7ca2f9a7c7d0"&gt;Dan Abramov&lt;/a&gt; and &lt;a href="https://jaketrent.com/post/smart-dumb-components-react/"&gt;Jake Trent&lt;/a&gt; discuss what “pure” components are&lt;/li&gt;
+&lt;/ul&gt;
+</content>
+  </entry>
   <entry>
     <title>JS: ES6’s spread operator for objects</title>
     <link rel="alternate" href="http://lucybain.com/blog/2018/js-es6-spread-operator/"/>
@@ -917,65 +1421,6 @@ Perf.printWasted()
 &lt;li&gt;&lt;a href="http://api.jquery.com/category/deferred-object/"&gt;Deferred object&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="http://blog.mediumequalsmessage.com/promise-deferred-objects-in-javascript-pt2-practical-use"&gt;Promise &amp;amp; Deferred Objects in JavaScript Pt.2: in Practice&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
-</content>
-  </entry>
-  <entry>
-    <title>Presentation notes</title>
-    <link rel="alternate" href="http://lucybain.com/blog/2017/public-speaking-notes/"/>
-    <id>http://lucybain.com/blog/2017/public-speaking-notes/</id>
-    <published>2017-01-12T11:00:00+11:00</published>
-    <author>
-      <name>Article Author</name>
-    </author>
-    <content type="html">&lt;p&gt;Way back in 2015 &lt;a href="http://yowconference.com.au/"&gt;YOW!&lt;/a&gt; granted me a ticket to a one day public speaking workshop. The workshop &lt;a href="https://www.eventbrite.com.au/e/yow-depthfirst-workshop-technical-presentation-with-damian-conway-tickets-15990610346"&gt;description&lt;/a&gt; had me a little uncertain (after all, I had never done any conference speaking before), but I signed up and took a leap of faith that &lt;a href="http://damian.conway.org/"&gt;Damian Conway&lt;/a&gt; would facilitate a workshop for people with a diverse range of skills so we would all benefit.&lt;/p&gt;
-
-&lt;p&gt;Looking back, I am so glad I took the that leap. I’m incredibly grateful to YOW! for the ticket to attend such an impactful workshop. I’m also grateful to my (then new) boss who let me take the day off work with a day’s notice. It’s so much easier to succeed when you have such a great community behind you!&lt;/p&gt;
-
-&lt;p&gt;Right after the workshop I wrote up my notes and shared them around with my fellow attendees. I always meant to publish those notes for others to reference (and to tidy them up for myself!) and now I’ve done it two years later. You can find the six page version of my notes &lt;a href="https://docs.google.com/document/d/1JKuTiGqGKXTi6urFySVc7WqplWRzpbXTWVz7aUyZm8o/edit?usp=sharing"&gt;here&lt;/a&gt;. Otherwise, here’s the condensed version:&lt;/p&gt;
-
-&lt;h2&gt;Content&lt;/h2&gt;
-
-&lt;p&gt;Give the audience the best talk you can give. Don’t waste their time (or money) with a talk that’s not going to help them in some way.&lt;/p&gt;
-
-&lt;h3&gt;Topic&lt;/h3&gt;
-
-&lt;p&gt;As you start choosing a topic, remember that the talk is for the &lt;em&gt;audience&lt;/em&gt; and no one else. Your talk should to inform, entertain, or make their life better in some way. Think about each of the topics on your &lt;a href="/blog/2016/conference-proposal-ideas/"&gt;list&lt;/a&gt;. How will this talk help your audience? How will it make their life better? (This doesn’t have to be “change the world” level, but it should be more than “I did this cool thing and people should know.”)&lt;/p&gt;
-
-&lt;p&gt;When possible, give talks on things you’re passionate about. You’ll be a more engaging speaker for your enthusiasm, and you’ll have lots of experience to pull from. It might take more work to find a place to give such a talk, but your audience will appreciate your interest in the topic.&lt;/p&gt;
-
-&lt;h3&gt;Message&lt;/h3&gt;
-
-&lt;p&gt;Once you’ve picked your topic work on getting a “slogan” for your talk. This should be the key take away in five or six words. Spend some time thinking about those words (you’ve only got a few, use them well!). Think about this slogan as the thesis statement for writing; you don’t need to say it explicitly, but helps to know exactly the message you want to get across. (I really struggle with this; if you have tips or tricks I’d love to hear them!)&lt;/p&gt;
-
-&lt;p&gt;If you don’t have enough time to talk about something, don’t talk about it. It’s better to scratch the surface than to rush through the depths. Also included in this is don’t show a slide and skip it “because it’s not important.” (This is a pet peeve of mine - it makes me feel like the speaker doesn’t think I’m smart enough to get the topic.)&lt;/p&gt;
-
-&lt;p&gt;Break things down so they’re easy to understand. Put yourself in the audience mindset, remember your topic is new to them! If you’re not sure ask a potential audience member or err on the side of explaining more.&lt;/p&gt;
-
-&lt;h2&gt;Style&lt;/h2&gt;
-
-&lt;p&gt;The most basic version is “remove &lt;em&gt;anything&lt;/em&gt; that takes focus away from you and your message.” This can be expanded to a wide variety of rules (some of which are listed below). As you develop your slides and practice your talk constantly ask if there’s anything you can do to make it easier for your audience to understand and remember your main point.&lt;/p&gt;
-
-&lt;h3&gt;Don’t make [them] think&lt;/h3&gt;
-
-&lt;p&gt;Your audience should only need to think about the message of your talk. Nothing should get in the way of them concentrating on that message.&lt;/p&gt;
-
-&lt;p&gt;Make things easy for them by keeping your slides consistent. Slides talking about the same things should look the same; similarly, different things should look different. It helps if you use few (bold) colours; it means they don’t have to guess if colours are the same or not. Remember, the colours will probably be washed out on the projector.&lt;/p&gt;
-
-&lt;p&gt;If you have a complicated slide (perhaps a code sample), build it up slowly. Dropping the whole thing on your audience is likely to overwhelm them. Some will struggle through and try to process it, others will simply zone out. Take them on a journey through the slide so everything is explained.&lt;/p&gt;
-
-&lt;p&gt;On that note, don’t make the audience guess what to &lt;em&gt;do&lt;/em&gt; either. If you want a response from the audience make it clear by modelling the response. When you say “raise your hand if...” also raise your own hand. This helps break the ice and let’s the audience know you’re serious about wanting them to mimic the behaviour.&lt;/p&gt;
-
-&lt;h3&gt;Connection&lt;/h3&gt;
-
-&lt;p&gt;Make it easy for the audience to connect with you.&lt;/p&gt;
-
-&lt;p&gt;Have as little between you and the audience as possible. As much as possible, don’t have any of the following in your way: desk, podium, computer, arms, writing on shirt, hair in face, etc. Look open and let them see the whole you!&lt;/p&gt;
-
-&lt;p&gt;Try to make eye contact with everyone in the room. This is hard to get right: if you do it too fast you can look shifty; if you do it too slowly it feels like you’re staring at people. Practice connecting with one person briefly and then moving on to the next member in the audience.&lt;/p&gt;
-
-&lt;h2&gt;Recap&lt;/h2&gt;
-
-&lt;p&gt;As speakers, our job is to make it as easy as possible for the audience to understand our message. They’re giving us their attention, we need to give them thoughtful preparation and use their time wisely. Hopefully these notes help you better communicate your ideas at your next presentation!&lt;/p&gt;
 </content>
   </entry>
 </feed>
