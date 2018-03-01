@@ -128,7 +128,7 @@ PLATFORMS
 
 DEPENDENCIES
   builder
-  middleman (~> 4.0.0)
+  middleman (~> 4.0)
   middleman-blog
   middleman-livereload
   middleman-syntax
@@ -136,4 +136,4 @@ DEPENDENCIES
   redcarpet
 
 BUNDLED WITH
-   1.13.6
+   1.16.1
