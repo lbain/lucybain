@@ -99,6 +99,10 @@ activate :syntax, line_numbers: true
 # Use middleman-alias gem to keep trak of renames
 # activate :alias
 
+# Used for generating absolute URLs
+set :protocol, "http://"
+set :host, "lucybain.com"
+
 require 'uri'
 
 # Methods defined in the helpers block are available in templates
@@ -171,6 +175,14 @@ helpers do
 
   def url_friendly(string)
     URI.escape(string)
+  end
+
+  def host_with_port
+    config[:host]
+  end
+
+  def image_url(source)
+    config[:protocol] + host_with_port + image_path(source)
   end
 end
 
