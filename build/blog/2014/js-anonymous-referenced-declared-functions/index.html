@@ -13,7 +13,7 @@
 <meta name="twitter:card" content="summary">
 <meta property="og:title" content="Lucy | JS: Anonymous vs. referenced vs. declared functions"/>
 <meta name="og:description" content="An introduction to different ways of referencing and calling functions in javascript."/>
-<meta property="og:image" content="http://lucybain.com/images/social-share.png" />
+<meta property="og:image" content="http://lucybain.com/images/social-share-b7a56bea.png" />
 <meta property="og:url" content="http://lucybain.com/" />
 
   <meta property="og:type" content="article" />
@@ -29,30 +29,30 @@
   </head>
   <body class="">
     <nav>
-  <div class='nav-open-btn'>
-    <ul>
-      <li></li>
-      <li></li>
-      <li></li>
-    </ul>
-  </div>
-  <ul class='nav-display'>
-    <li>
-      <a href="/" class="link-button">Me</a>
-    </li>
-    <li>
-      <a href="/resume/" class="link-button">Resume</a>
-    </li>
-    <li>
-      <a href="/contact-me/" class="link-button">Contact</a>
-    </li>
-    <li>
-      <a href="/resources/" class="link-button">Resources</a>
-    </li>
-    <li>
-      <a href="/blog/" class="link-button active">Blog</a>
-    </li>
-  </ul>
+<div class='nav-open-btn'>
+<ul>
+<li></li>
+<li></li>
+<li></li>
+</ul>
+</div>
+<ul class='nav-display'>
+<li>
+<a href="/" class="link-button">Me</a>
+</li>
+<li>
+<a href="/resume/" class="link-button">Resume</a>
+</li>
+<li>
+<a href="/contact-me/" class="link-button">Contact</a>
+</li>
+<li>
+<a href="/resources/" class="link-button">Resources</a>
+</li>
+<li>
+<a href="/blog/" class="link-button active">Blog</a>
+</li>
+</ul>
 </nav>
 
     <div class="content">
@@ -88,7 +88,7 @@
 <p><em>So what’s a callback?</em></p>
 
 <p>I’m glad you asked!</p>
-<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+<div class="highlight"><pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
 3
 4
@@ -104,14 +104,13 @@
 takesACallback(function() {
     return "I'm the callback!";
 }); // returns "The callback says: I'm the callback!"
-</pre></td></tr></tbody></table>
-</code></pre>
+</pre></td></tr></tbody></table></code></pre></div>
 <p>See the function that’s a parameter to the <code>takesACallback</code> call? Notice that it doesn’t have a name? That’s an anonymous function.</p>
 
 <h2>Referenced</h2>
 
 <p>However, you can still have a <strong>reference</strong> to an anonymous function, just because it is unnamed it doesn’t mean it’s unreferenced.</p>
-<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+<div class="highlight"><pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
 3
 4
@@ -121,14 +120,13 @@ takesACallback(function() {
 }
 
 reference(); // returns "I'm still an anonymous function"
-</pre></td></tr></tbody></table>
-</code></pre>
+</pre></td></tr></tbody></table></code></pre></div>
 <p>The function itself is still anonymous (it doesn’t have a name directly attached to it), but you can call the function by the named reference.</p>
 
 <h2>Declared</h2>
 
 <p>Declared functions are not anonymous. They have a name directly attached to the function, with no need for a named reference.</p>
-<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+<div class="highlight"><pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
 3
 4
@@ -138,8 +136,7 @@ reference(); // returns "I'm still an anonymous function"
 }
 
 declared(); // returns "I'm not anonymous function"
-</pre></td></tr></tbody></table>
-</code></pre>
+</pre></td></tr></tbody></table></code></pre></div>
 <p>Writing a named function like this results in a <strong>function declaration.</strong></p>
 
 <h1>Gotcha</h1>
@@ -151,7 +148,7 @@ declared(); // returns "I'm not anonymous function"
 </blockquote>
 
 <p>Here’s an example of the referenced anonymous function and a declared function in action:</p>
-<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+<div class="highlight"><pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
 3
 4
@@ -183,14 +180,13 @@ declared(); // returns "I'm not anonymous function"
 tester();
 // logs "I'm a declared function"
 // Uncaught TypeError: referencedFunction is not a function
-</pre></td></tr></tbody></table>
-</code></pre>
+</pre></td></tr></tbody></table></code></pre></div>
 <p><em>Huh? Why did only one of those work?</em></p>
 
 <p>This is directly related to <a href="#">hoisting</a> - if you’re not familiar with that term you should read up about it. Go ahead, I’ll wait. All caught up? Good!</p>
 
 <p>Hopefully after reading about hoisting you’ve got an idea of what’s going on. Let’s look in a bit more detail. Although you wrote the code above the JS interpreter converts it to:</p>
-<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+<div class="highlight"><pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
 3
 4
@@ -218,8 +214,7 @@ tester();
     console.log("I'm an anonymous function called by a reference");
   };
 }
-</pre></td></tr></tbody></table>
-</code></pre>
+</pre></td></tr></tbody></table></code></pre></div>
 <p>Now Helen’s quote should make more sense. The anonymous function (which is referenced by <code>referencedFunction</code>) isn’t created until it’s position in the code (at runtime). However the declared function is hoisted to the top of the scope and is immediately available for use.</p>
 
 <p>You can find a list of pros and cons for using anonymous functions on <a href="http://stackoverflow.com/questions/10273185/what-are-the-benefits-to-using-anonymous-functions-instead-of-named-functions-fo">stackoverflow</a>.</p>

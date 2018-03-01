@@ -13,7 +13,7 @@
 <meta name="twitter:card" content="summary">
 <meta property="og:title" content="Lucy | JS: .call vs. .apply"/>
 <meta name="og:description" content="Blog posts about programming, mostly JS and frontend, but a few other topics as well."/>
-<meta property="og:image" content="http://lucybain.com/images/social-share.png" />
+<meta property="og:image" content="http://lucybain.com/images/social-share-b7a56bea.png" />
 <meta property="og:url" content="http://lucybain.com/" />
 
   <meta property="og:type" content="article" />
@@ -29,30 +29,30 @@
   </head>
   <body class="">
     <nav>
-  <div class='nav-open-btn'>
-    <ul>
-      <li></li>
-      <li></li>
-      <li></li>
-    </ul>
-  </div>
-  <ul class='nav-display'>
-    <li>
-      <a href="/" class="link-button">Me</a>
-    </li>
-    <li>
-      <a href="/resume/" class="link-button">Resume</a>
-    </li>
-    <li>
-      <a href="/contact-me/" class="link-button">Contact</a>
-    </li>
-    <li>
-      <a href="/resources/" class="link-button">Resources</a>
-    </li>
-    <li>
-      <a href="/blog/" class="link-button active">Blog</a>
-    </li>
-  </ul>
+<div class='nav-open-btn'>
+<ul>
+<li></li>
+<li></li>
+<li></li>
+</ul>
+</div>
+<ul class='nav-display'>
+<li>
+<a href="/" class="link-button">Me</a>
+</li>
+<li>
+<a href="/resume/" class="link-button">Resume</a>
+</li>
+<li>
+<a href="/contact-me/" class="link-button">Contact</a>
+</li>
+<li>
+<a href="/resources/" class="link-button">Resources</a>
+</li>
+<li>
+<a href="/blog/" class="link-button active">Blog</a>
+</li>
+</ul>
 </nav>
 
     <div class="content">
@@ -88,7 +88,7 @@
 <p><strong>What are <code>.call</code> and <code>.apply</code>?</strong></p>
 
 <p>Both methods allow you to invoke a function and pass parameters through.</p>
-<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+<div class="highlight"><pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
 3
 4
@@ -100,12 +100,11 @@
 
 printer.call({}, "hello") // logs "hello"
 printer.apply({}, "world!") // logs "world!"
-</pre></td></tr></tbody></table>
-</code></pre>
+</pre></td></tr></tbody></table></code></pre></div>
 <p><em>Wow. Awesome. A more verbose way to invoke functions. Fantastic. Why not just use <code>printer(&quot;hello&quot;)</code>?</em></p>
 
 <p>Well actually, <code>.call</code> and <code>.apply</code> can do more than simply invoke a method, they can also pass through <strong>context</strong>. Here’s an example:</p>
-<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+<div class="highlight"><pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
 3
 4
@@ -137,8 +136,7 @@ alice.introduceSelf.call({name: "Bob"});
 
 alice.introduceSelf.apply({name: "Casey"});
 // logs "Hello, my name is Casey"
-</pre></td></tr></tbody></table>
-</code></pre>
+</pre></td></tr></tbody></table></code></pre></div>
 <p>So <code>.call</code> and <code>.apply</code> allow you to manipulate the <code>this</code> keyword for the invoked function.</p>
 
 <p>On to the main question...</p>
@@ -146,7 +144,7 @@ alice.introduceSelf.apply({name: "Casey"});
 <p><strong>What’s the difference between <code>.call</code> and <code>.apply</code>?</strong></p>
 
 <p>It’s all about the way you pass parameters. That’s it. Let’s make our previous example more complex:</p>
-<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+<div class="highlight"><pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
 3
 4
@@ -178,8 +176,7 @@ alice.introduceSelf.call({name: "Bob"}, 'Bonjour');
 
 alice.introduceSelf.apply({name: "Casey"}, ['Hola']);
 // logs "Hola, my name is Casey"
-</pre></td></tr></tbody></table>
-</code></pre>
+</pre></td></tr></tbody></table></code></pre></div>
 <p>For <code>.call</code> you pass the parameters comma separated (like normal). For <code>.apply</code> you pass the parameters in an array.</p>
 
 <p><em>Why would you even bother having these two ways? Why not standardise?</em></p>

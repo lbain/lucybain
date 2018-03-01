@@ -13,7 +13,7 @@
 <meta name="twitter:card" content="summary">
 <meta property="og:title" content="Lucy | JS: Async Google Adwords conversion"/>
 <meta name="og:description" content="Blog posts about programming, mostly JS and frontend, but a few other topics as well."/>
-<meta property="og:image" content="http://lucybain.com/images/social-share.png" />
+<meta property="og:image" content="http://lucybain.com/images/social-share-b7a56bea.png" />
 <meta property="og:url" content="http://lucybain.com/" />
 
   <meta property="og:type" content="article" />
@@ -29,30 +29,30 @@
   </head>
   <body class="">
     <nav>
-  <div class='nav-open-btn'>
-    <ul>
-      <li></li>
-      <li></li>
-      <li></li>
-    </ul>
-  </div>
-  <ul class='nav-display'>
-    <li>
-      <a href="/" class="link-button">Me</a>
-    </li>
-    <li>
-      <a href="/resume/" class="link-button">Resume</a>
-    </li>
-    <li>
-      <a href="/contact-me/" class="link-button">Contact</a>
-    </li>
-    <li>
-      <a href="/resources/" class="link-button">Resources</a>
-    </li>
-    <li>
-      <a href="/blog/" class="link-button active">Blog</a>
-    </li>
-  </ul>
+<div class='nav-open-btn'>
+<ul>
+<li></li>
+<li></li>
+<li></li>
+</ul>
+</div>
+<ul class='nav-display'>
+<li>
+<a href="/" class="link-button">Me</a>
+</li>
+<li>
+<a href="/resume/" class="link-button">Resume</a>
+</li>
+<li>
+<a href="/contact-me/" class="link-button">Contact</a>
+</li>
+<li>
+<a href="/resources/" class="link-button">Resources</a>
+</li>
+<li>
+<a href="/blog/" class="link-button active">Blog</a>
+</li>
+</ul>
 </nav>
 
     <div class="content">
@@ -88,10 +88,9 @@
 <p>(Side note: It turns out we don’t really use pixels any more, we use JS to actually make the call, and only fall back to a pixel when the user doesn’t have JS enabled.)</p>
 
 <p>Our thank you page is loaded asynchronously, so the Google Adwords script was getting injected into the dom in that async call. As it turns out, you can’t just inject scripts into the dom and expect them to run. If you do inject the script (as I did) you&#39;ll get this warning in Chrome:</p>
-<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+<div class="highlight"><pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 </pre></td><td class="rouge-code"><pre>Failed to execute 'write' on 'Document': It isn't possible to write into a document from an asynchronously-loaded external script unless it is explicitly opened.
-</pre></td></tr></tbody></table>
-</code></pre>
+</pre></td></tr></tbody></table></code></pre></div>
 <p>(Personally I think this should be an error, not just a warning. To me, this is saying “Hey, your code that you think is running isn’t actually running” - that sounds like an error. But I digress...)</p>
 
 <p>After some Googling around I know of two ways to fix this.</p>
@@ -99,7 +98,7 @@
 <p><strong>Fix one (bad)</strong></p>
 
 <p>Mess with <code>document.write</code>. Basically Chrome has a check that an async loaded script doesn’t make any calls to <code>document.write</code>. But it doesn’t check for <code>$(&#39;body&#39;).append()</code> (yet). So if you set <code>document.write</code> to actually use <code>$(&#39;body&#39;).append()</code> the error goes away. Here’s an example (taken from <a href="http://www.jakobbeyer.de/asynchronous-google-adwords-conversion-tracking">Jakob Beyer</a>):</p>
-<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+<div class="highlight"><pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
 3
 4
@@ -127,8 +126,7 @@ $.getScript( "http://www.googleadservices.com/pagead/conversion.js", function() 
         document.write = oldDocumentWrite
     }, 100)
 });
-</pre></td></tr></tbody></table>
-</code></pre>
+</pre></td></tr></tbody></table></code></pre></div>
 <p>This threw up some red flags for me - why are we hijacking <code>document.write</code>? If we have to do this weird dance to get around the problem, maybe it’s as unsafe as Chrome would have us believe - should we do something safer?</p>
 
 <p>Time to do some more Googling...</p>
@@ -140,14 +138,13 @@ $.getScript( "http://www.googleadservices.com/pagead/conversion.js", function() 
 <p>Here’s how to use Google’s async code:</p>
 
 <p>On your main page (not anything that’s loaded asynchronously) link to the async conversion file.</p>
-<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+<div class="highlight"><pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 </pre></td><td class="rouge-code"><pre>&lt;script type="text/javascript" src="//www.googleadservices.com/pagead/conversion_async.js" charset="utf-8"&gt;&lt;/script&gt;
-</pre></td></tr></tbody></table>
-</code></pre>
+</pre></td></tr></tbody></table></code></pre></div>
 <p>This way the <code>google_trackConversion</code> method is written on document load, and not async which caused the original warning we saw.</p>
 
 <p>Then wherever your async call returns you can trigger a call to track the conversion:</p>
-<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+<div class="highlight"><pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
 3
 4
@@ -171,8 +168,7 @@ window.google_trackConversion({
 });
 //]]&gt;
 &lt;/script&gt;
-</pre></td></tr></tbody></table>
-</code></pre>
+</pre></td></tr></tbody></table></code></pre></div>
 <p><strong>References</strong></p>
 
 <ul>

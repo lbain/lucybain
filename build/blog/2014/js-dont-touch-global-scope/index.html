@@ -13,7 +13,7 @@
 <meta name="twitter:card" content="summary">
 <meta property="og:title" content="Lucy | JS: don’t touch the global scope"/>
 <meta name="og:description" content="Blog posts about programming, mostly JS and frontend, but a few other topics as well."/>
-<meta property="og:image" content="http://lucybain.com/images/social-share.png" />
+<meta property="og:image" content="http://lucybain.com/images/social-share-b7a56bea.png" />
 <meta property="og:url" content="http://lucybain.com/" />
 
   <meta property="og:type" content="article" />
@@ -29,30 +29,30 @@
   </head>
   <body class="">
     <nav>
-  <div class='nav-open-btn'>
-    <ul>
-      <li></li>
-      <li></li>
-      <li></li>
-    </ul>
-  </div>
-  <ul class='nav-display'>
-    <li>
-      <a href="/" class="link-button">Me</a>
-    </li>
-    <li>
-      <a href="/resume/" class="link-button">Resume</a>
-    </li>
-    <li>
-      <a href="/contact-me/" class="link-button">Contact</a>
-    </li>
-    <li>
-      <a href="/resources/" class="link-button">Resources</a>
-    </li>
-    <li>
-      <a href="/blog/" class="link-button active">Blog</a>
-    </li>
-  </ul>
+<div class='nav-open-btn'>
+<ul>
+<li></li>
+<li></li>
+<li></li>
+</ul>
+</div>
+<ul class='nav-display'>
+<li>
+<a href="/" class="link-button">Me</a>
+</li>
+<li>
+<a href="/resume/" class="link-button">Resume</a>
+</li>
+<li>
+<a href="/contact-me/" class="link-button">Contact</a>
+</li>
+<li>
+<a href="/resources/" class="link-button">Resources</a>
+</li>
+<li>
+<a href="/blog/" class="link-button active">Blog</a>
+</li>
+</ul>
 </nav>
 
     <div class="content">
@@ -99,7 +99,7 @@
 <p><strong>Global variables are particularly bad for JS.</strong></p>
 
 <p>Not only are all of those points above true (and a few others I didn’t include), but for JS specifically global variables can be particularly problematic. This is because JS defaults all variables to the global scope unless they are explicitly defined elsewhere. Here’s an example:</p>
-<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+<div class="highlight"><pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
 3
 4
@@ -111,10 +111,9 @@
 
 badlyScoped();
 console.log(globalVariable); // logs "I'm a global variable"
-</pre></td></tr></tbody></table>
-</code></pre>
+</pre></td></tr></tbody></table></code></pre></div>
 <p>Well isn’t that terrifying! We thought we were creating a local variable, since it was defined within a function, but nope! We forgot the <code>var</code> keyword, which would make the variable local. Here’s a corrected version:</p>
-<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+<div class="highlight"><pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
 3
 4
@@ -126,8 +125,7 @@ console.log(globalVariable); // logs "I'm a global variable"
 
 wellScoped();
 console.log(localVariable); // throws: "localVariable is not defined"
-</pre></td></tr></tbody></table>
-</code></pre>
+</pre></td></tr></tbody></table></code></pre></div>
 <p>This is a quirk (<a href="http://www.amazon.com/JavaScript-Good-Parts-Douglas-Crockford/dp/0596517742">some say</a> a mistake) of JS. It makes global variables particularly dangerous since you might not even know you were creating one. So watch your back and don’t forget to use <code>var</code>!</p>
 
 <p><strong>Resources:</strong></p>

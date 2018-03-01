@@ -13,7 +13,7 @@
 <meta name="twitter:card" content="summary">
 <meta property="og:title" content="Lucy | In programming, what is an object?"/>
 <meta name="og:description" content="Blog posts about programming, mostly JS and frontend, but a few other topics as well."/>
-<meta property="og:image" content="http://lucybain.com/images/social-share.png" />
+<meta property="og:image" content="http://lucybain.com/images/social-share-b7a56bea.png" />
 <meta property="og:url" content="http://lucybain.com/" />
 
   <meta property="og:type" content="article" />
@@ -29,30 +29,30 @@
   </head>
   <body class="">
     <nav>
-  <div class='nav-open-btn'>
-    <ul>
-      <li></li>
-      <li></li>
-      <li></li>
-    </ul>
-  </div>
-  <ul class='nav-display'>
-    <li>
-      <a href="/" class="link-button">Me</a>
-    </li>
-    <li>
-      <a href="/resume/" class="link-button">Resume</a>
-    </li>
-    <li>
-      <a href="/contact-me/" class="link-button">Contact</a>
-    </li>
-    <li>
-      <a href="/resources/" class="link-button">Resources</a>
-    </li>
-    <li>
-      <a href="/blog/" class="link-button active">Blog</a>
-    </li>
-  </ul>
+<div class='nav-open-btn'>
+<ul>
+<li></li>
+<li></li>
+<li></li>
+</ul>
+</div>
+<ul class='nav-display'>
+<li>
+<a href="/" class="link-button">Me</a>
+</li>
+<li>
+<a href="/resume/" class="link-button">Resume</a>
+</li>
+<li>
+<a href="/contact-me/" class="link-button">Contact</a>
+</li>
+<li>
+<a href="/resources/" class="link-button">Resources</a>
+</li>
+<li>
+<a href="/blog/" class="link-button active">Blog</a>
+</li>
+</ul>
 </nav>
 
     <div class="content">
@@ -88,7 +88,7 @@
 <p>Many languages have the concept of an “object.” It’s a way of organising code based around objects (things) with similar characteristics. As in, most dogs have four legs, most cars can drive forward, most houses have doors. Templates (often called Classes) are used to create objects. These templates come with empty fields (like a form), and sometimes with default values as well (such as four legs). So it could look something like this:</p>
 
 <p><strong>Human</strong></p>
-<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+<div class="highlight"><pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
 3
 4
@@ -96,10 +96,9 @@
 Gender: ________
 Arms: _2_
 Legs: _2_
-</pre></td></tr></tbody></table>
-</code></pre>
+</pre></td></tr></tbody></table></code></pre></div>
 <p>As you can see some fields (name and gender) are left blank, and some (arms and legs) have a default value associated. Again, this is a template, these values are assigned for each object (often called “instance of the class”). Mine would look like this:</p>
-<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+<div class="highlight"><pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
 3
 4
@@ -107,12 +106,11 @@ Legs: _2_
 Gender: _Female_
 Arms: _2_
 Legs: _2_
-</pre></td></tr></tbody></table>
-</code></pre>
+</pre></td></tr></tbody></table></code></pre></div>
 <p>But objects hold more than just fields of information; they can also hold actions! Let’s build on our Human class.</p>
 
 <p><strong>Human</strong></p>
-<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+<div class="highlight"><pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
 3
 4
@@ -124,12 +122,11 @@ Arms: _2_
 Legs: _2_
 Laugh: say "hahaha!"
 Run: move your legs quickly
-</pre></td></tr></tbody></table>
-</code></pre>
+</pre></td></tr></tbody></table></code></pre></div>
 <p>So you can see the Human template now has two actions associated with it (laugh and run). Here’s the great part about objects: those actions are shared! I only have to write the method <em>once</em> and all humans can now laugh and run. Pretty slick, huh?</p>
 
 <p>So a <strong>class</strong> is a template of fields (variables) and actions (methods). Each <strong>object</strong> fills out the template with it’s particular information. This is how you can write code like <code>me.name</code> - the <code>me</code> object has a <code>name</code> field that keeps track of <code>me</code>’s name. It’s also how you can write:</p>
-<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+<div class="highlight"><pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
 3
 4
@@ -137,8 +134,7 @@ Run: move your legs quickly
 buddy.bark();
 buster.bark();
 princess.bark();
-</pre></td></tr></tbody></table>
-</code></pre>
+</pre></td></tr></tbody></table></code></pre></div>
 <p>but only need to implement the <code>bark</code> action on the <code>Dog</code> template.</p>
 
 <p><strong>Object Oriented Programming</strong> is a way of organising your code into these objects for ease of use, readability, and understanding. It’s not the only <a href="http://upload.wikimedia.org/wikipedia/commons/f/f7/Programming_paradigms.svg">programming paradigm</a>, but it’s been popular over the years.</p>

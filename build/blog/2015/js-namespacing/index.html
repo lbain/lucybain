@@ -13,7 +13,7 @@
 <meta name="twitter:card" content="summary">
 <meta property="og:title" content="Lucy | JS: What is Javascript namespacing? How and where is it used?"/>
 <meta name="og:description" content="Blog posts about programming, mostly JS and frontend, but a few other topics as well."/>
-<meta property="og:image" content="http://lucybain.com/images/social-share.png" />
+<meta property="og:image" content="http://lucybain.com/images/social-share-b7a56bea.png" />
 <meta property="og:url" content="http://lucybain.com/" />
 
   <meta property="og:type" content="article" />
@@ -29,30 +29,30 @@
   </head>
   <body class="">
     <nav>
-  <div class='nav-open-btn'>
-    <ul>
-      <li></li>
-      <li></li>
-      <li></li>
-    </ul>
-  </div>
-  <ul class='nav-display'>
-    <li>
-      <a href="/" class="link-button">Me</a>
-    </li>
-    <li>
-      <a href="/resume/" class="link-button">Resume</a>
-    </li>
-    <li>
-      <a href="/contact-me/" class="link-button">Contact</a>
-    </li>
-    <li>
-      <a href="/resources/" class="link-button">Resources</a>
-    </li>
-    <li>
-      <a href="/blog/" class="link-button active">Blog</a>
-    </li>
-  </ul>
+<div class='nav-open-btn'>
+<ul>
+<li></li>
+<li></li>
+<li></li>
+</ul>
+</div>
+<ul class='nav-display'>
+<li>
+<a href="/" class="link-button">Me</a>
+</li>
+<li>
+<a href="/resume/" class="link-button">Resume</a>
+</li>
+<li>
+<a href="/contact-me/" class="link-button">Contact</a>
+</li>
+<li>
+<a href="/resources/" class="link-button">Resources</a>
+</li>
+<li>
+<a href="/blog/" class="link-button active">Blog</a>
+</li>
+</ul>
 </nav>
 
     <div class="content">
@@ -88,7 +88,7 @@
 <p>Namespacing is a way of organising your code. It organises concepts and ideas into a group and gives the group a <strong>name.</strong></p>
 
 <p>So rather than having everything dumped in together...</p>
-<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+<div class="highlight"><pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
 3
 4
@@ -100,10 +100,9 @@ function wagTail() { /* ... */ }
 function sleepAllDay() { /* ... */ }
 function beHyper() { /* ... */ }
 function purr() { /* ... */ }
-</pre></td></tr></tbody></table>
-</code></pre>
+</pre></td></tr></tbody></table></code></pre></div>
 <p>...you group similar things together...</p>
-<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+<div class="highlight"><pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
 3
 4
@@ -121,10 +120,9 @@ function beHyper() { /* ... */ }
 function meow() { /* ... */ }
 function sleepAllDay() { /* ... */ }
 function purr() { /* ... */ }
-</pre></td></tr></tbody></table>
-</code></pre>
+</pre></td></tr></tbody></table></code></pre></div>
 <p>...and then give the groups a name!</p>
-<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+<div class="highlight"><pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
 3
 4
@@ -146,14 +144,13 @@ var cat = {
   sleepAllDay: function() { /* ... */ },
   purr: function() { /* ... */ }
 };
-</pre></td></tr></tbody></table>
-</code></pre>
+</pre></td></tr></tbody></table></code></pre></div>
 <p>Partly this is for ease of programming - it’s simpler to keep track of many things if they&#39;re grouped into smaller numbers. But it’s also really important for avoiding naming collisions.</p>
 
 <p><em>What are naming collisions?</em></p>
 
 <p>Let’s say I’m working on a big project and I get a little lost in the code sometimes. At some point I defined a <code>warningAlert</code> function. Then, a few weeks later, I forget that I had a <code>warningAlert</code> function defined already, and I define a new one lower down.</p>
-<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+<div class="highlight"><pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
 3
 4
@@ -171,12 +168,11 @@ var cat = {
 function warningAlert(text) {
   alert('ALERT: ' + text);
 }
-</pre></td></tr></tbody></table>
-</code></pre>
+</pre></td></tr></tbody></table></code></pre></div>
 <p>Now calls to <code>warningAlert</code> will use the second definition since it overwrote (collided with) the first definition.</p>
 
 <p>If I&#39;d had a namespace for my <code>warningAlert</code> method I probably would have known where to look for the function definition. Something like:</p>
-<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+<div class="highlight"><pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
 3
 4
@@ -184,8 +180,7 @@ function warningAlert(text) {
 alerts.warning = function(text) {
   alert('Warning: ' + text);
 };
-</pre></td></tr></tbody></table>
-</code></pre>
+</pre></td></tr></tbody></table></code></pre></div>
 <p>Namespaces aren’t only for you (because I’m sure <em>you&#39;d</em> never make a mistake like this... just for demonstration purposes, right?). They&#39;re also important when you start including code by a third party.</p>
 
 <p>Since everything gets dumped into the global namespace there’s no way to know what you wrote and what was written by someone else. It’s generally a good idea to have a namespace for everything you wrote so you don’t get naming conflicts with anyone else. Actually, jQuery does just that. All the jQuery functions are namespaced to <code>$</code>.</p>

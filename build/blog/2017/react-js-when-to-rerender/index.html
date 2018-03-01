@@ -13,7 +13,7 @@
 <meta name="twitter:card" content="summary">
 <meta property="og:title" content="Lucy | How does React decide to re-render a component?"/>
 <meta name="og:description" content="React re-renders if shouldComponentUpdate returns true for any reason. How can we use this knowledge to help performance?"/>
-<meta property="og:image" content="http://lucybain.com/images/social-share.png" />
+<meta property="og:image" content="http://lucybain.com/images/social-share-b7a56bea.png" />
 <meta property="og:url" content="http://lucybain.com/" />
 
   <meta property="og:type" content="article" />
@@ -29,30 +29,30 @@
   </head>
   <body class="">
     <nav>
-  <div class='nav-open-btn'>
-    <ul>
-      <li></li>
-      <li></li>
-      <li></li>
-    </ul>
-  </div>
-  <ul class='nav-display'>
-    <li>
-      <a href="/" class="link-button">Me</a>
-    </li>
-    <li>
-      <a href="/resume/" class="link-button">Resume</a>
-    </li>
-    <li>
-      <a href="/contact-me/" class="link-button">Contact</a>
-    </li>
-    <li>
-      <a href="/resources/" class="link-button">Resources</a>
-    </li>
-    <li>
-      <a href="/blog/" class="link-button active">Blog</a>
-    </li>
-  </ul>
+<div class='nav-open-btn'>
+<ul>
+<li></li>
+<li></li>
+<li></li>
+</ul>
+</div>
+<ul class='nav-display'>
+<li>
+<a href="/" class="link-button">Me</a>
+</li>
+<li>
+<a href="/resume/" class="link-button">Resume</a>
+</li>
+<li>
+<a href="/contact-me/" class="link-button">Contact</a>
+</li>
+<li>
+<a href="/resources/" class="link-button">Resources</a>
+</li>
+<li>
+<a href="/blog/" class="link-button active">Blog</a>
+</li>
+</ul>
 </nav>
 
     <div class="content">
@@ -90,7 +90,7 @@
 <p>A re-render can only be triggered if a component’s state has changed. The state can change from a <code>props</code> change, or from a direct <code>setState</code> change. The component gets the updated state and React decides if it should re-render the component. Unfortunately, by default React is incredibly simplistic and basically re-renders everything all the time.</p>
 
 <p>Component changed? Re-render. Parent changed? Re-render. Section of props that doesn&#39;t actually impact the view changed? Re-render.</p>
-<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+<div class="highlight"><pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
 3
 4
@@ -122,8 +122,7 @@
         return (&lt;div&gt;...&lt;/div&gt;);
     }
 }
-</pre></td></tr></tbody></table>
-</code></pre>
+</pre></td></tr></tbody></table></code></pre></div>
 <p>In this (massively contrived) example the <code>Todo</code> will re-render every second, even though the <code>render</code> method doesn’t use <code>unseen</code> at all. In fact, <code>unseen</code> doesn’t even change its value! You can check out a working version of this on <a href="https://codepen.io/lbain/pen/MJNpwL">CodePen</a>.</p>
 
 <p><em>Well, but re-rendering all the time isn’t helpful...</em></p>
@@ -145,7 +144,7 @@
 <p>When React comes to render the component it will run <code>shouldComponentUpdate</code> and see if it returns <code>true</code> (the component should update, a.k.a. re-render) or <code>false</code> (React can skip the re-render this time). So you’ll need to overwrite <code>shouldComponentUpdate</code> to return <code>true</code> or <code>false</code> as needed to tell React when to re-render and when to skip.</p>
 
 <p>When you use <code>shouldComponentUpdate</code> you’ll need to decide which bits of data actually matter for the re-render. Let’s go back to our example:</p>
-<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+<div class="highlight"><pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
 3
 4
@@ -189,8 +188,7 @@
         return (&lt;div&gt;...&lt;/div&gt;);
     }
 }
-</pre></td></tr></tbody></table>
-</code></pre>
+</pre></td></tr></tbody></table></code></pre></div>
 <p>As you can see, we only want to re-render the Todo if the <code>title</code> or <code>done</code> attributes have changed. We don’t care if <code>unseen</code> has changed, so we don’t include it in <code>shouldComponentUpdate</code>.</p>
 
 <p>When React comes to render a Todo component (as triggered by the <code>setState</code>) it will first check if the state has changed (via the <code>props</code> or <code>state</code>). Assuming the state is different (which it will be because we made an explicit <code>setState</code> call) React will check the <code>shouldComponentUpdate</code> on the Todo component. React will evaluate if <code>shouldComponentUpdate</code> is true or false, and decide to render from there.</p>
@@ -216,7 +214,7 @@
 <p>Writing and running computations in <code>shouldComponentUpdate</code> can be expensive so you should to make sure they’re worth the time. Before writing any <code>shouldComponentUpdate</code>s you can check how many wasted cycles React does by default. With this information to guide you, you can make informed decisions about which components are re-rendering too often and causing performance problems.</p>
 
 <p>Use React’s <a href="https://facebook.github.io/react/docs/perf.html">Performance Tools</a> to find wasted cycles:</p>
-<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+<div class="highlight"><pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
 3
 4
@@ -224,8 +222,7 @@
 // Do the render
 Perf.stop()
 Perf.printWasted()
-</pre></td></tr></tbody></table>
-</code></pre>
+</pre></td></tr></tbody></table></code></pre></div>
 <p>Which components wasted a lot of render cycles? How can you make them smarter with <code>shouldComponentUpdate</code>? Try some ways and be sure to check them against each other with the performance tools!</p>
 
 <h2>Resources</h2>

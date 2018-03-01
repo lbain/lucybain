@@ -13,7 +13,7 @@
 <meta name="twitter:card" content="summary">
 <meta property="og:title" content="Lucy | ReactJS: Props vs. State"/>
 <meta name="og:description" content="A look into ReactJS's props and state work, with lots of examples!"/>
-<meta property="og:image" content="http://lucybain.com/images/social-share.png" />
+<meta property="og:image" content="http://lucybain.com/images/social-share-b7a56bea.png" />
 <meta property="og:url" content="http://lucybain.com/" />
 
   <meta property="og:type" content="article" />
@@ -29,30 +29,30 @@
   </head>
   <body class="">
     <nav>
-  <div class='nav-open-btn'>
-    <ul>
-      <li></li>
-      <li></li>
-      <li></li>
-    </ul>
-  </div>
-  <ul class='nav-display'>
-    <li>
-      <a href="/" class="link-button">Me</a>
-    </li>
-    <li>
-      <a href="/resume/" class="link-button">Resume</a>
-    </li>
-    <li>
-      <a href="/contact-me/" class="link-button">Contact</a>
-    </li>
-    <li>
-      <a href="/resources/" class="link-button">Resources</a>
-    </li>
-    <li>
-      <a href="/blog/" class="link-button active">Blog</a>
-    </li>
-  </ul>
+<div class='nav-open-btn'>
+<ul>
+<li></li>
+<li></li>
+<li></li>
+</ul>
+</div>
+<ul class='nav-display'>
+<li>
+<a href="/" class="link-button">Me</a>
+</li>
+<li>
+<a href="/resume/" class="link-button">Resume</a>
+</li>
+<li>
+<a href="/contact-me/" class="link-button">Contact</a>
+</li>
+<li>
+<a href="/resources/" class="link-button">Resources</a>
+</li>
+<li>
+<a href="/blog/" class="link-button active">Blog</a>
+</li>
+</ul>
 </nav>
 
     <div class="content">
@@ -96,7 +96,7 @@
 <h3><code>props</code> are passed into the component</h3>
 
 <p>Here’s an example (code from the <a href="https://facebook.github.io/react/docs/components-and-props.html">React Guide</a>):</p>
-<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+<div class="highlight"><pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
 3
 4
@@ -110,8 +110,7 @@
 }
 
 const element = &lt;Welcome name="Sara" /&gt;;
-</pre></td></tr></tbody></table>
-</code></pre>
+</pre></td></tr></tbody></table></code></pre></div>
 <p>You can play with this on <a href="https://codepen.io/anon/pen/aByERM?editors=1011">CodePen</a>.</p>
 
 <p>The line <code>&lt;Welcome name=&quot;Sara&quot; /&gt;</code> creates a property <code>name</code> with value <code>&quot;Sara&quot;</code>. </p>
@@ -119,14 +118,13 @@ const element = &lt;Welcome name="Sara" /&gt;;
 <p><em>That sounds kinda like a function call...</em></p>
 
 <p>Yep, the property is passed to the component, similar to how an argument is passed to a function. In fact, we could even rewrite the component to be simpler:</p>
-<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+<div class="highlight"><pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
 3
 </pre></td><td class="rouge-code"><pre>function Welcome(props) {
   return &lt;h1&gt;Hello {props.name}&lt;/h1&gt;;
 }
-</pre></td></tr></tbody></table>
-</code></pre>
+</pre></td></tr></tbody></table></code></pre></div>
 <p>Now the “props as arguments” comparison is even clearer.</p>
 
 <p><em>OK, so props “come from above.”</em></p>
@@ -134,7 +132,7 @@ const element = &lt;Welcome name="Sara" /&gt;;
 <p>Often, but not always. A component can also have default props, so if a prop isn’t passed through it can still be set.</p>
 
 <p>We can make the <code>name</code> property optional by adding <code>defaultProps</code> to the <code>Welcome</code> class:</p>
-<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+<div class="highlight"><pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
 3
 4
@@ -152,8 +150,7 @@ const element = &lt;Welcome name="Sara" /&gt;;
 Welcome.defaultProps = {
   name: "world",
 };
-</pre></td></tr></tbody></table>
-</code></pre>
+</pre></td></tr></tbody></table></code></pre></div>
 <p>If <code>Welcome</code> is called without a name it will simply render <code>&lt;h1&gt; Hello world&lt;/h1&gt;</code>.</p>
 
 <p>So <code>props</code> can come from the parent, or can be set by the component itself.</p>
@@ -173,14 +170,13 @@ Welcome.defaultProps = {
 <p>Like <code>props</code>, <code>state</code> holds information about the component. However, the kind of information and how it is handled is different.</p>
 
 <p>By default, a component has no state. The <code>Welcome</code> component from above is stateless:</p>
-<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+<div class="highlight"><pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
 3
 </pre></td><td class="rouge-code"><pre>function Welcome(props) {
   return &lt;h1&gt;Hello {props.name}&lt;/h1&gt;;
 }
-</pre></td></tr></tbody></table>
-</code></pre>
+</pre></td></tr></tbody></table></code></pre></div>
 <p><em>So when would you use state?</em></p>
 
 <p>When a component needs to keep track of information between renderings the component <em>itself</em> can create, update, and use state.</p>
@@ -190,7 +186,7 @@ Welcome.defaultProps = {
 <p><em>Yawn...</em></p>
 
 <p>I know, but here’s the code:</p>
-<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+<div class="highlight"><pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
 3
 4
@@ -234,8 +230,7 @@ Welcome.defaultProps = {
             &lt;/button&gt;);
   }
 }
-</pre></td></tr></tbody></table>
-</code></pre>
+</pre></td></tr></tbody></table></code></pre></div>
 <p>You can play with this code on <a href="https://codepen.io/lbain/pen/ENpzBZ">CodePen</a>.</p>
 
 <p><em>Gah! There’s so much there! What’s going on?</em></p>
@@ -247,7 +242,7 @@ Welcome.defaultProps = {
 <h3><code>state</code> is created in the component</h3>
 
 <p>Let’s look at the <code>constructor</code> method:</p>
-<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+<div class="highlight"><pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
 3
 4
@@ -259,8 +254,7 @@ Welcome.defaultProps = {
     count: 0,
   };
 }
-</pre></td></tr></tbody></table>
-</code></pre>
+</pre></td></tr></tbody></table></code></pre></div>
 <p>This is where <code>state</code> gets it’s initial data. The inital data can be hard coded (as above), but it can also come from <code>props</code>.</p>
 
 <p><em>Well that’s just confusing.</em></p>
@@ -272,7 +266,7 @@ Welcome.defaultProps = {
 <h3><code>state</code> is changeable</h3>
 
 <p>Here’s <code>updateCount</code> again:</p>
-<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+<div class="highlight"><pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
 3
 4
@@ -282,8 +276,7 @@ Welcome.defaultProps = {
     return { count: prevState.count + 1 }
   });
 }
-</pre></td></tr></tbody></table>
-</code></pre>
+</pre></td></tr></tbody></table></code></pre></div>
 <p>We change the state to keep track of the total number of clicks. The important bit is <code>setState</code>. First off, notice that <code>setState</code> takes a function, that’s becuase <code>setState</code> can run asynchronously. It needs to take a callback function rather than updating the state directly. You can see we have access to <code>prevState</code> within the callback, this will contain the previous state, even if the state has already been updated somewhere else. Pretty slick, huh?</p>
 
 <p>But React goes one step better, <code>setState</code> updates the state object <strong>and</strong> re-renders the component automagically.</p>
@@ -299,7 +292,7 @@ Welcome.defaultProps = {
 <p><strong><code>setState</code> warning two!</strong></p>
 
 <p>It might also be tempting to write something like this:</p>
-<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+<div class="highlight"><pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
 3
 4
@@ -307,14 +300,13 @@ Welcome.defaultProps = {
 this.setState({
   count: this.state.count + 1
 });
-</pre></td></tr></tbody></table>
-</code></pre>
+</pre></td></tr></tbody></table></code></pre></div>
 <p>Although this might look reasonable, doesn’t throw errors, and you might find examples that use this syntax online, it is <em>wrong</em>. This does not take into account the asychronous nature that <code>setState</code> can use and might cause errors with out of sync state data.</p>
 
 <p><strong>Program as usual</strong></p>
 
 <p>And finally, <code>render</code></p>
-<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+<div class="highlight"><pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
 3
 4
@@ -328,8 +320,7 @@ this.setState({
             Clicked {this.state.count} times
           &lt;/button&gt;);
 }
-</pre></td></tr></tbody></table>
-</code></pre>
+</pre></td></tr></tbody></table></code></pre></div>
 <p><code>onClick={() =&gt; this.updateCount()}</code> means that when the button is clicked the <code>updateCount</code> method will be called. We need to use <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions">ES6’s arrow function</a> so <code>updateCount</code> will have access to this instance’s <code>state</code>.</p>
 
 <p>The text rendered in the button is <code>Clicked {this.state.count} times</code>, which will use whatever <code>this.state.count</code> is at the time of rendering.</p>
@@ -340,44 +331,39 @@ this.setState({
 
 <ol>
 <li><p>The component is initialised and <code>state.count</code> is set to 0</p>
-<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+<div class="highlight"><pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
 3
 </pre></td><td class="rouge-code"><pre>  this.state = {
     count: 0,
   };
-</pre></td></tr></tbody></table>
-</code></pre></li>
+</pre></td></tr></tbody></table></code></pre></div></li>
 <li><p>The component renders, with “Clicked 0 times” as the button text</p>
-<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+<div class="highlight"><pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 </pre></td><td class="rouge-code"><pre>  Clicked {this.state.count} times
-</pre></td></tr></tbody></table>
-</code></pre></li>
+</pre></td></tr></tbody></table></code></pre></div></li>
 <li><p>The user clicks the button</p>
 
 <p><em>click!</em></p></li>
 <li><p><code>updateCount</code> is called, bound to this instance of the component</p>
-<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+<div class="highlight"><pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 </pre></td><td class="rouge-code"><pre>onClick={() =&gt; this.updateCount()}
-</pre></td></tr></tbody></table>
-</code></pre></li>
+</pre></td></tr></tbody></table></code></pre></div></li>
 <li><p><code>updateCount</code> calls <code>setState</code> with a call back to increase the counter from the previous state’s counter value</p>
-<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+<div class="highlight"><pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
 3
 </pre></td><td class="rouge-code"><pre>this.setState((prevState, props) =&gt; {
   return { count: prevState.count + 1 }
 });
-</pre></td></tr></tbody></table>
-</code></pre></li>
+</pre></td></tr></tbody></table></code></pre></div></li>
 <li><p><code>setState</code> triggers a call to <code>render</code></p>
 
 <p><em>React magic!</em></p></li>
 <li><p>The component renders, with “Clicked 1 times” as the button text</p>
-<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+<div class="highlight"><pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 </pre></td><td class="rouge-code"><pre>Clicked {this.state.count} times
-</pre></td></tr></tbody></table>
-</code></pre></li>
+</pre></td></tr></tbody></table></code></pre></div></li>
 </ol>
 
 <h2>Review</h2>

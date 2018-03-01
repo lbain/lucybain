@@ -13,7 +13,7 @@
 <meta name="twitter:card" content="summary">
 <meta property="og:title" content="Lucy | Bower link"/>
 <meta name="og:description" content="Blog posts about programming, mostly JS and frontend, but a few other topics as well."/>
-<meta property="og:image" content="http://lucybain.com/images/social-share.png" />
+<meta property="og:image" content="http://lucybain.com/images/social-share-b7a56bea.png" />
 <meta property="og:url" content="http://lucybain.com/" />
 
   <meta property="og:type" content="article" />
@@ -29,30 +29,30 @@
   </head>
   <body class="">
     <nav>
-  <div class='nav-open-btn'>
-    <ul>
-      <li></li>
-      <li></li>
-      <li></li>
-    </ul>
-  </div>
-  <ul class='nav-display'>
-    <li>
-      <a href="/" class="link-button">Me</a>
-    </li>
-    <li>
-      <a href="/resume/" class="link-button">Resume</a>
-    </li>
-    <li>
-      <a href="/contact-me/" class="link-button">Contact</a>
-    </li>
-    <li>
-      <a href="/resources/" class="link-button">Resources</a>
-    </li>
-    <li>
-      <a href="/blog/" class="link-button active">Blog</a>
-    </li>
-  </ul>
+<div class='nav-open-btn'>
+<ul>
+<li></li>
+<li></li>
+<li></li>
+</ul>
+</div>
+<ul class='nav-display'>
+<li>
+<a href="/" class="link-button">Me</a>
+</li>
+<li>
+<a href="/resume/" class="link-button">Resume</a>
+</li>
+<li>
+<a href="/contact-me/" class="link-button">Contact</a>
+</li>
+<li>
+<a href="/resources/" class="link-button">Resources</a>
+</li>
+<li>
+<a href="/blog/" class="link-button active">Blog</a>
+</li>
+</ul>
 </nav>
 
     <div class="content">
@@ -92,7 +92,7 @@
 <p>First, let’s lay out an example. You’re working on a project and need to write some new functionality. Typically you’d just make a new directory and include your feature’s code in there, but for this example you want the code to be stand alone (perhaps you’ll use it in another project, or perhaps you’ll publish it for others to use). So you decide to write a package for Bower to manage.</p>
 
 <p>Here’s the setup so far:</p>
-<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+<div class="highlight"><pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
 3
 4
@@ -108,52 +108,45 @@
     here.html
 
   new_package/
-</pre></td></tr></tbody></table>
-</code></pre>
+</pre></td></tr></tbody></table></code></pre></div>
 <h3>Make your package a Bower package</h3>
-<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+<div class="highlight"><pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
 </pre></td><td class="rouge-code"><pre>$ cd ~/code/new_package
 $ bower init
-</pre></td></tr></tbody></table>
-</code></pre>
+</pre></td></tr></tbody></table></code></pre></div>
 <p>I just went ahead and accepted all the defaults, but if it was a real package you’d probably want to think about them. Again, this isn’t a post about all of Bower, so I’ll skip over any details on the <code>bower init</code> command.</p>
 
 <p>Now your package looks like this:</p>
-<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+<div class="highlight"><pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
 3
 </pre></td><td class="rouge-code"><pre>new_package/
   node_modules/ &lt;-- New!
   bower.json &lt;-- New!
-</pre></td></tr></tbody></table>
-</code></pre>
+</pre></td></tr></tbody></table></code></pre></div>
 <h3>Tell Bower about your package</h3>
 
 <p>Next we need to tell Bower about the <code>new_package</code> directory. This command won’t change the <code>new_package</code> directory at all.</p>
-<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+<div class="highlight"><pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
 </pre></td><td class="rouge-code"><pre>$ cd ~/code/new_package
 $ bower link
-</pre></td></tr></tbody></table>
-</code></pre>
+</pre></td></tr></tbody></table></code></pre></div>
 <p>For Mac computers, the output of that will be:</p>
-<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+<div class="highlight"><pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 </pre></td><td class="rouge-code"><pre>bower link /Users/lbain/.local/share/bower/links/new_package &gt; /Users/lbain/code/new_package
-</pre></td></tr></tbody></table>
-</code></pre>
+</pre></td></tr></tbody></table></code></pre></div>
 <p>(Obviously the <code>lbain</code> will be different in your case.)</p>
 
 <p>Ok, let’s take a quick peak under the hood and look into <code>/Users/lbain/.local/share/bower/links</code>.</p>
-<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+<div class="highlight"><pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 </pre></td><td class="rouge-code"><pre>$ cd /Users/lbain/.local/share/bower/links
-</pre></td></tr></tbody></table>
-</code></pre>
+</pre></td></tr></tbody></table></code></pre></div>
 <p>From here you can see all the links you’ve created (probably just the one <code>new_package</code> link).</p>
-<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+<div class="highlight"><pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 </pre></td><td class="rouge-code"><pre>$ cd new_package
-</pre></td></tr></tbody></table>
-</code></pre>
+</pre></td></tr></tbody></table></code></pre></div>
 <p>And now you should see the <code>node_modules</code> directory and the <code>bower.json</code> right there. So you can see using <code>bower link</code> creates a connection (some might even go so far as to say “link”) between the original and the bower-controlled code.</p>
 
 <p>Ok, we’re halfway there! </p>
@@ -161,26 +154,23 @@ $ bower link
 <h3>Tell your project about your package</h3>
 
 <p>Now we can go back to your project and get to include your package.</p>
-<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+<div class="highlight"><pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 </pre></td><td class="rouge-code"><pre>$ cd ~/code/my_awesome_project
-</pre></td></tr></tbody></table>
-</code></pre>
+</pre></td></tr></tbody></table></code></pre></div>
 <p>From here we run the <code>bower link</code> command, but with a parameter of the package name.</p>
-<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+<div class="highlight"><pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 </pre></td><td class="rouge-code"><pre>$ bower link new_package
-</pre></td></tr></tbody></table>
-</code></pre>
+</pre></td></tr></tbody></table></code></pre></div>
 <p><strong>Note:</strong> The fact that you’re just giving the name of the directory you want to link is pretty much the only really clear advantage of using <code>bower link</code> over a traditional symlink. Yes, you get all of the associated Bower-goodness, but for this example (where we’re not looking at the Bower-goodness) the name is about the only interesting thing.</p>
 
 <p>The output of that is:</p>
-<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+<div class="highlight"><pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 </pre></td><td class="rouge-code"><pre>$ bower link /Users/lbain/code/my_awesome_project/bower_components/new_package &gt; /Users/lbain/.local/share/bower/links/new_package
-</pre></td></tr></tbody></table>
-</code></pre>
+</pre></td></tr></tbody></table></code></pre></div>
 <p>The content of <code>/Users/lbain/.local/share/bower/links/</code> hasn’t changed. Rather, that directory keeps a list of all linkable packages, not the packages that have been linked.</p>
 
 <p>Now your directories should look like this:</p>
-<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+<div class="highlight"><pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
 3
 4
@@ -210,14 +200,13 @@ $ bower link
   new_package/
     node_modules/
     bower.json
-</pre></td></tr></tbody></table>
-</code></pre>
+</pre></td></tr></tbody></table></code></pre></div>
 <p>So, as you can see, you&#39;ve got all of <code>new_package</code>’s content in <code>my_awesome_project/bower_components</code>. Any other Bower packages you link would also go to the <code>bower_components</code> folder.</p>
 
 <h3>Prove it!</h3>
 
 <p>Alright, let’s give it a quick test. Make a new file in <code>new_package</code> and save it. It should also be in <code>my_awesome_project</code>!</p>
-<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+<div class="highlight"><pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
 3
 4
@@ -247,8 +236,7 @@ $ bower link
     node_modules/
     bower.json
     test.txt &lt;-- New!
-</pre></td></tr></tbody></table>
-</code></pre>
+</pre></td></tr></tbody></table></code></pre></div>
 <p>You can also add files the other way. Make a new file in <code>my_awesome_project</code> and save it. It should also be in <code>new_package</code>.</p>
 
 <p>Now you can develop as though your code was inline, but actually keep it as a stand alone package.</p>

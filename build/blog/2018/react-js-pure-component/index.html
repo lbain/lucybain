@@ -13,7 +13,7 @@
 <meta name="twitter:card" content="summary">
 <meta property="og:title" content="Lucy | React JS: what is a PureComponent?"/>
 <meta name="og:description" content="A discussion of what a pure component is in React, and how it differs from a traditional component."/>
-<meta property="og:image" content="http://lucybain.com/images/social-share.png" />
+<meta property="og:image" content="http://lucybain.com/images/social-share-b7a56bea.png" />
 <meta property="og:url" content="http://lucybain.com/" />
 
   <meta property="og:type" content="article" />
@@ -29,30 +29,30 @@
   </head>
   <body class="">
     <nav>
-  <div class='nav-open-btn'>
-    <ul>
-      <li></li>
-      <li></li>
-      <li></li>
-    </ul>
-  </div>
-  <ul class='nav-display'>
-    <li>
-      <a href="/" class="link-button">Me</a>
-    </li>
-    <li>
-      <a href="/resume/" class="link-button">Resume</a>
-    </li>
-    <li>
-      <a href="/contact-me/" class="link-button">Contact</a>
-    </li>
-    <li>
-      <a href="/resources/" class="link-button">Resources</a>
-    </li>
-    <li>
-      <a href="/blog/" class="link-button active">Blog</a>
-    </li>
-  </ul>
+<div class='nav-open-btn'>
+<ul>
+<li></li>
+<li></li>
+<li></li>
+</ul>
+</div>
+<ul class='nav-display'>
+<li>
+<a href="/" class="link-button">Me</a>
+</li>
+<li>
+<a href="/resume/" class="link-button">Resume</a>
+</li>
+<li>
+<a href="/contact-me/" class="link-button">Contact</a>
+</li>
+<li>
+<a href="/resources/" class="link-button">Resources</a>
+</li>
+<li>
+<a href="/blog/" class="link-button active">Blog</a>
+</li>
+</ul>
 </nav>
 
     <div class="content">
@@ -94,7 +94,7 @@
 <h3>Example setup</h3>
 
 <p><strong>Note:</strong> I’ve written intentionally bad code in the <code>componentDidMount</code> methods throughout. This is to keep the examples small and to show some gotchas along the way. Please do not write this kind of code for reals!</p>
-<pre class="highlight jsx"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+<div class="highlight"><pre class="highlight jsx"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
 3
 4
@@ -142,10 +142,10 @@
 46
 47
 48
-</pre></td><td class="rouge-code"><pre><span class="kr">class</span> <span class="nx">Todos</span> <span class="kr">extends</span> <span class="nx">React</span><span class="p">.</span><span class="nx">PureComponent</span> <span class="p">{</span>
+</pre></td><td class="rouge-code"><pre><span class="kd">class</span> <span class="nx">Todos</span> <span class="kd">extends</span> <span class="nx">React</span><span class="p">.</span><span class="nx">PureComponent</span> <span class="p">{</span>
 
-    <span class="nx">constructor</span><span class="p">(</span><span class="nx">props</span><span class="p">)</span> <span class="p">{</span>
-        <span class="kr">super</span><span class="p">(</span><span class="nx">props</span><span class="p">);</span>
+    <span class="kd">constructor</span><span class="p">(</span><span class="nx">props</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">super</span><span class="p">(</span><span class="nx">props</span><span class="p">);</span>
         <span class="k">this</span><span class="p">.</span><span class="nx">state</span> <span class="o">=</span> <span class="p">{</span> 
             <span class="na">todos</span><span class="p">:</span> <span class="p">[</span>
                 <span class="p">{</span> <span class="na">title</span><span class="p">:</span> <span class="s1">'take out the trash'</span><span class="p">,</span> <span class="na">done</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span> <span class="na">notes</span><span class="p">:</span> <span class="p">[</span><span class="s1">'boring'</span><span class="p">]</span> <span class="p">},</span>
@@ -178,7 +178,7 @@
     <span class="p">}</span>
 <span class="p">}</span>
 
-<span class="kr">class</span> <span class="nx">TodoItem</span> <span class="kr">extends</span> <span class="nx">React</span><span class="p">.</span><span class="nx">Component</span> <span class="p">{</span>
+<span class="kd">class</span> <span class="nx">TodoItem</span> <span class="kd">extends</span> <span class="nx">React</span><span class="p">.</span><span class="nx">Component</span> <span class="p">{</span>
 
     <span class="nx">render</span><span class="p">()</span> <span class="p">{</span>
         <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'TodoItem render called'</span><span class="p">);</span>
@@ -190,8 +190,7 @@
 <span class="p">}</span>
 
 <span class="nx">ReactDOM</span><span class="p">.</span><span class="nx">render</span><span class="p">(&lt;</span><span class="nc">Todos</span> <span class="p">/&gt;,</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">'app'</span><span class="p">));</span>
-</pre></td></tr></tbody></table>
-</code></pre>
+</pre></td></tr></tbody></table></code></pre></div>
 <p>It’s bigger than most of the examples I write, but it’s all relevant - promise! We’ll break it down (feel free to skip down to the next section if the above is clear to you already):</p>
 
 <h4><code>Todos</code></h4>
@@ -199,7 +198,7 @@
 <p>First we have a React component, this is the one that <code>ReactDOM</code> will render (see the last line in the example).</p>
 
 <p>We have the constructor method so we can set the initial state - in this case an array of <code>todos</code>, each of which has <code>title</code>, <code>done</code>, and <code>notes</code> attributes. (Typically this kind of state would be passed in through <code>props</code> but I’ve written it in the <code>state</code> to keep the example smaller and self contained.)</p>
-<pre class="highlight jsx"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+<div class="highlight"><pre class="highlight jsx"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
 3
 4
@@ -209,8 +208,8 @@
 8
 9
 10
-</pre></td><td class="rouge-code"><pre><span class="nx">constructor</span><span class="p">(</span><span class="nx">props</span><span class="p">)</span> <span class="p">{</span>
-    <span class="kr">super</span><span class="p">(</span><span class="nx">props</span><span class="p">);</span>
+</pre></td><td class="rouge-code"><pre><span class="kd">constructor</span><span class="p">(</span><span class="nx">props</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">super</span><span class="p">(</span><span class="nx">props</span><span class="p">);</span>
     <span class="k">this</span><span class="p">.</span><span class="nx">state</span> <span class="o">=</span> <span class="p">{</span> 
         <span class="na">todos</span><span class="p">:</span> <span class="p">[</span>
             <span class="p">{</span> <span class="na">title</span><span class="p">:</span> <span class="s1">'take out the trash'</span><span class="p">,</span> <span class="na">done</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span> <span class="na">notes</span><span class="p">:</span> <span class="p">[</span><span class="s1">'boring'</span><span class="p">]</span> <span class="p">},</span>
@@ -219,10 +218,9 @@
         <span class="p">]</span>
     <span class="p">};</span>
 <span class="p">}</span>
-</pre></td></tr></tbody></table>
-</code></pre>
+</pre></td></tr></tbody></table></code></pre></div>
 <p>Then there’s the <code>componentDidMount</code> method. Its only purpose is to change the state every second so we can see how React deals with those changes. Right now it updates <code>state.todos</code> to be the same as the previous <code>state.todos</code>.</p>
-<pre class="highlight jsx"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+<div class="highlight"><pre class="highlight jsx"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
 3
 4
@@ -236,10 +234,9 @@
         <span class="p">});</span>
     <span class="p">},</span> <span class="mi">1000</span><span class="p">);</span>
 <span class="p">}</span>
-</pre></td></tr></tbody></table>
-</code></pre>
+</pre></td></tr></tbody></table></code></pre></div>
 <p>Finally <code>Todos</code> has the render method. It renders a list of the <code>TodoItem</code> components, and passes in their respective <code>title</code>, <code>done</code>, and <code>notes</code> attributes. The main thing we’re interested in here is seeing when this component is rendered. </p>
-<pre class="highlight jsx"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+<div class="highlight"><pre class="highlight jsx"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
 3
 4
@@ -265,14 +262,13 @@
         <span class="p">})</span><span class="si">}</span>
         <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;);</span>
 <span class="p">}</span>
-</pre></td></tr></tbody></table>
-</code></pre>
+</pre></td></tr></tbody></table></code></pre></div>
 <h4><code>TodoItem</code></h4>
 
 <p><em>It’s a lot simpler than <code>Todos</code></em> </p>
 
 <p>Yes, that’s right <code>TodoItem</code> inherits from <code>React.Component</code> just like <code>Todos</code>, but it only implements the <code>render</code> function (which is required) to display the <code>title</code>, <code>done</code>, and <code>notes</code> values. Here again we’re mostly interested in knowing <em>when</em> the <code>render</code> method is called, not really what is displayed (yet!).</p>
-<pre class="highlight jsx"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+<div class="highlight"><pre class="highlight jsx"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
 3
 4
@@ -286,12 +282,11 @@
             (<span class="si">{</span><span class="k">this</span><span class="p">.</span><span class="nx">props</span><span class="p">.</span><span class="nx">notes</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="s1">', '</span><span class="p">)</span><span class="si">}</span>)
         <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;);</span>
 <span class="p">}</span>
-</pre></td></tr></tbody></table>
-</code></pre>
+</pre></td></tr></tbody></table></code></pre></div>
 <h3>What’s the problem?</h3>
 
 <p>Well, if you <a href="https://codepen.io/lbain/pen/GyOXye">look at it yourself</a> you’ll see the console spits out:</p>
-<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+<div class="highlight"><pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
 3
 4
@@ -307,8 +302,7 @@ Todos render called
 TodoItem render called
 TodoItem render called
 TodoItem render called
-</pre></td></tr></tbody></table>
-</code></pre>
+</pre></td></tr></tbody></table></code></pre></div>
 <p>Over and over, every second.</p>
 
 <p><em>That seems silly, the data isn’t even changing!</em></p>
@@ -322,7 +316,7 @@ TodoItem render called
 <p><em>How can we fix <code>TodoItem</code> re-rendering too much?</em></p>
 
 <p>That brings us nicely to the <code>React.PureComponent</code> this post is supposed to be all about. The <code>TodoItem</code> doesn’t need to re-render since none of its data changes. The <code>props</code> coming in each time are the same, and there’s no internal <code>state</code>. Let’s try converting <code>TodoItem</code> to a <code>React.PureComponent</code>:</p>
-<pre class="highlight jsx"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+<div class="highlight"><pre class="highlight jsx"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
 3
 4
@@ -332,7 +326,7 @@ TodoItem render called
 8
 9
 10
-</pre></td><td class="rouge-code"><pre><span class="kr">class</span> <span class="nx">TodoItem</span> <span class="kr">extends</span> <span class="nx">React</span><span class="p">.</span><span class="nx">PureComponent</span> <span class="p">{</span> <span class="c1">// This line changed</span>
+</pre></td><td class="rouge-code"><pre><span class="kd">class</span> <span class="nx">TodoItem</span> <span class="kd">extends</span> <span class="nx">React</span><span class="p">.</span><span class="nx">PureComponent</span> <span class="p">{</span> <span class="c1">// This line changed</span>
 
     <span class="nx">render</span><span class="p">()</span> <span class="p">{</span>
         <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'TodoItem render called'</span><span class="p">);</span>
@@ -342,10 +336,9 @@ TodoItem render called
             <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;);</span>
     <span class="p">}</span>
 <span class="p">}</span>
-</pre></td></tr></tbody></table>
-</code></pre>
+</pre></td></tr></tbody></table></code></pre></div>
 <p>If you make that change in the <a href="https://codepen.io/lbain/pen/GyOXye">CodePen</a> you’ll see the following in the console:</p>
-<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+<div class="highlight"><pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
 3
 4
@@ -363,8 +356,7 @@ Todos render called
 Todos render called
 Todos render called
 ...
-</pre></td></tr></tbody></table>
-</code></pre>
+</pre></td></tr></tbody></table></code></pre></div>
 <p>After the initial <code>TodoItem</code>s render, they never render again <em>even though their parent renders multiple times.</em></p>
 
 <p><strong>Boom.</strong></p>
@@ -376,7 +368,7 @@ Todos render called
 <p><em>Ok, you’ve had your big reveal. How does it actually work?</em></p>
 
 <p>You know how we’d normally need to write our own <code>shouldComponentUpdate</code> to check if the component should re-render or not? Well, React has written that check for us in <code>PureComponent</code>. The <a href="https://github.com/facebook/react/blob/9d310e0bc7b9d5ce39d82536dfcb67f98462a346/packages/react-test-renderer/src/ReactShallowRenderer.js#L170-L173">relevant shouldComponentUpdate code</a> is:</p>
-<pre class="highlight javascript"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+<div class="highlight"><pre class="highlight javascript"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
 3
 4
@@ -384,8 +376,7 @@ Todos render called
     <span class="nx">shouldUpdate</span> <span class="o">=</span> <span class="o">!</span><span class="nx">shallowEqual</span><span class="p">(</span><span class="nx">oldProps</span><span class="p">,</span> <span class="nx">props</span><span class="p">)</span> <span class="o">||</span>
                    <span class="o">!</span><span class="nx">shallowEqual</span><span class="p">(</span><span class="nx">oldState</span><span class="p">,</span> <span class="nx">state</span><span class="p">);</span>
 <span class="p">}</span>
-</pre></td></tr></tbody></table>
-</code></pre>
+</pre></td></tr></tbody></table></code></pre></div>
 <p><strong>Note:</strong> React checks both <code>props</code> and <code>state</code>. Throughout this article I focus on <code>state</code> because it makes the examples easier and self contained, however it’s important to note that everything we talk about here equally applies to <code>props</code>.</p>
 
 <p><a href="https://github.com/facebook/fbjs/blob/c69904a511b900266935168223063dd8772dfc40/packages/fbjs/src/core/shallowEqual.js">Here</a> is the code for that <code>shallowEqual</code> function. Of particular interest is the <a href="https://github.com/facebook/fbjs/blob/c69904a511b900266935168223063dd8772dfc40/packages/fbjs/src/core/shallowEqual.js#L35-L37">method documentation</a>:</p>
@@ -403,7 +394,7 @@ Todos render called
 <p>Feel free to skip if this isn’t new for you.</p>
 
 <p>A <em>shallow</em> equality check means that JS only checks that the value’s object <em>ids</em> (as in, the memory address for where JS stores the information for that particular object) are the same, not that their <em>content</em> is the same. So here’s an example where shallow equality is what you and I would usually think of as “equal”:</p>
-<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+<div class="highlight"><pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
 3
 4
@@ -415,10 +406,9 @@ const item1 = value;
 const item2 = value;
 
 console.log(item1 === item2); // true
-</pre></td></tr></tbody></table>
-</code></pre>
+</pre></td></tr></tbody></table></code></pre></div>
 <p>And here’s an example where JS’s definition of “equal” and our definition might differ:</p>
-<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+<div class="highlight"><pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
 3
 4
@@ -430,14 +420,13 @@ const array1 = [value];
 const array2 = [value];
 
 console.log(array1 === array2); // false
-</pre></td></tr></tbody></table>
-</code></pre>
+</pre></td></tr></tbody></table></code></pre></div>
 <p>Even though we can clearly see the <em>content</em> of <code>array2</code> is the same as <code>array1</code> JS registers them as different since their <em>ids</em> are different. In this case we created two completely separate arrays, that just happened to have the same data in them.</p>
 
 <p><em>What’s the alternative?</em></p>
 
 <p>We can check inside each item and see if all the values are the same - this is called a “deep” equality check. Something like this:</p>
-<pre class="highlight javascript"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+<div class="highlight"><pre class="highlight javascript"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
 3
 4
@@ -448,10 +437,10 @@ console.log(array1 === array2); // false
 9
 10
 11
-</pre></td><td class="rouge-code"><pre><span class="kr">const</span> <span class="nx">value</span> <span class="o">=</span> <span class="s1">'cat'</span><span class="p">;</span>
+</pre></td><td class="rouge-code"><pre><span class="kd">const</span> <span class="nx">value</span> <span class="o">=</span> <span class="s1">'cat'</span><span class="p">;</span>
 
-<span class="kr">const</span> <span class="nx">array1</span> <span class="o">=</span> <span class="p">[</span><span class="nx">value</span><span class="p">];</span>
-<span class="kr">const</span> <span class="nx">array2</span> <span class="o">=</span> <span class="p">[</span><span class="nx">value</span><span class="p">];</span>
+<span class="kd">const</span> <span class="nx">array1</span> <span class="o">=</span> <span class="p">[</span><span class="nx">value</span><span class="p">];</span>
+<span class="kd">const</span> <span class="nx">array2</span> <span class="o">=</span> <span class="p">[</span><span class="nx">value</span><span class="p">];</span>
 
 <span class="kd">let</span> <span class="nx">equal</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
 <span class="nx">array1</span><span class="p">.</span><span class="nx">forEach</span><span class="p">((</span><span class="nx">item</span><span class="p">,</span> <span class="nx">index</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
@@ -459,8 +448,7 @@ console.log(array1 === array2); // false
 <span class="p">});</span>
 
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">equal</span><span class="p">);</span> <span class="c1">// true</span>
-</pre></td></tr></tbody></table>
-</code></pre>
+</pre></td></tr></tbody></table></code></pre></div>
 <p><em>Why would shallow equality ever be useful?</em></p>
 
 <p>Well, it’s <em>really</em> fast. In the previous example we have to loop through every single item in the array to find that the arrays are equal. Assuming you’ve got more than one thing in your array that gets slow quickly.</p>
@@ -474,7 +462,7 @@ console.log(array1 === array2); // false
 <p><em>Could you give an example?</em></p>
 
 <p>As it happens, we already have one ready to go! Let’s leave <code>TodoItem</code> as a <code>PureComponent</code>, and change <code>Todo</code>&#39;s <code>componentDidMount</code> to mess with some data:</p>
-<pre class="highlight javascript"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+<div class="highlight"><pre class="highlight javascript"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
 3
 4
@@ -490,12 +478,11 @@ console.log(array1 === array2); // false
         <span class="p">});</span>
     <span class="p">},</span> <span class="mi">1000</span><span class="p">);</span>
 <span class="p">}</span>
-</pre></td></tr></tbody></table>
-</code></pre>
+</pre></td></tr></tbody></table></code></pre></div>
 <p>If you run this you’ll see the “done” state for the first todo item flash on and off every second. This is good news - we’re updating the data and it’s displaying properly.</p>
 
 <p>But... let’s try this one:</p>
-<pre class="highlight javascript"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+<div class="highlight"><pre class="highlight javascript"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
 3
 4
@@ -511,8 +498,7 @@ console.log(array1 === array2); // false
         <span class="p">});</span>
     <span class="p">},</span> <span class="mi">1000</span><span class="p">);</span>
 <span class="p">}</span>
-</pre></td></tr></tbody></table>
-</code></pre>
+</pre></td></tr></tbody></table></code></pre></div>
 <p>The first todo item <em>should</em> re-render every second with a new “smelly” note displaying. But it doesn’t, there’s just the initial render (without the “smelly” note), and that’s it.</p>
 
 <p><em>Why doesn’t React re-render?</em></p>
@@ -524,7 +510,7 @@ console.log(array1 === array2); // false
 <p>A common pitfall when converting from <code>Component</code> to <code>PureComponent</code> is to forget that the children need to re-render too. As with all React - if the parent doesn’t re-render the children won’t either. So if you have a <code>PureComponent</code> with children, those children can only update if the parent’s <code>state</code> or <code>props</code> are shallowly different (causing the parent to re-render).</p>
 
 <p>You can only have a <code>PureComponent</code> parent if you know none of the children should re-render if the parent doesn’t re-render. Let’s see an example of this pitfall by converting the <code>Todos</code> component from a <code>Component</code> to a <code>PureComponent</code> :</p>
-<pre class="highlight javascript"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+<div class="highlight"><pre class="highlight javascript"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
 3
 4
@@ -538,7 +524,7 @@ console.log(array1 === array2); // false
 12
 13
 14
-</pre></td><td class="rouge-code"><pre><span class="kr">class</span> <span class="nx">Todos</span> <span class="kr">extends</span> <span class="nx">React</span><span class="p">.</span><span class="nx">PureComponent</span> <span class="p">{</span> <span class="c1">// new line</span>
+</pre></td><td class="rouge-code"><pre><span class="kd">class</span> <span class="nx">Todos</span> <span class="kd">extends</span> <span class="nx">React</span><span class="p">.</span><span class="nx">PureComponent</span> <span class="p">{</span> <span class="c1">// new line</span>
     <span class="c1">// ...</span>
 
     <span class="nx">componentDidMount</span><span class="p">()</span> <span class="p">{</span>
@@ -552,8 +538,7 @@ console.log(array1 === array2); // false
 
     <span class="c1">// ...</span>
 <span class="p">}</span>
-</pre></td></tr></tbody></table>
-</code></pre>
+</pre></td></tr></tbody></table></code></pre></div>
 <p>As you can see, most of the code is the same. We’ve changed <code>Todos</code> to be a <code>PureComponent</code> and the <code>componentDidMount</code> to return the original <code>oldState</code> object rather than creating a new object (as before).</p>
 
 <p>Now we <em>should</em> see the first todo item flashing its <code>done</code> state on and off. But it doesn’t, again there is only the initial render and that’s it. This happens because <code>Todos</code> is now a <code>PureComponent</code>, when the shallow equal check happens with <code>oldState === newState</code> we find exactly the same object (again, even though the content of that object has changed). So <code>Todos</code> never re-renders, so its <em>children</em> also never re-render. We can fix this really easily by simply changing <code>Todos</code> back to a <code>Component</code>.</p>

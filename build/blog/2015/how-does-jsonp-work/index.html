@@ -13,7 +13,7 @@
 <meta name="twitter:card" content="summary">
 <meta property="og:title" content="Lucy | JS: How does JSONP work?"/>
 <meta name="og:description" content="Blog posts about programming, mostly JS and frontend, but a few other topics as well."/>
-<meta property="og:image" content="http://lucybain.com/images/social-share.png" />
+<meta property="og:image" content="http://lucybain.com/images/social-share-b7a56bea.png" />
 <meta property="og:url" content="http://lucybain.com/" />
 
   <meta property="og:type" content="article" />
@@ -29,30 +29,30 @@
   </head>
   <body class="">
     <nav>
-  <div class='nav-open-btn'>
-    <ul>
-      <li></li>
-      <li></li>
-      <li></li>
-    </ul>
-  </div>
-  <ul class='nav-display'>
-    <li>
-      <a href="/" class="link-button">Me</a>
-    </li>
-    <li>
-      <a href="/resume/" class="link-button">Resume</a>
-    </li>
-    <li>
-      <a href="/contact-me/" class="link-button">Contact</a>
-    </li>
-    <li>
-      <a href="/resources/" class="link-button">Resources</a>
-    </li>
-    <li>
-      <a href="/blog/" class="link-button active">Blog</a>
-    </li>
-  </ul>
+<div class='nav-open-btn'>
+<ul>
+<li></li>
+<li></li>
+<li></li>
+</ul>
+</div>
+<ul class='nav-display'>
+<li>
+<a href="/" class="link-button">Me</a>
+</li>
+<li>
+<a href="/resume/" class="link-button">Resume</a>
+</li>
+<li>
+<a href="/contact-me/" class="link-button">Contact</a>
+</li>
+<li>
+<a href="/resources/" class="link-button">Resources</a>
+</li>
+<li>
+<a href="/blog/" class="link-button active">Blog</a>
+</li>
+</ul>
 </nav>
 
     <div class="content">
@@ -98,10 +98,9 @@
 <p><em>Ok, tell me a bit about JSONP</em></p>
 
 <p>Well, browsers have a caveat. You aren’t allowed to call other servers from your JS, but you <em>are</em> allowed to include a script from another server. You probably already do this with jQuery. Most people include a script tag to get jQuery hosted from Google rather than hosting it themselves. Something like this:</p>
-<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+<div class="highlight"><pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 </pre></td><td class="rouge-code"><pre>&lt;script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"&gt;&lt;/script&gt;
-</pre></td></tr></tbody></table>
-</code></pre>
+</pre></td></tr></tbody></table></code></pre></div>
 <p>Notice that the domain is <code>ajax.googleapis.com</code> not <code>your-awesome-site.com</code>. Browsers allow this kind of code sharing, but direct calls to an API from JS.</p>
 
 <p>So way back in <a href="http://en.wikipedia.org/wiki/JSONP#History">2005</a> someone had the clever idea to take advantage of this caveat. Instead of calling an API directly (which browsers don’t allow) you can call it via a script tag (which is totally legit).</p>
@@ -109,26 +108,23 @@
 <p><em>So how does it work?</em></p>
 
 <p>Create a function in the global space to handle the JSON returned from the API. It doesn’t have to do much, just enough so you can see what you&#39;re getting:</p>
-<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+<div class="highlight"><pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
 3
 </pre></td><td class="rouge-code"><pre>function myCallbackFunction(data) {
   console.log(data);
 }
-</pre></td></tr></tbody></table>
-</code></pre>
+</pre></td></tr></tbody></table></code></pre></div>
 <p>Next, add a script tag to your page which calls the API and passes it an additional parameter. Something like this:</p>
-<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+<div class="highlight"><pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 </pre></td><td class="rouge-code"><pre>&lt;script src="http://cool-stuff.com/api.json?callback=myCallbackFunction"&gt;&lt;/script&gt;
-</pre></td></tr></tbody></table>
-</code></pre>
+</pre></td></tr></tbody></table></code></pre></div>
 <p>Notice the additional parameter? It’s typically called <code>callback</code>, but not always, check the docs for your particular API. Also note the <code>callback</code> parameter’s value. It’s the same as the function we defined earlier. <em>This is crucial!</em> If those names don’t match up you won’t get your data.</p>
 
 <p>An API that’s set up to handle JSONP knows to look for that special parameter. If it’s there, the response isn’t just JSON, but the JSON wrapped (<strong>P</strong>added) with the name of the callback. So for us, the API would return:</p>
-<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+<div class="highlight"><pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 </pre></td><td class="rouge-code"><pre>myCallbackFunction({'awesome': 'data'});
-</pre></td></tr></tbody></table>
-</code></pre>
+</pre></td></tr></tbody></table></code></pre></div>
 <p>Since the API returns to a script tag the JS is immediately executed. So <code>myCallbackFunction</code> gets called. We defined this function earlier, so we&#39;ll have <code>{&#39;awesome&#39;: &#39;data&#39;}</code> logged to the console!</p>
 
 <p>Phew! Way to get around some security issues!</p>
@@ -136,7 +132,7 @@
 <p><strong>A few things to note:</strong></p>
 
 <p>Generally you <strong>don’t write the script tag yourself.</strong> You can get jQuery to do that for you :) To make the same call as we did previously you can just use:</p>
-<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+<div class="highlight"><pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
 3
 4
@@ -150,8 +146,7 @@
     console.log(data);
   }
 });
-</pre></td></tr></tbody></table>
-</code></pre>
+</pre></td></tr></tbody></table></code></pre></div>
 <p><strong>Safety First!</strong> There’s a reason browsers don’t like you talking to other servers - you never know what those servers will send back! Use good data validation, even if the data is “safe.”</p>
 
 <p><strong>You can only use JSONP for <code>get</code> requests.</strong> You can use normal AJAX to do <code>post</code> and <code>delete</code> and all data manipulations, but you cannot do this with JSONP. The practical reason for this is that HTML tags only ever get information, they can’t do anything else (think image tags, links for style sheets, and script tags). The handy reason is that if you owned the API you almost certainly would not want randoms from the internet updating your data.</p>

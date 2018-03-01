@@ -13,7 +13,7 @@
 <meta name="twitter:card" content="summary">
 <meta property="og:title" content="Lucy | JS: explain Function.prototype.bind"/>
 <meta name="og:description" content="Blog posts about programming, mostly JS and frontend, but a few other topics as well."/>
-<meta property="og:image" content="http://lucybain.com/images/social-share.png" />
+<meta property="og:image" content="http://lucybain.com/images/social-share-b7a56bea.png" />
 <meta property="og:url" content="http://lucybain.com/" />
 
   <meta property="og:type" content="article" />
@@ -29,30 +29,30 @@
   </head>
   <body class="">
     <nav>
-  <div class='nav-open-btn'>
-    <ul>
-      <li></li>
-      <li></li>
-      <li></li>
-    </ul>
-  </div>
-  <ul class='nav-display'>
-    <li>
-      <a href="/" class="link-button">Me</a>
-    </li>
-    <li>
-      <a href="/resume/" class="link-button">Resume</a>
-    </li>
-    <li>
-      <a href="/contact-me/" class="link-button">Contact</a>
-    </li>
-    <li>
-      <a href="/resources/" class="link-button">Resources</a>
-    </li>
-    <li>
-      <a href="/blog/" class="link-button active">Blog</a>
-    </li>
-  </ul>
+<div class='nav-open-btn'>
+<ul>
+<li></li>
+<li></li>
+<li></li>
+</ul>
+</div>
+<ul class='nav-display'>
+<li>
+<a href="/" class="link-button">Me</a>
+</li>
+<li>
+<a href="/resume/" class="link-button">Resume</a>
+</li>
+<li>
+<a href="/contact-me/" class="link-button">Contact</a>
+</li>
+<li>
+<a href="/resources/" class="link-button">Resources</a>
+</li>
+<li>
+<a href="/blog/" class="link-button active">Blog</a>
+</li>
+</ul>
 </nav>
 
     <div class="content">
@@ -94,7 +94,7 @@
 <p><strong>Longer answer</strong></p>
 
 <p>You know how you sometimes write code like this:</p>
-<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+<div class="highlight"><pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
 3
 4
@@ -120,14 +120,13 @@
 var alice = new Person('Alice');
 alice.distractedGreeting();
 // after 500ms logs "Hello, my name is Alice"
-</pre></td></tr></tbody></table>
-</code></pre>
+</pre></td></tr></tbody></table></code></pre></div>
 <p>See that line <code>var self = this;</code>? That’s called “caching <code>this</code>”. (<em>Cache</em> as in save it away, not as in for optimisation purposes.)</p>
 
 <p>That’s pretty handy, since it gives you access to the <code>Person</code> context within the <code>setTimeout</code> function. The “inside” <code>this</code> refers to the <code>setTimeout</code> context, which doesn’t have a <code>name</code> method.</p>
 
 <p>But, it turns out, there is a better way! You can use <code>bind</code>. The example above is updated to:</p>
-<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+<div class="highlight"><pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
 3
 4
@@ -151,8 +150,7 @@ alice.distractedGreeting();
 var alice = new Person('Alice');
 alice.distractedGreeting();
 // after 500ms logs "Hello, my name is Alice"
-</pre></td></tr></tbody></table>
-</code></pre>
+</pre></td></tr></tbody></table></code></pre></div>
 <p>Notice that <code>.bind(this)</code> at the end of the function definition? That means that the <code>this</code> within the <code>setTimeout</code> is bound to the same <code>this</code> within the <code>Person</code>. I think that’s pretty cool.</p>
 
 <p><strong>Warning</strong></p>
@@ -160,7 +158,7 @@ alice.distractedGreeting();
 <p>So for one shining second I thought I&#39;d solved a lot of my JS headaches. I could just always bind <code>this</code> and all my context troubles would be so far away. Unfortunately that’s not the case. There are times that you want access to the “inner” context (<code>setTimeout</code> in our example). If you <code>.bind(this)</code> you&#39;ll lose access to the inner <code>this</code>.</p>
 
 <p>How about an example to clear this up?</p>
-<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+<div class="highlight"><pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
 3
 4
@@ -178,10 +176,9 @@ alice.distractedGreeting();
     }.bind(this), 500);
   }
 }
-</pre></td></tr></tbody></table>
-</code></pre>
+</pre></td></tr></tbody></table></code></pre></div>
 <p>Ok, so using <code>setTimeout</code> doesn’t lead to the most exciting example, but go with me here. We get an error on the <code>this.location.origin</code> because the newly bound <code>this</code> refers to the <code>Person</code> object, not the context of <code>setTimeout</code>. To get the outcome we&#39;re looking for, we have to cache <code>this</code>:</p>
-<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+<div class="highlight"><pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
 3
 4
@@ -201,8 +198,7 @@ alice.distractedGreeting();
     }, 500); // no binding
   }
 }
-</pre></td></tr></tbody></table>
-</code></pre>
+</pre></td></tr></tbody></table></code></pre></div>
 <p>Now when we call <code>distractedGreeting</code> we have access to both the <code>Person</code> context (<code>self</code>) and the <code>setTimeout</code> context (<code>this</code>).</p>
 
 <p><strong>Resources</strong></p>

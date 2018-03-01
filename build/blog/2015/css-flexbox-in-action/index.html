@@ -13,7 +13,7 @@
 <meta name="twitter:card" content="summary">
 <meta property="og:title" content="Lucy | CSS: Flexbox in action - Bitbucket Server pull request header"/>
 <meta name="og:description" content="Blog posts about programming, mostly JS and frontend, but a few other topics as well."/>
-<meta property="og:image" content="http://lucybain.com/images/social-share.png" />
+<meta property="og:image" content="http://lucybain.com/images/social-share-b7a56bea.png" />
 <meta property="og:url" content="http://lucybain.com/" />
 
   <meta property="og:type" content="article" />
@@ -29,30 +29,30 @@
   </head>
   <body class="">
     <nav>
-  <div class='nav-open-btn'>
-    <ul>
-      <li></li>
-      <li></li>
-      <li></li>
-    </ul>
-  </div>
-  <ul class='nav-display'>
-    <li>
-      <a href="/" class="link-button">Me</a>
-    </li>
-    <li>
-      <a href="/resume/" class="link-button">Resume</a>
-    </li>
-    <li>
-      <a href="/contact-me/" class="link-button">Contact</a>
-    </li>
-    <li>
-      <a href="/resources/" class="link-button">Resources</a>
-    </li>
-    <li>
-      <a href="/blog/" class="link-button active">Blog</a>
-    </li>
-  </ul>
+<div class='nav-open-btn'>
+<ul>
+<li></li>
+<li></li>
+<li></li>
+</ul>
+</div>
+<ul class='nav-display'>
+<li>
+<a href="/" class="link-button">Me</a>
+</li>
+<li>
+<a href="/resume/" class="link-button">Resume</a>
+</li>
+<li>
+<a href="/contact-me/" class="link-button">Contact</a>
+</li>
+<li>
+<a href="/resources/" class="link-button">Resources</a>
+</li>
+<li>
+<a href="/blog/" class="link-button active">Blog</a>
+</li>
+</ul>
 </nav>
 
     <div class="content">
@@ -139,7 +139,7 @@
 <p>your-awesome-branch --&gt; the-destination-branch</p>
 
 <p>So I set up my HTML like this:</p>
-<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+<div class="highlight"><pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
 3
 4
@@ -165,21 +165,19 @@
         the-destination-branch
     &lt;/div&gt;
 &lt;/div&gt;
-</pre></td></tr></tbody></table>
-</code></pre>
+</pre></td></tr></tbody></table></code></pre></div>
 <p>(Obviously we use a better arrow really, but we’ll ignore that for this post.)</p>
 
 <p>Alright, now we’re getting somewhere!</p>
 
 <p>So <code>source</code> and <code>destination</code> ultimately need to be shrinkable. In order to allow them to shrink we need to make their container, <code>branch-details</code>, flexible.</p>
-<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+<div class="highlight"><pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
 3
 </pre></td><td class="rouge-code"><pre>.branch-details {
     display: flex;
 }
-</pre></td></tr></tbody></table>
-</code></pre>
+</pre></td></tr></tbody></table></code></pre></div>
 <p>At this point everything is flexible. So if you <a href="/blog/2015/pr-header/simple-flexbox">play with it</a> you can see everything shrinks equally and the branch names wrap across lines. This wrapping makes sense for “normal” uses of flexbox (i.e. columns of text) but it isn’t what we want for the branch names.</p>
 
 <p>We can stop words from wrapping with a quick <code>white-space: nowrap</code> rule. <a href="/blog/2015/pr-header/no-wrap">This works</a> in that the words don’t wrap, but it has the unfortunate side effect of stopping things from shrinking. Let‘s put that back by hiding overflowing text: <code>overflow: hidden;</code>. While we’re at it, we can style the ending with an ellipsis using <code>text-overflow: ellipsis;</code>. Ok, we’re <a href="/blog/2015/pr-header/ellipsis">back in business</a> now!</p>
@@ -191,7 +189,7 @@
 <p>The other element that can shrink is the author. From the designs the author, branch details and PR status are all to the left, so I’ll group these all together in my HTML. We’ll add this next layer of wrapping to make sure the author can shrink, the PR status cannot shrink, and the branches continue to shrink as expected.</p>
 
 <p><a href="/blog/2015/pr-header/author-branches-status">New HTML:</a></p>
-<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+<div class="highlight"><pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
 3
 4
@@ -233,10 +231,9 @@
         PR status
     &lt;/div&gt;
 &lt;/div&gt;
-</pre></td></tr></tbody></table>
-</code></pre>
+</pre></td></tr></tbody></table></code></pre></div>
 <p>Again, the author name needs to be flexible, so we’ll apply most of the same styles we did for the branch details to the <code>pr-info</code> section.</p>
-<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+<div class="highlight"><pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
 3
 4
@@ -254,14 +251,13 @@
     overflow: hidden;
     text-overflow: ellipsis;
 }
-</pre></td></tr></tbody></table>
-</code></pre>
+</pre></td></tr></tbody></table></code></pre></div>
 <p>So we’re left with quite a good <a href="http://localhost:4567/blog/2015/pr-header/author-branches-status-basic-flexible">base</a> of what we want. However, you’ll notice that if you start to shrink the screen too much the author gets complete hidden. We need a better way to keep the author at least somewhat visible, and actually we want to shrink the author slower than the branches (something like: for every 5px the branches shrink the author only shrinks 1px).</p>
 
 <p>Well, keeping the author always somewhat visible is easy enough: we can just chuck a <code>min-width: 5em</code> on there so we don&#39;t accidentally hide the author completely. But now the branch details section doesn’t flex at all. WHY NOT??? Since the branches can flex down to nothing we’ll give the branch details a <code>min-width: 0</code>. (In real life the PRH has the same min-width as the page and won’t be able to shrink down to completely hide the branch details. For this post I’m not going to worry about the page shrinking too small.)</p>
 
 <p>Ok, now we have both the author and the branch details shrinking, time to make that happen at different rates. Flexbox items have a <code>flex-grow</code> property which says how fast the items should grow; there’s also a <code>flex-shrink</code> property that, surprise, surprise, deals with how fast items should shrink. So we’ll make the branches shrink faster than the author by adding:</p>
-<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+<div class="highlight"><pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
 3
 4
@@ -275,8 +271,7 @@
 .branch-details {
     flex-shrink: 5;
 }
-</pre></td></tr></tbody></table>
-</code></pre>
+</pre></td></tr></tbody></table></code></pre></div>
 <p>The rates are fairly arbitrary, but easily changed if needed.</p>
 
 <p>Here’s the <a href="/blog/2015/pr-header/author-branches-status-flexible">working version</a> for you to play with.</p>
@@ -287,7 +282,7 @@
 reviewers, approve button, indication of merge issues, merge button, and menu for other options. Thankfully all of these will be full width (no shrinking) and most will be a consistent size.</p>
 
 <p>New HTML:</p>
-<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+<div class="highlight"><pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
 3
 4
@@ -347,10 +342,9 @@ reviewers, approve button, indication of merge issues, merge button, and menu fo
         &lt;div&gt;menu&lt;/div&gt;
     &lt;/div&gt;
 &lt;/div&gt;
-</pre></td></tr></tbody></table>
-</code></pre>
+</pre></td></tr></tbody></table></code></pre></div>
 <p>Since we know we want the header to be flexible I’ll go ahead and add the basics in. Right now the <code>div</code>s in the <code>.pr-actions</code> are all displayed as block elements, so let’s line them up nicely. Here are the changes:</p>
-<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+<div class="highlight"><pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
 3
 4
@@ -376,21 +370,19 @@ reviewers, approve button, indication of merge issues, merge button, and menu fo
 .pr-actions div {
     display: inline-block;
 }
-</pre></td></tr></tbody></table>
-</code></pre>
+</pre></td></tr></tbody></table></code></pre></div>
 <p>And <a href="/blog/2015/pr-header/in-context">that’s it!</a></p>
 
 <h3>Safari</h3>
 
 <p>Except for Safari. Once I had the proper vendor prefixing in, everything worked as expected in all browsers (even IE!) but not Safari. This <a href="LINK%20HERE">bug</a> might be the culprit, but I’m really not sure. If you have any knowledge about what’s causing this, I’m interested! Anyways, for whatever reason you need to add <code>flex-shrink: 0</code> to the things you don’t want to shrink. So for this we’ll add:</p>
-<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+<div class="highlight"><pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
 3
 </pre></td><td class="rouge-code"><pre>.arrow, .status, .pr-actions {
     flex-shrink: 0;
 }
-</pre></td></tr></tbody></table>
-</code></pre>
+</pre></td></tr></tbody></table></code></pre></div>
 <p>And with that it’s <a href="/blog/2015/pr-header/in-context-safari">Safari compliant!</a></p>
 
 <h2>Done</h2>

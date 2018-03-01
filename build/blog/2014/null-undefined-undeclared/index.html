@@ -13,7 +13,7 @@
 <meta name="twitter:card" content="summary">
 <meta property="og:title" content="Lucy | JS: null, undefined, and undeclared"/>
 <meta name="og:description" content="Blog posts about programming, mostly JS and frontend, but a few other topics as well."/>
-<meta property="og:image" content="http://lucybain.com/images/social-share.png" />
+<meta property="og:image" content="http://lucybain.com/images/social-share-b7a56bea.png" />
 <meta property="og:url" content="http://lucybain.com/" />
 
   <meta property="og:type" content="article" />
@@ -29,30 +29,30 @@
   </head>
   <body class="">
     <nav>
-  <div class='nav-open-btn'>
-    <ul>
-      <li></li>
-      <li></li>
-      <li></li>
-    </ul>
-  </div>
-  <ul class='nav-display'>
-    <li>
-      <a href="/" class="link-button">Me</a>
-    </li>
-    <li>
-      <a href="/resume/" class="link-button">Resume</a>
-    </li>
-    <li>
-      <a href="/contact-me/" class="link-button">Contact</a>
-    </li>
-    <li>
-      <a href="/resources/" class="link-button">Resources</a>
-    </li>
-    <li>
-      <a href="/blog/" class="link-button active">Blog</a>
-    </li>
-  </ul>
+<div class='nav-open-btn'>
+<ul>
+<li></li>
+<li></li>
+<li></li>
+</ul>
+</div>
+<ul class='nav-display'>
+<li>
+<a href="/" class="link-button">Me</a>
+</li>
+<li>
+<a href="/resume/" class="link-button">Resume</a>
+</li>
+<li>
+<a href="/contact-me/" class="link-button">Contact</a>
+</li>
+<li>
+<a href="/resources/" class="link-button">Resources</a>
+</li>
+<li>
+<a href="/blog/" class="link-button active">Blog</a>
+</li>
+</ul>
 </nav>
 
     <div class="content">
@@ -92,7 +92,7 @@
 <p>A variable is undeclared when it does not use the <code>var</code> keyword. It gets created on the global object (that is, the window), thus it operates in a different space as the declared variables.</p>
 
 <p>Example:</p>
-<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+<div class="highlight"><pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
 3
 4
@@ -114,8 +114,7 @@ scoppedVariables();
 
 undeclaredVariable; // 1
 declaredVariable; // 1
-</pre></td></tr></tbody></table>
-</code></pre>
+</pre></td></tr></tbody></table></code></pre></div>
 <p>For more discussion on undeclared variables, checkout <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/var">Mozilla’s documentation</a>.</p>
 
 <p>Note: this will not work in <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Strict_mode">strict mode</a>. It will throw an error when it gets to the <code>undeclaredVariable</code> - see this <a href="https://jsfiddle.net/glenselle/9czx6dLg/2/">example</a>. Thanks to Glen Selle for his comment with this update.</p>
@@ -127,7 +126,7 @@ declaredVariable; // 1
 <p>Something is <code>undefined</code> when it hasn’t been defined yet. If you call a variable or function without having actually created it yet the parser will give you an <code>not defined</code> error.</p>
 
 <p>Example:</p>
-<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+<div class="highlight"><pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
 3
 4
@@ -137,12 +136,11 @@ typeof undefinedVariable; // "undefined"
 
 undefinedFunction(); // undefined
 typeof undefinedFunction; // "undefined"
-</pre></td></tr></tbody></table>
-</code></pre>
+</pre></td></tr></tbody></table></code></pre></div>
 <p>Note that the <code>typeof</code> returns <code>&quot;undefined&quot;</code>, therefore <code>undefined</code> is a primitive type.</p>
 
 <p>The fix for an undefined variable or function is easy, simply define it:</p>
-<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+<div class="highlight"><pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
 3
 4
@@ -156,10 +154,9 @@ function definedFunction(){
   return "I'm defined!"
 }
 typeof definedFunction // "function"
-</pre></td></tr></tbody></table>
-</code></pre>
+</pre></td></tr></tbody></table></code></pre></div>
 <p>You can know if a variable is undefined with the following:</p>
-<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+<div class="highlight"><pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
 3
 4
@@ -169,23 +166,21 @@ typeof definedFunction // "function"
 } else {
   console.log('variable is undefined');
 }
-</pre></td></tr></tbody></table>
-</code></pre>
+</pre></td></tr></tbody></table></code></pre></div>
 <p><br/></p>
 
 <p>Finally we&#39;ll finish up with <strong><code>null</code></strong>.</p>
 
 <p><code>null</code> is a variable that is defined to have a null value.</p>
-<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+<div class="highlight"><pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
 </pre></td><td class="rouge-code"><pre>var nullVariable = null; // null
 typeof nullVariable // "object"
-</pre></td></tr></tbody></table>
-</code></pre>
+</pre></td></tr></tbody></table></code></pre></div>
 <p>You probably don’t often purposefully define a variable to <code>null</code>, but it may be the return value of a function. Often you&#39;ll need to gaurd against <code>null</code> values in your code.</p>
 
 <p>You can know if a variable is null with the following:</p>
-<pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+<div class="highlight"><pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
 3
 4
@@ -195,8 +190,7 @@ typeof nullVariable // "object"
 } else {
   console.log('variable is not null');
 }
-</pre></td></tr></tbody></table>
-</code></pre>
+</pre></td></tr></tbody></table></code></pre></div>
 <p><br/>
 I think the order “undeclared, undefined, and null” makes sense since it’s increasing order of certainty.</p>
 

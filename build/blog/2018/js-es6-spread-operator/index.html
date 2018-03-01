@@ -13,7 +13,7 @@
 <meta name="twitter:card" content="summary">
 <meta property="og:title" content="Lucy | JS: ES6’s spread operator for objects"/>
 <meta name="og:description" content="A description of the new spread operator introduced in ES6."/>
-<meta property="og:image" content="http://lucybain.com/images/social-share.png" />
+<meta property="og:image" content="http://lucybain.com/images/social-share-b7a56bea.png" />
 <meta property="og:url" content="http://lucybain.com/" />
 
   <meta property="og:type" content="article" />
@@ -29,30 +29,30 @@
   </head>
   <body class="">
     <nav>
-  <div class='nav-open-btn'>
-    <ul>
-      <li></li>
-      <li></li>
-      <li></li>
-    </ul>
-  </div>
-  <ul class='nav-display'>
-    <li>
-      <a href="/" class="link-button">Me</a>
-    </li>
-    <li>
-      <a href="/resume/" class="link-button">Resume</a>
-    </li>
-    <li>
-      <a href="/contact-me/" class="link-button">Contact</a>
-    </li>
-    <li>
-      <a href="/resources/" class="link-button">Resources</a>
-    </li>
-    <li>
-      <a href="/blog/" class="link-button active">Blog</a>
-    </li>
-  </ul>
+<div class='nav-open-btn'>
+<ul>
+<li></li>
+<li></li>
+<li></li>
+</ul>
+</div>
+<ul class='nav-display'>
+<li>
+<a href="/" class="link-button">Me</a>
+</li>
+<li>
+<a href="/resume/" class="link-button">Resume</a>
+</li>
+<li>
+<a href="/contact-me/" class="link-button">Contact</a>
+</li>
+<li>
+<a href="/resources/" class="link-button">Resources</a>
+</li>
+<li>
+<a href="/blog/" class="link-button active">Blog</a>
+</li>
+</ul>
 </nav>
 
     <div class="content">
@@ -88,12 +88,11 @@
 <p><em>You talk about an “operator,” but what is it actually?</em></p>
 
 <p>To start with, the spread operator is <code>...</code>. So you can write something like:</p>
-<pre class="highlight javascript"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+<div class="highlight"><pre class="highlight javascript"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
-</pre></td><td class="rouge-code"><pre><span class="kr">const</span> <span class="nx">cat</span> <span class="o">=</span> <span class="p">{</span> <span class="na">age</span><span class="p">:</span> <span class="mi">4</span> <span class="p">};</span>
+</pre></td><td class="rouge-code"><pre><span class="kd">const</span> <span class="nx">cat</span> <span class="o">=</span> <span class="p">{</span> <span class="na">age</span><span class="p">:</span> <span class="mi">4</span> <span class="p">};</span>
 <span class="p">{</span> <span class="p">...</span><span class="nx">cat</span> <span class="p">};</span> <span class="c1">// this isn't useful (yet), but it is valid</span>
-</pre></td></tr></tbody></table>
-</code></pre>
+</pre></td></tr></tbody></table></code></pre></div>
 <p>As of ES6, using three dots in a row is valid code and pretty useful code at that! <code>...</code> <em>spreads</em> out the content so you can manipulate it more easily.</p>
 
 <p>Let’s look at some examples.</p>
@@ -101,36 +100,33 @@
 <h2><code>...</code> to copy an object</h2>
 
 <p>It’s pretty common to want to base one object off of another, something like this:</p>
-<pre class="highlight javascript"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+<div class="highlight"><pre class="highlight javascript"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
 3
 </pre></td><td class="rouge-code"><pre><span class="kd">var</span> <span class="nx">cat</span> <span class="o">=</span> <span class="p">{</span> <span class="na">age</span><span class="p">:</span> <span class="mi">4</span> <span class="p">};</span>
 <span class="kd">var</span> <span class="nx">kitten</span> <span class="o">=</span> <span class="nx">cat</span><span class="p">;</span>
 <span class="nx">kitten</span><span class="p">.</span><span class="nx">age</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
-</pre></td></tr></tbody></table>
-</code></pre>
+</pre></td></tr></tbody></table></code></pre></div>
 <p><em>Doesn’t that have a bug?</em></p>
 
 <p>Yes! <code>kitten</code> and <code>cat</code> refer to the same object. We didn’t create a new object for <code>kitten</code> to reference, we just pointed <code>kitten</code> to the existing <code>cat</code> object. You can see that here:</p>
-<pre class="highlight javascript"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+<div class="highlight"><pre class="highlight javascript"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
 </pre></td><td class="rouge-code"><pre><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">kitten</span><span class="p">.</span><span class="nx">age</span><span class="p">);</span> <span class="c1">// 1</span>
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">cat</span><span class="p">.</span><span class="nx">age</span><span class="p">);</span> <span class="c1">// 1 &lt;-- problem!</span>
-</pre></td></tr></tbody></table>
-</code></pre>
+</pre></td></tr></tbody></table></code></pre></div>
 <p>Using the spread operator we can easily create a new object with all the same properties of an existing object.</p>
-<pre class="highlight javascript"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+<div class="highlight"><pre class="highlight javascript"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
 3
 4
 5
-</pre></td><td class="rouge-code"><pre><span class="kr">const</span> <span class="nx">cat</span> <span class="o">=</span> <span class="p">{</span> <span class="na">age</span><span class="p">:</span> <span class="mi">4</span> <span class="p">};</span>
-<span class="kr">const</span> <span class="nx">kitten</span> <span class="o">=</span> <span class="p">{</span> <span class="p">...</span><span class="nx">cat</span> <span class="p">};</span> <span class="c1">// &lt;-- changed</span>
+</pre></td><td class="rouge-code"><pre><span class="kd">const</span> <span class="nx">cat</span> <span class="o">=</span> <span class="p">{</span> <span class="na">age</span><span class="p">:</span> <span class="mi">4</span> <span class="p">};</span>
+<span class="kd">const</span> <span class="nx">kitten</span> <span class="o">=</span> <span class="p">{</span> <span class="p">...</span><span class="nx">cat</span> <span class="p">};</span> <span class="c1">// &lt;-- changed</span>
 <span class="nx">kitten</span><span class="p">.</span><span class="nx">age</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">kitten</span><span class="p">.</span><span class="nx">age</span><span class="p">);</span> <span class="c1">// 1</span>
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">cat</span><span class="p">.</span><span class="nx">age</span><span class="p">);</span> <span class="c1">// 4 &lt;-- fixed!</span>
-</pre></td></tr></tbody></table>
-</code></pre>
+</pre></td></tr></tbody></table></code></pre></div>
 <p>You can see that we created a new object for <code>kitten</code> to reference when we used the spread operator.</p>
 
 <p><em>Can you explain the <code>{ ...cat }</code> line a bit?</em></p>
@@ -140,92 +136,87 @@
 <p><strong>Warning!</strong></p>
 
 <p>It’s fairly common for people to expect <code>...</code> to <a href="https://stackoverflow.com/questions/38416020/deep-copy-in-es6-using-the-spread-sign">produce a deep copy</a>. Let’s be cleare The spread operator <strong>does not deep copy</strong>, while the spread operator does create a <em>new object</em>, the properties’ <em>values</em> are simply references and not new instances. For example:</p>
-<pre class="highlight javascript"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+<div class="highlight"><pre class="highlight javascript"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
 3
 4
 5
-</pre></td><td class="rouge-code"><pre><span class="kr">const</span> <span class="nx">cat</span> <span class="o">=</span> <span class="p">{</span> <span class="na">age</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span> <span class="na">toys</span><span class="p">:</span> <span class="p">[</span><span class="s2">"mouse"</span><span class="p">,</span> <span class="s2">"catnip"</span><span class="p">]</span> <span class="p">};</span>
-<span class="kr">const</span> <span class="nx">kitten</span> <span class="o">=</span> <span class="p">{</span> <span class="p">...</span><span class="nx">cat</span> <span class="p">};</span>
+</pre></td><td class="rouge-code"><pre><span class="kd">const</span> <span class="nx">cat</span> <span class="o">=</span> <span class="p">{</span> <span class="na">age</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span> <span class="na">toys</span><span class="p">:</span> <span class="p">[</span><span class="s2">"mouse"</span><span class="p">,</span> <span class="s2">"catnip"</span><span class="p">]</span> <span class="p">};</span>
+<span class="kd">const</span> <span class="nx">kitten</span> <span class="o">=</span> <span class="p">{</span> <span class="p">...</span><span class="nx">cat</span> <span class="p">};</span>
 <span class="nx">kitten</span><span class="p">.</span><span class="nx">toys</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="s2">"yarn"</span><span class="p">;</span>
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">kitten</span><span class="p">.</span><span class="nx">toys</span><span class="p">);</span> <span class="c1">// ["mouse", "yarn"]</span>
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">cat</span><span class="p">.</span><span class="nx">toys</span><span class="p">);</span> <span class="c1">// ["mouse", "yarn"] &lt;-- problem!</span>
-</pre></td></tr></tbody></table>
-</code></pre>
+</pre></td></tr></tbody></table></code></pre></div>
 <p>So using the spread operator to create new objects might be fine, it might cause unintended side effects. Please be careful!</p>
 
 <h2><code>...</code> as an object base</h2>
 
 <p>So far we&#39;ve only used <code>...</code> to create a copy of an existing object, but it’s actually more powerful than that. We’ll use a different example to add a <em>new property</em> to an object created with the spread operator:</p>
-<pre class="highlight javascript"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+<div class="highlight"><pre class="highlight javascript"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
 3
 4
 5
 6
 7
-</pre></td><td class="rouge-code"><pre><span class="kr">const</span> <span class="nx">cat</span> <span class="o">=</span> <span class="p">{</span> <span class="na">legs</span><span class="p">:</span> <span class="mi">4</span> <span class="p">};</span>
-<span class="kr">const</span> <span class="nx">dog</span> <span class="o">=</span> <span class="p">{</span>
+</pre></td><td class="rouge-code"><pre><span class="kd">const</span> <span class="nx">cat</span> <span class="o">=</span> <span class="p">{</span> <span class="na">legs</span><span class="p">:</span> <span class="mi">4</span> <span class="p">};</span>
+<span class="kd">const</span> <span class="nx">dog</span> <span class="o">=</span> <span class="p">{</span>
     <span class="p">...</span><span class="nx">cat</span><span class="p">,</span>
     <span class="na">sound</span><span class="p">:</span> <span class="s2">"woof"</span>
 <span class="p">};</span>
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">cat</span><span class="p">);</span> <span class="c1">// { legs: 4 }</span>
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">dog</span><span class="p">);</span> <span class="c1">// { legs: 4, sound: "woof" }</span>
-</pre></td></tr></tbody></table>
-</code></pre>
+</pre></td></tr></tbody></table></code></pre></div>
 <p>Again, you can see the <code>cat</code> object wasn’t changed, but the new <code>dog</code> object has all the properties from <code>cat</code> as well as the new <code>sound</code> property.</p>
 
 <p><em>But cats make sounds too, what happens if you assign the sound property to <code>cat</code>?</em></p>
-<pre class="highlight javascript"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+<div class="highlight"><pre class="highlight javascript"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
 3
 4
 5
 6
 7
-</pre></td><td class="rouge-code"><pre><span class="kr">const</span> <span class="nx">cat</span> <span class="o">=</span> <span class="p">{</span> <span class="na">legs</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span> <span class="na">sound</span><span class="p">:</span> <span class="s2">"meow"</span> <span class="p">};</span>
-<span class="kr">const</span> <span class="nx">dog</span> <span class="o">=</span> <span class="p">{</span>
+</pre></td><td class="rouge-code"><pre><span class="kd">const</span> <span class="nx">cat</span> <span class="o">=</span> <span class="p">{</span> <span class="na">legs</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span> <span class="na">sound</span><span class="p">:</span> <span class="s2">"meow"</span> <span class="p">};</span>
+<span class="kd">const</span> <span class="nx">dog</span> <span class="o">=</span> <span class="p">{</span>
     <span class="p">...</span><span class="nx">cat</span><span class="p">,</span>
     <span class="na">sound</span><span class="p">:</span> <span class="s2">"woof"</span>
 <span class="p">};</span>
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">cat</span><span class="p">);</span> <span class="c1">// { legs: 4, sound: "meow" }</span>
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">dog</span><span class="p">);</span> <span class="c1">// { legs: 4, sound: "woof" }</span>
-</pre></td></tr></tbody></table>
-</code></pre>
+</pre></td></tr></tbody></table></code></pre></div>
 <p>Everything works exactly like you’d hope it would! The <code>cat</code> object has the new <code>sound</code> property, with <code>&quot;meow&quot;</code> correctly assigned. And the <code>dog</code> object is created with the <code>sound</code> property set to <code>&quot;woof&quot;</code>.</p>
 
 <p>Let’s check out those lines more closely:</p>
-<pre class="highlight javascript"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+<div class="highlight"><pre class="highlight javascript"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
 3
 4
-</pre></td><td class="rouge-code"><pre><span class="kr">const</span> <span class="nx">dog</span> <span class="o">=</span> <span class="p">{</span>
+</pre></td><td class="rouge-code"><pre><span class="kd">const</span> <span class="nx">dog</span> <span class="o">=</span> <span class="p">{</span>
     <span class="p">...</span><span class="nx">cat</span><span class="p">,</span>
     <span class="na">sound</span><span class="p">:</span> <span class="s2">"woof"</span>
 <span class="p">};</span>
-</pre></td></tr></tbody></table>
-</code></pre>
+</pre></td></tr></tbody></table></code></pre></div>
 <p>Just like before, the <code>{</code> starts a new object. Then using the spread operator on <code>cat</code> adds all the <code>cat</code> properties to the new object. Our new <code>sound: &quot;woof&quot;</code> <strong>overwrites</strong> the existing <code>sound</code> property from <code>cat</code>. And finally we have the <code>}</code> to finish our new object.</p>
 
 <p><strong>Warning!</strong></p>
 
 <p>The line order maters for this to work. We need <code>sound: &quot;woof&quot;</code> to come <strong>after</strong> <code>...cat</code> so the overwrite happens. This version does <em>not</em> do what we want:</p>
-<pre class="highlight javascript"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+<div class="highlight"><pre class="highlight javascript"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
 3
 4
 5
 6
 7
-</pre></td><td class="rouge-code"><pre><span class="kr">const</span> <span class="nx">cat</span> <span class="o">=</span> <span class="p">{</span> <span class="na">legs</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span> <span class="na">sound</span><span class="p">:</span> <span class="s2">"meow"</span> <span class="p">};</span>
-<span class="kr">const</span> <span class="nx">dog</span> <span class="o">=</span> <span class="p">{</span>
+</pre></td><td class="rouge-code"><pre><span class="kd">const</span> <span class="nx">cat</span> <span class="o">=</span> <span class="p">{</span> <span class="na">legs</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span> <span class="na">sound</span><span class="p">:</span> <span class="s2">"meow"</span> <span class="p">};</span>
+<span class="kd">const</span> <span class="nx">dog</span> <span class="o">=</span> <span class="p">{</span>
     <span class="na">sound</span><span class="p">:</span> <span class="s2">"woof"</span><span class="p">,</span>
     <span class="p">...</span><span class="nx">cat</span>
 <span class="p">};</span>
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">cat</span><span class="p">);</span> <span class="c1">// { legs: 4, sound: "meow" }</span>
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">dog</span><span class="p">);</span> <span class="c1">// { legs: 4, sound: "meow" }</span>
-</pre></td></tr></tbody></table>
-</code></pre>
+</pre></td></tr></tbody></table></code></pre></div>
 <p>Because we put the <code>...cat</code> after the <code>sound: &quot;woof&quot;</code> the <code>cat</code>&#39;s <code>sound</code> property overwrote the <code>sound: &quot;woof&quot;</code> property.</p>
 
 <h2>Wrapping up</h2>
