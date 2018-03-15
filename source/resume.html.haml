@@ -4,15 +4,20 @@ page_class: 'resume'
 .personal-details
   %h1 Lucy Bain
   %p #{link_to 'lucybain.com', 'http://lucybain.com'}
-
+-#
 %section.category.overview
   .two-part-title
     %h2.category-title Overview
     %a.download-link.link-button{download: '', href: '/lucy-bain-resume.pdf'} Download resume
   .item
-    -# Front end
+    -# Team lead
     %p
-      I love learning a concept and understanding how it fits together in the larger picture. To gain a better view of the full stack I'm moving away from back end development and focusing on front end challenges. I'm interested in writing what the user interacts with and making sure they have an wonderful experience. I'm looking for a company focused on quality and a position where I can explore new problems and come up with creative solutions.
+      I enjoy working with others to produce a better outcome. Facilitating discussions, coordinating different streams of work, and making sure our features meet quality standards means the team can ship better features faster.
+      I want to connect people with stretch projects so they can learn more and progress their career. Finally, I strive to give frequent, timely feedback so team members can adjust quickly and continue to improve.
+
+    -# Front end
+      %p
+        I love learning a concept and understanding how it fits together in the larger picture. To gain a better view of the full stack I'm moving away from back end development and focusing on front end challenges. I'm interested in writing what the user interacts with and making sure they have an wonderful experience. I'm looking for a company focused on quality and a position where I can explore new problems and come up with creative solutions.
 
     -# Teaching
       %p
@@ -26,15 +31,28 @@ page_class: 'resume'
       .target-dot
     .titles
       %h3.item-company-title Atlassian (Bitbucket Server)
+      %span.item-personal-title Team Lead
+    .item-date March 2017 - current
+    %ul.item-personal-details
+      %li Grew a team from four to eight developers (a mix of front and backend developers)
+      %li Encouraged professional growth and career development of team members by giving frequent feedback, coordinating stretch opportunities, and connecting weekly
+      %li Transitioned team from Kanban to Scrum practices to improve estimations and delivery reliability
+      %li Collaborated with the product manager and designers to define and clarify features including project level admin, personal access tokens, and filtering repositories
+  
+  .item
+    .target-border
+      .target-dot
+    .titles
+      %h3.item-company-title Atlassian (Bitbucket Server)
       %span.item-personal-title Developer
-    .item-date Feb 2015 - current
+    .item-date Feb 2015 - March 2017
     %p.item-key-tech
       JavaScript (ES6), Less, React, Redux, Closure Templates, QUnit
     %ul.item-personal-details
-      %li Built the front end for features such as a repo importer, personal dashboards, and refacted code for notifications
-      %li Lead the development of the tags feature which involved working with designers and the backend developers to stay on track as well as implementing the feature in the front end
-      %li Introduced pair programming as a method to share things we learned, decrease time for code review, and spread knowledge about the codebase, quality expectations, and learn who to ask which questions
-      %li Organised and ran many diversity efforts, including facilitating mentor rings for women, holding events to foster a sense of community, and empowering other women to take ownership of these efforts to make them self-sustaining
+      %li Built the front end for features such as a repo importer, personal dashboards, and refactored code for notifications
+      %li Lead the development of the tags feature by working with designers and backend developers as well as implementing the front end
+      %li Introduced pair programming as a method to share things we learned, decrease time for code review, and spread knowledge about the codebase, and quality expectations
+      %li Organised and ran many diversity efforts, including facilitating mentor rings for women, holding events to foster a sense of community
 
   .item
     .target-border
@@ -76,7 +94,7 @@ page_class: 'resume'
     %p.item-key-tech C++, Objective-C
     %ul.item-personal-details
       %li Built new features for our next release and saw them through QA
-      %li Developed a prototype iPhone application to transfer data asynchronously using Objective-C, and process that data with the company's C++ library
+      %li Developed a prototype iPhone application to transfer data asynchronously using Objective-C, and process that data with the company’s C++ library
   .page-break
 
   -#
@@ -144,7 +162,7 @@ page_class: 'resume'
     .titles
       %h3.item-company-title Study groups
       %span.item-personal-title Leader, Mentor
-    %div.item-date February 2014 - current
+    %div.item-date February 2014 - November 2016
     %ul.item-personal-details
       %li Created and led a group to practice JavaScript that attracted 40 registrations (#{link_to 'codesydney.com/2014-js', 'http://www.codesydney.com/2014-js/'})
       %li Led an introduction to programming course in Python (#{link_to 'lucybain.com/python', '/python'})
