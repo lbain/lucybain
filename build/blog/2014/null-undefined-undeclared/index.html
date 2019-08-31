@@ -105,12 +105,12 @@
 11
 </pre></td><td class="rouge-code"><pre>var declaredVariable = 1;
 
-function scoppedVariables() {
+function scopedVariables() {
   undeclaredVariable = 1;
   var declaredVariable = 2;
 }
 
-scoppedVariables();
+scopedVariables();
 
 undeclaredVariable; // 1
 declaredVariable; // 1
@@ -123,7 +123,7 @@ declaredVariable; // 1
 
 <p>Now let’s move on to <strong><code>undefined</code></strong>.</p>
 
-<p>Something is <code>undefined</code> when it hasn’t been defined yet. If you call a variable or function without having actually created it yet the parser will give you an <code>not defined</code> error.</p>
+<p>Something is <code>undefined</code> when it hasn’t been defined yet. If you call a variable or function without having actually created it yet the parser will give you a <code>not defined</code> error.</p>
 
 <p>Example:</p>
 <div class="highlight"><pre class="highlight plaintext"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
