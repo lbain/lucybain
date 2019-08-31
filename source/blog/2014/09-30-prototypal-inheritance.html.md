@@ -21,7 +21,7 @@ function Mammal() {
     if(this.hasTail){
       return "Moving with tail";
     } else {
-      return "Moving with tail";
+      return "Moving without tail";
     }
   };
 }

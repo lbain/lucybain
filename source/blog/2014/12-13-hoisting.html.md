@@ -7,7 +7,7 @@ I’m continuing my series of [JS interview questions](https://github.com/h5bp/F
 
 ## Explain “hoisting”
 
-Hoisting is when a JS declaration is lifted (“hoisted”) to the top of it’s scope by the JS interpreter. What this really means is that a variable or function isn’t necessarily declared where you think it is. Understandably, this can cause problems. Variables and functions are hoisted differently, as we'll see below.
+Hoisting is when a JS declaration is lifted (“hoisted”) to the top of its scope by the JS interpreter. What this really means is that a variable or function isn’t necessarily declared where you think it is. Understandably, this can cause problems. Variables and functions are hoisted differently, as we'll see below.
 
 ## Hoisting variables
 

@@ -35,7 +35,7 @@ That test *fails*.
 
 Go ahead, copy that into a new file and run it for yourself. I'll wait. Yep, it fails. There’s no value set for `bar` and yet `foo.valid?` still returns `true`. This is a problem.
 
-So what’s going on here? I asked [stackOverflow](http://stackoverflow.com/questions/18140898/whats-the-difference-between-validate-and-validates), and it turns out there’s a totally reasonable explanation. `validate` is written to look for a custom validation method, this time one called `bar`. It just so happens there is a `bar` method, set from the `attr_accessor :bar` line. That `bar` method returns doesn’t return `false`, nor does it put an error messages on the main object’s body. Therefore `validate` interprets the call to `bar` as a success and doesn’t invalidate the object.
+So what’s going on here? I asked [stackOverflow](http://stackoverflow.com/questions/18140898/whats-the-difference-between-validate-and-validates), and it turns out there’s a totally reasonable explanation. `validate` is written to look for a custom validation method, this time one called `bar`. It just so happens there is a `bar` method, set from the `attr_accessor :bar` line. That `bar` method returns doesn’t return `false`, nor does it put any error messages on the main object’s body. Therefore `validate` interprets the call to `bar` as a success and doesn’t invalidate the object.
 
 This explanation also means there’s no way for the code to “fail loudly” - to alert us that we haven’t purposefully defined a custom method when we use `validate`. So I'd suggest grepping through your codebase for `validate :` and making very sure that’s what you actually want.
 

@@ -20,12 +20,12 @@ Example:
 ```
 var declaredVariable = 1;
 
-function scoppedVariables() {
+function scopedVariables() {
   undeclaredVariable = 1;
   var declaredVariable = 2;
 }
 
-scoppedVariables();
+scopedVariables();
 
 undeclaredVariable; // 1
 declaredVariable; // 1
@@ -40,7 +40,7 @@ Note: this will not work in [strict mode](https://developer.mozilla.org/en-US/do
 
 Now let’s move on to **`undefined`**.
 
-Something is `undefined` when it hasn’t been defined yet. If you call a variable or function without having actually created it yet the parser will give you an `not defined` error.
+Something is `undefined` when it hasn’t been defined yet. If you call a variable or function without having actually created it yet the parser will give you a `not defined` error.
 
 Example:
 
