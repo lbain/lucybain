@@ -1,1 +1,1 @@
-function randomNumber(t){return Math.floor(Math.random()*t)}var hitable={isHit:function(t){var r=this.x-t.x,i=this.y-t.y,n=Math.sqrt(r*r+i*i);return n<this.radius+t.radius},done:function(){return!this.alive}};
+function randomNumber(t){return Math.floor(Math.random()*t)}var hitable={isHit:function(t){var r=this.x-t.x,i=this.y-t.y;return Math.sqrt(r*r+i*i)<this.radius+t.radius},done:function(){return!this.alive}};

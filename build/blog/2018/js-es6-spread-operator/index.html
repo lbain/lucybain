@@ -24,8 +24,8 @@
 
 <link href="/images/favicon.ico" rel="icon" type="image/ico"></link>
 <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700|Source+Code+Pro" rel="stylesheet" type="text/css"></link>
-<link href="/stylesheets/syntax_highlighting-26cdc014.css" rel="stylesheet" media="all" />
-<link href="/stylesheets/application-31b674ae.css" rel="stylesheet" media="all" />
+<link href="/stylesheets/syntax_highlighting-207092f9.css" rel="stylesheet" media="all" />
+<link href="/stylesheets/application-864e45b0.css" rel="stylesheet" media="all" />
   </head>
   <body class="">
     <nav>
@@ -141,9 +141,9 @@
 3
 4
 5
-</pre></td><td class="rouge-code"><pre><span class="kd">const</span> <span class="nx">cat</span> <span class="o">=</span> <span class="p">{</span> <span class="na">age</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span> <span class="na">toys</span><span class="p">:</span> <span class="p">[</span><span class="s2">"mouse"</span><span class="p">,</span> <span class="s2">"catnip"</span><span class="p">]</span> <span class="p">};</span>
+</pre></td><td class="rouge-code"><pre><span class="kd">const</span> <span class="nx">cat</span> <span class="o">=</span> <span class="p">{</span> <span class="na">age</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span> <span class="na">toys</span><span class="p">:</span> <span class="p">[</span><span class="dl">"</span><span class="s2">mouse</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">catnip</span><span class="dl">"</span><span class="p">]</span> <span class="p">};</span>
 <span class="kd">const</span> <span class="nx">kitten</span> <span class="o">=</span> <span class="p">{</span> <span class="p">...</span><span class="nx">cat</span> <span class="p">};</span>
-<span class="nx">kitten</span><span class="p">.</span><span class="nx">toys</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="s2">"yarn"</span><span class="p">;</span>
+<span class="nx">kitten</span><span class="p">.</span><span class="nx">toys</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">yarn</span><span class="dl">"</span><span class="p">;</span>
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">kitten</span><span class="p">.</span><span class="nx">toys</span><span class="p">);</span> <span class="c1">// ["mouse", "yarn"]</span>
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">cat</span><span class="p">.</span><span class="nx">toys</span><span class="p">);</span> <span class="c1">// ["mouse", "yarn"] &lt;-- problem!</span>
 </pre></td></tr></tbody></table></code></pre></div>
@@ -162,7 +162,7 @@
 </pre></td><td class="rouge-code"><pre><span class="kd">const</span> <span class="nx">cat</span> <span class="o">=</span> <span class="p">{</span> <span class="na">legs</span><span class="p">:</span> <span class="mi">4</span> <span class="p">};</span>
 <span class="kd">const</span> <span class="nx">dog</span> <span class="o">=</span> <span class="p">{</span>
     <span class="p">...</span><span class="nx">cat</span><span class="p">,</span>
-    <span class="na">sound</span><span class="p">:</span> <span class="s2">"woof"</span>
+    <span class="na">sound</span><span class="p">:</span> <span class="dl">"</span><span class="s2">woof</span><span class="dl">"</span>
 <span class="p">};</span>
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">cat</span><span class="p">);</span> <span class="c1">// { legs: 4 }</span>
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">dog</span><span class="p">);</span> <span class="c1">// { legs: 4, sound: "woof" }</span>
@@ -177,10 +177,10 @@
 5
 6
 7
-</pre></td><td class="rouge-code"><pre><span class="kd">const</span> <span class="nx">cat</span> <span class="o">=</span> <span class="p">{</span> <span class="na">legs</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span> <span class="na">sound</span><span class="p">:</span> <span class="s2">"meow"</span> <span class="p">};</span>
+</pre></td><td class="rouge-code"><pre><span class="kd">const</span> <span class="nx">cat</span> <span class="o">=</span> <span class="p">{</span> <span class="na">legs</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span> <span class="na">sound</span><span class="p">:</span> <span class="dl">"</span><span class="s2">meow</span><span class="dl">"</span> <span class="p">};</span>
 <span class="kd">const</span> <span class="nx">dog</span> <span class="o">=</span> <span class="p">{</span>
     <span class="p">...</span><span class="nx">cat</span><span class="p">,</span>
-    <span class="na">sound</span><span class="p">:</span> <span class="s2">"woof"</span>
+    <span class="na">sound</span><span class="p">:</span> <span class="dl">"</span><span class="s2">woof</span><span class="dl">"</span>
 <span class="p">};</span>
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">cat</span><span class="p">);</span> <span class="c1">// { legs: 4, sound: "meow" }</span>
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">dog</span><span class="p">);</span> <span class="c1">// { legs: 4, sound: "woof" }</span>
@@ -194,7 +194,7 @@
 4
 </pre></td><td class="rouge-code"><pre><span class="kd">const</span> <span class="nx">dog</span> <span class="o">=</span> <span class="p">{</span>
     <span class="p">...</span><span class="nx">cat</span><span class="p">,</span>
-    <span class="na">sound</span><span class="p">:</span> <span class="s2">"woof"</span>
+    <span class="na">sound</span><span class="p">:</span> <span class="dl">"</span><span class="s2">woof</span><span class="dl">"</span>
 <span class="p">};</span>
 </pre></td></tr></tbody></table></code></pre></div>
 <p>Just like before, the <code>{</code> starts a new object. Then using the spread operator on <code>cat</code> adds all the <code>cat</code> properties to the new object. Our new <code>sound: &quot;woof&quot;</code> <strong>overwrites</strong> the existing <code>sound</code> property from <code>cat</code>. And finally we have the <code>}</code> to finish our new object.</p>
@@ -209,9 +209,9 @@
 5
 6
 7
-</pre></td><td class="rouge-code"><pre><span class="kd">const</span> <span class="nx">cat</span> <span class="o">=</span> <span class="p">{</span> <span class="na">legs</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span> <span class="na">sound</span><span class="p">:</span> <span class="s2">"meow"</span> <span class="p">};</span>
+</pre></td><td class="rouge-code"><pre><span class="kd">const</span> <span class="nx">cat</span> <span class="o">=</span> <span class="p">{</span> <span class="na">legs</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span> <span class="na">sound</span><span class="p">:</span> <span class="dl">"</span><span class="s2">meow</span><span class="dl">"</span> <span class="p">};</span>
 <span class="kd">const</span> <span class="nx">dog</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="na">sound</span><span class="p">:</span> <span class="s2">"woof"</span><span class="p">,</span>
+    <span class="na">sound</span><span class="p">:</span> <span class="dl">"</span><span class="s2">woof</span><span class="dl">"</span><span class="p">,</span>
     <span class="p">...</span><span class="nx">cat</span>
 <span class="p">};</span>
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">cat</span><span class="p">);</span> <span class="c1">// { legs: 4, sound: "meow" }</span>

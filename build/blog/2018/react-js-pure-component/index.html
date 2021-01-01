@@ -24,8 +24,8 @@
 
 <link href="/images/favicon.ico" rel="icon" type="image/ico"></link>
 <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700|Source+Code+Pro" rel="stylesheet" type="text/css"></link>
-<link href="/stylesheets/syntax_highlighting-26cdc014.css" rel="stylesheet" media="all" />
-<link href="/stylesheets/application-31b674ae.css" rel="stylesheet" media="all" />
+<link href="/stylesheets/syntax_highlighting-207092f9.css" rel="stylesheet" media="all" />
+<link href="/stylesheets/application-864e45b0.css" rel="stylesheet" media="all" />
   </head>
   <body class="">
     <nav>
@@ -148,9 +148,9 @@
         <span class="k">super</span><span class="p">(</span><span class="nx">props</span><span class="p">);</span>
         <span class="k">this</span><span class="p">.</span><span class="nx">state</span> <span class="o">=</span> <span class="p">{</span> 
             <span class="na">todos</span><span class="p">:</span> <span class="p">[</span>
-                <span class="p">{</span> <span class="na">title</span><span class="p">:</span> <span class="s1">'take out the trash'</span><span class="p">,</span> <span class="na">done</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span> <span class="na">notes</span><span class="p">:</span> <span class="p">[</span><span class="s1">'boring'</span><span class="p">]</span> <span class="p">},</span>
-                <span class="p">{</span> <span class="na">title</span><span class="p">:</span> <span class="s1">'walk dog'</span><span class="p">,</span> <span class="na">done</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span> <span class="na">notes</span><span class="p">:</span> <span class="p">[</span><span class="s1">'exercise'</span><span class="p">]</span> <span class="p">},</span>
-                <span class="p">{</span> <span class="na">title</span><span class="p">:</span> <span class="s1">'read about React'</span><span class="p">,</span> <span class="na">done</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span> <span class="na">notes</span><span class="p">:</span> <span class="p">[</span><span class="s1">'fun!'</span><span class="p">]</span> <span class="p">},</span>
+                <span class="p">{</span> <span class="na">title</span><span class="p">:</span> <span class="dl">'</span><span class="s1">take out the trash</span><span class="dl">'</span><span class="p">,</span> <span class="na">done</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span> <span class="na">notes</span><span class="p">:</span> <span class="p">[</span><span class="dl">'</span><span class="s1">boring</span><span class="dl">'</span><span class="p">]</span> <span class="p">},</span>
+                <span class="p">{</span> <span class="na">title</span><span class="p">:</span> <span class="dl">'</span><span class="s1">walk dog</span><span class="dl">'</span><span class="p">,</span> <span class="na">done</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span> <span class="na">notes</span><span class="p">:</span> <span class="p">[</span><span class="dl">'</span><span class="s1">exercise</span><span class="dl">'</span><span class="p">]</span> <span class="p">},</span>
+                <span class="p">{</span> <span class="na">title</span><span class="p">:</span> <span class="dl">'</span><span class="s1">read about React</span><span class="dl">'</span><span class="p">,</span> <span class="na">done</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span> <span class="na">notes</span><span class="p">:</span> <span class="p">[</span><span class="dl">'</span><span class="s1">fun!</span><span class="dl">'</span><span class="p">]</span> <span class="p">},</span>
             <span class="p">]</span>
         <span class="p">};</span>
     <span class="p">}</span>
@@ -164,14 +164,14 @@
     <span class="p">}</span>
 
     <span class="nx">render</span><span class="p">()</span> <span class="p">{</span>
-        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'Todos render called'</span><span class="p">);</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">Todos render called</span><span class="dl">'</span><span class="p">);</span>
         <span class="k">return</span> <span class="p">(&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
             <span class="si">{</span><span class="k">this</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">todos</span><span class="p">.</span><span class="nx">map</span><span class="p">((</span><span class="nx">todo</span><span class="p">,</span> <span class="nx">i</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
               <span class="k">return</span> <span class="p">(&lt;</span><span class="nc">TodoItem</span>
-                <span class="na">key=</span><span class="si">{</span><span class="nx">i</span><span class="si">}</span>
-                <span class="na">title=</span><span class="si">{</span><span class="nx">todo</span><span class="p">.</span><span class="nx">title</span><span class="si">}</span>
-                <span class="na">done=</span><span class="si">{</span><span class="nx">todo</span><span class="p">.</span><span class="nx">done</span><span class="si">}</span>
-                <span class="na">notes=</span><span class="si">{</span><span class="nx">todo</span><span class="p">.</span><span class="nx">notes</span><span class="si">}</span>
+                <span class="na">key</span><span class="p">=</span><span class="si">{</span><span class="nx">i</span><span class="si">}</span>
+                <span class="na">title</span><span class="p">=</span><span class="si">{</span><span class="nx">todo</span><span class="p">.</span><span class="nx">title</span><span class="si">}</span>
+                <span class="na">done</span><span class="p">=</span><span class="si">{</span><span class="nx">todo</span><span class="p">.</span><span class="nx">done</span><span class="si">}</span>
+                <span class="na">notes</span><span class="p">=</span><span class="si">{</span><span class="nx">todo</span><span class="p">.</span><span class="nx">notes</span><span class="si">}</span>
               <span class="p">/&gt;);</span>
             <span class="p">})</span><span class="si">}</span>
           <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;);</span>
@@ -181,15 +181,15 @@
 <span class="kd">class</span> <span class="nx">TodoItem</span> <span class="kd">extends</span> <span class="nx">React</span><span class="p">.</span><span class="nx">Component</span> <span class="p">{</span>
 
     <span class="nx">render</span><span class="p">()</span> <span class="p">{</span>
-        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'TodoItem render called'</span><span class="p">);</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">TodoItem render called</span><span class="dl">'</span><span class="p">);</span>
         <span class="k">return</span> <span class="p">(&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
-                <span class="si">{</span><span class="k">this</span><span class="p">.</span><span class="nx">props</span><span class="p">.</span><span class="nx">done</span> <span class="p">?</span> <span class="s1">'✓'</span><span class="p">:</span> <span class="s1">'▢'</span><span class="si">}</span> <span class="si">{</span><span class="k">this</span><span class="p">.</span><span class="nx">props</span><span class="p">.</span><span class="nx">title</span><span class="si">}</span>
-                (<span class="si">{</span><span class="k">this</span><span class="p">.</span><span class="nx">props</span><span class="p">.</span><span class="nx">notes</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="s1">', '</span><span class="p">)</span><span class="si">}</span>)
+                <span class="si">{</span><span class="k">this</span><span class="p">.</span><span class="nx">props</span><span class="p">.</span><span class="nx">done</span> <span class="p">?</span> <span class="dl">'</span><span class="s1">✓</span><span class="dl">'</span><span class="p">:</span> <span class="dl">'</span><span class="s1">▢</span><span class="dl">'</span><span class="si">}</span> <span class="si">{</span><span class="k">this</span><span class="p">.</span><span class="nx">props</span><span class="p">.</span><span class="nx">title</span><span class="si">}</span>
+                (<span class="si">{</span><span class="k">this</span><span class="p">.</span><span class="nx">props</span><span class="p">.</span><span class="nx">notes</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="dl">'</span><span class="s1">, </span><span class="dl">'</span><span class="p">)</span><span class="si">}</span>)
             <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;);</span>
     <span class="p">}</span>
 <span class="p">}</span>
 
-<span class="nx">ReactDOM</span><span class="p">.</span><span class="nx">render</span><span class="p">(&lt;</span><span class="nc">Todos</span> <span class="p">/&gt;,</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">'app'</span><span class="p">));</span>
+<span class="nx">ReactDOM</span><span class="p">.</span><span class="nx">render</span><span class="p">(&lt;</span><span class="nc">Todos</span> <span class="p">/&gt;,</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="dl">'</span><span class="s1">app</span><span class="dl">'</span><span class="p">));</span>
 </pre></td></tr></tbody></table></code></pre></div>
 <p>It’s bigger than most of the examples I write, but it’s all relevant - promise! We’ll break it down (feel free to skip down to the next section if the above is clear to you already):</p>
 
@@ -212,9 +212,9 @@
     <span class="k">super</span><span class="p">(</span><span class="nx">props</span><span class="p">);</span>
     <span class="k">this</span><span class="p">.</span><span class="nx">state</span> <span class="o">=</span> <span class="p">{</span> 
         <span class="na">todos</span><span class="p">:</span> <span class="p">[</span>
-            <span class="p">{</span> <span class="na">title</span><span class="p">:</span> <span class="s1">'take out the trash'</span><span class="p">,</span> <span class="na">done</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span> <span class="na">notes</span><span class="p">:</span> <span class="p">[</span><span class="s1">'boring'</span><span class="p">]</span> <span class="p">},</span>
-            <span class="p">{</span> <span class="na">title</span><span class="p">:</span> <span class="s1">'walk dog'</span><span class="p">,</span> <span class="na">done</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span> <span class="na">notes</span><span class="p">:</span> <span class="p">[</span><span class="s1">'exercise'</span><span class="p">]</span> <span class="p">},</span>
-            <span class="p">{</span> <span class="na">title</span><span class="p">:</span> <span class="s1">'read about React'</span><span class="p">,</span> <span class="na">done</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span> <span class="na">notes</span><span class="p">:</span> <span class="p">[</span><span class="s1">'fun!'</span><span class="p">]</span> <span class="p">},</span>
+            <span class="p">{</span> <span class="na">title</span><span class="p">:</span> <span class="dl">'</span><span class="s1">take out the trash</span><span class="dl">'</span><span class="p">,</span> <span class="na">done</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span> <span class="na">notes</span><span class="p">:</span> <span class="p">[</span><span class="dl">'</span><span class="s1">boring</span><span class="dl">'</span><span class="p">]</span> <span class="p">},</span>
+            <span class="p">{</span> <span class="na">title</span><span class="p">:</span> <span class="dl">'</span><span class="s1">walk dog</span><span class="dl">'</span><span class="p">,</span> <span class="na">done</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span> <span class="na">notes</span><span class="p">:</span> <span class="p">[</span><span class="dl">'</span><span class="s1">exercise</span><span class="dl">'</span><span class="p">]</span> <span class="p">},</span>
+            <span class="p">{</span> <span class="na">title</span><span class="p">:</span> <span class="dl">'</span><span class="s1">read about React</span><span class="dl">'</span><span class="p">,</span> <span class="na">done</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span> <span class="na">notes</span><span class="p">:</span> <span class="p">[</span><span class="dl">'</span><span class="s1">fun!</span><span class="dl">'</span><span class="p">]</span> <span class="p">},</span>
         <span class="p">]</span>
     <span class="p">};</span>
 <span class="p">}</span>
@@ -250,14 +250,14 @@
 12
 13
 </pre></td><td class="rouge-code"><pre><span class="nx">render</span><span class="p">()</span> <span class="p">{</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'Todos render called'</span><span class="p">);</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">Todos render called</span><span class="dl">'</span><span class="p">);</span>
     <span class="k">return</span> <span class="p">(&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
         <span class="si">{</span><span class="k">this</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">todos</span><span class="p">.</span><span class="nx">map</span><span class="p">((</span><span class="nx">todo</span><span class="p">,</span> <span class="nx">i</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
             <span class="k">return</span> <span class="p">(&lt;</span><span class="nc">TodoItem</span>
-            <span class="na">key=</span><span class="si">{</span><span class="nx">i</span><span class="si">}</span>
-            <span class="na">title=</span><span class="si">{</span><span class="nx">todo</span><span class="p">.</span><span class="nx">title</span><span class="si">}</span>
-            <span class="na">done=</span><span class="si">{</span><span class="nx">todo</span><span class="p">.</span><span class="nx">done</span><span class="si">}</span>
-            <span class="na">notes=</span><span class="si">{</span><span class="nx">todo</span><span class="p">.</span><span class="nx">notes</span><span class="si">}</span>
+            <span class="na">key</span><span class="p">=</span><span class="si">{</span><span class="nx">i</span><span class="si">}</span>
+            <span class="na">title</span><span class="p">=</span><span class="si">{</span><span class="nx">todo</span><span class="p">.</span><span class="nx">title</span><span class="si">}</span>
+            <span class="na">done</span><span class="p">=</span><span class="si">{</span><span class="nx">todo</span><span class="p">.</span><span class="nx">done</span><span class="si">}</span>
+            <span class="na">notes</span><span class="p">=</span><span class="si">{</span><span class="nx">todo</span><span class="p">.</span><span class="nx">notes</span><span class="si">}</span>
             <span class="p">/&gt;);</span>
         <span class="p">})</span><span class="si">}</span>
         <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;);</span>
@@ -276,10 +276,10 @@
 6
 7
 </pre></td><td class="rouge-code"><pre><span class="nx">render</span><span class="p">()</span> <span class="p">{</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'TodoItem render called'</span><span class="p">);</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">TodoItem render called</span><span class="dl">'</span><span class="p">);</span>
     <span class="k">return</span> <span class="p">(&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
-            <span class="si">{</span><span class="k">this</span><span class="p">.</span><span class="nx">props</span><span class="p">.</span><span class="nx">done</span> <span class="p">?</span> <span class="s1">'✓'</span><span class="p">:</span> <span class="s1">'▢'</span><span class="si">}</span> <span class="si">{</span><span class="k">this</span><span class="p">.</span><span class="nx">props</span><span class="p">.</span><span class="nx">title</span><span class="si">}</span>
-            (<span class="si">{</span><span class="k">this</span><span class="p">.</span><span class="nx">props</span><span class="p">.</span><span class="nx">notes</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="s1">', '</span><span class="p">)</span><span class="si">}</span>)
+            <span class="si">{</span><span class="k">this</span><span class="p">.</span><span class="nx">props</span><span class="p">.</span><span class="nx">done</span> <span class="p">?</span> <span class="dl">'</span><span class="s1">✓</span><span class="dl">'</span><span class="p">:</span> <span class="dl">'</span><span class="s1">▢</span><span class="dl">'</span><span class="si">}</span> <span class="si">{</span><span class="k">this</span><span class="p">.</span><span class="nx">props</span><span class="p">.</span><span class="nx">title</span><span class="si">}</span>
+            (<span class="si">{</span><span class="k">this</span><span class="p">.</span><span class="nx">props</span><span class="p">.</span><span class="nx">notes</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="dl">'</span><span class="s1">, </span><span class="dl">'</span><span class="p">)</span><span class="si">}</span>)
         <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;);</span>
 <span class="p">}</span>
 </pre></td></tr></tbody></table></code></pre></div>
@@ -329,10 +329,10 @@ TodoItem render called
 </pre></td><td class="rouge-code"><pre><span class="kd">class</span> <span class="nx">TodoItem</span> <span class="kd">extends</span> <span class="nx">React</span><span class="p">.</span><span class="nx">PureComponent</span> <span class="p">{</span> <span class="c1">// This line changed</span>
 
     <span class="nx">render</span><span class="p">()</span> <span class="p">{</span>
-        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'TodoItem render called'</span><span class="p">);</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">TodoItem render called</span><span class="dl">'</span><span class="p">);</span>
         <span class="k">return</span> <span class="p">(&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
-                <span class="si">{</span><span class="k">this</span><span class="p">.</span><span class="nx">props</span><span class="p">.</span><span class="nx">done</span> <span class="p">?</span> <span class="s1">'✓'</span><span class="p">:</span> <span class="s1">'▢'</span><span class="si">}</span> <span class="si">{</span><span class="k">this</span><span class="p">.</span><span class="nx">props</span><span class="p">.</span><span class="nx">title</span><span class="si">}</span>
-                (<span class="si">{</span><span class="k">this</span><span class="p">.</span><span class="nx">props</span><span class="p">.</span><span class="nx">notes</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="s1">', '</span><span class="p">)</span><span class="si">}</span>)
+                <span class="si">{</span><span class="k">this</span><span class="p">.</span><span class="nx">props</span><span class="p">.</span><span class="nx">done</span> <span class="p">?</span> <span class="dl">'</span><span class="s1">✓</span><span class="dl">'</span><span class="p">:</span> <span class="dl">'</span><span class="s1">▢</span><span class="dl">'</span><span class="si">}</span> <span class="si">{</span><span class="k">this</span><span class="p">.</span><span class="nx">props</span><span class="p">.</span><span class="nx">title</span><span class="si">}</span>
+                (<span class="si">{</span><span class="k">this</span><span class="p">.</span><span class="nx">props</span><span class="p">.</span><span class="nx">notes</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="dl">'</span><span class="s1">, </span><span class="dl">'</span><span class="p">)</span><span class="si">}</span>)
             <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;);</span>
     <span class="p">}</span>
 <span class="p">}</span>
@@ -437,7 +437,7 @@ console.log(array1 === array2); // false
 9
 10
 11
-</pre></td><td class="rouge-code"><pre><span class="kd">const</span> <span class="nx">value</span> <span class="o">=</span> <span class="s1">'cat'</span><span class="p">;</span>
+</pre></td><td class="rouge-code"><pre><span class="kd">const</span> <span class="nx">value</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">cat</span><span class="dl">'</span><span class="p">;</span>
 
 <span class="kd">const</span> <span class="nx">array1</span> <span class="o">=</span> <span class="p">[</span><span class="nx">value</span><span class="p">];</span>
 <span class="kd">const</span> <span class="nx">array2</span> <span class="o">=</span> <span class="p">[</span><span class="nx">value</span><span class="p">];</span>
@@ -493,7 +493,7 @@ console.log(array1 === array2); // false
 </pre></td><td class="rouge-code"><pre><span class="nx">componentDidMount</span><span class="p">()</span> <span class="p">{</span>
     <span class="nx">setInterval</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
         <span class="k">this</span><span class="p">.</span><span class="nx">setState</span><span class="p">((</span><span class="nx">oldState</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-            <span class="nx">oldState</span><span class="p">.</span><span class="nx">todos</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="nx">notes</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="s1">'smelly'</span><span class="p">);</span> <span class="c1">// new line</span>
+            <span class="nx">oldState</span><span class="p">.</span><span class="nx">todos</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="nx">notes</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="dl">'</span><span class="s1">smelly</span><span class="dl">'</span><span class="p">);</span> <span class="c1">// new line</span>
             <span class="k">return</span> <span class="p">{</span> <span class="na">todos</span><span class="p">:</span> <span class="p">[...</span><span class="nx">oldState</span><span class="p">.</span><span class="nx">todos</span><span class="p">]</span> <span class="p">}</span>
         <span class="p">});</span>
     <span class="p">},</span> <span class="mi">1000</span><span class="p">);</span>

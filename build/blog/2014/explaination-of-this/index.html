@@ -24,8 +24,8 @@
 
 <link href="/images/favicon.ico" rel="icon" type="image/ico"></link>
 <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700|Source+Code+Pro" rel="stylesheet" type="text/css"></link>
-<link href="/stylesheets/syntax_highlighting-26cdc014.css" rel="stylesheet" media="all" />
-<link href="/stylesheets/application-31b674ae.css" rel="stylesheet" media="all" />
+<link href="/stylesheets/syntax_highlighting-207092f9.css" rel="stylesheet" media="all" />
+<link href="/stylesheets/application-864e45b0.css" rel="stylesheet" media="all" />
   </head>
   <body class="">
     <nav>
@@ -127,7 +127,7 @@
 <div class="highlight"><pre class="highlight javascript"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
 3
-</pre></td><td class="rouge-code"><pre><span class="nx">$</span><span class="p">(</span><span class="s1">'a'</span><span class="p">).</span><span class="nx">on</span><span class="p">(</span><span class="s1">'click'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+</pre></td><td class="rouge-code"><pre><span class="nx">$</span><span class="p">(</span><span class="dl">'</span><span class="s1">a</span><span class="dl">'</span><span class="p">).</span><span class="nx">on</span><span class="p">(</span><span class="dl">'</span><span class="s1">click</span><span class="dl">'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">target</span> <span class="o">===</span> <span class="k">this</span><span class="p">);</span> <span class="c1">// logs true</span>
 <span class="p">});</span>
 </pre></td></tr></tbody></table></code></pre></div>
@@ -146,10 +146,10 @@
 6
 7
 </pre></td><td class="rouge-code"><pre><span class="kd">function</span> <span class="nx">greeter</span><span class="p">(){</span>
-  <span class="k">return</span> <span class="s1">'Hello '</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">+</span> <span class="s1">'!'</span><span class="p">;</span>
+  <span class="k">return</span> <span class="dl">'</span><span class="s1">Hello </span><span class="dl">'</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">+</span> <span class="dl">'</span><span class="s1">!</span><span class="dl">'</span><span class="p">;</span>
 <span class="p">}</span>
 
-<span class="kd">var</span> <span class="nx">passableContext</span> <span class="o">=</span> <span class="p">{</span> <span class="na">name</span><span class="p">:</span> <span class="s1">'world'</span> <span class="p">};</span>
+<span class="kd">var</span> <span class="nx">passableContext</span> <span class="o">=</span> <span class="p">{</span> <span class="na">name</span><span class="p">:</span> <span class="dl">'</span><span class="s1">world</span><span class="dl">'</span> <span class="p">};</span>
 <span class="nx">greeter</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">passableContext</span><span class="p">)</span>
 <span class="c1">// returns 'Hello world!'</span>
 </pre></td></tr></tbody></table></code></pre></div>
