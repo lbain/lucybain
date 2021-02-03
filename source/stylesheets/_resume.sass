@@ -55,11 +55,13 @@ $technical-color: #f78a4f
   margin: 5px auto
   border: 10px solid white
 
-.item-company-title
-  display: inline-block
-  margin-top: 0
+.item-secondary-title
+  color: $light-gray
   @include respond(medium-large)
-    margin-bottom: 5px
+    margin-left: 0 !important
+    margin-bottom: 0.2em !important
+    display: block
+
 
 .item-date
   position: absolute
@@ -77,19 +79,17 @@ $technical-color: #f78a4f
     margin-bottom: 0.2em
 
 .item-personal-title
-  margin-left: 15px
-  color: $light-gray
+  display: inline-block
+  margin-top: 0
   @include respond(medium-large)
-    margin-left: 0 !important
-    margin-bottom: 0.2em !important
-    display: block
+    margin-bottom: 5px
 
 .item-key-tech
   color: $light-gray
   font-size: 0.8em
 
 .titles.wrap
-  .item-company-title
+  .item-secondary-title
     margin-bottom: 0
 
   .item-personal-title
@@ -176,7 +176,7 @@ $technical-color: #f78a4f
       height: 10px
     .target-dot
       display: none
-    .overview .item-company-title
+    .overview .item-secondary-title
       display: none
     li, p
       margin-bottom: 0.2em
