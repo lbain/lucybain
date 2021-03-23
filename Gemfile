@@ -8,6 +8,7 @@ gem "middleman-blog"
 gem "middleman-livereload"
 gem "nokogiri"
 gem "redcarpet"
+gem 'opal', '~> 0.10.5'
 
 # For feed.xml.builder
 gem "builder"
