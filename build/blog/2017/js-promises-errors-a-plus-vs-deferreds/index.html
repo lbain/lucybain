@@ -24,8 +24,8 @@
 
 <link href="/images/favicon.ico" rel="icon" type="image/ico"></link>
 <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700|Source+Code+Pro" rel="stylesheet" type="text/css"></link>
-<link href="/stylesheets/syntax_highlighting-26cdc014.css" rel="stylesheet" media="all" />
-<link href="/stylesheets/application-31b674ae.css" rel="stylesheet" media="all" />
+<link href="/stylesheets/syntax_highlighting-207092f9.css" rel="stylesheet" media="all" />
+<link href="/stylesheets/application-944474ea.css" rel="stylesheet" media="all" />
   </head>
   <body class="">
     <nav>
@@ -136,7 +136,7 @@
 <span class="c1">// [[PromiseStatus]] : "resolved"</span>
 
 <span class="kd">const</span> <span class="nx">errorPromise</span> <span class="o">=</span> <span class="nx">resolvedPromise</span><span class="p">.</span><span class="nx">then</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
-  <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="s1">'Promise error'</span><span class="p">);</span>
+  <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="dl">'</span><span class="s1">Promise error</span><span class="dl">'</span><span class="p">);</span>
 <span class="p">});</span>
 
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">errorPromise</span><span class="p">);</span>
@@ -145,7 +145,7 @@
 <span class="nx">errorPromise</span><span class="p">.</span><span class="nx">then</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
   <span class="c1">// this never runs because the promise was rejected</span>
   <span class="c1">// before getting to this code</span>
-  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'Never run'</span><span class="p">);</span> 
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">Never run</span><span class="dl">'</span><span class="p">);</span> 
 <span class="p">});</span>
 </pre></td></tr></tbody></table></code></pre></div>
 <p>As you can see, <code>resolvedPromise</code> settled to a “resolved” state and never threw an error. However <code>errorPromise</code> did throw an error so it settled to a “rejected” state. Because of rules like this one, it is not possible for a Promises/A+ promise to settle in a “pending” state. <strong>If the promise has settled, the Promises/A+ spec guarantees that it has been resolved or rejected.</strong></p>
@@ -171,7 +171,7 @@
 <span class="nx">resolvedDeferred</span><span class="p">.</span><span class="nx">state</span><span class="p">();</span> <span class="c1">// "resolved"</span>
 
 <span class="kd">const</span> <span class="nx">errorDeferred</span> <span class="o">=</span> <span class="nx">resolvedDeferred</span><span class="p">.</span><span class="nx">then</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
-  <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="s1">'Deferred error'</span><span class="p">);</span>
+  <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="dl">'</span><span class="s1">Deferred error</span><span class="dl">'</span><span class="p">);</span>
 <span class="p">})</span>
 
 <span class="nx">errorDeferred</span><span class="p">.</span><span class="nx">state</span><span class="p">();</span> <span class="c1">// "pending"</span>
@@ -232,12 +232,12 @@
   <span class="kd">const</span> <span class="nx">resolvedPromise</span> <span class="o">=</span>  <span class="nb">Promise</span><span class="p">.</span><span class="nx">resolve</span><span class="p">();</span>
 
   <span class="kd">const</span> <span class="nx">errorPromise</span> <span class="o">=</span> <span class="nx">resolvedPromise</span><span class="p">.</span><span class="nx">then</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
-    <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="s1">'Promise error'</span><span class="p">);</span>
+    <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="dl">'</span><span class="s1">Promise error</span><span class="dl">'</span><span class="p">);</span>
   <span class="p">});</span>
 <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
   <span class="c1">// This catch never gets triggered because the "Promise error"</span>
   <span class="c1">// isn't bubbled up this far</span>
-  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'Does not run'</span><span class="p">);</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">Does not run</span><span class="dl">'</span><span class="p">);</span>
 <span class="p">}</span>
 </pre></td></tr></tbody></table></code></pre></div>
 <p><em>Alright, now we know what doesn’t work...</em></p>
@@ -255,7 +255,7 @@
 </pre></td><td class="rouge-code"><pre><span class="kd">const</span> <span class="nx">resolvedPromise</span> <span class="o">=</span>  <span class="nb">Promise</span><span class="p">.</span><span class="nx">resolve</span><span class="p">();</span>
 
 <span class="kd">const</span> <span class="nx">errorPromise</span> <span class="o">=</span> <span class="nx">resolvedPromise</span><span class="p">.</span><span class="nx">then</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
-  <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="s1">'Promise error'</span><span class="p">);</span>
+  <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="dl">'</span><span class="s1">Promise error</span><span class="dl">'</span><span class="p">);</span>
 <span class="p">}).</span><span class="k">catch</span><span class="p">(</span><span class="nx">error</span> <span class="o">=&gt;</span> <span class="p">{</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span> <span class="c1">// [Error: Promise error]</span>
 <span class="p">});</span>
@@ -280,7 +280,7 @@
 </pre></td><td class="rouge-code"><pre><span class="k">try</span> <span class="p">{</span>
   <span class="kd">const</span> <span class="nx">resolvedDeferred</span> <span class="o">=</span> <span class="nx">$</span><span class="p">.</span><span class="nx">Deferred</span><span class="p">().</span><span class="nx">resolve</span><span class="p">();</span>
   <span class="kd">const</span> <span class="nx">errorDeferred</span> <span class="o">=</span> <span class="nx">resolvedDeferred</span><span class="p">.</span><span class="nx">then</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
-    <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="s1">'Deferred error'</span><span class="p">);</span>
+    <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="dl">'</span><span class="s1">Deferred error</span><span class="dl">'</span><span class="p">);</span>
   <span class="p">});</span>
 <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span> <span class="c1">// [Error: Deferred error]</span>
@@ -301,7 +301,7 @@
 12
 </pre></td><td class="rouge-code"><pre><span class="kd">const</span> <span class="nx">resolvedDeferred</span> <span class="o">=</span> <span class="nx">$</span><span class="p">.</span><span class="nx">Deferred</span><span class="p">();</span>
 <span class="kd">const</span> <span class="nx">errorDeferred</span> <span class="o">=</span> <span class="nx">resolvedDeferred</span><span class="p">.</span><span class="nx">then</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
-  <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="s1">'Deferred error'</span><span class="p">);</span>
+  <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="dl">'</span><span class="s1">Deferred error</span><span class="dl">'</span><span class="p">);</span>
 <span class="p">})</span>
 
 <span class="k">try</span> <span class="p">{</span>
@@ -337,13 +337,13 @@
   <span class="kd">const</span> <span class="nx">resolvedDeferred</span> <span class="o">=</span> <span class="nx">$</span><span class="p">.</span><span class="nx">Deferred</span><span class="p">().</span><span class="nx">resolve</span><span class="p">();</span>
   <span class="kd">const</span> <span class="nx">errorDeferred</span> <span class="o">=</span> <span class="nx">resolvedDeferred</span><span class="p">.</span><span class="nx">then</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
     <span class="nx">setTimeout</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
-      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'throw error'</span><span class="p">);</span> <span class="c1">// "throw error"</span>
-      <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="s1">'Deferred error'</span><span class="p">);</span>  
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">throw error</span><span class="dl">'</span><span class="p">);</span> <span class="c1">// "throw error"</span>
+      <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="dl">'</span><span class="s1">Deferred error</span><span class="dl">'</span><span class="p">);</span>  
     <span class="p">},</span> <span class="mi">20</span><span class="p">);</span>
   <span class="p">});</span>
 <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
   <span class="c1">// this never runs because the catch won’t be triggered</span>
-  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'Does not run'</span><span class="p">);</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">Does not run</span><span class="dl">'</span><span class="p">);</span>
 <span class="p">}</span>
 </pre></td></tr></tbody></table></code></pre></div>
 <p>As you can see, now that we’re using async code the try/catch doesn’t work any more.</p>
@@ -368,8 +368,8 @@
 9
 </pre></td><td class="rouge-code"><pre><span class="kd">const</span> <span class="nx">resolvedDeferred</span> <span class="o">=</span> <span class="nx">$</span><span class="p">.</span><span class="nx">Deferred</span><span class="p">().</span><span class="nx">resolve</span><span class="p">();</span>
 <span class="kd">const</span> <span class="nx">errorDeferred</span> <span class="o">=</span> <span class="nx">resolvedDeferred</span><span class="p">.</span><span class="nx">then</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
-  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'throw error'</span><span class="p">);</span> <span class="c1">// "throw error"</span>
-  <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="s1">'Deferred error'</span><span class="p">);</span>  
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">throw error</span><span class="dl">'</span><span class="p">);</span> <span class="c1">// "throw error"</span>
+  <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="dl">'</span><span class="s1">Deferred error</span><span class="dl">'</span><span class="p">);</span>  
 <span class="p">}).</span><span class="k">catch</span><span class="p">(</span><span class="nx">error</span> <span class="o">=&gt;</span> <span class="p">{</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span> <span class="c1">// [object Error] {}</span>
 <span class="p">});</span>
@@ -409,8 +409,8 @@
 <span class="kd">const</span> <span class="nx">resolvedDeferred</span> <span class="o">=</span> <span class="nx">$</span><span class="p">.</span><span class="nx">Deferred</span><span class="p">().</span><span class="nx">resolve</span><span class="p">();</span>
 <span class="kd">const</span> <span class="nx">errorDeferred</span> <span class="o">=</span> <span class="nx">resolvedDeferred</span><span class="p">.</span><span class="nx">then</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
   <span class="nx">setTimeout</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'throw error'</span><span class="p">);</span>
-    <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="s1">'Deferred error'</span><span class="p">);</span>  
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">throw error</span><span class="dl">'</span><span class="p">);</span>
+    <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="dl">'</span><span class="s1">Deferred error</span><span class="dl">'</span><span class="p">);</span>  
   <span class="p">},</span> <span class="mi">20</span><span class="p">);</span>
 <span class="p">});</span>
 
