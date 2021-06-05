@@ -11,7 +11,7 @@ Hello and welcome to 2021!
 
 This year I'll give back to the amazing community in a different, covid safe, way. I'm offering four people six coaching sessions! I got a lot of value attending coaching sessions; so much so, that I took a course on how to be a coach so I could help others. I really liked the one-on-one focus, and ability to dive deep into a problem with someone else. I'd like to take my coaching practice deeper through a continued relationship so you have time to make changes and grow.
 
-I'm particularly interested in **coaching women through inflection points**. Did you become a manager? Or perhaps you're considering changing companies? Are you a mid or senior developer wondering how to have wider impact? Possibly your a junior developer in your first programming job.
+I'm particularly interested in **coaching women through inflection points**. Did you become a manager? Or perhaps you're considering changing companies? Are you a mid or senior developer wondering how to have wider impact? Possibly you're a junior developer in your first programming job.
 
 Please do apply if you're keen, but don't particularly align with one of these inflection points. These were just the ones that came to mind, but I'm happy to hear about other situations too!
 
