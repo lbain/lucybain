@@ -4,10 +4,44 @@
   <id>http://lucybain.com/blog</id>
   <link href="http://lucybain.com/blog"/>
   <link href="http://lucybain.com/feed.xml" rel="self"/>
-  <updated>2021-06-01T10:00:00+10:00</updated>
+  <updated>2021-06-05T10:00:00+10:00</updated>
   <author>
     <name>Lucy Bain</name>
   </author>
+  <entry>
+    <title>One-on-One Meeting Template</title>
+    <link rel="alternate" href="http://lucybain.com/blog/2021/one-on-one-template/"/>
+    <id>http://lucybain.com/blog/2021/one-on-one-template/</id>
+    <published>2021-06-05T10:00:00+10:00</published>
+    <author>
+      <name>Article Author</name>
+    </author>
+    <content type="html">&lt;p&gt;I’ve been a manager for over four years now, and I still really enjoy it. I thought I should share some of the tools I’ve used with others and hopefully get some feedback as well!&lt;/p&gt;
+
+&lt;p&gt;I schedule my one-on-ones (1:1s) for 30 minutes every week, but the template would work for other frequencies or durations as well. Some managers don’t take notes during 1:1s - this might work well if you have a small team and a fast performance review cycle (and a great memory!). However my team is anywhere from 6-12 people, and our official review cycle is annual (and I don’t have the best memory...). So I make sure to take and notes about each 1:1. This is the template I use to my team member and me on the same page (literally!).&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="/images/blog/one-on-one-template/template-c742fc8c.png" alt="" /&gt;&lt;/p&gt;
+
+&lt;p&gt;As you can see, I have four columns:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Date - when we had the 1:1. I put the additional table cells on the page one month at a time, so either of us can fill in future meetings with notes to add if needed.&lt;/li&gt;
+&lt;li&gt;Their column - their space to write whatever agenda items they want to cover&lt;/li&gt;
+&lt;li&gt;My column - my space to add agenda items&lt;/li&gt;
+&lt;li&gt;Action items - a checklist of things we need to do&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;It’s not a terribly interesting template, but it works!&lt;/p&gt;
+
+&lt;p&gt;During the 1:1 we work from left to right. Any agenda item in their column trumps my agenda items. If we run out of time we can schedule another session. If we repeatedly run out of time we can increase our default duration. This means some team members have two 1:1s in a specific week. I’ve also setup some team members with regular 45 minute 1:1s; typically this happens when we&amp;#39;re working on a promotion case or they’re running a complex project and it doesn’t last forever (but it’s fine if it does!).&lt;/p&gt;
+
+&lt;p&gt;As we talk, I add details about the agenda items they added to their column (or take live notes on what they discussed but wasn’t on the page in advance). Since we both have access to the page, this means they can review my notes and let me know if I misunderstood or misinterpreted something they said. I try to jot down notes for what I said too (if the agenda item isn’t clear enough), but I’ll admit I don’t always get this right. It’s hard to talk and type at the same time! A few people will take notes on their own, but I don’t enforce this.&lt;/p&gt;
+
+&lt;p&gt;Typically towards the end of the meeting we’ll summarise any actions either of us need to take and keep track of it in the “Action items” column. Each item should have an assignee, and it’s ok if things are assigned to me. I want to make it clear that it’s fine for them to expect me to get things done. We have different roles and responsibilities. I need to meet mine just as much as they need to meet theirs.&lt;/p&gt;
+
+&lt;p&gt;I run this template for one year, covering the same time period as the annual review. I’ve tried having each session on a different page, but it means you can’t easily &lt;code&gt;cmd+f&lt;/code&gt; for topics that you’re pretty sure you covered earlier. Depending on your review cycle it might make sense to split out the pages for 3 or 6 months just to keep things tidier.&lt;/p&gt;
+</content>
+  </entry>
   <entry>
     <title>Free Coaching Sessions Again!</title>
     <link rel="alternate" href="http://lucybain.com/blog/2021/coaching-sessions-pt2/"/>
@@ -750,164 +784,6 @@ console.log(array1 === array2); // false
 &lt;li&gt;&lt;a href="https://blog.shakacode.com/react-purecomponent-pitfalls-d057882f4b6e"&gt;Rob Wise&lt;/a&gt; lists more pitfalls of using &lt;code&gt;PureComponent&lt;/code&gt; - a good one to check if your &lt;code&gt;PureComponents&lt;/code&gt; are rendering &lt;em&gt;more&lt;/em&gt; than you’d expect (whereas I focused on not triggering re-renders enough)&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://medium.com/modus-create-front-end-development/component-rendering-performance-in-react-df859b474adc"&gt;Grgur Grisogono&lt;/a&gt; did some performance testing on &lt;code&gt;PureComponent&lt;/code&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://medium.com/@dan_abramov/smart-and-dumb-components-7ca2f9a7c7d0"&gt;Dan Abramov&lt;/a&gt; and &lt;a href="https://jaketrent.com/post/smart-dumb-components-react/"&gt;Jake Trent&lt;/a&gt; discuss what “pure” components are&lt;/li&gt;
-&lt;/ul&gt;
-</content>
-  </entry>
-  <entry>
-    <title>JS: ES6’s spread operator for objects</title>
-    <link rel="alternate" href="http://lucybain.com/blog/2018/js-es6-spread-operator/"/>
-    <id>http://lucybain.com/blog/2018/js-es6-spread-operator/</id>
-    <published>2018-01-02T11:00:00+11:00</published>
-    <author>
-      <name>Article Author</name>
-    </author>
-    <content type="html">&lt;p&gt;Over two years ago I wrote about &lt;a href="/blog/2015/js-destructuring-assignment-es6/"&gt;destructuring assignment&lt;/a&gt;, which has been one of my favourite features of ES6. Since then I’ve also come to value destructuring’s “sibling” feature - the spread operator. Although you can use the spread operator on other things, this post focuses on how to use it with objects.&lt;/p&gt;
-
-&lt;h2&gt;What it does&lt;/h2&gt;
-
-&lt;p&gt;&lt;em&gt;You talk about an “operator,” but what is it actually?&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;To start with, the spread operator is &lt;code&gt;...&lt;/code&gt;. So you can write something like:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre class="highlight javascript"&gt;&lt;code&gt;&lt;table class="rouge-table"&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class="rouge-gutter gl"&gt;&lt;pre class="lineno"&gt;1
-2
-&lt;/pre&gt;&lt;/td&gt;&lt;td class="rouge-code"&gt;&lt;pre&gt;&lt;span class="kd"&gt;const&lt;/span&gt; &lt;span class="nx"&gt;cat&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="na"&gt;age&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt; &lt;span class="p"&gt;};&lt;/span&gt;
-&lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="p"&gt;...&lt;/span&gt;&lt;span class="nx"&gt;cat&lt;/span&gt; &lt;span class="p"&gt;};&lt;/span&gt; &lt;span class="c1"&gt;// this isn't useful (yet), but it is valid&lt;/span&gt;
-&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;As of ES6, using three dots in a row is valid code and pretty useful code at that! &lt;code&gt;...&lt;/code&gt; &lt;em&gt;spreads&lt;/em&gt; out the content so you can manipulate it more easily.&lt;/p&gt;
-
-&lt;p&gt;Let’s look at some examples.&lt;/p&gt;
-
-&lt;h2&gt;&lt;code&gt;...&lt;/code&gt; to copy an object&lt;/h2&gt;
-
-&lt;p&gt;It’s pretty common to want to base one object off of another, something like this:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre class="highlight javascript"&gt;&lt;code&gt;&lt;table class="rouge-table"&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class="rouge-gutter gl"&gt;&lt;pre class="lineno"&gt;1
-2
-3
-&lt;/pre&gt;&lt;/td&gt;&lt;td class="rouge-code"&gt;&lt;pre&gt;&lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;cat&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="na"&gt;age&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt; &lt;span class="p"&gt;};&lt;/span&gt;
-&lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;kitten&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;cat&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-&lt;span class="nx"&gt;kitten&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;age&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;&lt;em&gt;Doesn’t that have a bug?&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;Yes! &lt;code&gt;kitten&lt;/code&gt; and &lt;code&gt;cat&lt;/code&gt; refer to the same object. We didn’t create a new object for &lt;code&gt;kitten&lt;/code&gt; to reference, we just pointed &lt;code&gt;kitten&lt;/code&gt; to the existing &lt;code&gt;cat&lt;/code&gt; object. You can see that here:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre class="highlight javascript"&gt;&lt;code&gt;&lt;table class="rouge-table"&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class="rouge-gutter gl"&gt;&lt;pre class="lineno"&gt;1
-2
-&lt;/pre&gt;&lt;/td&gt;&lt;td class="rouge-code"&gt;&lt;pre&gt;&lt;span class="nx"&gt;console&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;log&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;kitten&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;age&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt; &lt;span class="c1"&gt;// 1&lt;/span&gt;
-&lt;span class="nx"&gt;console&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;log&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;cat&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;age&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt; &lt;span class="c1"&gt;// 1 &amp;lt;-- problem!&lt;/span&gt;
-&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;Using the spread operator we can easily create a new object with all the same properties of an existing object.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre class="highlight javascript"&gt;&lt;code&gt;&lt;table class="rouge-table"&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class="rouge-gutter gl"&gt;&lt;pre class="lineno"&gt;1
-2
-3
-4
-5
-&lt;/pre&gt;&lt;/td&gt;&lt;td class="rouge-code"&gt;&lt;pre&gt;&lt;span class="kd"&gt;const&lt;/span&gt; &lt;span class="nx"&gt;cat&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="na"&gt;age&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt; &lt;span class="p"&gt;};&lt;/span&gt;
-&lt;span class="kd"&gt;const&lt;/span&gt; &lt;span class="nx"&gt;kitten&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="p"&gt;...&lt;/span&gt;&lt;span class="nx"&gt;cat&lt;/span&gt; &lt;span class="p"&gt;};&lt;/span&gt; &lt;span class="c1"&gt;// &amp;lt;-- changed&lt;/span&gt;
-&lt;span class="nx"&gt;kitten&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;age&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-&lt;span class="nx"&gt;console&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;log&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;kitten&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;age&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt; &lt;span class="c1"&gt;// 1&lt;/span&gt;
-&lt;span class="nx"&gt;console&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;log&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;cat&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;age&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt; &lt;span class="c1"&gt;// 4 &amp;lt;-- fixed!&lt;/span&gt;
-&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;You can see that we created a new object for &lt;code&gt;kitten&lt;/code&gt; to reference when we used the spread operator.&lt;/p&gt;
-
-&lt;p&gt;&lt;em&gt;Can you explain the &lt;code&gt;{ ...cat }&lt;/code&gt; line a bit?&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;Sure thing, the &lt;code&gt;{&lt;/code&gt; tells Javascript that we want to create a new object. Next, the &lt;code&gt;...cat&lt;/code&gt; says that we want that new object to contain all the same contents as the &lt;code&gt;cat&lt;/code&gt; object. And finally, &lt;code&gt;}&lt;/code&gt; means that we’re finished with that object and don’t want to add anything else to the object.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Warning!&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;It’s fairly common for people to expect &lt;code&gt;...&lt;/code&gt; to &lt;a href="https://stackoverflow.com/questions/38416020/deep-copy-in-es6-using-the-spread-sign"&gt;produce a deep copy&lt;/a&gt;. Let’s be cleare The spread operator &lt;strong&gt;does not deep copy&lt;/strong&gt;, while the spread operator does create a &lt;em&gt;new object&lt;/em&gt;, the properties’ &lt;em&gt;values&lt;/em&gt; are simply references and not new instances. For example:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre class="highlight javascript"&gt;&lt;code&gt;&lt;table class="rouge-table"&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class="rouge-gutter gl"&gt;&lt;pre class="lineno"&gt;1
-2
-3
-4
-5
-&lt;/pre&gt;&lt;/td&gt;&lt;td class="rouge-code"&gt;&lt;pre&gt;&lt;span class="kd"&gt;const&lt;/span&gt; &lt;span class="nx"&gt;cat&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="na"&gt;age&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="na"&gt;toys&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="dl"&gt;"&lt;/span&gt;&lt;span class="s2"&gt;mouse&lt;/span&gt;&lt;span class="dl"&gt;"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="dl"&gt;"&lt;/span&gt;&lt;span class="s2"&gt;catnip&lt;/span&gt;&lt;span class="dl"&gt;"&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="p"&gt;};&lt;/span&gt;
-&lt;span class="kd"&gt;const&lt;/span&gt; &lt;span class="nx"&gt;kitten&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="p"&gt;...&lt;/span&gt;&lt;span class="nx"&gt;cat&lt;/span&gt; &lt;span class="p"&gt;};&lt;/span&gt;
-&lt;span class="nx"&gt;kitten&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;toys&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="dl"&gt;"&lt;/span&gt;&lt;span class="s2"&gt;yarn&lt;/span&gt;&lt;span class="dl"&gt;"&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-&lt;span class="nx"&gt;console&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;log&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;kitten&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;toys&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt; &lt;span class="c1"&gt;// ["mouse", "yarn"]&lt;/span&gt;
-&lt;span class="nx"&gt;console&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;log&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;cat&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;toys&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt; &lt;span class="c1"&gt;// ["mouse", "yarn"] &amp;lt;-- problem!&lt;/span&gt;
-&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;So using the spread operator to create new objects might be fine, it might cause unintended side effects. Please be careful!&lt;/p&gt;
-
-&lt;h2&gt;&lt;code&gt;...&lt;/code&gt; as an object base&lt;/h2&gt;
-
-&lt;p&gt;So far we&amp;#39;ve only used &lt;code&gt;...&lt;/code&gt; to create a copy of an existing object, but it’s actually more powerful than that. We’ll use a different example to add a &lt;em&gt;new property&lt;/em&gt; to an object created with the spread operator:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre class="highlight javascript"&gt;&lt;code&gt;&lt;table class="rouge-table"&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class="rouge-gutter gl"&gt;&lt;pre class="lineno"&gt;1
-2
-3
-4
-5
-6
-7
-&lt;/pre&gt;&lt;/td&gt;&lt;td class="rouge-code"&gt;&lt;pre&gt;&lt;span class="kd"&gt;const&lt;/span&gt; &lt;span class="nx"&gt;cat&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="na"&gt;legs&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt; &lt;span class="p"&gt;};&lt;/span&gt;
-&lt;span class="kd"&gt;const&lt;/span&gt; &lt;span class="nx"&gt;dog&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-    &lt;span class="p"&gt;...&lt;/span&gt;&lt;span class="nx"&gt;cat&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-    &lt;span class="na"&gt;sound&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="dl"&gt;"&lt;/span&gt;&lt;span class="s2"&gt;woof&lt;/span&gt;&lt;span class="dl"&gt;"&lt;/span&gt;
-&lt;span class="p"&gt;};&lt;/span&gt;
-&lt;span class="nx"&gt;console&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;log&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;cat&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt; &lt;span class="c1"&gt;// { legs: 4 }&lt;/span&gt;
-&lt;span class="nx"&gt;console&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;log&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;dog&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt; &lt;span class="c1"&gt;// { legs: 4, sound: "woof" }&lt;/span&gt;
-&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;Again, you can see the &lt;code&gt;cat&lt;/code&gt; object wasn’t changed, but the new &lt;code&gt;dog&lt;/code&gt; object has all the properties from &lt;code&gt;cat&lt;/code&gt; as well as the new &lt;code&gt;sound&lt;/code&gt; property.&lt;/p&gt;
-
-&lt;p&gt;&lt;em&gt;But cats make sounds too, what happens if you assign the sound property to &lt;code&gt;cat&lt;/code&gt;?&lt;/em&gt;&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre class="highlight javascript"&gt;&lt;code&gt;&lt;table class="rouge-table"&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class="rouge-gutter gl"&gt;&lt;pre class="lineno"&gt;1
-2
-3
-4
-5
-6
-7
-&lt;/pre&gt;&lt;/td&gt;&lt;td class="rouge-code"&gt;&lt;pre&gt;&lt;span class="kd"&gt;const&lt;/span&gt; &lt;span class="nx"&gt;cat&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="na"&gt;legs&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="na"&gt;sound&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="dl"&gt;"&lt;/span&gt;&lt;span class="s2"&gt;meow&lt;/span&gt;&lt;span class="dl"&gt;"&lt;/span&gt; &lt;span class="p"&gt;};&lt;/span&gt;
-&lt;span class="kd"&gt;const&lt;/span&gt; &lt;span class="nx"&gt;dog&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-    &lt;span class="p"&gt;...&lt;/span&gt;&lt;span class="nx"&gt;cat&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-    &lt;span class="na"&gt;sound&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="dl"&gt;"&lt;/span&gt;&lt;span class="s2"&gt;woof&lt;/span&gt;&lt;span class="dl"&gt;"&lt;/span&gt;
-&lt;span class="p"&gt;};&lt;/span&gt;
-&lt;span class="nx"&gt;console&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;log&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;cat&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt; &lt;span class="c1"&gt;// { legs: 4, sound: "meow" }&lt;/span&gt;
-&lt;span class="nx"&gt;console&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;log&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;dog&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt; &lt;span class="c1"&gt;// { legs: 4, sound: "woof" }&lt;/span&gt;
-&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;Everything works exactly like you’d hope it would! The &lt;code&gt;cat&lt;/code&gt; object has the new &lt;code&gt;sound&lt;/code&gt; property, with &lt;code&gt;&amp;quot;meow&amp;quot;&lt;/code&gt; correctly assigned. And the &lt;code&gt;dog&lt;/code&gt; object is created with the &lt;code&gt;sound&lt;/code&gt; property set to &lt;code&gt;&amp;quot;woof&amp;quot;&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;Let’s check out those lines more closely:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre class="highlight javascript"&gt;&lt;code&gt;&lt;table class="rouge-table"&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class="rouge-gutter gl"&gt;&lt;pre class="lineno"&gt;1
-2
-3
-4
-&lt;/pre&gt;&lt;/td&gt;&lt;td class="rouge-code"&gt;&lt;pre&gt;&lt;span class="kd"&gt;const&lt;/span&gt; &lt;span class="nx"&gt;dog&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-    &lt;span class="p"&gt;...&lt;/span&gt;&lt;span class="nx"&gt;cat&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-    &lt;span class="na"&gt;sound&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="dl"&gt;"&lt;/span&gt;&lt;span class="s2"&gt;woof&lt;/span&gt;&lt;span class="dl"&gt;"&lt;/span&gt;
-&lt;span class="p"&gt;};&lt;/span&gt;
-&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;Just like before, the &lt;code&gt;{&lt;/code&gt; starts a new object. Then using the spread operator on &lt;code&gt;cat&lt;/code&gt; adds all the &lt;code&gt;cat&lt;/code&gt; properties to the new object. Our new &lt;code&gt;sound: &amp;quot;woof&amp;quot;&lt;/code&gt; &lt;strong&gt;overwrites&lt;/strong&gt; the existing &lt;code&gt;sound&lt;/code&gt; property from &lt;code&gt;cat&lt;/code&gt;. And finally we have the &lt;code&gt;}&lt;/code&gt; to finish our new object.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Warning!&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;The line order maters for this to work. We need &lt;code&gt;sound: &amp;quot;woof&amp;quot;&lt;/code&gt; to come &lt;strong&gt;after&lt;/strong&gt; &lt;code&gt;...cat&lt;/code&gt; so the overwrite happens. This version does &lt;em&gt;not&lt;/em&gt; do what we want:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre class="highlight javascript"&gt;&lt;code&gt;&lt;table class="rouge-table"&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class="rouge-gutter gl"&gt;&lt;pre class="lineno"&gt;1
-2
-3
-4
-5
-6
-7
-&lt;/pre&gt;&lt;/td&gt;&lt;td class="rouge-code"&gt;&lt;pre&gt;&lt;span class="kd"&gt;const&lt;/span&gt; &lt;span class="nx"&gt;cat&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="na"&gt;legs&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="na"&gt;sound&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="dl"&gt;"&lt;/span&gt;&lt;span class="s2"&gt;meow&lt;/span&gt;&lt;span class="dl"&gt;"&lt;/span&gt; &lt;span class="p"&gt;};&lt;/span&gt;
-&lt;span class="kd"&gt;const&lt;/span&gt; &lt;span class="nx"&gt;dog&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-    &lt;span class="na"&gt;sound&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="dl"&gt;"&lt;/span&gt;&lt;span class="s2"&gt;woof&lt;/span&gt;&lt;span class="dl"&gt;"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-    &lt;span class="p"&gt;...&lt;/span&gt;&lt;span class="nx"&gt;cat&lt;/span&gt;
-&lt;span class="p"&gt;};&lt;/span&gt;
-&lt;span class="nx"&gt;console&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;log&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;cat&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt; &lt;span class="c1"&gt;// { legs: 4, sound: "meow" }&lt;/span&gt;
-&lt;span class="nx"&gt;console&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;log&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;dog&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt; &lt;span class="c1"&gt;// { legs: 4, sound: "meow" }&lt;/span&gt;
-&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;Because we put the &lt;code&gt;...cat&lt;/code&gt; after the &lt;code&gt;sound: &amp;quot;woof&amp;quot;&lt;/code&gt; the &lt;code&gt;cat&lt;/code&gt;&amp;#39;s &lt;code&gt;sound&lt;/code&gt; property overwrote the &lt;code&gt;sound: &amp;quot;woof&amp;quot;&lt;/code&gt; property.&lt;/p&gt;
-
-&lt;h2&gt;Wrapping up&lt;/h2&gt;
-
-&lt;p&gt;Well there you have it. The spread operator is super handy for quickly creating and updating objects. It has other uses too (see the Mozilla docs below), but I’ve found I use this version the most. Enjoy!&lt;/p&gt;
-
-&lt;h2&gt;Resources&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_operator"&gt;Mozilla&lt;/a&gt; documentation&lt;/li&gt;
-&lt;li&gt;The &lt;a href="https://github.com/tc39/proposal-object-rest-spread"&gt;proposal&lt;/a&gt; to add the spread operator to JS&lt;/li&gt;
 &lt;/ul&gt;
 </content>
   </entry>
