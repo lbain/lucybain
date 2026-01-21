@@ -1,21 +1,4 @@
 <% wrap_layout :layout do %>
-<script>window.twttr = (function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0],
-    t = window.twttr || {};
-  if (d.getElementById(id)) return t;
-  js = d.createElement(s);
-  js.id = id;
-  js.src = "https://platform.twitter.com/widgets.js";
-  fjs.parentNode.insertBefore(js, fjs);
-
-  t._e = [];
-  t.ready = function(f) {
-    t._e.push(f);
-  };
-
-  return t;
-}(document, "script", "twitter-wjs"));</script>
-
   <div class="<%= (current_page.data.page_class || '') + ' blog-listing' %>">
     <div class="meta">
       <h1>
@@ -30,14 +13,6 @@
 
     <hr/>
 
-    <p class="social-share"> Did you find this post helpful? Please share it!
-      <a class="twitter-share-button"
-          href="https://twitter.com/intent/tweet?text=<%= url_friendly(current_page.data.title) %>"
-          data-hashtags="<%= current_page.tags.join(',') %>"
-          data-via="lucykbain"
-          data-size="large">
-        Tweet</a>
-    </p>
     <% unless current_page.data.no_comments %>
       <div id="disqus_thread">
         <script>
