@@ -1,1 +1,1 @@
-function Explosion(i,t){this.x=i,this.y=t,this.radius=20,this.dr=.5,this.maxR=50;for(var s in hitable)this[s]||(this[s]=hitable[s])}Explosion.prototype.move=function(){this.radius+=this.dr},Explosion.prototype.done=function(){return this.radius>this.maxR};
+function Explosion(i,t){for(var s in this.x=i,this.y=t,this.radius=20,this.dr=.5,this.maxR=50,hitable)this[s]||(this[s]=hitable[s])}Explosion.prototype.move=function(){this.radius+=this.dr},Explosion.prototype.done=function(){return this.radius>this.maxR};

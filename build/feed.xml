@@ -4,7 +4,7 @@
   <id>http://lucybain.com/blog</id>
   <link href="http://lucybain.com/blog"/>
   <link href="http://lucybain.com/feed.xml" rel="self"/>
-  <updated>2021-06-13T10:00:00+10:00</updated>
+  <updated>2021-06-13T00:00:00+00:00</updated>
   <author>
     <name>Lucy Bain</name>
   </author>
@@ -12,7 +12,7 @@
     <title>Recommended Reading</title>
     <link rel="alternate" href="http://lucybain.com/blog/2021/recommended-reading/"/>
     <id>http://lucybain.com/blog/2021/recommended-reading/</id>
-    <published>2021-06-13T10:00:00+10:00</published>
+    <published>2021-06-13T00:00:00+00:00</published>
     <author>
       <name>Article Author</name>
     </author>
@@ -49,7 +49,7 @@
     <title>One-on-One Meeting Template</title>
     <link rel="alternate" href="http://lucybain.com/blog/2021/one-on-one-template/"/>
     <id>http://lucybain.com/blog/2021/one-on-one-template/</id>
-    <published>2021-06-05T10:00:00+10:00</published>
+    <published>2021-06-05T00:00:00+00:00</published>
     <author>
       <name>Article Author</name>
     </author>
@@ -83,7 +83,7 @@
     <title>Free Coaching Sessions Again!</title>
     <link rel="alternate" href="http://lucybain.com/blog/2021/coaching-sessions-pt2/"/>
     <id>http://lucybain.com/blog/2021/coaching-sessions-pt2/</id>
-    <published>2021-06-01T10:00:00+10:00</published>
+    <published>2021-06-01T00:00:00+00:00</published>
     <author>
       <name>Article Author</name>
     </author>
@@ -158,7 +158,7 @@
     <title>Preparing for our coaching session</title>
     <link rel="alternate" href="http://lucybain.com/blog/2021/coaching-session-prep/"/>
     <id>http://lucybain.com/blog/2021/coaching-session-prep/</id>
-    <published>2021-01-31T11:00:00+11:00</published>
+    <published>2021-01-31T00:00:00+00:00</published>
     <author>
       <name>Article Author</name>
     </author>
@@ -202,7 +202,7 @@
     <title>2021 Coaching Sessions</title>
     <link rel="alternate" href="http://lucybain.com/blog/2021/coaching-sessions/"/>
     <id>http://lucybain.com/blog/2021/coaching-sessions/</id>
-    <published>2021-01-01T11:00:00+11:00</published>
+    <published>2021-01-01T00:00:00+00:00</published>
     <author>
       <name>Article Author</name>
     </author>
@@ -275,7 +275,7 @@
     <title>Three tips for reports to improve one-on-ones: Part 1</title>
     <link rel="alternate" href="http://lucybain.com/blog/2019/better-one-on-ones-pt1/"/>
     <id>http://lucybain.com/blog/2019/better-one-on-ones-pt1/</id>
-    <published>2019-01-18T11:00:00+11:00</published>
+    <published>2019-01-18T00:00:00+00:00</published>
     <author>
       <name>Article Author</name>
     </author>
