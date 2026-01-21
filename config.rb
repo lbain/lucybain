@@ -174,7 +174,7 @@ helpers do
   end
 
   def url_friendly(string)
-    URI.escape(string)
+    URI.encode_www_form_component(string)
   end
 
   def host_with_port

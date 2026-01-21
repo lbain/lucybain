@@ -13,4 +13,4 @@ gem 'haml', '~> 5.0'
 # For feed.xml.builder
 gem "builder"
 
-gem "webrick"#, "~> 1.9"
+gem "webrick"
