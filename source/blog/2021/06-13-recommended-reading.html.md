@@ -1,6 +1,6 @@
 ---
 title: Recommended Reading
-tags: books
+tags: ["books"]
 
 description: I’ve recommended these books to many people over the years and want to share that list more widely!
 keywords:

@@ -1,6 +1,6 @@
 ---
 title: 'JS: .call vs. .apply'
-tags: js, interview-questions
+tags: ["js", "interview-questions"]
 ---
 
 ## What’s the difference between `.call` and `.apply`?

@@ -1,6 +1,6 @@
 ---
 title: "ReactJS: Props vs. State"
-tags: reactjs, js
+tags: ["reactjs", "js"]
 
 description: A look into ReactJS's props and state work, with lots of examples!
 ---

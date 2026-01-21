@@ -1,6 +1,6 @@
 ---
 title: 'JS: explain Function.prototype.bind'
-tags: js, interview-questions
+tags: ["js", "interview-questions"]
 ---
 
 ## Explain Function.prototype.bind

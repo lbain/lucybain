@@ -1,6 +1,6 @@
 ---
 title: Preparing for our coaching session
-tags: coaching
+tags: ["coaching"]
 published: true
 
 description: Some tips and expectation setting for our coaching sessions

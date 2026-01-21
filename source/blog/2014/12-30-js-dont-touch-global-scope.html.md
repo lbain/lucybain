@@ -1,6 +1,6 @@
 ---
 title: "JS: don’t touch the global scope"
-tags: js, interview-questions
+tags: ["js", "interview-questions"]
 ---
 
 One of the last installments from my series on [javascript interview questions](https://github.com/h5bp/Front-end-Developer-Interview-Questions#js).

@@ -1,6 +1,6 @@
 ---
 title: "JS: What data types are supported in Javascript?"
-tags: js, interview-questions
+tags: ["js", "interview-questions"]
 ---
 
 According to the latest [ECMAScript](http://en.wikipedia.org/wiki/ECMAScript) release, these are the data types:

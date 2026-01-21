@@ -1,6 +1,6 @@
 ---
 title: "Javascript: Promises part one"
-tags: js, promises
+tags: ["js", "promises"]
 published: false
 
 description: Let’s take a brief overview of what promises are typically used for.

@@ -1,6 +1,6 @@
 ---
 title: One-on-One Meeting Template
-tags: management
+tags: ["management"]
 
 description: 
 keywords:

@@ -1,6 +1,6 @@
 ---
 title: "Sublime Text Macros"
-tags: js, interview-questions
+tags: ["js", "interview-questions"]
 
 description: test
 keywords: testing

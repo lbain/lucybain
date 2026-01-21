@@ -1,6 +1,6 @@
 ---
 title: 'JS: Describe event bubbling'
-tags: js, interview-questions
+tags: ["js", "interview-questions"]
 ---
 
 ## Describe event bubbling

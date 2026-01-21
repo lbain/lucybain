@@ -1,6 +1,6 @@
 ---
 title: "Three tips for reports to improve one-on-ones: Part 1"
-tags: people-manager, one-on-ones
+tags: ["people-manager", "one-on-ones"]
 
 description: Three beginner level tips for better 1:1 meetings with your manager
 keywords: one-on-ones, manager meetings, 1:1s

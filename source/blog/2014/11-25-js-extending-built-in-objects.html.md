@@ -1,6 +1,6 @@
 ---
 title: "JS: don’t extend JS objects"
-tags: js, interview-questions
+tags: ["js", "interview-questions"]
 ---
 
 ## Why is extending built in JavaScript objects not a good idea?

@@ -135,7 +135,9 @@ helpers do
   end
 
   def keywords(page_data)
-    @words = page_data.keywords || page_data.tags || false
+    words = page_data.keywords || page_data.tags || false
+    return false unless words
+    words.is_a?(Array) ? words.join(', ') : words
   end
 
   def web_page_title

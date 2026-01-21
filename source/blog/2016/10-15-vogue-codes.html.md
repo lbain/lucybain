@@ -1,6 +1,6 @@
 ---
 title: Attending Vogue Codes
-tags: conference, women in tech
+tags: ["conference", "women in tech"]
 
 description: Notes I took from the Vogue Codes event in Sydney.
 

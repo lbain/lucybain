@@ -1,6 +1,6 @@
 ---
 title: 'JS: same-origin policy'
-tags: js, interview-questions
+tags: ["js", "interview-questions"]
 ---
 
 ## Explain the same-origin policy with regards to JavaScript.

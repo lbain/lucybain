@@ -1,6 +1,6 @@
 ---
 title: "JS: ES6’s let vs. var"
-tags: js, es6
+tags: ["js", "es6"]
 
 description:
 keywords: es6, js, interview-questions

@@ -1,6 +1,6 @@
 ---
 title: "JS: ES6 Const keyword"
-tags: js, ECMAScript 6, const
+tags: ["js", "ECMAScript 6", "const"]
 
 description: Learn about the new `const` keyword available in ECMAScript 6
 ---

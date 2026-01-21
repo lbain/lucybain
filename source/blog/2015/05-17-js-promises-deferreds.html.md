@@ -1,6 +1,6 @@
 ---
 title: 'JS: Getting to know promises'
-tags: js, interview-questions
+tags: ["js", "interview-questions"]
 published: false
 ---
 

@@ -1,6 +1,6 @@
 ---
 title: "JS: Split vs. Splice"
-tags: js, interview-questions
+tags: ["js", "interview-questions"]
 ---
 
 ## What’s the difference between `split` and `splice`?

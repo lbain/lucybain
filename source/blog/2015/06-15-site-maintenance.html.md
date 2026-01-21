@@ -1,6 +1,6 @@
 ---
 title: Periodic site maintenance
-tags: webmaster
+tags: ["webmaster"]
 
 description:
 keywords:

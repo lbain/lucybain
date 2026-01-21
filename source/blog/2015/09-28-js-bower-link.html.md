@@ -1,6 +1,6 @@
 ---
 title: 'Bower link'
-tags: js, bower
+tags: ["js", "bower"]
 ---
 
 At work today I used `bower link` and wanted to know more about how it works. I'm not going to talk about why you should use Bower, how to use it generally, or really anything useful for most people. I'm only going to talk about the `bower link` command.

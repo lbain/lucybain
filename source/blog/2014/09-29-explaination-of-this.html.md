@@ -1,6 +1,6 @@
 ---
 title: 'JS "this"'
-tags: js, interview-questions
+tags: ["js", "interview-questions"]
 ---
 
 ## Explain how this works in JavaScript

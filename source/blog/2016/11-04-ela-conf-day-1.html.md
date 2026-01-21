@@ -1,6 +1,6 @@
 ---
 title: Ela Conf - day one
-tags: conference, women in tech
+tags: ["conference", "women in tech"]
 
 description: Notes I took from the first day of Ela Conf in Philadelphia
 

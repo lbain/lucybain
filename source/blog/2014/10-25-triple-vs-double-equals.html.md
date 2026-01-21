@@ -1,6 +1,6 @@
 ---
 title: 'JS: == vs. ==='
-tags: js, interview-questions
+tags: ["js", "interview-questions"]
 ---
 
 ## What is the difference between == and ===?

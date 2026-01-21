@@ -1,6 +1,6 @@
 ---
 title: 'Intro to programming: If statements'
-tags: programming, intro-programming
+tags: ["programming", "intro-programming"]
 
 description: A very basic level description of if statements.
 keywords: introduction, programming, if statements

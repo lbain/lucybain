@@ -1,6 +1,6 @@
 ---
 title: 'JS: ternary expressions'
-tags: js, interview-questions
+tags: ["js", "interview-questions"]
 ---
 
 ## Why is it called a Ternary expression, what does the word “Ternary” indicate?

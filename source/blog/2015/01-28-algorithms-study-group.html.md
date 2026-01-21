@@ -1,6 +1,6 @@
 ---
 title: "Algorithms study group"
-tags: algorithms, study group
+tags: ["algorithms", "study group"]
 ---
 
 Last year I ran two study groups, one for [JS](http://codesydney.com/2014-js) and one for [intro to programming](/python). I also gave a talk about [starting a study group](https://docs.google.com/presentation/d/18lYj02Tc0dBbAAngrYBGPRSbADnswkjnyAdoeD--WQ4/edit?usp=sharing) at Girl Geek Dinner. I was thrilled when my friend [Daphne](http://daphnechong.com/) decided to organise a [group](http://codesydney.com/2015-algorithms/) on her own to study algorithms.

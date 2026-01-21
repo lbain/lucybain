@@ -1,6 +1,6 @@
 ---
 title: 'JS: what is a closure?'
-tags: js, interview-questions
+tags: ["js", "interview-questions"]
 ---
 
 ## What is a closure, and how/why would you use one?

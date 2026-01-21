@@ -1,6 +1,6 @@
 ---
 title: 'JS Immediately Invoked Function Expressions'
-tags: js, interview-questions
+tags: ["js", "interview-questions"]
 
 featured: true
 ---

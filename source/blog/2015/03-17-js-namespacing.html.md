@@ -1,6 +1,6 @@
 ---
 title: "JS: What is Javascript namespacing? How and where is it used?"
-tags: js, interview-questions
+tags: ["js", "interview-questions"]
 ---
 
 ## What is Javascript namespacing? How and where is it used?

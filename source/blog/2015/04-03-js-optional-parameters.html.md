@@ -1,6 +1,6 @@
 ---
 title: "JS: How can you accept optional parameters?"
-tags: js, interview-questions
+tags: ["js", "interview-questions"]
 ---
 
 There’s more than one way to skin a cat, and there’s more than one way to accept optional parameters. (Editors note: I do not condone skinning cats!)

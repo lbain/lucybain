@@ -1,6 +1,6 @@
 ---
 title: "JS: Enhanced object literals"
-tags: js, es6
+tags: ["js", "es6"]
 
 description: Looking at some new features introduced in ES6 for easier object creation.
 keywords: js, es6, enhanced objects

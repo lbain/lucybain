@@ -1,6 +1,6 @@
 ---
 title: 'JS: AMD and CommonJS'
-tags: js, interview-questions
+tags: ["js", "interview-questions"]
 ---
 
 ## What’s the difference between AMD and CommonJS?

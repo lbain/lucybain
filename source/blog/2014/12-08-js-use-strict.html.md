@@ -1,6 +1,6 @@
 ---
 title: 'JS: use strict'
-tags: js, interview-questions
+tags: ["js", "interview-questions"]
 ---
 
 ## What is `"use strict";`? what are the advantages and disadvantages to using it?

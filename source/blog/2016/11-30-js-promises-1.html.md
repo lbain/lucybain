@@ -1,6 +1,6 @@
 ---
 title: "Javascript: pre-Promises"
-tags: js, promises
+tags: ["js", "promises"]
 
 description: We'll sets the scene for the promises work coming in future blog posts.
 keywords: js, javascript, promises, timeouts

@@ -1,6 +1,6 @@
 ---
 title: "JS: How does JSONP work?"
-tags: js, interview-questions
+tags: ["js", "interview-questions"]
 ---
 
 ## How does JSONP work?

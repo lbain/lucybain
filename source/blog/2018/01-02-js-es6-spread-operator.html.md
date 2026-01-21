@@ -1,6 +1,6 @@
 ---
 title: "JS: ES6’s spread operator for objects"
-tags: js, es6
+tags: ["js", "es6"]
 
 description: A description of the new spread operator introduced in ES6.
 ---

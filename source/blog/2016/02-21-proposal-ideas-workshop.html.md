@@ -1,6 +1,6 @@
 ---
 title: Workshop for conference proposals
-tags: conference proposals, ideas, how to, resources, workshop
+tags: ["conference proposals", "ideas", "how to", "resources", "workshop"]
 
 description: An outline for how to run a workshop on conference proposal ideas and writing the proposal itself.
 ---

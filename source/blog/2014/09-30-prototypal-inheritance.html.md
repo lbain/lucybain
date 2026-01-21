@@ -1,6 +1,6 @@
 ---
 title: "JS prototypal inheritance"
-tags: js, interview-questions
+tags: ["js", "interview-questions"]
 ---
 
 ## Explain how prototypal inheritance works

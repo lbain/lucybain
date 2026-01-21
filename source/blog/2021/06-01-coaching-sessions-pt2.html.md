@@ -1,6 +1,6 @@
 ---
 title: Free Coaching Sessions Again!
-tags: coaching
+tags: ["coaching"]
 published: true
 
 description: I'm offering six free coaching sessions to four more women in 2021!

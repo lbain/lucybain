@@ -1,6 +1,6 @@
 ---
 title: 'JS: new keyword and functions'
-tags: js, interview-questions
+tags: ["js", "interview-questions"]
 
 description: A look into JavaScript functions with particular focus on the “new” keyword for creating objects from JS constructors.
 keywords: JavaScript, JS, new, object, constructor

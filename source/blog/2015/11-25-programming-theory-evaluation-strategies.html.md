@@ -1,6 +1,6 @@
 ---
 title: "Programming theory: Evaluation strategies"
-tags: programming, intro-programming, theory
+tags: ["programming", "intro-programming", "theory"]
 
 description: A look at various ways to pass variables to functions. Specifically by reference, value, and by sharing.
 keywords: pass by reference, pass by value, pass by sharing, vs.

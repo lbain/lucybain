@@ -1,6 +1,6 @@
 ---
 title: "Rails Girls event manager"
-tags: rails-girls
+tags: ["rails-girls"]
 ---
 
 Hi there!

@@ -1,6 +1,6 @@
 ---
 title: 'Intro to Programming: Booleans'
-tags: programming, intro-programming
+tags: ["programming", "intro-programming"]
 ---
 ## Explaination
 

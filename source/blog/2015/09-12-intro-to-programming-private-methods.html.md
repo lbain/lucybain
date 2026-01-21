@@ -1,6 +1,6 @@
 ---
 title: "Intro to programming: Private methods"
-tags: programming, methods, privacy
+tags: ["programming", "methods", "privacy"]
 published: false
 
 description: A brief overview of how privacy works in programming - specifically with javascript.

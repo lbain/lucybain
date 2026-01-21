@@ -1,6 +1,6 @@
 ---
 title: 'Rails Girls - March 2015'
-tags: community, rails
+tags: ["community", "rails"]
 ---
 
 Phew! Rails Girls Sydney, March 2015 was on Friday and Saturday, I wanted to update you

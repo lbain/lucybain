@@ -1,6 +1,6 @@
 ---
 title: "JS: Promises/A+ and. jQuery history"
-tags: js, promise
+tags: ["js", "promise"]
 
 description: A look into why we have two promise definitions.
 keywords: javascript, promises/A+, jquery, promise, history

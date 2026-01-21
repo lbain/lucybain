@@ -1,6 +1,6 @@
 ---
 title: "CSS: What is Block Formatting Context (BFC)?"
-tags: css
+tags: ["css"]
 
 description:
 keywords: css, block formatting context, bfc

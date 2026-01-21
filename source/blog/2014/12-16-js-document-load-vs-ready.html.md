@@ -1,6 +1,6 @@
 ---
 title: 'JS: document load vs document ready'
-tags: js, interview-questions
+tags: ["js", "interview-questions"]
 
 featured: true
 ---

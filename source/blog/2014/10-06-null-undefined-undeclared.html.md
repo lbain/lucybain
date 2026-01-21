@@ -1,6 +1,6 @@
 ---
 title: 'JS: null, undefined, and undeclared'
-tags: js, interview-questions
+tags: ["js", "interview-questions"]
 
 featured: true
 ---

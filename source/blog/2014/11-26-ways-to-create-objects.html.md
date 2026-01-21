@@ -1,6 +1,6 @@
 ---
 title: 'JS: ways to create objects'
-tags: js, interview-questions
+tags: ["js", "interview-questions"]
 ---
 
 ## What are a few different ways to create new objects?

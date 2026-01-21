@@ -1,6 +1,6 @@
 ---
 title: 'JS: attribute vs. property'
-tags: js, interview-questions
+tags: ["js", "interview-questions"]
 
 featured: true
 ---

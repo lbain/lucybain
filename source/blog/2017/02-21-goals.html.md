@@ -1,6 +1,6 @@
 ---
 title: Goal setting and tracking
-tags: goals, personal improvement
+tags: ["goals", "personal improvement"]
 
 description: An overview of how I set goals for becoming a better developer.
 ---

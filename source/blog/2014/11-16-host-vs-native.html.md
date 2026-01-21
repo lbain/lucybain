@@ -1,6 +1,6 @@
 ---
 title: 'JS: host vs. native objects'
-tags: js, interview-questions
+tags: ["js", "interview-questions"]
 ---
 
 ## What’s the difference between host objects and native objects?

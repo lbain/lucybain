@@ -1,6 +1,6 @@
 ---
 title: 'CSS: Flexbox'
-tags: css, hands-on, flexbox
+tags: ["css", "hands-on", "flexbox"]
 ---
 
 I recently learned about flex-box and have been doing some research into it. Hopefully I'll write up a “All about flexbox” post, but for now I want to go through a hands on example of using flexbox in the wild.

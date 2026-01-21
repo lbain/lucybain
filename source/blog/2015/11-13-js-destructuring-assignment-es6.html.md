@@ -1,6 +1,6 @@
 ---
 title: "JS: Destructuring assignment with ES6"
-tags: js, es6
+tags: ["js", "es6"]
 
 description: Using new features of ES6 to make variable assignment easier
 keywords: js, es6, destructuring assignment, array

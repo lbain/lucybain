@@ -1,6 +1,6 @@
 ---
 title: "JS: Promises/A+, jQuery Deferreds, and errors"
-tags: js, promises
+tags: ["js", "promises"]
 
 description: A look into how Promises/A+ vs jQuery Deferreds handle errors differently.
 keywords: js, promises, deferreds, promises/a+, vs

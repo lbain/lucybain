@@ -1,6 +1,6 @@
 ---
 title: Ela Conf - closing thoughts
-tags: conference, women in tech
+tags: ["conference", "women in tech"]
 
 description: Musings from my time at Ela Conf
 ---

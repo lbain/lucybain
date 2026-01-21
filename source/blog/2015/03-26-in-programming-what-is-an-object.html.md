@@ -1,6 +1,6 @@
 ---
 title: "In programming, what is an object?"
-tags: programming-basics
+tags: ["programming-basics"]
 ---
 
 As promised in my last blog post: intro to objects.

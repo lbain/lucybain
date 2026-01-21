@@ -1,6 +1,6 @@
 ---
 title: How does React decide to re-render a component?
-tags: react, js, performance
+tags: ["react", "js", "performance"]
 
 description: React re-renders if shouldComponentUpdate returns true for any reason. How can we use this knowledge to help performance?
 keywords: react, js, performance

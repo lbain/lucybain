@@ -1,6 +1,6 @@
 ---
 title: How to come up with conference proposal ideas
-tags: conference proposals, ideas, how to, resources
+tags: ["conference proposals", "ideas", "how to", "resources"]
 
 description: A worksheet I wrote to help people come up with conference proposal ideas.
 page_class: proposal-worksheet

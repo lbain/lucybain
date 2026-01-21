@@ -1,6 +1,6 @@
 ---
 title: "JS: promise and deferred"
-tags: js, promise
+tags: ["js", "promise"]
 
 description: A breakdown of what Javascript’s promise and deferred represent with examples to clarify.
 keywords: javascript, promise, deferred

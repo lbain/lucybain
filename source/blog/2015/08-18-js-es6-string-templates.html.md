@@ -1,6 +1,6 @@
 ---
 title: "JS: ES6’s string templates"
-tags: js, es6, string templates
+tags: ["js", "es6", "string templates"]
 
 description: Learn how to use ES6's new string templates and their security risks.
 --- 

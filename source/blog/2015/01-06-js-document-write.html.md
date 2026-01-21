@@ -1,6 +1,6 @@
 ---
 title: "JS: When would you use document.write()?"
-tags: js, interview-questions
+tags: ["js", "interview-questions"]
 ---
 
 ## When would you use `document.write()`?

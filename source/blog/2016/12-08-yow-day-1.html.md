@@ -1,6 +1,6 @@
 ---
 title: YOW! Day One
-tags: conference
+tags: ["conference"]
 
 description: Notes from the YOW! 2016 conference, including topics such as mob programming, distributed systems, data science at Pinterest, how to be a better developer.
 keywords: conference, yow, australia, tech conference

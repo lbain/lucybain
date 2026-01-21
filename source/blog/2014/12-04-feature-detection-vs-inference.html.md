@@ -1,6 +1,6 @@
 ---
 title: 'JS: feature detection vs. inference vs. UA string'
-tags: js, interview-questions
+tags: ["js", "interview-questions"]
 ---
 
 ## What’s the difference between feature detection, feature inference, and using the UA string?

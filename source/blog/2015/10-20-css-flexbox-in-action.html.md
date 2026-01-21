@@ -1,6 +1,6 @@
 ---
 title: 'CSS: Flexbox in action - Bitbucket Server pull request header'
-tags: css, hands-on, flexbox
+tags: ["css", "hands-on", "flexbox"]
 ---
 
 I [recently wrote](/blog/2015/css-flexbox/) about using the `flex-box` rule in CSS. That was a practice round because I knew I needed to use flexbox at work in the future. Well, the time has come!

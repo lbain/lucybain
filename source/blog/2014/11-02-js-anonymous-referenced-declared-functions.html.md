@@ -1,6 +1,6 @@
 ---
 title: 'JS: Anonymous vs. referenced vs. declared functions'
-tags: js, interview-questions
+tags: ["js", "interview-questions"]
 
 description: An introduction to different ways of referencing and calling functions in javascript.
 keywords: javascript, js, function, anonymous, referenced, declared

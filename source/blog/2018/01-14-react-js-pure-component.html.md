@@ -1,6 +1,6 @@
 ---
 title: "React JS: what is a PureComponent?"
-tags: react, js, performance
+tags: ["react", "js", "performance"]
 
 description: A discussion of what a pure component is in React, and how it differs from a traditional component.
 keywords: react, js, PureComponent, pure component

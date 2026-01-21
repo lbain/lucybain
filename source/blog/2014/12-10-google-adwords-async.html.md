@@ -1,6 +1,6 @@
 ---
 title: 'JS: Async Google Adwords conversion'
-tags: js, google-adwords
+tags: ["js", "google-adwords"]
 
 featured: true
 ---
