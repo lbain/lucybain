@@ -2,7 +2,7 @@
 # the following line to use "https"
 source 'http://rubygems.org'
 
-gem "middleman"
+gem "middleman", '~> 4.4'
 gem "middleman-syntax"
 gem "middleman-blog"
 gem "middleman-livereload"
@@ -13,4 +13,4 @@ gem 'haml', '~> 5.0'
 # For feed.xml.builder
 gem "builder"
 
-gem "webrick", "~> 1.9"
+gem "webrick"#, "~> 1.9"
