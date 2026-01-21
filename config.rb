@@ -118,10 +118,6 @@ helpers do
     current_url == nav_url
   end
 
-  def from_url(link_name)
-    link_name.sub('-', ' ').titleize
-  end
-
   def path_to_file_name(path)
     path.split('/').last.sub('.html', '')
   end
@@ -140,19 +136,6 @@ helpers do
 
   def keywords(page_data)
     @words = page_data.keywords || page_data.tags || false
-  end
-
-  def popular_blog_posts
-    blog.articles.select do |item|
-      item.metadata[:page]["featured"] rescue false
-    end
-  end
-
-  def random_popular_post(current_page)
-    resonable_posts = popular_blog_posts.delete_if do |item|
-      item == current_page
-    end
-    resonable_posts.sample
   end
 
   def web_page_title
